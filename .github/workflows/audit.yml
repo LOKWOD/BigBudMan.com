@@ -1,0 +1,29 @@
+name: Audit Big Bud Man
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Restore publication source
+        run: |
+          cat source/bbm-tools.xz.part-* > /tmp/bbm-tools.tar.xz
+          tar -xJf /tmp/bbm-tools.tar.xz
+          mkdir -p assets/images
+          cat source/og-card.part-* > assets/images/og-card.png
+      - name: Build publication
+        run: python tools/build_site.py
+      - name: Audit publication
+        run: python tools/audit_site.py _site
