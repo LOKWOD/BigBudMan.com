@@ -2,14 +2,14 @@
 
 **Legal weed. Clear-headed guidance.**
 
-Big Bud Man is a fast, zero-dependency editorial publication for adults 21+. It covers cannabis basics, labels, edibles, flower, vapes, terpenes, strain field notes, practical accessories, responsible use, and New York legal basics. It does **not** sell cannabis.
+Big Bud Man is a fast, zero-dependency editorial publication for adults 21+. It covers cannabis basics, labels, edibles, flower, vapes, terpenes, strain field notes, practical accessories, responsible use, and reviewed legal starting points for all 50 states. It does **not** sell cannabis.
 
 ## Included
 
-- 130 indexable pages, including 106 strain field notes, plus custom thank-you and 404 pages
+- 179 indexable pages, including 106 strain field notes and 50 state-law guides, plus custom thank-you and 404 pages
 - 21+ age gate stored only in browser local storage
 - Responsive editorial design with original studio imagery and custom graphics
-- Client-side library search with retail-shorthand and cannabinoid-profile strain filters
+- Client-side library search with strain filters and a searchable, status-filtered 50-state law library
 - Explicit representative-photo disclosures plus category-matched CBD-rich and THC:CBD imagery
 - Interactive Clear-Lane Finder
 - Article table of contents, reading progress, and copy-link controls
@@ -43,4 +43,4 @@ A push to `main` restores the generator, builds the full publication, audits all
 
 ## Editorial maintenance
 
-Legal pages show a review date and link directly to New York State’s Office of Cannabis Management. Recheck legal and health guidance before materially changing those pages. See `/editorial-policy/` and `/affiliate-disclosure/` for publishing standards.
+Legal pages show a review date and link to the responsible state regulator, health department, commission, or legislature, plus the NCSL 50-state baseline and current DEA rulemaking record. Recheck every legal and health claim before materially changing those pages. See `/editorial-policy/` and `/affiliate-disclosure/` for publishing standards.

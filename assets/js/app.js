@@ -162,7 +162,7 @@
       flower: {title:'Use the flower quality guide', text:'Freshness, cure, source, and manageable potency matter more than chasing the biggest percentage.', url:'guides/flower/', cta:'Open flower guide'},
       vape: {title:'Check the vape source and hardware', text:'Concentrated oil and compact hardware reward deliberate pacing and licensed sourcing.', url:'guides/vapes/', cta:'Open vape guide'},
       label: {title:'Learn the label in ten minutes', text:'Separate package total from serving amount, then check traceability, ingredients, and batch information.', url:'guides/read-a-label/', cta:'Open label decoder'},
-      legal: {title:'Know the New York edges', text:'Possession is the easy part. Vehicles, public use, travel, workplaces, and source verification deserve attention.', url:'legal/new-york/', cta:'Open New York guide'},
+      legal: {title:'Check the law where you are', text:'Search all 50 states for possession, home grow, medical access, retail status, and the official source.', url:'legal/', cta:'Open 50-state library'},
       gear: {title:'Build a safer storage setup', text:'Use original packaging, an odor-resistant inner layer, and a locked outer location.', url:'gear/smell-proof-storage/', cta:'Open storage gear guide'},
       basics: {title:'Build the Cannabis 101 foundation', text:'Understand THC, CBD, formats, timing, potency, and why a strain name never tells the whole story.', url:'guides/cannabis-101/', cta:'Open Cannabis 101'}
     };
@@ -232,6 +232,35 @@
       renderStrains();
     }));
     strainInput?.addEventListener('input', renderStrains);
+  }
+
+  // Fifty-state legal library search and status filters.
+  const stateLibrary = $('[data-state-library]');
+  const stateCards = $$('[data-state-card]');
+  if (stateLibrary && stateCards.length) {
+    const stateInput = $('[data-state-search]', stateLibrary);
+    const emptyState = $('[data-state-empty]', stateLibrary);
+    let activeStatus = 'all';
+    const renderStates = () => {
+      const query = (stateInput?.value || '').trim().toLowerCase();
+      let visible = 0;
+      stateCards.forEach((card) => {
+        const matchesStatus = activeStatus === 'all' || card.dataset.status === activeStatus;
+        const matchesQuery = !query || (card.dataset.search || '').includes(query);
+        const show = matchesStatus && matchesQuery;
+        card.hidden = !show;
+        if (show) visible += 1;
+      });
+      const count = $('[data-state-count]', stateLibrary);
+      if (count) count.textContent = String(visible);
+      if (emptyState) emptyState.hidden = visible !== 0;
+    };
+    $$('[data-state-filter]', stateLibrary).forEach((button) => button.addEventListener('click', () => {
+      activeStatus = button.dataset.stateFilter || 'all';
+      $$('[data-state-filter]', stateLibrary).forEach((item) => item.classList.toggle('is-active', item === button));
+      renderStates();
+    }));
+    stateInput?.addEventListener('input', renderStates);
   }
 
   // Article table of contents and reading progress.
