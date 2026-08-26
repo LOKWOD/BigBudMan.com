@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 430" role="img" aria-labelledby="title desc">
+  <title id="title">New York State editorial map</title>
+  <desc id="desc">A dark editorial map treatment with Central New York highlighted.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#101712"/>
+      <stop offset="1" stop-color="#253024"/>
+    </linearGradient>
+    <linearGradient id="state" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#f7f3e9"/>
+      <stop offset="1" stop-color="#d8dfd2"/>
+    </linearGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0v28" fill="none" stroke="#ffffff" stroke-opacity=".055"/>
+    </pattern>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="18" stdDeviation="14" flood-color="#000000" flood-opacity=".45"/>
+    </filter>
+  </defs>
+  <rect width="620" height="430" rx="30" fill="url(#bg)"/>
+  <rect width="620" height="430" rx="30" fill="url(#grid)"/>
+  <path d="M34 335C144 282 206 276 304 285s188 21 284-19" fill="none" stroke="#b9ff4b" stroke-opacity=".18" stroke-width="2"/>
+  <path d="M40 360C154 310 226 306 323 319s170 18 257-4" fill="none" stroke="#ffbd59" stroke-opacity=".2" stroke-width="2"/>
+  <g filter="url(#shadow)" transform="translate(0 -4)">
+    <path d="M43 224 99 91l142 28 73-49 70 32 43-22 51 82 99 57-20 73-67 21-21 67-115-15-48 25-81-47-85 6-31-58-66-67Z" fill="#b9ff4b" opacity=".38" transform="translate(8 10)"/>
+    <path d="M43 224 99 91l142 28 73-49 70 32 43-22 51 82 99 57-20 73-67 21-21 67-115-15-48 25-81-47-85 6-31-58-66-67Z" fill="url(#state)" stroke="#101712" stroke-width="9" stroke-linejoin="round"/>
+    <path d="M122 147 241 169l72-45 77 29 50-18M101 227l101 27 81-24 69 22 88-23M139 306l92-3 69 39 61-31 82 11" fill="none" stroke="#101712" stroke-opacity=".22" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(312 226)">
+    <circle r="34" fill="#b9ff4b" opacity=".22"/>
+    <circle r="20" fill="#b9ff4b" stroke="#101712" stroke-width="6"/>
+    <circle r="5" fill="#101712"/>
+    <path d="M0 24v58" stroke="#b9ff4b" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <path d="M24 27h132M24 27v34M596 403H464M596 403v-34" fill="none" stroke="#ffbd59" stroke-width="4"/>
+</svg>

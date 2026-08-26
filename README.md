@@ -8,7 +8,7 @@ Big Bud Man is a fast, zero-dependency editorial publication for adults 21+. It 
 
 - 30 indexable pages plus custom thank-you and 404 pages
 - 21+ age gate stored only in browser local storage
-- Responsive editorial design and original SVG illustrations
+- Responsive editorial design with original studio imagery and custom graphics
 - Client-side library search and strain filters
 - Interactive Clear-Lane Finder
 - Article table of contents, reading progress, and copy-link controls
@@ -22,8 +22,6 @@ Big Bud Man is a fast, zero-dependency editorial publication for adults 21+. It 
 ```bash
 cat source/bbm-tools.xz.part-* > /tmp/bbm-tools.tar.xz
 tar -xJf /tmp/bbm-tools.tar.xz
-mkdir -p assets/images
-cat source/og-card.part-* > assets/images/og-card.png
 python tools/build_site.py
 python tools/audit_site.py _site
 python -m http.server 8000 -d _site
