@@ -200,18 +200,29 @@
   const filterBar = $('[data-strain-filter]');
   const strainCards = $$('[data-strain-card]');
   if (filterBar && strainCards.length) {
-    $$('[data-filter]', filterBar).forEach((button) => button.addEventListener('click', () => {
-      const filter = button.dataset.filter;
-      $$('[data-filter]', filterBar).forEach((item) => item.classList.toggle('is-active', item === button));
+    const strainInput = $('[data-strain-search]', filterBar);
+    const emptyState = $('[data-strain-empty]');
+    let activeFilter = 'all';
+    const renderStrains = () => {
+      const query = (strainInput?.value || '').trim().toLowerCase();
       let visible = 0;
       strainCards.forEach((card) => {
-        const show = filter === 'all' || card.dataset.lean === filter;
+        const matchesFilter = activeFilter === 'all' || card.dataset.lean === activeFilter;
+        const matchesQuery = !query || (card.dataset.search || '').includes(query);
+        const show = matchesFilter && matchesQuery;
         card.hidden = !show;
         if (show) visible += 1;
       });
       const count = $('[data-strain-count]');
       if (count) count.textContent = String(visible);
+      if (emptyState) emptyState.hidden = visible !== 0;
+    };
+    $$('[data-filter]', filterBar).forEach((button) => button.addEventListener('click', () => {
+      activeFilter = button.dataset.filter || 'all';
+      $$('[data-filter]', filterBar).forEach((item) => item.classList.toggle('is-active', item === button));
+      renderStrains();
     }));
+    strainInput?.addEventListener('input', renderStrains);
   }
 
   // Article table of contents and reading progress.
