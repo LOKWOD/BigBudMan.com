@@ -57,7 +57,7 @@
       if (!card) return;
       card.classList.add('age-denied');
       card.innerHTML = `
-        <img src="${prefix}assets/images/logo-full.webp" alt="Big Bud Man" width="768" height="499">
+        <img src="${prefix}assets/images/logo-full.webp" alt="Big Bud Man" width="920" height="499">
         <p class="eyebrow">NOT TODAY</p>
         <h2>This site is for adults 21+.</h2>
         <p>Thanks for being straight with us. You can close this tab or visit a general public-health resource.</p>
