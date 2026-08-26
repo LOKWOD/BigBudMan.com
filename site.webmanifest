@@ -1,0 +1,15 @@
+{
+  "name": "Big Bud Man",
+  "short_name": "Big Bud Man",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#101712",
+  "theme_color": "#101712",
+  "icons": [
+    {
+      "src": "/assets/images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
