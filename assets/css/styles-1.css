@@ -42,14 +42,15 @@ svg{stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-l
 
 /* Header */
 .site-header{position:sticky;top:0;z-index:100;background:rgba(16,23,18,.96);color:var(--white);border-bottom:1px solid var(--line-light);backdrop-filter:blur(18px)}
-.header-inner{height:82px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+.header-inner{height:96px;display:flex;align-items:center;justify-content:space-between;gap:28px}
 .brand{display:inline-flex;align-items:center;gap:11px;color:var(--white);text-decoration:none;white-space:nowrap}
 .brand img{width:48px;height:48px}
+.brand--lockup img{width:136px;height:auto;filter:drop-shadow(0 5px 12px rgba(0,0,0,.32))}
 .brand span{display:flex;align-items:baseline;gap:5px;letter-spacing:-1.2px;font-family:var(--display);font-size:22px;line-height:1}
 .brand b{font-weight:900}.brand em{font-style:normal;color:var(--lime)}
 .desktop-nav{display:flex;align-items:center;justify-content:center;gap:clamp(15px,2vw,30px);font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
-.desktop-nav a{text-decoration:none;position:relative;padding:30px 0}
-.desktop-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:23px;height:2px;background:var(--lime);transition:right .2s ease}
+.desktop-nav a{text-decoration:none;position:relative;padding:37px 0}
+.desktop-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:30px;height:2px;background:var(--lime);transition:right .2s ease}
 .desktop-nav a:hover::after{right:0}
 .header-actions{display:flex;align-items:center;gap:10px}
 .icon-button{width:44px;height:44px;border:1px solid var(--line-light);border-radius:50%;display:grid;place-items:center;background:transparent;cursor:pointer}
