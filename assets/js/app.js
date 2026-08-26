@@ -99,11 +99,13 @@
       const title = item.title.toLowerCase();
       const description = item.description.toLowerCase();
       const category = item.category.toLowerCase();
+      const keywords = (item.keywords || '').toLowerCase();
       let score = 0;
       for (const word of words) {
         if (title.includes(word)) score += 8;
         if (category.includes(word)) score += 4;
         if (description.includes(word)) score += 2;
+        if (keywords.includes(word)) score += 6;
       }
       if (title.startsWith(normalized)) score += 6;
       return {item, score};
@@ -203,13 +205,15 @@
     const strainInput = $('[data-strain-search]', filterBar);
     const emptyState = $('[data-strain-empty]');
     let activeFilter = 'all';
+    let activeCannabinoid = 'all';
     const renderStrains = () => {
       const query = (strainInput?.value || '').trim().toLowerCase();
       let visible = 0;
       strainCards.forEach((card) => {
         const matchesFilter = activeFilter === 'all' || card.dataset.lean === activeFilter;
+        const matchesCannabinoid = activeCannabinoid === 'all' || card.dataset.cannabinoid === activeCannabinoid;
         const matchesQuery = !query || (card.dataset.search || '').includes(query);
-        const show = matchesFilter && matchesQuery;
+        const show = matchesFilter && matchesCannabinoid && matchesQuery;
         card.hidden = !show;
         if (show) visible += 1;
       });
@@ -220,6 +224,11 @@
     $$('[data-filter]', filterBar).forEach((button) => button.addEventListener('click', () => {
       activeFilter = button.dataset.filter || 'all';
       $$('[data-filter]', filterBar).forEach((item) => item.classList.toggle('is-active', item === button));
+      renderStrains();
+    }));
+    $$('[data-cannabinoid-filter]', filterBar).forEach((button) => button.addEventListener('click', () => {
+      activeCannabinoid = button.dataset.cannabinoidFilter || 'all';
+      $$('[data-cannabinoid-filter]', filterBar).forEach((item) => item.classList.toggle('is-active', item === button));
       renderStrains();
     }));
     strainInput?.addEventListener('input', renderStrains);
