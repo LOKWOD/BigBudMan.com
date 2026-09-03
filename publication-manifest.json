@@ -1,0 +1,41 @@
+{
+  "publication_date": "2026-09-03",
+  "page_count": 3,
+  "pages": [
+    {
+      "title": "Sour Hawaiian Haze: The Honest Field Note",
+      "url": "https://bigbudman.com/strains/sour-hawaiian-haze/",
+      "department": "strains",
+      "search_intent": "CBD hemp cultivar identity, evidence, and batch verification"
+    },
+    {
+      "title": "510-Thread Vape Battery Safety and Buying Guide",
+      "url": "https://bigbudman.com/gear/510-thread-vape-battery-safety/",
+      "department": "gear",
+      "search_intent": "high-intent compatibility and battery-safety buying guidance"
+    },
+    {
+      "title": "Cannabis Tolerance, Dependence, and Withdrawal",
+      "url": "https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/",
+      "department": "guides",
+      "search_intent": "responsible-use definitions, self-check, and help-seeking"
+    }
+  ],
+  "monetization": {
+    "affiliate_links_added": 0,
+    "reason": "No approved affiliate program or tracking ID is configured in the repository."
+  },
+  "image_qa": {
+    "editorial_placements": 2,
+    "affiliate_or_product_images": 0,
+    "note": "The two placements reuse one representative CBD-rich hemp flower image on the new field-note page and strain-hub card; both explicitly deny cultivar or batch verification."
+  },
+  "surfaces": [
+    "homepage",
+    "strains hub",
+    "guides hub",
+    "gear hub",
+    "search index",
+    "sitemap"
+  ]
+}
