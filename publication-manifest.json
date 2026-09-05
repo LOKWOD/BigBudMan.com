@@ -1,24 +1,24 @@
 {
-  "publication_date": "2026-09-04",
+  "publication_date": "2026-09-05",
   "page_count": 3,
   "pages": [
     {
-      "title": "White CBG: The Honest Field Note",
-      "url": "https://bigbudman.com/strains/white-cbg/",
-      "department": "strains",
-      "search_intent": "CBG hemp cultivar identity, breeder evidence, and batch verification"
-    },
-    {
-      "title": "Digital Scale Buying and Calibration Guide for Cannabis",
-      "url": "https://bigbudman.com/gear/digital-scale-buying-calibration-guide/",
-      "department": "gear",
-      "search_intent": "high-intent personal scale selection, repeatability, and calibration guidance"
-    },
-    {
-      "title": "Cannabis, CBD, and Sleep: What the Evidence Can Say",
-      "url": "https://bigbudman.com/guides/cannabis-cbd-and-sleep/",
+      "title": "CBDA on Cannabis and Hemp Labels: What the Number Means",
+      "url": "https://bigbudman.com/guides/cbda-on-cannabis-hemp-labels/",
       "department": "guides",
-      "search_intent": "sleep evidence limits, next-day safety, and clinical escalation"
+      "search_intent": "CBDA identity, total-CBD label math, certificate-of-analysis interpretation, and claim limits"
+    },
+    {
+      "title": "Cannabis Loupe and Pocket Microscope Buying Guide",
+      "url": "https://bigbudman.com/gear/cannabis-loupe-pocket-microscope-guide/",
+      "department": "gear",
+      "search_intent": "high-intent optical inspection tool selection, usability, care, and laboratory limits"
+    },
+    {
+      "title": "Secondhand Cannabis Smoke and Indoor Air: A Practical Home Guide",
+      "url": "https://bigbudman.com/guides/secondhand-cannabis-smoke-indoor-air/",
+      "department": "guides",
+      "search_intent": "household secondhand-smoke prevention, indoor-air controls, vulnerable people, and incident response"
     }
   ],
   "monetization": {
@@ -26,13 +26,12 @@
     "reason": "No approved affiliate program or tracking ID is configured in the repository."
   },
   "image_qa": {
-    "editorial_placements": 2,
+    "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The two placements reuse one generic hemp-flower photograph on the White CBG field-note page and strain-hub card; both explicitly label it representative and deny cultivar or batch verification. The two new guides intentionally use image-free editorial layouts."
+    "note": "All three pages use intentional image-free editorial layouts. No new or changed hero, card, editorial, affiliate, or product image is part of this batch."
   },
   "surfaces": [
     "homepage",
-    "strains hub",
     "guides hub",
     "gear hub",
     "search index",
