@@ -1,24 +1,24 @@
 {
-  "publication_date": "2026-09-05",
+  "publication_date": "2026-09-07",
   "page_count": 3,
   "pages": [
     {
-      "title": "CBDA on Cannabis and Hemp Labels: What the Number Means",
-      "url": "https://bigbudman.com/guides/cbda-on-cannabis-hemp-labels/",
-      "department": "guides",
-      "search_intent": "CBDA identity, total-CBD label math, certificate-of-analysis interpretation, and claim limits"
+      "title": "Forbidden V Seedless: The Honest Field Note",
+      "url": "https://bigbudman.com/strains/forbidden-v-seedless/",
+      "department": "strains",
+      "search_intent": "CBDV hemp cultivar identity, breeder claims, triploid terminology, batch CoA checks, and legal boundaries"
     },
     {
-      "title": "Cannabis Loupe and Pocket Microscope Buying Guide",
-      "url": "https://bigbudman.com/gear/cannabis-loupe-pocket-microscope-guide/",
+      "title": "Cannabis Rolling Paper and Cone Buying Guide",
+      "url": "https://bigbudman.com/gear/cannabis-rolling-paper-cone-guide/",
       "department": "gear",
-      "search_intent": "high-intent optical inspection tool selection, usability, care, and laboratory limits"
+      "search_intent": "high-intent rolling paper and cone size, material, gum, claim, storage, smoke, and fire-safety checks"
     },
     {
-      "title": "Secondhand Cannabis Smoke and Indoor Air: A Practical Home Guide",
-      "url": "https://bigbudman.com/guides/secondhand-cannabis-smoke-indoor-air/",
+      "title": "Cannabis Before Surgery and Anesthesia",
+      "url": "https://bigbudman.com/guides/cannabis-before-surgery-anesthesia/",
       "department": "guides",
-      "search_intent": "household secondhand-smoke prevention, indoor-air controls, vulnerable people, and incident response"
+      "search_intent": "preoperative cannabis disclosure, timing, route, withdrawal, pain, recovery, and clinical-plan questions"
     }
   ],
   "monetization": {
@@ -26,12 +26,13 @@
     "reason": "No approved affiliate program or tracking ID is configured in the repository."
   },
   "image_qa": {
-    "editorial_placements": 0,
+    "editorial_placements": 2,
     "affiliate_or_product_images": 0,
-    "note": "All three pages use intentional image-free editorial layouts. No new or changed hero, card, editorial, affiliate, or product image is part of this batch."
+    "note": "One existing representative CBD-rich hemp image appears on the new profile and its strain-hub card, clearly labeled as representative rather than verified cultivar photography. The other two pages are image-free."
   },
   "surfaces": [
     "homepage",
+    "strains hub",
     "guides hub",
     "gear hub",
     "search index",
