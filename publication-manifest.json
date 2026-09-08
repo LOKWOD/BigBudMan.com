@@ -1,24 +1,24 @@
 {
-  "publication_date": "2026-09-07",
+  "publication_date": "2026-09-08",
   "page_count": 3,
   "pages": [
     {
-      "title": "Forbidden V Seedless: The Honest Field Note",
-      "url": "https://bigbudman.com/strains/forbidden-v-seedless/",
-      "department": "strains",
-      "search_intent": "CBDV hemp cultivar identity, breeder claims, triploid terminology, batch CoA checks, and legal boundaries"
-    },
-    {
-      "title": "Cannabis Rolling Paper and Cone Buying Guide",
-      "url": "https://bigbudman.com/gear/cannabis-rolling-paper-cone-guide/",
-      "department": "gear",
-      "search_intent": "high-intent rolling paper and cone size, material, gum, claim, storage, smoke, and fire-safety checks"
-    },
-    {
-      "title": "Cannabis Before Surgery and Anesthesia",
-      "url": "https://bigbudman.com/guides/cannabis-before-surgery-anesthesia/",
+      "title": "Full-Spectrum vs Broad-Spectrum CBD vs Isolate",
+      "url": "https://bigbudman.com/guides/full-spectrum-broad-spectrum-cbd-isolate/",
       "department": "guides",
-      "search_intent": "preoperative cannabis disclosure, timing, route, withdrawal, pain, recovery, and clinical-plan questions"
+      "search_intent": "CBD spectrum label comparison, finished-product ingredients, batch CoA, THC claim, drug-test risk, and health-claim boundaries"
+    },
+    {
+      "title": "Cannabis Humidity Pack and Hygrometer Guide",
+      "url": "https://bigbudman.com/gear/cannabis-humidity-pack-hygrometer-guide/",
+      "department": "gear",
+      "search_intent": "high-intent hygrometer and humidity-pack selection, accuracy, placement, maintenance, mold limits, and replacement checks"
+    },
+    {
+      "title": "THCA vs THC on Cannabis Labels",
+      "url": "https://bigbudman.com/guides/thca-vs-thc-cannabis-labels/",
+      "department": "guides",
+      "search_intent": "THCA, delta-9 THC, total-THC formula, dry-weight basis, measurement uncertainty, CoA units, and legal boundaries"
     }
   ],
   "monetization": {
@@ -26,13 +26,12 @@
     "reason": "No approved affiliate program or tracking ID is configured in the repository."
   },
   "image_qa": {
-    "editorial_placements": 2,
+    "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "One existing representative CBD-rich hemp image appears on the new profile and its strain-hub card, clearly labeled as representative rather than verified cultivar photography. The other two pages are image-free."
+    "note": "All three pages use intentional image-free editorial layouts; no new or changed editorial, affiliate, or product image is in the batch."
   },
   "surfaces": [
     "homepage",
-    "strains hub",
     "guides hub",
     "gear hub",
     "search index",
