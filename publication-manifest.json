@@ -1,24 +1,24 @@
 {
-  "publication_date": "2026-09-08",
+  "publication_date": "2026-09-09",
   "page_count": 3,
   "pages": [
     {
-      "title": "Full-Spectrum vs Broad-Spectrum CBD vs Isolate",
-      "url": "https://bigbudman.com/guides/full-spectrum-broad-spectrum-cbd-isolate/",
-      "department": "guides",
-      "search_intent": "CBD spectrum label comparison, finished-product ingredients, batch CoA, THC claim, drug-test risk, and health-claim boundaries"
+      "title": "Sour Special Sauce: The Honest Field Note",
+      "url": "https://bigbudman.com/strains/sour-special-sauce/",
+      "department": "strains",
+      "search_intent": "Sour Special Sauce breeder-listed lineage, aroma and terpene claim boundaries, batch CoA matching, and hemp-law cautions"
     },
     {
-      "title": "Cannabis Humidity Pack and Hygrometer Guide",
-      "url": "https://bigbudman.com/gear/cannabis-humidity-pack-hygrometer-guide/",
+      "title": "Air Purifier for Cannabis Smoke and Odor: Buying Guide",
+      "url": "https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/",
       "department": "gear",
-      "search_intent": "high-intent hygrometer and humidity-pack selection, accuracy, placement, maintenance, mold limits, and replacement checks"
+      "search_intent": "high-intent air-purifier selection for cannabis smoke particles and odor using smoke CADR, room volume, HEPA, carbon, ozone, filter cost, and placement"
     },
     {
-      "title": "THCA vs THC on Cannabis Labels",
-      "url": "https://bigbudman.com/guides/thca-vs-thc-cannabis-labels/",
+      "title": "Cannabis and Pets: Accidental Exposure Guide",
+      "url": "https://bigbudman.com/guides/cannabis-and-pets-accidental-exposure/",
       "department": "guides",
-      "search_intent": "THCA, delta-9 THC, total-THC formula, dry-weight basis, measurement uncertainty, CoA units, and legal boundaries"
+      "search_intent": "urgent pet cannabis exposure response, veterinary contact, product evidence, warning signs, co-ingredients, and household prevention"
     }
   ],
   "monetization": {
@@ -28,10 +28,11 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three pages use intentional image-free editorial layouts; no new or changed editorial, affiliate, or product image is in the batch."
+    "note": "All three pages use intentional image-free editorial layouts. The field note and strain-hub card explicitly withhold a cultivar photo because no exact verified licensed image was available. No affiliate or product image is present."
   },
   "surfaces": [
     "homepage",
+    "strains hub",
     "guides hub",
     "gear hub",
     "search index",
