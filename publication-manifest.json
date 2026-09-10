@@ -1,24 +1,24 @@
 {
-  "publication_date": "2026-09-09",
+  "publication_date": "2026-09-10",
   "page_count": 3,
   "pages": [
     {
-      "title": "Sour Special Sauce: The Honest Field Note",
-      "url": "https://bigbudman.com/strains/sour-special-sauce/",
-      "department": "strains",
-      "search_intent": "Sour Special Sauce breeder-listed lineage, aroma and terpene claim boundaries, batch CoA matching, and hemp-law cautions"
-    },
-    {
-      "title": "Air Purifier for Cannabis Smoke and Odor: Buying Guide",
-      "url": "https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/",
-      "department": "gear",
-      "search_intent": "high-intent air-purifier selection for cannabis smoke particles and odor using smoke CADR, room volume, HEPA, carbon, ozone, filter cost, and placement"
-    },
-    {
-      "title": "Cannabis and Pets: Accidental Exposure Guide",
-      "url": "https://bigbudman.com/guides/cannabis-and-pets-accidental-exposure/",
+      "title": "CBD Topicals: Labels, Claims & Buying Guide",
+      "url": "https://bigbudman.com/guides/cbd-topicals-label-buying-guide/",
       "department": "guides",
-      "search_intent": "urgent pet cannabis exposure response, veterinary contact, product evidence, warning signs, co-ingredients, and household prevention"
+      "search_intent": "high-intent CBD topical selection by intended use, ingredients, cannabinoid evidence, batch report, skin tolerance, and claim boundaries"
+    },
+    {
+      "title": "Cannabis Rolling Tray Buying Guide",
+      "url": "https://bigbudman.com/gear/cannabis-rolling-tray-buying-guide/",
+      "department": "gear",
+      "search_intent": "rolling tray selection by usable area, edge design, material, stability, cleanability, storage fit, accessories, and safety limits"
+    },
+    {
+      "title": "Cannabis and Alcohol: Mixing Risks",
+      "url": "https://bigbudman.com/guides/cannabis-and-alcohol-mixing-risks/",
+      "department": "guides",
+      "search_intent": "combined cannabis and alcohol impairment, timing uncertainty, driving prevention, distress response, and pattern warning signs"
     }
   ],
   "monetization": {
@@ -28,13 +28,13 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three pages use intentional image-free editorial layouts. The field note and strain-hub card explicitly withhold a cultivar photo because no exact verified licensed image was available. No affiliate or product image is present."
+    "note": "All three pages use intentional image-free editorial layouts. No new or changed editorial, affiliate, or product image is present."
   },
   "surfaces": [
     "homepage",
-    "strains hub",
     "guides hub",
     "gear hub",
+    "related content",
     "search index",
     "sitemap"
   ]
