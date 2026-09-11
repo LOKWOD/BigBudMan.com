@@ -1,24 +1,24 @@
 {
-  "publication_date": "2026-09-10",
+  "publication_date": "2026-09-11",
   "page_count": 3,
   "pages": [
     {
-      "title": "CBD Topicals: Labels, Claims & Buying Guide",
-      "url": "https://bigbudman.com/guides/cbd-topicals-label-buying-guide/",
+      "title": "CBD Oil and Tincture Label Guide",
+      "url": "https://bigbudman.com/guides/cbd-oil-tincture-label-buying-guide/",
       "department": "guides",
-      "search_intent": "high-intent CBD topical selection by intended use, ingredients, cannabinoid evidence, batch report, skin tolerance, and claim boundaries"
+      "search_intent": "high-intent CBD oil and tincture comparison by concentration, serving math, ingredients, exact-lot evidence, THC risk, claims, and storage"
     },
     {
-      "title": "Cannabis Rolling Tray Buying Guide",
-      "url": "https://bigbudman.com/gear/cannabis-rolling-tray-buying-guide/",
+      "title": "Dry-Herb Vaporizer Buying Guide",
+      "url": "https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/",
       "department": "gear",
-      "search_intent": "rolling tray selection by usable area, edge design, material, stability, cleanability, storage fit, accessories, and safety limits"
+      "search_intent": "dry-herb vaporizer selection by operating format, chamber and airpath materials, controls, temperature claims, batteries, cleaning, parts, and warranty"
     },
     {
-      "title": "Cannabis and Alcohol: Mixing Risks",
-      "url": "https://bigbudman.com/guides/cannabis-and-alcohol-mixing-risks/",
+      "title": "Cannabis and Driving: No Sober Timer",
+      "url": "https://bigbudman.com/guides/cannabis-driving-impairment-sober-timer/",
       "department": "guides",
-      "search_intent": "combined cannabis and alcohol impairment, timing uncertainty, driving prevention, distress response, and pattern warning signs"
+      "search_intent": "cannabis driving impairment, sober-timer limits, THC blood evidence, transportation planning, unsafe self-tests, and next-morning decisions"
     }
   ],
   "monetization": {
