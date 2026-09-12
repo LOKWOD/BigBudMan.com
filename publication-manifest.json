@@ -1,24 +1,24 @@
 {
-  "publication_date": "2026-09-11",
+  "publication_date": "2026-09-12",
   "page_count": 3,
   "pages": [
     {
-      "title": "CBD Oil and Tincture Label Guide",
-      "url": "https://bigbudman.com/guides/cbd-oil-tincture-label-buying-guide/",
-      "department": "guides",
-      "search_intent": "high-intent CBD oil and tincture comparison by concentration, serving math, ingredients, exact-lot evidence, THC risk, claims, and storage"
+      "title": "Cakeberry Brulee: The Honest Field Note",
+      "url": "https://bigbudman.com/strains/cakeberry-brulee/",
+      "department": "strains",
+      "search_intent": "Cakeberry Brulee CBD hemp breeder lineage, aroma-claim boundaries, product-format checks, exact-batch CoA matching, and legal cautions"
     },
     {
-      "title": "Dry-Herb Vaporizer Buying Guide",
-      "url": "https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/",
+      "title": "Cannabis Ashtray and Ember Disposal Guide",
+      "url": "https://bigbudman.com/gear/cannabis-ashtray-ember-disposal-guide/",
       "department": "gear",
-      "search_intent": "dry-herb vaporizer selection by operating format, chamber and airpath materials, controls, temperature claims, batteries, cleaning, parts, and warranty"
+      "search_intent": "high-intent ashtray selection by stability, depth, materials, wind control, placement, extinguishing, cleaning, and ember disposal"
     },
     {
-      "title": "Cannabis and Driving: No Sober Timer",
-      "url": "https://bigbudman.com/guides/cannabis-driving-impairment-sober-timer/",
+      "title": "Cannabis During Pregnancy and Breastfeeding",
+      "url": "https://bigbudman.com/guides/cannabis-pregnancy-breastfeeding-guidance/",
       "department": "guides",
-      "search_intent": "cannabis driving impairment, sober-timer limits, THC blood evidence, transportation planning, unsafe self-tests, and next-morning decisions"
+      "search_intent": "current CDC and FDA cannabis, THC, and CBD guidance for pregnancy and breastfeeding, route differences, evidence limits, disclosure, and support"
     }
   ],
   "monetization": {
@@ -32,6 +32,7 @@
   },
   "surfaces": [
     "homepage",
+    "strains hub",
     "guides hub",
     "gear hub",
     "related content",
