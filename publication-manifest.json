@@ -1,24 +1,24 @@
 {
-  "publication_date": "2026-09-12",
+  "publication_date": "2026-09-13",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cakeberry Brulee: The Honest Field Note",
-      "url": "https://bigbudman.com/strains/cakeberry-brulee/",
+      "title": "Sour Brulee: The Honest Field Note",
+      "url": "https://bigbudman.com/strains/sour-brulee/",
       "department": "strains",
-      "search_intent": "Cakeberry Brulee CBD hemp breeder lineage, aroma-claim boundaries, product-format checks, exact-batch CoA matching, and legal cautions"
+      "search_intent": "Sour Brulee CBD hemp breeder lineage, aroma-claim boundaries, name-collision checks, exact-batch CoA matching, and legal cautions"
     },
     {
-      "title": "Cannabis Ashtray and Ember Disposal Guide",
-      "url": "https://bigbudman.com/gear/cannabis-ashtray-ember-disposal-guide/",
+      "title": "Cannabis Glass Pipe and Water Pipe Buying Guide",
+      "url": "https://bigbudman.com/gear/cannabis-glass-pipe-water-pipe-buying-guide/",
       "department": "gear",
-      "search_intent": "high-intent ashtray selection by stability, depth, materials, wind control, placement, extinguishing, cleaning, and ember disposal"
+      "search_intent": "high-intent glass pipe and water pipe selection by format, material claims, joint fit, stability, cleaning access, replacement parts, and smoke limits"
     },
     {
-      "title": "Cannabis During Pregnancy and Breastfeeding",
-      "url": "https://bigbudman.com/guides/cannabis-pregnancy-breastfeeding-guidance/",
+      "title": "Cannabis, Heart Rate, and Blood Pressure",
+      "url": "https://bigbudman.com/guides/cannabis-heart-rate-blood-pressure-safety/",
       "department": "guides",
-      "search_intent": "current CDC and FDA cannabis, THC, and CBD guidance for pregnancy and breastfeeding, route differences, evidence limits, disclosure, and support"
+      "search_intent": "current CDC-grounded cannabis heart-rate and blood-pressure effects, evidence limits, emergency signs, home measurements, and clinician questions"
     }
   ],
   "monetization": {
@@ -28,7 +28,7 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three pages use intentional image-free editorial layouts. No new or changed editorial, affiliate, or product image is present."
+    "note": "All three pages use intentional image-free editorial layouts, including withholding an unverified Sour Brulee cultivar photograph. No new or changed editorial, affiliate, or product image is present."
   },
   "surfaces": [
     "homepage",
