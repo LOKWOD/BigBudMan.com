@@ -1,24 +1,24 @@
 {
-  "publication_date": "2026-09-13",
+  "publication_date": "2026-09-14",
   "page_count": 3,
   "pages": [
     {
-      "title": "Sour Brulee: The Honest Field Note",
-      "url": "https://bigbudman.com/strains/sour-brulee/",
+      "title": "Chemberry: The Honest Field Note",
+      "url": "https://bigbudman.com/strains/chemberry/",
       "department": "strains",
-      "search_intent": "Sour Brulee CBD hemp breeder lineage, aroma-claim boundaries, name-collision checks, exact-batch CoA matching, and legal cautions"
+      "search_intent": "Chemberry CBD hemp named Chem4 \u00d7 KAP lineage, Oregon CBD breeder attribution, finished-batch evidence, CoA matching, and legal cautions"
     },
     {
-      "title": "Cannabis Glass Pipe and Water Pipe Buying Guide",
-      "url": "https://bigbudman.com/gear/cannabis-glass-pipe-water-pipe-buying-guide/",
+      "title": "Cannabis Stash Jar Buying Guide",
+      "url": "https://bigbudman.com/gear/cannabis-stash-jar-buying-guide/",
       "department": "gear",
-      "search_intent": "high-intent glass pipe and water pipe selection by format, material claims, joint fit, stability, cleaning access, replacement parts, and smoke limits"
+      "search_intent": "high-intent cannabis stash jar selection by usable volume, opening, materials, closure claims, light control, cleaning, labeling, and child safety"
     },
     {
-      "title": "Cannabis, Heart Rate, and Blood Pressure",
-      "url": "https://bigbudman.com/guides/cannabis-heart-rate-blood-pressure-safety/",
-      "department": "guides",
-      "search_intent": "current CDC-grounded cannabis heart-rate and blood-pressure effects, evidence limits, emergency signs, home measurements, and clinician questions"
+      "title": "Can You Mail Cannabis or CBD?",
+      "url": "https://bigbudman.com/legal/mailing-cannabis-cbd-usps-rules/",
+      "department": "legal",
+      "search_intent": "current USPS rules for marijuana, domestic hemp and CBD, required compliance records, international prohibition, and lawful verification"
     }
   ],
   "monetization": {
@@ -28,13 +28,13 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three pages use intentional image-free editorial layouts, including withholding an unverified Sour Brulee cultivar photograph. No new or changed editorial, affiliate, or product image is present."
+    "note": "All three pages use intentional image-free editorial layouts, including withholding an unverified Chemberry cultivar photograph. No new or changed editorial, affiliate, or product image is present."
   },
   "surfaces": [
     "homepage",
     "strains hub",
-    "guides hub",
     "gear hub",
+    "legal hub",
     "related content",
     "search index",
     "sitemap"
