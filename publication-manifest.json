@@ -1,24 +1,24 @@
 {
-  "publication_date": "2026-09-14",
+  "publication_date": "2026-09-15",
   "page_count": 3,
   "pages": [
     {
-      "title": "Chemberry: The Honest Field Note",
-      "url": "https://bigbudman.com/strains/chemberry/",
-      "department": "strains",
-      "search_intent": "Chemberry CBD hemp named Chem4 \u00d7 KAP lineage, Oregon CBD breeder attribution, finished-batch evidence, CoA matching, and legal cautions"
+      "title": "Cannabis Concentrates & Dabs Guide",
+      "url": "https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/",
+      "department": "guides",
+      "search_intent": "concentrate terminology, potency-label literacy, batch evidence, lawful sourcing, equipment safety, storage, and responsible-use decisions"
     },
     {
-      "title": "Cannabis Stash Jar Buying Guide",
-      "url": "https://bigbudman.com/gear/cannabis-stash-jar-buying-guide/",
-      "department": "gear",
-      "search_intent": "high-intent cannabis stash jar selection by usable volume, opening, materials, closure claims, light control, cleaning, labeling, and child safety"
+      "title": "Clear-Lane Concentrate Routing",
+      "url": "https://bigbudman.com/",
+      "department": "homepage",
+      "search_intent": "route readers holding a concentrate or dab directly to the relevant evidence-first guide"
     },
     {
-      "title": "Can You Mail Cannabis or CBD?",
-      "url": "https://bigbudman.com/legal/mailing-cannabis-cbd-usps-rules/",
-      "department": "legal",
-      "search_intent": "current USPS rules for marijuana, domestic hemp and CBD, required compliance records, international prohibition, and lawful verification"
+      "title": "Concentrate Discovery Path",
+      "url": "https://bigbudman.com/guides/",
+      "department": "guides",
+      "search_intent": "make concentrate guidance discoverable from the catalog, reading paths, and onsite search aliases"
     }
   ],
   "monetization": {
@@ -28,13 +28,11 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three pages use intentional image-free editorial layouts, including withholding an unverified Chemberry cultivar photograph. No new or changed editorial, affiliate, or product image is present."
+    "note": "The new article and navigation changes use text, icons, and existing site artwork only. No new or changed editorial, affiliate, or product image is present."
   },
   "surfaces": [
-    "homepage",
-    "strains hub",
-    "gear hub",
-    "legal hub",
+    "homepage Clear-Lane Finder",
+    "guides hub",
     "related content",
     "search index",
     "sitemap"

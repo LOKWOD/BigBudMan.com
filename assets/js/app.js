@@ -161,6 +161,7 @@
       edible: {title:'Read the edible patience guide', text:'Delayed onset is the central issue. Learn the timeline and serving math before the first bite.', url:'guides/edibles/', cta:'Open edible guide'},
       flower: {title:'Use the flower quality guide', text:'Freshness, cure, source, and manageable potency matter more than chasing the biggest percentage.', url:'guides/flower/', cta:'Open flower guide'},
       vape: {title:'Check the vape source and hardware', text:'Concentrated oil and compact hardware reward deliberate pacing and licensed sourcing.', url:'guides/vapes/', cta:'Open vape guide'},
+      concentrate: {title:'Decode the concentrate before the device', text:'Translate wax, shatter, rosin, resin, and dabs; then verify potency units, the exact batch, lawful source, equipment, and storage.', url:'guides/cannabis-concentrates-dabs-label-safety-guide/', cta:'Open concentrate guide'},
       label: {title:'Learn the label in ten minutes', text:'Separate package total from serving amount, then check traceability, ingredients, and batch information.', url:'guides/read-a-label/', cta:'Open label decoder'},
       legal: {title:'Check the law where you are', text:'Search all 50 states for possession, home grow, medical access, retail status, and the official source.', url:'legal/', cta:'Open 50-state library'},
       gear: {title:'Build a safer storage setup', text:'Use original packaging, an odor-resistant inner layer, and a locked outer location.', url:'gear/smell-proof-storage/', cta:'Open storage gear guide'},
@@ -172,6 +173,7 @@
       if (answers.priority === 'label') return routes.label;
       if (answers.format === 'edible') return routes.edible;
       if (answers.format === 'vape') return routes.vape;
+      if (answers.format === 'concentrate') return routes.concentrate;
       if (answers.format === 'flower') return routes.flower;
       if (answers.experience === 'new' || answers.experience === 'returning') return routes.start;
       return routes.basics;
