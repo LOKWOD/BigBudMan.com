@@ -159,6 +159,7 @@
     const routes = {
       start: {title:'Start with the calm orientation', text:'Modern potency and formats can surprise new and returning adults. Begin with the six decisions that matter.', url:'start-here/', cta:'Open Start Here'},
       edible: {title:'Read the edible patience guide', text:'Delayed onset is the central issue. Learn the timeline and serving math before the first bite.', url:'guides/edibles/', cta:'Open edible guide'},
+      beverage: {title:'Read the cannabis beverage label first', text:'Can size is not a THC serving. Compare per-serving and per-container amounts, ingredients, batch evidence, timing claims, and storage.', url:'guides/cannabis-beverages-label-timing-buying-guide/', cta:'Open beverage guide'},
       flower: {title:'Use the flower quality guide', text:'Freshness, cure, source, and manageable potency matter more than chasing the biggest percentage.', url:'guides/flower/', cta:'Open flower guide'},
       vape: {title:'Check the vape source and hardware', text:'Concentrated oil and compact hardware reward deliberate pacing and licensed sourcing.', url:'guides/vapes/', cta:'Open vape guide'},
       concentrate: {title:'Decode the concentrate before the device', text:'Translate wax, shatter, rosin, resin, and dabs; then verify potency units, the exact batch, lawful source, equipment, and storage.', url:'guides/cannabis-concentrates-dabs-label-safety-guide/', cta:'Open concentrate guide'},
@@ -171,6 +172,7 @@
       if (answers.priority === 'legal') return routes.legal;
       if (answers.priority === 'gear') return routes.gear;
       if (answers.priority === 'label') return routes.label;
+      if (answers.format === 'beverage') return routes.beverage;
       if (answers.format === 'edible') return routes.edible;
       if (answers.format === 'vape') return routes.vape;
       if (answers.format === 'concentrate') return routes.concentrate;
@@ -198,6 +200,36 @@
       result?.classList.remove('is-active');
       if (count) count.textContent = '01';
     });
+  }
+
+  // Guide-library search and topic filters.
+  const guideLibrary = $('[data-guide-library]');
+  if (guideLibrary) {
+    const guideInput = $('[data-guide-search]', guideLibrary);
+    const guideCards = $$('[data-guide-card]', guideLibrary);
+    const guideEmpty = $('[data-guide-empty]', guideLibrary);
+    const guideCount = $('[data-guide-count]', guideLibrary);
+    let activeGuideFilter = 'all';
+    const renderGuides = () => {
+      const query = (guideInput?.value || '').trim().toLowerCase();
+      let visible = 0;
+      guideCards.forEach((card) => {
+        const category = card.dataset.category || '';
+        const matchesFilter = activeGuideFilter === 'all' || category.includes(activeGuideFilter);
+        const matchesQuery = !query || (card.dataset.search || '').includes(query);
+        const show = matchesFilter && matchesQuery;
+        card.hidden = !show;
+        if (show) visible += 1;
+      });
+      if (guideCount) guideCount.textContent = String(visible);
+      if (guideEmpty) guideEmpty.hidden = visible !== 0;
+    };
+    $$('[data-guide-filter]', guideLibrary).forEach((button) => button.addEventListener('click', () => {
+      activeGuideFilter = button.dataset.guideFilter || 'all';
+      $$('[data-guide-filter]', guideLibrary).forEach((item) => item.classList.toggle('is-active', item === button));
+      renderGuides();
+    }));
+    guideInput?.addEventListener('input', renderGuides);
   }
 
   // Strain library filters.

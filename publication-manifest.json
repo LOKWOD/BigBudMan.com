@@ -1,24 +1,24 @@
 {
-  "publication_date": "2026-09-15",
+  "publication_date": "2026-09-16",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis Concentrates & Dabs Guide",
-      "url": "https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/",
+      "title": "Cannabis Beverages: Label & Buying Guide",
+      "url": "https://bigbudman.com/guides/cannabis-beverages-label-timing-buying-guide/",
       "department": "guides",
-      "search_intent": "concentrate terminology, potency-label literacy, batch evidence, lawful sourcing, equipment safety, storage, and responsible-use decisions"
+      "search_intent": "cannabis beverage serving math, ingredients, timing claims, batch evidence, storage, lawful sourcing, and responsible-use decisions"
     },
     {
-      "title": "Royal CBDV Automatic: The Honest Field Note",
-      "url": "https://bigbudman.com/strains/royal-cbdv-automatic/",
-      "department": "strains",
-      "search_intent": "Royal CBDV Automatic lineage, breeder-claim boundaries, CBDV label evidence, exact-batch CoA matching, and legal cautions"
+      "title": "Homepage Clear-Lane Beverage Route",
+      "url": "https://bigbudman.com/",
+      "department": "discovery",
+      "search_intent": "direct adults comparing a cannabis beverage to the format-specific label and buying guide"
     },
     {
-      "title": "Cannabis Rolling Machine Buying Guide",
-      "url": "https://bigbudman.com/gear/cannabis-rolling-machine-buying-guide/",
-      "department": "gear",
-      "search_intent": "high-intent manual cannabis rolling machine selection by paper dimensions, roller format, apron serviceability, cleaning, storage, and safety"
+      "title": "Searchable Guide Library",
+      "url": "https://bigbudman.com/guides/",
+      "department": "site organization",
+      "search_intent": "search and filter the complete practical guide catalog by format, buying, safety, and CBD topics"
     }
   ],
   "monetization": {
@@ -28,13 +28,11 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three pages use intentional image-free editorial layouts, including withholding an unverified Royal CBDV Automatic cultivar photograph. No new or changed editorial, affiliate, or product image is present."
+    "note": "The new guide and changed discovery surfaces use existing interface graphics and intentional image-free editorial cards. No new or changed editorial, affiliate, or product image is present."
   },
   "surfaces": [
     "homepage",
     "guides hub",
-    "strains hub",
-    "gear hub",
     "related content",
     "search index",
     "sitemap"

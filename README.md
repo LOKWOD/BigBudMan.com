@@ -6,10 +6,10 @@ Big Bud Man is a fast, zero-dependency editorial publication for adults 21+. It 
 
 ## Included
 
-- 218 indexable pages, including 115 strain field notes and 50 state-law guides, plus custom thank-you and 404 pages
+- 219 indexable pages, including 115 strain field notes and 50 state-law guides, plus custom thank-you and 404 pages
 - 21+ age gate stored only in browser local storage
 - Responsive editorial design with original studio imagery and custom graphics
-- Client-side library search with strain filters and a searchable, status-filtered 50-state law library
+- Client-side site search, a searchable topic-filtered guide library, strain filters, and a searchable status-filtered 50-state law library
 - Explicit representative-photo disclosures plus category-matched hemp, CBD-rich, CBG-dominant, and THC:CBD imagery
 - Interactive Clear-Lane Finder
 - Article table of contents, reading progress, and copy-link controls
