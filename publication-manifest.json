@@ -3,22 +3,22 @@
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis Beverages: Label & Buying Guide",
-      "url": "https://bigbudman.com/guides/cannabis-beverages-label-timing-buying-guide/",
+      "title": "CBD Gummies: Label & Buying Guide",
+      "url": "https://bigbudman.com/guides/cbd-gummies-label-buying-guide/",
       "department": "guides",
-      "search_intent": "cannabis beverage serving math, ingredients, timing claims, batch evidence, storage, lawful sourcing, and responsible-use decisions"
+      "search_intent": "compare CBD gummy serving math, ingredients, lot evidence, spectrum and THC claims, storage, and lawful sourcing"
     },
     {
-      "title": "Homepage Clear-Lane Beverage Route",
-      "url": "https://bigbudman.com/",
-      "department": "discovery",
-      "search_intent": "direct adults comparing a cannabis beverage to the format-specific label and buying guide"
+      "title": "Cannabis Pre-Roll Tube Buying Guide",
+      "url": "https://bigbudman.com/gear/cannabis-pre-roll-tube-case-buying-guide/",
+      "department": "gear",
+      "search_intent": "choose a pre-roll tube or case by fit, materials, closure, crush protection, cleaning, labeling, and storage"
     },
     {
-      "title": "Searchable Guide Library",
-      "url": "https://bigbudman.com/guides/",
-      "department": "site organization",
-      "search_intent": "search and filter the complete practical guide catalog by format, buying, safety, and CBD topics"
+      "title": "Flying With Cannabis or CBD: TSA Rules",
+      "url": "https://bigbudman.com/legal/flying-with-cannabis-cbd-tsa-rules/",
+      "department": "legal",
+      "search_intent": "understand TSA screening, current federal status, airport and state rules, CBD uncertainty, batteries, and international travel"
     }
   ],
   "monetization": {
@@ -28,11 +28,13 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The new guide and changed discovery surfaces use existing interface graphics and intentional image-free editorial cards. No new or changed editorial, affiliate, or product image is present."
+    "note": "All three new pages and their discovery cards use intentional image-free editorial layouts. No new or changed editorial, affiliate, or product image is present."
   },
   "surfaces": [
     "homepage",
     "guides hub",
+    "gear hub",
+    "legal hub",
     "related content",
     "search index",
     "sitemap"
