@@ -163,12 +163,14 @@
       flower: {title:'Use the flower quality guide', text:'Freshness, cure, source, and manageable potency matter more than chasing the biggest percentage.', url:'guides/flower/', cta:'Open flower guide'},
       vape: {title:'Check the vape source and hardware', text:'Concentrated oil and compact hardware reward deliberate pacing and licensed sourcing.', url:'guides/vapes/', cta:'Open vape guide'},
       concentrate: {title:'Decode the concentrate before the device', text:'Translate wax, shatter, rosin, resin, and dabs; then verify potency units, the exact batch, lawful source, equipment, and storage.', url:'guides/cannabis-concentrates-dabs-label-safety-guide/', cta:'Open concentrate guide'},
+      recall: {title:'Match the recall to the exact batch', text:'Preserve the package, use the official notice, and match producer, product, lot, size, dates, and jurisdiction before acting.', url:'guides/cannabis-product-recall-batch-checker/', cta:'Open recall checker'},
       label: {title:'Learn the label in ten minutes', text:'Separate package total from serving amount, then check traceability, ingredients, and batch information.', url:'guides/read-a-label/', cta:'Open label decoder'},
       legal: {title:'Check the law where you are', text:'Search all 50 states for possession, home grow, medical access, retail status, and the official source.', url:'legal/', cta:'Open 50-state library'},
       gear: {title:'Build a safer storage setup', text:'Use original packaging, an odor-resistant inner layer, and a locked outer location.', url:'gear/smell-proof-storage/', cta:'Open storage gear guide'},
       basics: {title:'Build the Cannabis 101 foundation', text:'Understand THC, CBD, formats, timing, potency, and why a strain name never tells the whole story.', url:'guides/cannabis-101/', cta:'Open Cannabis 101'}
     };
     const chooseRoute = () => {
+      if (answers.priority === 'recall') return routes.recall;
       if (answers.priority === 'legal') return routes.legal;
       if (answers.priority === 'gear') return routes.gear;
       if (answers.priority === 'label') return routes.label;

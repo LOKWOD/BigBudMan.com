@@ -1,24 +1,27 @@
 {
-  "publication_date": "2026-09-16",
+  "publication_date": "2026-09-17",
   "page_count": 3,
   "pages": [
     {
-      "title": "CBD Gummies: Label & Buying Guide",
-      "url": "https://bigbudman.com/guides/cbd-gummies-label-buying-guide/",
+      "title": "Cannabis Product Recall Checker: Match the Batch",
+      "url": "https://bigbudman.com/guides/cannabis-product-recall-batch-checker/",
       "department": "guides",
-      "search_intent": "compare CBD gummy serving math, ingredients, lot evidence, spectrum and THC claims, storage, and lawful sourcing"
+      "portfolio_label": "Authority-expansion",
+      "search_intent": "match a cannabis recall, quarantine, or safety notice to the exact producer, product, lot, package, date, and jurisdiction"
     },
     {
-      "title": "Cannabis Pre-Roll Tube Buying Guide",
-      "url": "https://bigbudman.com/gear/cannabis-pre-roll-tube-case-buying-guide/",
-      "department": "gear",
-      "search_intent": "choose a pre-roll tube or case by fit, materials, closure, crush protection, cleaning, labeling, and storage"
-    },
-    {
-      "title": "Flying With Cannabis or CBD: TSA Rules",
-      "url": "https://bigbudman.com/legal/flying-with-cannabis-cbd-tsa-rules/",
+      "title": "Verify a Legal New York Dispensary and Product",
+      "url": "https://bigbudman.com/legal/shop-legal/",
       "department": "legal",
-      "search_intent": "understand TSA screening, current federal status, airport and state rules, CBD uncertainty, batteries, and international travel"
+      "portfolio_label": "Exploration",
+      "search_intent": "verify the licensed seller and product traceability before checkout, including the certificate, recall status, and receipt"
+    },
+    {
+      "title": "Complete Site Index",
+      "url": "https://bigbudman.com/site-index/",
+      "department": "technical",
+      "portfolio_label": "Data-led",
+      "search_intent": "give readers and crawlers a JavaScript-free path to every indexable page while Search Console sitemap discovery is repaired"
     }
   ],
   "monetization": {
@@ -28,15 +31,24 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three new pages and their discovery cards use intentional image-free editorial layouts. No new or changed editorial, affiliate, or product image is present."
+    "note": "The new guide, expanded checkout guide, and site index use intentional image-free layouts. No new or changed editorial, affiliate, or product image is present."
+  },
+  "search_console": {
+    "report_date": "2026-09-16",
+    "decision": "No query or page data was available. Stale errored sitemap records made crawl discovery the one data-led priority."
+  },
+  "authority": {
+    "action": "Published an official-source recall and batch-matching method, strengthened the label and licensed-shop cluster, and logged qualified outreach opportunities without contacting them."
   },
   "surfaces": [
     "homepage",
-    "guides hub",
-    "gear hub",
-    "legal hub",
+    "guide library",
+    "licensed-shop guide",
     "related content",
+    "complete site index",
+    "footer",
     "search index",
-    "sitemap"
+    "XML sitemap",
+    "robots.txt"
   ]
 }
