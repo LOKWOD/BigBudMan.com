@@ -3,3 +3,4 @@ Allow: /
 
 Sitemap: https://bigbudman.com/sitemap.xml
 # Human-readable index: https://bigbudman.com/site-index/
+# Publication updates: https://bigbudman.com/updates/

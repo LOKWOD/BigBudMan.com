@@ -1,27 +1,27 @@
 {
-  "publication_date": "2026-09-17",
+  "publication_date": "2026-09-18",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis Product Recall Checker: Match the Batch",
-      "url": "https://bigbudman.com/guides/cannabis-product-recall-batch-checker/",
+      "title": "Cannabis Drug Testing: What a THC Result Can and Cannot Show",
+      "url": "https://bigbudman.com/guides/cannabis-drug-testing-thc-results-guide/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "match a cannabis recall, quarantine, or safety notice to the exact producer, product, lot, package, date, and jurisdiction"
+      "search_intent": "understand cannabis specimen types, screening, confirmation, THC metabolites, CBD risk, result records, and detection-window limits without test-evasion advice"
     },
     {
-      "title": "Verify a Legal New York Dispensary and Product",
-      "url": "https://bigbudman.com/legal/shop-legal/",
-      "department": "legal",
+      "title": "Smell-Proof and Lockable Cannabis Storage",
+      "url": "https://bigbudman.com/gear/smell-proof-storage/",
+      "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "verify the licensed seller and product traceability before checkout, including the certificate, recall status, and receipt"
+      "search_intent": "size a locked storage system around original packages and evaluate child-resistance, odor, lock, material, service, and marketing claims before checkout"
     },
     {
-      "title": "Complete Site Index",
-      "url": "https://bigbudman.com/site-index/",
+      "title": "Publication Updates and Atom Feed",
+      "url": "https://bigbudman.com/updates/",
       "department": "technical",
       "portfolio_label": "Data-led",
-      "search_intent": "give readers and crawlers a JavaScript-free path to every indexable page while Search Console sitemap discovery is repaired"
+      "search_intent": "provide a chronological crawl path and machine-readable feed while Search Console has no query data and retains stale sitemap errors"
     }
   ],
   "monetization": {
@@ -31,19 +31,21 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The new guide, expanded checkout guide, and site index use intentional image-free layouts. No new or changed editorial, affiliate, or product image is present."
+    "note": "The new drug-testing guide and updates page use intentional image-free layouts; the expanded storage guide retains its previously reviewed lockbox image without changing the asset or placement."
   },
   "search_console": {
     "report_date": "2026-09-16",
-    "decision": "No query or page data was available. Stale errored sitemap records made crawl discovery the one data-led priority."
+    "decision": "No query or page data was available. Stale errored sitemap records supported one crawl-discovery improvement; zero-volume keyword data was ignored."
   },
   "authority": {
-    "action": "Published an official-source recall and batch-matching method, strengthened the label and licensed-shop cluster, and logged qualified outreach opportunities without contacting them."
+    "action": "Published an official-source testing interpretation guide, expanded the storage buying worksheet, added reciprocal topic-cluster paths, and logged qualified outreach opportunities without contacting them."
   },
   "surfaces": [
     "homepage",
     "guide library",
-    "licensed-shop guide",
+    "gear library",
+    "publication updates",
+    "Atom feed",
     "related content",
     "complete site index",
     "footer",
