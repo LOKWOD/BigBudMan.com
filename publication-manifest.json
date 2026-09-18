@@ -10,11 +10,11 @@
       "search_intent": "understand cannabis specimen types, screening, confirmation, THC metabolites, CBD risk, result records, and detection-window limits without test-evasion advice"
     },
     {
-      "title": "Smell-Proof and Lockable Cannabis Storage",
-      "url": "https://bigbudman.com/gear/smell-proof-storage/",
-      "department": "gear",
+      "title": "Hemp Seed Oil vs CBD Oil: Read the Label",
+      "url": "https://bigbudman.com/guides/hemp-seed-oil-vs-cbd-oil/",
+      "department": "guides",
       "portfolio_label": "Exploration",
-      "search_intent": "size a locked storage system around original packages and evaluate child-resistance, odor, lock, material, service, and marketing claims before checkout"
+      "search_intent": "distinguish hemp seed oil, CBD oil, ambiguous hemp-oil language, carriers, cannabinoid amounts, claims, and lot evidence before buying or using a product"
     },
     {
       "title": "Publication Updates and Atom Feed",
@@ -31,14 +31,14 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The new drug-testing guide and updates page use intentional image-free layouts; the expanded storage guide retains its previously reviewed lockbox image without changing the asset or placement."
+    "note": "All three new pages use intentional image-free layouts. The separately expanded storage guide retains its previously reviewed lockbox image without changing the asset or placement."
   },
   "search_console": {
     "report_date": "2026-09-16",
     "decision": "No query or page data was available. Stale errored sitemap records supported one crawl-discovery improvement; zero-volume keyword data was ignored."
   },
   "authority": {
-    "action": "Published an official-source testing interpretation guide, expanded the storage buying worksheet, added reciprocal topic-cluster paths, and logged qualified outreach opportunities without contacting them."
+    "action": "Published official-source drug-testing and hemp-versus-CBD reference guides, expanded the storage buying worksheet, added reciprocal topic-cluster paths, and logged qualified outreach opportunities without contacting them."
   },
   "surfaces": [
     "homepage",

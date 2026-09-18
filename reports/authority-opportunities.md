@@ -19,3 +19,4 @@ This is a research log, not an outreach ledger. No email, form, account, comment
 - No affiliate link, product ranking, discount, unverified image, or invented testing claim appears in the asset.
 - The drug-testing guide relies on current SAMHSA and FDA consumer and federal-workplace resources, distinguishes preliminary from confirmed results, and refuses individualized countdowns or test-evasion advice.
 - The expanded storage guide adds an original-package capacity worksheet and a claim-by-claim comparison table without ranking or pretending to test a particular lockbox.
+- The hemp-seed-oil comparison separates ingredient identity, cannabinoid quantity, lot evidence, intended use, and federal product-category limits with current FDA, USDA, and NCCIH sources.
