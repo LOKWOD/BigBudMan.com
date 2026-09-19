@@ -10,18 +10,18 @@
       "search_intent": "match an exact cannabis package and lot to a laboratory report, then interpret units, qualifiers, panels, status, dates, and evidence limits"
     },
     {
-      "title": "Laboratory Evidence Discovery Path",
-      "url": "https://bigbudman.com/guides/",
-      "department": "site organization and conversion",
+      "title": "Cannabis Lighter & Flame Safety Guide",
+      "url": "https://bigbudman.com/gear/cannabis-lighter-flame-safety-guide/",
+      "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "route readers holding a lab report from the homepage finder, guide hub, label guide, onsite search, and licensed-shopping path"
+      "search_intent": "choose, inspect, use, store, and dispose of a fuel or electric lighter without confusing child resistance, novelty styling, or ignition power with safety"
     },
     {
-      "title": "Keyboard-Accessible Data Tables",
-      "url": "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
-      "department": "accessibility and mobile usability",
-      "portfolio_label": "Exploration",
-      "search_intent": "make horizontally scrollable reference tables focusable and name them from their section heading for keyboard and assistive-technology users"
+      "title": "Cannabinoid Hyperemesis Syndrome: Warning Signs & Next Steps",
+      "url": "https://bigbudman.com/guides/cannabinoid-hyperemesis-syndrome-warning-signs/",
+      "department": "guides",
+      "portfolio_label": "Authority-expansion",
+      "search_intent": "recognize recurrent-vomiting warning signs, seek appropriate evaluation, understand hot-water and home-diagnosis limits, and prepare for cessation and follow-up"
     }
   ],
   "monetization": {
@@ -31,21 +31,21 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The new guide and changed discovery surfaces are intentionally image-free; no product or editorial image was added or moved."
+    "note": "All three new pages and their changed discovery surfaces use intentional image-free layouts; no product or editorial image was added or moved."
   },
   "search_console": {
     "report_date": "2026-09-16",
-    "decision": "BigBudMan remained siteRestrictedUser with zero query and page data. Stale sitemap errors had already been addressed by the complete index and feed, so no item was labeled Data-led and the empty keyword signals were ignored."
+    "decision": "BigBudMan had zero clicks, impressions, query rows, and page rows. No data-led topic was justified; the empty sample was ignored for topic selection, while stale sitemap errors reinforced direct homepage, hub, updates, feed, site-index, and sitemap crawl paths."
   },
   "authority": {
-    "action": "Published an official-source lab-report interpretation reference, connected it reciprocally to the label, recall, and licensed-shopping cluster, and logged one qualified standards-community opportunity without outreach."
+    "action": "Published an official-source lab-report interpretation reference, connected it reciprocally to the label, recall, and licensed-shopping cluster, and extended responsible-use and fire-safety clusters with clinical and federal-source guides. The AOAC standards-community opportunity remains logged; no outreach was sent."
   },
   "surfaces": [
-    "homepage Clear-Lane Finder",
     "homepage library preview",
-    "guide library",
+    "guide library and clinical path",
+    "gear library",
     "label guide",
-    "related content",
+    "responsible-use and fire-safety related content",
     "publication updates",
     "Atom feed",
     "complete site index",
