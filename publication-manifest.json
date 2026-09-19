@@ -1,27 +1,27 @@
 {
-  "publication_date": "2026-09-18",
+  "publication_date": "2026-09-19",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis Drug Testing: What a THC Result Can and Cannot Show",
-      "url": "https://bigbudman.com/guides/cannabis-drug-testing-thc-results-guide/",
+      "title": "Cannabis Certificate of Analysis (CoA) Guide",
+      "url": "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "understand cannabis specimen types, screening, confirmation, THC metabolites, CBD risk, result records, and detection-window limits without test-evasion advice"
+      "search_intent": "match an exact cannabis package and lot to a laboratory report, then interpret units, qualifiers, panels, status, dates, and evidence limits"
     },
     {
-      "title": "Hemp Seed Oil vs CBD Oil: Read the Label",
-      "url": "https://bigbudman.com/guides/hemp-seed-oil-vs-cbd-oil/",
-      "department": "guides",
+      "title": "Laboratory Evidence Discovery Path",
+      "url": "https://bigbudman.com/guides/",
+      "department": "site organization and conversion",
       "portfolio_label": "Exploration",
-      "search_intent": "distinguish hemp seed oil, CBD oil, ambiguous hemp-oil language, carriers, cannabinoid amounts, claims, and lot evidence before buying or using a product"
+      "search_intent": "route readers holding a lab report from the homepage finder, guide hub, label guide, onsite search, and licensed-shopping path"
     },
     {
-      "title": "Publication Updates and Atom Feed",
-      "url": "https://bigbudman.com/updates/",
-      "department": "technical",
-      "portfolio_label": "Data-led",
-      "search_intent": "provide a chronological crawl path and machine-readable feed while Search Console has no query data and retains stale sitemap errors"
+      "title": "Keyboard-Accessible Data Tables",
+      "url": "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
+      "department": "accessibility and mobile usability",
+      "portfolio_label": "Exploration",
+      "search_intent": "make horizontally scrollable reference tables focusable and name them from their section heading for keyboard and assistive-technology users"
     }
   ],
   "monetization": {
@@ -31,26 +31,26 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three new pages use intentional image-free layouts. The separately expanded storage guide retains its previously reviewed lockbox image without changing the asset or placement."
+    "note": "The new guide and changed discovery surfaces are intentionally image-free; no product or editorial image was added or moved."
   },
   "search_console": {
     "report_date": "2026-09-16",
-    "decision": "No query or page data was available. Stale errored sitemap records supported one crawl-discovery improvement; zero-volume keyword data was ignored."
+    "decision": "BigBudMan remained siteRestrictedUser with zero query and page data. Stale sitemap errors had already been addressed by the complete index and feed, so no item was labeled Data-led and the empty keyword signals were ignored."
   },
   "authority": {
-    "action": "Published official-source drug-testing and hemp-versus-CBD reference guides, expanded the storage buying worksheet, added reciprocal topic-cluster paths, and logged qualified outreach opportunities without contacting them."
+    "action": "Published an official-source lab-report interpretation reference, connected it reciprocally to the label, recall, and licensed-shopping cluster, and logged one qualified standards-community opportunity without outreach."
   },
   "surfaces": [
-    "homepage",
+    "homepage Clear-Lane Finder",
+    "homepage library preview",
     "guide library",
-    "gear library",
+    "label guide",
+    "related content",
     "publication updates",
     "Atom feed",
-    "related content",
     "complete site index",
-    "footer",
     "search index",
     "XML sitemap",
-    "robots.txt"
+    "sitewide article tables"
   ]
 }

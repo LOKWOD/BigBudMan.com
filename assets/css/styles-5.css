@@ -22,6 +22,8 @@
 @media (max-width:560px){.cbd-library-note{padding:24px 20px}.cbd-library-note h2{font-size:29px}.filter-bar>.strain-filter-groups{display:grid}.filter-group{align-items:flex-start}.filter-bar p{margin-top:16px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
+.prose table[tabindex]{scrollbar-gutter:stable}.prose table[tabindex]:focus-visible{outline:3px solid var(--amber);outline-offset:4px}
+
 .update-list{list-style:none!important;margin:0!important;padding:0!important;border-top:1.5px solid var(--ink)}.update-list li{margin:0!important;padding:0!important}.update-list li::before{display:none!important}.update-list a{display:grid;grid-template-columns:minmax(220px,.7fr) minmax(0,1.3fr);gap:28px;padding:18px 12px;border-bottom:1.5px solid var(--ink);color:var(--ink);text-decoration:none}.update-list a:hover{background:var(--lime)}.update-list b{font:800 18px/1.2 var(--body)}.update-list span{font-size:15px;line-height:1.5}.update-list a:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
 @media (max-width:650px){.update-list a{grid-template-columns:1fr;gap:7px;padding:17px 8px}.update-list b{font-size:17px}}
 

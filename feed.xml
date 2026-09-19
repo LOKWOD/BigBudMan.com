@@ -4,8 +4,16 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-09-18T00:00:00Z</updated>
+  <updated>2026-09-19T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis Certificate of Analysis (CoA) Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/"/>
+    <updated>2026-09-19T00:00:00Z</updated>
+    <published>2026-09-19T00:00:00Z</published>
+    <summary>Match a cannabis package to its certificate of analysis and read potency, units, reporting limits, contaminant panels, status, and report dates.</summary>
+  </entry>
   <entry>
     <title>Smell-Proof and Lockable Cannabis Storage</title>
     <id>https://bigbudman.com/gear/smell-proof-storage/</id>
@@ -237,13 +245,5 @@
     <updated>2026-09-09T00:00:00Z</updated>
     <published>2026-08-17T00:00:00Z</published>
     <summary>Sour Special Sauce CBD hemp field note: breeder-listed lineage and aroma context, terpene-claim limits, batch CoA matching, and legal cautions.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis and Pets: Accidental Exposure Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-and-pets-accidental-exposure/</id>
-    <link href="https://bigbudman.com/guides/cannabis-and-pets-accidental-exposure/"/>
-    <updated>2026-09-09T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>What to do if a pet reaches cannabis, THC, CBD, an edible, vape, or discarded material: veterinary contacts, warning signs, evidence, and prevention.</summary>
   </entry>
 </feed>
