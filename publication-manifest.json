@@ -1,27 +1,27 @@
 {
-  "publication_date": "2026-09-19",
+  "publication_date": "2026-09-20",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis Certificate of Analysis (CoA) Guide",
-      "url": "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
+      "title": "Cannabis Overconsumption & Poisoning Response",
+      "url": "https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "match an exact cannabis package and lot to a laboratory report, then interpret units, qualifiers, panels, status, dates, and evidence limits"
+      "search_intent": "separate emergencies from poison-center questions after too much cannabis or an accidental exposure, preserve the exact product record, avoid fake antidotes, and repair prevention failures"
     },
     {
-      "title": "Cannabis Lighter & Flame Safety Guide",
-      "url": "https://bigbudman.com/gear/cannabis-lighter-flame-safety-guide/",
+      "title": "Cannabis Gear Comparison Worksheet",
+      "url": "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/",
       "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "choose, inspect, use, store, and dispose of a fuel or electric lighter without confusing child resistance, novelty styling, or ignition power with safety"
+      "search_intent": "compare cannabis accessories on the same job, fit, materials, safety evidence, cleaning, support, recall route, and first-year ownership cost"
     },
     {
-      "title": "Cannabinoid Hyperemesis Syndrome: Warning Signs & Next Steps",
-      "url": "https://bigbudman.com/guides/cannabinoid-hyperemesis-syndrome-warning-signs/",
-      "department": "guides",
-      "portfolio_label": "Authority-expansion",
-      "search_intent": "recognize recurrent-vomiting warning signs, seek appropriate evaluation, understand hot-water and home-diagnosis limits, and prepare for cessation and follow-up"
+      "title": "Urgent-help discovery route",
+      "url": "https://bigbudman.com/",
+      "department": "site experience",
+      "portfolio_label": "Exploration",
+      "search_intent": "route urgent too-much or accidental-exposure questions from the homepage finder, responsible-use page, guide hub, search aliases, and related content to the correct response guide"
     }
   ],
   "monetization": {
@@ -31,21 +31,20 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three new pages and their changed discovery surfaces use intentional image-free layouts; no product or editorial image was added or moved."
+    "note": "Both new pages and the changed discovery surfaces use intentional image-free layouts; no product or editorial image was added or moved."
   },
   "search_console": {
     "report_date": "2026-09-16",
     "decision": "BigBudMan had zero clicks, impressions, query rows, and page rows. No data-led topic was justified; the empty sample was ignored for topic selection, while stale sitemap errors reinforced direct homepage, hub, updates, feed, site-index, and sitemap crawl paths."
   },
   "authority": {
-    "action": "Published an official-source lab-report interpretation reference, connected it reciprocally to the label, recall, and licensed-shopping cluster, and extended responsible-use and fire-safety clusters with clinical and federal-source guides. The AOAC standards-community opportunity remains logged; no outreach was sent."
+    "action": "Published a Poison Control, CDC, NIH, and New York health-source response guide; connected it to responsible use, edible timing, CHS, storage, homepage routing, and search. Logged Upstate New York Poison Center as a precise correction/resource opportunity; no outreach was sent."
   },
   "surfaces": [
-    "homepage library preview",
-    "guide library and clinical path",
+    "homepage urgent route and library preview",
+    "guide library and urgent path",
     "gear library",
-    "label guide",
-    "responsible-use and fire-safety related content",
+    "responsible-use related content",
     "publication updates",
     "Atom feed",
     "complete site index",

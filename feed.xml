@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-09-19T00:00:00Z</updated>
+  <updated>2026-09-20T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis Overconsumption: What to Do</title>
+    <id>https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/</id>
+    <link href="https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/"/>
+    <updated>2026-09-20T00:00:00Z</updated>
+    <published>2026-09-20T00:00:00Z</published>
+    <summary>Too much cannabis or accidental exposure: emergency warning signs, Poison Control, product details to preserve, safer monitoring, and prevention.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Gear Comparison Worksheet</title>
+    <id>https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/</id>
+    <link href="https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/"/>
+    <updated>2026-09-20T00:00:00Z</updated>
+    <published>2026-09-20T00:00:00Z</published>
+    <summary>Compare cannabis accessories with a printable worksheet for fit, materials, safety, cleaning, support, first-year cost, recalls, and claim limits.</summary>
+  </entry>
   <entry>
     <title>Cannabis Lighter &amp; Flame Safety Guide</title>
     <id>https://bigbudman.com/gear/cannabis-lighter-flame-safety-guide/</id>
@@ -229,21 +245,5 @@
     <updated>2026-09-11T00:00:00Z</updated>
     <published>2026-09-11T00:00:00Z</published>
     <summary>Choose a CBD oil or tincture by concentration math, ingredients, serving directions, lot-matched lab evidence, THC risk, claims, and storage.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis and Alcohol: Mixing Risks</title>
-    <id>https://bigbudman.com/guides/cannabis-and-alcohol-mixing-risks/</id>
-    <link href="https://bigbudman.com/guides/cannabis-and-alcohol-mixing-risks/"/>
-    <updated>2026-09-10T00:00:00Z</updated>
-    <published>2026-09-10T00:00:00Z</published>
-    <summary>Understand why combining cannabis and alcohol can increase impairment, why no timer proves sobriety, and how to plan transport and respond to distress.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Rolling Tray Buying Guide</title>
-    <id>https://bigbudman.com/gear/cannabis-rolling-tray-buying-guide/</id>
-    <link href="https://bigbudman.com/gear/cannabis-rolling-tray-buying-guide/"/>
-    <updated>2026-09-10T00:00:00Z</updated>
-    <published>2026-09-10T00:00:00Z</published>
-    <summary>Choose a cannabis rolling tray by usable area, edge design, material, stability, cleanability, storage fit, accessory control, and fire-safety limits.</summary>
   </entry>
 </feed>

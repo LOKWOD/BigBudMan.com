@@ -1,11 +1,12 @@
 # Big Bud Man authority opportunities
 
-Last reviewed: September 19, 2026
+Last reviewed: September 20, 2026
 
 This is a research log, not an outreach ledger. No email, form, account, comment, or social message has been sent. Big Bud Man will not pay for, trade, or guarantee links.
 
 | Qualified target | Contact route | Exact asset match | Honest pitch angle |
 | --- | --- | --- | --- |
+| Upstate New York Poison Center — <https://www.upstate.edu/poison/> | Public Education / Presentation Request route on the official Upstate page; emergencies remain 1-800-222-1222 | [Cannabis Overconsumption & Poisoning Response](https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/) | A Central New York, product-record-first response guide that separates 911 warning signs from poison-center triage, rejects fake antidotes, and connects prevention to label and locked-storage guidance. Invite factual correction or resource-library consideration through the education route; never use the emergency line for outreach or imply endorsement. |
 | Cannabis Regulators Association (CANNRA) — <https://www.cann-ra.org/> | `info@cann-ra.org` | [Cannabis Product Recall Checker](https://bigbudman.com/guides/cannabis-product-recall-batch-checker/) | A consumer-facing method for matching the exact producer, product, lot, package size, dates, and jurisdiction in a recall notice. Ask whether the terminology and regulator-first workflow are useful to public-information teams; do not request editorial control or a guaranteed link. |
 | Americans for Safe Access — <https://www.safeaccessnow.org/> | Contact route: the verified “Contact Us” section on the organization homepage | [Cannabis Product Recall Checker](https://bigbudman.com/guides/cannabis-product-recall-batch-checker/) | The stop–separate–preserve checklist and official-source decision flow complement the organization’s product-safety and recall education. Offer it as a free consumer reference and invite corrections; do not imply endorsement. |
 | National Drug-Free Workplace Alliance — <https://www.ndwa.org/resources/marijuana-in-the-workplace-toolkit/> | `info@ndwa.org` or the verified Contact Us page | [Cannabis Drug Testing: What a THC Result Can and Cannot Show](https://bigbudman.com/guides/cannabis-drug-testing-thc-results-guide/) | A worker-facing, SAMHSA/FDA-sourced explainer that separates specimen, screen, confirmation, review, and policy decision without supplying evasion tactics. Offer it for accuracy review or resource-library consideration; do not imply legal advice or endorsement. |
@@ -14,6 +15,10 @@ This is a research log, not an outreach ledger. No email, form, account, comment
 | International Foundation for Gastrointestinal Disorders (IFFGD) — <https://iffgd.org/> | Verified contact page: <https://iffgd.org/contact-us/> | [Cannabinoid Hyperemesis Syndrome: Warning Signs & Next Steps](https://bigbudman.com/guides/cannabinoid-hyperemesis-syndrome-warning-signs/) | An AGA- and peer-reviewed-source explainer that separates warning signs, emergency routing, diagnostic uncertainty, hot-water risk, clinical disclosure, and cessation. Invite clinical correction or resource-library consideration; do not imply diagnosis, treatment, or endorsement. |
 
 ## Asset readiness
+
+- The overconsumption guide uses national Poison Control plus CDC, NIH, and New York health sources; it avoids dose cutoffs, recovery promises, and a universal symptom timer.
+- The gear comparison worksheet is product-neutral and forces exact model, fit, materials, scoped safety claims, care, support, recall route, and first-year cost into the same printable comparison.
+- The homepage, guide hub, gear hub, responsible-use page, related-content paths, and search aliases create reciprocal discovery without an artificial cross-site network.
 
 - The checker cites official regulator and federal recall sources and separates recall, quarantine, advisory, and voluntary-withdrawal language.
 - It states its limits: notices can change, jurisdiction matters, and official instructions control.
