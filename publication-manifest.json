@@ -17,11 +17,11 @@
       "search_intent": "compare cannabis accessories on the same job, fit, materials, safety evidence, cleaning, support, recall route, and first-year ownership cost"
     },
     {
-      "title": "Urgent-help discovery route",
-      "url": "https://bigbudman.com/",
-      "department": "site experience",
+      "title": "CBD Capsules & Softgels Buying Guide",
+      "url": "https://bigbudman.com/guides/cbd-capsules-softgels-label-buying-guide/",
+      "department": "guides",
       "portfolio_label": "Exploration",
-      "search_intent": "route urgent too-much or accidental-exposure questions from the homepage finder, responsible-use page, guide hub, search aliases, and related content to the correct response guide"
+      "search_intent": "compare swallowed CBD products by per-unit math, shell and carrier ingredients, exact-lot evidence, THC and testing risk, claims, and locked storage"
     }
   ],
   "monetization": {
@@ -31,7 +31,7 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "Both new pages and the changed discovery surfaces use intentional image-free layouts; no product or editorial image was added or moved."
+    "note": "All three new pages and the changed discovery surfaces use intentional image-free layouts; no product or editorial image was added or moved."
   },
   "search_console": {
     "report_date": "2026-09-16",
@@ -42,9 +42,10 @@
   },
   "surfaces": [
     "homepage urgent route and library preview",
-    "guide library and urgent path",
+    "guide library with CBD path",
     "gear library",
     "responsible-use related content",
+    "CBD label, testing, and certificate clusters",
     "publication updates",
     "Atom feed",
     "complete site index",
