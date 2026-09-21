@@ -238,6 +238,36 @@
     guideInput?.addEventListener('input', renderGuides);
   }
 
+  // Gear-library search and job filters.
+  const gearLibrary = $('[data-gear-library]');
+  if (gearLibrary) {
+    const gearInput = $('[data-gear-search]', gearLibrary);
+    const gearCards = $$('[data-gear-card]', gearLibrary);
+    const gearEmpty = $('[data-gear-empty]', gearLibrary);
+    const gearCount = $('[data-gear-count]', gearLibrary);
+    let activeGearFilter = 'all';
+    const renderGear = () => {
+      const query = (gearInput?.value || '').trim().toLowerCase();
+      let visible = 0;
+      gearCards.forEach((card) => {
+        const categories = card.dataset.category || '';
+        const matchesFilter = activeGearFilter === 'all' || categories.split(' ').includes(activeGearFilter);
+        const matchesQuery = !query || (card.dataset.search || '').includes(query);
+        const show = matchesFilter && matchesQuery;
+        card.hidden = !show;
+        if (show) visible += 1;
+      });
+      if (gearCount) gearCount.textContent = String(visible);
+      if (gearEmpty) gearEmpty.hidden = visible !== 0;
+    };
+    $$('[data-gear-filter]', gearLibrary).forEach((button) => button.addEventListener('click', () => {
+      activeGearFilter = button.dataset.gearFilter || 'all';
+      $$('[data-gear-filter]', gearLibrary).forEach((item) => item.classList.toggle('is-active', item === button));
+      renderGear();
+    }));
+    gearInput?.addEventListener('input', renderGear);
+  }
+
   // Strain library filters.
   const filterBar = $('[data-strain-filter]');
   const strainCards = $$('[data-strain-card]');
@@ -341,4 +371,6 @@
       window.prompt('Copy this link:', window.location.href);
     }
   });
+
+  $('[data-print-article]')?.addEventListener('click', () => window.print());
 })();

@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-09-20T00:00:00Z</updated>
+  <updated>2026-09-21T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>New York Home Cannabis Grow Planner</title>
+    <id>https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/</id>
+    <link href="https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/"/>
+    <updated>2026-09-21T00:00:00Z</updated>
+    <published>2026-09-21T00:00:00Z</published>
+    <summary>Plan a New York home cannabis grow around plant limits, residence rules, access, electrical load, moisture, records, storage, and lawful starter sources.</summary>
+  </entry>
+  <entry>
+    <title>New York Cannabis Laws: Adult-Use Basics</title>
+    <id>https://bigbudman.com/legal/new-york/</id>
+    <link href="https://bigbudman.com/legal/new-york/"/>
+    <updated>2026-09-21T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>New York cannabis laws for 2026: recreational ID, medical certification, possession limits, licensed sales, travel, home cultivation, and policy direction.</summary>
+  </entry>
   <entry>
     <title>Cannabis Overconsumption: What to Do</title>
     <id>https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/</id>
@@ -229,21 +245,5 @@
     <updated>2026-09-12T00:00:00Z</updated>
     <published>2026-08-17T00:00:00Z</published>
     <summary>Cakeberry Brulee CBD hemp field note: breeder-listed W19 × KAP lineage and aroma context, product-format checks, CoA matching, and legal cautions.</summary>
-  </entry>
-  <entry>
-    <title>Dry-Herb Vaporizer Buying Guide</title>
-    <id>https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/</id>
-    <link href="https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/"/>
-    <updated>2026-09-11T00:00:00Z</updated>
-    <published>2026-09-11T00:00:00Z</published>
-    <summary>Choose a dry-herb vaporizer by use case, chamber and airpath disclosure, controls, battery safety, cleaning, parts, warranty, and legal boundaries.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis and Driving: No Sober Timer</title>
-    <id>https://bigbudman.com/guides/cannabis-driving-impairment-sober-timer/</id>
-    <link href="https://bigbudman.com/guides/cannabis-driving-impairment-sober-timer/"/>
-    <updated>2026-09-11T00:00:00Z</updated>
-    <published>2026-09-11T00:00:00Z</published>
-    <summary>Why no universal cannabis sober timer proves driving fitness, what THC tests can and cannot show, and how to make a reliable transportation plan.</summary>
   </entry>
 </feed>

@@ -1,27 +1,27 @@
 {
-  "publication_date": "2026-09-20",
+  "publication_date": "2026-09-21",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis Overconsumption & Poisoning Response",
-      "url": "https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/",
+      "title": "New York Home Cannabis Grow Planner",
+      "url": "https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "separate emergencies from poison-center questions after too much cannabis or an accidental exposure, preserve the exact product record, avoid fake antidotes, and repair prevention failures"
+      "search_intent": "check current New York plant and possession limits, residence and access rules, electrical and moisture loads, lawful starter sources, records, and harvest storage before beginning a home grow"
     },
     {
-      "title": "Cannabis Gear Comparison Worksheet",
-      "url": "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/",
+      "title": "Searchable Job-First Gear Library",
+      "url": "https://bigbudman.com/gear/",
       "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "compare cannabis accessories on the same job, fit, materials, safety evidence, cleaning, support, recall route, and first-year ownership cost"
+      "search_intent": "find the right accessory guide by task or feature, compare the exact model, and account for maintenance and first-year ownership cost without fabricated rankings"
     },
     {
-      "title": "CBD Capsules & Softgels Buying Guide",
-      "url": "https://bigbudman.com/guides/cbd-capsules-softgels-label-buying-guide/",
-      "department": "guides",
+      "title": "Print or Save Article References",
+      "url": "https://bigbudman.com/guides/",
+      "department": "site experience",
       "portfolio_label": "Exploration",
-      "search_intent": "compare swallowed CBD products by per-unit math, shell and carrier ingredients, exact-lot evidence, THC and testing risk, claims, and locked storage"
+      "search_intent": "turn article checklists, worksheets, source notes, and comparison tables into clean paper or PDF references from any article"
     }
   ],
   "monetization": {
@@ -31,26 +31,26 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three new pages and the changed discovery surfaces use intentional image-free layouts; no product or editorial image was added or moved."
+    "note": "The new planner and print controls are image-free. The gear library retains the same verified grinder and lockbox editorial images and introduces no product-specific image or commercial claim."
   },
   "search_console": {
     "report_date": "2026-09-16",
-    "decision": "BigBudMan had zero clicks, impressions, query rows, and page rows. No data-led topic was justified; the empty sample was ignored for topic selection, while stale sitemap errors reinforced direct homepage, hub, updates, feed, site-index, and sitemap crawl paths."
+    "decision": "The BigBudMan property returned siteRestrictedUser with zero clicks, impressions, query rows, and page rows. No data-led topic was justified; the empty keyword sample and old sitemap errors were ignored, and current evergreen primary-source research guided the batch."
   },
   "authority": {
-    "action": "Published a Poison Control, CDC, NIH, and New York health-source response guide; connected it to responsible use, edible timing, CHS, storage, homepage routing, and search. Logged Upstate New York Poison Center as a precise correction/resource opportunity; no outreach was sent."
+    "action": "Published a New York OCM- and EPA-sourced home-grow planning worksheet; connected it reciprocally to New York law, licensed starter-source verification, storage, the guide hub, search, updates, feed, site index, and sitemap. Logged New York OCM public education as a precise correction/resource opportunity; no outreach was sent."
   },
   "surfaces": [
-    "homepage urgent route and library preview",
-    "guide library with CBD path",
-    "gear library",
-    "responsible-use related content",
-    "CBD label, testing, and certificate clusters",
+    "New York home-grow planner",
+    "New York legal guide",
+    "licensed-shop verification path",
+    "guide library and planning path",
+    "searchable gear library",
+    "sitewide article print controls",
     "publication updates",
     "Atom feed",
     "complete site index",
     "search index",
-    "XML sitemap",
-    "sitewide article tables"
+    "XML sitemap"
   ]
 }
