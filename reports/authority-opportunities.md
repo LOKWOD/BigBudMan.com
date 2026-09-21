@@ -18,7 +18,9 @@ This is a research log, not an outreach ledger. No email, form, account, comment
 ## Asset readiness
 
 - The home-grow planner keeps New York OCM limits and source links beside a practical electrical, moisture, access, operating-record, and harvest-storage worksheet; it does not offer yield promises or bypass local and property rules.
-- The searchable gear library preserves all 18 established accessory guides while adding task-based filtering and exact-model comparison language without commercial rankings.
+- The searchable gear library covers 19 accessory guides with task-based filtering and exact-model comparison language without commercial rankings.
+- The Auto CBG field note keeps the breeder record, day-neutral trait, CBG-dominant shorthand, federal hemp threshold, and finished-product laboratory evidence separate instead of turning a cultivar name into a potency or effects promise.
+- The cannabis inventory, label, and record kit adds a printable package-to-record workflow and connects storage, recall, and certificate-of-analysis checks without recommending a product or inventing test results.
 - Every article now exposes a clean print/PDF route for checklists, worksheets, source notes, and tables; print output removes navigation and conversion chrome.
 - The overconsumption guide uses national Poison Control plus CDC, NIH, and New York health sources; it avoids dose cutoffs, recovery promises, and a universal symptom timer.
 - The gear comparison worksheet is product-neutral and forces exact model, fit, materials, scoped safety claims, care, support, recall route, and first-year cost into the same printable comparison.

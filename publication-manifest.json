@@ -10,18 +10,18 @@
       "search_intent": "check current New York plant and possession limits, residence and access rules, electrical and moisture loads, lawful starter sources, records, and harvest storage before beginning a home grow"
     },
     {
-      "title": "Searchable Job-First Gear Library",
-      "url": "https://bigbudman.com/gear/",
-      "department": "gear",
+      "title": "Auto CBG: The Honest Field Note",
+      "url": "https://bigbudman.com/strains/auto-cbg/",
+      "department": "strains",
       "portfolio_label": "Exploration",
-      "search_intent": "find the right accessory guide by task or feature, compare the exact model, and account for maintenance and first-year ownership cost without fabricated rankings"
+      "search_intent": "separate Oregon CBD's Auto CBG breeder record from a finished product's identity, CBG and THC results, safety panels, and legal status"
     },
     {
-      "title": "Print or Save Article References",
-      "url": "https://bigbudman.com/guides/",
-      "department": "site experience",
+      "title": "Cannabis Inventory, Label and Record Kit",
+      "url": "https://bigbudman.com/gear/cannabis-inventory-label-record-kit/",
+      "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "turn article checklists, worksheets, source notes, and comparison tables into clean paper or PDF references from any article"
+      "search_intent": "preserve original packaging, product identity, lot, dates, laboratory report, receipt, photos, and locked location in a printable household record"
     }
   ],
   "monetization": {
@@ -31,21 +31,26 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The new planner and print controls are image-free. The gear library retains the same verified grinder and lockbox editorial images and introduces no product-specific image or commercial claim."
+    "note": "All three new pages use intentional image-free layouts. Auto CBG explicitly withholds a cultivar photograph because no exact licensed batch image was verified."
   },
   "search_console": {
     "report_date": "2026-09-16",
     "decision": "The BigBudMan property returned siteRestrictedUser with zero clicks, impressions, query rows, and page rows. No data-led topic was justified; the empty keyword sample and old sitemap errors were ignored, and current evergreen primary-source research guided the batch."
   },
   "authority": {
-    "action": "Published a New York OCM- and EPA-sourced home-grow planning worksheet; connected it reciprocally to New York law, licensed starter-source verification, storage, the guide hub, search, updates, feed, site index, and sitemap. Logged New York OCM public education as a precise correction/resource opportunity; no outreach was sent."
+    "action": "Published a New York OCM- and EPA-sourced home-grow planning worksheet; added a source-bounded Auto CBG field note and a printable lot/receipt/report inventory system; connected them reciprocally to New York law, storage, recalls, laboratory evidence, the cultivar library, and the gear library. Logged New York OCM public education as a precise correction/resource opportunity; no outreach was sent."
   },
   "surfaces": [
+    "homepage",
     "New York home-grow planner",
     "New York legal guide",
     "licensed-shop verification path",
     "guide library and planning path",
-    "searchable gear library",
+    "strain library",
+    "gear library",
+    "storage guide",
+    "recall guide",
+    "certificate-of-analysis guide",
     "sitewide article print controls",
     "publication updates",
     "Atom feed",
