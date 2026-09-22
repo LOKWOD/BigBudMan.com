@@ -4,8 +4,32 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-09-21T00:00:00Z</updated>
+  <updated>2026-09-22T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>DOT Cannabis &amp; CBD Drug Testing Guide</title>
+    <id>https://bigbudman.com/guides/dot-cannabis-cbd-drug-testing-safety-sensitive-workers/</id>
+    <link href="https://bigbudman.com/guides/dot-cannabis-cbd-drug-testing-safety-sensitive-workers/"/>
+    <updated>2026-09-22T00:00:00Z</updated>
+    <published>2026-09-22T00:00:00Z</published>
+    <summary>A dated guide to U.S. DOT marijuana testing, safety-sensitive workers, CBD cautions, medical review, removal, return-to-duty, and official sources.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Vape Disposal Guide</title>
+    <id>https://bigbudman.com/gear/cannabis-vape-battery-cartridge-disposal-guide/</id>
+    <link href="https://bigbudman.com/gear/cannabis-vape-battery-cartridge-disposal-guide/"/>
+    <updated>2026-09-22T00:00:00Z</updated>
+    <published>2026-09-22T00:00:00Z</published>
+    <summary>Sort a cannabis vape for safer disposal: battery, cartridge, residual oil, packaging, damaged devices, recalls, take-back, e-waste, and local rules.</summary>
+  </entry>
+  <entry>
+    <title>CBD for Pets: Veterinarian &amp; Label Guide</title>
+    <id>https://bigbudman.com/guides/cbd-products-for-pets-veterinarian-label-guide/</id>
+    <link href="https://bigbudman.com/guides/cbd-products-for-pets-veterinarian-label-guide/"/>
+    <updated>2026-09-22T00:00:00Z</updated>
+    <published>2026-09-22T00:00:00Z</published>
+    <summary>A veterinarian-first guide to pet CBD labels, ingredients, lot evidence, health claims, accidental exposure, storage, and questions to ask before buying.</summary>
+  </entry>
   <entry>
     <title>New York Home Cannabis Grow Planner</title>
     <id>https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/</id>
@@ -221,29 +245,5 @@
     <updated>2026-09-13T00:00:00Z</updated>
     <published>2026-08-17T00:00:00Z</published>
     <summary>Sour Brulee CBD hemp field note: breeder-listed lineage and aroma context, name-collision checks, exact-batch CoA matching, and legal cautions.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis, Heart Rate &amp; Blood Pressure</title>
-    <id>https://bigbudman.com/guides/cannabis-heart-rate-blood-pressure-safety/</id>
-    <link href="https://bigbudman.com/guides/cannabis-heart-rate-blood-pressure-safety/"/>
-    <updated>2026-09-13T00:00:00Z</updated>
-    <published>2026-09-13T00:00:00Z</published>
-    <summary>Understand cannabis heart-rate and blood-pressure effects, evidence limits, smoke and interaction concerns, emergency signs, and clinician questions.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Glass Pipe &amp; Water Pipe Guide</title>
-    <id>https://bigbudman.com/gear/cannabis-glass-pipe-water-pipe-buying-guide/</id>
-    <link href="https://bigbudman.com/gear/cannabis-glass-pipe-water-pipe-buying-guide/"/>
-    <updated>2026-09-13T00:00:00Z</updated>
-    <published>2026-09-13T00:00:00Z</published>
-    <summary>Choose a cannabis glass pipe or water pipe by format, glass disclosure, joint fit, stability, cleaning access, replaceable parts, and smoke limits.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis During Pregnancy and Breastfeeding</title>
-    <id>https://bigbudman.com/guides/cannabis-pregnancy-breastfeeding-guidance/</id>
-    <link href="https://bigbudman.com/guides/cannabis-pregnancy-breastfeeding-guidance/"/>
-    <updated>2026-09-12T00:00:00Z</updated>
-    <published>2026-09-12T00:00:00Z</published>
-    <summary>Current CDC and FDA guidance on cannabis, THC, and CBD during pregnancy and breastfeeding, including routes, evidence limits, disclosure, and clinical support.</summary>
   </entry>
 </feed>

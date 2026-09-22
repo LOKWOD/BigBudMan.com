@@ -1,27 +1,27 @@
 {
-  "publication_date": "2026-09-21",
+  "publication_date": "2026-09-22",
   "page_count": 3,
   "pages": [
     {
-      "title": "New York Home Cannabis Grow Planner",
-      "url": "https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/",
+      "title": "CBD for Pets: Veterinarian & Label Guide",
+      "url": "https://bigbudman.com/guides/cbd-products-for-pets-veterinarian-label-guide/",
       "department": "guides",
-      "portfolio_label": "Authority-expansion",
-      "search_intent": "check current New York plant and possession limits, residence and access rules, electrical and moisture loads, lawful starter sources, records, and harvest storage before beginning a home grow"
-    },
-    {
-      "title": "Auto CBG: The Honest Field Note",
-      "url": "https://bigbudman.com/strains/auto-cbg/",
-      "department": "strains",
       "portfolio_label": "Exploration",
-      "search_intent": "separate Oregon CBD's Auto CBG breeder record from a finished product's identity, CBG and THC results, safety panels, and legal status"
+      "search_intent": "discuss a pet CBD product with a veterinarian, then audit its label, ingredients, lot evidence, claims, monitoring, exposure plan, and storage"
     },
     {
-      "title": "Cannabis Inventory, Label and Record Kit",
-      "url": "https://bigbudman.com/gear/cannabis-inventory-label-record-kit/",
+      "title": "Cannabis Vape Disposal Guide",
+      "url": "https://bigbudman.com/gear/cannabis-vape-battery-cartridge-disposal-guide/",
       "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "preserve original packaging, product identity, lot, dates, laboratory report, receipt, photos, and locked location in a printable household record"
+      "search_intent": "route a vape battery, integrated device, cartridge, residual oil, and packaging without unsafe dismantling or trash-bin disposal"
+    },
+    {
+      "title": "DOT Cannabis & CBD Drug Testing Guide",
+      "url": "https://bigbudman.com/guides/dot-cannabis-cbd-drug-testing-safety-sensitive-workers/",
+      "department": "guides",
+      "portfolio_label": "Authority-expansion",
+      "search_intent": "understand DOT safety-sensitive marijuana testing, retail CBD risk, MRO review, removal, and the return-to-duty process from current official sources"
     }
   ],
   "monetization": {
@@ -31,27 +31,23 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three new pages use intentional image-free layouts. Auto CBG explicitly withholds a cultivar photograph because no exact licensed batch image was verified."
+    "note": "All three new pages use intentional image-free editorial layouts; no product or cultivar image is represented or linked."
   },
   "search_console": {
     "report_date": "2026-09-16",
-    "decision": "The BigBudMan property returned siteRestrictedUser with zero clicks, impressions, query rows, and page rows. No data-led topic was justified; the empty keyword sample and old sitemap errors were ignored, and current evergreen primary-source research guided the batch."
+    "decision": "The report covered data through September 13 and returned zero clicks, zero impressions, and no query or page rows for BigBudMan.com. No data-led topic was justified; the empty sample was ignored for topic selection, while old sitemap errors informed stronger crawl paths."
   },
   "authority": {
-    "action": "Published a New York OCM- and EPA-sourced home-grow planning worksheet; added a source-bounded Auto CBG field note and a printable lot/receipt/report inventory system; connected them reciprocally to New York law, storage, recalls, laboratory evidence, the cultivar library, and the gear library. Logged New York OCM public education as a precise correction/resource opportunity; no outreach was sent."
+    "action": "Published a DOT and Part 40 source digest with a printable worker decision record, plus a veterinarian conversation sheet for pet CBD and an EPA and USFA grounded vape end-of-life sorter. Added reciprocal cluster links and logged qualified National Drug-Free Workplace Alliance and ASPCA opportunities; no outreach was sent."
   },
   "surfaces": [
     "homepage",
-    "New York home-grow planner",
-    "New York legal guide",
-    "licensed-shop verification path",
-    "guide library and planning path",
-    "strain library",
+    "guide library and thirteen decision paths",
     "gear library",
-    "storage guide",
-    "recall guide",
-    "certificate-of-analysis guide",
-    "sitewide article print controls",
+    "pet accidental-exposure guide",
+    "general drug-testing guide",
+    "510-thread battery guide",
+    "certificate-of-analysis and storage links",
     "publication updates",
     "Atom feed",
     "complete site index",
