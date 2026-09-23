@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-09-22T00:00:00Z</updated>
+  <updated>2026-09-23T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis Safety for Older Adults</title>
+    <id>https://bigbudman.com/guides/cannabis-older-adults-medication-fall-safety/</id>
+    <link href="https://bigbudman.com/guides/cannabis-older-adults-medication-fall-safety/"/>
+    <updated>2026-09-23T00:00:00Z</updated>
+    <published>2026-09-23T00:00:00Z</published>
+    <summary>Cannabis safety for older adults: medicines, dizziness and falls, driving, product records, caregiver boundaries, and clinician questions.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Grow-Light Cost Planner</title>
+    <id>https://bigbudman.com/gear/indoor-cannabis-grow-light-buying-cost-planner/</id>
+    <link href="https://bigbudman.com/gear/indoor-cannabis-grow-light-buying-cost-planner/"/>
+    <updated>2026-09-23T00:00:00Z</updated>
+    <published>2026-09-23T00:00:00Z</published>
+    <summary>Compare an indoor grow light by actual input watts, coverage evidence, maps, controls, mounting, electrical limits, warranty, and estimated energy cost.</summary>
+  </entry>
   <entry>
     <title>DOT Cannabis &amp; CBD Drug Testing Guide</title>
     <id>https://bigbudman.com/guides/dot-cannabis-cbd-drug-testing-safety-sensitive-workers/</id>
@@ -229,21 +245,5 @@
     <updated>2026-09-14T00:00:00Z</updated>
     <published>2026-08-17T00:00:00Z</published>
     <summary>Choose a cannabis storage jar by volume, closure, light control, material disclosure, cleaning, labeling, child safety, and product-format compatibility.</summary>
-  </entry>
-  <entry>
-    <title>Can You Mail Cannabis or CBD?</title>
-    <id>https://bigbudman.com/legal/mailing-cannabis-cbd-usps-rules/</id>
-    <link href="https://bigbudman.com/legal/mailing-cannabis-cbd-usps-rules/"/>
-    <updated>2026-09-14T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>USPS cannabis and CBD mailing rules for 2026: domestic hemp eligibility, records, international prohibition, and controlled-substance limits.</summary>
-  </entry>
-  <entry>
-    <title>Sour Brulee Strain Guide</title>
-    <id>https://bigbudman.com/strains/sour-brulee/</id>
-    <link href="https://bigbudman.com/strains/sour-brulee/"/>
-    <updated>2026-09-13T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Sour Brulee CBD hemp field note: breeder-listed lineage and aroma context, name-collision checks, exact-batch CoA matching, and legal cautions.</summary>
   </entry>
 </feed>

@@ -1,11 +1,12 @@
 # Big Bud Man authority opportunities
 
-Last reviewed: September 22, 2026
+Last reviewed: September 23, 2026
 
 This is a research log, not an outreach ledger. No email, form, account, comment, or social message has been sent. Big Bud Man will not pay for, trade, or guarantee links.
 
 | Qualified target | Contact route | Exact asset match | Honest pitch angle |
 | --- | --- | --- | --- |
+| National Council on Aging — <https://www.ncoa.org/> | Verified public contact route: <https://www.ncoa.org/page/contact-us/> | [Cannabis, Medicines & Fall Safety for Older Adults](https://bigbudman.com/guides/cannabis-older-adults-medication-fall-safety/) | A clinician-ready worksheet that keeps the exact cannabis product, full medicine list, standing dizziness, falls, driving, baseline function, and caregiver boundaries in one record. Invite factual correction or aging-well resource consideration; do not imply medical review, treatment advice, or endorsement. |
 | New York Office of Cannabis Management — <https://cannabis.ny.gov/home-cultivation> | Official contact route: <https://cannabis.ny.gov/contact-us> | [New York Home Cannabis Grow Planner](https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/) | A consumer worksheet that translates OCM's current plant, residence, access, starter-source, processing, and possession rules into a pre-grow space, electrical-load, moisture, operating-log, and harvest-storage check. Invite factual correction or public-education resource consideration; do not imply OCM review or endorsement. |
 | Upstate New York Poison Center — <https://www.upstate.edu/poison/> | Public Education / Presentation Request route on the official Upstate page; emergencies remain 1-800-222-1222 | [Cannabis Overconsumption & Poisoning Response](https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/) | A Central New York, product-record-first response guide that separates 911 warning signs from poison-center triage, rejects fake antidotes, and connects prevention to label and locked-storage guidance. Invite factual correction or resource-library consideration through the education route; never use the emergency line for outreach or imply endorsement. |
 | Cannabis Regulators Association (CANNRA) — <https://www.cann-ra.org/> | `info@cann-ra.org` | [Cannabis Product Recall Checker](https://bigbudman.com/guides/cannabis-product-recall-batch-checker/) | A consumer-facing method for matching the exact producer, product, lot, package size, dates, and jurisdiction in a recall notice. Ask whether the terminology and regulator-first workflow are useful to public-information teams; do not request editorial control or a guaranteed link. |
@@ -19,6 +20,9 @@ This is a research log, not an outreach ledger. No email, form, account, comment
 
 ## Asset readiness
 
+- The older-adult guide is organized around a pharmacist- and clinician-ready record, fall and driving stop rules, baseline function, and explicit evidence limits; it never supplies a personal dose or tells anyone to change a prescribed medicine.
+- The grow-light planner pairs exact-model evidence and whole-room load questions with transparent light-only energy math, while refusing yield promises or an electrical-safety conclusion.
+- Saved reading is an on-device, account-free return path for up to 30 articles; it makes no server-side tracking claim and remains separate from editorial ranking.
 - The DOT guide keeps guidance, binding Part 40 procedure, employer policy, medical review, removal, and return-to-duty distinct; it refuses detection clocks, detox tactics, or a retail-CBD exception.
 - The pet-CBD guide adds a printable veterinarian conversation sheet, exact-lot evidence check, marketing-claim boundaries, and a clean handoff to the existing accidental-exposure guide.
 - The vape-disposal guide separates the battery, integrated device, cartridge, residue, and package; it uses EPA and USFA safety baselines while leaving exact acceptance to the local program.

@@ -1,27 +1,27 @@
 {
-  "publication_date": "2026-09-22",
+  "publication_date": "2026-09-23",
   "page_count": 3,
   "pages": [
     {
-      "title": "CBD for Pets: Veterinarian & Label Guide",
-      "url": "https://bigbudman.com/guides/cbd-products-for-pets-veterinarian-label-guide/",
-      "department": "guides",
-      "portfolio_label": "Exploration",
-      "search_intent": "discuss a pet CBD product with a veterinarian, then audit its label, ingredients, lot evidence, claims, monitoring, exposure plan, and storage"
-    },
-    {
-      "title": "Cannabis Vape Disposal Guide",
-      "url": "https://bigbudman.com/gear/cannabis-vape-battery-cartridge-disposal-guide/",
-      "department": "gear",
-      "portfolio_label": "Exploration",
-      "search_intent": "route a vape battery, integrated device, cartridge, residual oil, and packaging without unsafe dismantling or trash-bin disposal"
-    },
-    {
-      "title": "DOT Cannabis & CBD Drug Testing Guide",
-      "url": "https://bigbudman.com/guides/dot-cannabis-cbd-drug-testing-safety-sensitive-workers/",
+      "title": "Cannabis and Older Adults: Medication & Fall Safety",
+      "url": "https://bigbudman.com/guides/cannabis-older-adults-medication-fall-safety/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "understand DOT safety-sensitive marijuana testing, retail CBD risk, MRO review, removal, and the return-to-duty process from current official sources"
+      "search_intent": "prepare an older adult, caregiver, clinician, and pharmacist to review an exact cannabis or CBD product against medicines, falls, driving, function, and follow-up"
+    },
+    {
+      "title": "Indoor Cannabis Grow Light Buying & Cost Planner",
+      "url": "https://bigbudman.com/gear/indoor-cannabis-grow-light-buying-cost-planner/",
+      "department": "gear",
+      "portfolio_label": "Exploration",
+      "search_intent": "compare an exact indoor grow light by actual watts, evidence, controls, electrical boundaries, support, and estimated light-only energy cost"
+    },
+    {
+      "title": "Saved Reading on This Device",
+      "url": "https://bigbudman.com/",
+      "department": "sitewide",
+      "portfolio_label": "Exploration",
+      "search_intent": "save and reopen useful Big Bud Man articles locally without an account, tracking profile, or server-side reading history"
     }
   ],
   "monetization": {
@@ -31,23 +31,21 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three new pages use intentional image-free editorial layouts; no product or cultivar image is represented or linked."
+    "note": "Both new articles and the saved-reading interface use intentional image-free layouts; no product or cultivar image is represented or linked."
   },
   "search_console": {
     "report_date": "2026-09-16",
     "decision": "The report covered data through September 13 and returned zero clicks, zero impressions, and no query or page rows for BigBudMan.com. No data-led topic was justified; the empty sample was ignored for topic selection, while old sitemap errors informed stronger crawl paths."
   },
   "authority": {
-    "action": "Published a DOT and Part 40 source digest with a printable worker decision record, plus a veterinarian conversation sheet for pet CBD and an EPA and USFA grounded vape end-of-life sorter. Added reciprocal cluster links and logged qualified National Drug-Free Workplace Alliance and ASPCA opportunities; no outreach was sent."
+    "action": "Published an NIH, CDC, FDA, and NHTSA grounded older-adult conversation record, connected it to medication, heart, driving, and responsible-use guidance, and logged a qualified National Council on Aging opportunity. The grow-light worksheet adds transparent energy arithmetic and connects the home-grow and gear clusters; no outreach was sent."
   },
   "surfaces": [
     "homepage",
-    "guide library and thirteen decision paths",
+    "guide library and fourteen decision paths",
     "gear library",
-    "pet accidental-exposure guide",
-    "general drug-testing guide",
-    "510-thread battery guide",
-    "certificate-of-analysis and storage links",
+    "medication, heart, driving, home-grow, comparison, and storage links",
+    "sitewide article actions and search dialog",
     "publication updates",
     "Atom feed",
     "complete site index",

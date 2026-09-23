@@ -86,12 +86,71 @@
 
   const localHref = (url) => url === '/' ? prefix || './' : `${prefix}${url.replace(/^\//, '')}`;
   const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+  const articleActions = $('.article-actions');
+  let saveButton = $('[data-save-article]');
+  if (articleActions && !saveButton) {
+    saveButton = document.createElement('button');
+    saveButton.className = 'share-button';
+    saveButton.type = 'button';
+    saveButton.setAttribute('data-save-article', '');
+    saveButton.setAttribute('aria-pressed', 'false');
+    saveButton.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H11v17H7.5A3.5 3.5 0 0 0 4 22V5.5ZM20 5.5A3.5 3.5 0 0 0 16.5 2H13v17h3.5A3.5 3.5 0 0 1 20 22V5.5Z"></path></svg> <span>Save for later</span>';
+    articleActions.prepend(saveButton);
+  }
+  const searchTip = $('.search-tip', searchDialog);
+  let savedReading = $('[data-saved-reading]');
+  if (searchDialog && searchTip && !savedReading) {
+    savedReading = document.createElement('section');
+    savedReading.className = 'saved-reading';
+    savedReading.setAttribute('data-saved-reading', '');
+    savedReading.setAttribute('aria-labelledby', 'saved-reading-title');
+    savedReading.innerHTML = '<div class="saved-reading__head"><div><p class="eyebrow">THIS DEVICE ONLY</p><h3 id="saved-reading-title">Saved reading</h3></div><button type="button" data-saved-clear>Clear saved</button></div><div data-saved-results aria-live="polite"><p class="search-empty">No pages saved on this device yet.</p></div>';
+    searchDialog.insertBefore(savedReading, searchTip);
+  }
+  const savedResults = $('[data-saved-results]');
+  const savedKey = 'bbm-saved-reading-v1';
+  const pagePath = window.location.pathname.endsWith('/') ? window.location.pathname : `${window.location.pathname}/`;
+
+  const getSaved = () => {
+    try {
+      const value = JSON.parse(localStorage.getItem(savedKey) || '[]');
+      return Array.isArray(value) ? value.filter((item) => typeof item === 'string').slice(0, 30) : [];
+    } catch (_) { return []; }
+  };
+  const setSaved = (items) => {
+    try { localStorage.setItem(savedKey, JSON.stringify([...new Set(items)].slice(0, 30))); }
+    catch (_) { toast('This browser could not save the reading list.'); }
+  };
+  const updateSaveButton = () => {
+    if (!saveButton) return;
+    const saved = getSaved().includes(pagePath);
+    saveButton.setAttribute('aria-pressed', String(saved));
+    const label = $('span', saveButton);
+    if (label) label.textContent = saved ? 'Saved on this device' : 'Save for later';
+  };
+  const renderSaved = (items) => {
+    if (!savedResults) return;
+    const paths = getSaved();
+    const byUrl = new Map(items.map((item) => [item.url, item]));
+    const matches = paths.map((path) => byUrl.get(path)).filter(Boolean);
+    if (!matches.length) {
+      savedResults.innerHTML = '<p class="search-empty">No pages saved on this device yet. Open an article and choose “Save for later.”</p>';
+      return;
+    }
+    savedResults.innerHTML = matches.map((item) => `
+      <a class="search-result" href="${localHref(item.url)}">
+        <span>${escapeHtml(item.category)}</span>
+        <div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></div>
+      </a>`).join('');
+  };
 
   const renderSearch = (items, query) => {
     if (!searchResults) return;
     const normalized = query.trim().toLowerCase();
+    if (savedReading) savedReading.hidden = Boolean(normalized);
     if (!normalized) {
       searchResults.innerHTML = '<p class="search-empty">Start typing to search the complete Big Bud Man library.</p>';
+      renderSaved(items);
       return;
     }
     const words = normalized.split(/\s+/).filter(Boolean);
@@ -143,6 +202,21 @@
   searchDialog?.addEventListener('click', (event) => { if (event.target === searchDialog) closeSearch(); });
   searchDialog?.addEventListener('close', () => body.classList.remove('modal-open'));
   searchInput?.addEventListener('input', async (event) => renderSearch(await loadSearchIndex(), event.target.value));
+  saveButton?.addEventListener('click', async () => {
+    const saved = getSaved();
+    const exists = saved.includes(pagePath);
+    setSaved(exists ? saved.filter((item) => item !== pagePath) : [pagePath, ...saved]);
+    updateSaveButton();
+    toast(exists ? 'Removed from saved reading.' : 'Saved on this device.');
+    try { renderSaved(await loadSearchIndex()); } catch (_) { /* search remains optional */ }
+  });
+  $('[data-saved-clear]')?.addEventListener('click', async () => {
+    setSaved([]);
+    updateSaveButton();
+    try { renderSaved(await loadSearchIndex()); } catch (_) { /* search remains optional */ }
+    toast('Saved reading cleared.');
+  });
+  updateSaveButton();
   document.addEventListener('keydown', (event) => {
     if (event.key === '/' && !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName || '')) {
       event.preventDefault(); openSearch();
@@ -373,4 +447,31 @@
   });
 
   $('[data-print-article]')?.addEventListener('click', () => window.print());
+
+  // Grow-light energy arithmetic. This intentionally does not estimate circuit
+  // capacity, environmental loads, crop response, or yield.
+  const growPlanner = $('[data-grow-light-planner]');
+  if (growPlanner) {
+    const number = (selector, maximum = Number.POSITIVE_INFINITY) => {
+      const value = Number($(selector, growPlanner)?.value || 0);
+      return Number.isFinite(value) ? Math.min(maximum, Math.max(0, value)) : 0;
+    };
+    const renderGrowPlan = () => {
+      const watts = number('[data-grow-watts]');
+      const count = number('[data-grow-count]');
+      const hours = number('[data-grow-hours]', 24);
+      const days = number('[data-grow-days]', 366);
+      const rate = number('[data-grow-rate]');
+      const totalWatts = watts * count;
+      const dailyKwh = totalWatts * hours / 1000;
+      const periodKwh = dailyKwh * days;
+      const cost = periodKwh * rate;
+      $('[data-grow-total-watts]', growPlanner).textContent = `${totalWatts.toLocaleString(undefined, {maximumFractionDigits:1})} W`;
+      $('[data-grow-daily-kwh]', growPlanner).textContent = `${dailyKwh.toFixed(2)} kWh`;
+      $('[data-grow-period-kwh]', growPlanner).textContent = `${periodKwh.toFixed(2)} kWh`;
+      $('[data-grow-cost]', growPlanner).textContent = cost.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    };
+    $$('input', growPlanner).forEach((input) => input.addEventListener('input', renderGrowPlan));
+    renderGrowPlan();
+  }
 })();
