@@ -1,11 +1,12 @@
 # Big Bud Man authority opportunities
 
-Last reviewed: September 23, 2026
+Last reviewed: September 25, 2026
 
 This is a research log, not an outreach ledger. No email, form, account, comment, or social message has been sent. Big Bud Man will not pay for, trade, or guarantee links.
 
 | Qualified target | Contact route | Exact asset match | Honest pitch angle |
 | --- | --- | --- | --- |
+| American Lung Association — <https://www.lung.org/> | Verified public contact route: <https://www.lung.org/about-us/contact-us> | [Cannabis Smoke, Vaping & Lung Health](https://bigbudman.com/guides/cannabis-smoke-vape-lung-health-guide/) | A CDC-, NIDA-, and EPA-grounded consumer guide that separates smoke, dry-herb aerosol, oil cartridges, concentrates, and non-inhaled routes; preserves evidence limits; and gives readers an exact exposure-and-symptom record for a clinician. Invite factual correction or lung-health resource consideration through the ordinary contact route; do not use the Lung HelpLine for outreach or imply medical review or endorsement. |
 | National Council on Aging — <https://www.ncoa.org/> | Verified public contact route: <https://www.ncoa.org/page/contact-us/> | [Cannabis, Medicines & Fall Safety for Older Adults](https://bigbudman.com/guides/cannabis-older-adults-medication-fall-safety/) | A clinician-ready worksheet that keeps the exact cannabis product, full medicine list, standing dizziness, falls, driving, baseline function, and caregiver boundaries in one record. Invite factual correction or aging-well resource consideration; do not imply medical review, treatment advice, or endorsement. |
 | New York Office of Cannabis Management — <https://cannabis.ny.gov/home-cultivation> | Official contact route: <https://cannabis.ny.gov/contact-us> | [New York Home Cannabis Grow Planner](https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/) | A consumer worksheet that translates OCM's current plant, residence, access, starter-source, processing, and possession rules into a pre-grow space, electrical-load, moisture, operating-log, and harvest-storage check. Invite factual correction or public-education resource consideration; do not imply OCM review or endorsement. |
 | Upstate New York Poison Center — <https://www.upstate.edu/poison/> | Public Education / Presentation Request route on the official Upstate page; emergencies remain 1-800-222-1222 | [Cannabis Overconsumption & Poisoning Response](https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/) | A Central New York, product-record-first response guide that separates 911 warning signs from poison-center triage, rejects fake antidotes, and connects prevention to label and locked-storage guidance. Invite factual correction or resource-library consideration through the education route; never use the emergency line for outreach or imply endorsement. |
@@ -20,6 +21,9 @@ This is a research log, not an outreach ledger. No email, form, account, comment
 
 ## Asset readiness
 
+- The lung-health guide pairs an urgent-symptom gate with route-specific exposure questions, a clinician-ready product record, and explicit uncertainty language; it does not award a safe inhalation method.
+- The 48-term cannabis glossary makes label, laboratory, format, plant, and safety terminology searchable while keeping units, caveats, and primary references attached to the definitions.
+- The pre-roll worksheet reconciles count, net weight, unit language, ingredients, lot evidence, certificate, storage, and transparent price arithmetic without claiming to test or rank a product.
 - The older-adult guide is organized around a pharmacist- and clinician-ready record, fall and driving stop rules, baseline function, and explicit evidence limits; it never supplies a personal dose or tells anyone to change a prescribed medicine.
 - The grow-light planner pairs exact-model evidence and whole-room load questions with transparent light-only energy math, while refusing yield promises or an electrical-safety conclusion.
 - Saved reading is an on-device, account-free return path for up to 30 articles; it makes no server-side tracking claim and remains separate from editorial ranking.

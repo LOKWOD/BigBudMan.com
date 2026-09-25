@@ -474,4 +474,58 @@
     $$('input', growPlanner).forEach((input) => input.addEventListener('input', renderGrowPlan));
     renderGrowPlan();
   }
+
+  // Pre-roll package arithmetic. It normalizes labeled quantity and receipt
+  // price only; it deliberately does not estimate inhaled dose or quality.
+  const prerollPlanner = $('[data-preroll-planner]');
+  if (prerollPlanner) {
+    const number = (selector) => {
+      const value = Number($(selector, prerollPlanner)?.value || 0);
+      return Number.isFinite(value) ? Math.max(0, value) : 0;
+    };
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const renderPreroll = () => {
+      const price = number('[data-preroll-price]');
+      const count = number('[data-preroll-count]');
+      const grams = number('[data-preroll-grams]');
+      $('[data-preroll-unit]', prerollPlanner).textContent = `${(count > 0 ? grams / count : 0).toFixed(2)} g`;
+      $('[data-preroll-each]', prerollPlanner).textContent = money(count > 0 ? price / count : 0);
+      $('[data-preroll-per-gram]', prerollPlanner).textContent = money(grams > 0 ? price / grams : 0);
+    };
+    $$('input', prerollPlanner).forEach((input) => input.addEventListener('input', renderPreroll));
+    renderPreroll();
+  }
+
+  // Glossary filtering keeps every definition in the HTML and only narrows
+  // the visible set. Without JavaScript the complete reference remains usable.
+  const glossary = $('[data-glossary]');
+  if (glossary) {
+    const glossaryInput = $('[data-glossary-search]', glossary);
+    const terms = $$('[data-glossary-term]', glossary);
+    const count = $('[data-glossary-count]', glossary);
+    const empty = $('[data-glossary-empty]', glossary);
+    let activeCategory = 'all';
+    const renderGlossary = () => {
+      const words = (glossaryInput?.value || '').trim().toLowerCase().split(/\s+/).filter(Boolean);
+      let visible = 0;
+      terms.forEach((term) => {
+        const categories = (term.dataset.category || '').split(' ');
+        const haystack = term.dataset.search || '';
+        const matchesCategory = activeCategory === 'all' || categories.includes(activeCategory);
+        const matchesWords = words.every((word) => haystack.includes(word));
+        const show = matchesCategory && matchesWords;
+        term.hidden = !show;
+        if (show) visible += 1;
+      });
+      if (count) count.textContent = String(visible);
+      if (empty) empty.hidden = visible !== 0;
+    };
+    $$('[data-glossary-filter]', glossary).forEach((button) => button.addEventListener('click', () => {
+      activeCategory = button.dataset.glossaryFilter || 'all';
+      $$('[data-glossary-filter]', glossary).forEach((item) => item.classList.toggle('is-active', item === button));
+      renderGlossary();
+    }));
+    glossaryInput?.addEventListener('input', renderGlossary);
+    renderGlossary();
+  }
 })();

@@ -4,8 +4,32 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-09-23T00:00:00Z</updated>
+  <updated>2026-09-25T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis Terms, Label &amp; Lab Glossary</title>
+    <id>https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/</id>
+    <link href="https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/"/>
+    <updated>2026-09-25T00:00:00Z</updated>
+    <published>2026-09-25T00:00:00Z</published>
+    <summary>Search plain-language cannabis terms for labels, lab reports, cannabinoids, formats, cultivation, safety, and legal-market shopping.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Smoke, Vaping &amp; Lung Health</title>
+    <id>https://bigbudman.com/guides/cannabis-smoke-vape-lung-health-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-smoke-vape-lung-health-guide/"/>
+    <updated>2026-09-25T00:00:00Z</updated>
+    <published>2026-09-25T00:00:00Z</published>
+    <summary>Compare cannabis smoke, vapor, dabs, and non-inhaled formats by lung exposure, evidence limits, urgent symptoms, and questions for a clinician.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Pre-Roll Buying Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-pre-roll-infused-label-buying-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-pre-roll-infused-label-buying-guide/"/>
+    <updated>2026-09-25T00:00:00Z</updated>
+    <published>2026-09-25T00:00:00Z</published>
+    <summary>Compare plain and infused cannabis pre-rolls by flower, added ingredients, weight, cannabinoid label, lot evidence, burn claims, storage, and price per gram.</summary>
+  </entry>
   <entry>
     <title>Cannabis Safety for Older Adults</title>
     <id>https://bigbudman.com/guides/cannabis-older-adults-medication-fall-safety/</id>
@@ -221,29 +245,5 @@
     <updated>2026-09-15T00:00:00Z</updated>
     <published>2026-09-15T00:00:00Z</published>
     <summary>Choose a manual cannabis rolling machine by paper width, roller diameter, bed length, material, tension, cleaning, storage, and fire-safety limits.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Concentrates &amp; Dabs Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/"/>
-    <updated>2026-09-15T00:00:00Z</updated>
-    <published>2026-09-15T00:00:00Z</published>
-    <summary>Understand cannabis concentrates, dabs, wax, shatter, rosin, resin, potency labels, licensed sourcing, equipment heat, storage, and safer decisions.</summary>
-  </entry>
-  <entry>
-    <title>Chemberry Strain Guide</title>
-    <id>https://bigbudman.com/strains/chemberry/</id>
-    <link href="https://bigbudman.com/strains/chemberry/"/>
-    <updated>2026-09-14T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Chemberry CBD hemp field note: named Chem4 × KAP lineage, breeder-claim boundaries, product identity, lot-matched lab evidence, and legal cautions.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Stash Jar Buying Guide</title>
-    <id>https://bigbudman.com/gear/cannabis-stash-jar-buying-guide/</id>
-    <link href="https://bigbudman.com/gear/cannabis-stash-jar-buying-guide/"/>
-    <updated>2026-09-14T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Choose a cannabis storage jar by volume, closure, light control, material disclosure, cleaning, labeling, child safety, and product-format compatibility.</summary>
   </entry>
 </feed>

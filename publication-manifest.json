@@ -1,27 +1,27 @@
 {
-  "publication_date": "2026-09-23",
+  "publication_date": "2026-09-25",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis and Older Adults: Medication & Fall Safety",
-      "url": "https://bigbudman.com/guides/cannabis-older-adults-medication-fall-safety/",
+      "title": "Cannabis Smoke, Vaping & Lung Health",
+      "url": "https://bigbudman.com/guides/cannabis-smoke-vape-lung-health-guide/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "prepare an older adult, caregiver, clinician, and pharmacist to review an exact cannabis or CBD product against medicines, falls, driving, function, and follow-up"
+      "search_intent": "compare inhaled cannabis routes, recognize urgent respiratory symptoms, and prepare an exact exposure record without claiming any route is safe"
     },
     {
-      "title": "Indoor Cannabis Grow Light Buying & Cost Planner",
-      "url": "https://bigbudman.com/gear/indoor-cannabis-grow-light-buying-cost-planner/",
-      "department": "gear",
+      "title": "Cannabis Pre-Roll & Infused Pre-Roll Buying Guide",
+      "url": "https://bigbudman.com/guides/cannabis-pre-roll-infused-label-buying-guide/",
+      "department": "guides",
       "portfolio_label": "Exploration",
-      "search_intent": "compare an exact indoor grow light by actual watts, evidence, controls, electrical boundaries, support, and estimated light-only energy cost"
+      "search_intent": "compare a plain or infused pre-roll pack by ingredients, weight, label basis, lot evidence, construction claims, storage, and transparent price math"
     },
     {
-      "title": "Saved Reading on This Device",
-      "url": "https://bigbudman.com/",
-      "department": "sitewide",
+      "title": "Cannabis Terms, Label & Lab Glossary",
+      "url": "https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/",
+      "department": "guides",
       "portfolio_label": "Exploration",
-      "search_intent": "save and reopen useful Big Bud Man articles locally without an account, tracking profile, or server-side reading history"
+      "search_intent": "search plain-language cannabis label, laboratory, format, plant, and safety terms while keeping every definition attached to a caveat and primary source"
     }
   ],
   "monetization": {
@@ -31,21 +31,20 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "Both new articles and the saved-reading interface use intentional image-free layouts; no product or cultivar image is represented or linked."
+    "note": "All three new editorial bodies are intentionally image-free. Their only image element is the existing Big Bud Man logo in shared site chrome; no product, device, cultivar, or affiliate image is represented or linked."
   },
   "search_console": {
-    "report_date": "2026-09-16",
-    "decision": "The report covered data through September 13 and returned zero clicks, zero impressions, and no query or page rows for BigBudMan.com. No data-led topic was justified; the empty sample was ignored for topic selection, while old sitemap errors informed stronger crawl paths."
+    "report_date": "2026-09-23",
+    "decision": "The report covered August 24 through September 20: 518 impressions, one click, 0.2% CTR, and average position 61.6. The only position 4-20 page rows had one to four impressions, so no data-led rewrite was justified; those tiny samples and the single Oklahoma query click were deliberately ignored. Old submitted-sitemap errors were checked against the current live sitemap, feed, and site index rather than treated as a new topic signal."
   },
   "authority": {
-    "action": "Published an NIH, CDC, FDA, and NHTSA grounded older-adult conversation record, connected it to medication, heart, driving, and responsible-use guidance, and logged a qualified National Council on Aging opportunity. The grow-light worksheet adds transparent energy arithmetic and connects the home-grow and gear clusters; no outreach was sent."
+    "action": "Published a CDC, NIH/NIDA, and EPA grounded lung-exposure decision record; a 48-term primary-source glossary with no-JavaScript fallback; and a regulator-backed pre-roll package and price worksheet. Reciprocal links connect established vape, secondhand-smoke, flower, label, Cannabis 101, and CoA pages. A qualified American Lung Association opportunity was logged; no outreach was sent."
   },
   "surfaces": [
     "homepage",
-    "guide library and fourteen decision paths",
-    "gear library",
-    "medication, heart, driving, home-grow, comparison, and storage links",
-    "sitewide article actions and search dialog",
+    "primary navigation and footer glossary link",
+    "guide library and seventeen decision paths",
+    "vape, secondhand-smoke, flower, label, Cannabis 101, and CoA reciprocal links",
     "publication updates",
     "Atom feed",
     "complete site index",
