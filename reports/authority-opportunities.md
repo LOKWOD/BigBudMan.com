@@ -1,11 +1,12 @@
 # Big Bud Man authority opportunities
 
-Last reviewed: September 25, 2026
+Last reviewed: September 26, 2026
 
 This is a research log, not an outreach ledger. No email, form, account, comment, or social message has been sent. Big Bud Man will not pay for, trade, or guarantee links.
 
 | Qualified target | Contact route | Exact asset match | Honest pitch angle |
 | --- | --- | --- | --- |
+| NAMI New York State — <https://naminys.org/> | Verified public contact route: <https://naminys.org/contact/> — the information line is not a crisis service and no outreach should use 988 or emergency resources | [Cannabis Anxiety, Paranoia & Psychosis Warning Signs](https://bigbudman.com/guides/cannabis-anxiety-paranoia-psychosis-warning-signs/) | A CDC-, NIH/NIDA-, SAMHSA-, and 988-grounded consumer guide that separates anxiety, panic, paranoia, disorientation, hallucinations, and psychosis without diagnosing; adds an immediate-safety gate and clinician-ready product record. Invite factual correction or resource-library consideration through the ordinary contact route; do not use a support line for outreach or imply clinical review or endorsement. |
 | American Lung Association — <https://www.lung.org/> | Verified public contact route: <https://www.lung.org/about-us/contact-us> | [Cannabis Smoke, Vaping & Lung Health](https://bigbudman.com/guides/cannabis-smoke-vape-lung-health-guide/) | A CDC-, NIDA-, and EPA-grounded consumer guide that separates smoke, dry-herb aerosol, oil cartridges, concentrates, and non-inhaled routes; preserves evidence limits; and gives readers an exact exposure-and-symptom record for a clinician. Invite factual correction or lung-health resource consideration through the ordinary contact route; do not use the Lung HelpLine for outreach or imply medical review or endorsement. |
 | National Council on Aging — <https://www.ncoa.org/> | Verified public contact route: <https://www.ncoa.org/page/contact-us/> | [Cannabis, Medicines & Fall Safety for Older Adults](https://bigbudman.com/guides/cannabis-older-adults-medication-fall-safety/) | A clinician-ready worksheet that keeps the exact cannabis product, full medicine list, standing dizziness, falls, driving, baseline function, and caregiver boundaries in one record. Invite factual correction or aging-well resource consideration; do not imply medical review, treatment advice, or endorsement. |
 | New York Office of Cannabis Management — <https://cannabis.ny.gov/home-cultivation> | Official contact route: <https://cannabis.ny.gov/contact-us> | [New York Home Cannabis Grow Planner](https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/) | A consumer worksheet that translates OCM's current plant, residence, access, starter-source, processing, and possession rules into a pre-grow space, electrical-load, moisture, operating-log, and harvest-storage check. Invite factual correction or public-education resource consideration; do not imply OCM review or endorsement. |
@@ -21,6 +22,9 @@ This is a research log, not an outreach ledger. No email, form, account, comment
 
 ## Asset readiness
 
+- The mental-health guide separates immediate danger, crisis support, poisoning questions, exact symptom language, population-level associations, and clinical follow-up; it does not diagnose, predict schizophrenia, or argue with someone in crisis.
+- The product comparison calculator normalizes count, net quantity, and labeled-total price math for three like-for-like packages while refusing cross-format comparisons, dose estimates, potency rankings, or a cheapest-product recommendation.
+- Guide, gear, glossary, strain, and state-library filter controls now expose their selected state to assistive technology; the guide hub adds direct Health, Responsible use, and Workplace lanes.
 - The lung-health guide pairs an urgent-symptom gate with route-specific exposure questions, a clinician-ready product record, and explicit uncertainty language; it does not award a safe inhalation method.
 - The 48-term cannabis glossary makes label, laboratory, format, plant, and safety terminology searchable while keeping units, caveats, and primary references attached to the definitions.
 - The pre-roll worksheet reconciles count, net weight, unit language, ingredients, lot evidence, certificate, storage, and transparent price arithmetic without claiming to test or rank a product.

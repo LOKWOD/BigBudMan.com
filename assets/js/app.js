@@ -5,6 +5,13 @@
   const prefix = body.dataset.prefix || '';
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+  const setActiveToggle = (buttons, active) => {
+    buttons.forEach((button) => {
+      const selected = button === active;
+      button.classList.toggle('is-active', selected);
+      button.setAttribute('aria-pressed', String(selected));
+    });
+  };
 
   const toast = (message) => {
     const node = $('[data-toast]');
@@ -238,6 +245,8 @@
       vape: {title:'Check the vape source and hardware', text:'Concentrated oil and compact hardware reward deliberate pacing and licensed sourcing.', url:'guides/vapes/', cta:'Open vape guide'},
       concentrate: {title:'Decode the concentrate before the device', text:'Translate wax, shatter, rosin, resin, and dabs; then verify potency units, the exact batch, lawful source, equipment, and storage.', url:'guides/cannabis-concentrates-dabs-label-safety-guide/', cta:'Open concentrate guide'},
       urgent: {title:'Use the exposure response plan', text:'Separate 911 warning signs from poison-center questions, preserve the exact product record, and skip fake antidotes.', url:'guides/cannabis-overconsumption-poisoning-response/', cta:'Open response guide'},
+      mental: {title:'Use the mental-health safety gate', text:'Separate anxiety, panic, paranoia, disorientation, hallucinations, and losing touch with reality; then choose the right crisis route and preserve the exact record.', url:'guides/cannabis-anxiety-paranoia-psychosis-warning-signs/', cta:'Open warning-sign guide'},
+      compare: {title:'Normalize the package, not the hype', text:'Compare three like-for-like products by price, count, net quantity, and labeled cannabinoid total while keeping quality and safety gates separate.', url:'guides/cannabis-product-price-label-comparison-calculator/', cta:'Open comparison calculator'},
       recall: {title:'Match the recall to the exact batch', text:'Preserve the package, use the official notice, and match producer, product, lot, size, dates, and jurisdiction before acting.', url:'guides/cannabis-product-recall-batch-checker/', cta:'Open recall checker'},
       lab: {title:'Match and read the laboratory report', text:'Confirm the exact lot, then keep every result attached to its unit, basis, reporting limit, panel, and status.', url:'guides/cannabis-certificate-of-analysis-coa-guide/', cta:'Open CoA guide'},
       label: {title:'Learn the label in ten minutes', text:'Separate package total from serving amount, then check traceability, ingredients, and batch information.', url:'guides/read-a-label/', cta:'Open label decoder'},
@@ -247,6 +256,8 @@
     };
     const chooseRoute = () => {
       if (answers.priority === 'urgent') return routes.urgent;
+      if (answers.priority === 'mental') return routes.mental;
+      if (answers.priority === 'compare') return routes.compare;
       if (answers.priority === 'recall') return routes.recall;
       if (answers.priority === 'lab') return routes.lab;
       if (answers.priority === 'legal') return routes.legal;
@@ -304,9 +315,11 @@
       if (guideCount) guideCount.textContent = String(visible);
       if (guideEmpty) guideEmpty.hidden = visible !== 0;
     };
-    $$('[data-guide-filter]', guideLibrary).forEach((button) => button.addEventListener('click', () => {
+    const guideButtons = $$('[data-guide-filter]', guideLibrary);
+    setActiveToggle(guideButtons, guideButtons.find((button) => button.classList.contains('is-active')) || guideButtons[0]);
+    guideButtons.forEach((button) => button.addEventListener('click', () => {
       activeGuideFilter = button.dataset.guideFilter || 'all';
-      $$('[data-guide-filter]', guideLibrary).forEach((item) => item.classList.toggle('is-active', item === button));
+      setActiveToggle(guideButtons, button);
       renderGuides();
     }));
     guideInput?.addEventListener('input', renderGuides);
@@ -334,9 +347,11 @@
       if (gearCount) gearCount.textContent = String(visible);
       if (gearEmpty) gearEmpty.hidden = visible !== 0;
     };
-    $$('[data-gear-filter]', gearLibrary).forEach((button) => button.addEventListener('click', () => {
+    const gearButtons = $$('[data-gear-filter]', gearLibrary);
+    setActiveToggle(gearButtons, gearButtons.find((button) => button.classList.contains('is-active')) || gearButtons[0]);
+    gearButtons.forEach((button) => button.addEventListener('click', () => {
       activeGearFilter = button.dataset.gearFilter || 'all';
-      $$('[data-gear-filter]', gearLibrary).forEach((item) => item.classList.toggle('is-active', item === button));
+      setActiveToggle(gearButtons, button);
       renderGear();
     }));
     gearInput?.addEventListener('input', renderGear);
@@ -365,14 +380,18 @@
       if (count) count.textContent = String(visible);
       if (emptyState) emptyState.hidden = visible !== 0;
     };
-    $$('[data-filter]', filterBar).forEach((button) => button.addEventListener('click', () => {
+    const leanButtons = $$('[data-filter]', filterBar);
+    const cannabinoidButtons = $$('[data-cannabinoid-filter]', filterBar);
+    setActiveToggle(leanButtons, leanButtons.find((button) => button.classList.contains('is-active')) || leanButtons[0]);
+    setActiveToggle(cannabinoidButtons, cannabinoidButtons.find((button) => button.classList.contains('is-active')) || cannabinoidButtons[0]);
+    leanButtons.forEach((button) => button.addEventListener('click', () => {
       activeFilter = button.dataset.filter || 'all';
-      $$('[data-filter]', filterBar).forEach((item) => item.classList.toggle('is-active', item === button));
+      setActiveToggle(leanButtons, button);
       renderStrains();
     }));
-    $$('[data-cannabinoid-filter]', filterBar).forEach((button) => button.addEventListener('click', () => {
+    cannabinoidButtons.forEach((button) => button.addEventListener('click', () => {
       activeCannabinoid = button.dataset.cannabinoidFilter || 'all';
-      $$('[data-cannabinoid-filter]', filterBar).forEach((item) => item.classList.toggle('is-active', item === button));
+      setActiveToggle(cannabinoidButtons, button);
       renderStrains();
     }));
     strainInput?.addEventListener('input', renderStrains);
@@ -399,9 +418,11 @@
       if (count) count.textContent = String(visible);
       if (emptyState) emptyState.hidden = visible !== 0;
     };
-    $$('[data-state-filter]', stateLibrary).forEach((button) => button.addEventListener('click', () => {
+    const stateButtons = $$('[data-state-filter]', stateLibrary);
+    setActiveToggle(stateButtons, stateButtons.find((button) => button.classList.contains('is-active')) || stateButtons[0]);
+    stateButtons.forEach((button) => button.addEventListener('click', () => {
       activeStatus = button.dataset.stateFilter || 'all';
-      $$('[data-state-filter]', stateLibrary).forEach((item) => item.classList.toggle('is-active', item === button));
+      setActiveToggle(stateButtons, button);
       renderStates();
     }));
     stateInput?.addEventListener('input', renderStates);
@@ -496,6 +517,45 @@
     renderPreroll();
   }
 
+  // Product comparison arithmetic. The rows deliberately normalize only the
+  // label and receipt values entered; they do not score potency or quality.
+  const packageComparison = $('[data-package-comparison]');
+  if (packageComparison) {
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const numberAt = (nodes, index) => {
+      const value = Number(nodes[index]?.value || 0);
+      return Number.isFinite(value) ? Math.max(0, value) : 0;
+    };
+    const prices = $$('[data-compare-price]', packageComparison);
+    const counts = $$('[data-compare-count]', packageComparison);
+    const quantities = $$('[data-compare-quantity]', packageComparison);
+    const milligrams = $$('[data-compare-mg]', packageComparison);
+    const perUnit = $$('[data-compare-per-unit]', packageComparison);
+    const perQuantity = $$('[data-compare-per-quantity]', packageComparison);
+    const perHundred = $$('[data-compare-per-100]', packageComparison);
+    const status = $('[data-compare-status]', packageComparison);
+    const renderComparison = () => {
+      for (let index = 0; index < 3; index += 1) {
+        const price = numberAt(prices, index);
+        const count = numberAt(counts, index);
+        const quantity = numberAt(quantities, index);
+        const mg = numberAt(milligrams, index);
+        perUnit[index].textContent = money(count > 0 ? price / count : 0);
+        perQuantity[index].textContent = money(quantity > 0 ? price / quantity : 0);
+        perHundred[index].textContent = money(mg > 0 ? price * 100 / mg : 0);
+      }
+      if (status) status.textContent = 'Results updated locally.';
+    };
+    $$('input', packageComparison).forEach((input) => input.addEventListener('input', renderComparison));
+    $('[data-compare-reset]', packageComparison)?.addEventListener('click', () => {
+      $$('input', packageComparison).forEach((input) => { input.value = ''; });
+      renderComparison();
+      if (status) status.textContent = 'Worksheet cleared.';
+      $$('input', packageComparison)[0]?.focus();
+    });
+    renderComparison();
+  }
+
   // Glossary filtering keeps every definition in the HTML and only narrows
   // the visible set. Without JavaScript the complete reference remains usable.
   const glossary = $('[data-glossary]');
@@ -520,9 +580,11 @@
       if (count) count.textContent = String(visible);
       if (empty) empty.hidden = visible !== 0;
     };
-    $$('[data-glossary-filter]', glossary).forEach((button) => button.addEventListener('click', () => {
+    const glossaryButtons = $$('[data-glossary-filter]', glossary);
+    setActiveToggle(glossaryButtons, glossaryButtons.find((button) => button.classList.contains('is-active')) || glossaryButtons[0]);
+    glossaryButtons.forEach((button) => button.addEventListener('click', () => {
       activeCategory = button.dataset.glossaryFilter || 'all';
-      $$('[data-glossary-filter]', glossary).forEach((item) => item.classList.toggle('is-active', item === button));
+      setActiveToggle(glossaryButtons, button);
       renderGlossary();
     }));
     glossaryInput?.addEventListener('input', renderGlossary);

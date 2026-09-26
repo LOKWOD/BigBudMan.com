@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-09-25T00:00:00Z</updated>
+  <updated>2026-09-26T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis Price &amp; Label Calculator</title>
+    <id>https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/</id>
+    <link href="https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/"/>
+    <updated>2026-09-26T00:00:00Z</updated>
+    <published>2026-09-26T00:00:00Z</published>
+    <summary>Compare up to three cannabis packages by price, count, net quantity, and labeled cannabinoid total—without turning potency into a quality score.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Anxiety, Paranoia &amp; Psychosis</title>
+    <id>https://bigbudman.com/guides/cannabis-anxiety-paranoia-psychosis-warning-signs/</id>
+    <link href="https://bigbudman.com/guides/cannabis-anxiety-paranoia-psychosis-warning-signs/"/>
+    <updated>2026-09-26T00:00:00Z</updated>
+    <published>2026-09-26T00:00:00Z</published>
+    <summary>Separate cannabis anxiety, panic, paranoia, disorientation, and psychosis warning signs; use an urgent-help gate and prepare an exact product record.</summary>
+  </entry>
   <entry>
     <title>Cannabis Terms, Label &amp; Lab Glossary</title>
     <id>https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/</id>
@@ -229,21 +245,5 @@
     <updated>2026-09-16T00:00:00Z</updated>
     <published>2026-09-16T00:00:00Z</published>
     <summary>Compare CBD gummies by serving math, ingredients, lot-matched lab evidence, THC risk, claims, storage, and lawful source—not flavor or spectrum hype.</summary>
-  </entry>
-  <entry>
-    <title>Royal CBDV Automatic Strain Guide</title>
-    <id>https://bigbudman.com/strains/royal-cbdv-automatic/</id>
-    <link href="https://bigbudman.com/strains/royal-cbdv-automatic/"/>
-    <updated>2026-09-15T00:00:00Z</updated>
-    <published>2026-09-15T00:00:00Z</published>
-    <summary>Royal CBDV Automatic field note: breeder-listed Solomatic × Durban Poison lineage, CBDV claim boundaries, finished-batch CoA checks, and legal cautions.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Rolling Machine Buying Guide</title>
-    <id>https://bigbudman.com/gear/cannabis-rolling-machine-buying-guide/</id>
-    <link href="https://bigbudman.com/gear/cannabis-rolling-machine-buying-guide/"/>
-    <updated>2026-09-15T00:00:00Z</updated>
-    <published>2026-09-15T00:00:00Z</published>
-    <summary>Choose a manual cannabis rolling machine by paper width, roller diameter, bed length, material, tension, cleaning, storage, and fire-safety limits.</summary>
   </entry>
 </feed>
