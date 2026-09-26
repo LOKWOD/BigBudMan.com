@@ -17,11 +17,11 @@
       "search_intent": "normalize three like-for-like cannabis packages by price, count, net quantity, and labeled cannabinoid total without turning potency or low cost into a quality score"
     },
     {
-      "title": "Accessible Topic Filters & Clear-Lane Routing",
-      "url": "https://bigbudman.com/guides/",
-      "department": "site experience",
-      "portfolio_label": "Exploration",
-      "search_intent": "find health, format, buying, responsible-use, workplace, and CBD guides with exposed selected states and direct routes to the new mental-health and price-comparison resources"
+      "title": "CBD Flower & Hemp Flower Guide",
+      "url": "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/",
+      "department": "guides",
+      "portfolio_label": "Authority-expansion",
+      "search_intent": "verify CBD or hemp flower identity through package, lot, total-THC basis, report, state rule, and clearly scoped smoke, claim, and drug-test risks"
     }
   ],
   "monetization": {
@@ -38,12 +38,12 @@
     "decision": "The report covered August 24 through September 20: 518 impressions, one click, 0.2% CTR, and average position 61.6. The only position 4-20 page rows had one to four impressions, so no data-led rewrite was justified; those tiny samples and the single Oklahoma query click were deliberately ignored. Old submitted-sitemap errors were checked against the current live sitemap, feed, and site index rather than treated as a new topic signal."
   },
   "authority": {
-    "action": "Published a CDC, NIH/NIDA, SAMHSA, and 988 grounded mental-health response record plus an OCM-backed package comparison calculator. Reciprocal links connect overconsumption, tolerance, label, certificate, licensed-shopping, and responsible-use pages. NAMI New York State was logged as a qualified factual-review and resource-library opportunity; no outreach was sent."
+    "action": "Published a CDC, NIH/NIDA, SAMHSA, and 988 grounded mental-health response record, an OCM-backed package comparison calculator, and a USDA/FDA-grounded hemp-flower identity digest. Reciprocal links connect overconsumption, tolerance, label, certificate, licensed-shopping, full-spectrum CBD, and responsible-use pages. NAMI New York State and the Hemp Industries Association were logged as qualified opportunities; no outreach was sent."
   },
   "surfaces": [
     "homepage and Clear-Lane Finder",
-    "guide library and nineteen decision paths",
-    "overconsumption, tolerance, label, certificate, licensed-shopping, and responsible-use contextual links",
+    "guide library and twenty decision paths",
+    "overconsumption, tolerance, label, certificate, licensed-shopping, full-spectrum CBD, and responsible-use contextual links",
     "accessible filter controls across five libraries",
     "publication updates",
     "Atom feed",
