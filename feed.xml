@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-09-26T00:00:00Z</updated>
+  <updated>2026-09-27T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Disposable Cannabis Vape vs 510 Cartridge</title>
+    <id>https://bigbudman.com/guides/disposable-vape-vs-510-cartridge-comparison/</id>
+    <link href="https://bigbudman.com/guides/disposable-vape-vs-510-cartridge-comparison/"/>
+    <updated>2026-09-27T00:00:00Z</updated>
+    <published>2026-09-27T00:00:00Z</published>
+    <summary>Compare a cannabis single-use vape pen with a 510 cartridge system by identity, compatibility, serviceability, total cost, storage, and disposal.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Product Complaint &amp; Adverse Event</title>
+    <id>https://bigbudman.com/guides/cannabis-product-complaint-adverse-event-reporting/</id>
+    <link href="https://bigbudman.com/guides/cannabis-product-complaint-adverse-event-reporting/"/>
+    <updated>2026-09-27T00:00:00Z</updated>
+    <published>2026-09-27T00:00:00Z</published>
+    <summary>Preserve a cannabis product problem, separate an adverse event from a quality or business complaint, and send the right facts to the right official route.</summary>
+  </entry>
   <entry>
     <title>Cannabis Price &amp; Label Calculator</title>
     <id>https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/</id>
@@ -229,21 +245,5 @@
     <updated>2026-09-16T00:00:00Z</updated>
     <published>2026-09-16T00:00:00Z</published>
     <summary>A dated guide to TSA cannabis screening, federal status, airport and state rules, CBD uncertainty, vape batteries, connections, and foreign travel.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Pre-Roll Tube Buying Guide</title>
-    <id>https://bigbudman.com/gear/cannabis-pre-roll-tube-case-buying-guide/</id>
-    <link href="https://bigbudman.com/gear/cannabis-pre-roll-tube-case-buying-guide/"/>
-    <updated>2026-09-16T00:00:00Z</updated>
-    <published>2026-09-16T00:00:00Z</published>
-    <summary>Choose a cannabis pre-roll tube or case by fit, crush protection, closure, materials, cleaning, labeling, odor limits, and child-safe locked storage.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Beverages: Label &amp; Buying Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-beverages-label-timing-buying-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-beverages-label-timing-buying-guide/"/>
-    <updated>2026-09-16T00:00:00Z</updated>
-    <published>2026-09-16T00:00:00Z</published>
-    <summary>Compare cannabis drinks by THC per serving and container, ingredients, timing claims, batch evidence, storage, and licensed source—not can size or hype.</summary>
   </entry>
 </feed>
