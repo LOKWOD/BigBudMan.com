@@ -51,7 +51,8 @@ svg{stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-l
 .desktop-nav{display:flex;align-items:center;justify-content:center;gap:clamp(15px,2vw,30px);font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
 .desktop-nav a{text-decoration:none;position:relative;padding:37px 0}
 .desktop-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:30px;height:2px;background:var(--lime);transition:right .2s ease}
-.desktop-nav a:hover::after{right:0}
+.desktop-nav a:hover::after,.desktop-nav a[aria-current="page"]::after{right:0}
+.desktop-nav a[aria-current="page"]{color:var(--lime)}
 .header-actions{display:flex;align-items:center;gap:10px}
 .icon-button{width:44px;height:44px;border:1px solid var(--line-light);border-radius:50%;display:grid;place-items:center;background:transparent;cursor:pointer}
 .icon-button:hover{background:var(--lime);color:var(--ink);border-color:var(--lime)}
@@ -60,6 +61,7 @@ svg{stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-l
 .menu-button>span:not(.sr-only){display:block;height:2px;background:currentColor;margin:5px 0;transition:.2s}
 .mobile-nav{display:none;background:var(--ink);padding:8px 20px 24px;border-top:1px solid var(--line-light)}
 .mobile-nav a{display:block;text-decoration:none;padding:13px 0;border-bottom:1px solid var(--line-light);font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+.mobile-nav a[aria-current="page"]{color:var(--lime);border-bottom-color:var(--lime)}
 
 /* Buttons and common type */
 .button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 22px;border-radius:999px;border:1.5px solid transparent;text-decoration:none;font-size:14px;font-weight:900;letter-spacing:.045em;text-transform:uppercase;cursor:pointer;transition:transform .2s ease,background .2s ease,color .2s ease,border .2s ease}
