@@ -17,11 +17,11 @@
       "search_intent": "compare an integrated cannabis pen with a 510 cartridge system by identity, compatibility, charging, support, total ownership burden, and end-of-life route"
     },
     {
-      "title": "Sitewide Current-Page Navigation",
-      "url": "https://bigbudman.com/guides/",
-      "department": "site experience",
+      "title": "CBD Drinks & Powders: Label Buying Guide",
+      "url": "https://bigbudman.com/guides/cbd-drinks-powders-label-buying-guide/",
+      "department": "guides",
       "portfolio_label": "Exploration",
-      "search_intent": "make the active primary section and exact footer destination visibly and programmatically identifiable on every generated page"
+      "search_intent": "compare CBD ready-to-drink products, concentrates, and powders by format, serving math, ingredients, lot evidence, claims, interaction questions, and storage"
     }
   ],
   "monetization": {
@@ -31,19 +31,19 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "Both new editorial bodies are intentionally image-free. Their only image element is the existing Big Bud Man logo in shared site chrome; the navigation improvement adds no imagery, and no product, device, cultivar, or affiliate image is represented or linked."
+    "note": "All three new editorial bodies are intentionally image-free. Their only image element is the existing Big Bud Man logo in shared site chrome; no product, device, cultivar, beverage, or affiliate image is represented or linked."
   },
   "search_console": {
     "report_date": "2026-09-23",
     "decision": "The report covered August 24 through September 20: 518 impressions, one click, 0.2% CTR, and average position 61.6. The only position 4-20 page rows had one to four impressions, so no data-led rewrite was justified; those tiny samples and the single Oklahoma query click were deliberately ignored. Old submitted-sitemap errors were checked against the current live sitemap, feed, and site index rather than treated as a new topic signal."
   },
   "authority": {
-    "action": "Published an official-source complaint and adverse-event reporting worksheet that keeps emergency response, observations, inferences, product identity, lot evidence, jurisdiction, and case follow-up separate. Reciprocal links connect recall, label, certificate, licensed-shopping, vape, battery, and disposal resources. The Upstate New York Poison Center was logged as a qualified public-education and factual-review opportunity; no outreach was sent."
+    "action": "Published an official-source complaint and adverse-event reporting worksheet plus a CBD drink package-to-glass decision record that keeps format, serving math, ingredients, lot evidence, reporting limits, claims, storage, and professional-review questions together. Reciprocal links connect recall, label, certificate, licensed-shopping, CBD spectrum, tincture, beverage, vape, battery, and disposal resources. The Upstate New York Poison Center was logged as a qualified public-education and factual-review opportunity; no outreach was sent."
   },
   "surfaces": [
     "homepage",
-    "guide library and twenty-two decision paths",
-    "recall, licensed-shopping, vape, battery, disposal, and CBD contextual links",
+    "guide library and twenty-three decision paths",
+    "recall, licensed-shopping, vape, battery, disposal, CBD spectrum, tincture, and beverage contextual links",
     "sitewide current-page navigation",
     "publication updates",
     "Atom feed",

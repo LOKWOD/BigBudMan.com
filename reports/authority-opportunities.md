@@ -24,9 +24,10 @@ This is a research log, not an outreach ledger. No email, form, account, comment
 
 ## Asset readiness
 
+- The CBD drinks and powders guide adds a package-to-glass worksheet for ready-to-drink containers, liquid concentrates, single-use packets, and multi-serving powders; it keeps serving math, ordinary and active ingredients, lot identity, laboratory basis, reporting limits, claims, storage, and pharmacist or clinician questions in one auditable record.
 - The complaint and adverse-event guide separates emergency care, poisoning questions, direct observations, product condition, label mismatches, seller concerns, recall instructions, regulator reports, and FDA MedWatch; it preserves an auditable package-to-person record without deciding causation.
 - The integrated-vape versus 510 comparison keeps regulated oil identity, exact-lot evidence, device architecture, electrical compatibility, charging, serviceability, ownership burden, storage, recall, and end-of-life routes in one decision screen; it never ranks a device or claims one inhaled format is safe.
-- Current-page navigation now exposes the active primary section and exact footer destination visually and with `aria-current="page"`, strengthening orientation without changing URL architecture.
+- Current-page navigation now exposes the active primary section and exact footer destination visually and with `aria-current="page"`, strengthening orientation without changing URL architecture; it is a site improvement, not one of the three editorial pages.
 - The hemp-flower guide keeps federal production status, finished-product oversight, total-THC basis, exact-lot evidence, state rules, smoke exposure, marketing claims, and drug-testing uncertainty separate; appearance, aroma, and a strain name are never treated as proof.
 - The mental-health guide separates immediate danger, crisis support, poisoning questions, exact symptom language, population-level associations, and clinical follow-up; it does not diagnose, predict schizophrenia, or argue with someone in crisis.
 - The product comparison calculator normalizes count, net quantity, and labeled-total price math for three like-for-like packages while refusing cross-format comparisons, dose estimates, potency rankings, or a cheapest-product recommendation.
