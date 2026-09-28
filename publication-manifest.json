@@ -17,11 +17,11 @@
       "search_intent": "check gummies, chocolates, baked goods, drinks, and capsules for ingredients, major allergens, cross-contact language, label gaps, traceability, and emergency readiness"
     },
     {
-      "title": "Reproducible Source Build Repair",
-      "url": "https://bigbudman.com/",
-      "department": "technical",
+      "title": "Stem Cell CBG: The Honest Field Note",
+      "url": "https://bigbudman.com/strains/stem-cell-cbg/",
+      "department": "strains",
       "portfolio_label": "Exploration",
-      "search_intent": "restore the truncated publication generator, prove the packed source can be extracted and compiled, and make the committed snapshot reproducible from the same source used by GitHub Pages"
+      "search_intent": "separate the breeder-documented Stem Cell CBG identity from finished-batch chemistry, retail products, effects, claims, and legal status"
     }
   ],
   "monetization": {
@@ -31,18 +31,19 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "Both new editorial bodies are intentionally image-free. Their only image element is the existing Big Bud Man logo in shared site chrome; no product, edible, package, cultivar, or affiliate image is represented or linked."
+    "note": "All three new editorial bodies are intentionally image-free. Their only image element is the existing Big Bud Man logo in shared site chrome; no product, edible, package, cultivar, or affiliate image is represented or linked."
   },
   "search_console": {
     "report_date": "2026-09-23",
     "decision": "The report covered August 24 through September 20: 518 impressions, one click, 0.2% CTR, and average position 61.6. The only position 4-20 page rows had one to four impressions, so no data-led rewrite was justified; those tiny samples and the single Oklahoma query click were deliberately ignored. Old submitted-sitemap errors were checked against the current live sitemap, feed, and site index rather than treated as a new topic signal."
   },
   "authority": {
-    "action": "Published an FDA- and CDC-grounded delta-8 product identity, exact-lot, conversion-evidence, claims, help, and reporting worksheet; added reciprocal paths from Cannabis 101 and the product-reporting guide. Published a separate FDA- and New York OCM-grounded edible allergen record that keeps ingredients, major allergens, cross-contact language, cannabinoid fields, lot evidence, and emergency readiness in one checkout screen. Food Allergy Research & Education was logged as a qualified factual-review and resource-library opportunity; no outreach was sent."
+    "action": "Published an FDA- and CDC-grounded delta-8 product identity, exact-lot, conversion-evidence, claims, help, and reporting worksheet; added reciprocal paths from Cannabis 101 and the product-reporting guide. Published a separate FDA- and New York OCM-grounded edible allergen record that keeps ingredients, major allergens, cross-contact language, cannabinoid fields, lot evidence, and emergency readiness in one checkout screen. Added an image-withheld Stem Cell CBG field note that distinguishes breeder identity, CBG and CBGA rows, production testing, finished products, claims, and law; linked it through the CBG field-note network. Food Allergy Research & Education and Oregon State University Global Hemp Innovation Center were logged as qualified factual-review or resource-library opportunities; no outreach was sent."
   },
   "surfaces": [
     "homepage",
     "guide library and twenty-five decision paths",
+    "117-note Strains hub and CBG field-note network",
     "Cannabis 101, label-reading, CBD gummy, complaint, beverage, and licensed-shopping contextual links",
     "publication updates",
     "Atom feed",
