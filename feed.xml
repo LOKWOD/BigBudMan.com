@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-09-27T00:00:00Z</updated>
+  <updated>2026-09-28T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Delta-8 THC: Label &amp; Safety Guide</title>
+    <id>https://bigbudman.com/guides/delta-8-thc-label-safety-guide/</id>
+    <link href="https://bigbudman.com/guides/delta-8-thc-label-safety-guide/"/>
+    <updated>2026-09-28T00:00:00Z</updated>
+    <published>2026-09-28T00:00:00Z</published>
+    <summary>Identify delta-8 THC products, separate intoxicating effects from CBD marketing, check exact-lot evidence, and know when to stop, get help, or report a problem.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Edible Allergen &amp; Ingredient Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-edible-allergen-ingredient-label-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-edible-allergen-ingredient-label-guide/"/>
+    <updated>2026-09-28T00:00:00Z</updated>
+    <published>2026-09-28T00:00:00Z</published>
+    <summary>Check cannabis gummies, chocolates, drinks, and capsules for ingredients, major allergens, cross-contact language, label gaps, and exact-lot records.</summary>
+  </entry>
   <entry>
     <title>Disposable Cannabis Vape vs 510 Cartridge</title>
     <id>https://bigbudman.com/guides/disposable-vape-vs-510-cartridge-comparison/</id>
@@ -229,21 +245,5 @@
     <updated>2026-09-17T00:00:00Z</updated>
     <published>2026-08-17T00:00:00Z</published>
     <summary>Verify a New York cannabis dispensary, match the exact business and product lot, check the certificate and recall status, and preserve a useful receipt.</summary>
-  </entry>
-  <entry>
-    <title>How to Read a Cannabis Label</title>
-    <id>https://bigbudman.com/guides/read-a-label/</id>
-    <link href="https://bigbudman.com/guides/read-a-label/"/>
-    <updated>2026-09-17T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Decode THC per serving, package totals, CBD, dates, testing, traceability, recall checks, and cannabis marketing claims.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Recall Checker: Match the Batch</title>
-    <id>https://bigbudman.com/guides/cannabis-product-recall-batch-checker/</id>
-    <link href="https://bigbudman.com/guides/cannabis-product-recall-batch-checker/"/>
-    <updated>2026-09-17T00:00:00Z</updated>
-    <published>2026-09-17T00:00:00Z</published>
-    <summary>Check a cannabis product recall by matching the official notice to the producer, product, lot or batch, package size, dates, and jurisdiction.</summary>
   </entry>
 </feed>
