@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-09-28T00:00:00Z</updated>
+  <updated>2026-09-29T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>NY Cannabis Delivery Verification</title>
+    <id>https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/</id>
+    <link href="https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/"/>
+    <updated>2026-09-29T00:00:00Z</updated>
+    <published>2026-09-29T00:00:00Z</published>
+    <summary>Verify a New York cannabis delivery order from license listing to website, payment, ID check, handoff, receipt, product lot, and complaint route.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Flower Freshness Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-flower-freshness-package-date-buying-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-flower-freshness-package-date-buying-guide/"/>
+    <updated>2026-09-29T00:00:00Z</updated>
+    <published>2026-09-29T00:00:00Z</published>
+    <summary>Compare cannabis flower by package identity, dates, seal, lot report, moisture evidence, storage directions, condition, recalls, and return policy.</summary>
+  </entry>
   <entry>
     <title>Stem Cell CBG Strain Guide</title>
     <id>https://bigbudman.com/strains/stem-cell-cbg/</id>
@@ -229,21 +245,5 @@
     <updated>2026-09-18T00:00:00Z</updated>
     <published>2026-08-17T00:00:00Z</published>
     <summary>Size and choose cannabis storage by original-package fit, odor barrier, lock strength, child-resistance evidence, construction, maintenance, and legal limits.</summary>
-  </entry>
-  <entry>
-    <title>Hemp Seed Oil vs CBD Oil: Read the Label</title>
-    <id>https://bigbudman.com/guides/hemp-seed-oil-vs-cbd-oil/</id>
-    <link href="https://bigbudman.com/guides/hemp-seed-oil-vs-cbd-oil/"/>
-    <updated>2026-09-18T00:00:00Z</updated>
-    <published>2026-09-18T00:00:00Z</published>
-    <summary>Tell hemp seed oil from CBD oil by the ingredient list, cannabinoid amount, plant part, lot evidence, claims, intended use, and legal context.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Drug Testing &amp; THC Results</title>
-    <id>https://bigbudman.com/guides/cannabis-drug-testing-thc-results-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-drug-testing-thc-results-guide/"/>
-    <updated>2026-09-18T00:00:00Z</updated>
-    <published>2026-09-18T00:00:00Z</published>
-    <summary>Understand cannabis drug-test screens, confirmation, specimen types, THC metabolites, CBD risk, result records, and why no universal detection countdown exists.</summary>
   </entry>
 </feed>

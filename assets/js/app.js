@@ -300,8 +300,18 @@
     const guideCards = $$('[data-guide-card]', guideLibrary);
     const guideEmpty = $('[data-guide-empty]', guideLibrary);
     const guideCount = $('[data-guide-count]', guideLibrary);
+    const guideSort = $('[data-guide-sort]', guideLibrary);
+    const guideGrid = $('.library-grid', guideLibrary);
+    guideCards.forEach((card, index) => { card.dataset.order = String(index); });
     let activeGuideFilter = 'all';
     const renderGuides = () => {
+      const sort = guideSort?.value || 'editorial';
+      const ordered = [...guideCards].sort((a, b) => {
+        if (sort === 'recent') return (b.dataset.updated || '').localeCompare(a.dataset.updated || '') || Number(a.dataset.order) - Number(b.dataset.order);
+        if (sort === 'title') return (a.dataset.title || '').localeCompare(b.dataset.title || '');
+        return Number(a.dataset.order) - Number(b.dataset.order);
+      });
+      ordered.forEach((card) => guideGrid?.append(card));
       const query = (guideInput?.value || '').trim().toLowerCase();
       let visible = 0;
       guideCards.forEach((card) => {
@@ -323,6 +333,7 @@
       renderGuides();
     }));
     guideInput?.addEventListener('input', renderGuides);
+    guideSort?.addEventListener('change', renderGuides);
   }
 
   // Gear-library search and job filters.
