@@ -446,7 +446,7 @@
     const headings = $$('h2[id]', article);
     toc.innerHTML = headings.map((heading) => `<a href="#${heading.id}">${escapeHtml(heading.textContent.trim())}</a>`).join('');
     if ('IntersectionObserver' in window) {
-      const links = $$('a', toc);
+      const links = [...$$('a', toc), ...$$('a', $('[data-mobile-toc]'))];
       const observer = new IntersectionObserver((entries) => {
         const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
         if (!visible) return;

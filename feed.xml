@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-09-29T00:00:00Z</updated>
+  <updated>2026-09-30T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis Official Source Directory</title>
+    <id>https://bigbudman.com/guides/cannabis-official-source-directory/</id>
+    <link href="https://bigbudman.com/guides/cannabis-official-source-directory/"/>
+    <updated>2026-09-30T00:00:00Z</updated>
+    <published>2026-09-30T00:00:00Z</published>
+    <summary>Find the right official cannabis source for emergencies, health, product problems, recalls, fraud, driving, work, travel, hemp, and state rules.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Gummies vs Drinks vs Oils vs Capsules</title>
+    <id>https://bigbudman.com/guides/cannabis-gummies-drinks-oils-capsules-comparison/</id>
+    <link href="https://bigbudman.com/guides/cannabis-gummies-drinks-oils-capsules-comparison/"/>
+    <updated>2026-09-30T00:00:00Z</updated>
+    <published>2026-09-30T00:00:00Z</published>
+    <summary>Compare cannabis gummies, drinks, oils, capsules, lozenges, sprays, and powders by route, label unit, ingredients, storage, evidence, and total cost.</summary>
+  </entry>
   <entry>
     <title>NY Cannabis Delivery Verification</title>
     <id>https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/</id>
@@ -229,21 +245,5 @@
     <updated>2026-09-19T00:00:00Z</updated>
     <published>2026-09-19T00:00:00Z</published>
     <summary>Match a cannabis package to its certificate of analysis and read potency, units, reporting limits, contaminant panels, status, and report dates.</summary>
-  </entry>
-  <entry>
-    <title>Cannabinoid Hyperemesis: Signs &amp; Next Steps</title>
-    <id>https://bigbudman.com/guides/cannabinoid-hyperemesis-syndrome-warning-signs/</id>
-    <link href="https://bigbudman.com/guides/cannabinoid-hyperemesis-syndrome-warning-signs/"/>
-    <updated>2026-09-19T00:00:00Z</updated>
-    <published>2026-09-19T00:00:00Z</published>
-    <summary>Cannabinoid hyperemesis syndrome warning signs, emergency red flags, evidence limits, hot-water risks, clinical evaluation, cessation, and follow-up.</summary>
-  </entry>
-  <entry>
-    <title>Smell-Proof and Lockable Cannabis Storage</title>
-    <id>https://bigbudman.com/gear/smell-proof-storage/</id>
-    <link href="https://bigbudman.com/gear/smell-proof-storage/"/>
-    <updated>2026-09-18T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Size and choose cannabis storage by original-package fit, odor barrier, lock strength, child-resistance evidence, construction, maintenance, and legal limits.</summary>
   </entry>
 </feed>

@@ -1,27 +1,27 @@
 {
-  "publication_date": "2026-09-29",
+  "publication_date": "2026-09-30",
   "page_count": 3,
   "pages": [
     {
-      "title": "New York Cannabis Delivery and Online Order Verification",
-      "url": "https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/",
+      "title": "Cannabis Official Source Directory",
+      "url": "https://bigbudman.com/guides/cannabis-official-source-directory/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "verify a New York delivery order from OCM license listing through the exact website, cart, payment, service area, ID check, handoff, receipt, product lot, and complaint route"
+      "search_intent": "route emergencies, health evidence, treatment support, state licensing, product problems, recalls, fraud, driving, workplace testing, air travel, mailing, and hemp production to the official source that owns the question"
     },
     {
-      "title": "Cannabis Flower Freshness and Package-Date Buying Guide",
-      "url": "https://bigbudman.com/guides/cannabis-flower-freshness-package-date-buying-guide/",
+      "title": "Cannabis Gummies, Drinks, Oils, and Capsules Comparison",
+      "url": "https://bigbudman.com/guides/cannabis-gummies-drinks-oils-capsules-comparison/",
       "department": "guides",
       "portfolio_label": "Exploration",
-      "search_intent": "compare flower by date vocabulary, seal, package-to-lot evidence, moisture and testing context, current condition, recalls, storage directions, return policy, and value"
+      "search_intent": "compare oral cannabis formats by intended route, label unit, serving and package math, timing uncertainty, ingredients, measuring steps, storage, lot evidence, and total cost"
     },
     {
-      "title": "Sortable Reviewed-Date Guide Library",
+      "title": "Mobile Article Section Navigator",
       "url": "https://bigbudman.com/guides/",
-      "department": "site organization",
+      "department": "site usability",
       "portfolio_label": "Exploration",
-      "search_intent": "let readers see each guide's source review date and sort the complete library by editorial order, recent review, or title without changing canonical URLs"
+      "search_intent": "make every long article's section list available as a native, touch- and keyboard-accessible disclosure on mobile without removing the desktop table of contents or print path"
     }
   ],
   "monetization": {
@@ -31,19 +31,20 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "Both new editorial bodies and the library enhancement are intentionally image-free. Their only image element is the existing Big Bud Man logo or established hub imagery in shared site chrome; no delivery, flower, package, seller, or affiliate image is represented or linked."
+    "note": "Both new editorial bodies and the mobile navigation enhancement are intentionally image-free. Their only image element is the unchanged Big Bud Man logo in shared site chrome; no agency, product, package, seller, medical, or affiliate image is represented or linked."
   },
   "search_console": {
     "report_date": "2026-09-23",
     "decision": "The report covered August 24 through September 20: 518 impressions, one click, 0.2% CTR, and average position 61.6. The only position 4-20 page rows had one to four impressions, so no data-led rewrite was justified; those tiny samples and the single Oklahoma query click were deliberately ignored. Old submitted-sitemap errors were checked against the current live sitemap, feed, and site index rather than treated as a new topic signal."
   },
   "authority": {
-    "action": "Published a New York OCM- and FTC-grounded delivery-order evidence chain covering license, domain, cart, payment, ID, handoff, receipt, package, and complaint routes. Published a New York OCM-grounded flower freshness worksheet that separates six date types, exact-lot testing, package condition, recall status, storage, return policy, and value without diagnosing mold or inventing shelf life. Exposed each guide's review date in the library and added accessible sorting by recent review or title. The New York State Division of Consumer Protection was logged as a qualified consumer-resource opportunity; no outreach was sent."
+    "action": "Published a citation-worthy, scope-labeled source directory connecting CDC, NIH/NIDA, NIH/NCCIH, FDA, Poison Control, SAMHSA, CPSC, FTC, NHTSA, DOT, TSA, USDA, and state-regulator routes. Added a source-test and auditable source ledger, then connected the directory to complaint, recall, law, and product decision paths. Updated the qualified CANNRA opportunity to the new regulator-and-public-health routing asset; no outreach was sent."
   },
   "surfaces": [
     "homepage",
-    "guide library with review dates, sorting, and thirteen decision paths",
-    "flower, licensed-shopping, recall, and complaint contextual links",
+    "guide library with review dates, sorting, and fifteen decision paths",
+    "oral-format, label, complaint, recall, law, and official-source contextual links",
+    "mobile article section navigation",
     "publication updates",
     "Atom feed",
     "complete site index",
