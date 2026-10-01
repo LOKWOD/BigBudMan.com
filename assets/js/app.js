@@ -478,6 +478,18 @@
     }
   });
 
+  const citationButton = $('[data-copy-citation]');
+  citationButton?.addEventListener('click', async () => {
+    const accessed = new Intl.DateTimeFormat('en-US', {month:'long', day:'numeric', year:'numeric'}).format(new Date());
+    const citation = `Big Bud Man. “${citationButton.dataset.citationTitle}.” Reviewed ${citationButton.dataset.citationReviewed}. ${window.location.href} Accessed ${accessed}.`;
+    try {
+      await navigator.clipboard.writeText(citation);
+      toast('Article citation copied.');
+    } catch (_) {
+      window.prompt('Copy this citation:', citation);
+    }
+  });
+
   $('[data-print-article]')?.addEventListener('click', () => window.print());
 
   // Grow-light energy arithmetic. This intentionally does not estimate circuit

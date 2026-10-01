@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-09-30T00:00:00Z</updated>
+  <updated>2026-10-01T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis Child-Resistant Packaging &amp; Storage</title>
+    <id>https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/"/>
+    <updated>2026-10-01T00:00:00Z</updated>
+    <published>2026-10-01T00:00:00Z</published>
+    <summary>Audit cannabis child-resistant packaging, reclosure, original labels, locked home storage, visitor routines, and an accidental-exposure response plan.</summary>
+  </entry>
+  <entry>
+    <title>510 Vape Battery Safety &amp; Compatibility</title>
+    <id>https://bigbudman.com/gear/510-thread-vape-battery-safety/</id>
+    <link href="https://bigbudman.com/gear/510-thread-vape-battery-safety/"/>
+    <updated>2026-10-01T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Check 510 vape battery compatibility, voltage, charging, lockouts, damage, recalls, storage, and recycling with a printable hardware record.</summary>
+  </entry>
   <entry>
     <title>Cannabis Official Source Directory</title>
     <id>https://bigbudman.com/guides/cannabis-official-source-directory/</id>
@@ -229,21 +245,5 @@
     <updated>2026-09-20T00:00:00Z</updated>
     <published>2026-09-20T00:00:00Z</published>
     <summary>Compare CBD capsules and softgels by per-unit math, ingredients, shell and carrier, lot-matched lab evidence, THC risk, claims, storage, and lawful source.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Lighter &amp; Flame Safety Guide</title>
-    <id>https://bigbudman.com/gear/cannabis-lighter-flame-safety-guide/</id>
-    <link href="https://bigbudman.com/gear/cannabis-lighter-flame-safety-guide/"/>
-    <updated>2026-09-19T00:00:00Z</updated>
-    <published>2026-09-19T00:00:00Z</published>
-    <summary>Choose and handle a cannabis lighter by intended use, child resistance, fuel or battery design, condition, storage, ventilation, extinguishing, and disposal.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Certificate of Analysis (CoA) Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/"/>
-    <updated>2026-09-19T00:00:00Z</updated>
-    <published>2026-09-19T00:00:00Z</published>
-    <summary>Match a cannabis package to its certificate of analysis and read potency, units, reporting limits, contaminant panels, status, and report dates.</summary>
   </entry>
 </feed>

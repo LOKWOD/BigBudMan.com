@@ -1,27 +1,27 @@
 {
-  "publication_date": "2026-09-30",
+  "publication_date": "2026-10-01",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis Official Source Directory",
-      "url": "https://bigbudman.com/guides/cannabis-official-source-directory/",
+      "title": "510 Vape Battery Safety and Compatibility",
+      "url": "https://bigbudman.com/gear/510-thread-vape-battery-safety/",
+      "department": "gear",
+      "portfolio_label": "Data-led",
+      "search_intent": "answer the ranking page's battery compatibility, voltage, charging, model record, stop-use, recall, and recycling questions more completely"
+    },
+    {
+      "title": "Cannabis Child-Resistant Packaging and Home Storage",
+      "url": "https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "route emergencies, health evidence, treatment support, state licensing, product problems, recalls, fraud, driving, workplace testing, air travel, mailing, and hemp production to the official source that owns the question"
+      "search_intent": "separate tested package features from locked household access and provide a package-to-lock audit"
     },
     {
-      "title": "Cannabis Gummies, Drinks, Oils, and Capsules Comparison",
-      "url": "https://bigbudman.com/guides/cannabis-gummies-drinks-oils-capsules-comparison/",
-      "department": "guides",
-      "portfolio_label": "Exploration",
-      "search_intent": "compare oral cannabis formats by intended route, label unit, serving and package math, timing uncertainty, ingredients, measuring steps, storage, lot evidence, and total cost"
-    },
-    {
-      "title": "Mobile Article Section Navigator",
+      "title": "Copy Article Citation",
       "url": "https://bigbudman.com/guides/",
       "department": "site usability",
       "portfolio_label": "Exploration",
-      "search_intent": "make every long article's section list available as a native, touch- and keyboard-accessible disclosure on mobile without removing the desktop table of contents or print path"
+      "search_intent": "give every article a keyboard- and touch-accessible citation containing title, publisher, review date, URL, and access date"
     }
   ],
   "monetization": {
@@ -31,20 +31,20 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "Both new editorial bodies and the mobile navigation enhancement are intentionally image-free. Their only image element is the unchanged Big Bud Man logo in shared site chrome; no agency, product, package, seller, medical, or affiliate image is represented or linked."
+    "note": "The expanded battery guide, new packaging guide, and citation control are intentionally image-free. Their only image element is the unchanged Big Bud Man logo in shared site chrome; no product, package, agency, medical, or affiliate image is represented."
   },
   "search_console": {
-    "report_date": "2026-09-23",
-    "decision": "The report covered August 24 through September 20: 518 impressions, one click, 0.2% CTR, and average position 61.6. The only position 4-20 page rows had one to four impressions, so no data-led rewrite was justified; those tiny samples and the single Oklahoma query click were deliberately ignored. Old submitted-sitemap errors were checked against the current live sitemap, feed, and site index rather than treated as a new topic signal."
+    "report_date": "2026-09-30",
+    "decision": "The report covered August 31 through September 27. The 510-thread battery page had 21 impressions, zero clicks, and average position 7.7, so its title, description, opening, hardware record, FAQ, sources, and internal paths were materially improved. Position 4-20 rows with only one to four impressions and a single Oklahoma query click were deliberately ignored as too weak."
   },
   "authority": {
-    "action": "Published a citation-worthy, scope-labeled source directory connecting CDC, NIH/NIDA, NIH/NCCIH, FDA, Poison Control, SAMHSA, CPSC, FTC, NHTSA, DOT, TSA, USDA, and state-regulator routes. Added a source-test and auditable source ledger, then connected the directory to complaint, recall, law, and product decision paths. Updated the qualified CANNRA opportunity to the new regulator-and-public-health routing asset; no outreach was sent."
+    "action": "Published a citation-worthy child-resistant-package and household-access audit grounded in CDC, CPSC, Poison Control, and New York OCM primary sources; connected it reciprocally to storage, pet-exposure, overconsumption, and lockbox paths; added a reusable article citation control; and updated the qualified Upstate New York Poison Center opportunity. No outreach was sent."
   },
   "surfaces": [
     "homepage",
-    "guide library with review dates, sorting, and fifteen decision paths",
-    "oral-format, label, complaint, recall, law, and official-source contextual links",
-    "mobile article section navigation",
+    "guide library with review dates, sorting, and decision paths",
+    "battery, vape, packaging, storage, pet-exposure, overconsumption, and lockbox contextual links",
+    "sitewide article citation control",
     "publication updates",
     "Atom feed",
     "complete site index",
