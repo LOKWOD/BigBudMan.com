@@ -111,10 +111,11 @@
     savedReading.className = 'saved-reading';
     savedReading.setAttribute('data-saved-reading', '');
     savedReading.setAttribute('aria-labelledby', 'saved-reading-title');
-    savedReading.innerHTML = '<div class="saved-reading__head"><div><p class="eyebrow">THIS DEVICE ONLY</p><h3 id="saved-reading-title">Saved reading</h3></div><button type="button" data-saved-clear>Clear saved</button></div><div data-saved-results aria-live="polite"><p class="search-empty">No pages saved on this device yet.</p></div>';
+    savedReading.innerHTML = '<div class="saved-reading__head"><div><p class="eyebrow">THIS DEVICE ONLY</p><h3 id="saved-reading-title">Saved reading <small data-saved-count>0</small></h3></div><div class="saved-reading__tools"><button type="button" data-saved-copy>Copy list</button><button type="button" data-saved-clear>Clear all</button></div></div><div data-saved-results aria-live="polite"><p class="search-empty">No pages saved on this device yet.</p></div>';
     searchDialog.insertBefore(savedReading, searchTip);
   }
   const savedResults = $('[data-saved-results]');
+  const savedCount = $('[data-saved-count]');
   const savedKey = 'bbm-saved-reading-v1';
   const pagePath = window.location.pathname.endsWith('/') ? window.location.pathname : `${window.location.pathname}/`;
 
@@ -140,15 +141,19 @@
     const paths = getSaved();
     const byUrl = new Map(items.map((item) => [item.url, item]));
     const matches = paths.map((path) => byUrl.get(path)).filter(Boolean);
+    if (savedCount) savedCount.textContent = String(matches.length);
     if (!matches.length) {
       savedResults.innerHTML = '<p class="search-empty">No pages saved on this device yet. Open an article and choose “Save for later.”</p>';
       return;
     }
     savedResults.innerHTML = matches.map((item) => `
-      <a class="search-result" href="${localHref(item.url)}">
-        <span>${escapeHtml(item.category)}</span>
-        <div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></div>
-      </a>`).join('');
+      <div class="saved-reading__item">
+        <a class="search-result" href="${localHref(item.url)}">
+          <span>${escapeHtml(item.category)}</span>
+          <div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></div>
+        </a>
+        <button type="button" data-saved-remove="${escapeHtml(item.url)}" aria-label="Remove ${escapeHtml(item.title)} from saved reading">Remove</button>
+      </div>`).join('');
   };
 
   const renderSearch = (items, query) => {
@@ -222,6 +227,25 @@
     updateSaveButton();
     try { renderSaved(await loadSearchIndex()); } catch (_) { /* search remains optional */ }
     toast('Saved reading cleared.');
+  });
+  savedResults?.addEventListener('click', async (event) => {
+    const button = event.target.closest('[data-saved-remove]');
+    if (!button) return;
+    setSaved(getSaved().filter((item) => item !== button.dataset.savedRemove));
+    updateSaveButton();
+    try { renderSaved(await loadSearchIndex()); } catch (_) { /* search remains optional */ }
+    toast('Removed from saved reading.');
+  });
+  $('[data-saved-copy]')?.addEventListener('click', async () => {
+    try {
+      const items = await loadSearchIndex();
+      const byUrl = new Map(items.map((item) => [item.url, item]));
+      const matches = getSaved().map((path) => byUrl.get(path)).filter(Boolean);
+      if (!matches.length) { toast('Save a page before copying the list.'); return; }
+      const text = matches.map((item) => `${item.title} — ${window.location.origin}${item.url}`).join('\n');
+      await navigator.clipboard.writeText(text);
+      toast(`${matches.length} saved ${matches.length === 1 ? 'page' : 'pages'} copied.`);
+    } catch (_) { toast('The saved list could not be copied.'); }
   });
   updateSaveButton();
   document.addEventListener('keydown', (event) => {
@@ -577,6 +601,83 @@
       $$('input', packageComparison)[0]?.focus();
     });
     renderComparison();
+  }
+
+  // Edible label arithmetic checks whether serving, unit, and package fields
+  // reconcile. It deliberately does not suggest a dose or infer accuracy.
+  const edibleMath = $('[data-edible-math]');
+  if (edibleMath) {
+    const number = (selector) => {
+      const node = $(selector, edibleMath);
+      if (!node || node.value.trim() === '') return null;
+      const value = Number(node.value);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const mg = (value) => value === null ? '—' : `${value.toLocaleString(undefined, {maximumFractionDigits:2})} mg`;
+    const renderEdibleMath = () => {
+      const thcServing = number('[data-edible-thc-serving]');
+      const cbdServing = number('[data-edible-cbd-serving]');
+      const servings = number('[data-edible-servings]');
+      const units = number('[data-edible-units]');
+      const labelThc = number('[data-edible-thc-total]');
+      const labelCbd = number('[data-edible-cbd-total]');
+      const selected = number('[data-edible-selected]');
+      const thcPackage = thcServing !== null && servings !== null ? thcServing * servings : null;
+      const cbdPackage = cbdServing !== null && servings !== null ? cbdServing * servings : null;
+      const thcUnit = thcPackage !== null && units > 0 ? thcPackage / units : null;
+      const cbdUnit = cbdPackage !== null && units > 0 ? cbdPackage / units : null;
+      $('[data-edible-thc-unit]', edibleMath).textContent = mg(thcUnit);
+      $('[data-edible-cbd-unit]', edibleMath).textContent = mg(cbdUnit);
+      $('[data-edible-thc-package]', edibleMath).textContent = mg(thcPackage);
+      $('[data-edible-cbd-package]', edibleMath).textContent = mg(cbdPackage);
+      $('[data-edible-thc-selected]', edibleMath).textContent = mg(thcUnit !== null && selected !== null ? thcUnit * selected : null);
+      $('[data-edible-cbd-selected]', edibleMath).textContent = mg(cbdUnit !== null && selected !== null ? cbdUnit * selected : null);
+      const notes = [];
+      if (labelThc !== null && thcPackage !== null) notes.push(`THC printed total differs from calculated total by ${mg(Math.abs(labelThc - thcPackage))}.`);
+      if (labelCbd !== null && cbdPackage !== null) notes.push(`CBD printed total differs from calculated total by ${mg(Math.abs(labelCbd - cbdPackage))}.`);
+      const status = $('[data-edible-status]', edibleMath);
+      if (status) status.textContent = notes.length ? notes.join(' ') + ' Resolve any unexpected difference with the exact package and official source.' : 'Results updated locally. A matching calculation is not a dose, quality score, or accuracy certification.';
+    };
+    $$('input', edibleMath).forEach((input) => input.addEventListener('input', renderEdibleMath));
+    $('[data-edible-reset]', edibleMath)?.addEventListener('click', () => {
+      $$('input', edibleMath).forEach((input) => { input.value = ''; });
+      renderEdibleMath();
+      $('[data-edible-thc-serving]', edibleMath)?.focus();
+    });
+    renderEdibleMath();
+  }
+
+  // Dry-herb device ownership arithmetic compares documented costs only. It
+  // does not rank exposure, performance, durability, or personal value.
+  const vaporizerCost = $('[data-vaporizer-cost]');
+  if (vaporizerCost) {
+    const number = (selector) => {
+      const value = Number($(selector, vaporizerCost)?.value || 0);
+      return Number.isFinite(value) ? Math.max(0, value) : 0;
+    };
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const renderVaporizerCost = () => {
+      const device = number('[data-vape-device]');
+      const accessories = number('[data-vape-accessories]');
+      const recurring = number('[data-vape-parts]') + number('[data-vape-cleaning]');
+      const years = number('[data-vape-years]');
+      const exit = number('[data-vape-exit]');
+      const first = device + accessories + recurring;
+      const total = device + accessories + recurring * years + exit;
+      $('[data-vape-first]', vaporizerCost).textContent = money(first);
+      $('[data-vape-total]', vaporizerCost).textContent = years > 0 ? money(total) : '—';
+      $('[data-vape-annual]', vaporizerCost).textContent = years > 0 ? money(total / years) : '—';
+      $('[data-vape-recurring]', vaporizerCost).textContent = years > 0 && total > 0 ? `${(recurring * years / total * 100).toFixed(1)}%` : '—';
+      const status = $('[data-vape-status]', vaporizerCost);
+      if (status) status.textContent = years > 0 ? 'Results updated locally. Verify every input for the exact model and seller.' : 'Enter a nonzero service horizon to calculate total and annualized cost.';
+    };
+    $$('input', vaporizerCost).forEach((input) => input.addEventListener('input', renderVaporizerCost));
+    $('[data-vape-reset]', vaporizerCost)?.addEventListener('click', () => {
+      $$('input', vaporizerCost).forEach((input) => { input.value = ''; });
+      renderVaporizerCost();
+      $('[data-vape-device]', vaporizerCost)?.focus();
+    });
+    renderVaporizerCost();
   }
 
   // Glossary filtering keeps every definition in the HTML and only narrows

@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-01T00:00:00Z</updated>
+  <updated>2026-10-02T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Dry-Herb Vaporizer Buying &amp; Cost Guide</title>
+    <id>https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/</id>
+    <link href="https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/"/>
+    <updated>2026-10-02T00:00:00Z</updated>
+    <published>2026-09-11T00:00:00Z</published>
+    <summary>Compare a dry-herb vaporizer by airpath, controls, battery safety, cleaning, recalls, replacement parts, warranty, and total ownership cost.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Edible Label Math Checker</title>
+    <id>https://bigbudman.com/guides/cannabis-edible-label-math-checker/</id>
+    <link href="https://bigbudman.com/guides/cannabis-edible-label-math-checker/"/>
+    <updated>2026-10-02T00:00:00Z</updated>
+    <published>2026-10-02T00:00:00Z</published>
+    <summary>Cross-check THC and CBD per serving, per piece, package totals, and a selected number of pieces without turning arithmetic into dosing advice.</summary>
+  </entry>
   <entry>
     <title>Cannabis Child-Resistant Packaging &amp; Storage</title>
     <id>https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/</id>
@@ -229,21 +245,5 @@
     <updated>2026-09-20T00:00:00Z</updated>
     <published>2026-09-20T00:00:00Z</published>
     <summary>Too much cannabis or accidental exposure: emergency warning signs, Poison Control, product details to preserve, safer monitoring, and prevention.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Gear Comparison Worksheet</title>
-    <id>https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/</id>
-    <link href="https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/"/>
-    <updated>2026-09-20T00:00:00Z</updated>
-    <published>2026-09-20T00:00:00Z</published>
-    <summary>Compare cannabis accessories with a printable worksheet for fit, materials, safety, cleaning, support, first-year cost, recalls, and claim limits.</summary>
-  </entry>
-  <entry>
-    <title>CBD Capsules &amp; Softgels Buying Guide</title>
-    <id>https://bigbudman.com/guides/cbd-capsules-softgels-label-buying-guide/</id>
-    <link href="https://bigbudman.com/guides/cbd-capsules-softgels-label-buying-guide/"/>
-    <updated>2026-09-20T00:00:00Z</updated>
-    <published>2026-09-20T00:00:00Z</published>
-    <summary>Compare CBD capsules and softgels by per-unit math, ingredients, shell and carrier, lot-matched lab evidence, THC risk, claims, storage, and lawful source.</summary>
   </entry>
 </feed>
