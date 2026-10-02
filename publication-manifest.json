@@ -10,18 +10,18 @@
       "search_intent": "cross-check serving, unit, and package arithmetic while keeping dose, exact-lot evidence, ingredients, and safety as separate decisions"
     },
     {
-      "title": "Dry-Herb Vaporizer Buying and Cost Guide",
-      "url": "https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/",
-      "department": "gear",
+      "title": "CBG Products: Label & Evidence Guide",
+      "url": "https://bigbudman.com/guides/cbg-products-label-evidence-guide/",
+      "department": "guides",
       "portfolio_label": "Exploration",
-      "search_intent": "compare the exact device, recall record, serviceability, and ownership horizon without fabricated rankings or affiliate pressure"
+      "search_intent": "identify CBG and CBGA products, reconcile exact-lot evidence, and separate early human research from retail promises"
     },
     {
-      "title": "Saved Reading List Manager",
-      "url": "https://bigbudman.com/guides/",
-      "department": "site usability",
-      "portfolio_label": "Exploration",
-      "search_intent": "remove individual saved pages and copy a multi-page reading list from the existing device-local command center"
+      "title": "Cannabis Contaminant Test Results Guide",
+      "url": "https://bigbudman.com/guides/cannabis-contaminant-test-results-guide/",
+      "department": "guides",
+      "portfolio_label": "Authority-expansion",
+      "search_intent": "interpret contaminant panels, reporting states, program limits, and lot status without turning a pass badge into a universal safety claim"
     }
   ],
   "monetization": {
@@ -31,20 +31,20 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The new label checker, expanded dry-herb guide, and saved-reading controls are intentionally image-free. Their only image element is the unchanged Big Bud Man logo in shared site chrome; no product, package, agency, medical, or affiliate image is represented."
+    "note": "All three October 2 pages are intentionally image-free. Their only image element is the unchanged Big Bud Man logo in shared site chrome; no product, package, laboratory, medical, or affiliate image is represented."
   },
   "search_console": {
     "report_date": "2026-09-30",
     "decision": "The report covered August 31 through September 27. Its only meaningful position 4-20 signal was the 510-thread battery page at 21 impressions, zero clicks, and position 7.7; the October 1 release already addressed it. Remaining position 4-20 page rows had only one to four impressions, and one Oklahoma query click was too weak or irrelevant, so no Data-led item was justified today."
   },
   "authority": {
-    "action": "Published a citation-worthy edible label arithmetic checker grounded in CDC and New York OCM primary sources; connected it reciprocally to label-reading, edible, allergen, and certificate-of-analysis pages; materially expanded the dry-herb purchasing record; and updated the qualified Upstate New York Poison Center opportunity. No outreach was sent."
+    "action": "Published a citation-worthy edible label arithmetic checker and a panel-by-panel contaminant results reference grounded in current New York OCM laboratory sources; connected them reciprocally to label, certificate, recall, complaint, CBD-spectrum, and CBG field-note pages; and logged a qualified AOAC opportunity. No outreach was sent."
   },
   "surfaces": [
     "homepage",
     "guide library with review dates, sorting, and decision paths",
     "gear library",
-    "edible, label, allergen, laboratory-report, dry-herb, battery, cleaning, and vape contextual links",
+    "edible, label, allergen, laboratory-report, contaminant, recall, CBG, CBD-spectrum, dry-herb, battery, cleaning, and vape contextual links",
     "device-local saved-reading manager",
     "publication updates",
     "Atom feed",
