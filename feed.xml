@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-02T00:00:00Z</updated>
+  <updated>2026-10-03T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis, Dry Mouth &amp; Dental Visits</title>
+    <id>https://bigbudman.com/guides/cannabis-dry-mouth-dental-oral-health-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-dry-mouth-dental-oral-health-guide/"/>
+    <updated>2026-10-03T00:00:00Z</updated>
+    <published>2026-10-03T00:00:00Z</published>
+    <summary>A practical cannabis oral-health guide to dry mouth, warning signs, route and product records, dental-visit disclosure, and evidence limits.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Grinder Buying Guide &amp; Cost Planner</title>
+    <id>https://bigbudman.com/gear/grinders/</id>
+    <link href="https://bigbudman.com/gear/grinders/"/>
+    <updated>2026-10-03T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Compare cannabis grinders by grip, size, materials, teeth, threads, screens, cleaning, warranty, recalls, and total ownership cost.</summary>
+  </entry>
   <entry>
     <title>Dry-Herb Vaporizer Buying &amp; Cost Guide</title>
     <id>https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/</id>
@@ -229,21 +245,5 @@
     <updated>2026-09-21T00:00:00Z</updated>
     <published>2026-09-21T00:00:00Z</published>
     <summary>Plan a New York home cannabis grow around plant limits, residence rules, access, electrical load, moisture, records, storage, and lawful starter sources.</summary>
-  </entry>
-  <entry>
-    <title>New York Cannabis Laws: Adult-Use Basics</title>
-    <id>https://bigbudman.com/legal/new-york/</id>
-    <link href="https://bigbudman.com/legal/new-york/"/>
-    <updated>2026-09-21T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>New York cannabis laws for 2026: recreational ID, medical certification, possession limits, licensed sales, travel, home cultivation, and policy direction.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Inventory, Label and Record Kit</title>
-    <id>https://bigbudman.com/gear/cannabis-inventory-label-record-kit/</id>
-    <link href="https://bigbudman.com/gear/cannabis-inventory-label-record-kit/"/>
-    <updated>2026-09-21T00:00:00Z</updated>
-    <published>2026-09-21T00:00:00Z</published>
-    <summary>Build a printable cannabis inventory and label system that preserves original packaging, lot identity, dates, storage location, receipts, and recall evidence.</summary>
   </entry>
 </feed>

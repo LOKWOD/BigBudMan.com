@@ -680,6 +680,41 @@
     renderVaporizerCost();
   }
 
+  // Grinder ownership arithmetic keeps purchase cost and maintenance burden
+  // visible without converting either into a product score or durability claim.
+  const grinderCost = $('[data-grinder-cost]');
+  if (grinderCost) {
+    const number = (selector) => {
+      const value = Number($(selector, grinderCost)?.value || 0);
+      return Number.isFinite(value) ? Math.max(0, value) : 0;
+    };
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const renderGrinderCost = () => {
+      const price = number('[data-grinder-price]');
+      const accessories = number('[data-grinder-accessories]');
+      const recurring = number('[data-grinder-parts]') + number('[data-grinder-cleaning]');
+      const years = number('[data-grinder-years]');
+      const minutes = number('[data-grinder-minutes]');
+      const frequency = number('[data-grinder-frequency]');
+      const first = price + accessories + recurring;
+      const total = price + accessories + recurring * years;
+      const hours = minutes * frequency * 12 / 60;
+      $('[data-grinder-first]', grinderCost).textContent = money(first);
+      $('[data-grinder-total]', grinderCost).textContent = years > 0 ? money(total) : '—';
+      $('[data-grinder-annual]', grinderCost).textContent = years > 0 ? money(total / years) : '—';
+      $('[data-grinder-hours]', grinderCost).textContent = `${hours.toLocaleString(undefined, {maximumFractionDigits:2})} hours`;
+      const status = $('[data-grinder-status]', grinderCost);
+      if (status) status.textContent = years > 0 ? 'Results updated locally. Verify each input for the exact grinder and seller.' : 'Enter a nonzero service horizon to calculate total and annualized cost.';
+    };
+    $$('input', grinderCost).forEach((input) => input.addEventListener('input', renderGrinderCost));
+    $('[data-grinder-reset]', grinderCost)?.addEventListener('click', () => {
+      $$('input', grinderCost).forEach((input) => { input.value = ''; });
+      renderGrinderCost();
+      $('[data-grinder-price]', grinderCost)?.focus();
+    });
+    renderGrinderCost();
+  }
+
   // Glossary filtering keeps every definition in the HTML and only narrows
   // the visible set. Without JavaScript the complete reference remains usable.
   const glossary = $('[data-glossary]');

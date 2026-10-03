@@ -6,7 +6,7 @@ Big Bud Man is a fast, zero-dependency editorial publication for adults 21+. It 
 
 ## Included
 
-- 261 indexable pages, including 117 strain field notes, 50 state-law guides, 55 practical guides, 21 gear guides, a chronological updates page, and a generated complete site index, plus custom thank-you and 404 pages
+- 262 indexable pages, including 117 strain field notes, 50 state-law guides, 56 practical guides, 21 gear guides, a chronological updates page, and a generated complete site index, plus custom thank-you and 404 pages
 - 21+ age gate stored only in browser local storage
 - Responsive editorial design with original studio imagery and custom graphics
 - Client-side site search with an on-device saved-reading manager and copyable reading list, searchable topic-filtered guide and gear libraries, strain filters, a searchable status-filtered 50-state law library, and semantic current-page navigation
@@ -22,6 +22,8 @@ Big Bud Man is a fast, zero-dependency editorial publication for adults 21+. It 
 
 ```bash
 cat source/bbm-tools.xz.part-* > /tmp/bbm-tools.tar.xz
+sha256sum --check source/bbm-tools.sha256
+tar -tJf /tmp/bbm-tools.tar.xz >/dev/null
 tar -xJf /tmp/bbm-tools.tar.xz
 python tools/build_site.py
 python tools/audit_site.py _site
@@ -32,7 +34,7 @@ Then open `http://localhost:8000`.
 
 ## Publishing
 
-A push to `main` restores the generator, builds the full publication, audits all pages, and deploys `_site` through GitHub Pages.
+A push to `main` verifies the deployable source archive against its committed SHA-256 checksum, tests the archive, restores the generator, builds the full publication, audits all pages, and deploys `_site` through GitHub Pages. A checksum or archive failure stops publication before the build.
 
 ## One-time launch items
 

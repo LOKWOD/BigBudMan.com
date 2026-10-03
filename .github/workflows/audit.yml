@@ -17,9 +17,11 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: '3.13'
-      - name: Restore publication source
+      - name: Verify and restore publication source
         run: |
           cat source/bbm-tools.xz.part-* > /tmp/bbm-tools.tar.xz
+          sha256sum --check source/bbm-tools.sha256
+          tar -tJf /tmp/bbm-tools.tar.xz >/dev/null
           tar -xJf /tmp/bbm-tools.tar.xz
       - name: Build publication
         run: python tools/build_site.py

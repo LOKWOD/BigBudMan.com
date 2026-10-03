@@ -1,27 +1,27 @@
 {
-  "publication_date": "2026-10-02",
+  "publication_date": "2026-10-03",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis Edible Label Math Checker",
-      "url": "https://bigbudman.com/guides/cannabis-edible-label-math-checker/",
+      "title": "Cannabis, Dry Mouth & Dental Visits",
+      "url": "https://bigbudman.com/guides/cannabis-dry-mouth-dental-oral-health-guide/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "cross-check serving, unit, and package arithmetic while keeping dose, exact-lot evidence, ingredients, and safety as separate decisions"
+      "search_intent": "record oral symptoms, route, product, medicines, and last use; recognize urgent signs; and prepare an honest dental visit without self-diagnosis"
     },
     {
-      "title": "CBG Products: Label & Evidence Guide",
-      "url": "https://bigbudman.com/guides/cbg-products-label-evidence-guide/",
-      "department": "guides",
+      "title": "Cannabis Grinder Buying Guide & Cost Planner",
+      "url": "https://bigbudman.com/gear/grinders/",
+      "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "identify CBG and CBGA products, reconcile exact-lot evidence, and separate early human research from retail promises"
+      "search_intent": "compare grinder ergonomics, contact surfaces, care, warranty, recalls, ownership cost, and maintenance time without fabricated rankings"
     },
     {
-      "title": "Cannabis Contaminant Test Results Guide",
-      "url": "https://bigbudman.com/guides/cannabis-contaminant-test-results-guide/",
-      "department": "guides",
-      "portfolio_label": "Authority-expansion",
-      "search_intent": "interpret contaminant panels, reporting states, program limits, and lot status without turning a pass badge into a universal safety claim"
+      "title": "Editorial Policy: Publishing Integrity",
+      "url": "https://bigbudman.com/editorial-policy/",
+      "department": "trust",
+      "portfolio_label": "Exploration",
+      "search_intent": "make the source/archive synchronization rule and automated publication checks transparent to readers and contributors"
     }
   ],
   "monetization": {
@@ -31,26 +31,26 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three October 2 pages are intentionally image-free. Their only image element is the unchanged Big Bud Man logo in shared site chrome; no product, package, laboratory, medical, or affiliate image is represented."
+    "note": "The new oral-health body and expanded grinder body are intentionally image-free. The grinder hub retains its pre-existing generic editorial grinder photograph; no new product, medical, or affiliate image was added."
   },
   "search_console": {
     "report_date": "2026-09-30",
     "decision": "The report covered August 31 through September 27. Its only meaningful position 4-20 signal was the 510-thread battery page at 21 impressions, zero clicks, and position 7.7; the October 1 release already addressed it. Remaining position 4-20 page rows had only one to four impressions, and one Oklahoma query click was too weak or irrelevant, so no Data-led item was justified today."
   },
   "authority": {
-    "action": "Published a citation-worthy edible label arithmetic checker and a panel-by-panel contaminant results reference grounded in current New York OCM laboratory sources; connected them reciprocally to label, certificate, recall, complaint, CBD-spectrum, and CBG field-note pages; and logged a qualified AOAC opportunity. No outreach was sent."
+    "action": "Published an ADA- and NIH-grounded oral-health decision record; connected it reciprocally to lung-health, medication, older-adult, surgery, and dental-visit contexts; strengthened the public publishing-integrity standard; and logged a qualified American Dental Association opportunity. No outreach was sent."
   },
   "surfaces": [
     "homepage",
     "guide library with review dates, sorting, and decision paths",
     "gear library",
-    "edible, label, allergen, laboratory-report, contaminant, recall, CBG, CBD-spectrum, dry-herb, battery, cleaning, and vape contextual links",
-    "device-local saved-reading manager",
+    "oral-health, lung-health, medication, older-adult, surgery, flower, cleaning, and comparison contextual links",
+    "editorial policy",
     "publication updates",
     "Atom feed",
     "complete site index",
     "search index",
     "XML sitemap",
-    "reproducible source archive"
+    "checksum-verified source archive gate"
   ]
 }
