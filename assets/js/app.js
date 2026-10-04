@@ -715,6 +715,62 @@
     renderGrinderCost();
   }
 
+  // Air-cleaner arithmetic compares room sizing, documented smoke CADR, and
+  // ownership inputs. It does not estimate exposure, health protection, odor
+  // removal, or permission to generate smoke indoors.
+  const airCleaner = $('[data-air-cleaner-planner]');
+  if (airCleaner) {
+    const number = (selector) => {
+      const value = Number($(selector, airCleaner)?.value || 0);
+      return Number.isFinite(value) ? Math.max(0, value) : 0;
+    };
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const decimal = (value, places = 1) => value.toLocaleString(undefined, {maximumFractionDigits:places});
+    const renderAirCleaner = () => {
+      const length = number('[data-air-length]');
+      const width = number('[data-air-width]');
+      const height = number('[data-air-height]');
+      const cadr = number('[data-air-cadr]');
+      const price = number('[data-air-price]');
+      const filterCount = number('[data-air-filter-count]');
+      const filterCost = number('[data-air-filter-cost]');
+      const watts = number('[data-air-watts]');
+      const hours = Math.min(24, number('[data-air-hours]'));
+      const rate = number('[data-air-rate]');
+      const years = number('[data-air-years]');
+      const area = length * width;
+      const volume = area * height;
+      const needed = area > 0 && height > 0 ? area * (2 / 3) * (height / 8) : 0;
+      const ach = volume > 0 ? cadr * 60 / volume : 0;
+      const yearlyFilters = filterCount * filterCost;
+      const yearlyElectricity = watts / 1000 * hours * 365 * rate;
+      const recurring = yearlyFilters + yearlyElectricity;
+      const first = price + recurring;
+      const total = price + recurring * years;
+      $('[data-air-area]', airCleaner).textContent = area > 0 ? `${decimal(area)} sq ft` : '—';
+      $('[data-air-volume]', airCleaner).textContent = volume > 0 ? `${decimal(volume)} cu ft` : '—';
+      $('[data-air-needed]', airCleaner).textContent = needed > 0 ? `${decimal(needed)} cfm` : '—';
+      $('[data-air-ach]', airCleaner).textContent = volume > 0 && cadr > 0 ? `${decimal(ach, 2)} ACH` : '—';
+      $('[data-air-first]', airCleaner).textContent = money(first);
+      $('[data-air-total]', airCleaner).textContent = years > 0 ? money(total) : '—';
+      $('[data-air-annual]', airCleaner).textContent = years > 0 ? money(total / years) : '—';
+      const status = $('[data-air-status]', airCleaner);
+      if (status) {
+        if (!area || !height) status.textContent = 'Enter nonzero room dimensions to calculate area, volume, and a smoke-CADR starting point.';
+        else if (!cadr) status.textContent = 'Room sizing is available. Enter the exact model’s smoke CADR to estimate delivered air changes.';
+        else if (!years) status.textContent = 'Sizing is available. Enter a nonzero planning horizon for total and annualized cost.';
+        else status.textContent = cadr >= needed ? 'Math updated locally. The entered smoke CADR meets the room-volume-adjusted starting point; verify the rating at a speed you will run.' : 'Math updated locally. The entered smoke CADR is below the room-volume-adjusted starting point; compare another speed, unit, or configuration.';
+      }
+    };
+    $$('input', airCleaner).forEach((input) => input.addEventListener('input', renderAirCleaner));
+    $('[data-air-reset]', airCleaner)?.addEventListener('click', () => {
+      $$('input', airCleaner).forEach((input) => { input.value = ''; });
+      renderAirCleaner();
+      $('[data-air-length]', airCleaner)?.focus();
+    });
+    renderAirCleaner();
+  }
+
   // Glossary filtering keeps every definition in the HTML and only narrows
   // the visible set. Without JavaScript the complete reference remains usable.
   const glossary = $('[data-glossary]');

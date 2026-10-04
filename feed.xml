@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-03T00:00:00Z</updated>
+  <updated>2026-10-04T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis, Glaucoma &amp; Eye Symptoms</title>
+    <id>https://bigbudman.com/guides/cannabis-glaucoma-eye-pressure-vision-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-glaucoma-eye-pressure-vision-guide/"/>
+    <updated>2026-10-04T00:00:00Z</updated>
+    <published>2026-10-04T00:00:00Z</published>
+    <summary>A practical guide to cannabis, glaucoma, eye pressure, urgent vision symptoms, product records, eye appointments, and treatment evidence limits.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Smoke Air Cleaner &amp; CADR Planner</title>
+    <id>https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/</id>
+    <link href="https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/"/>
+    <updated>2026-10-04T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Size a cannabis-smoke air cleaner by room volume and smoke CADR, estimate air changes and ownership cost, and understand filtration limits.</summary>
+  </entry>
   <entry>
     <title>Cannabis, Dry Mouth &amp; Dental Visits</title>
     <id>https://bigbudman.com/guides/cannabis-dry-mouth-dental-oral-health-guide/</id>
@@ -229,21 +245,5 @@
     <updated>2026-09-22T00:00:00Z</updated>
     <published>2026-09-22T00:00:00Z</published>
     <summary>Sort a cannabis vape for safer disposal: battery, cartridge, residual oil, packaging, damaged devices, recalls, take-back, e-waste, and local rules.</summary>
-  </entry>
-  <entry>
-    <title>CBD for Pets: Veterinarian &amp; Label Guide</title>
-    <id>https://bigbudman.com/guides/cbd-products-for-pets-veterinarian-label-guide/</id>
-    <link href="https://bigbudman.com/guides/cbd-products-for-pets-veterinarian-label-guide/"/>
-    <updated>2026-09-22T00:00:00Z</updated>
-    <published>2026-09-22T00:00:00Z</published>
-    <summary>A veterinarian-first guide to pet CBD labels, ingredients, lot evidence, health claims, accidental exposure, storage, and questions to ask before buying.</summary>
-  </entry>
-  <entry>
-    <title>New York Home Cannabis Grow Planner</title>
-    <id>https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/</id>
-    <link href="https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/"/>
-    <updated>2026-09-21T00:00:00Z</updated>
-    <published>2026-09-21T00:00:00Z</published>
-    <summary>Plan a New York home cannabis grow around plant limits, residence rules, access, electrical load, moisture, records, storage, and lawful starter sources.</summary>
   </entry>
 </feed>

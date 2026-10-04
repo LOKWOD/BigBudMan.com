@@ -1,27 +1,27 @@
 {
-  "publication_date": "2026-10-03",
+  "publication_date": "2026-10-04",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis, Dry Mouth & Dental Visits",
-      "url": "https://bigbudman.com/guides/cannabis-dry-mouth-dental-oral-health-guide/",
+      "title": "Cannabis, Glaucoma & Eye Symptoms",
+      "url": "https://bigbudman.com/guides/cannabis-glaucoma-eye-pressure-vision-guide/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "record oral symptoms, route, product, medicines, and last use; recognize urgent signs; and prepare an honest dental visit without self-diagnosis"
+      "search_intent": "separate a temporary intraocular-pressure finding from glaucoma treatment, recognize urgent vision symptoms, and prepare a useful eye-care record"
     },
     {
-      "title": "Cannabis Grinder Buying Guide & Cost Planner",
-      "url": "https://bigbudman.com/gear/grinders/",
+      "title": "Cannabis Smoke Air Purifier Guide & CADR Planner",
+      "url": "https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/",
       "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "compare grinder ergonomics, contact surfaces, care, warranty, recalls, ownership cost, and maintenance time without fabricated rankings"
+      "search_intent": "calculate a room-volume-adjusted smoke CADR starting point, delivered air changes, filter and electricity cost, and ownership total without treating filtration as source control"
     },
     {
-      "title": "Editorial Policy: Publishing Integrity",
-      "url": "https://bigbudman.com/editorial-policy/",
-      "department": "trust",
+      "title": "Dynamic Discovery and Catalog Integrity",
+      "url": "https://bigbudman.com/gear/",
+      "department": "technical",
       "portfolio_label": "Exploration",
-      "search_intent": "make the source/archive synchronization rule and automated publication checks transparent to readers and contributors"
+      "search_intent": "keep displayed catalog totals, hub membership, feed timestamps, update dates, and publication checks synchronized with the generated source"
     }
   ],
   "monetization": {
@@ -31,21 +31,20 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The new oral-health body and expanded grinder body are intentionally image-free. The grinder hub retains its pre-existing generic editorial grinder photograph; no new product, medical, or affiliate image was added."
+    "note": "The eye-health guide and air-cleaner calculator are intentionally image-free. The gear hub's two pre-existing generic editorial photographs are unchanged; no product, medical, or affiliate image was added."
   },
   "search_console": {
     "report_date": "2026-09-30",
-    "decision": "The report covered August 31 through September 27. Its only meaningful position 4-20 signal was the 510-thread battery page at 21 impressions, zero clicks, and position 7.7; the October 1 release already addressed it. Remaining position 4-20 page rows had only one to four impressions, and one Oklahoma query click was too weak or irrelevant, so no Data-led item was justified today."
+    "decision": "The report covered August 31 through September 27. Its only meaningful position 4-20 page signal was the 510-thread battery page at 21 impressions, zero clicks, and position 7.7; the October 1 release already addressed it. Remaining position 4-20 page rows had only one to four impressions, and one Oklahoma query click was too weak or irrelevant, so no Data-led item was justified today."
   },
   "authority": {
-    "action": "Published an ADA- and NIH-grounded oral-health decision record; connected it reciprocally to lung-health, medication, older-adult, surgery, and dental-visit contexts; strengthened the public publishing-integrity standard; and logged a qualified American Dental Association opportunity. No outreach was sent."
+    "action": "Published an NIH-grounded eye-health myth and appointment record; connected it reciprocally to medicine, older-adult, vital-sign, and eye-care contexts; expanded the EPA-grounded air-cleaner evidence and calculator path; and logged a qualified Glaucoma Research Foundation opportunity. No outreach was sent."
   },
   "surfaces": [
     "homepage",
-    "guide library with review dates, sorting, and decision paths",
-    "gear library",
-    "oral-health, lung-health, medication, older-adult, surgery, flower, cleaning, and comparison contextual links",
-    "editorial policy",
+    "guide library with review dates, sorting, and eye-care decision path",
+    "gear library with source-derived totals",
+    "air-cleaner, secondhand-smoke, lung-health, medication, older-adult, and vital-sign contextual links",
     "publication updates",
     "Atom feed",
     "complete site index",
