@@ -10,18 +10,18 @@
       "search_intent": "separate a temporary intraocular-pressure finding from glaucoma treatment, recognize urgent vision symptoms, and prepare a useful eye-care record"
     },
     {
-      "title": "Cannabis Smoke Air Purifier Guide & CADR Planner",
-      "url": "https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/",
-      "department": "gear",
+      "title": "CBD Patches & Transdermal Products: Label Guide",
+      "url": "https://bigbudman.com/guides/cbd-patches-transdermal-label-evidence-guide/",
+      "department": "guides",
       "portfolio_label": "Exploration",
-      "search_intent": "calculate a room-volume-adjusted smoke CADR starting point, delivered air changes, filter and electricity cost, and ownership total without treating filtration as source control"
+      "search_intent": "compare classification, label arithmetic, skin-contact ingredients, lot evidence, delivery claims, and pharmacist questions without inventing absorption or dosage"
     },
     {
-      "title": "Dynamic Discovery and Catalog Integrity",
-      "url": "https://bigbudman.com/gear/",
-      "department": "technical",
+      "title": "Cannabis Package Seal & Tamper-Evidence Checklist",
+      "url": "https://bigbudman.com/guides/cannabis-package-seal-tamper-evidence-checklist/",
+      "department": "guides",
       "portfolio_label": "Exploration",
-      "search_intent": "keep displayed catalog totals, hub membership, feed timestamps, update dates, and publication checks synchronized with the generated source"
+      "search_intent": "inspect an unopened seal, closure, label, lot, condition, report, recall, and complaint route without destroying evidence"
     }
   ],
   "monetization": {
@@ -31,20 +31,20 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The eye-health guide and air-cleaner calculator are intentionally image-free. The gear hub's two pre-existing generic editorial photographs are unchanged; no product, medical, or affiliate image was added."
+    "note": "All three new guides are intentionally image-free. The improved air-cleaner page and gear hub retain only pre-existing unchanged editorial imagery; no product, medical, or affiliate image was added."
   },
   "search_console": {
     "report_date": "2026-09-30",
     "decision": "The report covered August 31 through September 27. Its only meaningful position 4-20 page signal was the 510-thread battery page at 21 impressions, zero clicks, and position 7.7; the October 1 release already addressed it. Remaining position 4-20 page rows had only one to four impressions, and one Oklahoma query click was too weak or irrelevant, so no Data-led item was justified today."
   },
   "authority": {
-    "action": "Published an NIH-grounded eye-health myth and appointment record; connected it reciprocally to medicine, older-adult, vital-sign, and eye-care contexts; expanded the EPA-grounded air-cleaner evidence and calculator path; and logged a qualified Glaucoma Research Foundation opportunity. No outreach was sent."
+    "action": "Published an NIH-grounded eye-health myth and appointment record, a product-neutral CBD patch evidence screen, and a regulator-grounded package-seal checklist; added reciprocal links across eye care, medicines, CBD topicals, labels, packaging, recalls, complaints, and storage; preserved the EPA-grounded air-cleaner planner upgrade; and logged qualified Glaucoma Research Foundation and New York OCM opportunities. No outreach was sent."
   },
   "surfaces": [
     "homepage",
-    "guide library with review dates, sorting, and eye-care decision path",
+    "guide library with review dates, sorting, and three new decision paths",
     "gear library with source-derived totals",
-    "air-cleaner, secondhand-smoke, lung-health, medication, older-adult, and vital-sign contextual links",
+    "air-cleaner, secondhand-smoke, lung-health, medication, older-adult, vital-sign, CBD-topical, label, packaging, recall, complaint, and storage contextual links",
     "publication updates",
     "Atom feed",
     "complete site index",
