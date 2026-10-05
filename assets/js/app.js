@@ -514,6 +514,39 @@
     }
   });
 
+  // Articles with checklist markup get one portable, plain-text copy action.
+  // The export keeps each section heading and includes the review date and
+  // canonical URL so a shopping, appointment, or safety note keeps its source.
+  const checklistLists = article ? $$('ul.checklist', article) : [];
+  let checklistButton = $('[data-copy-checklists]');
+  if (checklistLists.length && !checklistButton) {
+    const actions = $('.article-actions');
+    checklistButton = document.createElement('button');
+    checklistButton.className = 'share-button';
+    checklistButton.type = 'button';
+    checklistButton.dataset.copyChecklists = '';
+    checklistButton.textContent = 'Copy checklists';
+    actions?.insertBefore(checklistButton, $('[data-print-article]', actions));
+  }
+  checklistButton?.addEventListener('click', async () => {
+    const groups = checklistLists.map((list) => {
+      const section = list.closest('section');
+      const heading = $('h2', section)?.textContent.trim() || 'Checklist';
+      const items = $$(':scope > li', list).map((item) => `- ${item.textContent.replace(/\s+/g, ' ').trim()}`);
+      return `${heading}\n${items.join('\n')}`;
+    });
+    const canonical = $('link[rel="canonical"]')?.href || window.location.href;
+    const title = citationButton?.dataset.citationTitle || document.title.replace(/\s*\|\s*Big Bud Man\s*$/, '');
+    const reviewed = citationButton?.dataset.citationReviewed || 'review date shown on page';
+    const text = `${title}\nReviewed ${reviewed}\n${canonical}\n\n${groups.join('\n\n')}`;
+    try {
+      await navigator.clipboard.writeText(text);
+      toast(`Article checklists copied (${checklistLists.length}).`);
+    } catch (_) {
+      window.prompt('Copy these checklists:', text);
+    }
+  });
+
   $('[data-print-article]')?.addEventListener('click', () => window.print());
 
   // Grow-light energy arithmetic. This intentionally does not estimate circuit
@@ -769,6 +802,53 @@
       $('[data-air-length]', airCleaner)?.focus();
     });
     renderAirCleaner();
+  }
+
+  // Product-neutral cleaning-kit arithmetic. It prices the routine but does
+  // not decide material compatibility, cleanliness, repair, or safety.
+  const cleaningCost = $('[data-cleaning-cost]');
+  if (cleaningCost) {
+    const number = (selector) => {
+      const value = Number($(selector, cleaningCost)?.value || 0);
+      return Number.isFinite(value) ? Math.max(0, value) : 0;
+    };
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const decimal = (value) => value.toLocaleString(undefined, {maximumFractionDigits:2});
+    const renderCleaningCost = () => {
+      const kit = number('[data-cleaning-kit]');
+      const tools = number('[data-cleaning-tools]');
+      const bottle = number('[data-cleaning-bottle]');
+      const yieldCount = number('[data-cleaning-yield]');
+      const frequency = number('[data-cleaning-frequency]');
+      const parts = number('[data-cleaning-parts]');
+      const minutes = number('[data-cleaning-minutes]');
+      const years = number('[data-cleaning-years]');
+      const cycle = yieldCount > 0 ? bottle / yieldCount : 0;
+      const count = frequency * 12;
+      const recurring = cycle * count + parts;
+      const first = kit + tools + recurring;
+      const total = kit + tools + recurring * years;
+      const hours = minutes * count / 60;
+      $('[data-cleaning-cycle]', cleaningCost).textContent = yieldCount > 0 ? money(cycle) : '—';
+      $('[data-cleaning-count]', cleaningCost).textContent = decimal(count);
+      $('[data-cleaning-first]', cleaningCost).textContent = money(first);
+      $('[data-cleaning-total]', cleaningCost).textContent = years > 0 ? money(total) : '—';
+      $('[data-cleaning-annual]', cleaningCost).textContent = years > 0 ? money(total / years) : '—';
+      $('[data-cleaning-hours]', cleaningCost).textContent = `${decimal(hours)} hours`;
+      const status = $('[data-cleaning-status]', cleaningCost);
+      if (status) {
+        if (!yieldCount && bottle > 0) status.textContent = 'Enter a nonzero estimated number of cleanings per container to calculate cleaner cost per cycle.';
+        else if (!years) status.textContent = 'Enter a nonzero planning horizon to calculate total and annualized cost.';
+        else status.textContent = 'Math updated locally. Verify compatibility, replacement intervals, and every input for the exact tool and supplies.';
+      }
+    };
+    $$('input', cleaningCost).forEach((input) => input.addEventListener('input', renderCleaningCost));
+    $('[data-cleaning-reset]', cleaningCost)?.addEventListener('click', () => {
+      $$('input', cleaningCost).forEach((input) => { input.value = ''; });
+      renderCleaningCost();
+      $('[data-cleaning-kit]', cleaningCost)?.focus();
+    });
+    renderCleaningCost();
   }
 
   // Glossary filtering keeps every definition in the HTML and only narrows

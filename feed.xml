@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-04T00:00:00Z</updated>
+  <updated>2026-10-05T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis, CBD, Epilepsy &amp; Seizure Care</title>
+    <id>https://bigbudman.com/guides/cannabis-cbd-epilepsy-seizure-care-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-cbd-epilepsy-seizure-care-guide/"/>
+    <updated>2026-10-05T00:00:00Z</updated>
+    <published>2026-10-05T00:00:00Z</published>
+    <summary>Separate prescription cannabidiol from retail CBD and cannabis; learn seizure first aid, treatment-record questions, interactions, and evidence limits.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Tool Cleaning Kit &amp; Cost Planner</title>
+    <id>https://bigbudman.com/gear/cannabis-tool-cleaning-kit/</id>
+    <link href="https://bigbudman.com/gear/cannabis-tool-cleaning-kit/"/>
+    <updated>2026-10-05T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Build a compatible cannabis-tool cleaning kit, compare cleaners and parts, and calculate first-year cost, recurring cost, and maintenance time.</summary>
+  </entry>
   <entry>
     <title>Cannabis, Glaucoma &amp; Eye Symptoms</title>
     <id>https://bigbudman.com/guides/cannabis-glaucoma-eye-pressure-vision-guide/</id>
@@ -229,21 +245,5 @@
     <updated>2026-09-25T00:00:00Z</updated>
     <published>2026-09-25T00:00:00Z</published>
     <summary>Compare plain and infused cannabis pre-rolls by flower, added ingredients, weight, cannabinoid label, lot evidence, burn claims, storage, and price per gram.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Safety for Older Adults</title>
-    <id>https://bigbudman.com/guides/cannabis-older-adults-medication-fall-safety/</id>
-    <link href="https://bigbudman.com/guides/cannabis-older-adults-medication-fall-safety/"/>
-    <updated>2026-09-23T00:00:00Z</updated>
-    <published>2026-09-23T00:00:00Z</published>
-    <summary>Cannabis safety for older adults: medicines, dizziness and falls, driving, product records, caregiver boundaries, and clinician questions.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Grow-Light Cost Planner</title>
-    <id>https://bigbudman.com/gear/indoor-cannabis-grow-light-buying-cost-planner/</id>
-    <link href="https://bigbudman.com/gear/indoor-cannabis-grow-light-buying-cost-planner/"/>
-    <updated>2026-09-23T00:00:00Z</updated>
-    <published>2026-09-23T00:00:00Z</published>
-    <summary>Compare an indoor grow light by actual input watts, coverage evidence, maps, controls, mounting, electrical limits, warranty, and estimated energy cost.</summary>
   </entry>
 </feed>

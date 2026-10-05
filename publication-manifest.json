@@ -1,27 +1,27 @@
 {
-  "publication_date": "2026-10-04",
+  "publication_date": "2026-10-05",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis, Glaucoma & Eye Symptoms",
-      "url": "https://bigbudman.com/guides/cannabis-glaucoma-eye-pressure-vision-guide/",
+      "title": "Cannabis, CBD, Epilepsy & Seizure Care",
+      "url": "https://bigbudman.com/guides/cannabis-cbd-epilepsy-seizure-care-guide/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "separate a temporary intraocular-pressure finding from glaucoma treatment, recognize urgent vision symptoms, and prepare a useful eye-care record"
+      "search_intent": "separate seizure first aid and prescription cannabidiol from retail CBD and cannabis while preserving one clinician-ready care record"
     },
     {
-      "title": "CBD Patches & Transdermal Products: Label Guide",
-      "url": "https://bigbudman.com/guides/cbd-patches-transdermal-label-evidence-guide/",
-      "department": "guides",
+      "title": "Cannabis Tool Cleaning Kit & Cost Planner",
+      "url": "https://bigbudman.com/gear/cannabis-tool-cleaning-kit/",
+      "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "compare classification, label arithmetic, skin-contact ingredients, lot evidence, delivery claims, and pharmacist questions without inventing absorption or dosage"
+      "search_intent": "compare compatible cleaning supplies and calculate first-year cost, recurring cost, and maintenance time without rankings or affiliate pressure"
     },
     {
-      "title": "Cannabis Package Seal & Tamper-Evidence Checklist",
-      "url": "https://bigbudman.com/guides/cannabis-package-seal-tamper-evidence-checklist/",
-      "department": "guides",
+      "title": "Copy Article Checklists",
+      "url": "https://bigbudman.com/guides/",
+      "department": "sitewide",
       "portfolio_label": "Exploration",
-      "search_intent": "inspect an unopened seal, closure, label, lot, condition, report, recall, and complaint route without destroying evidence"
+      "search_intent": "copy every checklist in an article with its headings, review date, and canonical URL for a usable appointment, shopping, or safety record"
     }
   ],
   "monetization": {
@@ -31,20 +31,21 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three new guides are intentionally image-free. The improved air-cleaner page and gear hub retain only pre-existing unchanged editorial imagery; no product, medical, or affiliate image was added."
+    "note": "The new guide and expanded planner are intentionally image-free. No product, medical, affiliate, or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-09-30",
     "decision": "The report covered August 31 through September 27. Its only meaningful position 4-20 page signal was the 510-thread battery page at 21 impressions, zero clicks, and position 7.7; the October 1 release already addressed it. Remaining position 4-20 page rows had only one to four impressions, and one Oklahoma query click was too weak or irrelevant, so no Data-led item was justified today."
   },
   "authority": {
-    "action": "Published an NIH-grounded eye-health myth and appointment record, a product-neutral CBD patch evidence screen, and a regulator-grounded package-seal checklist; added reciprocal links across eye care, medicines, CBD topicals, labels, packaging, recalls, complaints, and storage; preserved the EPA-grounded air-cleaner planner upgrade; and logged qualified Glaucoma Research Foundation and New York OCM opportunities. No outreach was sent."
+    "action": "Published a CDC-, FDA-, and NIH-grounded seizure-care record that separates emergency first aid, prescription cannabidiol, retail CBD, interactions, monitoring, and product claims; added reciprocal links across medication, CBD-label, official-source, grinder, glassware, comparison, and maintenance pages; and logged the Epilepsy Foundation as a qualified factual-review opportunity. No outreach was sent."
   },
   "surfaces": [
     "homepage",
-    "guide library with review dates, sorting, and three new decision paths",
-    "gear library with source-derived totals",
-    "air-cleaner, secondhand-smoke, lung-health, medication, older-adult, vital-sign, CBD-topical, label, packaging, recall, complaint, and storage contextual links",
+    "guide library and seizure-care decision path",
+    "gear library and cleaning-cost discovery path",
+    "medication, CBD-oil, official-source, grinder, glassware, comparison, and maintenance contextual links",
+    "sitewide checklist-copy controls",
     "publication updates",
     "Atom feed",
     "complete site index",
