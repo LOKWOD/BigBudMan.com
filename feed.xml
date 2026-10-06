@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-05T00:00:00Z</updated>
+  <updated>2026-10-06T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>NY Home Cannabis Pest, Mold &amp; IPM Guide</title>
+    <id>https://bigbudman.com/guides/new-york-home-cannabis-pest-mold-ipm-guide/</id>
+    <link href="https://bigbudman.com/guides/new-york-home-cannabis-pest-mold-ipm-guide/"/>
+    <updated>2026-10-06T00:00:00Z</updated>
+    <published>2026-10-06T00:00:00Z</published>
+    <summary>Build a New York home-cannabis scouting record for pests, moisture, mold, plant movement, IPM decisions, pesticide-label checks, and disposal.</summary>
+  </entry>
+  <entry>
+    <title>Digital Scale Repeatability &amp; Buying Guide</title>
+    <id>https://bigbudman.com/gear/digital-scale-buying-calibration-guide/</id>
+    <link href="https://bigbudman.com/gear/digital-scale-buying-calibration-guide/"/>
+    <updated>2026-10-06T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Choose a digital scale for lawful personal inventory, then compare five readings, mean, spread, maximum deviation, entered tolerance, and ownership cost.</summary>
+  </entry>
   <entry>
     <title>Cannabis, CBD, Epilepsy &amp; Seizure Care</title>
     <id>https://bigbudman.com/guides/cannabis-cbd-epilepsy-seizure-care-guide/</id>
@@ -229,21 +245,5 @@
     <updated>2026-09-25T00:00:00Z</updated>
     <published>2026-09-25T00:00:00Z</published>
     <summary>Search plain-language cannabis terms for labels, lab reports, cannabinoids, formats, cultivation, safety, and legal-market shopping.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Smoke, Vaping &amp; Lung Health</title>
-    <id>https://bigbudman.com/guides/cannabis-smoke-vape-lung-health-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-smoke-vape-lung-health-guide/"/>
-    <updated>2026-09-25T00:00:00Z</updated>
-    <published>2026-09-25T00:00:00Z</published>
-    <summary>Compare cannabis smoke, vapor, dabs, and non-inhaled formats by lung exposure, evidence limits, urgent symptoms, and questions for a clinician.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Pre-Roll Buying Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-pre-roll-infused-label-buying-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-pre-roll-infused-label-buying-guide/"/>
-    <updated>2026-09-25T00:00:00Z</updated>
-    <published>2026-09-25T00:00:00Z</published>
-    <summary>Compare plain and infused cannabis pre-rolls by flower, added ingredients, weight, cannabinoid label, lot evidence, burn claims, storage, and price per gram.</summary>
   </entry>
 </feed>

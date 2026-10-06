@@ -851,6 +851,60 @@
     renderCleaningCost();
   }
 
+  // A five-reading home screen separates repeatability from bias and prices
+  // the complete ownership system. It does not calibrate or certify a scale.
+  const scaleCheck = $('[data-scale-check]');
+  if (scaleCheck) {
+    const inputNumber = (selector) => {
+      const input = $(selector, scaleCheck);
+      const value = Number(input?.value || 0);
+      return Number.isFinite(value) ? Math.max(0, value) : 0;
+    };
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const decimal = (value) => value.toLocaleString(undefined, {minimumFractionDigits:3, maximumFractionDigits:3});
+    const renderScaleCheck = () => {
+      const reference = inputNumber('[data-scale-reference]');
+      const toleranceInput = $('[data-scale-tolerance]', scaleCheck);
+      const tolerance = inputNumber('[data-scale-tolerance]');
+      const readingInputs = $$('[data-scale-reading]', scaleCheck);
+      const readings = readingInputs
+        .filter((input) => input.value.trim() !== '' && Number.isFinite(Number(input.value)) && Number(input.value) >= 0)
+        .map((input) => Number(input.value));
+      const complete = reference > 0 && readings.length === 5;
+      const mean = complete ? readings.reduce((sum, value) => sum + value, 0) / readings.length : 0;
+      const spread = complete ? Math.max(...readings) - Math.min(...readings) : 0;
+      const deviation = complete ? Math.max(...readings.map((value) => Math.abs(value - reference))) : 0;
+      const hasTolerance = Boolean(toleranceInput?.value.trim());
+      const price = inputNumber('[data-scale-price]');
+      const weight = inputNumber('[data-scale-weight-cost]');
+      const power = inputNumber('[data-scale-power]');
+      const years = inputNumber('[data-scale-years]');
+      const first = price + weight + power;
+      const total = price + weight + power * years;
+      $('[data-scale-mean]', scaleCheck).textContent = complete ? `${decimal(mean)} g` : '—';
+      $('[data-scale-spread]', scaleCheck).textContent = complete ? `${decimal(spread)} g` : '—';
+      $('[data-scale-deviation]', scaleCheck).textContent = complete ? `${decimal(deviation)} g` : '—';
+      $('[data-scale-tolerance-result]', scaleCheck).textContent = complete && hasTolerance ? (deviation <= tolerance + 1e-9 ? 'Within entered tolerance' : 'Outside entered tolerance') : '—';
+      $('[data-scale-first]', scaleCheck).textContent = money(first);
+      $('[data-scale-total]', scaleCheck).textContent = years > 0 ? money(total) : '—';
+      $('[data-scale-annual]', scaleCheck).textContent = years > 0 ? money(total / years) : '—';
+      const status = $('[data-scale-status]', scaleCheck);
+      if (status) {
+        if (!reference || readings.length !== 5) status.textContent = 'Enter a nonzero reference and all five readings to calculate the repeatability screen.';
+        else if (!hasTolerance) status.textContent = 'Reading math is available. Enter the exact maker tolerance if you want a tolerance screen.';
+        else if (!years) status.textContent = 'Reading math is available. Enter a nonzero planning horizon for total and annualized cost.';
+        else status.textContent = 'Math updated locally. This is a one-point home screen, not calibration, certification, or whole-range performance evidence.';
+      }
+    };
+    $$('input', scaleCheck).forEach((input) => input.addEventListener('input', renderScaleCheck));
+    $('[data-scale-reset]', scaleCheck)?.addEventListener('click', () => {
+      $$('input', scaleCheck).forEach((input) => { input.value = ''; });
+      renderScaleCheck();
+      $('[data-scale-reference]', scaleCheck)?.focus();
+    });
+    renderScaleCheck();
+  }
+
   // Glossary filtering keeps every definition in the HTML and only narrows
   // the visible set. Without JavaScript the complete reference remains usable.
   const glossary = $('[data-glossary]');
