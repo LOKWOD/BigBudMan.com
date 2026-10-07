@@ -597,6 +597,56 @@
     renderPreroll();
   }
 
+  // Rolling-paper and cone arithmetic compares delivered price with the
+  // usable quantity received. It does not estimate consumption, combustion
+  // performance, exposure, or product quality.
+  const paperComparison = $('[data-paper-comparison]');
+  if (paperComparison) {
+    const readAt = (nodes, index) => {
+      const raw = nodes[index]?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const money = (value) => value === null ? '—' : value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const prices = $$('[data-paper-price]', paperComparison);
+    const fees = $$('[data-paper-fees]', paperComparison);
+    const counts = $$('[data-paper-count]', paperComparison);
+    const unusable = $$('[data-paper-unusable]', paperComparison);
+    const delivered = $$('[data-paper-delivered]', paperComparison);
+    const usable = $$('[data-paper-usable]', paperComparison);
+    const unit = $$('[data-paper-unit]', paperComparison);
+    const loss = $$('[data-paper-loss]', paperComparison);
+    const renderPaperComparison = () => {
+      let complete = 0;
+      for (let index = 0; index < 3; index += 1) {
+        const price = readAt(prices, index);
+        const fee = readAt(fees, index) ?? 0;
+        const count = readAt(counts, index);
+        const damaged = readAt(unusable, index) ?? 0;
+        const hasOption = price !== null || count !== null || readAt(fees, index) !== null || readAt(unusable, index) !== null;
+        const deliveredCost = price !== null ? price + fee : null;
+        const usableCount = count !== null ? Math.max(0, count - damaged) : null;
+        const perUsable = deliveredCost !== null && usableCount > 0 ? deliveredCost / usableCount : null;
+        const lossRate = count > 0 ? Math.min(1, damaged / count) : null;
+        delivered[index].textContent = hasOption ? money(deliveredCost) : '—';
+        usable[index].textContent = usableCount === null ? '—' : usableCount.toLocaleString(undefined, {maximumFractionDigits:2});
+        unit[index].textContent = money(perUsable);
+        loss[index].textContent = lossRate === null ? '—' : `${(lossRate * 100).toFixed(1)}%`;
+        if (price !== null && count > 0 && usableCount > 0) complete += 1;
+      }
+      const status = $('[data-paper-status]', paperComparison);
+      if (status) status.textContent = complete ? `${complete} complete option${complete === 1 ? '' : 's'} updated locally. Compare fit, disclosure, condition, seller, and safety before cost.` : 'Enter the delivered price and pack count for each option you want to compare. Blank options stay unknown.';
+    };
+    $$('input', paperComparison).forEach((input) => input.addEventListener('input', renderPaperComparison));
+    $('[data-paper-reset]', paperComparison)?.addEventListener('click', () => {
+      $$('input', paperComparison).forEach((input) => { input.value = ''; });
+      renderPaperComparison();
+      prices[0]?.focus();
+    });
+    renderPaperComparison();
+  }
+
   // Product comparison arithmetic. The rows deliberately normalize only the
   // label and receipt values entered; they do not score potency or quality.
   const packageComparison = $('[data-package-comparison]');
