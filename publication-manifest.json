@@ -10,18 +10,18 @@
       "search_intent": "plan exercise, outdoor activity, and transport around coordination, cardiovascular symptoms, heat, medicines, supervision, and competition rules without a performance claim"
     },
     {
-      "title": "Rolling Paper & Cone Cost Comparison",
-      "url": "https://bigbudman.com/gear/cannabis-rolling-paper-cone-guide/",
-      "department": "gear",
+      "title": "Cannabis Menu-to-Package Match Checklist",
+      "url": "https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/",
+      "department": "guides",
       "portfolio_label": "Exploration",
-      "search_intent": "compare three paper or cone packs by fit, material disclosure, delivered cost, usable count, arrival loss, storage, smoke limits, and fire safety"
+      "search_intent": "verify a dispensary menu listing, cart, substitution, sealed package, lot evidence, final charge, and receipt before opening"
     },
     {
-      "title": "Machine-Readable Editorial Review Dates",
-      "url": "https://bigbudman.com/updates/",
-      "department": "sitewide",
-      "portfolio_label": "Exploration",
-      "search_intent": "expose the visible editorial review date as a semantic time value on every article and guide card and verify it against structured metadata during the build"
+      "title": "Sour Chem CBD: The Honest Field Note",
+      "url": "https://bigbudman.com/strains/sour-chem-cbd/",
+      "department": "strains",
+      "portfolio_label": "Authority-expansion",
+      "search_intent": "separate Oregon CBD's documented Sour Chem breeder record from a retail product's identity, cannabinoid rows, lot evidence, condition, effects, and legal status"
     }
   ],
   "monetization": {
@@ -31,21 +31,20 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The new guide and expanded comparison are intentionally image-free. No product, medical, affiliate, or generated image was added or changed."
+    "note": "All three new pages use image-free editorial layouts. No product, cultivar, medical, affiliate, or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-09-30",
     "decision": "The report covered August 31 through September 27 and showed 972 impressions, one click, 0.1% CTR, and position 40.3. Its only meaningful position 4-20 page signal was the 510-thread battery page at 21 impressions, zero clicks, and position 7.7; the October 1 release already addressed it. Remaining position 4-20 page rows had only one to four impressions, and one Oklahoma query click was too weak or irrelevant, so no Data-led item was justified today."
   },
   "authority": {
-    "action": "Published a CDC-, NHTSA-, and current WADA-grounded exercise and heat decision record; connected it reciprocally to responsible use, cardiovascular symptoms, driving, and policy/testing pages; expanded the rolling-paper page into a transparent comparison asset; and logged the American College of Sports Medicine as a qualified factual-review opportunity. No outreach was sent."
+    "action": "Published a CDC-, NHTSA-, and current WADA-grounded exercise and heat decision record; added a regulator-grounded menu-to-package verification checklist; added an image-free breeder-source CBD-hemp profile; connected all three through hubs and reciprocal contextual links; and logged the American College of Sports Medicine as a qualified factual-review opportunity. No outreach was sent."
   },
   "surfaces": [
     "homepage",
     "guide library and source-derived decision paths",
-    "gear library",
-    "responsible-use, heart, driving, rolling-machine, and pre-roll-storage contextual links",
-    "semantic article and card review dates",
+    "strain library and CBD/hemp filter",
+    "responsible-use, heart, driving, shop-legal, price-comparison, and complaint contextual links",
     "publication updates",
     "Atom feed",
     "complete site index",

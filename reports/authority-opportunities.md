@@ -35,6 +35,8 @@ This is a research log, not an outreach ledger. No email, form, account, comment
 
 ## Asset readiness
 
+- The menu-to-package checklist preserves the regulator listing, menu, selected variant, cart, substitution, sealed package, lot evidence, final charge, and receipt as separate records; it adds a mismatch-response table without endorsing a seller or product.
+- The Sour Chem CBD field note attributes the breeder's name, cross, release context, and aroma language while withholding an unverified cultivar image and requiring finished-batch identity, cannabinoid, contaminant, condition, recall, and legal checks.
 - The exercise-and-heat guide maps the activity, environment, product, medicines, transport, supervision, symptoms, and competition rules in one printable record; it rejects workout-as-sobriety-test logic and performance or recovery claims unsupported by product-specific human evidence.
 - The expanded rolling-paper and cone guide compares three packs by delivered cost, usable count, cost per usable item, and arrival loss only after fit, disclosure, condition, seller, storage, smoke-exposure, and fire-safety gates; no brand or affiliate link determines the result.
 - Every article and guide-library card now exposes its visible editorial review date as a machine-readable `time` value, and the build audit verifies the article date against structured `dateModified` metadata.
