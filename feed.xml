@@ -4,8 +4,32 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-07T00:00:00Z</updated>
+  <updated>2026-10-08T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Stem Cell CBG Strain Guide</title>
+    <id>https://bigbudman.com/strains/stem-cell-cbg/</id>
+    <link href="https://bigbudman.com/strains/stem-cell-cbg/"/>
+    <updated>2026-10-08T00:00:00Z</updated>
+    <published>2026-09-28T00:00:00Z</published>
+    <summary>Stem Cell CBG guide: verify the breeder record, producer, package, lot, CBG and CBGA rows, THC basis, contaminant panels, dates, claims, and current rules.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis, CBD &amp; Cancer Claims: Evidence Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-cbd-cancer-claims-evidence-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-cbd-cancer-claims-evidence-guide/"/>
+    <updated>2026-10-08T00:00:00Z</updated>
+    <published>2026-10-08T00:00:00Z</published>
+    <summary>Separate cannabis and CBD cancer-treatment claims from symptom support, approved cannabinoid medicines, interactions, product evidence, and oncology decisions.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Lockbox Fit &amp; Smell-Proof Storage</title>
+    <id>https://bigbudman.com/gear/smell-proof-storage/</id>
+    <link href="https://bigbudman.com/gear/smell-proof-storage/"/>
+    <updated>2026-10-08T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Compare three cannabis lockboxes by usable interior fit, upright package clearance, delivered cost, volume, lock design, odor claims, materials, and care.</summary>
+  </entry>
   <entry>
     <title>Sour Chem CBD Strain Guide</title>
     <id>https://bigbudman.com/strains/sour-chem-cbd/</id>
@@ -199,14 +223,6 @@
     <summary>Compare cannabis flower by package identity, dates, seal, lot report, moisture evidence, storage directions, condition, recalls, and return policy.</summary>
   </entry>
   <entry>
-    <title>Stem Cell CBG Strain Guide</title>
-    <id>https://bigbudman.com/strains/stem-cell-cbg/</id>
-    <link href="https://bigbudman.com/strains/stem-cell-cbg/"/>
-    <updated>2026-09-28T00:00:00Z</updated>
-    <published>2026-09-28T00:00:00Z</published>
-    <summary>Stem Cell CBG hemp field note: breeder-documented identity, CBG and CBGA report checks, product and legal boundaries, and evidence-first buying questions.</summary>
-  </entry>
-  <entry>
     <title>Delta-8 THC: Label &amp; Safety Guide</title>
     <id>https://bigbudman.com/guides/delta-8-thc-label-safety-guide/</id>
     <link href="https://bigbudman.com/guides/delta-8-thc-label-safety-guide/"/>
@@ -229,21 +245,5 @@
     <updated>2026-09-27T00:00:00Z</updated>
     <published>2026-09-27T00:00:00Z</published>
     <summary>Compare a cannabis single-use vape pen with a 510 cartridge system by identity, compatibility, serviceability, total cost, storage, and disposal.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Product Complaint &amp; Adverse Event</title>
-    <id>https://bigbudman.com/guides/cannabis-product-complaint-adverse-event-reporting/</id>
-    <link href="https://bigbudman.com/guides/cannabis-product-complaint-adverse-event-reporting/"/>
-    <updated>2026-09-27T00:00:00Z</updated>
-    <published>2026-09-27T00:00:00Z</published>
-    <summary>Preserve a cannabis product problem, separate an adverse event from a quality or business complaint, and send the right facts to the right official route.</summary>
-  </entry>
-  <entry>
-    <title>CBD Drinks &amp; Powders: Label Buying Guide</title>
-    <id>https://bigbudman.com/guides/cbd-drinks-powders-label-buying-guide/</id>
-    <link href="https://bigbudman.com/guides/cbd-drinks-powders-label-buying-guide/"/>
-    <updated>2026-09-27T00:00:00Z</updated>
-    <published>2026-09-27T00:00:00Z</published>
-    <summary>Compare CBD ready-to-drink beverages, liquid concentrates, and drink powders by serving math, ingredients, lot evidence, claims, storage, and interaction risk.</summary>
   </entry>
 </feed>

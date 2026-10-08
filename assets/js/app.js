@@ -955,6 +955,89 @@
     renderScaleCheck();
   }
 
+  // Lockbox math checks an upright rectangular package load against stated
+  // usable interior dimensions. It deliberately does not score security,
+  // child resistance, odor control, materials, or irregular obstructions.
+  const lockboxComparison = $('[data-lockbox-comparison]');
+  if (lockboxComparison) {
+    const read = (selector) => {
+      const input = $(selector, lockboxComparison);
+      const raw = input?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const readAt = (nodes, index) => {
+      const raw = nodes[index]?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const widths = $$('[data-lock-width]', lockboxComparison);
+    const depths = $$('[data-lock-depth]', lockboxComparison);
+    const heights = $$('[data-lock-height]', lockboxComparison);
+    const costs = $$('[data-lock-cost]', lockboxComparison);
+    const fits = $$('[data-lock-fit]', lockboxComparison);
+    const margins = $$('[data-lock-margin]', lockboxComparison);
+    const volumes = $$('[data-lock-volume]', lockboxComparison);
+    const unitCosts = $$('[data-lock-unit-cost]', lockboxComparison);
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const renderLockboxComparison = () => {
+      const loadWidth = read('[data-lock-load-width]');
+      const loadDepth = read('[data-lock-load-depth]');
+      const loadHeight = read('[data-lock-load-height]');
+      const clearance = read('[data-lock-clearance]') ?? 0;
+      const loadComplete = loadWidth > 0 && loadDepth > 0 && loadHeight > 0;
+      const required = loadComplete ? [loadWidth + clearance, loadDepth + clearance, loadHeight + clearance] : null;
+      let dimensionalOptions = 0;
+      let fittingOptions = 0;
+      for (let index = 0; index < 3; index += 1) {
+        const width = readAt(widths, index);
+        const depth = readAt(depths, index);
+        const height = readAt(heights, index);
+        const cost = readAt(costs, index);
+        const dimensionsComplete = width > 0 && depth > 0 && height > 0;
+        const volume = dimensionsComplete ? width * depth * height * 0.0163871 : null;
+        let fit = null;
+        let margin = null;
+        let orientation = '';
+        if (dimensionsComplete && required) {
+          const enteredMargins = [width - required[0], depth - required[1], height - required[2]];
+          const rotatedMargins = [width - required[1], depth - required[0], height - required[2]];
+          const enteredFits = enteredMargins.every((value) => value >= -1e-9);
+          const rotatedFits = rotatedMargins.every((value) => value >= -1e-9);
+          fit = enteredFits || rotatedFits;
+          if (fit) {
+            const candidates = [];
+            if (enteredFits) candidates.push({label:'Entered base', margin:Math.min(...enteredMargins)});
+            if (rotatedFits) candidates.push({label:'Base rotated 90°', margin:Math.min(...rotatedMargins)});
+            const best = candidates.sort((a, b) => b.margin - a.margin)[0];
+            margin = best.margin;
+            orientation = best.label;
+            fittingOptions += 1;
+          }
+        }
+        if (dimensionsComplete) dimensionalOptions += 1;
+        fits[index].textContent = fit === null ? '—' : fit ? `Fits · ${orientation}` : 'Does not fit';
+        margins[index].textContent = margin === null ? '—' : `${margin.toFixed(2)} in`;
+        volumes[index].textContent = volume === null ? '—' : `${volume.toFixed(2)} L`;
+        unitCosts[index].textContent = volume > 0 && cost !== null ? `${money(cost / volume)}/L` : '—';
+      }
+      const status = $('[data-lock-status]', lockboxComparison);
+      if (!status) return;
+      if (!loadComplete) status.textContent = dimensionalOptions ? 'Interior volume and cost are shown. Enter all three nonzero package-load dimensions to check upright fit.' : 'Enter the measured upright package load and an exact model\'s usable interior dimensions. Blank options stay unknown.';
+      else if (!dimensionalOptions) status.textContent = 'Package load recorded. Enter a model\'s three nonzero usable interior dimensions to check fit.';
+      else status.textContent = `${fittingOptions} of ${dimensionalOptions} complete option${dimensionalOptions === 1 ? '' : 's'} fit the entered upright load in at least one base orientation. Security still needs a separate review.`;
+    };
+    $$('input', lockboxComparison).forEach((input) => input.addEventListener('input', renderLockboxComparison));
+    $('[data-lock-reset]', lockboxComparison)?.addEventListener('click', () => {
+      $$('input', lockboxComparison).forEach((input) => { input.value = ''; });
+      renderLockboxComparison();
+      $('[data-lock-load-width]', lockboxComparison)?.focus();
+    });
+    renderLockboxComparison();
+  }
+
   // Glossary filtering keeps every definition in the HTML and only narrows
   // the visible set. Without JavaScript the complete reference remains usable.
   const glossary = $('[data-glossary]');

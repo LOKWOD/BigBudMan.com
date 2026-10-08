@@ -1,27 +1,27 @@
 {
-  "publication_date": "2026-10-07",
+  "publication_date": "2026-10-08",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis, Exercise & Heat Safety",
-      "url": "https://bigbudman.com/guides/cannabis-exercise-workout-heat-safety/",
-      "department": "guides",
-      "portfolio_label": "Authority-expansion",
-      "search_intent": "plan exercise, outdoor activity, and transport around coordination, cardiovascular symptoms, heat, medicines, supervision, and competition rules without a performance claim"
-    },
-    {
-      "title": "Cannabis Menu-to-Package Match Checklist",
-      "url": "https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/",
-      "department": "guides",
-      "portfolio_label": "Exploration",
-      "search_intent": "verify a dispensary menu listing, cart, substitution, sealed package, lot evidence, final charge, and receipt before opening"
-    },
-    {
-      "title": "Sour Chem CBD: The Honest Field Note",
-      "url": "https://bigbudman.com/strains/sour-chem-cbd/",
+      "title": "Stem Cell CBG Lot-Evidence Expansion",
+      "url": "https://bigbudman.com/strains/stem-cell-cbg/",
       "department": "strains",
+      "portfolio_label": "Data-led",
+      "search_intent": "turn the breeder name into a five-layer breeder, producer, sealed-package, lot-report, and current-rule verification record without inferring effects or chemistry"
+    },
+    {
+      "title": "Cannabis, CBD & Cancer Claims: Evidence Guide",
+      "url": "https://bigbudman.com/guides/cannabis-cbd-cancer-claims-evidence-guide/",
+      "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "separate Oregon CBD's documented Sour Chem breeder record from a retail product's identity, cannabinoid rows, lot evidence, condition, effects, and legal status"
+      "search_intent": "separate cancer-treatment claims, symptom-support questions, approved cannabinoid medicines, interactions, exact-product evidence, and oncology decisions"
+    },
+    {
+      "title": "Cannabis Lockbox Fit & Smell-Proof Storage",
+      "url": "https://bigbudman.com/gear/smell-proof-storage/",
+      "department": "gear",
+      "portfolio_label": "Exploration",
+      "search_intent": "compare three exact storage models by upright original-package fit, usable interior dimensions, margins, rectangular volume, delivered cost, and separate security gates"
     }
   ],
   "monetization": {
@@ -31,20 +31,22 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three new pages use image-free editorial layouts. No product, cultivar, medical, affiliate, or generated image was added or changed."
+    "note": "The cancer guide and new calculator are image-free; the existing lockbox image is unchanged. No product, medical, cultivar, affiliate, or generated image was added or changed."
   },
   "search_console": {
-    "report_date": "2026-09-30",
-    "decision": "The report covered August 31 through September 27 and showed 972 impressions, one click, 0.1% CTR, and position 40.3. Its only meaningful position 4-20 page signal was the 510-thread battery page at 21 impressions, zero clicks, and position 7.7; the October 1 release already addressed it. Remaining position 4-20 page rows had only one to four impressions, and one Oklahoma query click was too weak or irrelevant, so no Data-led item was justified today."
+    "report_date": "2026-10-07",
+    "decision": "The September 7\u2013October 4 report showed 1,214 impressions, two clicks, 0.2% CTR, and average position 35.3. Stem Cell CBG was the only page with a nontrivial position 4\u201320 signal: 13 impressions, one click, 7.7% CTR, and position 5.3, so its already-relevant URL received one focused evidence and usefulness expansion. Position 4\u201320 rows with only one to four impressions, a single Oklahoma query click, and the homepage/about samples were deliberately not treated as editorial mandates."
   },
   "authority": {
-    "action": "Published a CDC-, NHTSA-, and current WADA-grounded exercise and heat decision record; added a regulator-grounded menu-to-package verification checklist; added an image-free breeder-source CBD-hemp profile; connected all three through hubs and reciprocal contextual links; and logged the American College of Sports Medicine as a qualified factual-review opportunity. No outreach was sent."
+    "action": "Published an NCI-, FDA-, and NCCIH-grounded cancer-claim evidence guide with a printable oncology conversation record; connected it to medication and procedure guides; strengthened the Stem Cell CBG breeder-to-lot evidence chain; expanded storage into transparent fit math; and logged the National Cancer Institute Cancer Information Service as a qualified factual-review/resource opportunity. No outreach was sent."
   },
   "surfaces": [
     "homepage",
     "guide library and source-derived decision paths",
-    "strain library and CBD/hemp filter",
-    "responsible-use, heart, driving, shop-legal, price-comparison, and complaint contextual links",
+    "gear library",
+    "strain library",
+    "medication, surgery, CBG, storage, packaging, and gear-comparison contextual links",
+    "duplicate-ID build gate",
     "publication updates",
     "Atom feed",
     "complete site index",
