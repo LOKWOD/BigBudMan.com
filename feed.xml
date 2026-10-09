@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-08T00:00:00Z</updated>
+  <updated>2026-10-09T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis, CBD &amp; Chronic Pain Evidence</title>
+    <id>https://bigbudman.com/guides/cannabis-cbd-chronic-pain-evidence-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-cbd-chronic-pain-evidence-guide/"/>
+    <updated>2026-10-09T00:00:00Z</updated>
+    <published>2026-10-09T00:00:00Z</published>
+    <summary>Compare cannabis and CBD chronic-pain claims with current CDC, NCCIH, AHRQ, and FDA evidence, risks, product limits, and a clinician-ready outcome record.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Rolling Tray Fit &amp; Buying Guide</title>
+    <id>https://bigbudman.com/gear/cannabis-rolling-tray-buying-guide/</id>
+    <link href="https://bigbudman.com/gear/cannabis-rolling-tray-buying-guide/"/>
+    <updated>2026-10-09T00:00:00Z</updated>
+    <published>2026-09-10T00:00:00Z</published>
+    <summary>Compare three rolling trays by task clearance, locked-storage fit, usable area, delivered cost, materials, cleaning, and safety limits.</summary>
+  </entry>
   <entry>
     <title>Stem Cell CBG Strain Guide</title>
     <id>https://bigbudman.com/strains/stem-cell-cbg/</id>
@@ -229,21 +245,5 @@
     <updated>2026-09-28T00:00:00Z</updated>
     <published>2026-09-28T00:00:00Z</published>
     <summary>Identify delta-8 THC products, separate intoxicating effects from CBD marketing, check exact-lot evidence, and know when to stop, get help, or report a problem.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Edible Allergen &amp; Ingredient Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-edible-allergen-ingredient-label-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-edible-allergen-ingredient-label-guide/"/>
-    <updated>2026-09-28T00:00:00Z</updated>
-    <published>2026-09-28T00:00:00Z</published>
-    <summary>Check cannabis gummies, chocolates, drinks, and capsules for ingredients, major allergens, cross-contact language, label gaps, and exact-lot records.</summary>
-  </entry>
-  <entry>
-    <title>Disposable Cannabis Vape vs 510 Cartridge</title>
-    <id>https://bigbudman.com/guides/disposable-vape-vs-510-cartridge-comparison/</id>
-    <link href="https://bigbudman.com/guides/disposable-vape-vs-510-cartridge-comparison/"/>
-    <updated>2026-09-27T00:00:00Z</updated>
-    <published>2026-09-27T00:00:00Z</published>
-    <summary>Compare a cannabis single-use vape pen with a 510 cartridge system by identity, compatibility, serviceability, total cost, storage, and disposal.</summary>
   </entry>
 </feed>

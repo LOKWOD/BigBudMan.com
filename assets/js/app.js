@@ -1038,6 +1038,87 @@
     renderLockboxComparison();
   }
 
+  // Rolling-tray math keeps the preparation task and the locked-storage
+  // problem separate. It checks simple rectangles only and never turns fit or
+  // unit cost into a materials, stability, safety, or quality score.
+  const trayComparison = $('[data-tray-comparison]');
+  if (trayComparison) {
+    const read = (selector) => {
+      const raw = $(selector, trayComparison)?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const readAt = (nodes, index) => {
+      const raw = nodes[index]?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const usableWidths = $$('[data-tray-usable-width]', trayComparison);
+    const usableDepths = $$('[data-tray-usable-depth]', trayComparison);
+    const overallWidths = $$('[data-tray-overall-width]', trayComparison);
+    const overallDepths = $$('[data-tray-overall-depth]', trayComparison);
+    const overallHeights = $$('[data-tray-overall-height]', trayComparison);
+    const costs = $$('[data-tray-cost]', trayComparison);
+    const taskFits = $$('[data-tray-task-fit]', trayComparison);
+    const storeFits = $$('[data-tray-store-fit]', trayComparison);
+    const areas = $$('[data-tray-area]', trayComparison);
+    const unitCosts = $$('[data-tray-unit-cost]', trayComparison);
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const rectangleFits = (outerWidth, outerDepth, innerWidth, innerDepth) =>
+      (outerWidth <= innerWidth + 1e-9 && outerDepth <= innerDepth + 1e-9) ||
+      (outerDepth <= innerWidth + 1e-9 && outerWidth <= innerDepth + 1e-9);
+    const renderTrayComparison = () => {
+      const taskWidth = read('[data-tray-task-width]');
+      const taskDepth = read('[data-tray-task-depth]');
+      const clearance = read('[data-tray-clearance]') ?? 0;
+      const storeWidth = read('[data-tray-store-width]');
+      const storeDepth = read('[data-tray-store-depth]');
+      const storeHeight = read('[data-tray-store-height]');
+      const taskComplete = taskWidth > 0 && taskDepth > 0;
+      const storeComplete = storeWidth > 0 && storeDepth > 0 && storeHeight > 0;
+      const requiredWidth = taskComplete ? taskWidth + clearance * 2 : null;
+      const requiredDepth = taskComplete ? taskDepth + clearance * 2 : null;
+      let entered = 0;
+      let taskPasses = 0;
+      let storePasses = 0;
+      for (let index = 0; index < 3; index += 1) {
+        const usableWidth = readAt(usableWidths, index);
+        const usableDepth = readAt(usableDepths, index);
+        const overallWidth = readAt(overallWidths, index);
+        const overallDepth = readAt(overallDepths, index);
+        const overallHeight = readAt(overallHeights, index);
+        const cost = readAt(costs, index);
+        const usableComplete = usableWidth > 0 && usableDepth > 0;
+        const overallComplete = overallWidth > 0 && overallDepth > 0 && overallHeight > 0;
+        const hasOption = usableComplete || overallComplete || cost !== null;
+        if (hasOption) entered += 1;
+        const taskFit = taskComplete && usableComplete ? rectangleFits(requiredWidth, requiredDepth, usableWidth, usableDepth) : null;
+        const storeFit = storeComplete && overallComplete ? overallHeight <= storeHeight + 1e-9 && rectangleFits(overallWidth, overallDepth, storeWidth, storeDepth) : null;
+        const area = usableComplete ? usableWidth * usableDepth : null;
+        if (taskFit) taskPasses += 1;
+        if (storeFit) storePasses += 1;
+        taskFits[index].textContent = taskFit === null ? '—' : taskFit ? 'Fits' : 'Does not fit';
+        storeFits[index].textContent = storeFit === null ? '—' : storeFit ? 'Fits flat' : 'Does not fit flat';
+        areas[index].textContent = area === null ? '—' : `${area.toFixed(1)} in²`;
+        unitCosts[index].textContent = area > 0 && cost !== null ? `${money(cost / area)}/in²` : '—';
+      }
+      const status = $('[data-tray-status]', trayComparison);
+      if (!status) return;
+      if (!entered) status.textContent = 'Enter the task, hand clearance, locked-storage interior, and any exact model you want to compare. Blank options stay unknown.';
+      else if (!taskComplete || !storeComplete) status.textContent = 'Available area and cost are shown. Complete the nonzero task and storage dimensions to run both fit checks.';
+      else status.textContent = `${taskPasses} of ${entered} entered option${entered === 1 ? '' : 's'} pass the task rectangle; ${storePasses} pass the simple flat-storage check. Review real clearances, materials, stability, and care separately.`;
+    };
+    $$('input', trayComparison).forEach((input) => input.addEventListener('input', renderTrayComparison));
+    $('[data-tray-reset]', trayComparison)?.addEventListener('click', () => {
+      $$('input', trayComparison).forEach((input) => { input.value = ''; });
+      renderTrayComparison();
+      $('[data-tray-task-width]', trayComparison)?.focus();
+    });
+    renderTrayComparison();
+  }
+
   // Glossary filtering keeps every definition in the HTML and only narrows
   // the visible set. Without JavaScript the complete reference remains usable.
   const glossary = $('[data-glossary]');
