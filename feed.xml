@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-09T00:00:00Z</updated>
+  <updated>2026-10-10T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis, CBD &amp; Liver Health Safety Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-cbd-liver-health-safety-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-cbd-liver-health-safety-guide/"/>
+    <updated>2026-10-10T00:00:00Z</updated>
+    <published>2026-10-10T00:00:00Z</published>
+    <summary>Separate CBD liver-injury evidence, prescription monitoring, retail-product uncertainty, symptoms, medicines, alcohol, labs, and clinician questions.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Humidity Pack &amp; Hygrometer Cost Guide</title>
+    <id>https://bigbudman.com/gear/cannabis-humidity-pack-hygrometer-guide/</id>
+    <link href="https://bigbudman.com/gear/cannabis-humidity-pack-hygrometer-guide/"/>
+    <updated>2026-10-10T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Compare three humidity-pack and hygrometer systems by pack consumption, package purchases, first-year cost, ownership cost, specifications, and safety limits.</summary>
+  </entry>
   <entry>
     <title>Cannabis, CBD &amp; Chronic Pain Evidence</title>
     <id>https://bigbudman.com/guides/cannabis-cbd-chronic-pain-evidence-guide/</id>
@@ -229,21 +245,5 @@
     <updated>2026-09-29T00:00:00Z</updated>
     <published>2026-09-29T00:00:00Z</published>
     <summary>Verify a New York cannabis delivery order from license listing to website, payment, ID check, handoff, receipt, product lot, and complaint route.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Flower Freshness Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-flower-freshness-package-date-buying-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-flower-freshness-package-date-buying-guide/"/>
-    <updated>2026-09-29T00:00:00Z</updated>
-    <published>2026-09-29T00:00:00Z</published>
-    <summary>Compare cannabis flower by package identity, dates, seal, lot report, moisture evidence, storage directions, condition, recalls, and return policy.</summary>
-  </entry>
-  <entry>
-    <title>Delta-8 THC: Label &amp; Safety Guide</title>
-    <id>https://bigbudman.com/guides/delta-8-thc-label-safety-guide/</id>
-    <link href="https://bigbudman.com/guides/delta-8-thc-label-safety-guide/"/>
-    <updated>2026-09-28T00:00:00Z</updated>
-    <published>2026-09-28T00:00:00Z</published>
-    <summary>Identify delta-8 THC products, separate intoxicating effects from CBD marketing, check exact-lot evidence, and know when to stop, get help, or report a problem.</summary>
   </entry>
 </feed>

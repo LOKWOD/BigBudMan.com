@@ -1119,6 +1119,79 @@
     renderTrayComparison();
   }
 
+  // Humidity-system math compares the consumable and instrument assumptions
+  // entered by the reader. It does not choose a target, predict pack life,
+  // calibrate a sensor, or decide whether a product is safe.
+  const humidityComparison = $('[data-humidity-comparison]');
+  if (humidityComparison) {
+    const read = (selector) => {
+      const raw = $(selector, humidityComparison)?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const readAt = (nodes, index) => {
+      const raw = nodes[index]?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const money = (value) => value === null ? '—' : value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const packCosts = $$('[data-humidity-pack-cost]', humidityComparison);
+    const packCounts = $$('[data-humidity-pack-count]', humidityComparison);
+    const activePacks = $$('[data-humidity-active-packs]', humidityComparison);
+    const intervals = $$('[data-humidity-interval]', humidityComparison);
+    const meterCounts = $$('[data-humidity-meter-count]', humidityComparison);
+    const meterCosts = $$('[data-humidity-meter-cost]', humidityComparison);
+    const serviceCosts = $$('[data-humidity-service-cost]', humidityComparison);
+    const packsYear = $$('[data-humidity-packs-year]', humidityComparison);
+    const packagesYear = $$('[data-humidity-packages-year]', humidityComparison);
+    const firstCosts = $$('[data-humidity-first]', humidityComparison);
+    const totalCosts = $$('[data-humidity-total]', humidityComparison);
+    const annualCosts = $$('[data-humidity-annual]', humidityComparison);
+    const renderHumidityComparison = () => {
+      const years = read('[data-humidity-years]');
+      let entered = 0;
+      let complete = 0;
+      for (let index = 0; index < 3; index += 1) {
+        const packCost = readAt(packCosts, index);
+        const packCount = readAt(packCounts, index);
+        const active = readAt(activePacks, index);
+        const interval = readAt(intervals, index);
+        const meters = readAt(meterCounts, index) ?? 0;
+        const meterCost = readAt(meterCosts, index) ?? 0;
+        const service = readAt(serviceCosts, index) ?? 0;
+        const hasOption = packCost !== null || packCount !== null || active !== null || interval !== null || readAt(meterCounts, index) !== null || readAt(meterCosts, index) !== null || readAt(serviceCosts, index) !== null;
+        if (hasOption) entered += 1;
+        const recurringComplete = packCost !== null && packCount > 0 && active !== null && interval > 0;
+        const perYear = recurringComplete ? active * 52 / interval : null;
+        const yearPackages = perYear === null ? null : Math.ceil(perYear / packCount);
+        const first = recurringComplete ? yearPackages * packCost + meters * meterCost + service : null;
+        const horizonPackages = recurringComplete && years > 0 ? Math.ceil(perYear * years / packCount) : null;
+        const total = horizonPackages === null ? null : horizonPackages * packCost + meters * meterCost + service * years;
+        const annual = total !== null && years > 0 ? total / years : null;
+        packsYear[index].textContent = perYear === null ? '—' : perYear.toLocaleString(undefined, {maximumFractionDigits:2});
+        packagesYear[index].textContent = yearPackages === null ? '—' : yearPackages.toLocaleString();
+        firstCosts[index].textContent = money(first);
+        totalCosts[index].textContent = money(total);
+        annualCosts[index].textContent = money(annual);
+        if (recurringComplete && years > 0) complete += 1;
+      }
+      const status = $('[data-humidity-status]', humidityComparison);
+      if (!status) return;
+      if (!entered) status.textContent = 'Enter a nonzero horizon and any exact-model assumptions you want to compare. Blank options stay unknown.';
+      else if (!(years > 0)) status.textContent = 'First-year estimates are available for complete options. Enter a nonzero planning horizon for total and annualized cost.';
+      else status.textContent = `${complete} complete option${complete === 1 ? '' : 's'} updated locally. Compare specifications, calibration path, container fit, condition cues, and safety limits before cost.`;
+    };
+    $$('input', humidityComparison).forEach((input) => input.addEventListener('input', renderHumidityComparison));
+    $('[data-humidity-reset]', humidityComparison)?.addEventListener('click', () => {
+      $$('input', humidityComparison).forEach((input) => { input.value = ''; });
+      renderHumidityComparison();
+      $('[data-humidity-years]', humidityComparison)?.focus();
+    });
+    renderHumidityComparison();
+  }
+
   // Glossary filtering keeps every definition in the HTML and only narrows
   // the visible set. Without JavaScript the complete reference remains usable.
   const glossary = $('[data-glossary]');

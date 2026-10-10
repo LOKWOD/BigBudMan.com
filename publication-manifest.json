@@ -1,27 +1,27 @@
 {
-  "publication_date": "2026-10-09",
+  "publication_date": "2026-10-10",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis, CBD & Chronic Pain Evidence Guide",
-      "url": "https://bigbudman.com/guides/cannabis-cbd-chronic-pain-evidence-guide/",
+      "title": "Cannabis, CBD & Liver Health Safety Guide",
+      "url": "https://bigbudman.com/guides/cannabis-cbd-liver-health-safety-guide/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "separate chronic-pain conditions, studied interventions, short-term evidence, function, harms, opioid claims, retail products, and clinician decisions"
+      "search_intent": "separate CBD liver-enzyme evidence, prescription monitoring, retail-product uncertainty, symptoms, medicines, alcohol, laboratory context, and clinician decisions"
     },
     {
-      "title": "Cannabis Rolling Tray Fit & Buying Guide",
-      "url": "https://bigbudman.com/gear/cannabis-rolling-tray-buying-guide/",
+      "title": "Cannabis Humidity Pack & Hygrometer Cost Guide",
+      "url": "https://bigbudman.com/gear/cannabis-humidity-pack-hygrometer-guide/",
       "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "compare three exact tray models by task and hand clearance, flat locked-storage fit, usable area, delivered cost, materials, and care"
+      "search_intent": "compare three humidity systems by pack consumption, package rounding, instruments, service, first-year cost, and ownership cost without ranking products"
     },
     {
-      "title": "Legacy Search Console Sitemap Recovery",
-      "url": "https://bigbudman.com/index.php?xml_sitemap=params=",
+      "title": "Homepage Promotion Deduplication Gate",
+      "url": "https://bigbudman.com/",
       "department": "technical",
       "portfolio_label": "Exploration",
-      "search_intent": "serve the current XML sitemap at the stale legacy URL still listed in Search Console while preserving the canonical sitemap and robots discovery path"
+      "search_intent": "remove a repeated editorial destination and prevent future duplicate story-stack links during publication audit"
     }
   ],
   "monetization": {
@@ -31,20 +31,20 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The chronic-pain guide and rolling-tray calculator are image-free. No product, medical, cultivar, affiliate, or generated image was added or changed."
+    "note": "The liver-health guide and humidity-system calculator are image-free. The homepage change removes a text card only; no product, medical, cultivar, affiliate, or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-10-07",
-    "decision": "The September 7\u2013October 4 report showed 1,214 impressions, two clicks, 0.2% CTR, and average position 35.3. Yesterday's Stem Cell CBG expansion already addressed the only nontrivial position 4\u201320 signal (13 impressions, one click, 7.7% CTR, position 5.3), so no second Data-led page was justified. Position 4\u201320 rows with one to four impressions, the single Oklahoma query click, and small homepage/about samples were deliberately ignored. The report's stale failing WordPress sitemap URL did justify a technical compatibility mirror of the current sitemap."
+    "decision": "The September 7\u2013October 4 report showed 1,214 impressions, two clicks, 0.2% CTR, and average position 35.3. The only nontrivial position 4\u201320 page signal, Stem Cell CBG with 13 impressions and one click at position 5.3, was already materially expanded on October 8. Remaining position 4\u201320 rows had one to seven impressions, so no Data-led item was justified; the tiny Montana, homepage, about, pregnancy, pipe, and ashtray samples and one Oklahoma query click were deliberately ignored. Today's work uses evergreen federal evidence and improves nonduplicative discovery paths."
   },
   "authority": {
-    "action": "Published a CDC-, NCCIH-, AHRQ-, and FDA-grounded chronic-pain evidence guide with a clinician-ready pain, function, product, benefit, and harm record; connected it to medication, fall-safety, topical, and procedure paths; expanded the rolling-tray guide into transparent task-and-storage fit math; and logged U.S. Pain Foundation as a qualified resource-review opportunity. No outreach was sent."
+    "action": "Published an FDA-, DailyMed-, NIH-, and MedlinePlus-grounded liver-health evidence guide with a clinician-ready product, medicine, alcohol, symptom, and laboratory record; connected it reciprocally to medicine, prescription-CBD, capsule, and complaint paths; expanded the humidity guide into transparent ownership math; and logged the American Liver Foundation as a qualified resource-review opportunity. No outreach was sent."
   },
   "surfaces": [
     "homepage",
     "guide library and decision paths",
     "gear library",
-    "medication, older-adult, topical, storage, cleaning, and gear-comparison contextual links",
+    "medicine-interaction, epilepsy, CBD-capsule, complaint, storage, and gear-comparison contextual links",
     "publication updates",
     "Atom feed",
     "complete site index",
