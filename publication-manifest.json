@@ -1,27 +1,27 @@
 {
-  "publication_date": "2026-10-10",
+  "publication_date": "2026-10-11",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis, CBD & Liver Health Safety Guide",
-      "url": "https://bigbudman.com/guides/cannabis-cbd-liver-health-safety-guide/",
+      "title": "CBN Products: Label & Evidence Guide",
+      "url": "https://bigbudman.com/guides/cbn-products-label-evidence-guide/",
       "department": "guides",
+      "portfolio_label": "Exploration",
+      "search_intent": "audit CBN gummies, oils and sleep claims by package math, exact-lot evidence, ingredients, limited human research and safety context"
+    },
+    {
+      "title": "Cannabis on Federal Property: 2026 Rules Guide",
+      "url": "https://bigbudman.com/legal/cannabis-federal-property-rules-guide/",
+      "department": "legal",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "separate CBD liver-enzyme evidence, prescription monitoring, retail-product uncertainty, symptoms, medicines, alcohol, laboratory context, and clinician decisions"
+      "search_intent": "identify the managing agency, property boundary, exact product, 2026 federal scheduling lane and site-specific rule before carrying cannabis"
     },
     {
-      "title": "Cannabis Humidity Pack & Hygrometer Cost Guide",
-      "url": "https://bigbudman.com/gear/cannabis-humidity-pack-hygrometer-guide/",
-      "department": "gear",
+      "title": "Cannabis Social Hosting & Guest Safety Plan",
+      "url": "https://bigbudman.com/guides/cannabis-social-hosting-guest-safety-plan/",
+      "department": "guides",
       "portfolio_label": "Exploration",
-      "search_intent": "compare three humidity systems by pack consumption, package rounding, instruments, service, first-year cost, and ownership cost without ranking products"
-    },
-    {
-      "title": "Homepage Promotion Deduplication Gate",
-      "url": "https://bigbudman.com/",
-      "department": "technical",
-      "portfolio_label": "Exploration",
-      "search_intent": "remove a repeated editorial destination and prevent future duplicate story-stack links during publication audit"
+      "search_intent": "plan adult-only access, consent, product control, locked storage, sober transportation, urgent response and cleanup"
     }
   ],
   "monetization": {
@@ -31,20 +31,22 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The liver-health guide and humidity-system calculator are image-free. The homepage change removes a text card only; no product, medical, cultivar, affiliate, or generated image was added or changed."
+    "note": "The three new pages and the terpene/loupe authority upgrades use text, tables, forms and existing design components. No product, medical, cultivar, affiliate, stock or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-10-07",
-    "decision": "The September 7\u2013October 4 report showed 1,214 impressions, two clicks, 0.2% CTR, and average position 35.3. The only nontrivial position 4\u201320 page signal, Stem Cell CBG with 13 impressions and one click at position 5.3, was already materially expanded on October 8. Remaining position 4\u201320 rows had one to seven impressions, so no Data-led item was justified; the tiny Montana, homepage, about, pregnancy, pipe, and ashtray samples and one Oklahoma query click were deliberately ignored. Today's work uses evergreen federal evidence and improves nonduplicative discovery paths."
+    "decision": "The September 7\u2013October 4 report showed 1,214 impressions, two clicks, 0.2% CTR, and average position 35.3. Stem Cell CBG had the only supported position 4\u201320 page signal, with 13 impressions, one click, and position 5.3, and it was materially expanded on October 8. Remaining position 4\u201320 page and query rows had only one to seven impressions, so no Data-led item was justified; those tiny samples and the single Oklahoma-law query click were deliberately ignored. Today's new pages diversify into a minor-cannabinoid product audit, a dated federal-jurisdiction digest, and a responsible social-hosting system while strengthening crawl paths."
   },
   "authority": {
-    "action": "Published an FDA-, DailyMed-, NIH-, and MedlinePlus-grounded liver-health evidence guide with a clinician-ready product, medicine, alcohol, symptom, and laboratory record; connected it reciprocally to medicine, prescription-CBD, capsule, and complaint paths; expanded the humidity guide into transparent ownership math; and logged the American Liver Foundation as a qualified resource-review opportunity. No outreach was sent."
+    "action": "Published a dated federal-property primary-source digest covering the April 28, 2026 final rule, the separate rescheduling docket, NPS regulation and property-specific verification; rebuilt the terpene guide into a citation-worthy panel and claims audit; added reciprocal links from established sleep, driving, flight, flower, certificate and gear-comparison paths; and logged the American Chemical Society Cannabis Chemistry Subdivision as a qualified technical-review opportunity. No outreach was sent."
   },
   "surfaces": [
     "homepage",
-    "guide library and decision paths",
+    "guide library",
+    "legal library",
     "gear library",
-    "medicine-interaction, epilepsy, CBD-capsule, complaint, storage, and gear-comparison contextual links",
+    "sleep, driving, flight, flower, certificate, and gear-comparison contextual paths",
+    "related-reading modules across the complete publication",
     "publication updates",
     "Atom feed",
     "complete site index",

@@ -4,8 +4,48 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-10T00:00:00Z</updated>
+  <updated>2026-10-11T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis on Federal Property: 2026 Rules Guide</title>
+    <id>https://bigbudman.com/legal/cannabis-federal-property-rules-guide/</id>
+    <link href="https://bigbudman.com/legal/cannabis-federal-property-rules-guide/"/>
+    <updated>2026-10-11T00:00:00Z</updated>
+    <published>2026-10-11T00:00:00Z</published>
+    <summary>Identify federal property and agency rules before carrying cannabis into a national park, federal building, courthouse, military installation or other site.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Terpene Guide: Panels &amp; Claims</title>
+    <id>https://bigbudman.com/guides/terpenes/</id>
+    <link href="https://bigbudman.com/guides/terpenes/"/>
+    <updated>2026-10-11T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Read cannabis terpene panels, units, aroma vocabulary, added-terpene disclosures, evidence, storage limits, and retail effect claims without overreach.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Social Hosting &amp; Guest Safety Plan</title>
+    <id>https://bigbudman.com/guides/cannabis-social-hosting-guest-safety-plan/</id>
+    <link href="https://bigbudman.com/guides/cannabis-social-hosting-guest-safety-plan/"/>
+    <updated>2026-10-11T00:00:00Z</updated>
+    <published>2026-10-11T00:00:00Z</published>
+    <summary>Plan an adult cannabis gathering with consent, original packaging, locked storage, sober transportation, impairment limits and emergency response.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Loupe &amp; Pocket Microscope Guide</title>
+    <id>https://bigbudman.com/gear/cannabis-loupe-pocket-microscope-guide/</id>
+    <link href="https://bigbudman.com/gear/cannabis-loupe-pocket-microscope-guide/"/>
+    <updated>2026-10-11T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Compare three loupes or pocket microscopes by field of view, working distance, setup cost, annual cost, documentation, care, and evidence limits.</summary>
+  </entry>
+  <entry>
+    <title>CBN Products: Label &amp; Evidence Guide</title>
+    <id>https://bigbudman.com/guides/cbn-products-label-evidence-guide/</id>
+    <link href="https://bigbudman.com/guides/cbn-products-label-evidence-guide/"/>
+    <updated>2026-10-11T00:00:00Z</updated>
+    <published>2026-10-11T00:00:00Z</published>
+    <summary>Audit CBN gummies, oils and sleep claims by product identity, package math, exact-lot evidence, human research, ingredients, interactions and legal status.</summary>
+  </entry>
   <entry>
     <title>Cannabis, CBD &amp; Liver Health Safety Guide</title>
     <id>https://bigbudman.com/guides/cannabis-cbd-liver-health-safety-guide/</id>
@@ -205,45 +245,5 @@
     <updated>2026-10-02T00:00:00Z</updated>
     <published>2026-10-02T00:00:00Z</published>
     <summary>Read a CBG product by exact form, milligrams, cannabinoid panel, lot, report, ingredients, claims, and evidence limits—not minor-cannabinoid hype.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Child-Resistant Packaging &amp; Storage</title>
-    <id>https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/"/>
-    <updated>2026-10-01T00:00:00Z</updated>
-    <published>2026-10-01T00:00:00Z</published>
-    <summary>Audit cannabis child-resistant packaging, reclosure, original labels, locked home storage, visitor routines, and an accidental-exposure response plan.</summary>
-  </entry>
-  <entry>
-    <title>510 Vape Battery Safety &amp; Compatibility</title>
-    <id>https://bigbudman.com/gear/510-thread-vape-battery-safety/</id>
-    <link href="https://bigbudman.com/gear/510-thread-vape-battery-safety/"/>
-    <updated>2026-10-01T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Check 510 vape battery compatibility, voltage, charging, lockouts, damage, recalls, storage, and recycling with a printable hardware record.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Official Source Directory</title>
-    <id>https://bigbudman.com/guides/cannabis-official-source-directory/</id>
-    <link href="https://bigbudman.com/guides/cannabis-official-source-directory/"/>
-    <updated>2026-09-30T00:00:00Z</updated>
-    <published>2026-09-30T00:00:00Z</published>
-    <summary>Find the right official cannabis source for emergencies, health, product problems, recalls, fraud, driving, work, travel, hemp, and state rules.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Gummies vs Drinks vs Oils vs Capsules</title>
-    <id>https://bigbudman.com/guides/cannabis-gummies-drinks-oils-capsules-comparison/</id>
-    <link href="https://bigbudman.com/guides/cannabis-gummies-drinks-oils-capsules-comparison/"/>
-    <updated>2026-09-30T00:00:00Z</updated>
-    <published>2026-09-30T00:00:00Z</published>
-    <summary>Compare cannabis gummies, drinks, oils, capsules, lozenges, sprays, and powders by route, label unit, ingredients, storage, evidence, and total cost.</summary>
-  </entry>
-  <entry>
-    <title>NY Cannabis Delivery Verification</title>
-    <id>https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/</id>
-    <link href="https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/"/>
-    <updated>2026-09-29T00:00:00Z</updated>
-    <published>2026-09-29T00:00:00Z</published>
-    <summary>Verify a New York cannabis delivery order from license listing to website, payment, ID check, handoff, receipt, product lot, and complaint route.</summary>
   </entry>
 </feed>
