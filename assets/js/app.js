@@ -1192,6 +1192,78 @@
     renderHumidityComparison();
   }
 
+  // The loupe comparison checks only the documented dimensions and costs the
+  // reader enters. It does not verify an optical claim or certify a device.
+  const loupeComparison = $('[data-loupe-comparison]');
+  if (loupeComparison) {
+    const read = (selector) => {
+      const raw = $(selector, loupeComparison)?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const readAt = (nodes, index) => {
+      const raw = nodes[index]?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const money = (value) => value === null ? '—' : value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const millimeters = (actual, required, positiveLabel) => {
+      if (actual === null || required === null) return '—';
+      const margin = actual - required;
+      return margin >= 0 ? `${positiveLabel} (+${margin.toLocaleString(undefined, {maximumFractionDigits:1})} mm)` : `Short ${Math.abs(margin).toLocaleString(undefined, {maximumFractionDigits:1})} mm`;
+    };
+    const devices = $$('[data-loupe-device]', loupeComparison);
+    const accessories = $$('[data-loupe-accessories]', loupeComparison);
+    const annualCosts = $$('[data-loupe-annual-cost]', loupeComparison);
+    const fields = $$('[data-loupe-fov]', loupeComparison);
+    const distances = $$('[data-loupe-working-distance]', loupeComparison);
+    const fieldResults = $$('[data-loupe-fov-result]', loupeComparison);
+    const distanceResults = $$('[data-loupe-distance-result]', loupeComparison);
+    const firstResults = $$('[data-loupe-first]', loupeComparison);
+    const totalResults = $$('[data-loupe-total]', loupeComparison);
+    const annualResults = $$('[data-loupe-annual]', loupeComparison);
+    const renderLoupeComparison = () => {
+      const target = read('[data-loupe-target]');
+      const clearance = read('[data-loupe-clearance]');
+      const years = read('[data-loupe-years]');
+      let entered = 0;
+      let dimensionComplete = 0;
+      let costComplete = 0;
+      for (let index = 0; index < 3; index += 1) {
+        const device = readAt(devices, index);
+        const accessory = readAt(accessories, index);
+        const annualCost = readAt(annualCosts, index);
+        const field = readAt(fields, index);
+        const distance = readAt(distances, index);
+        if ([device, accessory, annualCost, field, distance].some((value) => value !== null)) entered += 1;
+        const first = device !== null && accessory !== null && annualCost !== null ? device + accessory + annualCost : null;
+        const total = device !== null && accessory !== null && annualCost !== null && years > 0 ? device + accessory + annualCost * years : null;
+        const annualized = total !== null && years > 0 ? total / years : null;
+        fieldResults[index].textContent = millimeters(field, target, 'Fits');
+        distanceResults[index].textContent = millimeters(distance, clearance, 'Fits');
+        firstResults[index].textContent = money(first);
+        totalResults[index].textContent = money(total);
+        annualResults[index].textContent = money(annualized);
+        if (field !== null && distance !== null && target !== null && clearance !== null) dimensionComplete += 1;
+        if (total !== null) costComplete += 1;
+      }
+      const status = $('[data-loupe-status]', loupeComparison);
+      if (!status) return;
+      if (!entered) status.textContent = 'Enter the job and any exact-model facts. Blank fields stay unknown; enter 0 when a real cost is zero.';
+      else if (target === null || clearance === null || !(years > 0)) status.textContent = 'Entered rows are preserved. Add target width, minimum working distance, and a nonzero horizon to complete both fit and ownership screens.';
+      else status.textContent = `${dimensionComplete} dimensional screen${dimensionComplete === 1 ? '' : 's'} and ${costComplete} ownership estimate${costComplete === 1 ? '' : 's'} are complete. Review optics, stability, lighting, software, care, support, and evidence limits separately.`;
+    };
+    $$('input', loupeComparison).forEach((input) => input.addEventListener('input', renderLoupeComparison));
+    $('[data-loupe-reset]', loupeComparison)?.addEventListener('click', () => {
+      $$('input', loupeComparison).forEach((input) => { input.value = ''; });
+      renderLoupeComparison();
+      $('[data-loupe-target]', loupeComparison)?.focus();
+    });
+    renderLoupeComparison();
+  }
+
   // Glossary filtering keeps every definition in the HTML and only narrows
   // the visible set. Without JavaScript the complete reference remains usable.
   const glossary = $('[data-glossary]');
