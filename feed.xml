@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-11T00:00:00Z</updated>
+  <updated>2026-10-12T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis Gear Comparison &amp; Cost Calculator</title>
+    <id>https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/</id>
+    <link href="https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/"/>
+    <updated>2026-10-12T00:00:00Z</updated>
+    <published>2026-09-20T00:00:00Z</published>
+    <summary>Compare three cannabis accessories by exact model, first-year cost, ownership cost, cost per use, fit, materials, care, support, warranty, and recalls.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis 101: Product, Label &amp; Safety Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-101/</id>
+    <link href="https://bigbudman.com/guides/cannabis-101/"/>
+    <updated>2026-10-12T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>A practical Cannabis 101 guide to THC, CBD, formats, labels, product identity, marketing claims, impairment, storage, and first-purchase questions.</summary>
+  </entry>
   <entry>
     <title>Cannabis on Federal Property: 2026 Rules Guide</title>
     <id>https://bigbudman.com/legal/cannabis-federal-property-rules-guide/</id>
@@ -229,21 +245,5 @@
     <updated>2026-10-02T00:00:00Z</updated>
     <published>2026-10-02T00:00:00Z</published>
     <summary>Cross-check THC and CBD per serving, per piece, package totals, and a selected number of pieces without turning arithmetic into dosing advice.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Contaminant Test Results Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-contaminant-test-results-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-contaminant-test-results-guide/"/>
-    <updated>2026-10-02T00:00:00Z</updated>
-    <published>2026-10-02T00:00:00Z</published>
-    <summary>Read cannabis pesticide, microbial, mycotoxin, metal, solvent, moisture, water-activity, and foreign-material results without guessing.</summary>
-  </entry>
-  <entry>
-    <title>CBG Products: Label &amp; Evidence Guide</title>
-    <id>https://bigbudman.com/guides/cbg-products-label-evidence-guide/</id>
-    <link href="https://bigbudman.com/guides/cbg-products-label-evidence-guide/"/>
-    <updated>2026-10-02T00:00:00Z</updated>
-    <published>2026-10-02T00:00:00Z</published>
-    <summary>Read a CBG product by exact form, milligrams, cannabinoid panel, lot, report, ingredients, claims, and evidence limits—not minor-cannabinoid hype.</summary>
   </entry>
 </feed>

@@ -1,27 +1,27 @@
 {
-  "publication_date": "2026-10-11",
+  "publication_date": "2026-10-12",
   "page_count": 3,
   "pages": [
     {
-      "title": "CBN Products: Label & Evidence Guide",
-      "url": "https://bigbudman.com/guides/cbn-products-label-evidence-guide/",
+      "title": "Cannabis 101: Product, Label & Safety Guide",
+      "url": "https://bigbudman.com/guides/cannabis-101/",
       "department": "guides",
-      "portfolio_label": "Exploration",
-      "search_intent": "audit CBN gummies, oils and sleep claims by package math, exact-lot evidence, ingredients, limited human research and safety context"
-    },
-    {
-      "title": "Cannabis on Federal Property: 2026 Rules Guide",
-      "url": "https://bigbudman.com/legal/cannabis-federal-property-rules-guide/",
-      "department": "legal",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "identify the managing agency, property boundary, exact product, 2026 federal scheduling lane and site-specific rule before carrying cannabis"
+      "search_intent": "give new and returning adults a complete product, label, claim, safety, storage and response framework without recommending use"
     },
     {
-      "title": "Cannabis Social Hosting & Guest Safety Plan",
-      "url": "https://bigbudman.com/guides/cannabis-social-hosting-guest-safety-plan/",
-      "department": "guides",
+      "title": "Cannabis Gear Comparison & Cost Calculator",
+      "url": "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/",
+      "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "plan adult-only access, consent, product control, locked storage, sober transportation, urgent response and cleanup"
+      "search_intent": "compare three exact accessories by first-year, ownership-horizon, annualized and per-use cost after fit and evidence gates"
+    },
+    {
+      "title": "Editorial Policy: Link and Section Integrity",
+      "url": "https://bigbudman.com/editorial-policy/",
+      "department": "trust",
+      "portfolio_label": "Exploration",
+      "search_intent": "document and enforce local link and URL-fragment validation across every generated page"
     }
   ],
   "monetization": {
@@ -31,22 +31,22 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The three new pages and the terpene/loupe authority upgrades use text, tables, forms and existing design components. No product, medical, cultivar, affiliate, stock or generated image was added or changed."
+    "note": "The two article upgrades and the link-integrity trust update use text, tables, forms and existing design components. No product, medical, cultivar, affiliate, stock or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-10-07",
-    "decision": "The September 7\u2013October 4 report showed 1,214 impressions, two clicks, 0.2% CTR, and average position 35.3. Stem Cell CBG had the only supported position 4\u201320 page signal, with 13 impressions, one click, and position 5.3, and it was materially expanded on October 8. Remaining position 4\u201320 page and query rows had only one to seven impressions, so no Data-led item was justified; those tiny samples and the single Oklahoma-law query click were deliberately ignored. Today's new pages diversify into a minor-cannabinoid product audit, a dated federal-jurisdiction digest, and a responsible social-hosting system while strengthening crawl paths."
+    "decision": "The September 7\u2013October 4 report showed 1,214 impressions, two clicks, 0.2% CTR, and average position 35.3. Stem Cell CBG had the only supported position 4\u201320 page signal, with 13 impressions, one click, and position 5.3, and it was materially expanded on October 8. Remaining position 4\u201320 rows had only one to seven impressions, so no Data-led item was justified; those tiny samples and the isolated Oklahoma-law click were deliberately ignored. Today's work strengthens the broad beginner hub, a distinct purchase-comparison workflow, and technical trust rather than chasing another thin query variation."
   },
   "authority": {
-    "action": "Published a dated federal-property primary-source digest covering the April 28, 2026 final rule, the separate rescheduling docket, NPS regulation and property-specific verification; rebuilt the terpene guide into a citation-worthy panel and claims audit; added reciprocal links from established sleep, driving, flight, flower, certificate and gear-comparison paths; and logged the American Chemical Society Cannabis Chemistry Subdivision as a qualified technical-review opportunity. No outreach was sent."
+    "action": "Rebuilt Cannabis 101 into a citation-worthy product, label, claims, safety, storage and response reference using current CDC, FDA and Poison Control sources; connected it to established label, lot-evidence and responsible-use paths; and documented a sitewide URL-fragment validation gate. No outreach was sent and no new outreach target was logged because strengthening the site's own foundational hub was the higher-value authority action."
   },
   "surfaces": [
     "homepage",
     "guide library",
-    "legal library",
     "gear library",
-    "sleep, driving, flight, flower, certificate, and gear-comparison contextual paths",
-    "related-reading modules across the complete publication",
+    "Cannabis 101 reciprocal topic paths",
+    "gear-comparison contextual paths",
+    "editorial policy",
     "publication updates",
     "Atom feed",
     "complete site index",
@@ -54,6 +54,6 @@
     "canonical XML sitemap",
     "legacy Search Console sitemap compatibility URL",
     "robots sitemap directive",
-    "checksum-verified source archive gate"
+    "checksum-verified source archive and URL-fragment gates"
   ]
 }

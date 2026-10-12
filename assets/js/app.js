@@ -1192,6 +1192,66 @@
     renderHumidityComparison();
   }
 
+  // The general gear comparison prices only the exact inputs supplied by the
+  // reader. Fit, materials, instructions, recalls, and support remain gates.
+  const gearCostComparison = $('[data-gear-cost-comparison]');
+  if (gearCostComparison) {
+    const read = (selector) => {
+      const raw = $(selector, gearCostComparison)?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const readAt = (nodes, index) => {
+      const raw = nodes[index]?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const money = (value) => value === null ? '—' : value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const prices = $$('[data-gear-price]', gearCostComparison);
+    const setup = $$('[data-gear-setup]', gearCostComparison);
+    const recurring = $$('[data-gear-recurring]', gearCostComparison);
+    const firstResults = $$('[data-gear-first]', gearCostComparison);
+    const totalResults = $$('[data-gear-total]', gearCostComparison);
+    const annualResults = $$('[data-gear-annual]', gearCostComparison);
+    const perUseResults = $$('[data-gear-per-use]', gearCostComparison);
+    const renderGearCostComparison = () => {
+      const years = read('[data-gear-years]');
+      const uses = read('[data-gear-uses]');
+      let entered = 0;
+      let complete = 0;
+      for (let index = 0; index < 3; index += 1) {
+        const price = readAt(prices, index);
+        const setupCost = readAt(setup, index);
+        const recurringCost = readAt(recurring, index);
+        if ([price, setupCost, recurringCost].some((value) => value !== null)) entered += 1;
+        const first = price !== null && setupCost !== null && recurringCost !== null ? price + setupCost + recurringCost : null;
+        const total = first !== null && years > 0 ? price + setupCost + recurringCost * years : null;
+        const annualized = total !== null && years > 0 ? total / years : null;
+        const perUse = total !== null && years > 0 && uses > 0 ? total / (years * uses) : null;
+        firstResults[index].textContent = money(first);
+        totalResults[index].textContent = money(total);
+        annualResults[index].textContent = money(annualized);
+        perUseResults[index].textContent = money(perUse);
+        if (total !== null) complete += 1;
+      }
+      const status = $('[data-gear-status]', gearCostComparison);
+      if (!status) return;
+      if (!entered) status.textContent = 'Enter the planning horizon and any complete exact-model costs. Blank fields stay unknown; enter 0 only when a real cost is zero.';
+      else if (!(years > 0)) status.textContent = 'First-year estimates are available for complete options. Enter a nonzero horizon for total and annualized cost.';
+      else if (!(uses > 0)) status.textContent = `${complete} ownership estimate${complete === 1 ? '' : 's'} complete. Enter nonzero expected uses per year only if cost per use helps this decision.`;
+      else status.textContent = `${complete} complete option${complete === 1 ? '' : 's'} updated locally. Apply fit, materials, safety, care, support, warranty, and recall gates before comparing cost.`;
+    };
+    $$('input', gearCostComparison).forEach((input) => input.addEventListener('input', renderGearCostComparison));
+    $('[data-gear-reset]', gearCostComparison)?.addEventListener('click', () => {
+      $$('input', gearCostComparison).forEach((input) => { input.value = ''; });
+      renderGearCostComparison();
+      $('[data-gear-years]', gearCostComparison)?.focus();
+    });
+    renderGearCostComparison();
+  }
+
   // The loupe comparison checks only the documented dimensions and costs the
   // reader enters. It does not verify an optical claim or certify a device.
   const loupeComparison = $('[data-loupe-comparison]');
