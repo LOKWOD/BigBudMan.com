@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-12T00:00:00Z</updated>
+  <updated>2026-10-13T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis Vape Guide: Carts &amp; Warning Signs</title>
+    <id>https://bigbudman.com/guides/vapes/</id>
+    <link href="https://bigbudman.com/guides/vapes/"/>
+    <updated>2026-10-13T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Identify a cannabis cartridge, disposable, pod, oil, battery, ingredients, lot evidence, hardware fit, stop-use signs, lung symptoms, and disposal route.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Accessory Return &amp; Warranty Guide</title>
+    <id>https://bigbudman.com/gear/cannabis-accessory-return-warranty-recall-guide/</id>
+    <link href="https://bigbudman.com/gear/cannabis-accessory-return-warranty-recall-guide/"/>
+    <updated>2026-10-13T00:00:00Z</updated>
+    <published>2026-10-13T00:00:00Z</published>
+    <summary>Compare cannabis accessory return terms, warranty coverage, recall identity, evidence, deadlines, support, and safe exit routes with a date checkpoint tool.</summary>
+  </entry>
   <entry>
     <title>Cannabis Gear Comparison &amp; Cost Calculator</title>
     <id>https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/</id>
@@ -229,21 +245,5 @@
     <updated>2026-10-03T00:00:00Z</updated>
     <published>2026-08-17T00:00:00Z</published>
     <summary>Compare cannabis grinders by grip, size, materials, teeth, threads, screens, cleaning, warranty, recalls, and total ownership cost.</summary>
-  </entry>
-  <entry>
-    <title>Dry-Herb Vaporizer Buying &amp; Cost Guide</title>
-    <id>https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/</id>
-    <link href="https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/"/>
-    <updated>2026-10-02T00:00:00Z</updated>
-    <published>2026-09-11T00:00:00Z</published>
-    <summary>Compare a dry-herb vaporizer by airpath, controls, battery safety, cleaning, recalls, replacement parts, warranty, and total ownership cost.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Edible Label Math Checker</title>
-    <id>https://bigbudman.com/guides/cannabis-edible-label-math-checker/</id>
-    <link href="https://bigbudman.com/guides/cannabis-edible-label-math-checker/"/>
-    <updated>2026-10-02T00:00:00Z</updated>
-    <published>2026-10-02T00:00:00Z</published>
-    <summary>Cross-check THC and CBD per serving, per piece, package totals, and a selected number of pieces without turning arithmetic into dosing advice.</summary>
   </entry>
 </feed>

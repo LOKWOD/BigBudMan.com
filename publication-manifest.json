@@ -1,27 +1,27 @@
 {
-  "publication_date": "2026-10-12",
+  "publication_date": "2026-10-13",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis 101: Product, Label & Safety Guide",
-      "url": "https://bigbudman.com/guides/cannabis-101/",
+      "title": "Cannabis Vape Guide: Carts & Warning Signs",
+      "url": "https://bigbudman.com/guides/vapes/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "give new and returning adults a complete product, label, claim, safety, storage and response framework without recommending use"
+      "search_intent": "identify a cannabis vape as a complete oil, source, lot, hardware, symptom and disposal system"
     },
     {
-      "title": "Cannabis Gear Comparison & Cost Calculator",
-      "url": "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/",
+      "title": "Cannabis Accessory Return & Warranty Guide",
+      "url": "https://bigbudman.com/gear/cannabis-accessory-return-warranty-recall-guide/",
       "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "compare three exact accessories by first-year, ownership-horizon, annualized and per-use cost after fit and evidence gates"
+      "search_intent": "capture exact-model return, warranty, recall and support evidence and calculate early review checkpoints before buying"
     },
     {
-      "title": "Editorial Policy: Link and Section Integrity",
+      "title": "Editorial Policy: Structured-Data Identity",
       "url": "https://bigbudman.com/editorial-policy/",
       "department": "trust",
       "portfolio_label": "Exploration",
-      "search_intent": "document and enforce local link and URL-fragment validation across every generated page"
+      "search_intent": "document and enforce distinct Organization, WebSite, WebPage and Article identities across every generated page"
     }
   ],
   "monetization": {
@@ -31,21 +31,21 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The two article upgrades and the link-integrity trust update use text, tables, forms and existing design components. No product, medical, cultivar, affiliate, stock or generated image was added or changed."
+    "note": "The vape reference, return and warranty tool, and structured-data trust update use text, tables, forms and existing design components. No product, medical, cultivar, affiliate, stock or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-10-07",
-    "decision": "The September 7\u2013October 4 report showed 1,214 impressions, two clicks, 0.2% CTR, and average position 35.3. Stem Cell CBG had the only supported position 4\u201320 page signal, with 13 impressions, one click, and position 5.3, and it was materially expanded on October 8. Remaining position 4\u201320 rows had only one to seven impressions, so no Data-led item was justified; those tiny samples and the isolated Oklahoma-law click were deliberately ignored. Today's work strengthens the broad beginner hub, a distinct purchase-comparison workflow, and technical trust rather than chasing another thin query variation."
+    "decision": "The September 7\u2013October 4 report showed 1,214 impressions, two clicks, 0.2% CTR, and average position 35.3. Stem Cell CBG had the only supported position 4\u201320 page signal, with 13 impressions, one click, and position 5.3, and it was materially expanded on October 8. Remaining position 4\u201320 rows had only one to seven impressions, so no Data-led item was justified; those tiny samples and the isolated Oklahoma-law click were deliberately ignored. Today's work strengthens a distinct vape-product authority gap, a fresh after-sale accessory workflow, and technical trust rather than chasing another thin query variation."
   },
   "authority": {
-    "action": "Rebuilt Cannabis 101 into a citation-worthy product, label, claims, safety, storage and response reference using current CDC, FDA and Poison Control sources; connected it to established label, lot-evidence and responsible-use paths; and documented a sitewide URL-fragment validation gate. No outreach was sent and no new outreach target was logged because strengthening the site's own foundational hub was the higher-value authority action."
+    "action": "Rebuilt the thin vape page into a citation-worthy oil, source, lot, hardware, health, storage and disposal reference using current CDC, FDA, CPSC and Poison Control sources; connected it reciprocally to battery, comparison and disposal paths; and added a sitewide structured-data identity gate. No outreach was sent and no new outreach target was logged because strengthening the site's own product-format cluster was the higher-value authority action."
   },
   "surfaces": [
     "homepage",
     "guide library",
     "gear library",
-    "Cannabis 101 reciprocal topic paths",
-    "gear-comparison contextual paths",
+    "vape-product reciprocal topic paths",
+    "return-warranty contextual paths",
     "editorial policy",
     "publication updates",
     "Atom feed",
@@ -54,6 +54,6 @@
     "canonical XML sitemap",
     "legacy Search Console sitemap compatibility URL",
     "robots sitemap directive",
-    "checksum-verified source archive and URL-fragment gates"
+    "checksum-verified source archive and structured-data identity gates"
   ]
 }

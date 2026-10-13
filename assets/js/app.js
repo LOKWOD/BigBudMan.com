@@ -1252,6 +1252,53 @@
     renderGearCostComparison();
   }
 
+  // Return and warranty dates are planning checkpoints only. The written
+  // terms decide the controlling event, counting rule, cutoff and remedy.
+  const returnDeadline = $('[data-return-deadline]');
+  if (returnDeadline) {
+    const parseDate = (raw) => {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(raw || '')) return null;
+      const [year, month, day] = raw.split('-').map(Number);
+      const value = new Date(Date.UTC(year, month - 1, day));
+      return value.getUTCFullYear() === year && value.getUTCMonth() === month - 1 && value.getUTCDate() === day ? value : null;
+    };
+    const readCount = (selector) => {
+      const raw = $(selector, returnDeadline)?.value.trim();
+      if (raw === '') return null;
+      const value = Number(raw);
+      return Number.isInteger(value) && value >= 0 ? value : null;
+    };
+    const addDays = (date, days) => new Date(date.getTime() + days * 86400000);
+    const addMonthsClamped = (date, months) => {
+      const targetMonth = date.getUTCMonth() + months;
+      const targetYear = date.getUTCFullYear() + Math.floor(targetMonth / 12);
+      const normalizedMonth = ((targetMonth % 12) + 12) % 12;
+      const lastDay = new Date(Date.UTC(targetYear, normalizedMonth + 1, 0)).getUTCDate();
+      return new Date(Date.UTC(targetYear, normalizedMonth, Math.min(date.getUTCDate(), lastDay)));
+    };
+    const formatDate = (date) => date ? date.toLocaleDateString(undefined, {year:'numeric', month:'long', day:'numeric', timeZone:'UTC'}) : '—';
+    const renderReturnDeadline = () => {
+      const start = parseDate($('[data-return-purchase]', returnDeadline)?.value);
+      const days = readCount('[data-return-days]');
+      const months = readCount('[data-return-months]');
+      $('[data-return-start]', returnDeadline).textContent = formatDate(start);
+      $('[data-return-end]', returnDeadline).textContent = formatDate(start && days !== null ? addDays(start, days) : null);
+      $('[data-warranty-end]', returnDeadline).textContent = formatDate(start && months !== null ? addMonthsClamped(start, months) : null);
+      const status = $('[data-return-status]', returnDeadline);
+      if (!status) return;
+      if (!start) status.textContent = 'Enter a valid date and only terms you can verify. Blank fields stay unknown.';
+      else if (days === null && months === null) status.textContent = 'Start date recorded. Add a verified return window or warranty term to calculate an early review checkpoint.';
+      else status.textContent = 'Planning checkpoints updated locally. Confirm the written terms, counting rule, time zone, exclusions and required notice; set an earlier reminder.';
+    };
+    $$('input', returnDeadline).forEach((input) => input.addEventListener('input', renderReturnDeadline));
+    $('[data-return-reset]', returnDeadline)?.addEventListener('click', () => {
+      $$('input', returnDeadline).forEach((input) => { input.value = ''; });
+      renderReturnDeadline();
+      $('[data-return-purchase]', returnDeadline)?.focus();
+    });
+    renderReturnDeadline();
+  }
+
   // The loupe comparison checks only the documented dimensions and costs the
   // reader enters. It does not verify an optical claim or certify a device.
   const loupeComparison = $('[data-loupe-comparison]');
