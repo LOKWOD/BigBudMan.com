@@ -549,31 +549,80 @@
 
   $('[data-print-article]')?.addEventListener('click', () => window.print());
 
-  // Grow-light energy arithmetic. This intentionally does not estimate circuit
-  // capacity, environmental loads, crop response, or yield.
-  const growPlanner = $('[data-grow-light-planner]');
-  if (growPlanner) {
-    const number = (selector, maximum = Number.POSITIVE_INFINITY) => {
-      const value = Number($(selector, growPlanner)?.value || 0);
-      return Number.isFinite(value) ? Math.min(maximum, Math.max(0, value)) : 0;
+  // Compare three exact grow-light ownership records. This deliberately does
+  // not approve a circuit, model plant response, or estimate crop yield.
+  const growComparison = $('[data-grow-light-comparison]');
+  if (growComparison) {
+    const read = (root, selector, maximum = Number.POSITIVE_INFINITY) => {
+      const node = $(selector, root);
+      const raw = node?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.min(maximum, Math.max(0, value)) : null;
     };
-    const renderGrowPlan = () => {
-      const watts = number('[data-grow-watts]');
-      const count = number('[data-grow-count]');
-      const hours = number('[data-grow-hours]', 24);
-      const days = number('[data-grow-days]', 366);
-      const rate = number('[data-grow-rate]');
-      const totalWatts = watts * count;
-      const dailyKwh = totalWatts * hours / 1000;
-      const periodKwh = dailyKwh * days;
-      const cost = periodKwh * rate;
-      $('[data-grow-total-watts]', growPlanner).textContent = `${totalWatts.toLocaleString(undefined, {maximumFractionDigits:1})} W`;
-      $('[data-grow-daily-kwh]', growPlanner).textContent = `${dailyKwh.toFixed(2)} kWh`;
-      $('[data-grow-period-kwh]', growPlanner).textContent = `${periodKwh.toFixed(2)} kWh`;
-      $('[data-grow-cost]', growPlanner).textContent = cost.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const renderGrowComparison = () => {
+      const hours = read(growComparison, '[data-grow-hours]', 24);
+      const days = read(growComparison, '[data-grow-days]', 366);
+      const rate = read(growComparison, '[data-grow-rate]');
+      const years = read(growComparison, '[data-grow-years]');
+      const sharedComplete = hours !== null && days !== null && rate !== null && years !== null && years > 0;
+      let complete = 0;
+      const columns = ['A', 'B', 'C'];
+      const priceNodes = $$('[data-grow-price]', growComparison);
+      const countNodes = $$('[data-grow-count]', growComparison);
+      const wattsNodes = $$('[data-grow-watts]', growComparison);
+      const setupNodes = $$('[data-grow-setup]', growComparison);
+      const maintenanceNodes = $$('[data-grow-maintenance]', growComparison);
+      const loadNodes = $$('[data-grow-load]', growComparison);
+      const energyNodes = $$('[data-grow-energy]', growComparison);
+      const electricityNodes = $$('[data-grow-electricity]', growComparison);
+      const acquisitionNodes = $$('[data-grow-acquisition]', growComparison);
+      const totalNodes = $$('[data-grow-total]', growComparison);
+      const annualizedNodes = $$('[data-grow-annualized]', growComparison);
+      columns.forEach((_, index) => {
+        const values = [priceNodes, countNodes, wattsNodes, setupNodes, maintenanceNodes].map((nodes) => {
+          const raw = nodes[index]?.value.trim();
+          if (!raw) return null;
+          const value = Number(raw);
+          return Number.isFinite(value) ? Math.max(0, value) : null;
+        });
+        const optionComplete = sharedComplete && values.every((value) => value !== null) && values[1] > 0;
+        if (!optionComplete) {
+          [loadNodes, energyNodes, electricityNodes, acquisitionNodes, totalNodes, annualizedNodes].forEach((nodes) => {
+            nodes[index].textContent = '—';
+          });
+          return;
+        }
+        complete += 1;
+        const [price, count, watts, setup, maintenance] = values;
+        const load = watts * count;
+        const annualEnergy = load * hours * days / 1000;
+        const annualElectricity = annualEnergy * rate;
+        const acquisition = price * count + setup;
+        const total = acquisition + (annualElectricity + maintenance) * years;
+        loadNodes[index].textContent = `${load.toLocaleString(undefined, {maximumFractionDigits:1})} W`;
+        energyNodes[index].textContent = `${annualEnergy.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})} kWh`;
+        electricityNodes[index].textContent = money(annualElectricity);
+        acquisitionNodes[index].textContent = money(acquisition);
+        totalNodes[index].textContent = money(total);
+        annualizedNodes[index].textContent = money(total / years);
+      });
+      const status = $('[data-grow-status]', growComparison);
+      status.textContent = !sharedComplete
+        ? 'Complete the shared operating assumptions and use a planning horizon above zero.'
+        : complete
+          ? `${complete} complete exact-model option${complete === 1 ? '' : 's'} calculated. Blank or partial columns remain unknown.`
+          : 'Complete at least one option. Enter zero only when a documented cost is truly zero.';
     };
-    $$('input', growPlanner).forEach((input) => input.addEventListener('input', renderGrowPlan));
-    renderGrowPlan();
+    $$('input', growComparison).forEach((input) => input.addEventListener('input', renderGrowComparison));
+    $('[data-grow-reset]', growComparison)?.addEventListener('click', () => {
+      $$('input', growComparison).forEach((input) => { input.value = ''; });
+      $('[data-grow-days]', growComparison).value = '365';
+      $('[data-grow-years]', growComparison).value = '3';
+      renderGrowComparison();
+    });
+    renderGrowComparison();
   }
 
   // Pre-roll package arithmetic. It normalizes labeled quantity and receipt

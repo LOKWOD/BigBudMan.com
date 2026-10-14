@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-13T00:00:00Z</updated>
+  <updated>2026-10-14T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis and Alcohol: Risks &amp; Emergency Signs</title>
+    <id>https://bigbudman.com/guides/cannabis-and-alcohol-mixing-risks/</id>
+    <link href="https://bigbudman.com/guides/cannabis-and-alcohol-mixing-risks/"/>
+    <updated>2026-10-14T00:00:00Z</updated>
+    <published>2026-09-10T00:00:00Z</published>
+    <summary>Cannabis and alcohol mixing risks, impairment limits, a two-substance event record, emergency warning signs, and a practical sober-host plan.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Grow-Light Comparison &amp; Cost Planner</title>
+    <id>https://bigbudman.com/gear/indoor-cannabis-grow-light-buying-cost-planner/</id>
+    <link href="https://bigbudman.com/gear/indoor-cannabis-grow-light-buying-cost-planner/"/>
+    <updated>2026-10-14T00:00:00Z</updated>
+    <published>2026-09-23T00:00:00Z</published>
+    <summary>Compare three grow-light systems by actual watts, coverage evidence, controls, setup, annual electricity, maintenance, warranty, and ownership cost.</summary>
+  </entry>
   <entry>
     <title>Cannabis Vape Guide: Carts &amp; Warning Signs</title>
     <id>https://bigbudman.com/guides/vapes/</id>
@@ -229,21 +245,5 @@
     <updated>2026-10-04T00:00:00Z</updated>
     <published>2026-10-04T00:00:00Z</published>
     <summary>Compare CBD patches and transdermal products by classification, label amount, ingredients, lot evidence, skin instructions, claims, and pharmacist questions.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis, Dry Mouth &amp; Dental Visits</title>
-    <id>https://bigbudman.com/guides/cannabis-dry-mouth-dental-oral-health-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-dry-mouth-dental-oral-health-guide/"/>
-    <updated>2026-10-03T00:00:00Z</updated>
-    <published>2026-10-03T00:00:00Z</published>
-    <summary>A practical cannabis oral-health guide to dry mouth, warning signs, route and product records, dental-visit disclosure, and evidence limits.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Grinder Buying Guide &amp; Cost Planner</title>
-    <id>https://bigbudman.com/gear/grinders/</id>
-    <link href="https://bigbudman.com/gear/grinders/"/>
-    <updated>2026-10-03T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Compare cannabis grinders by grip, size, materials, teeth, threads, screens, cleaning, warranty, recalls, and total ownership cost.</summary>
   </entry>
 </feed>

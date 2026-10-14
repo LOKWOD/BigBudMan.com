@@ -1,27 +1,27 @@
 {
-  "publication_date": "2026-10-13",
+  "publication_date": "2026-10-14",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis Vape Guide: Carts & Warning Signs",
-      "url": "https://bigbudman.com/guides/vapes/",
+      "title": "Cannabis and Alcohol: Risks & Emergency Signs",
+      "url": "https://bigbudman.com/guides/cannabis-and-alcohol-mixing-risks/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "identify a cannabis vape as a complete oil, source, lot, hardware, symptom and disposal system"
+      "search_intent": "separate alcohol and cannabis exposure records, remove driving, recognize emergency signs, and make a responder-ready handoff"
     },
     {
-      "title": "Cannabis Accessory Return & Warranty Guide",
-      "url": "https://bigbudman.com/gear/cannabis-accessory-return-warranty-recall-guide/",
+      "title": "Cannabis Grow-Light Comparison & Cost Planner",
+      "url": "https://bigbudman.com/gear/indoor-cannabis-grow-light-buying-cost-planner/",
       "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "capture exact-model return, warranty, recall and support evidence and calculate early review checkpoints before buying"
+      "search_intent": "compare three exact grow-light systems on evidence, setup, light-only energy, maintenance, warranty, and ownership cost"
     },
     {
-      "title": "Editorial Policy: Structured-Data Identity",
+      "title": "Editorial Policy: CSS Delivery Integrity",
       "url": "https://bigbudman.com/editorial-policy/",
       "department": "trust",
       "portfolio_label": "Exploration",
-      "search_intent": "document and enforce distinct Organization, WebSite, WebPage and Article identities across every generated page"
+      "search_intent": "document and enforce a single deployable stylesheet without a render-blocking CSS import waterfall"
     }
   ],
   "monetization": {
@@ -31,21 +31,21 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The vape reference, return and warranty tool, and structured-data trust update use text, tables, forms and existing design components. No product, medical, cultivar, affiliate, stock or generated image was added or changed."
+    "note": "The alcohol record, grow-light comparison, and CSS delivery update use text, tables, forms, and existing design components. No product, medical, cultivar, affiliate, stock, or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-10-07",
-    "decision": "The September 7\u2013October 4 report showed 1,214 impressions, two clicks, 0.2% CTR, and average position 35.3. Stem Cell CBG had the only supported position 4\u201320 page signal, with 13 impressions, one click, and position 5.3, and it was materially expanded on October 8. Remaining position 4\u201320 rows had only one to seven impressions, so no Data-led item was justified; those tiny samples and the isolated Oklahoma-law click were deliberately ignored. Today's work strengthens a distinct vape-product authority gap, a fresh after-sale accessory workflow, and technical trust rather than chasing another thin query variation."
+    "decision": "The September 7\u2013October 4 report showed 1,214 impressions, two clicks, 0.2% CTR, and average position 35.3. Stem Cell CBG had the only supported position 4\u201320 page signal, with 13 impressions, one click, and position 5.3, and it was materially expanded on October 8. Remaining position 4\u201320 rows had only one to seven impressions, so no Data-led item was justified. Those tiny samples and the isolated Oklahoma-law click were deliberately ignored; today's work expands distinct safety and lawful-equipment authority and fixes a delivery bottleneck instead of chasing a cosmetic query variation."
   },
   "authority": {
-    "action": "Rebuilt the thin vape page into a citation-worthy oil, source, lot, hardware, health, storage and disposal reference using current CDC, FDA, CPSC and Poison Control sources; connected it reciprocally to battery, comparison and disposal paths; and added a sitewide structured-data identity gate. No outreach was sent and no new outreach target was logged because strengthening the site's own product-format cluster was the higher-value authority action."
+    "action": "Rebuilt the cannabis-and-alcohol page into a citation-worthy two-substance exposure, symptom, and responder-handoff record using current CDC, NIAAA, and Poison Control sources; connected it reciprocally to driving, hosting, and urgent-response paths; and strengthened the lawful home-grow cluster with a three-model light-cost comparison. No outreach was sent and no new outreach target was logged because the site's own safety and cultivation clusters presented the higher-value authority work."
   },
   "surfaces": [
     "homepage",
     "guide library",
     "gear library",
-    "vape-product reciprocal topic paths",
-    "return-warranty contextual paths",
+    "alcohol-safety reciprocal topic paths",
+    "home-grow and gear-comparison topic paths",
     "editorial policy",
     "publication updates",
     "Atom feed",
@@ -54,6 +54,7 @@
     "canonical XML sitemap",
     "legacy Search Console sitemap compatibility URL",
     "robots sitemap directive",
-    "checksum-verified source archive and structured-data identity gates"
+    "single-file CSS bundle",
+    "checksum-verified source archive and publication gates"
   ]
 }
