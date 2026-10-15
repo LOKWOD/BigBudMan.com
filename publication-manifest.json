@@ -3,51 +3,49 @@
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis Flower Buying & Quality Checklist",
-      "url": "https://bigbudman.com/guides/flower/",
+      "title": "CBG-Dominant Cannabis Guide",
+      "url": "https://bigbudman.com/guides/cbg-dominant-cannabis-chemotype-guide/",
+      "department": "guides",
+      "portfolio_label": "Data-led",
+      "search_intent": "separate CBG-dominant chemotype evidence from cultivar provenance, package identity, lot chemistry, effects, medical claims, and legal category"
+    },
+    {
+      "title": "Dry-Herb Vaporizer Dosing Capsule Guide",
+      "url": "https://bigbudman.com/gear/dry-herb-vaporizer-dosing-capsule-guide/",
+      "department": "gear",
+      "portfolio_label": "Exploration",
+      "search_intent": "compare dosing capsules by exact-device compatibility, adapter, loading, single-use or reuse instructions, cleaning, storage, recall, and cost"
+    },
+    {
+      "title": "Cannabis Intoxication, Impairment & Detection",
+      "url": "https://bigbudman.com/guides/cannabis-intoxication-impairment-detection/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "compare packaged flower by lawful seller, package and lot match, dates, final report, condition, storage fit, route hardware, and exit plan"
-    },
-    {
-      "title": "Stem Cell CBG Evidence Checker",
-      "url": "https://bigbudman.com/strains/stem-cell-cbg/",
-      "department": "strains",
-      "portfolio_label": "Data-led",
-      "search_intent": "separate breeder, producer, sealed-package, final-lot-report, and current-rule evidence for a named CBG cultivar"
-    },
-    {
-      "title": "Editorial Policy: Breadcrumb Identity",
-      "url": "https://bigbudman.com/editorial-policy/",
-      "department": "trust",
-      "portfolio_label": "Exploration",
-      "search_intent": "document and enforce one canonical BreadcrumbList identity on every indexable page"
+      "search_intent": "separate acute effects, functional impairment, toxicology detection, poisoning response, and legal or workplace conclusions"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The flower checklist adds relevant product-neutral paths to the existing gear comparison, lockbox, and loupe decision tools without allowing a commercial link to determine the conclusion."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The purchase-intent dosing-capsule guide remains brand-neutral except for clearly identified manufacturer instructions and uses no commercial product link or image."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The flower checklist, CBG evidence checker, and breadcrumb update use text, tables, controls, and existing design components. No product, cultivar, affiliate, stock, or generated image was added or changed."
+    "note": "All three new pages use image-free editorial layouts, tables, checklists, and source cards. No editorial, cultivar, product, affiliate, stock, or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-10-14",
-    "decision": "The September 14\u2013October 11 report showed 1,373 impressions, four clicks, 0.3% CTR, and average position 33.5. Stem Cell CBG was the only repeatable position 4\u201320 page signal with meaningful support: 18 impressions, one click, and position 6.2, so it received the one Data-led slot, a five-layer evidence checker, and reciprocal peer links. One-impression query rows and the isolated Oklahoma-law click at position 66.9 were deliberately ignored as too weak or irrelevant. Canonical and legacy sitemap errors or pending status also favored clearer sitewide breadcrumb identity and crawl paths instead of more isolated pages."
+    "decision": "The September 14\u2013October 11 report showed 1,373 impressions, four clicks, 0.3% CTR, and average position 33.5. Stem Cell CBG was the only supported position 4\u201320 content signal with meaningful volume: 18 impressions, one click, and position 6.2. The one Data-led page expands the distinct plant-chemotype and lot-evidence question without cloning that cultivar intent. One-impression query rows, four ashtray impressions, and the isolated Oklahoma-law click at position 66.9 were deliberately ignored as too weak or irrelevant. The two remaining pages preserve portfolio breadth."
   },
   "authority": {
-    "action": "Rebuilt the thin flower page into a citation-worthy twelve-point packaged-flower checkout and three-record comparison using current New York OCM consumer and laboratory materials plus FDA boundaries; connected it to freshness, COA, storage, and gear-decision pages; and added an evidence-literacy tool plus reciprocal links around Stem Cell CBG. No outreach was sent or logged because strengthening the on-site flower and CBG clusters was the higher-value authority action."
+    "action": "Published a citation-worthy three-question evidence system: a five-layer CBG chemotype record grounded in primary genetics and official compound records, a model-compatibility capsule matrix grounded in manufacturer instructions and CPSC recalls, and an intoxication/impairment/detection decision table grounded in CDC, NHTSA, SAMHSA, and Poison Control sources. Reciprocal contextual links connect each asset to established cluster pages. No outreach was sent or logged."
   },
   "surfaces": [
-    "homepage",
     "guide library",
-    "strain library",
-    "flower freshness and COA reciprocal paths",
-    "White CBG and Auto CBG reciprocal paths",
-    "editorial policy",
-    "sitewide canonical BreadcrumbList graph",
+    "gear library",
+    "Stem Cell CBG and CBG-products reciprocal paths",
+    "dry-herb vaporizer and gear-comparison reciprocal paths",
+    "driving and drug-testing reciprocal paths",
     "publication updates",
     "Atom feed",
     "complete site index",

@@ -23,8 +23,9 @@
   <url><loc>https://bigbudman.com/gear/cannabis-vape-battery-cartridge-disposal-guide/</loc><lastmod>2026-09-22</lastmod></url>
   <url><loc>https://bigbudman.com/gear/digital-scale-buying-calibration-guide/</loc><lastmod>2026-10-06</lastmod></url>
   <url><loc>https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/</loc><lastmod>2026-10-02</lastmod></url>
+  <url><loc>https://bigbudman.com/gear/dry-herb-vaporizer-dosing-capsule-guide/</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://bigbudman.com/gear/grinders/</loc><lastmod>2026-10-03</lastmod></url>
-  <url><loc>https://bigbudman.com/gear/</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://bigbudman.com/gear/</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://bigbudman.com/gear/indoor-cannabis-grow-light-buying-cost-planner/</loc><lastmod>2026-10-14</lastmod></url>
   <url><loc>https://bigbudman.com/gear/smell-proof-storage/</loc><lastmod>2026-10-08</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabinoid-hyperemesis-syndrome-warning-signs/</loc><lastmod>2026-09-19</lastmod></url>
@@ -54,6 +55,7 @@
   <url><loc>https://bigbudman.com/guides/cannabis-glaucoma-eye-pressure-vision-guide/</loc><lastmod>2026-10-04</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-gummies-drinks-oils-capsules-comparison/</loc><lastmod>2026-09-30</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-heart-rate-blood-pressure-safety/</loc><lastmod>2026-09-13</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/cannabis-intoxication-impairment-detection/</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/</loc><lastmod>2026-10-07</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-official-source-directory/</loc><lastmod>2026-09-30</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-older-adults-medication-fall-safety/</loc><lastmod>2026-09-23</lastmod></url>
@@ -77,6 +79,7 @@
   <url><loc>https://bigbudman.com/guides/cbd-products-for-pets-veterinarian-label-guide/</loc><lastmod>2026-09-22</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cbd-topicals-label-buying-guide/</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cbda-on-cannabis-hemp-labels/</loc><lastmod>2026-09-05</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/cbg-dominant-cannabis-chemotype-guide/</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cbg-products-label-evidence-guide/</loc><lastmod>2026-10-02</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cbn-products-label-evidence-guide/</loc><lastmod>2026-10-11</lastmod></url>
   <url><loc>https://bigbudman.com/guides/delta-8-thc-label-safety-guide/</loc><lastmod>2026-09-28</lastmod></url>

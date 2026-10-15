@@ -1,8 +1,15 @@
 # Big Bud Man authority opportunities
 
-Last reviewed: October 11, 2026
+Last reviewed: October 15, 2026
 
 This is a research log, not an outreach ledger. No email, form, account, comment, or social message has been sent. Big Bud Man will not pay for, trade, or guarantee links.
+
+## October 15 authority action
+
+- Published a five-layer CBG chemotype record that separates breeder provenance, producer identity, sealed package, exact-lot chemistry, and current legal rule. It uses the primary de Meijer CBG-predominant genetics study plus NIH compound records and refuses to transfer plant research into retail-product or medical claims.
+- Published a model-compatibility matrix for dry-herb vaporizer dosing capsules using current manufacturer instructions and the CPSC recall database, with single-use/reuse, adapter, care, storage, recall, and ownership-cost gates.
+- Published a primary-source decision table separating intoxication, task impairment, toxicology detection, poisoning response, and legal or workplace conclusions using CDC, NHTSA, SAMHSA, and Poison Control sources.
+- Added reciprocal links from established CBG, vaporizer, driving, and drug-testing pages. No new outreach target was logged: the most credible organizations already represented below remain better candidates than manufacturing a new contact count, and no outreach was sent.
 
 | Qualified target | Contact route | Exact asset match | Honest pitch angle |
 | --- | --- | --- | --- |
