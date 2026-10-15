@@ -1,52 +1,53 @@
 {
-  "publication_date": "2026-10-14",
+  "publication_date": "2026-10-15",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis and Alcohol: Risks & Emergency Signs",
-      "url": "https://bigbudman.com/guides/cannabis-and-alcohol-mixing-risks/",
+      "title": "Cannabis Flower Buying & Quality Checklist",
+      "url": "https://bigbudman.com/guides/flower/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "separate alcohol and cannabis exposure records, remove driving, recognize emergency signs, and make a responder-ready handoff"
+      "search_intent": "compare packaged flower by lawful seller, package and lot match, dates, final report, condition, storage fit, route hardware, and exit plan"
     },
     {
-      "title": "Cannabis Grow-Light Comparison & Cost Planner",
-      "url": "https://bigbudman.com/gear/indoor-cannabis-grow-light-buying-cost-planner/",
-      "department": "gear",
-      "portfolio_label": "Exploration",
-      "search_intent": "compare three exact grow-light systems on evidence, setup, light-only energy, maintenance, warranty, and ownership cost"
+      "title": "Stem Cell CBG Evidence Checker",
+      "url": "https://bigbudman.com/strains/stem-cell-cbg/",
+      "department": "strains",
+      "portfolio_label": "Data-led",
+      "search_intent": "separate breeder, producer, sealed-package, final-lot-report, and current-rule evidence for a named CBG cultivar"
     },
     {
-      "title": "Editorial Policy: CSS Delivery Integrity",
+      "title": "Editorial Policy: Breadcrumb Identity",
       "url": "https://bigbudman.com/editorial-policy/",
       "department": "trust",
       "portfolio_label": "Exploration",
-      "search_intent": "document and enforce a single deployable stylesheet without a render-blocking CSS import waterfall"
+      "search_intent": "document and enforce one canonical BreadcrumbList identity on every indexable page"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The flower checklist adds relevant product-neutral paths to the existing gear comparison, lockbox, and loupe decision tools without allowing a commercial link to determine the conclusion."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The alcohol record, grow-light comparison, and CSS delivery update use text, tables, forms, and existing design components. No product, medical, cultivar, affiliate, stock, or generated image was added or changed."
+    "note": "The flower checklist, CBG evidence checker, and breadcrumb update use text, tables, controls, and existing design components. No product, cultivar, affiliate, stock, or generated image was added or changed."
   },
   "search_console": {
-    "report_date": "2026-10-07",
-    "decision": "The September 7\u2013October 4 report showed 1,214 impressions, two clicks, 0.2% CTR, and average position 35.3. Stem Cell CBG had the only supported position 4\u201320 page signal, with 13 impressions, one click, and position 5.3, and it was materially expanded on October 8. Remaining position 4\u201320 rows had only one to seven impressions, so no Data-led item was justified. Those tiny samples and the isolated Oklahoma-law click were deliberately ignored; today's work expands distinct safety and lawful-equipment authority and fixes a delivery bottleneck instead of chasing a cosmetic query variation."
+    "report_date": "2026-10-14",
+    "decision": "The September 14\u2013October 11 report showed 1,373 impressions, four clicks, 0.3% CTR, and average position 33.5. Stem Cell CBG was the only repeatable position 4\u201320 page signal with meaningful support: 18 impressions, one click, and position 6.2, so it received the one Data-led slot, a five-layer evidence checker, and reciprocal peer links. One-impression query rows and the isolated Oklahoma-law click at position 66.9 were deliberately ignored as too weak or irrelevant. Canonical and legacy sitemap errors or pending status also favored clearer sitewide breadcrumb identity and crawl paths instead of more isolated pages."
   },
   "authority": {
-    "action": "Rebuilt the cannabis-and-alcohol page into a citation-worthy two-substance exposure, symptom, and responder-handoff record using current CDC, NIAAA, and Poison Control sources; connected it reciprocally to driving, hosting, and urgent-response paths; and strengthened the lawful home-grow cluster with a three-model light-cost comparison. No outreach was sent and no new outreach target was logged because the site's own safety and cultivation clusters presented the higher-value authority work."
+    "action": "Rebuilt the thin flower page into a citation-worthy twelve-point packaged-flower checkout and three-record comparison using current New York OCM consumer and laboratory materials plus FDA boundaries; connected it to freshness, COA, storage, and gear-decision pages; and added an evidence-literacy tool plus reciprocal links around Stem Cell CBG. No outreach was sent or logged because strengthening the on-site flower and CBG clusters was the higher-value authority action."
   },
   "surfaces": [
     "homepage",
     "guide library",
-    "gear library",
-    "alcohol-safety reciprocal topic paths",
-    "home-grow and gear-comparison topic paths",
+    "strain library",
+    "flower freshness and COA reciprocal paths",
+    "White CBG and Auto CBG reciprocal paths",
     "editorial policy",
+    "sitewide canonical BreadcrumbList graph",
     "publication updates",
     "Atom feed",
     "complete site index",
@@ -54,7 +55,6 @@
     "canonical XML sitemap",
     "legacy Search Console sitemap compatibility URL",
     "robots sitemap directive",
-    "single-file CSS bundle",
     "checksum-verified source archive and publication gates"
   ]
 }

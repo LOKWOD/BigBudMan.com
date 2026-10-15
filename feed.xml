@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-14T00:00:00Z</updated>
+  <updated>2026-10-15T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Stem Cell CBG Strain Guide</title>
+    <id>https://bigbudman.com/strains/stem-cell-cbg/</id>
+    <link href="https://bigbudman.com/strains/stem-cell-cbg/"/>
+    <updated>2026-10-15T00:00:00Z</updated>
+    <published>2026-09-28T00:00:00Z</published>
+    <summary>Stem Cell CBG guide and evidence checker: verify breeder, producer, sealed package, matching lot report, CBG/CBGA rows, dates, claims, and current rules.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Flower Buying &amp; Quality Checklist</title>
+    <id>https://bigbudman.com/guides/flower/</id>
+    <link href="https://bigbudman.com/guides/flower/"/>
+    <updated>2026-10-15T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Compare cannabis flower by legal source, package and lot match, dates, lab evidence, condition, aroma, storage fit, smoke exposure, and total ownership needs.</summary>
+  </entry>
   <entry>
     <title>Cannabis and Alcohol: Risks &amp; Emergency Signs</title>
     <id>https://bigbudman.com/guides/cannabis-and-alcohol-mixing-risks/</id>
@@ -127,14 +143,6 @@
     <summary>Compare three rolling trays by task clearance, locked-storage fit, usable area, delivered cost, materials, cleaning, and safety limits.</summary>
   </entry>
   <entry>
-    <title>Stem Cell CBG Strain Guide</title>
-    <id>https://bigbudman.com/strains/stem-cell-cbg/</id>
-    <link href="https://bigbudman.com/strains/stem-cell-cbg/"/>
-    <updated>2026-10-08T00:00:00Z</updated>
-    <published>2026-09-28T00:00:00Z</published>
-    <summary>Stem Cell CBG guide: verify the breeder record, producer, package, lot, CBG and CBGA rows, THC basis, contaminant panels, dates, claims, and current rules.</summary>
-  </entry>
-  <entry>
     <title>Cannabis, CBD &amp; Cancer Claims: Evidence Guide</title>
     <id>https://bigbudman.com/guides/cannabis-cbd-cancer-claims-evidence-guide/</id>
     <link href="https://bigbudman.com/guides/cannabis-cbd-cancer-claims-evidence-guide/"/>
@@ -237,13 +245,5 @@
     <updated>2026-10-04T00:00:00Z</updated>
     <published>2026-10-04T00:00:00Z</published>
     <summary>Inspect a cannabis package seal, tamper evidence, child resistance, label integrity, lot identity, condition, and complaint route before use.</summary>
-  </entry>
-  <entry>
-    <title>CBD Patch &amp; Transdermal Label Guide</title>
-    <id>https://bigbudman.com/guides/cbd-patches-transdermal-label-evidence-guide/</id>
-    <link href="https://bigbudman.com/guides/cbd-patches-transdermal-label-evidence-guide/"/>
-    <updated>2026-10-04T00:00:00Z</updated>
-    <published>2026-10-04T00:00:00Z</published>
-    <summary>Compare CBD patches and transdermal products by classification, label amount, ingredients, lot evidence, skin instructions, claims, and pharmacist questions.</summary>
   </entry>
 </feed>

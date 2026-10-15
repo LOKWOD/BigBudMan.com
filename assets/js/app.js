@@ -1420,6 +1420,35 @@
     renderLoupeComparison();
   }
 
+  // Stem Cell CBG evidence literacy tool. It records presence/absence only;
+  // it never turns the five independent records into a quality score.
+  const cbgEvidence = $('[data-cbg-evidence]');
+  if (cbgEvidence) {
+    const layers = $$('[data-cbg-layer]', cbgEvidence);
+    const count = $('[data-cbg-count]', cbgEvidence);
+    const progress = $('[data-cbg-progress]', cbgEvidence);
+    const status = $('[data-cbg-status]', cbgEvidence);
+    const renderCbgEvidence = () => {
+      const checked = layers.filter((layer) => layer.checked).length;
+      if (count) count.textContent = `${checked} of ${layers.length}`;
+      if (progress) {
+        progress.value = checked;
+        progress.textContent = `${checked} of ${layers.length}`;
+      }
+      if (!status) return;
+      if (checked === 0) status.textContent = 'No evidence layer has been marked present. Missing is a result—not permission to guess.';
+      else if (checked === layers.length) status.textContent = 'All five evidence layers are marked present. Resolve any conflict or stop sign separately; this is not a quality or safety score.';
+      else status.textContent = `${checked} of ${layers.length} evidence layers marked present. The remaining layers stay unanswered.`;
+    };
+    layers.forEach((layer) => layer.addEventListener('change', renderCbgEvidence));
+    $('[data-cbg-reset]', cbgEvidence)?.addEventListener('click', () => {
+      layers.forEach((layer) => { layer.checked = false; });
+      renderCbgEvidence();
+      layers[0]?.focus();
+    });
+    renderCbgEvidence();
+  }
+
   // Glossary filtering keeps every definition in the HTML and only narrows
   // the visible set. Without JavaScript the complete reference remains usable.
   const glossary = $('[data-glossary]');

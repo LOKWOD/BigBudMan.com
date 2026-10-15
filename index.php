@@ -3,7 +3,7 @@
   <url><loc>https://bigbudman.com/about/</loc><lastmod>2026-08-17</lastmod></url>
   <url><loc>https://bigbudman.com/affiliate-disclosure/</loc><lastmod>2026-08-17</lastmod></url>
   <url><loc>https://bigbudman.com/contact/</loc><lastmod>2026-08-17</lastmod></url>
-  <url><loc>https://bigbudman.com/editorial-policy/</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://bigbudman.com/editorial-policy/</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://bigbudman.com/gear/510-thread-vape-battery-safety/</loc><lastmod>2026-10-01</lastmod></url>
   <url><loc>https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/</loc><lastmod>2026-10-04</lastmod></url>
   <url><loc>https://bigbudman.com/gear/cannabis-accessory-return-warranty-recall-guide/</loc><lastmod>2026-10-13</lastmod></url>
@@ -83,10 +83,10 @@
   <url><loc>https://bigbudman.com/guides/disposable-vape-vs-510-cartridge-comparison/</loc><lastmod>2026-09-27</lastmod></url>
   <url><loc>https://bigbudman.com/guides/dot-cannabis-cbd-drug-testing-safety-sensitive-workers/</loc><lastmod>2026-09-22</lastmod></url>
   <url><loc>https://bigbudman.com/guides/edibles/</loc><lastmod>2026-08-17</lastmod></url>
-  <url><loc>https://bigbudman.com/guides/flower/</loc><lastmod>2026-08-17</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/flower/</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://bigbudman.com/guides/full-spectrum-broad-spectrum-cbd-isolate/</loc><lastmod>2026-09-08</lastmod></url>
   <url><loc>https://bigbudman.com/guides/hemp-seed-oil-vs-cbd-oil/</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>https://bigbudman.com/guides/</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/</loc><lastmod>2026-09-21</lastmod></url>
   <url><loc>https://bigbudman.com/guides/new-york-home-cannabis-pest-mold-ipm-guide/</loc><lastmod>2026-10-06</lastmod></url>
@@ -96,7 +96,7 @@
   <url><loc>https://bigbudman.com/guides/terpenes/</loc><lastmod>2026-10-11</lastmod></url>
   <url><loc>https://bigbudman.com/guides/thca-vs-thc-cannabis-labels/</loc><lastmod>2026-09-08</lastmod></url>
   <url><loc>https://bigbudman.com/guides/vapes/</loc><lastmod>2026-10-13</lastmod></url>
-  <url><loc>https://bigbudman.com/</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://bigbudman.com/</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://bigbudman.com/legal/alabama/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/alaska/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/arizona/</loc><lastmod>2026-09-01</lastmod></url>
@@ -154,7 +154,7 @@
   <url><loc>https://bigbudman.com/legal/wyoming/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/privacy/</loc><lastmod>2026-08-17</lastmod></url>
   <url><loc>https://bigbudman.com/responsible-use/</loc><lastmod>2026-08-17</lastmod></url>
-  <url><loc>https://bigbudman.com/site-index/</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://bigbudman.com/site-index/</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://bigbudman.com/start-here/</loc><lastmod>2026-08-17</lastmod></url>
   <url><loc>https://bigbudman.com/strains/acapulco-gold/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/acdc/</loc><lastmod>2026-08-26</lastmod></url>
@@ -208,7 +208,7 @@
   <url><loc>https://bigbudman.com/strains/headband/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/hindu-kush/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/ice-cream-cake/</loc><lastmod>2026-08-26</lastmod></url>
-  <url><loc>https://bigbudman.com/strains/</loc><lastmod>2026-10-08</lastmod></url>
+  <url><loc>https://bigbudman.com/strains/</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://bigbudman.com/strains/jack-herer/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/jealousy/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/kosher-kush/</loc><lastmod>2026-08-26</lastmod></url>
@@ -256,7 +256,7 @@
   <url><loc>https://bigbudman.com/strains/sour-special-sauce/</loc><lastmod>2026-09-09</lastmod></url>
   <url><loc>https://bigbudman.com/strains/sour-tsunami/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/special-sauce/</loc><lastmod>2026-08-26</lastmod></url>
-  <url><loc>https://bigbudman.com/strains/stem-cell-cbg/</loc><lastmod>2026-10-08</lastmod></url>
+  <url><loc>https://bigbudman.com/strains/stem-cell-cbg/</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://bigbudman.com/strains/stephen-hawking-kush/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/strawberry-cough/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/sunset-sherbet/</loc><lastmod>2026-08-26</lastmod></url>
@@ -276,5 +276,5 @@
   <url><loc>https://bigbudman.com/strains/zkittlez/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/zoap/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/terms/</loc><lastmod>2026-08-17</lastmod></url>
-  <url><loc>https://bigbudman.com/updates/</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://bigbudman.com/updates/</loc><lastmod>2026-10-15</lastmod></url>
 </urlset>
