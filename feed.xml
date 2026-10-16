@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-15T00:00:00Z</updated>
+  <updated>2026-10-16T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis Edibles: Label, Timing &amp; Buying Guide</title>
+    <id>https://bigbudman.com/guides/edibles/</id>
+    <link href="https://bigbudman.com/guides/edibles/"/>
+    <updated>2026-10-16T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Compare cannabis edibles by licensed source, serving and package math, ingredients, timing uncertainty, lot evidence, storage, and emergency planning.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Claim Fact-Check Worksheet</title>
+    <id>https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/</id>
+    <link href="https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/"/>
+    <updated>2026-10-16T00:00:00Z</updated>
+    <published>2026-10-16T00:00:00Z</published>
+    <summary>Fact-check a cannabis claim by recording its exact wording, source, product, evidence, limits, conflicts, current rules, and unresolved gaps.</summary>
+  </entry>
   <entry>
     <title>Stem Cell CBG Strain Guide</title>
     <id>https://bigbudman.com/strains/stem-cell-cbg/</id>
@@ -229,21 +245,5 @@
     <updated>2026-10-06T00:00:00Z</updated>
     <published>2026-08-17T00:00:00Z</published>
     <summary>Choose a digital scale for lawful personal inventory, then compare five readings, mean, spread, maximum deviation, entered tolerance, and ownership cost.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis, CBD, Epilepsy &amp; Seizure Care</title>
-    <id>https://bigbudman.com/guides/cannabis-cbd-epilepsy-seizure-care-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-cbd-epilepsy-seizure-care-guide/"/>
-    <updated>2026-10-05T00:00:00Z</updated>
-    <published>2026-10-05T00:00:00Z</published>
-    <summary>Separate prescription cannabidiol from retail CBD and cannabis; learn seizure first aid, treatment-record questions, interactions, and evidence limits.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Tool Cleaning Kit &amp; Cost Planner</title>
-    <id>https://bigbudman.com/gear/cannabis-tool-cleaning-kit/</id>
-    <link href="https://bigbudman.com/gear/cannabis-tool-cleaning-kit/"/>
-    <updated>2026-10-05T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Build a compatible cannabis-tool cleaning kit, compare cleaners and parts, and calculate first-year cost, recurring cost, and maintenance time.</summary>
   </entry>
 </feed>

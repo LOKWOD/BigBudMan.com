@@ -1,51 +1,52 @@
 {
-  "publication_date": "2026-10-15",
+  "publication_date": "2026-10-16",
   "page_count": 3,
   "pages": [
     {
-      "title": "CBG-Dominant Cannabis Guide",
-      "url": "https://bigbudman.com/guides/cbg-dominant-cannabis-chemotype-guide/",
-      "department": "guides",
-      "portfolio_label": "Data-led",
-      "search_intent": "separate CBG-dominant chemotype evidence from cultivar provenance, package identity, lot chemistry, effects, medical claims, and legal category"
-    },
-    {
-      "title": "Dry-Herb Vaporizer Dosing Capsule Guide",
-      "url": "https://bigbudman.com/gear/dry-herb-vaporizer-dosing-capsule-guide/",
-      "department": "gear",
-      "portfolio_label": "Exploration",
-      "search_intent": "compare dosing capsules by exact-device compatibility, adapter, loading, single-use or reuse instructions, cleaning, storage, recall, and cost"
-    },
-    {
-      "title": "Cannabis Intoxication, Impairment & Detection",
-      "url": "https://bigbudman.com/guides/cannabis-intoxication-impairment-detection/",
+      "title": "Cannabis Claim Fact-Check Worksheet",
+      "url": "https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "separate acute effects, functional impairment, toxicology detection, poisoning response, and legal or workplace conclusions"
+      "search_intent": "test a cannabis health, safety, product, legal, or comparative claim against the exact speaker, product, source, study, limits, conflicting evidence, and current rule"
+    },
+    {
+      "title": "Cannabis Edibles: Label, Timing & Buying Guide",
+      "url": "https://bigbudman.com/guides/edibles/",
+      "department": "guides",
+      "portfolio_label": "Exploration",
+      "search_intent": "audit edible serving and package math, ingredients, timing uncertainty, exact-lot evidence, seller verification, storage, and the exit plan before purchase"
+    },
+    {
+      "title": "Accessible Form Defenses",
+      "url": "https://bigbudman.com/contact/",
+      "department": "technical",
+      "portfolio_label": "Exploration",
+      "search_intent": "keep spam controls out of the assistive-technology reading and focus order while retaining form delivery"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The purchase-intent dosing-capsule guide remains brand-neutral except for clearly identified manufacturer instructions and uses no commercial product link or image."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The expanded edible guide adds relevant conversion paths to the licensed-seller verifier and the site's neutral price-and-label calculator; it adds no merchant, coupon, commercial product, or affiliate link."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three new pages use image-free editorial layouts, tables, checklists, and source cards. No editorial, cultivar, product, affiliate, stock, or generated image was added or changed."
+    "note": "The new and expanded guides use image-free editorial layouts, tables, worksheets, and source cards; the technical change alters form semantics only. No editorial, product, affiliate, stock, or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-10-14",
-    "decision": "The September 14\u2013October 11 report showed 1,373 impressions, four clicks, 0.3% CTR, and average position 33.5. Stem Cell CBG was the only supported position 4\u201320 content signal with meaningful volume: 18 impressions, one click, and position 6.2. The one Data-led page expands the distinct plant-chemotype and lot-evidence question without cloning that cultivar intent. One-impression query rows, four ashtray impressions, and the isolated Oklahoma-law click at position 66.9 were deliberately ignored as too weak or irrelevant. The two remaining pages preserve portfolio breadth."
+    "decision": "The September 14\u2013October 11 report showed 1,373 impressions, four clicks, 0.3% CTR, and average position 33.5. Stem Cell CBG was the only supported position 4\u201320 content signal with meaningful volume\u201418 impressions, one click, and position 6.2\u2014but that opportunity received both a material page expansion and distinct supporting coverage on October 15. No Data-led page was added today because repeating the cluster before new evidence arrives would risk cannibalization. One-impression query rows, HTTP-variant noise, four ashtray impressions, and the isolated Oklahoma-law click at position 66.9 were deliberately ignored as too weak, unstable, or irrelevant."
   },
   "authority": {
-    "action": "Published a citation-worthy three-question evidence system: a five-layer CBG chemotype record grounded in primary genetics and official compound records, a model-compatibility capsule matrix grounded in manufacturer instructions and CPSC recalls, and an intoxication/impairment/detection decision table grounded in CDC, NHTSA, SAMHSA, and Poison Control sources. Reciprocal contextual links connect each asset to established cluster pages. No outreach was sent or logged."
+    "action": "Published a citation-worthy cannabis claim fact-check worksheet that matches claims to the exact product, source, study design, limits, conflicting evidence, and current rule; added reciprocal paths from the official-source and cancer-claims guides; and rebuilt the edible guide around a complete label-to-checkout decision record. The accessible-form audit strengthens the site's trust standard. No outreach was sent, and no marginal target was added to the qualified-opportunity log."
   },
   "surfaces": [
+    "homepage",
     "guide library",
-    "gear library",
-    "Stem Cell CBG and CBG-products reciprocal paths",
-    "dry-herb vaporizer and gear-comparison reciprocal paths",
-    "driving and drug-testing reciprocal paths",
+    "claim-evidence cluster reciprocal paths",
+    "edible label, format, storage, legal-shopping, and comparison paths",
+    "accessible newsletter and contact forms",
+    "editorial policy",
     "publication updates",
     "Atom feed",
     "complete site index",

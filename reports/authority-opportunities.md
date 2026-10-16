@@ -1,8 +1,15 @@
 # Big Bud Man authority opportunities
 
-Last reviewed: October 15, 2026
+Last reviewed: October 16, 2026
 
 This is a research log, not an outreach ledger. No email, form, account, comment, or social message has been sent. Big Bud Man will not pay for, trade, or guarantee links.
+
+## October 16 authority action
+
+- Published a citation-worthy cannabis claim fact-check worksheet that forces an exact match among the claim, speaker, product, source, study design, population, outcome, limits, conflicts, jurisdiction, and unresolved gaps. Its source shelf begins with FTC advertising standards, FDA cannabis and CBD guidance, NCCIH's evidence overview, PubMed, ClinicalTrials.gov, and the FDA regulatory record.
+- Rebuilt the edible overview into a full label-to-checkout guide with serving and package math, ingredient and allergen review, a four-clock timing record, a ten-gate purchase screen, licensed-seller verification, storage, and emergency routing. Reciprocal links connect it to the site's edible math, allergen, oral-format, storage, legal-shopping, and neutral price-comparison resources.
+- Corrected the assistive-technology semantics of every newsletter and contact-form honeypot while retaining keyboard exclusion, and added a publication gate that rejects any future honeypot missing either safeguard.
+- Added reciprocal links from established official-source and cancer-claims pages to the worksheet. No new outreach target was logged: the existing qualified list remains stronger than manufacturing a marginal contact, and no outreach was sent.
 
 ## October 15 authority action
 
