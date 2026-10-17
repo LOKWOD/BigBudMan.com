@@ -1,51 +1,52 @@
 {
-  "publication_date": "2026-10-16",
+  "publication_date": "2026-10-17",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis Claim Fact-Check Worksheet",
-      "url": "https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/",
+      "title": "How to Store Cannabis Safely by Product Type",
+      "url": "https://bigbudman.com/guides/storage/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "test a cannabis health, safety, product, legal, or comparative claim against the exact speaker, product, source, study, limits, conflicting evidence, and current rule"
+      "search_intent": "build a cross-format original-package, lot, condition, environment, locked-access, household-routine, and exit record without inventing a universal shelf life"
     },
     {
-      "title": "Cannabis Edibles: Label, Timing & Buying Guide",
-      "url": "https://bigbudman.com/guides/edibles/",
-      "department": "guides",
+      "title": "Cannabis Accessibility Tools: Fit & Buying Guide",
+      "url": "https://bigbudman.com/gear/cannabis-accessibility-tools-buying-guide/",
+      "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "audit edible serving and package math, ingredients, timing uncertainty, exact-lot evidence, seller verification, storage, and the exit plan before purchase"
+      "search_intent": "compare tools for grip, one-handed tasks, tremor, low vision, reach, memory, and secure storage while preserving label identity and child resistance"
     },
     {
-      "title": "Accessible Form Defenses",
-      "url": "https://bigbudman.com/contact/",
+      "title": "Single-Stop Responsive Tables",
+      "url": "https://bigbudman.com/editorial-policy/",
       "department": "technical",
       "portfolio_label": "Exploration",
-      "search_intent": "keep spam controls out of the assistive-technology reading and focus order while retaining form delivery"
+      "search_intent": "give wide responsive comparison tables one named keyboard-scroll region instead of nested redundant focus targets"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The expanded edible guide adds relevant conversion paths to the licensed-seller verifier and the site's neutral price-and-label calculator; it adds no merchant, coupon, commercial product, or affiliate link."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The accessibility guide creates a high-intent path into the neutral exact-model gear and ownership-cost worksheet, while the storage guide routes readers to lockbox-fit and inventory tools. No merchant, product, price, coupon, or affiliate link was added."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The new and expanded guides use image-free editorial layouts, tables, worksheets, and source cards; the technical change alters form semantics only. No editorial, product, affiliate, stock, or generated image was added or changed."
+    "note": "The new and expanded pages use image-free editorial tables, checklists, records, and source cards. The technical change alters focus semantics only. No editorial, product, affiliate, stock, or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-10-14",
-    "decision": "The September 14\u2013October 11 report showed 1,373 impressions, four clicks, 0.3% CTR, and average position 33.5. Stem Cell CBG was the only supported position 4\u201320 content signal with meaningful volume\u201418 impressions, one click, and position 6.2\u2014but that opportunity received both a material page expansion and distinct supporting coverage on October 15. No Data-led page was added today because repeating the cluster before new evidence arrives would risk cannibalization. One-impression query rows, HTTP-variant noise, four ashtray impressions, and the isolated Oklahoma-law click at position 66.9 were deliberately ignored as too weak, unstable, or irrelevant."
+    "decision": "The September 14\u2013October 11 report showed 1,373 impressions, four clicks, 0.3% CTR, and average position 33.5. The only supported position 4\u201320 non-brand content signal\u2014Stem Cell CBG at 18 impressions, one click, and position 6.2\u2014was materially reinforced on October 15, so repeating that cluster today would risk cannibalization. No Data-led item was selected. One-impression queries, HTTP-variant noise, four ashtray impressions, two guide-hub impressions, and the Oklahoma page at position 66.9 were deliberately ignored as too weak, noisy, or outside the target range."
   },
   "authority": {
-    "action": "Published a citation-worthy cannabis claim fact-check worksheet that matches claims to the exact product, source, study design, limits, conflicting evidence, and current rule; added reciprocal paths from the official-source and cancer-claims guides; and rebuilt the edible guide around a complete label-to-checkout decision record. The accessible-form audit strengthens the site's trust standard. No outreach was sent, and no marginal target was added to the qualified-opportunity log."
+    "action": "Rebuilt the thin storage page into a citation-worthy cross-format package-to-lock reference with a lot-level storage record, format decision table, household access audit, uncertainty response, and primary sources. Added reciprocal links through the packaging, lockbox, inventory, label, and gear-comparison clusters. The responsive-table accessibility gate strengthens the public editorial methodology. No outreach was sent and no marginal opportunity was logged."
   },
   "surfaces": [
     "homepage",
     "guide library",
-    "claim-evidence cluster reciprocal paths",
-    "edible label, format, storage, legal-shopping, and comparison paths",
-    "accessible newsletter and contact forms",
+    "gear library",
+    "storage and packaging reciprocal paths",
+    "accessible gear and comparison reciprocal paths",
+    "single-stop responsive table regions",
     "editorial policy",
     "publication updates",
     "Atom feed",
