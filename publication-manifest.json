@@ -1,52 +1,52 @@
 {
-  "publication_date": "2026-10-17",
+  "publication_date": "2026-10-18",
   "page_count": 3,
   "pages": [
     {
-      "title": "How to Store Cannabis Safely by Product Type",
-      "url": "https://bigbudman.com/guides/storage/",
+      "title": "Cannabis Tolerance & Withdrawal Guide",
+      "url": "https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "build a cross-format original-package, lot, condition, environment, locked-access, household-routine, and exit record without inventing a universal shelf life"
+      "search_intent": "separate tolerance, dependence, withdrawal, and disorder while building a seven-day exposure, function, change-attempt, and support record"
     },
     {
-      "title": "Cannabis Accessibility Tools: Fit & Buying Guide",
-      "url": "https://bigbudman.com/gear/cannabis-accessibility-tools-buying-guide/",
+      "title": "Cannabis Grinder Buying Guide & Comparison Card",
+      "url": "https://bigbudman.com/gear/grinders/",
       "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "compare tools for grip, one-handed tasks, tremor, low vision, reach, memory, and secure storage while preserving label identity and child resistance"
+      "search_intent": "compare exact grinders by dry fit, hand access, contact surfaces, cleanability, service, recalls, return path, and ownership burden before price"
     },
     {
-      "title": "Single-Stop Responsive Tables",
+      "title": "Current-Page and Current-Location Navigation",
       "url": "https://bigbudman.com/editorial-policy/",
       "department": "technical",
       "portfolio_label": "Exploration",
-      "search_intent": "give wide responsive comparison tables one named keyboard-scroll region instead of nested redundant focus targets"
+      "search_intent": "identify the exact breadcrumb page and containing navigation library with accurate, distinct aria-current values"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The accessibility guide creates a high-intent path into the neutral exact-model gear and ownership-cost worksheet, while the storage guide routes readers to lockbox-fit and inventory tools. No merchant, product, price, coupon, or affiliate link was added."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The grinder guide now moves high-intent readers from a model-specific dry-fit and checkout record into the existing neutral ownership-cost calculator and complete gear comparison worksheet. No merchant, product, price, coupon, ranking, or affiliate link was added."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The new and expanded pages use image-free editorial tables, checklists, records, and source cards. The technical change alters focus semantics only. No editorial, product, affiliate, stock, or generated image was added or changed."
+    "note": "Both expanded pages use image-free records, tables, checklists, and source cards. The technical change alters navigation semantics only. No editorial, product, affiliate, stock, or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-10-14",
     "decision": "The September 14\u2013October 11 report showed 1,373 impressions, four clicks, 0.3% CTR, and average position 33.5. The only supported position 4\u201320 non-brand content signal\u2014Stem Cell CBG at 18 impressions, one click, and position 6.2\u2014was materially reinforced on October 15, so repeating that cluster today would risk cannibalization. No Data-led item was selected. One-impression queries, HTTP-variant noise, four ashtray impressions, two guide-hub impressions, and the Oklahoma page at position 66.9 were deliberately ignored as too weak, noisy, or outside the target range."
   },
   "authority": {
-    "action": "Rebuilt the thin storage page into a citation-worthy cross-format package-to-lock reference with a lot-level storage record, format decision table, household access audit, uncertainty response, and primary sources. Added reciprocal links through the packaging, lockbox, inventory, label, and gear-comparison clusters. The responsive-table accessibility gate strengthens the public editorial methodology. No outreach was sent and no marginal opportunity was logged."
+    "action": "Rebuilt the tolerance and withdrawal page into a citation-worthy, non-diagnostic seven-day pattern record with official CDC, NIDA, SAMHSA, and 988 routes plus a peer-reviewed clinical review. Strengthened reciprocal responsible-use, medication, and mental-health paths. The navigation semantics gate adds a transparent trust and accessibility check. No outreach was sent and no marginal opportunity was logged."
   },
   "surfaces": [
     "homepage",
     "guide library",
     "gear library",
-    "storage and packaging reciprocal paths",
-    "accessible gear and comparison reciprocal paths",
-    "single-stop responsive table regions",
+    "tolerance, medication, mental-health, and responsible-use reciprocal paths",
+    "grinder, accessibility, cleaning, and gear-comparison reciprocal paths",
+    "primary and breadcrumb navigation semantics",
     "editorial policy",
     "publication updates",
     "Atom feed",

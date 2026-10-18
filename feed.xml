@@ -4,8 +4,24 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-17T00:00:00Z</updated>
+  <updated>2026-10-18T00:00:00Z</updated>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis Tolerance &amp; Withdrawal Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/</id>
+    <link href="https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/"/>
+    <updated>2026-10-18T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Separate cannabis tolerance, dependence, withdrawal, and use disorder; build a seven-day pattern record and find qualified support without self-diagnosis.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Grinder Buying Guide</title>
+    <id>https://bigbudman.com/gear/grinders/</id>
+    <link href="https://bigbudman.com/gear/grinders/"/>
+    <updated>2026-10-18T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Compare cannabis grinders by hand fit, workflow, contact surfaces, cleanability, parts, warranty, recalls, and ownership cost with an exact-model checkout card.</summary>
+  </entry>
   <entry>
     <title>How to Store Cannabis Safely by Product Type</title>
     <id>https://bigbudman.com/guides/storage/</id>
@@ -229,21 +245,5 @@
     <updated>2026-10-07T00:00:00Z</updated>
     <published>2026-08-17T00:00:00Z</published>
     <summary>Compare rolling papers and cones by dimensions, materials, gum, condition, pack price, usable count, delivered cost, waste, storage, and fire safety.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis, Exercise &amp; Heat Safety</title>
-    <id>https://bigbudman.com/guides/cannabis-exercise-workout-heat-safety/</id>
-    <link href="https://bigbudman.com/guides/cannabis-exercise-workout-heat-safety/"/>
-    <updated>2026-10-07T00:00:00Z</updated>
-    <published>2026-10-07T00:00:00Z</published>
-    <summary>Plan around cannabis, workouts, outdoor heat, coordination, heart symptoms, hydration, transport, medicines, and competition rules without performance claims.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Menu-to-Package Match Checklist</title>
-    <id>https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/</id>
-    <link href="https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/"/>
-    <updated>2026-10-07T00:00:00Z</updated>
-    <published>2026-10-07T00:00:00Z</published>
-    <summary>Compare a cannabis menu, cart, sealed package, lot evidence, and receipt before purchase without treating marketing copy as the product record.</summary>
   </entry>
 </feed>
