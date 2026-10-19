@@ -1,55 +1,54 @@
 {
-  "publication_date": "2026-10-18",
+  "publication_date": "2026-10-19",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis Tolerance & Withdrawal Guide",
-      "url": "https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/",
+      "title": "Cannabis Label Field Guide & Evidence Card",
+      "url": "https://bigbudman.com/guides/read-a-label/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "separate tolerance, dependence, withdrawal, and disorder while building a seven-day exposure, function, change-attempt, and support record"
+      "search_intent": "decode format-specific label fields and preserve an exact package-to-lot-to-report evidence record without treating unknowns as facts"
     },
     {
-      "title": "Cannabis Grinder Buying Guide & Comparison Card",
-      "url": "https://bigbudman.com/gear/grinders/",
+      "title": "Cannabis Lighter Exact-Model Buying Comparison",
+      "url": "https://bigbudman.com/gear/cannabis-lighter-flame-safety-guide/",
       "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "compare exact grinders by dry fit, hand access, contact surfaces, cleanability, service, recalls, return path, and ownership burden before price"
+      "search_intent": "compare exact lighter models by intended job, safety controls, hand fit, fuel or charging system, recalls, support, storage, and ownership cost"
     },
     {
-      "title": "Current-Page and Current-Location Navigation",
+      "title": "Atom Feed Authorship & Validation",
       "url": "https://bigbudman.com/editorial-policy/",
       "department": "technical",
       "portfolio_label": "Exploration",
-      "search_intent": "identify the exact breadcrumb page and containing navigation library with accurate, distinct aria-current values"
+      "search_intent": "expose a named editorial author in the Atom discovery feed and reject incomplete feed identity or entry metadata before publication"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The grinder guide now moves high-intent readers from a model-specific dry-fit and checkout record into the existing neutral ownership-cost calculator and complete gear comparison worksheet. No merchant, product, price, coupon, ranking, or affiliate link was added."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The lighter guide now gives high-intent readers a reusable three-model evidence and first-year-cost comparison, then routes qualified choices into the neutral gear worksheet. No merchant, product, price, coupon, ranking, or affiliate link was added."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "Both expanded pages use image-free records, tables, checklists, and source cards. The technical change alters navigation semantics only. No editorial, product, affiliate, stock, or generated image was added or changed."
+    "note": "Both expanded pages use image-free records, tables, checklists, and primary-source cards; the technical change alters XML metadata only. No editorial, product, affiliate, stock, or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-10-14",
     "decision": "The September 14\u2013October 11 report showed 1,373 impressions, four clicks, 0.3% CTR, and average position 33.5. The only supported position 4\u201320 non-brand content signal\u2014Stem Cell CBG at 18 impressions, one click, and position 6.2\u2014was materially reinforced on October 15, so repeating that cluster today would risk cannibalization. No Data-led item was selected. One-impression queries, HTTP-variant noise, four ashtray impressions, two guide-hub impressions, and the Oklahoma page at position 66.9 were deliberately ignored as too weak, noisy, or outside the target range."
   },
   "authority": {
-    "action": "Rebuilt the tolerance and withdrawal page into a citation-worthy, non-diagnostic seven-day pattern record with official CDC, NIDA, SAMHSA, and 988 routes plus a peer-reviewed clinical review. Strengthened reciprocal responsible-use, medication, and mental-health paths. The navigation semantics gate adds a transparent trust and accessibility check. No outreach was sent and no marginal opportunity was logged."
+    "action": "Rebuilt the foundational label page into a citation-worthy cross-format field map and label-to-lot evidence card grounded in current New York OCM and FDA sources. Strengthened label, CoA, allergen, recall, claim-check, and official-source paths. The feed authorship gate adds a transparent machine-readable trust signal. No outreach was sent and no marginal opportunity was logged."
   },
   "surfaces": [
     "homepage",
     "guide library",
     "gear library",
-    "tolerance, medication, mental-health, and responsible-use reciprocal paths",
-    "grinder, accessibility, cleaning, and gear-comparison reciprocal paths",
-    "primary and breadcrumb navigation semantics",
+    "label, CoA, allergen, recall, claim-check, and official-source reciprocal paths",
+    "lighter, ashtray, secondhand-smoke, storage, and gear-comparison reciprocal paths",
     "editorial policy",
     "publication updates",
-    "Atom feed",
+    "Atom feed authorship",
     "complete site index",
     "search index",
     "canonical XML sitemap",
