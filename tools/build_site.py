@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from shutil import copytree, rmtree
+from shutil import copy2, copytree, rmtree
 from html import escape
 from datetime import datetime
 import json
@@ -1098,6 +1098,11 @@ def build() -> None:
     source_assets=SOURCE/"assets"
     if source_assets.exists():
         copytree(source_assets, OUT/"assets", dirs_exist_ok=True)
+        # The stash-jar planner ships with the October 21 interaction and
+        # age-gate accessibility work. Give that page a versioned bundle so a
+        # previously cached app.js cannot leave the new controls inert during
+        # the normal GitHub Pages/CDN cache window.
+        copy2(source_assets/"js/app.js", OUT/"assets/js/app-20261021.js")
     write_svg_assets(OUT)
     bundle_stylesheets(OUT)
 
@@ -1114,6 +1119,8 @@ def build() -> None:
             sections.insert(-1, ("purchase-access", "What you need to buy legally", render_purchase_access(ny)))
             sections.insert(-1, ("direction", "Six-month legal direction", render_policy_pulse(ny)))
         html=render_article(page,data["takeaways"],sections,data["related"],crumb_for(page.path,label),data.get("notice",""))
+        if page.path == "gear/cannabis-stash-jar-buying-guide/index.html":
+            html = html.replace("assets/js/app.js", "assets/js/app-20261021.js")
         write_page(page,html); pages.append(page)
 
     for data in STANDARD_PAGES:

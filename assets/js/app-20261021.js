@@ -1,0 +1,1584 @@
+(() => {
+  'use strict';
+
+  const body = document.body;
+  const prefix = body.dataset.prefix || '';
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+  const setActiveToggle = (buttons, active) => {
+    buttons.forEach((button) => {
+      const selected = button === active;
+      button.classList.toggle('is-active', selected);
+      button.setAttribute('aria-pressed', String(selected));
+    });
+  };
+
+  const toast = (message) => {
+    const node = $('[data-toast]');
+    if (!node) return;
+    node.textContent = message;
+    node.classList.add('is-visible');
+    window.clearTimeout(toast.timer);
+    toast.timer = window.setTimeout(() => node.classList.remove('is-visible'), 2600);
+  };
+
+  // Footer year.
+  $$('[data-year]').forEach((node) => { node.textContent = String(new Date().getFullYear()); });
+
+  // Mobile navigation.
+  const menuButton = $('[data-menu-toggle]');
+  const mobileNav = $('[data-mobile-nav]');
+  if (menuButton && mobileNav) {
+    const closeMenu = () => {
+      menuButton.setAttribute('aria-expanded', 'false');
+      mobileNav.classList.remove('is-open');
+      body.classList.remove('menu-open');
+    };
+    menuButton.addEventListener('click', () => {
+      const opening = menuButton.getAttribute('aria-expanded') !== 'true';
+      menuButton.setAttribute('aria-expanded', String(opening));
+      mobileNav.classList.toggle('is-open', opening);
+      body.classList.toggle('menu-open', opening);
+    });
+    $$('a', mobileNav).forEach((link) => link.addEventListener('click', closeMenu));
+    window.addEventListener('resize', () => { if (window.innerWidth > 1100) closeMenu(); });
+  }
+
+  // Age confirmation. The page remains in the DOM for accessibility and search indexing.
+  const ageGate = $('[data-age-gate]');
+  if (ageGate) {
+    const ageCard = $('.age-card', ageGate);
+    const ageDescription = $('h2 + p', ageCard);
+    if (ageCard && ageDescription) {
+      ageDescription.id = 'age-description';
+      ageCard.setAttribute('aria-describedby', ageDescription.id);
+    }
+    const pageRegions = [...body.children].filter((node) => node !== ageGate && node.tagName !== 'SCRIPT');
+    const focusableInGate = () => $$('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])', ageGate)
+      .filter((node) => !node.hidden && node.getClientRects().length);
+    let priorFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const setGateIsolation = (active) => {
+      pageRegions.forEach((node) => {
+        if (!(node instanceof HTMLElement)) return;
+        node.inert = active;
+        if (active) node.setAttribute('data-age-inert', '');
+        else node.removeAttribute('data-age-inert');
+      });
+    };
+    const releaseAgeGate = () => {
+      ageGate.hidden = true;
+      body.classList.remove('modal-open');
+      setGateIsolation(false);
+      if (priorFocus?.isConnected) priorFocus.focus();
+    };
+    const trapAgeGateFocus = (event) => {
+      if (ageGate.hidden || event.key !== 'Tab') return;
+      const nodes = focusableInGate();
+      if (!nodes.length) {
+        event.preventDefault();
+        ageGate.focus();
+        return;
+      }
+      const first = nodes[0];
+      const last = nodes[nodes.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      } else if (!ageGate.contains(document.activeElement)) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    let admitted = false;
+    try { admitted = localStorage.getItem('bbm-age-21') === 'yes'; } catch (_) { admitted = false; }
+    if (!admitted) {
+      priorFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      ageGate.hidden = false;
+      body.classList.add('modal-open');
+      setGateIsolation(true);
+      window.setTimeout(() => $('[data-age-yes]', ageGate)?.focus(), 50);
+    }
+    document.addEventListener('keydown', trapAgeGateFocus);
+    $('[data-age-yes]', ageGate)?.addEventListener('click', () => {
+      try { localStorage.setItem('bbm-age-21', 'yes'); } catch (_) { /* private browsing can block storage */ }
+      releaseAgeGate();
+    });
+    $('[data-age-no]', ageGate)?.addEventListener('click', () => {
+      const card = $('.age-card', ageGate);
+      if (!card) return;
+      card.classList.add('age-denied');
+      card.setAttribute('tabindex', '-1');
+      card.innerHTML = `
+        <img src="${prefix}assets/images/logo-full.webp" alt="Big Bud Man" width="920" height="499">
+        <p class="eyebrow">NOT TODAY</p>
+        <h2 id="age-title">This site is for adults 21+.</h2>
+        <p>Thanks for being straight with us. You can close this tab or visit a general public-health resource.</p>
+        <p><a href="https://www.samhsa.gov/find-help" rel="noopener">Find health information at SAMHSA ↗</a></p>`;
+      window.setTimeout(() => card.focus(), 0);
+    });
+  }
+
+  // Search, loaded only when requested.
+  const searchDialog = $('[data-search-dialog]');
+  const searchInput = $('[data-search-input]');
+  const searchResults = $('[data-search-results]');
+  let indexLoading = null;
+
+  const loadSearchIndex = () => {
+    if (window.BBM_SEARCH_INDEX) return Promise.resolve(window.BBM_SEARCH_INDEX);
+    if (indexLoading) return indexLoading;
+    indexLoading = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = `${prefix}assets/js/search-index.js`;
+      script.onload = () => resolve(window.BBM_SEARCH_INDEX || []);
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+    return indexLoading;
+  };
+
+  const localHref = (url) => url === '/' ? prefix || './' : `${prefix}${url.replace(/^\//, '')}`;
+  const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+  const articleActions = $('.article-actions');
+  let saveButton = $('[data-save-article]');
+  if (articleActions && !saveButton) {
+    saveButton = document.createElement('button');
+    saveButton.className = 'share-button';
+    saveButton.type = 'button';
+    saveButton.setAttribute('data-save-article', '');
+    saveButton.setAttribute('aria-pressed', 'false');
+    saveButton.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H11v17H7.5A3.5 3.5 0 0 0 4 22V5.5ZM20 5.5A3.5 3.5 0 0 0 16.5 2H13v17h3.5A3.5 3.5 0 0 1 20 22V5.5Z"></path></svg> <span>Save for later</span>';
+    articleActions.prepend(saveButton);
+  }
+  const searchTip = $('.search-tip', searchDialog);
+  let savedReading = $('[data-saved-reading]');
+  if (searchDialog && searchTip && !savedReading) {
+    savedReading = document.createElement('section');
+    savedReading.className = 'saved-reading';
+    savedReading.setAttribute('data-saved-reading', '');
+    savedReading.setAttribute('aria-labelledby', 'saved-reading-title');
+    savedReading.innerHTML = '<div class="saved-reading__head"><div><p class="eyebrow">THIS DEVICE ONLY</p><h3 id="saved-reading-title">Saved reading <small data-saved-count>0</small></h3></div><div class="saved-reading__tools"><button type="button" data-saved-copy>Copy list</button><button type="button" data-saved-clear>Clear all</button></div></div><div data-saved-results aria-live="polite"><p class="search-empty">No pages saved on this device yet.</p></div>';
+    searchDialog.insertBefore(savedReading, searchTip);
+  }
+  const savedResults = $('[data-saved-results]');
+  const savedCount = $('[data-saved-count]');
+  const savedKey = 'bbm-saved-reading-v1';
+  const pagePath = window.location.pathname.endsWith('/') ? window.location.pathname : `${window.location.pathname}/`;
+
+  const getSaved = () => {
+    try {
+      const value = JSON.parse(localStorage.getItem(savedKey) || '[]');
+      return Array.isArray(value) ? value.filter((item) => typeof item === 'string').slice(0, 30) : [];
+    } catch (_) { return []; }
+  };
+  const setSaved = (items) => {
+    try { localStorage.setItem(savedKey, JSON.stringify([...new Set(items)].slice(0, 30))); }
+    catch (_) { toast('This browser could not save the reading list.'); }
+  };
+  const updateSaveButton = () => {
+    if (!saveButton) return;
+    const saved = getSaved().includes(pagePath);
+    saveButton.setAttribute('aria-pressed', String(saved));
+    const label = $('span', saveButton);
+    if (label) label.textContent = saved ? 'Saved on this device' : 'Save for later';
+  };
+  const renderSaved = (items) => {
+    if (!savedResults) return;
+    const paths = getSaved();
+    const byUrl = new Map(items.map((item) => [item.url, item]));
+    const matches = paths.map((path) => byUrl.get(path)).filter(Boolean);
+    if (savedCount) savedCount.textContent = String(matches.length);
+    if (!matches.length) {
+      savedResults.innerHTML = '<p class="search-empty">No pages saved on this device yet. Open an article and choose “Save for later.”</p>';
+      return;
+    }
+    savedResults.innerHTML = matches.map((item) => `
+      <div class="saved-reading__item">
+        <a class="search-result" href="${localHref(item.url)}">
+          <span>${escapeHtml(item.category)}</span>
+          <div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></div>
+        </a>
+        <button type="button" data-saved-remove="${escapeHtml(item.url)}" aria-label="Remove ${escapeHtml(item.title)} from saved reading">Remove</button>
+      </div>`).join('');
+  };
+
+  const renderSearch = (items, query) => {
+    if (!searchResults) return;
+    const normalized = query.trim().toLowerCase();
+    if (savedReading) savedReading.hidden = Boolean(normalized);
+    if (!normalized) {
+      searchResults.innerHTML = '<p class="search-empty">Start typing to search the complete Big Bud Man library.</p>';
+      renderSaved(items);
+      return;
+    }
+    const words = normalized.split(/\s+/).filter(Boolean);
+    const scored = items.map((item) => {
+      const title = item.title.toLowerCase();
+      const description = item.description.toLowerCase();
+      const category = item.category.toLowerCase();
+      const keywords = (item.keywords || '').toLowerCase();
+      let score = 0;
+      for (const word of words) {
+        if (title.includes(word)) score += 8;
+        if (category.includes(word)) score += 4;
+        if (description.includes(word)) score += 2;
+        if (keywords.includes(word)) score += 6;
+      }
+      if (title.startsWith(normalized)) score += 6;
+      return {item, score};
+    }).filter(({score}) => score > 0).sort((a, b) => b.score - a.score).slice(0, 9);
+
+    if (!scored.length) {
+      searchResults.innerHTML = `<p class="search-empty">No guide matched “${escapeHtml(query)}.” Try a broader word such as “label,” “flower,” or “legal.”</p>`;
+      return;
+    }
+    searchResults.innerHTML = scored.map(({item}) => `
+      <a class="search-result" href="${localHref(item.url)}">
+        <span>${escapeHtml(item.category)}</span>
+        <div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></div>
+      </a>`).join('');
+  };
+
+  const openSearch = async () => {
+    if (!searchDialog) return;
+    try {
+      if (!searchDialog.open) searchDialog.showModal();
+      body.classList.add('modal-open');
+      const items = await loadSearchIndex();
+      searchInput?.focus();
+      renderSearch(items, searchInput?.value || '');
+    } catch (_) {
+      if (searchResults) searchResults.innerHTML = '<p class="search-empty">Search could not load. Browse the Guides or Strains library instead.</p>';
+    }
+  };
+  const closeSearch = () => {
+    if (searchDialog?.open) searchDialog.close();
+    body.classList.remove('modal-open');
+  };
+  $$('[data-search-open]').forEach((button) => button.addEventListener('click', openSearch));
+  $('[data-search-close]')?.addEventListener('click', closeSearch);
+  searchDialog?.addEventListener('click', (event) => { if (event.target === searchDialog) closeSearch(); });
+  searchDialog?.addEventListener('close', () => body.classList.remove('modal-open'));
+  searchInput?.addEventListener('input', async (event) => renderSearch(await loadSearchIndex(), event.target.value));
+  saveButton?.addEventListener('click', async () => {
+    const saved = getSaved();
+    const exists = saved.includes(pagePath);
+    setSaved(exists ? saved.filter((item) => item !== pagePath) : [pagePath, ...saved]);
+    updateSaveButton();
+    toast(exists ? 'Removed from saved reading.' : 'Saved on this device.');
+    try { renderSaved(await loadSearchIndex()); } catch (_) { /* search remains optional */ }
+  });
+  $('[data-saved-clear]')?.addEventListener('click', async () => {
+    setSaved([]);
+    updateSaveButton();
+    try { renderSaved(await loadSearchIndex()); } catch (_) { /* search remains optional */ }
+    toast('Saved reading cleared.');
+  });
+  savedResults?.addEventListener('click', async (event) => {
+    const button = event.target.closest('[data-saved-remove]');
+    if (!button) return;
+    setSaved(getSaved().filter((item) => item !== button.dataset.savedRemove));
+    updateSaveButton();
+    try { renderSaved(await loadSearchIndex()); } catch (_) { /* search remains optional */ }
+    toast('Removed from saved reading.');
+  });
+  $('[data-saved-copy]')?.addEventListener('click', async () => {
+    try {
+      const items = await loadSearchIndex();
+      const byUrl = new Map(items.map((item) => [item.url, item]));
+      const matches = getSaved().map((path) => byUrl.get(path)).filter(Boolean);
+      if (!matches.length) { toast('Save a page before copying the list.'); return; }
+      const text = matches.map((item) => `${item.title} — ${window.location.origin}${item.url}`).join('\n');
+      await navigator.clipboard.writeText(text);
+      toast(`${matches.length} saved ${matches.length === 1 ? 'page' : 'pages'} copied.`);
+    } catch (_) { toast('The saved list could not be copied.'); }
+  });
+  updateSaveButton();
+  document.addEventListener('keydown', (event) => {
+    if (event.key === '/' && !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName || '')) {
+      event.preventDefault(); openSearch();
+    }
+  });
+
+  // Homepage guide router.
+  const quiz = $('[data-quiz]');
+  if (quiz) {
+    const answers = {};
+    const count = $('[data-quiz-count]');
+    const result = $('[data-quiz-result]', quiz);
+    const resultContent = $('[data-quiz-result-content]', quiz);
+    const routes = {
+      start: {title:'Start with the calm orientation', text:'Modern potency and formats can surprise new and returning adults. Begin with the six decisions that matter.', url:'start-here/', cta:'Open Start Here'},
+      edible: {title:'Read the edible patience guide', text:'Delayed onset is the central issue. Learn the timeline and serving math before the first bite.', url:'guides/edibles/', cta:'Open edible guide'},
+      beverage: {title:'Read the cannabis beverage label first', text:'Can size is not a THC serving. Compare per-serving and per-container amounts, ingredients, batch evidence, timing claims, and storage.', url:'guides/cannabis-beverages-label-timing-buying-guide/', cta:'Open beverage guide'},
+      flower: {title:'Use the flower quality guide', text:'Freshness, cure, source, and manageable potency matter more than chasing the biggest percentage.', url:'guides/flower/', cta:'Open flower guide'},
+      vape: {title:'Check the vape source and hardware', text:'Concentrated oil and compact hardware reward deliberate pacing and licensed sourcing.', url:'guides/vapes/', cta:'Open vape guide'},
+      concentrate: {title:'Decode the concentrate before the device', text:'Translate wax, shatter, rosin, resin, and dabs; then verify potency units, the exact batch, lawful source, equipment, and storage.', url:'guides/cannabis-concentrates-dabs-label-safety-guide/', cta:'Open concentrate guide'},
+      urgent: {title:'Use the exposure response plan', text:'Separate 911 warning signs from poison-center questions, preserve the exact product record, and skip fake antidotes.', url:'guides/cannabis-overconsumption-poisoning-response/', cta:'Open response guide'},
+      mental: {title:'Use the mental-health safety gate', text:'Separate anxiety, panic, paranoia, disorientation, hallucinations, and losing touch with reality; then choose the right crisis route and preserve the exact record.', url:'guides/cannabis-anxiety-paranoia-psychosis-warning-signs/', cta:'Open warning-sign guide'},
+      compare: {title:'Normalize the package, not the hype', text:'Compare three like-for-like products by price, count, net quantity, and labeled cannabinoid total while keeping quality and safety gates separate.', url:'guides/cannabis-product-price-label-comparison-calculator/', cta:'Open comparison calculator'},
+      recall: {title:'Match the recall to the exact batch', text:'Preserve the package, use the official notice, and match producer, product, lot, size, dates, and jurisdiction before acting.', url:'guides/cannabis-product-recall-batch-checker/', cta:'Open recall checker'},
+      lab: {title:'Match and read the laboratory report', text:'Confirm the exact lot, then keep every result attached to its unit, basis, reporting limit, panel, and status.', url:'guides/cannabis-certificate-of-analysis-coa-guide/', cta:'Open CoA guide'},
+      label: {title:'Learn the label in ten minutes', text:'Separate package total from serving amount, then check traceability, ingredients, and batch information.', url:'guides/read-a-label/', cta:'Open label decoder'},
+      legal: {title:'Check the law where you are', text:'Search all 50 states for possession, home grow, medical access, retail status, and the official source.', url:'legal/', cta:'Open 50-state library'},
+      gear: {title:'Compare the gear on evidence', text:'Put fit, materials, safety scope, cleaning, support, recalls, and first-year cost in the same worksheet.', url:'gear/cannabis-gear-comparison-worksheet/', cta:'Open comparison worksheet'},
+      basics: {title:'Build the Cannabis 101 foundation', text:'Understand THC, CBD, formats, timing, potency, and why a strain name never tells the whole story.', url:'guides/cannabis-101/', cta:'Open Cannabis 101'}
+    };
+    const chooseRoute = () => {
+      if (answers.priority === 'urgent') return routes.urgent;
+      if (answers.priority === 'mental') return routes.mental;
+      if (answers.priority === 'compare') return routes.compare;
+      if (answers.priority === 'recall') return routes.recall;
+      if (answers.priority === 'lab') return routes.lab;
+      if (answers.priority === 'legal') return routes.legal;
+      if (answers.priority === 'gear') return routes.gear;
+      if (answers.priority === 'label') return routes.label;
+      if (answers.format === 'beverage') return routes.beverage;
+      if (answers.format === 'edible') return routes.edible;
+      if (answers.format === 'vape') return routes.vape;
+      if (answers.format === 'concentrate') return routes.concentrate;
+      if (answers.format === 'flower') return routes.flower;
+      if (answers.experience === 'new' || answers.experience === 'returning') return routes.start;
+      return routes.basics;
+    };
+    $$('[data-answer]', quiz).forEach((button) => button.addEventListener('click', () => {
+      answers[button.dataset.answer] = button.dataset.value;
+      const step = Number(button.closest('[data-step]')?.dataset.step || 1);
+      $(`[data-step="${step}"]`, quiz)?.classList.remove('is-active');
+      if (step < 3) {
+        $(`[data-step="${step + 1}"]`, quiz)?.classList.add('is-active');
+        if (count) count.textContent = String(step + 1).padStart(2, '0');
+      } else {
+        const route = chooseRoute();
+        if (resultContent) resultContent.innerHTML = `<div class="result-icon">${document.querySelector('.lane-card svg')?.outerHTML || ''}</div><h3>${route.title}</h3><p>${route.text}</p><a class="button button--primary" href="${route.url}">${route.cta} →</a>`;
+        result?.classList.add('is-active');
+      }
+    }));
+    $('[data-quiz-reset]', quiz)?.addEventListener('click', () => {
+      Object.keys(answers).forEach((key) => delete answers[key]);
+      $$('.quiz-step', quiz).forEach((step) => step.classList.remove('is-active'));
+      $('[data-step="1"]', quiz)?.classList.add('is-active');
+      result?.classList.remove('is-active');
+      if (count) count.textContent = '01';
+    });
+  }
+
+  // Guide-library search and topic filters.
+  const guideLibrary = $('[data-guide-library]');
+  if (guideLibrary) {
+    const guideInput = $('[data-guide-search]', guideLibrary);
+    const guideCards = $$('[data-guide-card]', guideLibrary);
+    const guideEmpty = $('[data-guide-empty]', guideLibrary);
+    const guideCount = $('[data-guide-count]', guideLibrary);
+    const guideSort = $('[data-guide-sort]', guideLibrary);
+    const guideGrid = $('.library-grid', guideLibrary);
+    guideCards.forEach((card, index) => { card.dataset.order = String(index); });
+    let activeGuideFilter = 'all';
+    const renderGuides = () => {
+      const sort = guideSort?.value || 'editorial';
+      const ordered = [...guideCards].sort((a, b) => {
+        if (sort === 'recent') return (b.dataset.updated || '').localeCompare(a.dataset.updated || '') || Number(a.dataset.order) - Number(b.dataset.order);
+        if (sort === 'title') return (a.dataset.title || '').localeCompare(b.dataset.title || '');
+        return Number(a.dataset.order) - Number(b.dataset.order);
+      });
+      ordered.forEach((card) => guideGrid?.append(card));
+      const query = (guideInput?.value || '').trim().toLowerCase();
+      let visible = 0;
+      guideCards.forEach((card) => {
+        const category = card.dataset.category || '';
+        const matchesFilter = activeGuideFilter === 'all' || category.includes(activeGuideFilter);
+        const matchesQuery = !query || (card.dataset.search || '').includes(query);
+        const show = matchesFilter && matchesQuery;
+        card.hidden = !show;
+        if (show) visible += 1;
+      });
+      if (guideCount) guideCount.textContent = String(visible);
+      if (guideEmpty) guideEmpty.hidden = visible !== 0;
+    };
+    const guideButtons = $$('[data-guide-filter]', guideLibrary);
+    setActiveToggle(guideButtons, guideButtons.find((button) => button.classList.contains('is-active')) || guideButtons[0]);
+    guideButtons.forEach((button) => button.addEventListener('click', () => {
+      activeGuideFilter = button.dataset.guideFilter || 'all';
+      setActiveToggle(guideButtons, button);
+      renderGuides();
+    }));
+    guideInput?.addEventListener('input', renderGuides);
+    guideSort?.addEventListener('change', renderGuides);
+  }
+
+  // Gear-library search and job filters.
+  const gearLibrary = $('[data-gear-library]');
+  if (gearLibrary) {
+    const gearInput = $('[data-gear-search]', gearLibrary);
+    const gearCards = $$('[data-gear-card]', gearLibrary);
+    const gearEmpty = $('[data-gear-empty]', gearLibrary);
+    const gearCount = $('[data-gear-count]', gearLibrary);
+    let activeGearFilter = 'all';
+    const renderGear = () => {
+      const query = (gearInput?.value || '').trim().toLowerCase();
+      let visible = 0;
+      gearCards.forEach((card) => {
+        const categories = card.dataset.category || '';
+        const matchesFilter = activeGearFilter === 'all' || categories.split(' ').includes(activeGearFilter);
+        const matchesQuery = !query || (card.dataset.search || '').includes(query);
+        const show = matchesFilter && matchesQuery;
+        card.hidden = !show;
+        if (show) visible += 1;
+      });
+      if (gearCount) gearCount.textContent = String(visible);
+      if (gearEmpty) gearEmpty.hidden = visible !== 0;
+    };
+    const gearButtons = $$('[data-gear-filter]', gearLibrary);
+    setActiveToggle(gearButtons, gearButtons.find((button) => button.classList.contains('is-active')) || gearButtons[0]);
+    gearButtons.forEach((button) => button.addEventListener('click', () => {
+      activeGearFilter = button.dataset.gearFilter || 'all';
+      setActiveToggle(gearButtons, button);
+      renderGear();
+    }));
+    gearInput?.addEventListener('input', renderGear);
+  }
+
+  // Strain library filters.
+  const filterBar = $('[data-strain-filter]');
+  const strainCards = $$('[data-strain-card]');
+  if (filterBar && strainCards.length) {
+    const strainInput = $('[data-strain-search]', filterBar);
+    const emptyState = $('[data-strain-empty]');
+    let activeFilter = 'all';
+    let activeCannabinoid = 'all';
+    const renderStrains = () => {
+      const query = (strainInput?.value || '').trim().toLowerCase();
+      let visible = 0;
+      strainCards.forEach((card) => {
+        const matchesFilter = activeFilter === 'all' || card.dataset.lean === activeFilter;
+        const matchesCannabinoid = activeCannabinoid === 'all' || card.dataset.cannabinoid === activeCannabinoid;
+        const matchesQuery = !query || (card.dataset.search || '').includes(query);
+        const show = matchesFilter && matchesCannabinoid && matchesQuery;
+        card.hidden = !show;
+        if (show) visible += 1;
+      });
+      const count = $('[data-strain-count]');
+      if (count) count.textContent = String(visible);
+      if (emptyState) emptyState.hidden = visible !== 0;
+    };
+    const leanButtons = $$('[data-filter]', filterBar);
+    const cannabinoidButtons = $$('[data-cannabinoid-filter]', filterBar);
+    setActiveToggle(leanButtons, leanButtons.find((button) => button.classList.contains('is-active')) || leanButtons[0]);
+    setActiveToggle(cannabinoidButtons, cannabinoidButtons.find((button) => button.classList.contains('is-active')) || cannabinoidButtons[0]);
+    leanButtons.forEach((button) => button.addEventListener('click', () => {
+      activeFilter = button.dataset.filter || 'all';
+      setActiveToggle(leanButtons, button);
+      renderStrains();
+    }));
+    cannabinoidButtons.forEach((button) => button.addEventListener('click', () => {
+      activeCannabinoid = button.dataset.cannabinoidFilter || 'all';
+      setActiveToggle(cannabinoidButtons, button);
+      renderStrains();
+    }));
+    strainInput?.addEventListener('input', renderStrains);
+  }
+
+  // Fifty-state legal library search and status filters.
+  const stateLibrary = $('[data-state-library]');
+  const stateCards = $$('[data-state-card]');
+  if (stateLibrary && stateCards.length) {
+    const stateInput = $('[data-state-search]', stateLibrary);
+    const emptyState = $('[data-state-empty]', stateLibrary);
+    let activeStatus = 'all';
+    const renderStates = () => {
+      const query = (stateInput?.value || '').trim().toLowerCase();
+      let visible = 0;
+      stateCards.forEach((card) => {
+        const matchesStatus = activeStatus === 'all' || card.dataset.status === activeStatus;
+        const matchesQuery = !query || (card.dataset.search || '').includes(query);
+        const show = matchesStatus && matchesQuery;
+        card.hidden = !show;
+        if (show) visible += 1;
+      });
+      const count = $('[data-state-count]', stateLibrary);
+      if (count) count.textContent = String(visible);
+      if (emptyState) emptyState.hidden = visible !== 0;
+    };
+    const stateButtons = $$('[data-state-filter]', stateLibrary);
+    setActiveToggle(stateButtons, stateButtons.find((button) => button.classList.contains('is-active')) || stateButtons[0]);
+    stateButtons.forEach((button) => button.addEventListener('click', () => {
+      activeStatus = button.dataset.stateFilter || 'all';
+      setActiveToggle(stateButtons, button);
+      renderStates();
+    }));
+    stateInput?.addEventListener('input', renderStates);
+  }
+
+  // Article table of contents and reading progress.
+  const article = $('[data-article]');
+  const toc = $('[data-toc]');
+  if (article && toc) {
+    const headings = $$('h2[id]', article);
+    toc.innerHTML = headings.map((heading) => `<a href="#${heading.id}">${escapeHtml(heading.textContent.trim())}</a>`).join('');
+    if ('IntersectionObserver' in window) {
+      const links = [...$$('a', toc), ...$$('a', $('[data-mobile-toc]'))];
+      const observer = new IntersectionObserver((entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+        if (!visible) return;
+        links.forEach((link) => link.classList.toggle('is-active', link.getAttribute('href') === `#${visible.target.id}`));
+      }, {rootMargin:'-20% 0px -68% 0px', threshold:0});
+      headings.forEach((heading) => observer.observe(heading));
+    }
+  }
+  const progress = $('[data-reading-progress]');
+  if (progress && article) {
+    const updateProgress = () => {
+      const start = article.getBoundingClientRect().top + window.scrollY - 140;
+      const end = start + article.offsetHeight - window.innerHeight;
+      const ratio = Math.min(1, Math.max(0, (window.scrollY - start) / Math.max(1, end - start)));
+      progress.style.width = `${ratio * 100}%`;
+    };
+    updateProgress();
+    window.addEventListener('scroll', updateProgress, {passive:true});
+    window.addEventListener('resize', updateProgress);
+  }
+
+  // Share link.
+  $('[data-copy-link]')?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      toast('Article link copied.');
+    } catch (_) {
+      window.prompt('Copy this link:', window.location.href);
+    }
+  });
+
+  const citationButton = $('[data-copy-citation]');
+  citationButton?.addEventListener('click', async () => {
+    const accessed = new Intl.DateTimeFormat('en-US', {month:'long', day:'numeric', year:'numeric'}).format(new Date());
+    const citation = `Big Bud Man. “${citationButton.dataset.citationTitle}.” Reviewed ${citationButton.dataset.citationReviewed}. ${window.location.href} Accessed ${accessed}.`;
+    try {
+      await navigator.clipboard.writeText(citation);
+      toast('Article citation copied.');
+    } catch (_) {
+      window.prompt('Copy this citation:', citation);
+    }
+  });
+
+  // Articles with checklist markup get one portable, plain-text copy action.
+  // The export keeps each section heading and includes the review date and
+  // canonical URL so a shopping, appointment, or safety note keeps its source.
+  const checklistLists = article ? $$('ul.checklist', article) : [];
+  let checklistButton = $('[data-copy-checklists]');
+  if (checklistLists.length && !checklistButton) {
+    const actions = $('.article-actions');
+    checklistButton = document.createElement('button');
+    checklistButton.className = 'share-button';
+    checklistButton.type = 'button';
+    checklistButton.dataset.copyChecklists = '';
+    checklistButton.textContent = 'Copy checklists';
+    actions?.insertBefore(checklistButton, $('[data-print-article]', actions));
+  }
+  checklistButton?.addEventListener('click', async () => {
+    const groups = checklistLists.map((list) => {
+      const section = list.closest('section');
+      const heading = $('h2', section)?.textContent.trim() || 'Checklist';
+      const items = $$(':scope > li', list).map((item) => `- ${item.textContent.replace(/\s+/g, ' ').trim()}`);
+      return `${heading}\n${items.join('\n')}`;
+    });
+    const canonical = $('link[rel="canonical"]')?.href || window.location.href;
+    const title = citationButton?.dataset.citationTitle || document.title.replace(/\s*\|\s*Big Bud Man\s*$/, '');
+    const reviewed = citationButton?.dataset.citationReviewed || 'review date shown on page';
+    const text = `${title}\nReviewed ${reviewed}\n${canonical}\n\n${groups.join('\n\n')}`;
+    try {
+      await navigator.clipboard.writeText(text);
+      toast(`Article checklists copied (${checklistLists.length}).`);
+    } catch (_) {
+      window.prompt('Copy these checklists:', text);
+    }
+  });
+
+  $('[data-print-article]')?.addEventListener('click', () => window.print());
+
+  // Compare three exact grow-light ownership records. This deliberately does
+  // not approve a circuit, model plant response, or estimate crop yield.
+  const growComparison = $('[data-grow-light-comparison]');
+  if (growComparison) {
+    const read = (root, selector, maximum = Number.POSITIVE_INFINITY) => {
+      const node = $(selector, root);
+      const raw = node?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.min(maximum, Math.max(0, value)) : null;
+    };
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const renderGrowComparison = () => {
+      const hours = read(growComparison, '[data-grow-hours]', 24);
+      const days = read(growComparison, '[data-grow-days]', 366);
+      const rate = read(growComparison, '[data-grow-rate]');
+      const years = read(growComparison, '[data-grow-years]');
+      const sharedComplete = hours !== null && days !== null && rate !== null && years !== null && years > 0;
+      let complete = 0;
+      const columns = ['A', 'B', 'C'];
+      const priceNodes = $$('[data-grow-price]', growComparison);
+      const countNodes = $$('[data-grow-count]', growComparison);
+      const wattsNodes = $$('[data-grow-watts]', growComparison);
+      const setupNodes = $$('[data-grow-setup]', growComparison);
+      const maintenanceNodes = $$('[data-grow-maintenance]', growComparison);
+      const loadNodes = $$('[data-grow-load]', growComparison);
+      const energyNodes = $$('[data-grow-energy]', growComparison);
+      const electricityNodes = $$('[data-grow-electricity]', growComparison);
+      const acquisitionNodes = $$('[data-grow-acquisition]', growComparison);
+      const totalNodes = $$('[data-grow-total]', growComparison);
+      const annualizedNodes = $$('[data-grow-annualized]', growComparison);
+      columns.forEach((_, index) => {
+        const values = [priceNodes, countNodes, wattsNodes, setupNodes, maintenanceNodes].map((nodes) => {
+          const raw = nodes[index]?.value.trim();
+          if (!raw) return null;
+          const value = Number(raw);
+          return Number.isFinite(value) ? Math.max(0, value) : null;
+        });
+        const optionComplete = sharedComplete && values.every((value) => value !== null) && values[1] > 0;
+        if (!optionComplete) {
+          [loadNodes, energyNodes, electricityNodes, acquisitionNodes, totalNodes, annualizedNodes].forEach((nodes) => {
+            nodes[index].textContent = '—';
+          });
+          return;
+        }
+        complete += 1;
+        const [price, count, watts, setup, maintenance] = values;
+        const load = watts * count;
+        const annualEnergy = load * hours * days / 1000;
+        const annualElectricity = annualEnergy * rate;
+        const acquisition = price * count + setup;
+        const total = acquisition + (annualElectricity + maintenance) * years;
+        loadNodes[index].textContent = `${load.toLocaleString(undefined, {maximumFractionDigits:1})} W`;
+        energyNodes[index].textContent = `${annualEnergy.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})} kWh`;
+        electricityNodes[index].textContent = money(annualElectricity);
+        acquisitionNodes[index].textContent = money(acquisition);
+        totalNodes[index].textContent = money(total);
+        annualizedNodes[index].textContent = money(total / years);
+      });
+      const status = $('[data-grow-status]', growComparison);
+      status.textContent = !sharedComplete
+        ? 'Complete the shared operating assumptions and use a planning horizon above zero.'
+        : complete
+          ? `${complete} complete exact-model option${complete === 1 ? '' : 's'} calculated. Blank or partial columns remain unknown.`
+          : 'Complete at least one option. Enter zero only when a documented cost is truly zero.';
+    };
+    $$('input', growComparison).forEach((input) => input.addEventListener('input', renderGrowComparison));
+    $('[data-grow-reset]', growComparison)?.addEventListener('click', () => {
+      $$('input', growComparison).forEach((input) => { input.value = ''; });
+      $('[data-grow-days]', growComparison).value = '365';
+      $('[data-grow-years]', growComparison).value = '3';
+      renderGrowComparison();
+    });
+    renderGrowComparison();
+  }
+
+  // Pre-roll package arithmetic. It normalizes labeled quantity and receipt
+  // price only; it deliberately does not estimate inhaled dose or quality.
+  const prerollPlanner = $('[data-preroll-planner]');
+  if (prerollPlanner) {
+    const number = (selector) => {
+      const value = Number($(selector, prerollPlanner)?.value || 0);
+      return Number.isFinite(value) ? Math.max(0, value) : 0;
+    };
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const renderPreroll = () => {
+      const price = number('[data-preroll-price]');
+      const count = number('[data-preroll-count]');
+      const grams = number('[data-preroll-grams]');
+      $('[data-preroll-unit]', prerollPlanner).textContent = `${(count > 0 ? grams / count : 0).toFixed(2)} g`;
+      $('[data-preroll-each]', prerollPlanner).textContent = money(count > 0 ? price / count : 0);
+      $('[data-preroll-per-gram]', prerollPlanner).textContent = money(grams > 0 ? price / grams : 0);
+    };
+    $$('input', prerollPlanner).forEach((input) => input.addEventListener('input', renderPreroll));
+    renderPreroll();
+  }
+
+  // Rolling-paper and cone arithmetic compares delivered price with the
+  // usable quantity received. It does not estimate consumption, combustion
+  // performance, exposure, or product quality.
+  const paperComparison = $('[data-paper-comparison]');
+  if (paperComparison) {
+    const readAt = (nodes, index) => {
+      const raw = nodes[index]?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const money = (value) => value === null ? '—' : value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const prices = $$('[data-paper-price]', paperComparison);
+    const fees = $$('[data-paper-fees]', paperComparison);
+    const counts = $$('[data-paper-count]', paperComparison);
+    const unusable = $$('[data-paper-unusable]', paperComparison);
+    const delivered = $$('[data-paper-delivered]', paperComparison);
+    const usable = $$('[data-paper-usable]', paperComparison);
+    const unit = $$('[data-paper-unit]', paperComparison);
+    const loss = $$('[data-paper-loss]', paperComparison);
+    const renderPaperComparison = () => {
+      let complete = 0;
+      for (let index = 0; index < 3; index += 1) {
+        const price = readAt(prices, index);
+        const fee = readAt(fees, index) ?? 0;
+        const count = readAt(counts, index);
+        const damaged = readAt(unusable, index) ?? 0;
+        const hasOption = price !== null || count !== null || readAt(fees, index) !== null || readAt(unusable, index) !== null;
+        const deliveredCost = price !== null ? price + fee : null;
+        const usableCount = count !== null ? Math.max(0, count - damaged) : null;
+        const perUsable = deliveredCost !== null && usableCount > 0 ? deliveredCost / usableCount : null;
+        const lossRate = count > 0 ? Math.min(1, damaged / count) : null;
+        delivered[index].textContent = hasOption ? money(deliveredCost) : '—';
+        usable[index].textContent = usableCount === null ? '—' : usableCount.toLocaleString(undefined, {maximumFractionDigits:2});
+        unit[index].textContent = money(perUsable);
+        loss[index].textContent = lossRate === null ? '—' : `${(lossRate * 100).toFixed(1)}%`;
+        if (price !== null && count > 0 && usableCount > 0) complete += 1;
+      }
+      const status = $('[data-paper-status]', paperComparison);
+      if (status) status.textContent = complete ? `${complete} complete option${complete === 1 ? '' : 's'} updated locally. Compare fit, disclosure, condition, seller, and safety before cost.` : 'Enter the delivered price and pack count for each option you want to compare. Blank options stay unknown.';
+    };
+    $$('input', paperComparison).forEach((input) => input.addEventListener('input', renderPaperComparison));
+    $('[data-paper-reset]', paperComparison)?.addEventListener('click', () => {
+      $$('input', paperComparison).forEach((input) => { input.value = ''; });
+      renderPaperComparison();
+      prices[0]?.focus();
+    });
+    renderPaperComparison();
+  }
+
+  // Product comparison arithmetic. The rows deliberately normalize only the
+  // label and receipt values entered; they do not score potency or quality.
+  const packageComparison = $('[data-package-comparison]');
+  if (packageComparison) {
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const numberAt = (nodes, index) => {
+      const value = Number(nodes[index]?.value || 0);
+      return Number.isFinite(value) ? Math.max(0, value) : 0;
+    };
+    const prices = $$('[data-compare-price]', packageComparison);
+    const counts = $$('[data-compare-count]', packageComparison);
+    const quantities = $$('[data-compare-quantity]', packageComparison);
+    const milligrams = $$('[data-compare-mg]', packageComparison);
+    const perUnit = $$('[data-compare-per-unit]', packageComparison);
+    const perQuantity = $$('[data-compare-per-quantity]', packageComparison);
+    const perHundred = $$('[data-compare-per-100]', packageComparison);
+    const status = $('[data-compare-status]', packageComparison);
+    const renderComparison = () => {
+      for (let index = 0; index < 3; index += 1) {
+        const price = numberAt(prices, index);
+        const count = numberAt(counts, index);
+        const quantity = numberAt(quantities, index);
+        const mg = numberAt(milligrams, index);
+        perUnit[index].textContent = money(count > 0 ? price / count : 0);
+        perQuantity[index].textContent = money(quantity > 0 ? price / quantity : 0);
+        perHundred[index].textContent = money(mg > 0 ? price * 100 / mg : 0);
+      }
+      if (status) status.textContent = 'Results updated locally.';
+    };
+    $$('input', packageComparison).forEach((input) => input.addEventListener('input', renderComparison));
+    $('[data-compare-reset]', packageComparison)?.addEventListener('click', () => {
+      $$('input', packageComparison).forEach((input) => { input.value = ''; });
+      renderComparison();
+      if (status) status.textContent = 'Worksheet cleared.';
+      $$('input', packageComparison)[0]?.focus();
+    });
+    renderComparison();
+  }
+
+  // Edible label arithmetic checks whether serving, unit, and package fields
+  // reconcile. It deliberately does not suggest a dose or infer accuracy.
+  const edibleMath = $('[data-edible-math]');
+  if (edibleMath) {
+    const number = (selector) => {
+      const node = $(selector, edibleMath);
+      if (!node || node.value.trim() === '') return null;
+      const value = Number(node.value);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const mg = (value) => value === null ? '—' : `${value.toLocaleString(undefined, {maximumFractionDigits:2})} mg`;
+    const renderEdibleMath = () => {
+      const thcServing = number('[data-edible-thc-serving]');
+      const cbdServing = number('[data-edible-cbd-serving]');
+      const servings = number('[data-edible-servings]');
+      const units = number('[data-edible-units]');
+      const labelThc = number('[data-edible-thc-total]');
+      const labelCbd = number('[data-edible-cbd-total]');
+      const selected = number('[data-edible-selected]');
+      const thcPackage = thcServing !== null && servings !== null ? thcServing * servings : null;
+      const cbdPackage = cbdServing !== null && servings !== null ? cbdServing * servings : null;
+      const thcUnit = thcPackage !== null && units > 0 ? thcPackage / units : null;
+      const cbdUnit = cbdPackage !== null && units > 0 ? cbdPackage / units : null;
+      $('[data-edible-thc-unit]', edibleMath).textContent = mg(thcUnit);
+      $('[data-edible-cbd-unit]', edibleMath).textContent = mg(cbdUnit);
+      $('[data-edible-thc-package]', edibleMath).textContent = mg(thcPackage);
+      $('[data-edible-cbd-package]', edibleMath).textContent = mg(cbdPackage);
+      $('[data-edible-thc-selected]', edibleMath).textContent = mg(thcUnit !== null && selected !== null ? thcUnit * selected : null);
+      $('[data-edible-cbd-selected]', edibleMath).textContent = mg(cbdUnit !== null && selected !== null ? cbdUnit * selected : null);
+      const notes = [];
+      if (labelThc !== null && thcPackage !== null) notes.push(`THC printed total differs from calculated total by ${mg(Math.abs(labelThc - thcPackage))}.`);
+      if (labelCbd !== null && cbdPackage !== null) notes.push(`CBD printed total differs from calculated total by ${mg(Math.abs(labelCbd - cbdPackage))}.`);
+      const status = $('[data-edible-status]', edibleMath);
+      if (status) status.textContent = notes.length ? notes.join(' ') + ' Resolve any unexpected difference with the exact package and official source.' : 'Results updated locally. A matching calculation is not a dose, quality score, or accuracy certification.';
+    };
+    $$('input', edibleMath).forEach((input) => input.addEventListener('input', renderEdibleMath));
+    $('[data-edible-reset]', edibleMath)?.addEventListener('click', () => {
+      $$('input', edibleMath).forEach((input) => { input.value = ''; });
+      renderEdibleMath();
+      $('[data-edible-thc-serving]', edibleMath)?.focus();
+    });
+    renderEdibleMath();
+  }
+
+  // Dry-herb device ownership arithmetic compares documented costs only. It
+  // does not rank exposure, performance, durability, or personal value.
+  const vaporizerCost = $('[data-vaporizer-cost]');
+  if (vaporizerCost) {
+    const number = (selector) => {
+      const value = Number($(selector, vaporizerCost)?.value || 0);
+      return Number.isFinite(value) ? Math.max(0, value) : 0;
+    };
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const renderVaporizerCost = () => {
+      const device = number('[data-vape-device]');
+      const accessories = number('[data-vape-accessories]');
+      const recurring = number('[data-vape-parts]') + number('[data-vape-cleaning]');
+      const years = number('[data-vape-years]');
+      const exit = number('[data-vape-exit]');
+      const first = device + accessories + recurring;
+      const total = device + accessories + recurring * years + exit;
+      $('[data-vape-first]', vaporizerCost).textContent = money(first);
+      $('[data-vape-total]', vaporizerCost).textContent = years > 0 ? money(total) : '—';
+      $('[data-vape-annual]', vaporizerCost).textContent = years > 0 ? money(total / years) : '—';
+      $('[data-vape-recurring]', vaporizerCost).textContent = years > 0 && total > 0 ? `${(recurring * years / total * 100).toFixed(1)}%` : '—';
+      const status = $('[data-vape-status]', vaporizerCost);
+      if (status) status.textContent = years > 0 ? 'Results updated locally. Verify every input for the exact model and seller.' : 'Enter a nonzero service horizon to calculate total and annualized cost.';
+    };
+    $$('input', vaporizerCost).forEach((input) => input.addEventListener('input', renderVaporizerCost));
+    $('[data-vape-reset]', vaporizerCost)?.addEventListener('click', () => {
+      $$('input', vaporizerCost).forEach((input) => { input.value = ''; });
+      renderVaporizerCost();
+      $('[data-vape-device]', vaporizerCost)?.focus();
+    });
+    renderVaporizerCost();
+  }
+
+  // Grinder ownership arithmetic keeps purchase cost and maintenance burden
+  // visible without converting either into a product score or durability claim.
+  const grinderCost = $('[data-grinder-cost]');
+  if (grinderCost) {
+    const number = (selector) => {
+      const value = Number($(selector, grinderCost)?.value || 0);
+      return Number.isFinite(value) ? Math.max(0, value) : 0;
+    };
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const renderGrinderCost = () => {
+      const price = number('[data-grinder-price]');
+      const accessories = number('[data-grinder-accessories]');
+      const recurring = number('[data-grinder-parts]') + number('[data-grinder-cleaning]');
+      const years = number('[data-grinder-years]');
+      const minutes = number('[data-grinder-minutes]');
+      const frequency = number('[data-grinder-frequency]');
+      const first = price + accessories + recurring;
+      const total = price + accessories + recurring * years;
+      const hours = minutes * frequency * 12 / 60;
+      $('[data-grinder-first]', grinderCost).textContent = money(first);
+      $('[data-grinder-total]', grinderCost).textContent = years > 0 ? money(total) : '—';
+      $('[data-grinder-annual]', grinderCost).textContent = years > 0 ? money(total / years) : '—';
+      $('[data-grinder-hours]', grinderCost).textContent = `${hours.toLocaleString(undefined, {maximumFractionDigits:2})} hours`;
+      const status = $('[data-grinder-status]', grinderCost);
+      if (status) status.textContent = years > 0 ? 'Results updated locally. Verify each input for the exact grinder and seller.' : 'Enter a nonzero service horizon to calculate total and annualized cost.';
+    };
+    $$('input', grinderCost).forEach((input) => input.addEventListener('input', renderGrinderCost));
+    $('[data-grinder-reset]', grinderCost)?.addEventListener('click', () => {
+      $$('input', grinderCost).forEach((input) => { input.value = ''; });
+      renderGrinderCost();
+      $('[data-grinder-price]', grinderCost)?.focus();
+    });
+    renderGrinderCost();
+  }
+
+  // Air-cleaner arithmetic compares room sizing, documented smoke CADR, and
+  // ownership inputs. It does not estimate exposure, health protection, odor
+  // removal, or permission to generate smoke indoors.
+  const airCleaner = $('[data-air-cleaner-planner]');
+  if (airCleaner) {
+    const number = (selector) => {
+      const value = Number($(selector, airCleaner)?.value || 0);
+      return Number.isFinite(value) ? Math.max(0, value) : 0;
+    };
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const decimal = (value, places = 1) => value.toLocaleString(undefined, {maximumFractionDigits:places});
+    const renderAirCleaner = () => {
+      const length = number('[data-air-length]');
+      const width = number('[data-air-width]');
+      const height = number('[data-air-height]');
+      const cadr = number('[data-air-cadr]');
+      const price = number('[data-air-price]');
+      const filterCount = number('[data-air-filter-count]');
+      const filterCost = number('[data-air-filter-cost]');
+      const watts = number('[data-air-watts]');
+      const hours = Math.min(24, number('[data-air-hours]'));
+      const rate = number('[data-air-rate]');
+      const years = number('[data-air-years]');
+      const area = length * width;
+      const volume = area * height;
+      const needed = area > 0 && height > 0 ? area * (2 / 3) * (height / 8) : 0;
+      const ach = volume > 0 ? cadr * 60 / volume : 0;
+      const yearlyFilters = filterCount * filterCost;
+      const yearlyElectricity = watts / 1000 * hours * 365 * rate;
+      const recurring = yearlyFilters + yearlyElectricity;
+      const first = price + recurring;
+      const total = price + recurring * years;
+      $('[data-air-area]', airCleaner).textContent = area > 0 ? `${decimal(area)} sq ft` : '—';
+      $('[data-air-volume]', airCleaner).textContent = volume > 0 ? `${decimal(volume)} cu ft` : '—';
+      $('[data-air-needed]', airCleaner).textContent = needed > 0 ? `${decimal(needed)} cfm` : '—';
+      $('[data-air-ach]', airCleaner).textContent = volume > 0 && cadr > 0 ? `${decimal(ach, 2)} ACH` : '—';
+      $('[data-air-first]', airCleaner).textContent = money(first);
+      $('[data-air-total]', airCleaner).textContent = years > 0 ? money(total) : '—';
+      $('[data-air-annual]', airCleaner).textContent = years > 0 ? money(total / years) : '—';
+      const status = $('[data-air-status]', airCleaner);
+      if (status) {
+        if (!area || !height) status.textContent = 'Enter nonzero room dimensions to calculate area, volume, and a smoke-CADR starting point.';
+        else if (!cadr) status.textContent = 'Room sizing is available. Enter the exact model’s smoke CADR to estimate delivered air changes.';
+        else if (!years) status.textContent = 'Sizing is available. Enter a nonzero planning horizon for total and annualized cost.';
+        else status.textContent = cadr >= needed ? 'Math updated locally. The entered smoke CADR meets the room-volume-adjusted starting point; verify the rating at a speed you will run.' : 'Math updated locally. The entered smoke CADR is below the room-volume-adjusted starting point; compare another speed, unit, or configuration.';
+      }
+    };
+    $$('input', airCleaner).forEach((input) => input.addEventListener('input', renderAirCleaner));
+    $('[data-air-reset]', airCleaner)?.addEventListener('click', () => {
+      $$('input', airCleaner).forEach((input) => { input.value = ''; });
+      renderAirCleaner();
+      $('[data-air-length]', airCleaner)?.focus();
+    });
+    renderAirCleaner();
+  }
+
+  // Product-neutral cleaning-kit arithmetic. It prices the routine but does
+  // not decide material compatibility, cleanliness, repair, or safety.
+  const cleaningCost = $('[data-cleaning-cost]');
+  if (cleaningCost) {
+    const number = (selector) => {
+      const value = Number($(selector, cleaningCost)?.value || 0);
+      return Number.isFinite(value) ? Math.max(0, value) : 0;
+    };
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const decimal = (value) => value.toLocaleString(undefined, {maximumFractionDigits:2});
+    const renderCleaningCost = () => {
+      const kit = number('[data-cleaning-kit]');
+      const tools = number('[data-cleaning-tools]');
+      const bottle = number('[data-cleaning-bottle]');
+      const yieldCount = number('[data-cleaning-yield]');
+      const frequency = number('[data-cleaning-frequency]');
+      const parts = number('[data-cleaning-parts]');
+      const minutes = number('[data-cleaning-minutes]');
+      const years = number('[data-cleaning-years]');
+      const cycle = yieldCount > 0 ? bottle / yieldCount : 0;
+      const count = frequency * 12;
+      const recurring = cycle * count + parts;
+      const first = kit + tools + recurring;
+      const total = kit + tools + recurring * years;
+      const hours = minutes * count / 60;
+      $('[data-cleaning-cycle]', cleaningCost).textContent = yieldCount > 0 ? money(cycle) : '—';
+      $('[data-cleaning-count]', cleaningCost).textContent = decimal(count);
+      $('[data-cleaning-first]', cleaningCost).textContent = money(first);
+      $('[data-cleaning-total]', cleaningCost).textContent = years > 0 ? money(total) : '—';
+      $('[data-cleaning-annual]', cleaningCost).textContent = years > 0 ? money(total / years) : '—';
+      $('[data-cleaning-hours]', cleaningCost).textContent = `${decimal(hours)} hours`;
+      const status = $('[data-cleaning-status]', cleaningCost);
+      if (status) {
+        if (!yieldCount && bottle > 0) status.textContent = 'Enter a nonzero estimated number of cleanings per container to calculate cleaner cost per cycle.';
+        else if (!years) status.textContent = 'Enter a nonzero planning horizon to calculate total and annualized cost.';
+        else status.textContent = 'Math updated locally. Verify compatibility, replacement intervals, and every input for the exact tool and supplies.';
+      }
+    };
+    $$('input', cleaningCost).forEach((input) => input.addEventListener('input', renderCleaningCost));
+    $('[data-cleaning-reset]', cleaningCost)?.addEventListener('click', () => {
+      $$('input', cleaningCost).forEach((input) => { input.value = ''; });
+      renderCleaningCost();
+      $('[data-cleaning-kit]', cleaningCost)?.focus();
+    });
+    renderCleaningCost();
+  }
+
+  // A five-reading home screen separates repeatability from bias and prices
+  // the complete ownership system. It does not calibrate or certify a scale.
+  const scaleCheck = $('[data-scale-check]');
+  if (scaleCheck) {
+    const inputNumber = (selector) => {
+      const input = $(selector, scaleCheck);
+      const value = Number(input?.value || 0);
+      return Number.isFinite(value) ? Math.max(0, value) : 0;
+    };
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const decimal = (value) => value.toLocaleString(undefined, {minimumFractionDigits:3, maximumFractionDigits:3});
+    const renderScaleCheck = () => {
+      const reference = inputNumber('[data-scale-reference]');
+      const toleranceInput = $('[data-scale-tolerance]', scaleCheck);
+      const tolerance = inputNumber('[data-scale-tolerance]');
+      const readingInputs = $$('[data-scale-reading]', scaleCheck);
+      const readings = readingInputs
+        .filter((input) => input.value.trim() !== '' && Number.isFinite(Number(input.value)) && Number(input.value) >= 0)
+        .map((input) => Number(input.value));
+      const complete = reference > 0 && readings.length === 5;
+      const mean = complete ? readings.reduce((sum, value) => sum + value, 0) / readings.length : 0;
+      const spread = complete ? Math.max(...readings) - Math.min(...readings) : 0;
+      const deviation = complete ? Math.max(...readings.map((value) => Math.abs(value - reference))) : 0;
+      const hasTolerance = Boolean(toleranceInput?.value.trim());
+      const price = inputNumber('[data-scale-price]');
+      const weight = inputNumber('[data-scale-weight-cost]');
+      const power = inputNumber('[data-scale-power]');
+      const years = inputNumber('[data-scale-years]');
+      const first = price + weight + power;
+      const total = price + weight + power * years;
+      $('[data-scale-mean]', scaleCheck).textContent = complete ? `${decimal(mean)} g` : '—';
+      $('[data-scale-spread]', scaleCheck).textContent = complete ? `${decimal(spread)} g` : '—';
+      $('[data-scale-deviation]', scaleCheck).textContent = complete ? `${decimal(deviation)} g` : '—';
+      $('[data-scale-tolerance-result]', scaleCheck).textContent = complete && hasTolerance ? (deviation <= tolerance + 1e-9 ? 'Within entered tolerance' : 'Outside entered tolerance') : '—';
+      $('[data-scale-first]', scaleCheck).textContent = money(first);
+      $('[data-scale-total]', scaleCheck).textContent = years > 0 ? money(total) : '—';
+      $('[data-scale-annual]', scaleCheck).textContent = years > 0 ? money(total / years) : '—';
+      const status = $('[data-scale-status]', scaleCheck);
+      if (status) {
+        if (!reference || readings.length !== 5) status.textContent = 'Enter a nonzero reference and all five readings to calculate the repeatability screen.';
+        else if (!hasTolerance) status.textContent = 'Reading math is available. Enter the exact maker tolerance if you want a tolerance screen.';
+        else if (!years) status.textContent = 'Reading math is available. Enter a nonzero planning horizon for total and annualized cost.';
+        else status.textContent = 'Math updated locally. This is a one-point home screen, not calibration, certification, or whole-range performance evidence.';
+      }
+    };
+    $$('input', scaleCheck).forEach((input) => input.addEventListener('input', renderScaleCheck));
+    $('[data-scale-reset]', scaleCheck)?.addEventListener('click', () => {
+      $$('input', scaleCheck).forEach((input) => { input.value = ''; });
+      renderScaleCheck();
+      $('[data-scale-reference]', scaleCheck)?.focus();
+    });
+    renderScaleCheck();
+  }
+
+  // Lockbox math checks an upright rectangular package load against stated
+  // usable interior dimensions. It deliberately does not score security,
+  // child resistance, odor control, materials, or irregular obstructions.
+  const lockboxComparison = $('[data-lockbox-comparison]');
+  if (lockboxComparison) {
+    const read = (selector) => {
+      const input = $(selector, lockboxComparison);
+      const raw = input?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const readAt = (nodes, index) => {
+      const raw = nodes[index]?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const widths = $$('[data-lock-width]', lockboxComparison);
+    const depths = $$('[data-lock-depth]', lockboxComparison);
+    const heights = $$('[data-lock-height]', lockboxComparison);
+    const costs = $$('[data-lock-cost]', lockboxComparison);
+    const fits = $$('[data-lock-fit]', lockboxComparison);
+    const margins = $$('[data-lock-margin]', lockboxComparison);
+    const volumes = $$('[data-lock-volume]', lockboxComparison);
+    const unitCosts = $$('[data-lock-unit-cost]', lockboxComparison);
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const renderLockboxComparison = () => {
+      const loadWidth = read('[data-lock-load-width]');
+      const loadDepth = read('[data-lock-load-depth]');
+      const loadHeight = read('[data-lock-load-height]');
+      const clearance = read('[data-lock-clearance]') ?? 0;
+      const loadComplete = loadWidth > 0 && loadDepth > 0 && loadHeight > 0;
+      const required = loadComplete ? [loadWidth + clearance, loadDepth + clearance, loadHeight + clearance] : null;
+      let dimensionalOptions = 0;
+      let fittingOptions = 0;
+      for (let index = 0; index < 3; index += 1) {
+        const width = readAt(widths, index);
+        const depth = readAt(depths, index);
+        const height = readAt(heights, index);
+        const cost = readAt(costs, index);
+        const dimensionsComplete = width > 0 && depth > 0 && height > 0;
+        const volume = dimensionsComplete ? width * depth * height * 0.0163871 : null;
+        let fit = null;
+        let margin = null;
+        let orientation = '';
+        if (dimensionsComplete && required) {
+          const enteredMargins = [width - required[0], depth - required[1], height - required[2]];
+          const rotatedMargins = [width - required[1], depth - required[0], height - required[2]];
+          const enteredFits = enteredMargins.every((value) => value >= -1e-9);
+          const rotatedFits = rotatedMargins.every((value) => value >= -1e-9);
+          fit = enteredFits || rotatedFits;
+          if (fit) {
+            const candidates = [];
+            if (enteredFits) candidates.push({label:'Entered base', margin:Math.min(...enteredMargins)});
+            if (rotatedFits) candidates.push({label:'Base rotated 90°', margin:Math.min(...rotatedMargins)});
+            const best = candidates.sort((a, b) => b.margin - a.margin)[0];
+            margin = best.margin;
+            orientation = best.label;
+            fittingOptions += 1;
+          }
+        }
+        if (dimensionsComplete) dimensionalOptions += 1;
+        fits[index].textContent = fit === null ? '—' : fit ? `Fits · ${orientation}` : 'Does not fit';
+        margins[index].textContent = margin === null ? '—' : `${margin.toFixed(2)} in`;
+        volumes[index].textContent = volume === null ? '—' : `${volume.toFixed(2)} L`;
+        unitCosts[index].textContent = volume > 0 && cost !== null ? `${money(cost / volume)}/L` : '—';
+      }
+      const status = $('[data-lock-status]', lockboxComparison);
+      if (!status) return;
+      if (!loadComplete) status.textContent = dimensionalOptions ? 'Interior volume and cost are shown. Enter all three nonzero package-load dimensions to check upright fit.' : 'Enter the measured upright package load and an exact model\'s usable interior dimensions. Blank options stay unknown.';
+      else if (!dimensionalOptions) status.textContent = 'Package load recorded. Enter a model\'s three nonzero usable interior dimensions to check fit.';
+      else status.textContent = `${fittingOptions} of ${dimensionalOptions} complete option${dimensionalOptions === 1 ? '' : 's'} fit the entered upright load in at least one base orientation. Security still needs a separate review.`;
+    };
+    $$('input', lockboxComparison).forEach((input) => input.addEventListener('input', renderLockboxComparison));
+    $('[data-lock-reset]', lockboxComparison)?.addEventListener('click', () => {
+      $$('input', lockboxComparison).forEach((input) => { input.value = ''; });
+      renderLockboxComparison();
+      $('[data-lock-load-width]', lockboxComparison)?.focus();
+    });
+    renderLockboxComparison();
+  }
+
+  // Stash-jar planning uses a simple cylindrical interior and entered costs.
+  // It never converts volume to cannabis weight, dose, freshness, or quality.
+  const stashJarPlanner = $('[data-stash-jar-planner]');
+  if (stashJarPlanner) {
+    const read = (selector) => {
+      const raw = $(selector, stashJarPlanner)?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const volumeText = (value) => `${value.toLocaleString(undefined, {minimumFractionDigits:1, maximumFractionDigits:1})} mL`;
+    const renderStashJar = () => {
+      const diameter = read('[data-jar-diameter]');
+      const height = read('[data-jar-height]');
+      const fill = read('[data-jar-fill]');
+      const price = read('[data-jar-price]');
+      const annual = read('[data-jar-annual]');
+      const years = read('[data-jar-years]');
+      const dimensionsComplete = diameter > 0 && height > 0;
+      const fillComplete = fill > 0 && fill <= 100;
+      const costsComplete = price !== null && annual !== null && years > 0;
+      const volume = dimensionsComplete ? Math.PI * (diameter / 2) ** 2 * height : null;
+      const working = volume !== null && fillComplete ? volume * fill / 100 : null;
+      const headspace = volume !== null && working !== null ? volume - working : null;
+      const total = costsComplete ? price + annual * years : null;
+      $('[data-jar-volume]', stashJarPlanner).textContent = volume === null ? '—' : volumeText(volume);
+      $('[data-jar-working]', stashJarPlanner).textContent = working === null ? '—' : volumeText(working);
+      $('[data-jar-headspace]', stashJarPlanner).textContent = headspace === null ? '—' : volumeText(headspace);
+      $('[data-jar-first]', stashJarPlanner).textContent = costsComplete ? money(price + annual) : '—';
+      $('[data-jar-total]', stashJarPlanner).textContent = total === null ? '—' : money(total);
+      $('[data-jar-annualized]', stashJarPlanner).textContent = total === null ? '—' : money(total / years);
+      const status = $('[data-jar-status]', stashJarPlanner);
+      if (!dimensionsComplete) status.textContent = 'Enter a nonzero usable diameter and height. Cost fields may be zero only when that documented cost is truly zero.';
+      else if (!fillComplete) status.textContent = 'Enter a planned fill from 1% through 100%. Less than 100% preserves measured headspace.';
+      else if (!costsComplete) status.textContent = 'Volume calculated. Enter delivered cost, yearly supported parts and care, and a nonzero planning horizon for cost results.';
+      else status.textContent = 'Capacity and entered ownership costs calculated. Verify the real cavity, opening, lid intrusion, materials, closure evidence, and locked-storage fit.';
+    };
+    $$('input', stashJarPlanner).forEach((input) => input.addEventListener('input', renderStashJar));
+    $('[data-jar-reset]', stashJarPlanner)?.addEventListener('click', () => {
+      $$('input', stashJarPlanner).forEach((input) => { input.value = ''; });
+      $('[data-jar-fill]', stashJarPlanner).value = '75';
+      $('[data-jar-years]', stashJarPlanner).value = '3';
+      renderStashJar();
+      $('[data-jar-diameter]', stashJarPlanner)?.focus();
+    });
+    renderStashJar();
+  }
+
+  // Rolling-tray math keeps the preparation task and the locked-storage
+  // problem separate. It checks simple rectangles only and never turns fit or
+  // unit cost into a materials, stability, safety, or quality score.
+  const trayComparison = $('[data-tray-comparison]');
+  if (trayComparison) {
+    const read = (selector) => {
+      const raw = $(selector, trayComparison)?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const readAt = (nodes, index) => {
+      const raw = nodes[index]?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const usableWidths = $$('[data-tray-usable-width]', trayComparison);
+    const usableDepths = $$('[data-tray-usable-depth]', trayComparison);
+    const overallWidths = $$('[data-tray-overall-width]', trayComparison);
+    const overallDepths = $$('[data-tray-overall-depth]', trayComparison);
+    const overallHeights = $$('[data-tray-overall-height]', trayComparison);
+    const costs = $$('[data-tray-cost]', trayComparison);
+    const taskFits = $$('[data-tray-task-fit]', trayComparison);
+    const storeFits = $$('[data-tray-store-fit]', trayComparison);
+    const areas = $$('[data-tray-area]', trayComparison);
+    const unitCosts = $$('[data-tray-unit-cost]', trayComparison);
+    const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const rectangleFits = (outerWidth, outerDepth, innerWidth, innerDepth) =>
+      (outerWidth <= innerWidth + 1e-9 && outerDepth <= innerDepth + 1e-9) ||
+      (outerDepth <= innerWidth + 1e-9 && outerWidth <= innerDepth + 1e-9);
+    const renderTrayComparison = () => {
+      const taskWidth = read('[data-tray-task-width]');
+      const taskDepth = read('[data-tray-task-depth]');
+      const clearance = read('[data-tray-clearance]') ?? 0;
+      const storeWidth = read('[data-tray-store-width]');
+      const storeDepth = read('[data-tray-store-depth]');
+      const storeHeight = read('[data-tray-store-height]');
+      const taskComplete = taskWidth > 0 && taskDepth > 0;
+      const storeComplete = storeWidth > 0 && storeDepth > 0 && storeHeight > 0;
+      const requiredWidth = taskComplete ? taskWidth + clearance * 2 : null;
+      const requiredDepth = taskComplete ? taskDepth + clearance * 2 : null;
+      let entered = 0;
+      let taskPasses = 0;
+      let storePasses = 0;
+      for (let index = 0; index < 3; index += 1) {
+        const usableWidth = readAt(usableWidths, index);
+        const usableDepth = readAt(usableDepths, index);
+        const overallWidth = readAt(overallWidths, index);
+        const overallDepth = readAt(overallDepths, index);
+        const overallHeight = readAt(overallHeights, index);
+        const cost = readAt(costs, index);
+        const usableComplete = usableWidth > 0 && usableDepth > 0;
+        const overallComplete = overallWidth > 0 && overallDepth > 0 && overallHeight > 0;
+        const hasOption = usableComplete || overallComplete || cost !== null;
+        if (hasOption) entered += 1;
+        const taskFit = taskComplete && usableComplete ? rectangleFits(requiredWidth, requiredDepth, usableWidth, usableDepth) : null;
+        const storeFit = storeComplete && overallComplete ? overallHeight <= storeHeight + 1e-9 && rectangleFits(overallWidth, overallDepth, storeWidth, storeDepth) : null;
+        const area = usableComplete ? usableWidth * usableDepth : null;
+        if (taskFit) taskPasses += 1;
+        if (storeFit) storePasses += 1;
+        taskFits[index].textContent = taskFit === null ? '—' : taskFit ? 'Fits' : 'Does not fit';
+        storeFits[index].textContent = storeFit === null ? '—' : storeFit ? 'Fits flat' : 'Does not fit flat';
+        areas[index].textContent = area === null ? '—' : `${area.toFixed(1)} in²`;
+        unitCosts[index].textContent = area > 0 && cost !== null ? `${money(cost / area)}/in²` : '—';
+      }
+      const status = $('[data-tray-status]', trayComparison);
+      if (!status) return;
+      if (!entered) status.textContent = 'Enter the task, hand clearance, locked-storage interior, and any exact model you want to compare. Blank options stay unknown.';
+      else if (!taskComplete || !storeComplete) status.textContent = 'Available area and cost are shown. Complete the nonzero task and storage dimensions to run both fit checks.';
+      else status.textContent = `${taskPasses} of ${entered} entered option${entered === 1 ? '' : 's'} pass the task rectangle; ${storePasses} pass the simple flat-storage check. Review real clearances, materials, stability, and care separately.`;
+    };
+    $$('input', trayComparison).forEach((input) => input.addEventListener('input', renderTrayComparison));
+    $('[data-tray-reset]', trayComparison)?.addEventListener('click', () => {
+      $$('input', trayComparison).forEach((input) => { input.value = ''; });
+      renderTrayComparison();
+      $('[data-tray-task-width]', trayComparison)?.focus();
+    });
+    renderTrayComparison();
+  }
+
+  // Humidity-system math compares the consumable and instrument assumptions
+  // entered by the reader. It does not choose a target, predict pack life,
+  // calibrate a sensor, or decide whether a product is safe.
+  const humidityComparison = $('[data-humidity-comparison]');
+  if (humidityComparison) {
+    const read = (selector) => {
+      const raw = $(selector, humidityComparison)?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const readAt = (nodes, index) => {
+      const raw = nodes[index]?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const money = (value) => value === null ? '—' : value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const packCosts = $$('[data-humidity-pack-cost]', humidityComparison);
+    const packCounts = $$('[data-humidity-pack-count]', humidityComparison);
+    const activePacks = $$('[data-humidity-active-packs]', humidityComparison);
+    const intervals = $$('[data-humidity-interval]', humidityComparison);
+    const meterCounts = $$('[data-humidity-meter-count]', humidityComparison);
+    const meterCosts = $$('[data-humidity-meter-cost]', humidityComparison);
+    const serviceCosts = $$('[data-humidity-service-cost]', humidityComparison);
+    const packsYear = $$('[data-humidity-packs-year]', humidityComparison);
+    const packagesYear = $$('[data-humidity-packages-year]', humidityComparison);
+    const firstCosts = $$('[data-humidity-first]', humidityComparison);
+    const totalCosts = $$('[data-humidity-total]', humidityComparison);
+    const annualCosts = $$('[data-humidity-annual]', humidityComparison);
+    const renderHumidityComparison = () => {
+      const years = read('[data-humidity-years]');
+      let entered = 0;
+      let complete = 0;
+      for (let index = 0; index < 3; index += 1) {
+        const packCost = readAt(packCosts, index);
+        const packCount = readAt(packCounts, index);
+        const active = readAt(activePacks, index);
+        const interval = readAt(intervals, index);
+        const meters = readAt(meterCounts, index) ?? 0;
+        const meterCost = readAt(meterCosts, index) ?? 0;
+        const service = readAt(serviceCosts, index) ?? 0;
+        const hasOption = packCost !== null || packCount !== null || active !== null || interval !== null || readAt(meterCounts, index) !== null || readAt(meterCosts, index) !== null || readAt(serviceCosts, index) !== null;
+        if (hasOption) entered += 1;
+        const recurringComplete = packCost !== null && packCount > 0 && active !== null && interval > 0;
+        const perYear = recurringComplete ? active * 52 / interval : null;
+        const yearPackages = perYear === null ? null : Math.ceil(perYear / packCount);
+        const first = recurringComplete ? yearPackages * packCost + meters * meterCost + service : null;
+        const horizonPackages = recurringComplete && years > 0 ? Math.ceil(perYear * years / packCount) : null;
+        const total = horizonPackages === null ? null : horizonPackages * packCost + meters * meterCost + service * years;
+        const annual = total !== null && years > 0 ? total / years : null;
+        packsYear[index].textContent = perYear === null ? '—' : perYear.toLocaleString(undefined, {maximumFractionDigits:2});
+        packagesYear[index].textContent = yearPackages === null ? '—' : yearPackages.toLocaleString();
+        firstCosts[index].textContent = money(first);
+        totalCosts[index].textContent = money(total);
+        annualCosts[index].textContent = money(annual);
+        if (recurringComplete && years > 0) complete += 1;
+      }
+      const status = $('[data-humidity-status]', humidityComparison);
+      if (!status) return;
+      if (!entered) status.textContent = 'Enter a nonzero horizon and any exact-model assumptions you want to compare. Blank options stay unknown.';
+      else if (!(years > 0)) status.textContent = 'First-year estimates are available for complete options. Enter a nonzero planning horizon for total and annualized cost.';
+      else status.textContent = `${complete} complete option${complete === 1 ? '' : 's'} updated locally. Compare specifications, calibration path, container fit, condition cues, and safety limits before cost.`;
+    };
+    $$('input', humidityComparison).forEach((input) => input.addEventListener('input', renderHumidityComparison));
+    $('[data-humidity-reset]', humidityComparison)?.addEventListener('click', () => {
+      $$('input', humidityComparison).forEach((input) => { input.value = ''; });
+      renderHumidityComparison();
+      $('[data-humidity-years]', humidityComparison)?.focus();
+    });
+    renderHumidityComparison();
+  }
+
+  // The general gear comparison prices only the exact inputs supplied by the
+  // reader. Fit, materials, instructions, recalls, and support remain gates.
+  const gearCostComparison = $('[data-gear-cost-comparison]');
+  if (gearCostComparison) {
+    const read = (selector) => {
+      const raw = $(selector, gearCostComparison)?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const readAt = (nodes, index) => {
+      const raw = nodes[index]?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const money = (value) => value === null ? '—' : value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const prices = $$('[data-gear-price]', gearCostComparison);
+    const setup = $$('[data-gear-setup]', gearCostComparison);
+    const recurring = $$('[data-gear-recurring]', gearCostComparison);
+    const firstResults = $$('[data-gear-first]', gearCostComparison);
+    const totalResults = $$('[data-gear-total]', gearCostComparison);
+    const annualResults = $$('[data-gear-annual]', gearCostComparison);
+    const perUseResults = $$('[data-gear-per-use]', gearCostComparison);
+    const renderGearCostComparison = () => {
+      const years = read('[data-gear-years]');
+      const uses = read('[data-gear-uses]');
+      let entered = 0;
+      let complete = 0;
+      for (let index = 0; index < 3; index += 1) {
+        const price = readAt(prices, index);
+        const setupCost = readAt(setup, index);
+        const recurringCost = readAt(recurring, index);
+        if ([price, setupCost, recurringCost].some((value) => value !== null)) entered += 1;
+        const first = price !== null && setupCost !== null && recurringCost !== null ? price + setupCost + recurringCost : null;
+        const total = first !== null && years > 0 ? price + setupCost + recurringCost * years : null;
+        const annualized = total !== null && years > 0 ? total / years : null;
+        const perUse = total !== null && years > 0 && uses > 0 ? total / (years * uses) : null;
+        firstResults[index].textContent = money(first);
+        totalResults[index].textContent = money(total);
+        annualResults[index].textContent = money(annualized);
+        perUseResults[index].textContent = money(perUse);
+        if (total !== null) complete += 1;
+      }
+      const status = $('[data-gear-status]', gearCostComparison);
+      if (!status) return;
+      if (!entered) status.textContent = 'Enter the planning horizon and any complete exact-model costs. Blank fields stay unknown; enter 0 only when a real cost is zero.';
+      else if (!(years > 0)) status.textContent = 'First-year estimates are available for complete options. Enter a nonzero horizon for total and annualized cost.';
+      else if (!(uses > 0)) status.textContent = `${complete} ownership estimate${complete === 1 ? '' : 's'} complete. Enter nonzero expected uses per year only if cost per use helps this decision.`;
+      else status.textContent = `${complete} complete option${complete === 1 ? '' : 's'} updated locally. Apply fit, materials, safety, care, support, warranty, and recall gates before comparing cost.`;
+    };
+    $$('input', gearCostComparison).forEach((input) => input.addEventListener('input', renderGearCostComparison));
+    $('[data-gear-reset]', gearCostComparison)?.addEventListener('click', () => {
+      $$('input', gearCostComparison).forEach((input) => { input.value = ''; });
+      renderGearCostComparison();
+      $('[data-gear-years]', gearCostComparison)?.focus();
+    });
+    renderGearCostComparison();
+  }
+
+  // Return and warranty dates are planning checkpoints only. The written
+  // terms decide the controlling event, counting rule, cutoff and remedy.
+  const returnDeadline = $('[data-return-deadline]');
+  if (returnDeadline) {
+    const parseDate = (raw) => {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(raw || '')) return null;
+      const [year, month, day] = raw.split('-').map(Number);
+      const value = new Date(Date.UTC(year, month - 1, day));
+      return value.getUTCFullYear() === year && value.getUTCMonth() === month - 1 && value.getUTCDate() === day ? value : null;
+    };
+    const readCount = (selector) => {
+      const raw = $(selector, returnDeadline)?.value.trim();
+      if (raw === '') return null;
+      const value = Number(raw);
+      return Number.isInteger(value) && value >= 0 ? value : null;
+    };
+    const addDays = (date, days) => new Date(date.getTime() + days * 86400000);
+    const addMonthsClamped = (date, months) => {
+      const targetMonth = date.getUTCMonth() + months;
+      const targetYear = date.getUTCFullYear() + Math.floor(targetMonth / 12);
+      const normalizedMonth = ((targetMonth % 12) + 12) % 12;
+      const lastDay = new Date(Date.UTC(targetYear, normalizedMonth + 1, 0)).getUTCDate();
+      return new Date(Date.UTC(targetYear, normalizedMonth, Math.min(date.getUTCDate(), lastDay)));
+    };
+    const formatDate = (date) => date ? date.toLocaleDateString(undefined, {year:'numeric', month:'long', day:'numeric', timeZone:'UTC'}) : '—';
+    const renderReturnDeadline = () => {
+      const start = parseDate($('[data-return-purchase]', returnDeadline)?.value);
+      const days = readCount('[data-return-days]');
+      const months = readCount('[data-return-months]');
+      $('[data-return-start]', returnDeadline).textContent = formatDate(start);
+      $('[data-return-end]', returnDeadline).textContent = formatDate(start && days !== null ? addDays(start, days) : null);
+      $('[data-warranty-end]', returnDeadline).textContent = formatDate(start && months !== null ? addMonthsClamped(start, months) : null);
+      const status = $('[data-return-status]', returnDeadline);
+      if (!status) return;
+      if (!start) status.textContent = 'Enter a valid date and only terms you can verify. Blank fields stay unknown.';
+      else if (days === null && months === null) status.textContent = 'Start date recorded. Add a verified return window or warranty term to calculate an early review checkpoint.';
+      else status.textContent = 'Planning checkpoints updated locally. Confirm the written terms, counting rule, time zone, exclusions and required notice; set an earlier reminder.';
+    };
+    $$('input', returnDeadline).forEach((input) => input.addEventListener('input', renderReturnDeadline));
+    $('[data-return-reset]', returnDeadline)?.addEventListener('click', () => {
+      $$('input', returnDeadline).forEach((input) => { input.value = ''; });
+      renderReturnDeadline();
+      $('[data-return-purchase]', returnDeadline)?.focus();
+    });
+    renderReturnDeadline();
+  }
+
+  // The loupe comparison checks only the documented dimensions and costs the
+  // reader enters. It does not verify an optical claim or certify a device.
+  const loupeComparison = $('[data-loupe-comparison]');
+  if (loupeComparison) {
+    const read = (selector) => {
+      const raw = $(selector, loupeComparison)?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const readAt = (nodes, index) => {
+      const raw = nodes[index]?.value.trim();
+      if (!raw) return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const money = (value) => value === null ? '—' : value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const millimeters = (actual, required, positiveLabel) => {
+      if (actual === null || required === null) return '—';
+      const margin = actual - required;
+      return margin >= 0 ? `${positiveLabel} (+${margin.toLocaleString(undefined, {maximumFractionDigits:1})} mm)` : `Short ${Math.abs(margin).toLocaleString(undefined, {maximumFractionDigits:1})} mm`;
+    };
+    const devices = $$('[data-loupe-device]', loupeComparison);
+    const accessories = $$('[data-loupe-accessories]', loupeComparison);
+    const annualCosts = $$('[data-loupe-annual-cost]', loupeComparison);
+    const fields = $$('[data-loupe-fov]', loupeComparison);
+    const distances = $$('[data-loupe-working-distance]', loupeComparison);
+    const fieldResults = $$('[data-loupe-fov-result]', loupeComparison);
+    const distanceResults = $$('[data-loupe-distance-result]', loupeComparison);
+    const firstResults = $$('[data-loupe-first]', loupeComparison);
+    const totalResults = $$('[data-loupe-total]', loupeComparison);
+    const annualResults = $$('[data-loupe-annual]', loupeComparison);
+    const renderLoupeComparison = () => {
+      const target = read('[data-loupe-target]');
+      const clearance = read('[data-loupe-clearance]');
+      const years = read('[data-loupe-years]');
+      let entered = 0;
+      let dimensionComplete = 0;
+      let costComplete = 0;
+      for (let index = 0; index < 3; index += 1) {
+        const device = readAt(devices, index);
+        const accessory = readAt(accessories, index);
+        const annualCost = readAt(annualCosts, index);
+        const field = readAt(fields, index);
+        const distance = readAt(distances, index);
+        if ([device, accessory, annualCost, field, distance].some((value) => value !== null)) entered += 1;
+        const first = device !== null && accessory !== null && annualCost !== null ? device + accessory + annualCost : null;
+        const total = device !== null && accessory !== null && annualCost !== null && years > 0 ? device + accessory + annualCost * years : null;
+        const annualized = total !== null && years > 0 ? total / years : null;
+        fieldResults[index].textContent = millimeters(field, target, 'Fits');
+        distanceResults[index].textContent = millimeters(distance, clearance, 'Fits');
+        firstResults[index].textContent = money(first);
+        totalResults[index].textContent = money(total);
+        annualResults[index].textContent = money(annualized);
+        if (field !== null && distance !== null && target !== null && clearance !== null) dimensionComplete += 1;
+        if (total !== null) costComplete += 1;
+      }
+      const status = $('[data-loupe-status]', loupeComparison);
+      if (!status) return;
+      if (!entered) status.textContent = 'Enter the job and any exact-model facts. Blank fields stay unknown; enter 0 when a real cost is zero.';
+      else if (target === null || clearance === null || !(years > 0)) status.textContent = 'Entered rows are preserved. Add target width, minimum working distance, and a nonzero horizon to complete both fit and ownership screens.';
+      else status.textContent = `${dimensionComplete} dimensional screen${dimensionComplete === 1 ? '' : 's'} and ${costComplete} ownership estimate${costComplete === 1 ? '' : 's'} are complete. Review optics, stability, lighting, software, care, support, and evidence limits separately.`;
+    };
+    $$('input', loupeComparison).forEach((input) => input.addEventListener('input', renderLoupeComparison));
+    $('[data-loupe-reset]', loupeComparison)?.addEventListener('click', () => {
+      $$('input', loupeComparison).forEach((input) => { input.value = ''; });
+      renderLoupeComparison();
+      $('[data-loupe-target]', loupeComparison)?.focus();
+    });
+    renderLoupeComparison();
+  }
+
+  // Stem Cell CBG evidence literacy tool. It records presence/absence only;
+  // it never turns the five independent records into a quality score.
+  const cbgEvidence = $('[data-cbg-evidence]');
+  if (cbgEvidence) {
+    const layers = $$('[data-cbg-layer]', cbgEvidence);
+    const count = $('[data-cbg-count]', cbgEvidence);
+    const progress = $('[data-cbg-progress]', cbgEvidence);
+    const status = $('[data-cbg-status]', cbgEvidence);
+    const renderCbgEvidence = () => {
+      const checked = layers.filter((layer) => layer.checked).length;
+      if (count) count.textContent = `${checked} of ${layers.length}`;
+      if (progress) {
+        progress.value = checked;
+        progress.textContent = `${checked} of ${layers.length}`;
+      }
+      if (!status) return;
+      if (checked === 0) status.textContent = 'No evidence layer has been marked present. Missing is a result—not permission to guess.';
+      else if (checked === layers.length) status.textContent = 'All five evidence layers are marked present. Resolve any conflict or stop sign separately; this is not a quality or safety score.';
+      else status.textContent = `${checked} of ${layers.length} evidence layers marked present. The remaining layers stay unanswered.`;
+    };
+    layers.forEach((layer) => layer.addEventListener('change', renderCbgEvidence));
+    $('[data-cbg-reset]', cbgEvidence)?.addEventListener('click', () => {
+      layers.forEach((layer) => { layer.checked = false; });
+      renderCbgEvidence();
+      layers[0]?.focus();
+    });
+    renderCbgEvidence();
+  }
+
+  // Glossary filtering keeps every definition in the HTML and only narrows
+  // the visible set. Without JavaScript the complete reference remains usable.
+  const glossary = $('[data-glossary]');
+  if (glossary) {
+    const glossaryInput = $('[data-glossary-search]', glossary);
+    const terms = $$('[data-glossary-term]', glossary);
+    const count = $('[data-glossary-count]', glossary);
+    const empty = $('[data-glossary-empty]', glossary);
+    let activeCategory = 'all';
+    const renderGlossary = () => {
+      const words = (glossaryInput?.value || '').trim().toLowerCase().split(/\s+/).filter(Boolean);
+      let visible = 0;
+      terms.forEach((term) => {
+        const categories = (term.dataset.category || '').split(' ');
+        const haystack = term.dataset.search || '';
+        const matchesCategory = activeCategory === 'all' || categories.includes(activeCategory);
+        const matchesWords = words.every((word) => haystack.includes(word));
+        const show = matchesCategory && matchesWords;
+        term.hidden = !show;
+        if (show) visible += 1;
+      });
+      if (count) count.textContent = String(visible);
+      if (empty) empty.hidden = visible !== 0;
+    };
+    const glossaryButtons = $$('[data-glossary-filter]', glossary);
+    setActiveToggle(glossaryButtons, glossaryButtons.find((button) => button.classList.contains('is-active')) || glossaryButtons[0]);
+    glossaryButtons.forEach((button) => button.addEventListener('click', () => {
+      activeCategory = button.dataset.glossaryFilter || 'all';
+      setActiveToggle(glossaryButtons, button);
+      renderGlossary();
+    }));
+    glossaryInput?.addEventListener('input', renderGlossary);
+    renderGlossary();
+  }
+})();
