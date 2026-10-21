@@ -4,9 +4,25 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-20T00:00:00Z</updated>
+  <updated>2026-10-21T00:00:00Z</updated>
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis Stash Jar Calculator &amp; Guide</title>
+    <id>https://bigbudman.com/gear/cannabis-stash-jar-buying-guide/</id>
+    <link href="https://bigbudman.com/gear/cannabis-stash-jar-buying-guide/"/>
+    <updated>2026-10-21T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Compare a cannabis stash jar by measured capacity, planned headspace, ownership cost, closure evidence, materials, cleaning, labeling, and locked-storage fit.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis &amp; Pets: Exposure Action Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-and-pets-accidental-exposure/</id>
+    <link href="https://bigbudman.com/guides/cannabis-and-pets-accidental-exposure/"/>
+    <updated>2026-10-21T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Act on possible cannabis exposure in a dog, cat, or other pet: call promptly, preserve the package, report co-ingredients, track signs, and prevent recurrence.</summary>
+  </entry>
   <entry>
     <title>Cannabis, CBD &amp; Medication Interactions Guide</title>
     <id>https://bigbudman.com/guides/cannabis-cbd-medication-interactions/</id>
@@ -230,21 +246,5 @@
     <updated>2026-10-09T00:00:00Z</updated>
     <published>2026-10-09T00:00:00Z</published>
     <summary>Compare cannabis and CBD chronic-pain claims with current CDC, NCCIH, AHRQ, and FDA evidence, risks, product limits, and a clinician-ready outcome record.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Rolling Tray Fit &amp; Buying Guide</title>
-    <id>https://bigbudman.com/gear/cannabis-rolling-tray-buying-guide/</id>
-    <link href="https://bigbudman.com/gear/cannabis-rolling-tray-buying-guide/"/>
-    <updated>2026-10-09T00:00:00Z</updated>
-    <published>2026-09-10T00:00:00Z</published>
-    <summary>Compare three rolling trays by task clearance, locked-storage fit, usable area, delivered cost, materials, cleaning, and safety limits.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis, CBD &amp; Cancer Claims: Evidence Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-cbd-cancer-claims-evidence-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-cbd-cancer-claims-evidence-guide/"/>
-    <updated>2026-10-08T00:00:00Z</updated>
-    <published>2026-10-08T00:00:00Z</published>
-    <summary>Separate cannabis and CBD cancer-treatment claims from symptom support, approved cannabinoid medicines, interactions, product evidence, and oncology decisions.</summary>
   </entry>
 </feed>

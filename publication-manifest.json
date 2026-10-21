@@ -1,51 +1,49 @@
 {
-  "publication_date": "2026-10-20",
+  "publication_date": "2026-10-21",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis, CBD & Medication Interaction Handoff",
-      "url": "https://bigbudman.com/guides/cannabis-cbd-medication-interactions/",
+      "title": "Cannabis and Pets Accidental Exposure Action Guide",
+      "url": "https://bigbudman.com/guides/cannabis-and-pets-accidental-exposure/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "prepare an exact-product, complete-medicine, timing, symptom, monitoring, and follow-up record for a pharmacist or prescribing clinician"
+      "search_intent": "turn a possible dog, cat, or other pet cannabis exposure into a prompt veterinary call with exact product, co-ingredient, timing, symptom, hardware, and prevention records"
     },
     {
-      "title": "Job-First Cannabis Gear Shopping Map",
-      "url": "https://bigbudman.com/gear/",
+      "title": "Cannabis Stash Jar Capacity and Cost Planner",
+      "url": "https://bigbudman.com/gear/cannabis-stash-jar-buying-guide/",
       "department": "commercial",
       "portfolio_label": "Exploration",
-      "search_intent": "start from the storage, access, maintenance, powered-hardware, comparison, or disposal problem and reach the narrowest relevant buying guide without sponsored rankings"
+      "search_intent": "compare a secondary stash jar by measured cylindrical capacity, headspace, ownership cost, claim evidence, material disclosure, service path, identity retention, and locked-storage fit"
     },
     {
-      "title": "Accessible Collection Filter Contract",
+      "title": "Age-Gate Focus Isolation Contract",
       "url": "https://bigbudman.com/editorial-policy/",
       "department": "technical",
       "portfolio_label": "Exploration",
-      "search_intent": "expose filter groups, initial and live pressed state, controlled result collections, and announced counts across every large interactive content library"
+      "search_intent": "keep keyboard and assistive-technology interaction inside the adult-confirmation dialog until admission while restoring page access and prior focus afterward"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The gear hub now converts a stated reader job into the narrowest relevant comparison, access, storage, maintenance, powered-hardware, or disposal guide while explicitly preserving the buy-nothing option. No merchant, product, price, coupon, ranking, or affiliate link was added."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The stash-jar guide now offers a genuinely useful capacity, headspace, and ownership-cost planner plus an exact-model acceptance record, while explicitly preserving the original-package no-purchase option. No merchant, product, price, coupon, ranking, product image, or affiliate link was added."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The medication handoff, task-first gear map, and filter-accessibility work use text, semantic controls, tables, and existing interface components. No editorial, product, affiliate, stock, or generated image was added or changed."
+    "note": "The pet handoff, stash-jar calculator, and age-gate work use text, semantic controls, tables, and existing brand interface assets. No editorial, product, affiliate, stock, or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-10-14",
-    "decision": "The September 14\u2013October 11 report showed 1,373 impressions, four clicks, 0.3% CTR, and average position 33.5. The only supported position 4\u201320 non-brand content signal\u2014Stem Cell CBG at 18 impressions, one click, and position 6.2\u2014was materially reinforced on October 15, so repeating that cluster today would risk cannibalization. No Data-led item was selected. One-impression queries, HTTP-variant noise, four ashtray impressions, two guide-hub impressions, and the Oklahoma page at position 66.9 were deliberately ignored as too weak, noisy, or outside the target range."
+    "decision": "The September 14\u2013October 11 report showed 1,373 impressions, four clicks, 0.3% CTR, and average position 33.5. The only supported position 4\u201320 non-brand content signal\u2014Stem Cell CBG at 18 impressions, one click, and position 6.2\u2014was materially reinforced on October 15, so repeating that cluster today would risk cannibalization. No Data-led item was selected. One-impression queries, branded homepage noise, HTTP-variant noise, four ashtray impressions, two guide-hub impressions, and the Oklahoma page at position 66.9 were deliberately ignored as too weak, noisy, or outside the target range."
   },
   "authority": {
-    "action": "Rebuilt the medication-interaction page into a citation-worthy four-lane review and pharmacist handoff card grounded in current FDA, NIH DailyMed, and MedlinePlus sources. The asset strengthens medicine, procedure, older-adult, product-label, and responsible-use paths without naming a personal dose or telling a reader to change treatment. No outreach was sent and no marginal opportunity was logged."
+    "action": "Rebuilt the pet accidental-exposure page into a citation-worthy no-delay response card, exact-product/co-ingredient handoff, observation timeline, and access-route audit grounded in current ASPCA, Merck Veterinary Manual, and FDA sources. Reciprocal links strengthen the pet, storage, package-access, and veterinary-label cluster. No outreach was sent and no marginal opportunity was logged."
   },
   "surfaces": [
-    "guide library and medication-safety cluster",
-    "gear library and six job-first commercial paths",
-    "strain library",
-    "50-state legal library",
-    "editorial policy",
+    "guide library and pet-safety/storage cluster",
+    "gear library and storage/comparison cluster",
+    "editorial policy and sitewide adult-confirmation dialog",
     "publication updates",
     "Atom feed",
     "complete site index",
