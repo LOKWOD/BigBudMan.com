@@ -1,8 +1,15 @@
 # Big Bud Man authority opportunities
 
-Last reviewed: October 16, 2026
+Last reviewed: October 22, 2026
 
 This is a research log, not an outreach ledger. No email, form, account, comment, or social message has been sent. Big Bud Man will not pay for, trade, or guarantee links.
+
+## October 22 authority action
+
+- Published a citation-worthy cannabis product disposal decision guide that separates immediate exposure and fire hazards from regulator instructions, batteries, residual product, cannabis waste, packaging, and local acceptance. Its printable handoff record keeps the exact item, jurisdiction, official instruction, preparation, destination, and completion date together instead of presenting one universal disposal rule.
+- Published a product-neutral dispensary loyalty value and privacy guide with transparent headline, usable, net-value, effective-rate, and break-even formulas. It distinguishes New York's currently adopted rules from proposed amendments and makes enrollment, data collection, redemption, expiry, price basis, privacy, and exit terms separate gates.
+- Strengthened crawl paths by enforcing two distinct contextual source pages for every guide and gear detail page. Four previously hub-only guides now receive reciprocal links from established, intent-matched pages; future orphaning fails the build.
+- No new outreach target was logged. The existing qualified list remains stronger than manufacturing a marginal contact, and no outreach was sent.
 
 ## October 16 authority action
 

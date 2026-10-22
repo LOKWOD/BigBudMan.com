@@ -1,49 +1,50 @@
 {
-  "publication_date": "2026-10-21",
+  "publication_date": "2026-10-22",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis and Pets Accidental Exposure Action Guide",
-      "url": "https://bigbudman.com/guides/cannabis-and-pets-accidental-exposure/",
-      "department": "guides",
-      "portfolio_label": "Authority-expansion",
-      "search_intent": "turn a possible dog, cat, or other pet cannabis exposure into a prompt veterinary call with exact product, co-ingredient, timing, symptom, hardware, and prevention records"
-    },
-    {
-      "title": "Cannabis Stash Jar Capacity and Cost Planner",
-      "url": "https://bigbudman.com/gear/cannabis-stash-jar-buying-guide/",
-      "department": "commercial",
-      "portfolio_label": "Exploration",
-      "search_intent": "compare a secondary stash jar by measured cylindrical capacity, headspace, ownership cost, claim evidence, material disclosure, service path, identity retention, and locked-storage fit"
-    },
-    {
-      "title": "Age-Gate Focus Isolation Contract",
+      "title": "Contextual Inbound-Link Floor",
       "url": "https://bigbudman.com/editorial-policy/",
       "department": "technical",
+      "portfolio_label": "Data-led",
+      "search_intent": "require every guide and gear detail page to receive links from its collection hub and at least one distinct contextual source so crawl discovery does not depend on isolated URLs"
+    },
+    {
+      "title": "Cannabis Product Disposal Decision Guide",
+      "url": "https://bigbudman.com/guides/cannabis-product-disposal-decision-guide/",
+      "department": "guides",
+      "portfolio_label": "Authority-expansion",
+      "search_intent": "separate ordinary cannabis product, recall evidence, battery electronics, glass or sharps, packaging, and chemical residue into safe locally verified disposal routes"
+    },
+    {
+      "title": "Cannabis Loyalty Rewards Value and Privacy Guide",
+      "url": "https://bigbudman.com/guides/cannabis-dispensary-loyalty-rewards-value-privacy-guide/",
+      "department": "commercial",
       "portfolio_label": "Exploration",
-      "search_intent": "keep keyboard and assistive-technology interaction inside the adult-confirmation dialog until admission while restoring page access and prior focus afterward"
+      "search_intent": "compare a dispensary rewards program by usable value, break-even spend, expiry, exclusions, current local rule, data collection, consent, and exit path"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The stash-jar guide now offers a genuinely useful capacity, headspace, and ownership-cost planner plus an exact-model acceptance record, while explicitly preserving the original-package no-purchase option. No merchant, product, price, coupon, ranking, product image, or affiliate link was added."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The loyalty guide adds a neutral usable-value, effective-rate, and break-even calculator plus an auditable privacy and exit record. No merchant, program, product, price, coupon, ranking, product image, or affiliate link was added."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The pet handoff, stash-jar calculator, and age-gate work use text, semantic controls, tables, and existing brand interface assets. No editorial, product, affiliate, stock, or generated image was added or changed."
+    "note": "The disposal reference, rewards calculator, and crawl-path work use semantic text, tables, controls, and existing brand interface assets. No editorial, product, affiliate, stock, or generated image was added or changed."
   },
   "search_console": {
-    "report_date": "2026-10-14",
-    "decision": "The September 14\u2013October 11 report showed 1,373 impressions, four clicks, 0.3% CTR, and average position 33.5. The only supported position 4\u201320 non-brand content signal\u2014Stem Cell CBG at 18 impressions, one click, and position 6.2\u2014was materially reinforced on October 15, so repeating that cluster today would risk cannibalization. No Data-led item was selected. One-impression queries, branded homepage noise, HTTP-variant noise, four ashtray impressions, two guide-hub impressions, and the Oklahoma page at position 66.9 were deliberately ignored as too weak, noisy, or outside the target range."
+    "report_date": "2026-10-21",
+    "decision": "The September 21\u2013October 18 report showed 1,093 impressions, three clicks, 0.3% CTR, and average position 19.2. The canonical sitemap remained pending with one error and the legacy endpoint showed two errors, so today's Data-led work strengthened crawl paths and added a unique-source inbound-link gate instead of publishing another query-cluster page. Stem Cell CBG at 19 impressions, one click, and position 6.0 was deliberately not reinforced again because it was materially expanded on October 15. Montana cannabis at two impressions, About at 11 impressions, Contact at nine impressions, and Blue Dream terms around positions 48\u201370 were ignored as too small, navigational, or outside the supported 4\u201320 opportunity range."
   },
   "authority": {
-    "action": "Rebuilt the pet accidental-exposure page into a citation-worthy no-delay response card, exact-product/co-ingredient handoff, observation timeline, and access-route audit grounded in current ASPCA, Merck Veterinary Manual, and FDA sources. Reciprocal links strengthen the pet, storage, package-access, and veterinary-label cluster. No outreach was sent and no marginal opportunity was logged."
+    "action": "Published a citation-worthy consumer disposal decision map with a stop gate, format matrix, battery/fire lane, seven-step handoff, and printable record grounded in current government sources. Reciprocal links strengthen the recall, complaint, vape-disposal, and ember-safety cluster. The crawl-path gate also repaired four hub-only guide routes and requires two unique HTML sources for every guide and gear detail page. No outreach was sent and no marginal opportunity was logged."
   },
   "surfaces": [
-    "guide library and pet-safety/storage cluster",
-    "gear library and storage/comparison cluster",
-    "editorial policy and sitewide adult-confirmation dialog",
+    "guide library and disposal/recall/complaint cluster",
+    "guide library and price/menu/rewards cluster",
+    "four repaired hub-only guide routes and sitewide inbound-link publication gate",
+    "editorial policy",
     "publication updates",
     "Atom feed",
     "complete site index",
