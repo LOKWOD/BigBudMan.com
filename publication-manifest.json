@@ -3,13 +3,6 @@
   "page_count": 3,
   "pages": [
     {
-      "title": "Sitemap Date Integrity Gate",
-      "url": "https://bigbudman.com/editorial-policy/",
-      "department": "technical",
-      "portfolio_label": "Data-led",
-      "search_intent": "keep canonical and legacy sitemap URL and last-modified records identical, valid, page-matched, and nonfuture while Search Console continues to report sitemap errors"
-    },
-    {
       "title": "New York Cannabis Harvest, Drying and Curing Log",
       "url": "https://bigbudman.com/guides/new-york-home-cannabis-harvest-drying-curing-log/",
       "department": "guides",
@@ -22,6 +15,13 @@
       "department": "commercial",
       "portfolio_label": "Exploration",
       "search_intent": "screen secondhand cannabis accessories by exact identity, recall status, residue, wear, battery condition, missing parts, warranty transfer, adjusted cost, and safe exit"
+    },
+    {
+      "title": "Cannabis Next-Day Impairment: Evidence Guide",
+      "url": "https://bigbudman.com/guides/cannabis-next-day-impairment-evidence-guide/",
+      "department": "science and responsible use",
+      "portfolio_label": "Exploration",
+      "search_intent": "separate residual symptoms, driving and safety-critical work, testing, sleep and co-use, evidence limits, and a conservative next-morning decision gate without inventing a clearance timer"
     }
   ],
   "monetization": {
@@ -31,17 +31,18 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The harvest record, secondhand buying screen, and sitemap gate use semantic text, tables, checklists, and existing brand interface assets. No editorial, product, affiliate, stock, or generated image was added or changed."
+    "note": "All three new pages use semantic text, tables, checklists, and existing brand interface assets. No editorial, product, affiliate, stock, or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-10-21",
     "decision": "The September 21\u2013October 18 report showed 1,093 impressions, three clicks, 0.274% CTR, and average position 19.199. The canonical sitemap remained pending with one error and the legacy endpoint showed two errors, so today's only Data-led item adds URL-and-lastmod parity, page-date matching, nonfuture-date, robots-directive, and legacy-payload publication gates. Stem Cell CBG at 19 impressions, one click, and position 6.0 was not reinforced again because it was materially expanded October 15. One-impression legal queries, Montana cannabis at two impressions, About at 11 impressions, Contact at nine impressions, and Blue Dream terms around positions 48\u201370 were ignored as too small, navigational, or outside the supported 4\u201320 opportunity range."
   },
   "authority": {
-    "action": "Published a citation-worthy New York post-harvest batch log with a room-readiness matrix, durable identity chain, repeatable environment and condition log, narrow mass-change math, container-transition record, hard-stop gate, and final storage/disposition record grounded in OCM, EPA, and university-extension sources. Reciprocal links strengthen the home-grow planner and pest/mold IPM cluster. No outreach was sent and no marginal opportunity was logged."
+    "action": "Published a citation-worthy New York post-harvest batch log with a room-readiness matrix, durable identity chain, repeatable environment and condition log, narrow mass-change math, container-transition record, hard-stop gate, and final storage/disposition record grounded in OCM, EPA, and university-extension sources. Reciprocal links strengthen the home-grow planner and pest/mold IPM cluster. The next-day guide also strengthens the driving, impairment, and sleep evidence cluster; one qualified National Safety Council resource opportunity was logged, and no outreach was sent."
   },
   "surfaces": [
-    "guide library and New York home-grow/IPM/post-harvest cluster",
+    "homepage story module",
+    "guide library, New York home-grow/IPM/post-harvest cluster, and driving/impairment/sleep cluster",
     "gear library, secondhand feature path, comparison and returns cluster",
     "editorial policy and sitemap integrity audit",
     "publication updates",

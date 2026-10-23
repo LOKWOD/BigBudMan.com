@@ -61,6 +61,7 @@
   <url><loc>https://bigbudman.com/guides/cannabis-heart-rate-blood-pressure-safety/</loc><lastmod>2026-09-13</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-intoxication-impairment-detection/</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/cannabis-next-day-impairment-evidence-guide/</loc><lastmod>2026-10-23</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-official-source-directory/</loc><lastmod>2026-09-30</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-older-adults-medication-fall-safety/</loc><lastmod>2026-09-23</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/</loc><lastmod>2026-09-20</lastmod></url>
@@ -105,7 +106,7 @@
   <url><loc>https://bigbudman.com/guides/terpenes/</loc><lastmod>2026-10-11</lastmod></url>
   <url><loc>https://bigbudman.com/guides/thca-vs-thc-cannabis-labels/</loc><lastmod>2026-09-08</lastmod></url>
   <url><loc>https://bigbudman.com/guides/vapes/</loc><lastmod>2026-10-13</lastmod></url>
-  <url><loc>https://bigbudman.com/</loc><lastmod>2026-10-17</lastmod></url>
+  <url><loc>https://bigbudman.com/</loc><lastmod>2026-10-23</lastmod></url>
   <url><loc>https://bigbudman.com/legal/alabama/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/alaska/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/arizona/</loc><lastmod>2026-09-01</lastmod></url>

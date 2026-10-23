@@ -1547,6 +1547,67 @@
     renderCbgEvidence();
   }
 
+  // Rewards math stays anchored to spending the reader already planned. It
+  // does not optimize spend, choose products, value personal data, or verify
+  // that a program is lawful or accurately advertised.
+  const loyaltyValue = $('[data-loyalty-value]');
+  if (loyaltyValue) {
+    const read = (selector) => {
+      const raw = $(selector, loyaltyValue)?.value.trim();
+      if (raw === '') return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
+    };
+    const money = (value) => value === null ? '—' : value.toLocaleString(undefined, {style:'currency', currency:'USD'});
+    const percent = (value) => value === null ? '—' : `${value.toLocaleString(undefined, {maximumFractionDigits:2})}%`;
+    const renderLoyaltyValue = () => {
+      const spend = read('[data-loyalty-spend]');
+      const rate = read('[data-loyalty-rate]');
+      const redemption = read('[data-loyalty-redeem]');
+      const fee = read('[data-loyalty-fee]');
+      const premium = read('[data-loyalty-premium]');
+      const validPercentages = rate !== null && rate <= 100 && redemption !== null && redemption <= 100;
+      const complete = spend !== null && validPercentages && fee !== null && premium !== null;
+      const face = complete ? spend * rate / 100 : null;
+      const usableRate = complete ? rate / 100 * redemption / 100 : null;
+      const usable = face !== null ? face * redemption / 100 : null;
+      const net = usable !== null ? usable - fee - premium : null;
+      const effective = net !== null && spend > 0 ? net / spend * 100 : null;
+      const breakEven = usableRate > 0 ? (fee + premium) / usableRate : null;
+      $('[data-loyalty-face]', loyaltyValue).textContent = money(face);
+      $('[data-loyalty-usable]', loyaltyValue).textContent = money(usable);
+      $('[data-loyalty-net]', loyaltyValue).textContent = money(net);
+      $('[data-loyalty-effective]', loyaltyValue).textContent = percent(effective);
+      $('[data-loyalty-break-even]', loyaltyValue).textContent = money(breakEven);
+      const status = $('[data-loyalty-status]', loyaltyValue);
+      if (!status) return;
+      if (rate !== null && rate > 100 || redemption !== null && redemption > 100) {
+        status.textContent = 'Reward rate and realistic redemption must each stay between 0% and 100%.';
+      } else if (!complete) {
+        status.textContent = 'Complete all five fields from dated terms and a compatible price baseline. Blank fields stay unknown.';
+      } else if (!(spend > 0) || !(usableRate > 0)) {
+        status.textContent = 'No positive effective reward rate is available from these inputs. Privacy, rule, product, and exit checks still apply.';
+      } else if (net < 0) {
+        status.textContent = 'Estimated net value is negative after fees and the entered price premium. Do not increase spending to repair the result.';
+      } else {
+        status.textContent = 'Estimate updated locally. Verify eligibility, expiry, conversion, current law, price basis, privacy terms, and the no-program option before deciding.';
+      }
+    };
+    $$('input', loyaltyValue).forEach((input) => input.addEventListener('input', renderLoyaltyValue));
+    $('[data-loyalty-reset]', loyaltyValue)?.addEventListener('click', () => {
+      $$('input', loyaltyValue).forEach((input) => { input.value = ''; });
+      const redemption = $('[data-loyalty-redeem]', loyaltyValue);
+      const fee = $('[data-loyalty-fee]', loyaltyValue);
+      const premium = $('[data-loyalty-premium]', loyaltyValue);
+      if (redemption) redemption.value = '75';
+      if (fee) fee.value = '0';
+      if (premium) premium.value = '0';
+      renderLoyaltyValue();
+      $('[data-loyalty-spend]', loyaltyValue)?.focus();
+    });
+    renderLoyaltyValue();
+  }
+
   // Glossary filtering keeps every definition in the HTML and only narrows
   // the visible set. Without JavaScript the complete reference remains usable.
   const glossary = $('[data-glossary]');

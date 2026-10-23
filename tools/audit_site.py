@@ -92,8 +92,10 @@ def main() -> int:
     descriptions: dict[str, Path] = {}
     canonicals: dict[str, Path] = {}
     expected_sitemap: set[str] = set()
+    expected_sitemap_dates: dict[str, str] = {}
     expected_search: set[str] = set()
     incoming: dict[str, int] = {}
+    incoming_sources: dict[str, set[str]] = {}
     fragment_cache: dict[Path, set[str]] = {}
     honeypot_count = 0
 
@@ -186,6 +188,15 @@ def main() -> int:
             primary = next((item for item in schemas if item.get("@type") in {"Article", "WebPage"}), None)
         if primary is None:
             failures.append(f"{rel}: missing primary WebPage or Article schema")
+        elif rel.as_posix() not in {"404.html", "thank-you/index.html"}:
+            modified = primary.get("dateModified", "")
+            try:
+                modified_date = datetime.strptime(modified, "%Y-%m-%d")
+                expected_sitemap_dates[parser.canonical] = modified
+                if batch_date and modified_date > batch_date:
+                    failures.append(f"{rel}: dateModified is after the current publication batch")
+            except (TypeError, ValueError):
+                failures.append(f"{rel}: primary schema has an invalid dateModified")
         if graph_schema:
             graph_ids = [item.get("@id") for item in graph_nodes if item.get("@id")]
             duplicate_graph_ids = [value for value, count in Counter(graph_ids).items() if count > 1]
@@ -269,6 +280,9 @@ def main() -> int:
                 target_rel = local.relative_to(ROOT).as_posix()
                 target_url = "/" if target_rel == "index.html" else f"/{target_rel[:-10]}"
                 incoming[target_url] = incoming.get(target_url, 0) + 1
+                source_rel = rel.as_posix()
+                if source_rel not in {"site-index/index.html", "updates/index.html"} and source_rel != target_rel:
+                    incoming_sources.setdefault(target_url, set()).add(source_rel)
         for action in parser.forms:
             if action and not action.startswith("https://formsubmit.co/"): failures.append(f"{rel}: unexpected form action {action}")
         if rel.as_posix() not in {"404.html", "thank-you/index.html"}:
@@ -283,7 +297,7 @@ def main() -> int:
             manifest_item = batch_paths[rel.as_posix()]
             visible = re.sub(r"<script\b[^>]*>.*?</script>|<style\b[^>]*>.*?</style>|<[^>]+>", " ", text, flags=re.I | re.S)
             words = re.findall(r"\b[\w’'-]+\b", visible)
-            if manifest_item.get("department") in {"guides", "gear"} and len(words) < 850:
+            if manifest_item.get("department") in {"guides", "gear", "commercial"} and len(words) < 850:
                 failures.append(f"{rel}: current article has only {len(words)} visible words")
             local_anchors = [href for href in parser.anchors if resolve_local(page, href) is not None]
             if len(local_anchors) < 3: failures.append(f"{rel}: fewer than three meaningful internal links")
@@ -295,7 +309,7 @@ def main() -> int:
             else:
                 try:
                     schema = json.loads(schema_match.group(1))
-                    if manifest_item.get("department") in {"guides", "gear"}:
+                    if manifest_item.get("department") in {"guides", "gear", "commercial"}:
                         expected_date = batch_date.strftime("%Y-%m-%d") if batch_date else ""
                         article_schema = next((node for node in schema.get("@graph", []) if node.get("@type") == "Article"), None)
                         if article_schema is None: failures.append(f"{rel}: JSON-LD graph has no Article")
@@ -313,12 +327,36 @@ def main() -> int:
     try:
         tree = ET.parse(ROOT / "sitemap.xml")
         ns = {"s":"http://www.sitemaps.org/schemas/sitemap/0.9"}
-        sitemap_urls = {node.text for node in tree.findall(".//s:loc", ns)}
+        sitemap_nodes = tree.findall(".//s:url", ns)
+        sitemap_pairs = []
+        for node in sitemap_nodes:
+            loc = node.findtext("s:loc", default="", namespaces=ns)
+            lastmod = node.findtext("s:lastmod", default="", namespaces=ns)
+            sitemap_pairs.append((loc, lastmod))
+            try:
+                parsed_lastmod = datetime.strptime(lastmod, "%Y-%m-%d")
+                if batch_date and parsed_lastmod > batch_date:
+                    failures.append(f"Sitemap has a future lastmod for {loc}: {lastmod}")
+            except ValueError:
+                failures.append(f"Sitemap has an invalid lastmod for {loc}: {lastmod or '(missing)'}")
+        sitemap_urls = {loc for loc, _ in sitemap_pairs}
+        if len(sitemap_pairs) != len(sitemap_urls):
+            failures.append("Sitemap contains duplicate loc records")
         if sitemap_urls != expected_sitemap:
             missing = expected_sitemap - sitemap_urls
             extra = sitemap_urls - expected_sitemap
             if missing: failures.append("Sitemap missing: " + ", ".join(sorted(missing)))
             if extra: failures.append("Sitemap extra: " + ", ".join(sorted(extra)))
+        sitemap_dates = dict(sitemap_pairs)
+        for loc, expected_date in expected_sitemap_dates.items():
+            if sitemap_dates.get(loc) != expected_date:
+                failures.append(f"Sitemap lastmod mismatch for {loc}: expected {expected_date}, found {sitemap_dates.get(loc, '(missing)')}")
+        if (ROOT / "index.php").read_bytes() != (ROOT / "sitemap.xml").read_bytes():
+            failures.append("Legacy Search Console sitemap payload differs from canonical sitemap.xml")
+        robots = (ROOT / "robots.txt").read_text(encoding="utf-8")
+        sitemap_directives = re.findall(r"^Sitemap:\s*(\S+)\s*$", robots, re.M | re.I)
+        if sitemap_directives != ["https://bigbudman.com/sitemap.xml"]:
+            failures.append(f"robots.txt must name the canonical HTTPS sitemap exactly once; found {sitemap_directives}")
     except Exception as exc:
         failures.append(f"Invalid sitemap.xml: {exc}")
 
@@ -339,6 +377,8 @@ def main() -> int:
     for route in sorted(expected_search):
         if route.startswith(("/strains/", "/legal/")) and route not in {"/strains/", "/legal/"} and incoming.get(route, 0) < 2:
             failures.append(f"{route}: fewer than two internal links")
+        if route.startswith(("/guides/", "/gear/")) and route not in {"/guides/", "/gear/"} and len(incoming_sources.get(route, set())) < 2:
+            failures.append(f"{route}: fewer than two distinct contextual or collection source pages")
 
     try:
         strain_hub = (ROOT / "strains/index.html").read_text(encoding="utf-8")
@@ -498,10 +538,10 @@ def main() -> int:
         if "data-mobile-toc" not in app:
             failures.append("Article script does not synchronize mobile section navigation")
         discovery_checks = {
-            "index.html": ("guides/cbn-products-label-evidence-guide/", "legal/cannabis-federal-property-rules-guide/", "guides/cannabis-social-hosting-guest-safety-plan/", "guides/terpenes/", "gear/cannabis-loupe-pocket-microscope-guide/", "guides/cannabis-cbd-chronic-pain-evidence-guide/", "guides/storage/", "gear/cannabis-accessibility-tools-buying-guide/"),
+            "index.html": ("guides/cannabis-next-day-impairment-evidence-guide/", "guides/cbn-products-label-evidence-guide/", "legal/cannabis-federal-property-rules-guide/", "guides/cannabis-social-hosting-guest-safety-plan/", "guides/terpenes/", "gear/cannabis-loupe-pocket-microscope-guide/", "guides/cannabis-cbd-chronic-pain-evidence-guide/", "guides/storage/", "gear/cannabis-accessibility-tools-buying-guide/"),
             "strains/index.html": ("stem-cell-cbg/", "118 STRAIN FIELD NOTES", "NO VERIFIED CULTIVAR IMAGE"),
-            "guides/index.html": ("cannabis-cbd-chronic-pain-evidence-guide/", "cannabis-cbd-cancer-claims-evidence-guide/", "cannabis-menu-package-receipt-match-checklist/", "cannabis-exercise-workout-heat-safety/", "new-york-home-cannabis-pest-mold-ipm-guide/", "cannabis-cbd-epilepsy-seizure-care-guide/", "cannabis-glaucoma-eye-pressure-vision-guide/", "cbd-patches-transdermal-label-evidence-guide/", "cannabis-package-seal-tamper-evidence-checklist/", "cannabis-dry-mouth-dental-oral-health-guide/", "cannabis-edible-label-math-checker/", "cbg-products-label-evidence-guide/", "cannabis-contaminant-test-results-guide/", "cannabis-child-resistant-packaging-home-storage-guide/", "cannabis-official-source-directory/", "cannabis-gummies-drinks-oils-capsules-comparison/", "cannabis-claim-fact-check-worksheet/", "Store cannabis safely by product type", "Thirty useful paths", "Comparing packaged cannabis flower", 'data-guide-sort', 'data-updated="2026-10-17"', 'data-guide-filter="health"', 'data-guide-filter="workplace"'),
-            "gear/index.html": ("cannabis-accessibility-tools-buying-guide/", "smell-proof-storage/", "cannabis-rolling-tray-buying-guide/", "cannabis-rolling-paper-cone-guide/", "digital-scale-buying-calibration-guide/", "cannabis-tool-cleaning-kit/", "indoor-cannabis-grow-light-buying-cost-planner/", "cannabis-gear-comparison-worksheet/", "cannabis-accessory-return-warranty-recall-guide/", "dry-herb-vaporizer-dosing-capsule-guide/", "Choose an accessibility aid", "All 24"),
+            "guides/index.html": ("cannabis-next-day-impairment-evidence-guide/", "cannabis-cbd-chronic-pain-evidence-guide/", "cannabis-cbd-cancer-claims-evidence-guide/", "cannabis-menu-package-receipt-match-checklist/", "cannabis-exercise-workout-heat-safety/", "new-york-home-cannabis-pest-mold-ipm-guide/", "new-york-home-cannabis-harvest-drying-curing-log/", "cannabis-cbd-epilepsy-seizure-care-guide/", "cannabis-glaucoma-eye-pressure-vision-guide/", "cbd-patches-transdermal-label-evidence-guide/", "cannabis-package-seal-tamper-evidence-checklist/", "cannabis-dry-mouth-dental-oral-health-guide/", "cannabis-edible-label-math-checker/", "cbg-products-label-evidence-guide/", "cannabis-contaminant-test-results-guide/", "cannabis-child-resistant-packaging-home-storage-guide/", "cannabis-official-source-directory/", "cannabis-gummies-drinks-oils-capsules-comparison/", "cannabis-claim-fact-check-worksheet/", "Store cannabis safely by product type", "Thirty useful paths", "Comparing packaged cannabis flower", 'data-guide-sort', 'data-updated="2026-10-23"', 'data-guide-filter="health"', 'data-guide-filter="workplace"'),
+            "gear/index.html": ("used-cannabis-accessory-buying-safety-guide/", "cannabis-accessibility-tools-buying-guide/", "smell-proof-storage/", "cannabis-rolling-tray-buying-guide/", "cannabis-rolling-paper-cone-guide/", "digital-scale-buying-calibration-guide/", "cannabis-tool-cleaning-kit/", "indoor-cannabis-grow-light-buying-cost-planner/", "cannabis-gear-comparison-worksheet/", "cannabis-accessory-return-warranty-recall-guide/", "dry-herb-vaporizer-dosing-capsule-guide/", "Screen used gear before handoff", "All 25"),
             "guides/read-a-label/index.html": ("Build a date chain", "Preserve a label-to-lot evidence card", "cannabis.ny.gov/part-128-guidance", "cannabis-certificate-of-analysis-coa-guide/", "cannabis-product-recall-batch-checker/"),
             "responsible-use/index.html": ("guides/cannabis-exercise-workout-heat-safety/",),
             "guides/cannabis-exercise-workout-heat-safety/index.html": ("cdc.gov/cannabis/health-effects/brain-health", "cdc.gov/heat-health/risk-factors/heat-and-athletes", "nhtsa.gov/risky-driving/drug-impaired-driving", "2026list_en_final_clean"),
@@ -512,7 +552,10 @@ def main() -> int:
             "guides/cbg-products-label-evidence-guide/index.html": ("stem-cell-cbg/",),
             "guides/storage/index.html": ("smell-proof-storage/", "Use five controls instead of one container", "No home method can certify"),
             "gear/cannabis-accessibility-tools-buying-guide/index.html": ("cannabis-gear-comparison-worksheet/", "exact blocked task", "No merchant or product link appears"),
-            "guides/new-york-home-cannabis-grow-planner/index.html": ("new-york-home-cannabis-pest-mold-ipm-guide/", "indoor-cannabis-grow-light-buying-cost-planner/"),
+            "guides/new-york-home-cannabis-grow-planner/index.html": ("new-york-home-cannabis-pest-mold-ipm-guide/", "new-york-home-cannabis-harvest-drying-curing-log/", "indoor-cannabis-grow-light-buying-cost-planner/"),
+            "guides/new-york-home-cannabis-pest-mold-ipm-guide/index.html": ("new-york-home-cannabis-harvest-drying-curing-log/",),
+            "guides/new-york-home-cannabis-harvest-drying-curing-log/index.html": ("Mass remaining (%)", "extension.oregonstate.edu", "blog.uvm.edu", "Do not smoke or ingest a sample"),
+            "guides/cannabis-next-day-impairment-evidence-guide/index.html": ("Read the systematic review in both directions", "pubmed.ncbi.nlm.nih.gov/36475998", "self-checks cannot certify performance", "intentionally gives no waiting period"),
             "gear/indoor-cannabis-grow-light-buying-cost-planner/index.html": ("new-york-home-cannabis-pest-mold-ipm-guide/",),
             "guides/cannabis-contaminant-test-results-guide/index.html": ("new-york-home-cannabis-pest-mold-ipm-guide/",),
             "gear/cannabis-inventory-label-record-kit/index.html": ("digital-scale-buying-calibration-guide/",),
@@ -530,8 +573,10 @@ def main() -> int:
             "legal/cannabis-federal-property-rules-guide/index.html": ("April 28, 2026", "36 CFR 2.35", "federalregister.gov/documents/2026/04/28/2026-08176"),
             "guides/cannabis-social-hosting-guest-safety-plan/index.html": ("1-800-222-1222", "original labeled package", "No cannabis seller, delivery service, party kit, product, coupon or affiliate link appears"),
             "gear/cannabis-lighter-flame-safety-guide/index.html": ("Compare three exact models before checkout", "U.S. CPSC: Recalls and Product Safety Warnings", "No merchant, product, price, coupon, ranking, or affiliate link appears"),
-            "updates/index.html": ("guides/cannabis-and-pets-accidental-exposure/", "gear/cannabis-stash-jar-buying-guide/", "editorial-policy/", "October 21, 2026"),
-            "site-index/index.html": ("guides/cannabis-and-pets-accidental-exposure/", "gear/cannabis-stash-jar-buying-guide/", "editorial-policy/", "October 21, 2026", "updates/"),
+            "gear/used-cannabis-accessory-buying-safety-guide/index.html": ("Adjusted used cost", "cpsc.gov/Business--Manufacturing/Online-Sellers-Safety-Guide", "used-lithium-ion-batteries", "No marketplace, merchant, product, model, price, coupon, or affiliate link appears"),
+            "editorial-policy/index.html": ("Sitemap date integrity", "legacy Search Console compatibility endpoint", "cannot be later than the current publication batch"),
+            "updates/index.html": ("guides/cannabis-next-day-impairment-evidence-guide/", "guides/new-york-home-cannabis-harvest-drying-curing-log/", "gear/used-cannabis-accessory-buying-safety-guide/", "October 23, 2026"),
+            "site-index/index.html": ("guides/cannabis-next-day-impairment-evidence-guide/", "guides/new-york-home-cannabis-harvest-drying-curing-log/", "gear/used-cannabis-accessory-buying-safety-guide/", "October 23, 2026", "updates/"),
         }
         for discovery_page, markers in discovery_checks.items():
             discovery_text = (ROOT / discovery_page).read_text(encoding="utf-8")
@@ -590,6 +635,12 @@ def main() -> int:
             failures.append("Search index is missing the delta-8 guide or its safety vocabulary")
         if '"url":"/guides/cannabis-edible-allergen-ingredient-label-guide/"' not in search_raw or 'cross-contact' not in search_raw.lower():
             failures.append("Search index is missing the edible-allergen guide or its ingredient vocabulary")
+        if '"url":"/guides/new-york-home-cannabis-harvest-drying-curing-log/"' not in search_raw or 'postharvest' not in search_raw.lower():
+            failures.append("Search index is missing the harvest log or its post-harvest vocabulary")
+        if '"url":"/gear/used-cannabis-accessory-buying-safety-guide/"' not in search_raw or 'secondhand' not in search_raw.lower():
+            failures.append("Search index is missing the used-accessory guide or its secondhand vocabulary")
+        if '"url":"/guides/cannabis-next-day-impairment-evidence-guide/"' not in search_raw or 'residual' not in search_raw.lower():
+            failures.append("Search index is missing the next-day impairment guide or its residual-effect vocabulary")
         if '"url":"/guides/cannabis-child-resistant-packaging-home-storage-guide/"' not in search_raw or 'childproof' not in search_raw.lower():
             failures.append("Search index is missing the packaging guide or its child-safety vocabulary")
         if '"url":"/strains/stem-cell-cbg/"' not in search_raw or 'cbga' not in search_raw.lower():
@@ -636,6 +687,12 @@ def main() -> int:
         stash_jar = (ROOT / "gear/cannabis-stash-jar-buying-guide/index.html").read_text(encoding="utf-8")
         for marker in ('data-stash-jar-planner', 'data-jar-diameter', 'data-jar-working', 'data-jar-total', 'Math check:', 'New York OCM: Cannabis Storage Guide'):
             if marker not in stash_jar: failures.append(f"Stash-jar planner is missing marker: {marker}")
+        disposal = (ROOT / "guides/cannabis-product-disposal-decision-guide/index.html").read_text(encoding="utf-8")
+        for marker in ('Run the stop-before-disposal gate', 'Use the format-first disposal map', 'Copy the disposal handoff card', 'U.S. EPA: Used Lithium-Ion Batteries', 'Connecticut Cannabis: Safe Disposal'):
+            if marker not in disposal: failures.append(f"Cannabis disposal guide is missing authority marker: {marker}")
+        loyalty = (ROOT / "guides/cannabis-dispensary-loyalty-rewards-value-privacy-guide/index.html").read_text(encoding="utf-8")
+        for marker in ('data-loyalty-value', 'data-loyalty-spend', 'data-loyalty-net', 'data-loyalty-break-even', 'New York OCM: Adopted Parts 128 and 129', 'Math check:'):
+            if marker not in loyalty: failures.append(f"Cannabis loyalty guide is missing value or authority marker: {marker}")
         chronic_pain = (ROOT / "guides/cannabis-cbd-chronic-pain-evidence-guide/index.html").read_text(encoding="utf-8")
         for marker in ('CDC: Cannabis and Chronic Pain', 'AHRQ: Living Systematic Review—2025 Update', 'Build a clinician-ready pain, function, and product record', 'Do not turn population headlines into an opioid plan'):
             if marker not in chronic_pain: failures.append(f"Chronic-pain guide is missing authority marker: {marker}")
@@ -725,8 +782,10 @@ def main() -> int:
             failures.append("Editorial policy is missing the accessible honeypot standard")
         if "Atom feed authorship" not in policy or "Big Bud Man Editorial Team" not in (ROOT / "feed.xml").read_text(encoding="utf-8"):
             failures.append("Editorial policy or Atom feed is missing the feed authorship standard")
-        if "Age-gate focus isolation" not in policy or "October 21, 2026" not in policy:
+        if "Age-gate focus isolation" not in policy:
             failures.append("Editorial policy is missing the age-gate focus-isolation standard")
+        if "Contextual inbound-link floor" not in policy or "October 23, 2026" not in policy:
+            failures.append("Editorial policy is missing the contextual inbound-link standard")
         deployed_css = (ROOT / "assets/css/styles.css").read_text(encoding="utf-8")
         if "@import" in deployed_css:
             failures.append("Production styles.css still contains a render-blocking CSS import")
@@ -745,7 +804,7 @@ def main() -> int:
         returns = (ROOT / "gear/cannabis-accessory-return-warranty-recall-guide/index.html").read_text(encoding="utf-8")
         for marker in ("data-return-deadline", "data-return-purchase", "data-return-end", "FTC: Warranties", "SaferProducts.gov", "November 12, 2026"):
             if marker not in returns: failures.append(f"Accessory return guide is missing marker: {marker}")
-        for marker in ("bbm-saved-reading-v1", "renderSaved", "[data-saved-clear]", "data-saved-copy", "data-saved-remove", "data-copy-citation", "Article citation copied.", "data-copy-checklists", "Article checklists copied", "data-paper-comparison", "renderPaperComparison", "data-paper-unit", "data-lockbox-comparison", "renderLockboxComparison", "data-lock-fit", "data-lock-unit-cost", "data-stash-jar-planner", "renderStashJar", "data-jar-working", "data-jar-total", "data-tray-comparison", "renderTrayComparison", "data-tray-task-fit", "data-tray-store-fit", "data-tray-unit-cost", "data-humidity-comparison", "renderHumidityComparison", "data-humidity-first", "data-humidity-total", "data-scale-check", "renderScaleCheck", "data-scale-tolerance-result", "data-cleaning-cost", "renderCleaningCost", "data-cleaning-cycle", "data-grow-light-comparison", "renderGrowComparison", "data-grow-electricity", "data-grow-total", "data-preroll-planner", "renderPreroll", "data-glossary", "renderGlossary", "setActiveToggle", "data-package-comparison", "renderComparison", "data-edible-math", "renderEdibleMath", "data-vaporizer-cost", "renderVaporizerCost", "data-grinder-cost", "renderGrinderCost", "data-air-cleaner-planner", "renderAirCleaner", "data-air-needed", "data-gear-cost-comparison", "renderGearCostComparison", "data-gear-per-use", "data-return-deadline", "renderReturnDeadline", "addMonthsClamped", "data-cbg-evidence", "renderCbgEvidence", "data-cbg-layer", "routes.mental", "routes.compare"):
+        for marker in ("bbm-saved-reading-v1", "renderSaved", "[data-saved-clear]", "data-saved-copy", "data-saved-remove", "data-copy-citation", "Article citation copied.", "data-copy-checklists", "Article checklists copied", "data-paper-comparison", "renderPaperComparison", "data-paper-unit", "data-lockbox-comparison", "renderLockboxComparison", "data-lock-fit", "data-lock-unit-cost", "data-stash-jar-planner", "renderStashJar", "data-jar-working", "data-jar-total", "data-loyalty-value", "renderLoyaltyValue", "data-loyalty-net", "data-loyalty-break-even", "data-tray-comparison", "renderTrayComparison", "data-tray-task-fit", "data-tray-store-fit", "data-tray-unit-cost", "data-humidity-comparison", "renderHumidityComparison", "data-humidity-first", "data-humidity-total", "data-scale-check", "renderScaleCheck", "data-scale-tolerance-result", "data-cleaning-cost", "renderCleaningCost", "data-cleaning-cycle", "data-grow-light-comparison", "renderGrowComparison", "data-grow-electricity", "data-grow-total", "data-preroll-planner", "renderPreroll", "data-glossary", "renderGlossary", "setActiveToggle", "data-package-comparison", "renderComparison", "data-edible-math", "renderEdibleMath", "data-vaporizer-cost", "renderVaporizerCost", "data-grinder-cost", "renderGrinderCost", "data-air-cleaner-planner", "renderAirCleaner", "data-air-needed", "data-gear-cost-comparison", "renderGearCostComparison", "data-gear-per-use", "data-return-deadline", "renderReturnDeadline", "addMonthsClamped", "data-cbg-evidence", "renderCbgEvidence", "data-cbg-layer", "routes.mental", "routes.compare"):
             if marker not in app: failures.append(f"Site JavaScript is missing saved-reading or calculator marker: {marker}")
         if '"url":"/updates/"' not in search_raw:
             failures.append("Search index is missing publication updates")

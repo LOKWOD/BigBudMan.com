@@ -1,6 +1,14 @@
 # Big Bud Man authority opportunities
 
-Last reviewed: October 22, 2026
+Last reviewed: October 23, 2026
+
+## October 23, 2026 authority action
+
+The New York harvest, drying, and curing log is a citation-worthy post-harvest record that keeps lawful plant and batch identity, room readiness, repeated environment and condition observations, limited mass-change math, container transition, stop-use decisions, and final storage or disposition in one traceable asset. Reciprocal contextual links strengthen the existing New York home-grow and pest/mold IPM cluster. The next-day impairment evidence guide also adds a primary-source digest and conservative task-specific decision gate to the driving, impairment, and sleep cluster. No outreach was sent.
+
+| Qualified target | Verified contact route | Exact asset match | Honest pitch angle |
+|---|---|---|---|
+| National Safety Council — <https://www.nsc.org/road/safety-topics/impaired-driving> | Public contact route: <https://www.nsc.org/company/contact-nsc> | [Cannabis Next-Day Impairment: Evidence Guide](https://bigbudman.com/guides/cannabis-next-day-impairment-evidence-guide/) | A plain-language CDC, NHTSA, and systematic-review guide that separates residual symptoms, driving, safety-critical work, drug testing, sleep and co-use, self-check limits, and safe alternatives. Invite factual correction or resource consideration; do not imply individual fitness, legal review, NSC review, or endorsement. |
 
 This is a research log, not an outreach ledger. No email, form, account, comment, or social message has been sent. Big Bud Man will not pay for, trade, or guarantee links.
 
