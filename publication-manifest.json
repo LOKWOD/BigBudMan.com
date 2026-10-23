@@ -1,50 +1,49 @@
 {
-  "publication_date": "2026-10-22",
+  "publication_date": "2026-10-23",
   "page_count": 3,
   "pages": [
     {
-      "title": "Contextual Inbound-Link Floor",
+      "title": "Sitemap Date Integrity Gate",
       "url": "https://bigbudman.com/editorial-policy/",
       "department": "technical",
       "portfolio_label": "Data-led",
-      "search_intent": "require every guide and gear detail page to receive links from its collection hub and at least one distinct contextual source so crawl discovery does not depend on isolated URLs"
+      "search_intent": "keep canonical and legacy sitemap URL and last-modified records identical, valid, page-matched, and nonfuture while Search Console continues to report sitemap errors"
     },
     {
-      "title": "Cannabis Product Disposal Decision Guide",
-      "url": "https://bigbudman.com/guides/cannabis-product-disposal-decision-guide/",
+      "title": "New York Cannabis Harvest, Drying and Curing Log",
+      "url": "https://bigbudman.com/guides/new-york-home-cannabis-harvest-drying-curing-log/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "separate ordinary cannabis product, recall evidence, battery electronics, glass or sharps, packaging, and chemical residue into safe locally verified disposal routes"
+      "search_intent": "give lawful New York home growers a traceable batch, room, environment, condition, container-transition, storage, and stop-use record after harvest"
     },
     {
-      "title": "Cannabis Loyalty Rewards Value and Privacy Guide",
-      "url": "https://bigbudman.com/guides/cannabis-dispensary-loyalty-rewards-value-privacy-guide/",
+      "title": "Used Cannabis Accessory Buying Guide",
+      "url": "https://bigbudman.com/gear/used-cannabis-accessory-buying-safety-guide/",
       "department": "commercial",
       "portfolio_label": "Exploration",
-      "search_intent": "compare a dispensary rewards program by usable value, break-even spend, expiry, exclusions, current local rule, data collection, consent, and exit path"
+      "search_intent": "screen secondhand cannabis accessories by exact identity, recall status, residue, wear, battery condition, missing parts, warranty transfer, adjusted cost, and safe exit"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The loyalty guide adds a neutral usable-value, effective-rate, and break-even calculator plus an auditable privacy and exit record. No merchant, program, product, price, coupon, ranking, product image, or affiliate link was added."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The used-accessory guide adds an independent no-go screen, exact-object packet, adjusted-cost comparison, secondhand acceptance card, prominent gear-hub path, and contextual routes into existing model-specific buying guides. No merchant, marketplace, product, model, price, coupon, ranking, product image, or affiliate link was added."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The disposal reference, rewards calculator, and crawl-path work use semantic text, tables, controls, and existing brand interface assets. No editorial, product, affiliate, stock, or generated image was added or changed."
+    "note": "The harvest record, secondhand buying screen, and sitemap gate use semantic text, tables, checklists, and existing brand interface assets. No editorial, product, affiliate, stock, or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-10-21",
-    "decision": "The September 21\u2013October 18 report showed 1,093 impressions, three clicks, 0.3% CTR, and average position 19.2. The canonical sitemap remained pending with one error and the legacy endpoint showed two errors, so today's Data-led work strengthened crawl paths and added a unique-source inbound-link gate instead of publishing another query-cluster page. Stem Cell CBG at 19 impressions, one click, and position 6.0 was deliberately not reinforced again because it was materially expanded on October 15. Montana cannabis at two impressions, About at 11 impressions, Contact at nine impressions, and Blue Dream terms around positions 48\u201370 were ignored as too small, navigational, or outside the supported 4\u201320 opportunity range."
+    "decision": "The September 21\u2013October 18 report showed 1,093 impressions, three clicks, 0.274% CTR, and average position 19.199. The canonical sitemap remained pending with one error and the legacy endpoint showed two errors, so today's only Data-led item adds URL-and-lastmod parity, page-date matching, nonfuture-date, robots-directive, and legacy-payload publication gates. Stem Cell CBG at 19 impressions, one click, and position 6.0 was not reinforced again because it was materially expanded October 15. One-impression legal queries, Montana cannabis at two impressions, About at 11 impressions, Contact at nine impressions, and Blue Dream terms around positions 48\u201370 were ignored as too small, navigational, or outside the supported 4\u201320 opportunity range."
   },
   "authority": {
-    "action": "Published a citation-worthy consumer disposal decision map with a stop gate, format matrix, battery/fire lane, seven-step handoff, and printable record grounded in current government sources. Reciprocal links strengthen the recall, complaint, vape-disposal, and ember-safety cluster. The crawl-path gate also repaired four hub-only guide routes and requires two unique HTML sources for every guide and gear detail page. No outreach was sent and no marginal opportunity was logged."
+    "action": "Published a citation-worthy New York post-harvest batch log with a room-readiness matrix, durable identity chain, repeatable environment and condition log, narrow mass-change math, container-transition record, hard-stop gate, and final storage/disposition record grounded in OCM, EPA, and university-extension sources. Reciprocal links strengthen the home-grow planner and pest/mold IPM cluster. No outreach was sent and no marginal opportunity was logged."
   },
   "surfaces": [
-    "guide library and disposal/recall/complaint cluster",
-    "guide library and price/menu/rewards cluster",
-    "four repaired hub-only guide routes and sitewide inbound-link publication gate",
-    "editorial policy",
+    "guide library and New York home-grow/IPM/post-harvest cluster",
+    "gear library, secondhand feature path, comparison and returns cluster",
+    "editorial policy and sitemap integrity audit",
     "publication updates",
     "Atom feed",
     "complete site index",

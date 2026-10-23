@@ -4,9 +4,25 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-22T00:00:00Z</updated>
+  <updated>2026-10-23T00:00:00Z</updated>
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Used Cannabis Accessory Buying Guide</title>
+    <id>https://bigbudman.com/gear/used-cannabis-accessory-buying-safety-guide/</id>
+    <link href="https://bigbudman.com/gear/used-cannabis-accessory-buying-safety-guide/"/>
+    <updated>2026-10-23T00:00:00Z</updated>
+    <published>2026-10-23T00:00:00Z</published>
+    <summary>Screen a used cannabis accessory by exact identity, recall status, residue, wear, battery condition, missing parts, warranty, cleaning, and total cost.</summary>
+  </entry>
+  <entry>
+    <title>NY Cannabis Harvest, Drying &amp; Curing Log</title>
+    <id>https://bigbudman.com/guides/new-york-home-cannabis-harvest-drying-curing-log/</id>
+    <link href="https://bigbudman.com/guides/new-york-home-cannabis-harvest-drying-curing-log/"/>
+    <updated>2026-10-23T00:00:00Z</updated>
+    <published>2026-10-23T00:00:00Z</published>
+    <summary>Build a New York home-cannabis harvest, drying, curing, moisture, condition, security, and storage record without inventing a safety certificate.</summary>
+  </entry>
   <entry>
     <title>Cannabis Product Disposal Decision Guide</title>
     <id>https://bigbudman.com/guides/cannabis-product-disposal-decision-guide/</id>
@@ -230,21 +246,5 @@
     <updated>2026-10-11T00:00:00Z</updated>
     <published>2026-08-17T00:00:00Z</published>
     <summary>Compare three loupes or pocket microscopes by field of view, working distance, setup cost, annual cost, documentation, care, and evidence limits.</summary>
-  </entry>
-  <entry>
-    <title>CBN Products: Label &amp; Evidence Guide</title>
-    <id>https://bigbudman.com/guides/cbn-products-label-evidence-guide/</id>
-    <link href="https://bigbudman.com/guides/cbn-products-label-evidence-guide/"/>
-    <updated>2026-10-11T00:00:00Z</updated>
-    <published>2026-10-11T00:00:00Z</published>
-    <summary>Audit CBN gummies, oils and sleep claims by product identity, package math, exact-lot evidence, human research, ingredients, interactions and legal status.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis, CBD &amp; Liver Health Safety Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-cbd-liver-health-safety-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-cbd-liver-health-safety-guide/"/>
-    <updated>2026-10-10T00:00:00Z</updated>
-    <published>2026-10-10T00:00:00Z</published>
-    <summary>Separate CBD liver-injury evidence, prescription monitoring, retail-product uncertainty, symptoms, medicines, alcohol, labs, and clinician questions.</summary>
   </entry>
 </feed>
