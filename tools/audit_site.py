@@ -382,7 +382,7 @@ def main() -> int:
 
     try:
         strain_hub = (ROOT / "strains/index.html").read_text(encoding="utf-8")
-        if strain_hub.count("data-strain-card") != 118: failures.append("Strain hub does not contain exactly 118 cards")
+        if strain_hub.count("data-strain-card") != 119: failures.append("Strain hub does not contain exactly 119 cards")
         for marker in ('data-cannabinoid-filter="cbd"', 'data-cannabinoid-filter="cbg"', 'data-cannabinoid-filter="ratio"', 'lance ridgeline lantz'):
             if marker not in strain_hub: failures.append(f"Strain hub is missing expected marker: {marker}")
     except Exception as exc:
@@ -539,9 +539,9 @@ def main() -> int:
             failures.append("Article script does not synchronize mobile section navigation")
         discovery_checks = {
             "index.html": ("guides/cannabis-next-day-impairment-evidence-guide/", "guides/cbn-products-label-evidence-guide/", "legal/cannabis-federal-property-rules-guide/", "guides/cannabis-social-hosting-guest-safety-plan/", "guides/terpenes/", "gear/cannabis-loupe-pocket-microscope-guide/", "guides/cannabis-cbd-chronic-pain-evidence-guide/", "guides/storage/", "gear/cannabis-accessibility-tools-buying-guide/"),
-            "strains/index.html": ("stem-cell-cbg/", "118 STRAIN FIELD NOTES", "NO VERIFIED CULTIVAR IMAGE"),
+            "strains/index.html": ("stem-cell-cbg/", "panakeia-beta-hurv19pan/", "119 STRAIN FIELD NOTES", "NO VERIFIED CULTIVAR IMAGE"),
             "guides/index.html": ("cannabis-next-day-impairment-evidence-guide/", "cannabis-cbd-chronic-pain-evidence-guide/", "cannabis-cbd-cancer-claims-evidence-guide/", "cannabis-menu-package-receipt-match-checklist/", "cannabis-exercise-workout-heat-safety/", "new-york-home-cannabis-pest-mold-ipm-guide/", "new-york-home-cannabis-harvest-drying-curing-log/", "cannabis-cbd-epilepsy-seizure-care-guide/", "cannabis-glaucoma-eye-pressure-vision-guide/", "cbd-patches-transdermal-label-evidence-guide/", "cannabis-package-seal-tamper-evidence-checklist/", "cannabis-dry-mouth-dental-oral-health-guide/", "cannabis-edible-label-math-checker/", "cbg-products-label-evidence-guide/", "cannabis-contaminant-test-results-guide/", "cannabis-child-resistant-packaging-home-storage-guide/", "cannabis-official-source-directory/", "cannabis-gummies-drinks-oils-capsules-comparison/", "cannabis-claim-fact-check-worksheet/", "Store cannabis safely by product type", "Thirty useful paths", "Comparing packaged cannabis flower", 'data-guide-sort', 'data-updated="2026-10-23"', 'data-guide-filter="health"', 'data-guide-filter="workplace"'),
-            "gear/index.html": ("used-cannabis-accessory-buying-safety-guide/", "cannabis-accessibility-tools-buying-guide/", "smell-proof-storage/", "cannabis-rolling-tray-buying-guide/", "cannabis-rolling-paper-cone-guide/", "digital-scale-buying-calibration-guide/", "cannabis-tool-cleaning-kit/", "indoor-cannabis-grow-light-buying-cost-planner/", "cannabis-gear-comparison-worksheet/", "cannabis-accessory-return-warranty-recall-guide/", "dry-herb-vaporizer-dosing-capsule-guide/", "Screen used gear before handoff", "All 25"),
+            "gear/index.html": ("cannabis-home-testing-kit-buying-guide/", "used-cannabis-accessory-buying-safety-guide/", "cannabis-accessibility-tools-buying-guide/", "smell-proof-storage/", "cannabis-rolling-tray-buying-guide/", "cannabis-rolling-paper-cone-guide/", "digital-scale-buying-calibration-guide/", "cannabis-tool-cleaning-kit/", "indoor-cannabis-grow-light-buying-cost-planner/", "cannabis-gear-comparison-worksheet/", "cannabis-accessory-return-warranty-recall-guide/", "dry-herb-vaporizer-dosing-capsule-guide/", "Choose a home testing system", "All 26"),
             "guides/read-a-label/index.html": ("Build a date chain", "Preserve a label-to-lot evidence card", "cannabis.ny.gov/part-128-guidance", "cannabis-certificate-of-analysis-coa-guide/", "cannabis-product-recall-batch-checker/"),
             "responsible-use/index.html": ("guides/cannabis-exercise-workout-heat-safety/",),
             "guides/cannabis-exercise-workout-heat-safety/index.html": ("cdc.gov/cannabis/health-effects/brain-health", "cdc.gov/heat-health/risk-factors/heat-and-athletes", "nhtsa.gov/risky-driving/drug-impaired-driving", "2026list_en_final_clean"),
@@ -575,8 +575,8 @@ def main() -> int:
             "gear/cannabis-lighter-flame-safety-guide/index.html": ("Compare three exact models before checkout", "U.S. CPSC: Recalls and Product Safety Warnings", "No merchant, product, price, coupon, ranking, or affiliate link appears"),
             "gear/used-cannabis-accessory-buying-safety-guide/index.html": ("Adjusted used cost", "cpsc.gov/Business--Manufacturing/Online-Sellers-Safety-Guide", "used-lithium-ion-batteries", "No marketplace, merchant, product, model, price, coupon, or affiliate link appears"),
             "editorial-policy/index.html": ("Sitemap date integrity", "legacy Search Console compatibility endpoint", "cannot be later than the current publication batch"),
-            "updates/index.html": ("guides/cannabis-next-day-impairment-evidence-guide/", "guides/new-york-home-cannabis-harvest-drying-curing-log/", "gear/used-cannabis-accessory-buying-safety-guide/", "October 23, 2026"),
-            "site-index/index.html": ("guides/cannabis-next-day-impairment-evidence-guide/", "guides/new-york-home-cannabis-harvest-drying-curing-log/", "gear/used-cannabis-accessory-buying-safety-guide/", "October 23, 2026", "updates/"),
+            "updates/index.html": ("strains/panakeia-beta-hurv19pan/", "gear/cannabis-home-testing-kit-buying-guide/", "legal/cannabis-federally-assisted-housing-guide/", "October 24, 2026"),
+            "site-index/index.html": ("strains/panakeia-beta-hurv19pan/", "gear/cannabis-home-testing-kit-buying-guide/", "legal/cannabis-federally-assisted-housing-guide/", "October 24, 2026", "updates/"),
         }
         for discovery_page, markers in discovery_checks.items():
             discovery_text = (ROOT / discovery_page).read_text(encoding="utf-8")
@@ -784,7 +784,7 @@ def main() -> int:
             failures.append("Editorial policy or Atom feed is missing the feed authorship standard")
         if "Age-gate focus isolation" not in policy:
             failures.append("Editorial policy is missing the age-gate focus-isolation standard")
-        if "Contextual inbound-link floor" not in policy or "October 23, 2026" not in policy:
+        if "Contextual inbound-link floor" not in policy or "October 24, 2026" not in policy:
             failures.append("Editorial policy is missing the contextual inbound-link standard")
         deployed_css = (ROOT / "assets/css/styles.css").read_text(encoding="utf-8")
         if "@import" in deployed_css:

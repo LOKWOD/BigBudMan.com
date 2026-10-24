@@ -96,7 +96,7 @@
   <url><loc>https://bigbudman.com/guides/flower/</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://bigbudman.com/guides/full-spectrum-broad-spectrum-cbd-isolate/</loc><lastmod>2026-09-08</lastmod></url>
   <url><loc>https://bigbudman.com/guides/hemp-seed-oil-vs-cbd-oil/</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>https://bigbudman.com/guides/</loc><lastmod>2026-10-24</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/</loc><lastmod>2026-10-23</lastmod></url>
   <url><loc>https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/</loc><lastmod>2026-09-21</lastmod></url>
   <url><loc>https://bigbudman.com/guides/new-york-home-cannabis-harvest-drying-curing-log/</loc><lastmod>2026-10-23</lastmod></url>
@@ -107,13 +107,14 @@
   <url><loc>https://bigbudman.com/guides/terpenes/</loc><lastmod>2026-10-11</lastmod></url>
   <url><loc>https://bigbudman.com/guides/thca-vs-thc-cannabis-labels/</loc><lastmod>2026-09-08</lastmod></url>
   <url><loc>https://bigbudman.com/guides/vapes/</loc><lastmod>2026-10-13</lastmod></url>
-  <url><loc>https://bigbudman.com/</loc><lastmod>2026-10-17</lastmod></url>
+  <url><loc>https://bigbudman.com/</loc><lastmod>2026-10-23</lastmod></url>
   <url><loc>https://bigbudman.com/legal/alabama/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/alaska/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/arizona/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/arkansas/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/california/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/cannabis-federal-property-rules-guide/</loc><lastmod>2026-10-11</lastmod></url>
+  <url><loc>https://bigbudman.com/legal/cannabis-federally-assisted-housing-guide/</loc><lastmod>2026-10-24</lastmod></url>
   <url><loc>https://bigbudman.com/legal/colorado/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/connecticut/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/delaware/</loc><lastmod>2026-09-01</lastmod></url>
@@ -123,7 +124,7 @@
   <url><loc>https://bigbudman.com/legal/hawaii/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/idaho/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/illinois/</loc><lastmod>2026-09-01</lastmod></url>
-  <url><loc>https://bigbudman.com/legal/</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://bigbudman.com/legal/</loc><lastmod>2026-10-24</lastmod></url>
   <url><loc>https://bigbudman.com/legal/indiana/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/iowa/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/kansas/</loc><lastmod>2026-09-01</lastmod></url>
@@ -219,7 +220,7 @@
   <url><loc>https://bigbudman.com/strains/headband/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/hindu-kush/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/ice-cream-cake/</loc><lastmod>2026-08-26</lastmod></url>
-  <url><loc>https://bigbudman.com/strains/</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://bigbudman.com/strains/</loc><lastmod>2026-10-24</lastmod></url>
   <url><loc>https://bigbudman.com/strains/jack-herer/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/jealousy/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/kosher-kush/</loc><lastmod>2026-08-26</lastmod></url>
@@ -238,6 +239,7 @@
   <url><loc>https://bigbudman.com/strains/northern-lights/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/og-kush/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/orange-creamsicle/</loc><lastmod>2026-08-26</lastmod></url>
+  <url><loc>https://bigbudman.com/strains/panakeia-beta-hurv19pan/</loc><lastmod>2026-10-24</lastmod></url>
   <url><loc>https://bigbudman.com/strains/panama-red/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/papaya/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/peanut-butter-breath/</loc><lastmod>2026-08-26</lastmod></url>

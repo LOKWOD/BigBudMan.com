@@ -3,54 +3,55 @@
   "page_count": 3,
   "pages": [
     {
+      "title": "Panakeia Beta (HURV19PAN) Strain Guide",
+      "url": "https://bigbudman.com/strains/panakeia-beta-hurv19pan/",
+      "department": "strains and hemp",
+      "portfolio_label": "Data-led",
+      "search_intent": "verify the documented HURV19PAN variety identity, provenance chain, exact-lot chemistry, hemp status, and finished-product evidence without inventing effects or percentages"
+    },
+    {
       "title": "Cannabis Home Testing Kit Buying Guide",
       "url": "https://bigbudman.com/gear/cannabis-home-testing-kit-buying-guide/",
       "department": "commercial",
       "portfolio_label": "Exploration",
-      "search_intent": "compare a complete consumer measurement system by question, representative sampling, controls, reference evidence, method limits, total cost, durable records, and licensed-laboratory trigger"
+      "search_intent": "choose a fit-for-purpose home observation or screening system by question, sample, method, controls, limits, records, ownership cost, and licensed-laboratory exit"
     },
     {
-      "title": "Publisher Methodology and Accountability Record",
-      "url": "https://bigbudman.com/about/",
-      "department": "trust",
+      "title": "Cannabis in Federally Assisted Housing: 2026 Guide",
+      "url": "https://bigbudman.com/legal/cannabis-federally-assisted-housing-guide/",
+      "department": "legal and housing",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "make ownership, editorial responsibility, source hierarchy, testing boundaries, commercial separation, corrections, and automation accountability explicit"
-    },
-    {
-      "title": "Machine-Readable Collection Identity",
-      "url": "https://bigbudman.com/editorial-policy/",
-      "department": "technical",
-      "portfolio_label": "Exploration",
-      "search_intent": "publish and validate exact ItemList membership, names, canonical URLs, positions, and counts for the guide, gear, strain, and 50-state law libraries"
+      "search_intent": "identify the federal housing program, applicant or tenant status, conduct, lease and smoke-free rules, accommodation boundary, notice process, and qualified-help route"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The home-testing guide adds a high-intent, product-neutral conversion path with a system-evidence packet, claim screen, first-year and valid-result cost formulas, three-option worksheet, rejection gates, and contextual links into existing gear and laboratory-evidence resources. No merchant, product, model, price, coupon, ranking, product image, review claim, or affiliate link was added."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The home-testing guide is a high-intent, product-neutral system comparison, but it adds no merchant, model, price, coupon, ranking, product image, or affiliate link."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The home-testing framework, publisher-methodology record, and collection schemas use semantic text, tables, checklists, and existing brand interface assets. No editorial, product, affiliate, stock, or generated image was added or changed."
+    "note": "All three new pages use semantic text, tables, checklists, and existing brand interface assets. No editorial, product, affiliate, stock, or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-10-21",
-    "decision": "The September 21\u2013October 18 report showed 1,093 impressions, three clicks, 0.274% CTR, and average position 19.199. No query or page met a credible new reinforcement threshold after the October 15 Stem Cell CBG expansion and October 23 sitemap-integrity fix, so no item is primarily Data-led. Stem Cell CBG at 19 impressions, one click, and position 6.0 was deliberately not reinforced again; Blue Dream at 13 impressions around position 47.6, Montana cannabis at two impressions, one-impression legal rows, and About/Contact navigational impressions were ignored as too weak, too low-ranking, or irrelevant to a new editorial cluster. The batch therefore uses verified evergreen evidence while strengthening discovery and trust."
+    "decision": "The September 21\u2013October 18 report showed 1,093 impressions, three clicks, 0.274% CTR, and average position 19.199. Stem Cell CBG had the strongest supported opportunity at 19 impressions, one click, and position 6.0, so exactly one Data-led page expands the CBG evidence cluster with a distinct official variety record rather than another rewrite of Stem Cell CBG. One-impression legal queries, Montana at two impressions, navigational About and Contact impressions, and Blue Dream terms near position 48\u201370 were ignored as too small, navigational, or outside the supported 4\u201320 range."
   },
   "authority": {
-    "action": "Published a citation-worthy consumer measurement-system guide grounded in NIST cannabis laboratory quality-assurance work and New York OCM sampling and laboratory standards, with a decision matrix, system-evidence packet, sampling record, performance-claim screen, quality-control questions, total-cost worksheet, licensed-lab trigger, and auditable result record. The About page now exposes ownership, sourcing, review, correction, commercial, testing, and automation boundaries. Reciprocal links strengthen the certificate, contaminant, visual-inspection, and gear-comparison cluster. No outreach was sent and no marginal opportunity was logged."
+    "action": "Published a citation-ready federal-housing issue-spotter with a program-identification table, admission-versus-tenancy matrix, six-question rule screen, medical-marijuana accommodation boundary, notice-response packet, and direct HUD/eCFR sources. Reciprocal links strengthen the federal property, state-law, official-source, and housing cluster. The HURV19PAN page also preserves an official variety-to-lot evidence chain. No outreach was sent."
   },
   "surfaces": [
-    "gear library and home-testing/CoA/contaminant/visual-inspection/comparison cluster",
-    "About page and editorial-policy trust surfaces",
-    "guide, gear, strain, and 50-state law ItemList schemas",
+    "homepage story module",
+    "strain library and CBG variety/evidence cluster",
+    "gear library and home-testing/COA/comparison cluster",
+    "legal library and federal property/housing/state-law cluster",
+    "About and editorial-policy trust pages",
     "publication updates",
     "Atom feed",
     "complete site index",
     "search index",
     "canonical XML sitemap",
     "legacy Search Console sitemap compatibility URL",
-    "robots sitemap directive",
     "checksum-verified source archive and publication gates"
   ]
 }

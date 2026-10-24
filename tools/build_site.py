@@ -6,6 +6,8 @@ from shutil import copy2, copytree, rmtree
 from html import escape
 from datetime import datetime
 import json
+import re
+from urllib.parse import urljoin
 
 from site_core import (
     Page, DOMAIN, CONTACT_EMAIL, OCM, OCM_VERIFY, article_main, breadcrumbs,
@@ -45,6 +47,9 @@ from content_oct20 import GUIDE_OVERRIDES as OCT20_GUIDE_OVERRIDES
 from content_oct21 import GUIDE_OVERRIDES as OCT21_GUIDE_OVERRIDES, GEAR_OVERRIDES as OCT21_GEAR_OVERRIDES
 from content_oct22 import GUIDE_OVERRIDES as OCT22_GUIDE_OVERRIDES, NEW_GUIDES as OCT22_NEW_GUIDES
 from content_oct23 import GUIDE_OVERRIDES as OCT23_GUIDE_OVERRIDES, GEAR_OVERRIDES as OCT23_GEAR_OVERRIDES, NEW_GEAR as OCT23_GEAR, NEW_GUIDES as OCT23_GUIDES
+from content_oct23_followup import NEW_GUIDES as OCT23_FOLLOWUP_GUIDES
+from content_oct24 import GUIDE_OVERRIDES as OCT24_GUIDE_OVERRIDES, GEAR_OVERRIDES as OCT24_GEAR_OVERRIDES, NEW_GEAR as OCT24_GEAR
+from content_oct24_followup import NEW_GUIDES as OCT24_FOLLOWUP_GUIDES, NEW_STRAINS as OCT24_FOLLOWUP_STRAINS, NEW_STRAIN_PAGES as OCT24_FOLLOWUP_STRAIN_PAGES
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -117,9 +122,15 @@ OTHER_ARTICLES = [_oct21_gear.get(item["path"], item) for item in OTHER_ARTICLES
 _oct22_guides = {item["path"]: item for item in OCT22_GUIDE_OVERRIDES}
 GUIDE_PAGES = [_oct22_guides.get(item["path"], item) for item in GUIDE_PAGES] + OCT22_NEW_GUIDES
 _oct23_guides = {item["path"]: item for item in OCT23_GUIDE_OVERRIDES}
-GUIDE_PAGES = [_oct23_guides.get(item["path"], item) for item in GUIDE_PAGES] + OCT23_GUIDES
+GUIDE_PAGES = [_oct23_guides.get(item["path"], item) for item in GUIDE_PAGES] + OCT23_GUIDES + OCT23_FOLLOWUP_GUIDES
 _oct23_gear = {item["path"]: item for item in OCT23_GEAR_OVERRIDES}
 OTHER_ARTICLES = [_oct23_gear.get(item["path"], item) for item in OTHER_ARTICLES] + OCT23_GEAR
+_oct24_guides = {item["path"]: item for item in OCT24_GUIDE_OVERRIDES}
+GUIDE_PAGES = [_oct24_guides.get(item["path"], item) for item in GUIDE_PAGES] + OCT24_FOLLOWUP_GUIDES
+_oct24_gear = {item["path"]: item for item in OCT24_GEAR_OVERRIDES}
+OTHER_ARTICLES = [_oct24_gear.get(item["path"], item) for item in OTHER_ARTICLES] + OCT24_GEAR
+STRAINS = STRAINS + OCT24_FOLLOWUP_STRAINS
+STRAIN_PAGES = STRAIN_PAGES + OCT24_FOLLOWUP_STRAIN_PAGES
 
 # Publishing integrity is part of the public editorial standard: the source
 # archive is checksum-verified and tested before publication.
@@ -177,6 +188,23 @@ for _policy in STANDARD_PAGES:
             '<p class="update-line">Policy reviewed October 23, 2026</p>',
         )
         _policy["body"] += '''<h2>Sitemap date integrity</h2><p>The canonical XML sitemap and the legacy Search Console compatibility endpoint must contain the same complete URL and last-modified records. Each date must be valid, must match the page's visible and structured review date, and cannot be later than the current publication batch. The robots directive must name the canonical HTTPS sitemap. Publication checks reject duplicate locations, missing or malformed dates, a legacy payload that drifts from the canonical file, or a page-to-sitemap date mismatch. A last-modified date records a material editorial or publication change; it is not an instruction to rank a page or proof that a search engine has recrawled it.</p>'''
+
+# October 24 trust work is maintained in source, not only in the rendered
+# snapshot. It documents who is accountable, the research workflow, testing
+# limits, commercial separation, corrections, and automation boundaries.
+for _standard in STANDARD_PAGES:
+    if _standard["path"] == "about/index.html":
+        _standard["description"] = "How Big Bud Man researches, sources, reviews, corrects, tests, updates, and separates independent cannabis education from commercial influence."
+        _standard["dek"] = "Who publishes this site, what the editorial team actually does, where the evidence comes from, and how readers can challenge a claim."
+        _standard["updated"] = "October 24, 2026"
+        _standard["body"] += '''<h2 id="ownership">Ownership and responsibility</h2><p>Big Bud Man is an independently operated cannabis-education publication based in Central New York. The Big Bud Man Editorial Team is the named publisher and is responsible for source selection, page scope, writing, review, corrections, and the final publication decision. The site is not a dispensary, laboratory, medical practice, law firm, testing authority, regulator, or product-certification service.</p><h2 id="method">How a page is made</h2><ol class="numbered-list"><li><b>Define one reader decision.</b><p>Each page begins with the question it can answer and the claims it must not make.</p></li><li><b>Inventory the site.</b><p>Titles, slugs, core intent, recent additions, and related pages are checked before a new URL is approved.</p></li><li><b>Use a source hierarchy.</b><p>Law begins with statutes, regulators, courts, and official guidance. Health and science begin with government health agencies, systematic reviews, clinical guidance, standards bodies, and original research. Brand and retailer material can document a product claim but cannot validate it.</p></li><li><b>Write the limits beside the fact.</b><p>Sample, method, population, jurisdiction, date, product, route, uncertainty, and evidence gaps stay attached to the conclusion.</p></li><li><b>Connect the page.</b><p>New work must have a useful collection path and contextual links in both directions; isolated pages and cosmetic keyword variants are rejected.</p></li><li><b>Run publication checks.</b><p>The build checks metadata, structured data, internal links and fragments, accessibility rules, sitemap and search coverage, page identity, source-archive integrity, and the dated publication manifest before deployment.</p></li></ol><h2 id="testing">Testing and firsthand-experience boundary</h2><p>Unless a page explicitly names a documented test, Big Bud Man has not purchased, handled, used, measured, laboratory-tested, clinically evaluated, or personally experienced the product or method discussed. We do not turn manufacturer specifications, consumer anecdotes, generated examples, or another publication's test into our own firsthand claim. Buying guides are evidence and decision frameworks—not disguised reviews.</p><h2 id="commercial">Commercial separation</h2><p>The repository currently contains no approved affiliate tracking ID or active affiliate program. When commercial links are introduced, the relationship must be disclosed near the link, qualifying links must use sponsored and nofollow markup, and payment cannot determine coverage, ranking, conclusion, or correction. No cannabis sale, unverified discount, scarcity claim, or generic product insertion is allowed.</p><h2 id="updates">Updates, corrections, and dates</h2><p>A visible reviewed date means the page received a material source, accuracy, usability, or publication review on that date; it does not guarantee that every external rule or product remains unchanged. Significant factual corrections are made in the page and, when useful to readers, explained in the publication update surfaces. To challenge a statement, send the page URL, exact passage, reason, and strongest primary source through the <a href="../contact/">contact form</a>. A correction does not require agreement with the page's tone, but it does require evidence.</p><h2 id="automation">Automation and human accountability</h2><p>Automation assists with research organization, drafts, consistency, link checks, structured data, builds, and deployment monitoring. It does not supply missing firsthand experience, professional licensure, laboratory competence, personal interviews, or legal authority. Published claims remain the responsibility of the editorial team named on the page. The complete <a href="../editorial-policy/">editorial policy</a> documents the current rules and automated gates.</p>'''
+    elif _standard["path"] == "editorial-policy/index.html":
+        _standard["updated"] = "October 24, 2026"
+        _standard["body"] = _standard["body"].replace(
+            '<p class="update-line">Policy reviewed October 23, 2026</p>',
+            '<p class="update-line">Policy reviewed October 24, 2026</p>',
+        )
+        _standard["body"] += '''<h2>Collection identity</h2><p>The guide, gear, strain, and 50-state law hubs publish an <code>ItemList</code> whose names, canonical URLs, positions, and total count match the cards visible in that collection. The list describes editorial organization; it is not a ranking, recommendation order, rating, inventory claim, or statement that every item is equally current. Publication checks compare the machine-readable list with the rendered cards and reject missing, duplicated, noncanonical, out-of-order, or hidden members.</p>'''
 
 # Keep new reference pages inside established topic clusters. These reciprocal
 # links are editorial navigation, not an attempt to manufacture link signals.
@@ -618,6 +646,23 @@ RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.htm
 RECIPROCAL_RELATED.setdefault("gear/cannabis-accessory-return-warranty-recall-guide/index.html", []).insert(
     0, ("gear/used-cannabis-accessory-buying-safety-guide/", "USED GEAR", "Screen exact identity, condition, transferability, and the return path before handoff")
 )
+# October 24 completes one CBG-variety, one consumer-testing, and one federal-
+# housing cluster without sending unrelated links across the publication.
+RECIPROCAL_RELATED.setdefault("guides/cbg-products-label-evidence-guide/index.html", []).insert(
+    0, ("strains/panakeia-beta-hurv19pan/", "HURV19PAN", "Apply the variety-to-seed-to-crop-to-package evidence chain")
+)
+RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
+    0, ("gear/cannabis-home-testing-kit-buying-guide/", "HOME TESTING", "Compare the complete sample-to-result system and its limits")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabis-certificate-of-analysis-coa-guide/index.html", []).insert(
+    0, ("gear/cannabis-home-testing-kit-buying-guide/", "HOME TESTING LIMIT", "Know when a household result cannot replace a regulated report")
+)
+RECIPROCAL_RELATED.setdefault("legal/cannabis-federal-property-rules-guide/index.html", []).insert(
+    0, ("legal/cannabis-federally-assisted-housing-guide/", "FEDERAL HOUSING", "Identify the program, lease, conduct, notice, and deadline")
+)
+RECIPROCAL_RELATED.setdefault("legal/new-york/index.html", []).insert(
+    0, ("legal/cannabis-federally-assisted-housing-guide/", "HOUSING LAYER", "Separate state cannabis law from federal assistance and lease rules")
+)
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in RECIPROCAL_RELATED:
         _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
@@ -630,6 +675,13 @@ for _item in GUIDE_PAGES + OTHER_ARTICLES:
             _item["related"].append(_related)
             if len(_item["related"]) == 4:
                 break
+
+for _strain_page in STRAIN_PAGES:
+    if _strain_page["path"] in {"strains/stem-cell-cbg/index.html", "strains/white-cbg/index.html"}:
+        _strain_page["related"] = [
+            ("strains/panakeia-beta-hurv19pan/", "DOCUMENTED VARIETY", "Compare HURV19PAN identity without transferring chemistry"),
+            *_strain_page["related"][:2],
+        ]
 
 
 def make_page(data: dict, kind: str = "article") -> Page:
@@ -772,6 +824,11 @@ def render_home() -> tuple[Page, str]:
         '<div class="story-stack"><a href="guides/cannabis-next-day-impairment-evidence-guide/"><p class="kicker">NEXT-DAY FUNCTION + EVIDENCE</p><h3>Separate residual symptoms, task demands, testing, and what the research cannot certify</h3>'+icon('arrow')+'</a><a href="guides/storage/"><p class="kicker">STORAGE BY PRODUCT TYPE</p><h3>Keep identity, condition, environment, access, and routine in one chain</h3>'+icon('arrow')+'</a><a href="gear/cannabis-accessibility-tools-buying-guide/"><p class="kicker">ACCESSIBILITY + GEAR FIT</p><h3>Reduce grip, vision, tremor, reach, and one-handed barriers without defeating package safety</h3>'+icon('arrow')+'</a>',
         1,
     )
+    main = main.replace(
+        '<div class="story-stack">',
+        '<div class="story-stack"><a href="gear/cannabis-home-testing-kit-buying-guide/"><p class="kicker">HOME TESTING + EVIDENCE</p><h3>Choose the question, sample, controls, limits, and licensed-lab exit before the device</h3>'+icon('arrow')+'</a>',
+        1,
+    )
     return page, layout(page, main)
 
 
@@ -786,6 +843,35 @@ def card(route: str, category: str, title: str, desc: str, icon_name: str = "boo
     reviewed = source.get("updated", "August 17, 2026") if source else "August 17, 2026"
     reviewed_iso = datetime.strptime(reviewed, "%B %d, %Y").strftime("%Y-%m-%d")
     return f'''<a class="library-card" data-guide-card data-category="{escape(category.lower())}" data-search="{escape(search_text)}" data-title="{escape(title.lower())}" data-updated="{reviewed_iso}" href="{local(prefix, route)}"><div class="library-card__icon">{icon(icon_name)}</div><span>{escape(category)}</span><small class="library-card__reviewed">Reviewed <time datetime="{reviewed_iso}">{escape(reviewed)}</time></small><h2>{escape(title)}</h2><p>{escape(desc)}</p><b>Read guide {icon('arrow')}</b></a>'''
+
+
+def add_collection_itemlist(html: str, page: Page, name: str, card_class: str) -> str:
+    """Publish the visible hub membership as non-ranking ItemList data."""
+    pattern = re.compile(
+        rf'<a class="[^"]*\b{re.escape(card_class)}\b[^"]*"[^>]*href="([^"]+)"[^>]*>.*?<h2>(.*?)</h2>',
+        re.DOTALL,
+    )
+    base = canonical(page.path)
+    members = [
+        {
+            "@type": "ListItem",
+            "position": position,
+            "name": clean_text(title),
+            "url": urljoin(base, href),
+        }
+        for position, (href, title) in enumerate(pattern.findall(html), start=1)
+    ]
+    data = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "@id": f"{base}#collection",
+        "name": name,
+        "numberOfItems": len(members),
+        "itemListOrder": "https://schema.org/ItemListOrderAscending",
+        "itemListElement": members,
+    }
+    script = f'<script type="application/ld+json">{json.dumps(data, separators=(",", ":"))}</script>\n'
+    return html.replace("</head>", script + "</head>", 1)
 
 
 def render_guides_hub() -> tuple[Page,str]:
@@ -901,11 +987,12 @@ def render_guides_hub() -> tuple[Page,str]:
     main = main.replace('<div class="library-grid">', '<div class="library-grid" id="guide-results">', 1)
     path_block = main.split('<div class="path-list">', 1)[1].split('</div>', 1)[0]
     main = main.replace('Twenty-nine useful paths', f'{path_block.count("<a href=")} useful paths')
-    return page, layout(page, main, [("Guides",None)])
+    html = layout(page, main, [("Guides",None)])
+    return page, add_collection_itemlist(html, page, "Big Bud Man cannabis guide library", "library-card")
 
 
 def render_strains_hub() -> tuple[Page,str]:
-    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} honest cannabis strain field notes, including THC-dominant, CBD-rich, hemp, and mixed-ratio names with lineage and batch caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the question—not end it.","",updated="October 20, 2026",kind="website")
+    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} honest cannabis strain field notes, including THC-dominant, CBD-rich, hemp, and mixed-ratio names with lineage and batch caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the question—not end it.","",updated="October 24, 2026",kind="website")
     items=[]
     for strain in sorted(STRAINS, key=lambda item: item["name"].lower()):
       aliases = " ".join(strain.get("aliases", []))
@@ -934,11 +1021,13 @@ def render_strains_hub() -> tuple[Page,str]:
     main = main.replace('<button data-cannabinoid-filter="', '<button type="button" aria-pressed="false" aria-controls="strain-results" data-cannabinoid-filter="')
     main = main.replace('<p aria-live="polite"><span data-strain-count>', '<p id="strain-result-status" aria-live="polite"><span data-strain-count>')
     main = main.replace('<div class="strain-grid">', '<div class="strain-grid" id="strain-results">')
-    return page, layout(page, main, [("Strains",None)])
+    html = layout(page, main, [("Strains",None)])
+    return page, add_collection_itemlist(html, page, "Big Bud Man cannabis strain field-note library", "strain-card")
 
 
 def render_gear_hub() -> tuple[Page,str]:
     items = [
+        ("cannabis-home-testing-kit-buying-guide/","compare care","HOME TESTING + EVIDENCE","Choose a home testing system","Match the question, matrix, sample, method, controls, limits, records, cost, support, and licensed-laboratory exit.","search",None,None),
         ("used-cannabis-accessory-buying-safety-guide/","compare powered care","SECONDHAND + RECALLS","Screen used gear before handoff","Verify exact identity, recall status, residue, wear, battery condition, missing parts, warranty transfer, adjusted cost, and exit route.","check",None,None),
         ("cannabis-accessibility-tools-buying-guide/","compare storage preparation care","ACCESSIBILITY + FIT","Choose an accessibility aid without defeating package safety","Compare the exact task, package fit, full use cycle, reclosure, locked storage, cleaning, support, returns, and delivered cost.","check",None,None),
         ("dry-herb-vaporizer-dosing-capsule-guide/","compare preparation powered care","COMPATIBILITY + COST","Choose a dosing capsule system","Verify exact-device fit, adapter, loading, single-use or reuse instructions, cleaning, storage, recalls, and total cost.","check",None,None),
@@ -965,7 +1054,7 @@ def render_gear_hub() -> tuple[Page,str]:
         ("cannabis-ashtray-ember-disposal-guide/","care","FIRE-SAFE DISPOSAL","Choose an ashtray","Compare stability, depth, materials, wind, placement, extinguishing, cleaning, waste, and smoke-exposure limits.","alert",None,None),
         ("cannabis-glass-pipe-water-pipe-buying-guide/","preparation care","GLASSWARE","Choose a pipe or water pipe","Check format, material claims, joint fit, stability, cleaning access, replacement parts, and smoke-exposure limits.","search",None,None),
     ]
-    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job, including comparison, storage, accessibility, disposal, powered hardware, returns, warranties, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, safety evidence, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="October 23, 2026",kind="website")
+    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, safety evidence, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="October 24, 2026",kind="website")
     cards=[]
     for href, categories, kicker, title, description, icon_name, image_src, image_alt in items:
         art = f'<div><img src="{image_src}" alt="{image_alt}"></div>' if image_src else f'<div class="gear-card__icon-art" aria-hidden="true">{icon(icon_name)}</div>'
@@ -973,11 +1062,12 @@ def render_gear_hub() -> tuple[Page,str]:
         cards.append(f'''<a class="gear-card" data-gear-card data-category="{categories}" data-search="{search}" href="{href}">{art}<span class="kicker">{kicker}</span><h2>{title}</h2><p>{description}</p><b>Open guide {icon('arrow')}</b></a>''')
     job_paths='''<section class="container guide-paths gear-job-map"><div class="section-head"><p class="eyebrow">JOB-FIRST SHOPPING MAP</p><h2>Start with the problem. Keep “buy nothing” on the table.</h2><p>Choose the lane that describes the job in front of you. Each path ends in measured fit, evidence, total cost, and a safe exit—not a sponsored ranking.</p></div><div class="comparison-grid"><div><span>COMPARE OPTIONS</span><h3>Three exact models</h3><p>Use one record for fit, materials, safety scope, recalls, support, and first-year cost.</p><a href="cannabis-gear-comparison-worksheet/">Open the comparison worksheet →</a></div><div><span>CONTROL ACCESS</span><h3>Lock and organize</h3><p>Preserve the original package, measure usable interior space, and separate odor claims from security.</p><a href="smell-proof-storage/">Compare locked storage →</a></div><div><span>USE THE PACKAGE</span><h3>Improve hand access</h3><p>Name the exact opening, measuring, gripping, seeing, or organizing task without defeating reclosure.</p><a href="cannabis-accessibility-tools-buying-guide/">Match an accessibility aid →</a></div><div><span>MAINTAIN WHAT EXISTS</span><h3>Clean before replacing</h3><p>Check the maker's compatible method, hidden surfaces, drying, wear parts, and retirement line.</p><a href="cannabis-tool-cleaning-kit/">Build a maintenance plan →</a></div><div><span>POWER + HEAT</span><h3>Verify the whole system</h3><p>Match battery, charger, device, controls, damage signs, instructions, storage, and recalls.</p><a href="510-thread-vape-battery-safety/">Audit battery compatibility →</a></div><div><span>END OF LIFE</span><h3>Dispose without hiding the hazard</h3><p>Separate battery, device, residue, packaging, recall status, and the local collection route.</p><a href="cannabis-vape-battery-cartridge-disposal-guide/">Plan responsible disposal →</a></div></div><p class="micro">No affiliate links, sponsored placements, merchant rankings, prices, coupons, or stock claims appear in this map because the repository has no approved affiliate program or tracking ID.</p></section>'''
     main=f'''<main id="main-content"><section class="hub-hero gear-hero"><div class="container"><p class="eyebrow">{len(items)} INDEPENDENT ACCESSORY GUIDES</p><h1>GEAR THAT SOLVES<br><em>A REAL PROBLEM.</em></h1><p>Search by task. Compare the exact model. Keep affiliate math out of the conclusion.</p></div></section><section class="container gear-principles"><div><span>01</span><h2>Name the job</h2><p>Storage, records, preparation, measurement, cleaning, access control, or powered hardware—not “cannabis lifestyle.”</p></div><div><span>02</span><h2>Match the evidence</h2><p>Dimensions, materials, instructions, safety scope, warranty, recalls, and replacement parts must belong to the exact model.</p></div><div><span>03</span><h2>Price ownership</h2><p>Include required accessories, filters, batteries, cleaning, consumables, parts, and realistic service life.</p></div></section>{job_paths}<section class="container guide-paths"><div class="section-head"><p class="eyebrow">SECONDHAND DECISION</p><h2>A used price does not erase a used history.</h2><p>Before a marketplace handoff, match the exact model and serial, search recalls, keep residue and battery unknowns visible, price missing parts and care, and preserve a real return and disposal path.</p></div><p><a class="inline-cta" href="used-cannabis-accessory-buying-safety-guide/">Open the used-accessory identity, safety, and adjusted-cost screen <span>→</span></a></p></section><section class="container gear-library" data-gear-library><div class="guide-tools"><label><span>FIND GEAR BY JOB OR FEATURE</span><input type="search" data-gear-search aria-controls="gear-results" placeholder="Try: label, lock, battery, cleaning…" autocomplete="off"></label><div class="guide-filters" role="group" aria-label="Filter cannabis gear guides"><button class="is-active" type="button" data-gear-filter="all" aria-pressed="true" aria-controls="gear-results">All {len(items)}</button><button type="button" data-gear-filter="compare" aria-pressed="false" aria-controls="gear-results">Compare</button><button type="button" data-gear-filter="storage" aria-pressed="false" aria-controls="gear-results">Storage</button><button type="button" data-gear-filter="preparation" aria-pressed="false" aria-controls="gear-results">Preparation</button><button type="button" data-gear-filter="powered" aria-pressed="false" aria-controls="gear-results">Powered</button><button type="button" data-gear-filter="care" aria-pressed="false" aria-controls="gear-results">Care</button></div><p id="gear-result-status" aria-live="polite"><span data-gear-count>{len(items)}</span> guides shown</p></div><p class="guide-empty" data-gear-empty hidden>No gear guide matched that job or feature. Clear the search or choose all guides.</p><div class="gear-grid" id="gear-results">{''.join(cards)}</div></section><section class="container review-code"><div><p class="eyebrow">REVIEW CODE</p><h2>What earns a recommendation</h2></div><ol><li><b>Clear purpose</b><span>Solves a real problem better than a simpler option.</span></li><li><b>Safe materials</b><span>Construction and finish are appropriate for intended contact and care.</span></li><li><b>Scoped claims</b><span>Security, filtration, heat, calibration, and durability claims say exactly what they cover.</span></li><li><b>Serviceable</b><span>The owner can inspect, clean, maintain, and replace realistic wear parts.</span></li><li><b>Fair total cost</b><span>Value includes ownership cost, not a cannabis-themed markup or invented discount.</span></li></ol></section>{newsletter('../')}</main>'''
-    return page, layout(page, main, [("Gear",None)])
+    html = layout(page, main, [("Gear",None)])
+    return page, add_collection_itemlist(html, page, "Big Bud Man cannabis gear guide library", "gear-card")
 
 
 def render_legal_hub() -> tuple[Page,str]:
-    page=Page("legal/index.html","Cannabis Laws in All 50 States (2026) | Big Bud Man","Search reviewed cannabis laws for all 50 states plus federal-property, mailing and flying rules, with current official sources.","50-state legal library","Know your state.<br>Then verify it.","A practical 50-state starting point for possession, home grow, medical access, retail status, federal property, mailing, air travel, and official sources.","",updated="October 20, 2026",kind="website")
+    page=Page("legal/index.html","Cannabis Laws in All 50 States (2026) | Big Bud Man","Search reviewed cannabis laws for all 50 states plus federal property, federally assisted housing, mailing, and flying rules, with current official sources.","50-state legal library","Know your state.<br>Then verify it.","A practical 50-state starting point for possession, home grow, medical access, retail status, federal property and housing, mailing, air travel, and official sources.","",updated="October 24, 2026",kind="website")
     cards=[]
     for item in STATE_LAWS:
         search_text=(item['name']+' '+item['code']+' '+STATUS_LABELS[item['status']]+' '+item['summary']+' '+item['policy_pulse']['direction']).lower()
@@ -988,7 +1078,7 @@ def render_legal_hub() -> tuple[Page,str]:
 <section class="container state-library" data-state-library><div class="state-tools"><label><span>FIND A STATE</span><input type="search" data-state-search placeholder="Type a state or abbreviation…" autocomplete="off"></label><div class="state-filters" aria-label="Filter states by cannabis law status"><button class="is-active" data-state-filter="all">All 50</button><button data-state-filter="adult">Adult use</button><button data-state-filter="medical">Medical only</button><button data-state-filter="limited">Limited CBD</button><button data-state-filter="restricted">No public program</button></div><p aria-live="polite"><span data-state-count>50</span> state guides</p></div><p class="state-empty" data-state-empty hidden>No state matched that search and filter.</p><div class="state-grid">{''.join(cards)}</div></section>
 <section class="container legal-method"><div><p class="eyebrow">HOW TO READ THE MAP</p><h2>Legal is not one switch.</h2></div><div class="legal-method__grid">{''.join(f'<article><span>{STATUS_LABELS[key]}</span><p>{STATUS_DESCRIPTIONS[key]}</p></article>' for key in STATUS_LABELS)}</div></section>
 <section class="container legal-sources"><div><p class="eyebrow">RESEARCH BASELINE</p><h2>Current law first. Direction second.</h2><p>Program categories were cross-checked against NCSL and every page points to a state regulator, health department, commission, statute, or legislature. The six-month signal covers March 1–September 1, 2026 and labels proposals, vetoes, failed bills, and implementation separately from current law.</p></div><a class="button button--dark" href="{NCSL_SOURCE}" rel="noopener">Open the NCSL 50-state report {icon('arrow')}</a></section>
-<section class="container legal-grid legal-grid--secondary"><a class="legal-card legal-card--feature" href="new-york/"><div><img src="../assets/images/new-york-v2.svg" alt="Editorial map graphic of New York State with Central New York highlighted"></div><span>DEEP DIVE · NEW YORK</span><h2>Adult-use basics</h2><p>Age, possession, sales, public use, vehicles, travel, growing, work, and housing.</p><b>Open New York guide {icon('arrow')}</b></a><a class="legal-card" href="shop-legal/"><div class="legal-card__icon">{icon('check')}</div><span>NEW YORK LICENSED MARKET</span><h2>Verify a shop</h2><p>Match the exact name and address on OCM’s live list, then verify the product.</p><b>Open verification guide {icon('arrow')}</b></a><a class="legal-card" href="cannabis-federal-property-rules-guide/"><div class="legal-card__icon">{icon('alert')}</div><span>FEDERAL PROPERTY · 2026</span><h2>Crossing a federal boundary?</h2><p>Identify the managing agency, exact product, current schedule and property-specific rule.</p><b>Open federal-property guide {icon('arrow')}</b></a><a class="legal-card" href="mailing-cannabis-cbd-usps-rules/"><div class="legal-card__icon">{icon('alert')}</div><span>FEDERAL MAIL RULES</span><h2>Can you mail cannabis or CBD?</h2><p>Separate controlled substances from qualifying domestic hemp, then check records and the international ban.</p><b>Open mailing explainer {icon('arrow')}</b></a><a class="legal-card" href="flying-with-cannabis-cbd-tsa-rules/"><div class="legal-card__icon">{icon('alert')}</div><span>FEDERAL AIR TRAVEL</span><h2>Flying with cannabis or CBD</h2><p>Separate TSA screening from federal status, airport jurisdiction, destination law, airline policy, and battery safety.</p><b>Open flying explainer {icon('arrow')}</b></a></section>
+<section class="container legal-grid legal-grid--secondary"><a class="legal-card legal-card--feature" href="new-york/"><div><img src="../assets/images/new-york-v2.svg" alt="Editorial map graphic of New York State with Central New York highlighted"></div><span>DEEP DIVE · NEW YORK</span><h2>Adult-use basics</h2><p>Age, possession, sales, public use, vehicles, travel, growing, work, and housing.</p><b>Open New York guide {icon('arrow')}</b></a><a class="legal-card" href="shop-legal/"><div class="legal-card__icon">{icon('check')}</div><span>NEW YORK LICENSED MARKET</span><h2>Verify a shop</h2><p>Match the exact name and address on OCM’s live list, then verify the product.</p><b>Open verification guide {icon('arrow')}</b></a><a class="legal-card" href="cannabis-federal-property-rules-guide/"><div class="legal-card__icon">{icon('alert')}</div><span>FEDERAL PROPERTY · 2026</span><h2>Crossing a federal boundary?</h2><p>Identify the managing agency, exact product, current schedule and property-specific rule.</p><b>Open federal-property guide {icon('arrow')}</b></a><a class="legal-card" href="cannabis-federally-assisted-housing-guide/"><div class="legal-card__icon">{icon('alert')}</div><span>FEDERALLY ASSISTED HOUSING · 2026</span><h2>Which housing rule controls?</h2><p>Separate program, admission or tenancy, lease, smoke-free policy, conduct, notice, and review route.</p><b>Open federal-housing guide {icon('arrow')}</b></a><a class="legal-card" href="mailing-cannabis-cbd-usps-rules/"><div class="legal-card__icon">{icon('alert')}</div><span>FEDERAL MAIL RULES</span><h2>Can you mail cannabis or CBD?</h2><p>Separate controlled substances from qualifying domestic hemp, then check records and the international ban.</p><b>Open mailing explainer {icon('arrow')}</b></a><a class="legal-card" href="flying-with-cannabis-cbd-tsa-rules/"><div class="legal-card__icon">{icon('alert')}</div><span>FEDERAL AIR TRAVEL</span><h2>Flying with cannabis or CBD</h2><p>Separate TSA screening from federal status, airport jurisdiction, destination law, airline policy, and battery safety.</p><b>Open flying explainer {icon('arrow')}</b></a></section>
 <section class="container legal-warning"><div>{icon('alert')}</div><div><h2>Education, not legal advice</h2><p>Laws, regulations, court decisions, local rules, tribal law, property policies, employer policies, and federal consequences can change the answer. These pages identify the issue and official source; they do not replace a lawyer.</p></div></section>{newsletter('../')}</main>'''
     main = main.replace('data-state-search placeholder=', 'data-state-search aria-controls="state-results" placeholder=')
     main = main.replace('<div class="state-filters" aria-label="Filter states by cannabis law status">', '<div class="state-filters" role="group" aria-label="Filter states by cannabis law status">')
@@ -996,7 +1086,8 @@ def render_legal_hub() -> tuple[Page,str]:
     main = main.replace('<button data-state-filter="', '<button type="button" aria-pressed="false" aria-controls="state-results" data-state-filter="')
     main = main.replace('<p aria-live="polite"><span data-state-count>', '<p id="state-result-status" aria-live="polite"><span data-state-count>')
     main = main.replace('<div class="state-grid">', '<div class="state-grid" id="state-results">')
-    return page, layout(page, main, [("Legal",None)])
+    html = layout(page, main, [("Legal",None)])
+    return page, add_collection_itemlist(html, page, "Big Bud Man 50-state cannabis law library", "state-card")
 
 
 def render_state_page(item: dict) -> tuple[Page,str]:
@@ -1221,18 +1312,18 @@ def build() -> None:
     manifest={"name":"Big Bud Man","short_name":"Big Bud Man","start_url":"/","display":"standalone","background_color":"#101712","theme_color":"#101712","icons":[{"src":"/assets/images/favicon.svg","sizes":"any","type":"image/svg+xml"}]}
     write_text(OUT,"site.webmanifest",json.dumps(manifest,indent=2)+"\n")
     publication_manifest={
-        "publication_date":"2026-10-23",
+        "publication_date":"2026-10-24",
         "page_count":3,
         "pages":[
-            {"title":"New York Cannabis Harvest, Drying and Curing Log","url":"https://bigbudman.com/guides/new-york-home-cannabis-harvest-drying-curing-log/","department":"guides","portfolio_label":"Authority-expansion","search_intent":"give lawful New York home growers a traceable batch, room, environment, condition, container-transition, storage, and stop-use record after harvest"},
-            {"title":"Used Cannabis Accessory Buying Guide","url":"https://bigbudman.com/gear/used-cannabis-accessory-buying-safety-guide/","department":"commercial","portfolio_label":"Exploration","search_intent":"screen secondhand cannabis accessories by exact identity, recall status, residue, wear, battery condition, missing parts, warranty transfer, adjusted cost, and safe exit"},
-            {"title":"Cannabis Next-Day Impairment: Evidence Guide","url":"https://bigbudman.com/guides/cannabis-next-day-impairment-evidence-guide/","department":"science and responsible use","portfolio_label":"Exploration","search_intent":"separate residual symptoms, driving and safety-critical work, testing, sleep and co-use, evidence limits, and a conservative next-morning decision gate without inventing a clearance timer"},
+            {"title":"Panakeia Beta (HURV19PAN) Strain Guide","url":"https://bigbudman.com/strains/panakeia-beta-hurv19pan/","department":"strains and hemp","portfolio_label":"Data-led","search_intent":"verify the documented HURV19PAN variety identity, provenance chain, exact-lot chemistry, hemp status, and finished-product evidence without inventing effects or percentages"},
+            {"title":"Cannabis Home Testing Kit Buying Guide","url":"https://bigbudman.com/gear/cannabis-home-testing-kit-buying-guide/","department":"commercial","portfolio_label":"Exploration","search_intent":"choose a fit-for-purpose home observation or screening system by question, sample, method, controls, limits, records, ownership cost, and licensed-laboratory exit"},
+            {"title":"Cannabis in Federally Assisted Housing: 2026 Guide","url":"https://bigbudman.com/legal/cannabis-federally-assisted-housing-guide/","department":"legal and housing","portfolio_label":"Authority-expansion","search_intent":"identify the federal housing program, applicant or tenant status, conduct, lease and smoke-free rules, accommodation boundary, notice process, and qualified-help route"},
         ],
-        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The used-accessory guide adds an independent no-go screen, exact-object packet, adjusted-cost comparison, secondhand acceptance card, prominent gear-hub path, and contextual routes into existing model-specific buying guides. No merchant, marketplace, product, model, price, coupon, ranking, product image, or affiliate link was added."},
+        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The home-testing guide is a high-intent, product-neutral system comparison, but it adds no merchant, model, price, coupon, ranking, product image, or affiliate link."},
         "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"All three new pages use semantic text, tables, checklists, and existing brand interface assets. No editorial, product, affiliate, stock, or generated image was added or changed."},
-        "search_console":{"report_date":"2026-10-21","decision":"The September 21–October 18 report showed 1,093 impressions, three clicks, 0.274% CTR, and average position 19.199. The canonical sitemap remained pending with one error and the legacy endpoint showed two errors, so today's only Data-led item adds URL-and-lastmod parity, page-date matching, nonfuture-date, robots-directive, and legacy-payload publication gates. Stem Cell CBG at 19 impressions, one click, and position 6.0 was not reinforced again because it was materially expanded October 15. One-impression legal queries, Montana cannabis at two impressions, About at 11 impressions, Contact at nine impressions, and Blue Dream terms around positions 48–70 were ignored as too small, navigational, or outside the supported 4–20 opportunity range."},
-        "authority":{"action":"Published a citation-worthy New York post-harvest batch log with a room-readiness matrix, durable identity chain, repeatable environment and condition log, narrow mass-change math, container-transition record, hard-stop gate, and final storage/disposition record grounded in OCM, EPA, and university-extension sources. Reciprocal links strengthen the home-grow planner and pest/mold IPM cluster. The next-day guide also strengthens the driving, impairment, and sleep evidence cluster; one qualified National Safety Council resource opportunity was logged, and no outreach was sent."},
-        "surfaces":["homepage story module","guide library, New York home-grow/IPM/post-harvest cluster, and driving/impairment/sleep cluster","gear library, secondhand feature path, comparison and returns cluster","editorial policy and sitemap integrity audit","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","legacy Search Console sitemap compatibility URL","robots sitemap directive","checksum-verified source archive and publication gates"],
+        "search_console":{"report_date":"2026-10-21","decision":"The September 21–October 18 report showed 1,093 impressions, three clicks, 0.274% CTR, and average position 19.199. Stem Cell CBG had the strongest supported opportunity at 19 impressions, one click, and position 6.0, so exactly one Data-led page expands the CBG evidence cluster with a distinct official variety record rather than another rewrite of Stem Cell CBG. One-impression legal queries, Montana at two impressions, navigational About and Contact impressions, and Blue Dream terms near position 48–70 were ignored as too small, navigational, or outside the supported 4–20 range."},
+        "authority":{"action":"Published a citation-ready federal-housing issue-spotter with a program-identification table, admission-versus-tenancy matrix, six-question rule screen, medical-marijuana accommodation boundary, notice-response packet, and direct HUD/eCFR sources. Reciprocal links strengthen the federal property, state-law, official-source, and housing cluster. The HURV19PAN page also preserves an official variety-to-lot evidence chain. No outreach was sent."},
+        "surfaces":["homepage story module","strain library and CBG variety/evidence cluster","gear library and home-testing/COA/comparison cluster","legal library and federal property/housing/state-law cluster","About and editorial-policy trust pages","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","legacy Search Console sitemap compatibility URL","checksum-verified source archive and publication gates"],
     }
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]
