@@ -148,3 +148,11 @@ This is a research log, not an outreach ledger. No email, form, account, comment
 - The certificate guide keeps sample identity, method, result, unit, reporting limit, panel scope, and status together; it cites current New York OCM testing limits and clearly limits New York examples to that regulated market.
 - The CHS guide treats recurrent vomiting as a clinical-evaluation problem, keeps competing diagnoses and emergency red flags visible, avoids medication advice and recovery promises, and links cessation support without stigmatizing the reader.
 - The lighter guide connects federal child-resistance standards to model-agnostic selection, ignition-zone control, ember disposal, locked storage, and fuel or battery end-of-life limits without ranking or claiming to test a product.
+
+## 2026-10-24 — consumer testing evidence and publisher accountability
+
+- **Authority action:** Published the cannabis home-testing-kit buying guide as a citation-ready consumer translation of NIST cannabis laboratory quality-assurance work and New York OCM sampling/testing standards. The asset includes a five-question decision matrix, complete sample-to-result system packet, representative-sampling record, performance-claim evidence screen, quality-control questions, first-year and valid-result cost formulas, three-option worksheet, hard licensed-laboratory trigger, and auditable result record.
+- **Trust action:** Materially expanded the About page with ownership and responsibility, page-development method, source hierarchy, testing/firsthand-experience limits, commercial separation, correction and review-date meaning, and automation accountability.
+- **Cluster strengthened:** Home testing ↔ certificate of analysis ↔ contaminant panels ↔ visual inspection ↔ exact-model comparison, with reciprocal contextual links and the gear hub as the collection path.
+- **Qualified outreach opportunities:** None logged. NIST and OCM are primary evidence sources, not assumed promotion targets; no marginal pitch was invented and no outreach was sent.
+

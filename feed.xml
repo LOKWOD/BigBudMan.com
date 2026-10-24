@@ -4,9 +4,17 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-23T00:00:00Z</updated>
+  <updated>2026-10-24T00:00:00Z</updated>
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis Home Testing Kit Buying Guide</title>
+    <id>https://bigbudman.com/gear/cannabis-home-testing-kit-buying-guide/</id>
+    <link href="https://bigbudman.com/gear/cannabis-home-testing-kit-buying-guide/"/>
+    <updated>2026-10-24T00:00:00Z</updated>
+    <published>2026-10-24T00:00:00Z</published>
+    <summary>Compare cannabis home testing tools by question, sampling, controls, total cost, records, and the point where a licensed lab is needed.</summary>
+  </entry>
   <entry>
     <title>Used Cannabis Accessory Buying Guide</title>
     <id>https://bigbudman.com/gear/used-cannabis-accessory-buying-safety-guide/</id>
@@ -238,13 +246,5 @@
     <updated>2026-10-11T00:00:00Z</updated>
     <published>2026-08-17T00:00:00Z</published>
     <summary>Read cannabis terpene panels, units, aroma vocabulary, added-terpene disclosures, evidence, storage limits, and retail effect claims without overreach.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Social Hosting &amp; Guest Safety Plan</title>
-    <id>https://bigbudman.com/guides/cannabis-social-hosting-guest-safety-plan/</id>
-    <link href="https://bigbudman.com/guides/cannabis-social-hosting-guest-safety-plan/"/>
-    <updated>2026-10-11T00:00:00Z</updated>
-    <published>2026-10-11T00:00:00Z</published>
-    <summary>Plan an adult cannabis gathering with consent, original packaging, locked storage, sober transportation, impairment limits and emergency response.</summary>
   </entry>
 </feed>

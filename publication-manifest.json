@@ -1,50 +1,49 @@
 {
-  "publication_date": "2026-10-23",
+  "publication_date": "2026-10-24",
   "page_count": 3,
   "pages": [
     {
-      "title": "New York Cannabis Harvest, Drying and Curing Log",
-      "url": "https://bigbudman.com/guides/new-york-home-cannabis-harvest-drying-curing-log/",
-      "department": "guides",
-      "portfolio_label": "Authority-expansion",
-      "search_intent": "give lawful New York home growers a traceable batch, room, environment, condition, container-transition, storage, and stop-use record after harvest"
-    },
-    {
-      "title": "Used Cannabis Accessory Buying Guide",
-      "url": "https://bigbudman.com/gear/used-cannabis-accessory-buying-safety-guide/",
+      "title": "Cannabis Home Testing Kit Buying Guide",
+      "url": "https://bigbudman.com/gear/cannabis-home-testing-kit-buying-guide/",
       "department": "commercial",
       "portfolio_label": "Exploration",
-      "search_intent": "screen secondhand cannabis accessories by exact identity, recall status, residue, wear, battery condition, missing parts, warranty transfer, adjusted cost, and safe exit"
+      "search_intent": "compare a complete consumer measurement system by question, representative sampling, controls, reference evidence, method limits, total cost, durable records, and licensed-laboratory trigger"
     },
     {
-      "title": "Cannabis Next-Day Impairment: Evidence Guide",
-      "url": "https://bigbudman.com/guides/cannabis-next-day-impairment-evidence-guide/",
-      "department": "science and responsible use",
+      "title": "Publisher Methodology and Accountability Record",
+      "url": "https://bigbudman.com/about/",
+      "department": "trust",
+      "portfolio_label": "Authority-expansion",
+      "search_intent": "make ownership, editorial responsibility, source hierarchy, testing boundaries, commercial separation, corrections, and automation accountability explicit"
+    },
+    {
+      "title": "Machine-Readable Collection Identity",
+      "url": "https://bigbudman.com/editorial-policy/",
+      "department": "technical",
       "portfolio_label": "Exploration",
-      "search_intent": "separate residual symptoms, driving and safety-critical work, testing, sleep and co-use, evidence limits, and a conservative next-morning decision gate without inventing a clearance timer"
+      "search_intent": "publish and validate exact ItemList membership, names, canonical URLs, positions, and counts for the guide, gear, strain, and 50-state law libraries"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The used-accessory guide adds an independent no-go screen, exact-object packet, adjusted-cost comparison, secondhand acceptance card, prominent gear-hub path, and contextual routes into existing model-specific buying guides. No merchant, marketplace, product, model, price, coupon, ranking, product image, or affiliate link was added."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The home-testing guide adds a high-intent, product-neutral conversion path with a system-evidence packet, claim screen, first-year and valid-result cost formulas, three-option worksheet, rejection gates, and contextual links into existing gear and laboratory-evidence resources. No merchant, product, model, price, coupon, ranking, product image, review claim, or affiliate link was added."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three new pages use semantic text, tables, checklists, and existing brand interface assets. No editorial, product, affiliate, stock, or generated image was added or changed."
+    "note": "The home-testing framework, publisher-methodology record, and collection schemas use semantic text, tables, checklists, and existing brand interface assets. No editorial, product, affiliate, stock, or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-10-21",
-    "decision": "The September 21\u2013October 18 report showed 1,093 impressions, three clicks, 0.274% CTR, and average position 19.199. The canonical sitemap remained pending with one error and the legacy endpoint showed two errors, so today's only Data-led item adds URL-and-lastmod parity, page-date matching, nonfuture-date, robots-directive, and legacy-payload publication gates. Stem Cell CBG at 19 impressions, one click, and position 6.0 was not reinforced again because it was materially expanded October 15. One-impression legal queries, Montana cannabis at two impressions, About at 11 impressions, Contact at nine impressions, and Blue Dream terms around positions 48\u201370 were ignored as too small, navigational, or outside the supported 4\u201320 opportunity range."
+    "decision": "The September 21\u2013October 18 report showed 1,093 impressions, three clicks, 0.274% CTR, and average position 19.199. No query or page met a credible new reinforcement threshold after the October 15 Stem Cell CBG expansion and October 23 sitemap-integrity fix, so no item is primarily Data-led. Stem Cell CBG at 19 impressions, one click, and position 6.0 was deliberately not reinforced again; Blue Dream at 13 impressions around position 47.6, Montana cannabis at two impressions, one-impression legal rows, and About/Contact navigational impressions were ignored as too weak, too low-ranking, or irrelevant to a new editorial cluster. The batch therefore uses verified evergreen evidence while strengthening discovery and trust."
   },
   "authority": {
-    "action": "Published a citation-worthy New York post-harvest batch log with a room-readiness matrix, durable identity chain, repeatable environment and condition log, narrow mass-change math, container-transition record, hard-stop gate, and final storage/disposition record grounded in OCM, EPA, and university-extension sources. Reciprocal links strengthen the home-grow planner and pest/mold IPM cluster. The next-day guide also strengthens the driving, impairment, and sleep evidence cluster; one qualified National Safety Council resource opportunity was logged, and no outreach was sent."
+    "action": "Published a citation-worthy consumer measurement-system guide grounded in NIST cannabis laboratory quality-assurance work and New York OCM sampling and laboratory standards, with a decision matrix, system-evidence packet, sampling record, performance-claim screen, quality-control questions, total-cost worksheet, licensed-lab trigger, and auditable result record. The About page now exposes ownership, sourcing, review, correction, commercial, testing, and automation boundaries. Reciprocal links strengthen the certificate, contaminant, visual-inspection, and gear-comparison cluster. No outreach was sent and no marginal opportunity was logged."
   },
   "surfaces": [
-    "homepage story module",
-    "guide library, New York home-grow/IPM/post-harvest cluster, and driving/impairment/sleep cluster",
-    "gear library, secondhand feature path, comparison and returns cluster",
-    "editorial policy and sitemap integrity audit",
+    "gear library and home-testing/CoA/contaminant/visual-inspection/comparison cluster",
+    "About page and editorial-policy trust surfaces",
+    "guide, gear, strain, and 50-state law ItemList schemas",
     "publication updates",
     "Atom feed",
     "complete site index",
