@@ -351,6 +351,40 @@ def main() -> int:
         for loc, expected_date in expected_sitemap_dates.items():
             if sitemap_dates.get(loc) != expected_date:
                 failures.append(f"Sitemap lastmod mismatch for {loc}: expected {expected_date}, found {sitemap_dates.get(loc, '(missing)')}")
+        freshness_surfaces = batch.get("freshness_surfaces", {})
+        if not isinstance(freshness_surfaces, dict) or not freshness_surfaces:
+            failures.append("Publication manifest is missing the release freshness contract")
+        else:
+            batch_iso = batch_date.strftime("%Y-%m-%d") if batch_date else ""
+            for surface_url, expected_date in freshness_surfaces.items():
+                parsed = urlsplit(surface_url)
+                if parsed.scheme != "https" or parsed.netloc != "bigbudman.com":
+                    failures.append(f"Freshness surface is not a canonical HTTPS URL: {surface_url}")
+                    continue
+                if expected_date != batch_iso:
+                    failures.append(f"Freshness surface date does not match the current release: {surface_url} has {expected_date}")
+                route = parsed.path.lstrip("/")
+                surface_path = ROOT / ("index.html" if route == "" else (route + "index.html") if route.endswith("/") else route)
+                if not surface_path.exists():
+                    failures.append(f"Freshness surface does not resolve to a generated page: {surface_url}")
+                    continue
+                surface_parser = Inspector()
+                surface_parser.feed(surface_path.read_text(encoding="utf-8"))
+                surface_nodes = []
+                for raw in surface_parser.jsonld:
+                    try:
+                        payload = json.loads(raw)
+                        surface_nodes.extend(payload.get("@graph", []))
+                    except Exception:
+                        continue
+                primary_node = next((node for node in surface_nodes if node.get("@type") == "Article"), None)
+                if primary_node is None:
+                    primary_node = next((node for node in surface_nodes if node.get("@type") == "WebPage"), None)
+                if not primary_node or primary_node.get("dateModified") != expected_date:
+                    found = primary_node.get("dateModified", "(missing)") if primary_node else "(missing primary schema)"
+                    failures.append(f"Freshness schema mismatch for {surface_url}: expected {expected_date}, found {found}")
+                if sitemap_dates.get(surface_url) != expected_date:
+                    failures.append(f"Freshness sitemap mismatch for {surface_url}: expected {expected_date}, found {sitemap_dates.get(surface_url, '(missing)')}")
         if (ROOT / "index.php").read_bytes() != (ROOT / "sitemap.xml").read_bytes():
             failures.append("Legacy Search Console sitemap payload differs from canonical sitemap.xml")
         robots = (ROOT / "robots.txt").read_text(encoding="utf-8")
@@ -527,7 +561,7 @@ def main() -> int:
         for marker in ("routes.urgent", "cannabis-overconsumption-poisoning-response"):
             if marker not in app: failures.append(f"Homepage router is missing urgent-response marker: {marker}")
         source_directory = (ROOT / "guides/cannabis-official-source-directory/index.html").read_text(encoding="utf-8")
-        for marker in ("poison.org", "findtreatment.gov", "fda.gov/safety/medwatch", "cpsc.gov/Recalls", "reportfraud.ftc.gov", "nhtsa.gov", "transportation.gov/odapc", "tsa.gov/travel/security-screening/whatcanibring/all-list", "usda.gov/topics/hemp", "cannabis.ny.gov/consumers", "Run the six-part source test"):
+        for marker in ("poison.org", "findtreatment.gov", "fda.gov/safety/medwatch", "cpsc.gov/Recalls", "reportfraud.ftc.gov", "nhtsa.gov", "transportation.gov/odapc", "tsa.gov/travel/security-screening/whatcanibring/all-list", "usda.gov/topics/hemp", "cannabis.ny.gov/consumers", "Run the eight-part source test"):
             if marker not in source_directory: failures.append(f"Official-source directory is missing marker: {marker}")
         oral_comparison = (ROOT / "guides/cannabis-gummies-drinks-oils-capsules-comparison/index.html").read_text(encoding="utf-8")
         for marker in ("5 × 2 × 5 = 50 mg THC", "2 × 30 = 60 mg THC", "crosswalk-metrc-product-categories", "Compare three products without choosing for the reader", "No seller, brand, product, coupon, or affiliate link appears"):
@@ -575,8 +609,8 @@ def main() -> int:
             "gear/cannabis-lighter-flame-safety-guide/index.html": ("Compare three exact models before checkout", "U.S. CPSC: Recalls and Product Safety Warnings", "No merchant, product, price, coupon, ranking, or affiliate link appears"),
             "gear/used-cannabis-accessory-buying-safety-guide/index.html": ("Adjusted used cost", "cpsc.gov/Business--Manufacturing/Online-Sellers-Safety-Guide", "used-lithium-ion-batteries", "No marketplace, merchant, product, model, price, coupon, or affiliate link appears"),
             "editorial-policy/index.html": ("Sitemap date integrity", "legacy Search Console compatibility endpoint", "cannot be later than the current publication batch"),
-            "updates/index.html": ("strains/panakeia-beta-hurv19pan/", "gear/cannabis-home-testing-kit-buying-guide/", "legal/cannabis-federally-assisted-housing-guide/", "October 24, 2026"),
-            "site-index/index.html": ("strains/panakeia-beta-hurv19pan/", "gear/cannabis-home-testing-kit-buying-guide/", "legal/cannabis-federally-assisted-housing-guide/", "October 24, 2026", "updates/"),
+            "updates/index.html": ("start-here/", "guides/cannabis-official-source-directory/", "editorial-policy/", "October 25, 2026"),
+            "site-index/index.html": ("start-here/", "guides/cannabis-official-source-directory/", "editorial-policy/", "October 25, 2026", "updates/"),
         }
         for discovery_page, markers in discovery_checks.items():
             discovery_text = (ROOT / discovery_page).read_text(encoding="utf-8")
@@ -784,7 +818,7 @@ def main() -> int:
             failures.append("Editorial policy or Atom feed is missing the feed authorship standard")
         if "Age-gate focus isolation" not in policy:
             failures.append("Editorial policy is missing the age-gate focus-isolation standard")
-        if "Contextual inbound-link floor" not in policy or "October 24, 2026" not in policy:
+        if "Contextual inbound-link floor" not in policy or "October 25, 2026" not in policy:
             failures.append("Editorial policy is missing the contextual inbound-link standard")
         deployed_css = (ROOT / "assets/css/styles.css").read_text(encoding="utf-8")
         if "@import" in deployed_css:

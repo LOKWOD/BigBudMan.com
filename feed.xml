@@ -4,9 +4,25 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-24T00:00:00Z</updated>
+  <updated>2026-10-25T00:00:00Z</updated>
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>First Legal Cannabis Purchase Planner</title>
+    <id>https://bigbudman.com/start-here/</id>
+    <link href="https://bigbudman.com/start-here/"/>
+    <updated>2026-10-25T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Plan a first legal cannabis purchase by purpose, format, label, source, total cost, storage, transportation, and a no-pressure exit.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Official Source Directory</title>
+    <id>https://bigbudman.com/guides/cannabis-official-source-directory/</id>
+    <link href="https://bigbudman.com/guides/cannabis-official-source-directory/"/>
+    <updated>2026-10-25T00:00:00Z</updated>
+    <published>2026-09-30T00:00:00Z</published>
+    <summary>Route cannabis emergencies, evidence, licenses, recalls, product reports, fraud, work, travel, hemp, and legal questions to the official owner.</summary>
+  </entry>
   <entry>
     <title>Panakeia Beta (HURV19PAN) Strain Guide</title>
     <id>https://bigbudman.com/strains/panakeia-beta-hurv19pan/</id>
@@ -230,21 +246,5 @@
     <updated>2026-10-13T00:00:00Z</updated>
     <published>2026-10-13T00:00:00Z</published>
     <summary>Compare cannabis accessory return terms, warranty coverage, recall identity, evidence, deadlines, support, and safe exit routes with a date checkpoint tool.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Gear Comparison &amp; Cost Calculator</title>
-    <id>https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/</id>
-    <link href="https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/"/>
-    <updated>2026-10-12T00:00:00Z</updated>
-    <published>2026-09-20T00:00:00Z</published>
-    <summary>Compare three cannabis accessories by exact model, first-year cost, ownership cost, cost per use, fit, materials, care, support, warranty, and recalls.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis 101: Product, Label &amp; Safety Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-101/</id>
-    <link href="https://bigbudman.com/guides/cannabis-101/"/>
-    <updated>2026-10-12T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>A practical Cannabis 101 guide to THC, CBD, formats, labels, product identity, marketing claims, impairment, storage, and first-purchase questions.</summary>
   </entry>
 </feed>

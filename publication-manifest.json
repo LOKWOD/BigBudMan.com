@@ -1,51 +1,59 @@
 {
-  "publication_date": "2026-10-24",
+  "publication_date": "2026-10-25",
   "page_count": 3,
   "pages": [
     {
-      "title": "Panakeia Beta (HURV19PAN) Strain Guide",
-      "url": "https://bigbudman.com/strains/panakeia-beta-hurv19pan/",
-      "department": "strains and hemp",
-      "portfolio_label": "Data-led",
-      "search_intent": "verify the documented HURV19PAN variety identity, provenance chain, exact-lot chemistry, hemp status, and finished-product evidence without inventing effects or percentages"
-    },
-    {
-      "title": "Cannabis Home Testing Kit Buying Guide",
-      "url": "https://bigbudman.com/gear/cannabis-home-testing-kit-buying-guide/",
+      "title": "First Legal Cannabis Purchase Planner",
+      "url": "https://bigbudman.com/start-here/",
       "department": "commercial",
       "portfolio_label": "Exploration",
-      "search_intent": "choose a fit-for-purpose home observation or screening system by question, sample, method, controls, limits, records, ownership cost, and licensed-laboratory exit"
+      "search_intent": "plan a first legal-market purchase by seller verification, format, compatible label math, total cost, household control, checkout gates, and a no-pressure exit"
     },
     {
-      "title": "Cannabis in Federally Assisted Housing: 2026 Guide",
-      "url": "https://bigbudman.com/legal/cannabis-federally-assisted-housing-guide/",
-      "department": "legal and housing",
+      "title": "Cannabis Official Source Directory",
+      "url": "https://bigbudman.com/guides/cannabis-official-source-directory/",
+      "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "identify the federal housing program, applicant or tenant status, conduct, lease and smoke-free rules, accommodation boundary, notice process, and qualified-help route"
+      "search_intent": "route emergencies, evidence, licenses, product reports, recalls, fraud, work, travel, hemp, and law questions to the current official owner with an auditable handoff"
+    },
+    {
+      "title": "Release Freshness Contract",
+      "url": "https://bigbudman.com/editorial-policy/",
+      "department": "technical and trust",
+      "portfolio_label": "Exploration",
+      "search_intent": "document and enforce parity among material release surfaces, primary structured-data modification dates, and canonical sitemap last-modified records"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The home-testing guide is a high-intent, product-neutral system comparison, but it adds no merchant, model, price, coupon, ranking, product image, or affiliate link."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The first-purchase planner strengthens a high-intent path with seller verification, compatible comparisons, total-cost arithmetic, and a ten-gate checkout, but adds no merchant, product, price, coupon, ranking, review, or commercial image."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three new pages use semantic text, tables, checklists, and existing brand interface assets. No editorial, product, affiliate, stock, or generated image was added or changed."
+    "note": "The two expanded articles and trust update use semantic text, tables, checklists, and existing brand interface assets. No editorial, product, affiliate, stock, or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-10-21",
-    "decision": "The September 21\u2013October 18 report showed 1,093 impressions, three clicks, 0.274% CTR, and average position 19.199. Stem Cell CBG had the strongest supported opportunity at 19 impressions, one click, and position 6.0, so exactly one Data-led page expands the CBG evidence cluster with a distinct official variety record rather than another rewrite of Stem Cell CBG. One-impression legal queries, Montana at two impressions, navigational About and Contact impressions, and Blue Dream terms near position 48\u201370 were ignored as too small, navigational, or outside the supported 4\u201320 range."
+    "decision": "The September 21\u2013October 18 report showed 1,093 impressions, three clicks, 0.274% CTR, and average position 19.199. No unsupported query cluster was promoted into a Data-led page: the only meaningful position-4-to-20 opportunity, Stem Cell CBG at 19 impressions, one click, and position 6.0, was already materially reinforced on October 15 and again with a distinct documented CBG variety on October 24. Today's work therefore protects breadth with evergreen first-purchase, source-routing, and freshness-integrity improvements. Navigational About and Contact impressions, Montana at two impressions, one-impression legal queries, and Blue Dream terms around position 48\u201370 were ignored as too weak, navigational, or outside the supported range."
   },
   "authority": {
-    "action": "Published a citation-ready federal-housing issue-spotter with a program-identification table, admission-versus-tenancy matrix, six-question rule screen, medical-marijuana accommodation boundary, notice-response packet, and direct HUD/eCFR sources. Reciprocal links strengthen the federal property, state-law, official-source, and housing cluster. The HURV19PAN page also preserves an official variety-to-lot evidence chain. No outreach was sent."
+    "action": "Expanded the official-source directory into a citation-ready routing and handoff asset with owner, jurisdiction, source type, exact-object, status/date, current-source, limits, and next-route checks. Direct current FDA, CPSC, CDC, OCM, Poison Control, SAMHSA, FTC, DOT, NHTSA, TSA, and USDA routes are separated by job. Reciprocal links strengthen the source, claims, complaint, legal, checkout, and label clusters. No outreach was sent and no speculative outreach target was logged."
+  },
+  "freshness_surfaces": {
+    "https://bigbudman.com/": "2026-10-25",
+    "https://bigbudman.com/start-here/": "2026-10-25",
+    "https://bigbudman.com/guides/": "2026-10-25",
+    "https://bigbudman.com/guides/cannabis-official-source-directory/": "2026-10-25",
+    "https://bigbudman.com/editorial-policy/": "2026-10-25",
+    "https://bigbudman.com/updates/": "2026-10-25",
+    "https://bigbudman.com/site-index/": "2026-10-25"
   },
   "surfaces": [
-    "homepage story module",
-    "strain library and CBG variety/evidence cluster",
-    "gear library and home-testing/COA/comparison cluster",
-    "legal library and federal property/housing/state-law cluster",
-    "About and editorial-policy trust pages",
+    "homepage first-purchase lane",
+    "Start Here first-purchase planner and checkout/label/comparison cluster",
+    "guide library and official-source/claims/complaint/legal cluster",
+    "editorial-policy trust page and release-freshness audit contract",
     "publication updates",
     "Atom feed",
     "complete site index",

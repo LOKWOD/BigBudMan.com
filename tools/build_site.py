@@ -50,6 +50,7 @@ from content_oct23 import GUIDE_OVERRIDES as OCT23_GUIDE_OVERRIDES, GEAR_OVERRID
 from content_oct23_followup import NEW_GUIDES as OCT23_FOLLOWUP_GUIDES
 from content_oct24 import GUIDE_OVERRIDES as OCT24_GUIDE_OVERRIDES, GEAR_OVERRIDES as OCT24_GEAR_OVERRIDES, NEW_GEAR as OCT24_GEAR
 from content_oct24_followup import NEW_GUIDES as OCT24_FOLLOWUP_GUIDES, NEW_STRAINS as OCT24_FOLLOWUP_STRAINS, NEW_STRAIN_PAGES as OCT24_FOLLOWUP_STRAIN_PAGES
+from content_oct25 import GUIDE_OVERRIDES as OCT25_GUIDE_OVERRIDES
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -131,6 +132,8 @@ _oct24_gear = {item["path"]: item for item in OCT24_GEAR_OVERRIDES}
 OTHER_ARTICLES = [_oct24_gear.get(item["path"], item) for item in OTHER_ARTICLES] + OCT24_GEAR
 STRAINS = STRAINS + OCT24_FOLLOWUP_STRAINS
 STRAIN_PAGES = STRAIN_PAGES + OCT24_FOLLOWUP_STRAIN_PAGES
+_oct25_guides = {item["path"]: item for item in OCT25_GUIDE_OVERRIDES}
+GUIDE_PAGES = [_oct25_guides.get(item["path"], item) for item in GUIDE_PAGES]
 
 # Publishing integrity is part of the public editorial standard: the source
 # archive is checksum-verified and tested before publication.
@@ -205,6 +208,18 @@ for _standard in STANDARD_PAGES:
             '<p class="update-line">Policy reviewed October 24, 2026</p>',
         )
         _standard["body"] += '''<h2>Collection identity</h2><p>The guide, gear, strain, and 50-state law hubs publish an <code>ItemList</code> whose names, canonical URLs, positions, and total count match the cards visible in that collection. The list describes editorial organization; it is not a ranking, recommendation order, rating, inventory claim, or statement that every item is equally current. Publication checks compare the machine-readable list with the rendered cards and reject missing, duplicated, noncanonical, out-of-order, or hidden members.</p>'''
+
+# October 25 makes release-date claims testable. The manifest names every
+# discovery surface materially changed by the batch, and the audit rejects a
+# visible/schema/sitemap date that drifts from that release.
+for _standard in STANDARD_PAGES:
+    if _standard["path"] == "editorial-policy/index.html":
+        _standard["updated"] = "October 25, 2026"
+        _standard["body"] = _standard["body"].replace(
+            '<p class="update-line">Policy reviewed October 24, 2026</p>',
+            '<p class="update-line">Policy reviewed October 25, 2026</p>',
+        )
+        _standard["body"] += '''<h2>Release freshness contract</h2><p>Each publication manifest names the homepage, collection hubs, trust pages, or articles materially changed by that release. The audit converts those canonical URLs to local files, requires each one to exist, and compares the manifest date with its primary structured-data <code>dateModified</code> value and canonical-sitemap <code>lastmod</code>. This prevents a changed discovery surface from quietly retaining an older machine-readable date. The manifest cannot make an unchanged page look fresh: a page is listed only when its content, organization, trust record, or publication behavior changed materially.</p>'''
 
 # Keep new reference pages inside established topic clusters. These reciprocal
 # links are editorial navigation, not an attempt to manufacture link signals.
@@ -663,6 +678,20 @@ RECIPROCAL_RELATED.setdefault("legal/cannabis-federal-property-rules-guide/index
 RECIPROCAL_RELATED.setdefault("legal/new-york/index.html", []).insert(
     0, ("legal/cannabis-federally-assisted-housing-guide/", "HOUSING LAYER", "Separate state cannabis law from federal assistance and lease rules")
 )
+# October 25 connects the first-purchase planner and source handoff from
+# established checkout, label, comparison, and evidence pages.
+RECIPROCAL_RELATED.setdefault("guides/read-a-label/index.html", []).insert(
+    0, ("start-here/", "FIRST PURCHASE", "Write the brief, verify the seller, and run the ten checkout gates")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabis-product-price-label-comparison-calculator/index.html", []).insert(
+    0, ("start-here/", "DECISION PLAN", "Compare cost only after source, route, formula, lot, and control pass")
+)
+RECIPROCAL_RELATED.setdefault("legal/shop-legal/index.html", []).insert(
+    0, ("start-here/", "START HERE", "Carry seller verification into a complete first-purchase plan")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabis-claim-fact-check-worksheet/index.html", []).insert(
+    0, ("guides/cannabis-official-source-directory/", "SOURCE HANDOFF", "Identify the owner, status, exact object, limits, and next route")
+)
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in RECIPROCAL_RELATED:
         _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
@@ -724,7 +753,7 @@ def render_home() -> tuple[Page, str]:
         path="index.html", title="Big Bud Man | Legal Cannabis, Without the Haze",
         description="Independent cannabis guides for adults 21+: strains, edibles, labels, gear, responsible use, and reviewed legal starting points for all 50 states.",
         category="Home", h1="Legal weed. Clear-headed guidance.",
-        dek="Independent cannabis education for adults 21+.", body="", updated="October 23, 2026", kind="website",
+        dek="Independent cannabis education for adults 21+.", body="", updated="October 25, 2026", kind="website",
     )
     main = f'''<main id="main-content">
 <section class="hero"><div class="hero-noise"></div><div class="container hero-grid">
@@ -739,7 +768,7 @@ def render_home() -> tuple[Page, str]:
 <div class="manifesto-strip"><div class="marquee">READ THE LABEL <i>✦</i> KNOW THE SOURCE <i>✦</i> WAIT FOR THE FORMAT <i>✦</i> LOCK IT UP <i>✦</i> NEVER DRIVE HIGH</div></div>
 <section class="container lane-section"><div class="section-head section-head--split"><div><p class="eyebrow">PICK A LANE</p><h2>Three better ways in</h2></div><p>Skip the endless menu. Start with the decision you actually need to make.</p></div>
 <div class="lane-grid">
-<a class="lane-card lane-card--lime" href="start-here/"><span>01</span><div>{icon('book')}<h3>New or returning?</h3><p>Formats, timing, labels, and the six decisions that keep a first session boring—in the good way.</p><b>Open start here {icon('arrow')}</b></div></a>
+<a class="lane-card lane-card--lime" href="start-here/"><span>01</span><div>{icon('book')}<h3>Planning a first purchase?</h3><p>Write the brief, verify the seller, compare the full cost, run ten checkout gates, and keep the option to buy nothing.</p><b>Open the purchase planner {icon('arrow')}</b></div></a>
 <a class="lane-card lane-card--amber" href="guides/read-a-label/"><span>02</span><div>{icon('tag')}<h3>Holding a package?</h3><p>Separate the serving from the package total, then find the batch, date, ingredients, and test link.</p><b>Decode the label {icon('arrow')}</b></div></a>
 <a class="lane-card lane-card--cream" href="legal/"><span>03</span><div>{icon('scale')}<h3>Checking your state?</h3><p>Search all 50 states for adult-use, medical, limited-CBD, possession, home-grow, and official-source basics.</p><b>Open the law library {icon('arrow')}</b></div></a>
 </div></section>
@@ -875,7 +904,7 @@ def add_collection_itemlist(html: str, page: Page, name: str, card_class: str) -
 
 
 def render_guides_hub() -> tuple[Page,str]:
-    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="October 23, 2026",kind="website")
+    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="October 25, 2026",kind="website")
     p="../"
     cards="".join([
       card("guides/cannabis-next-day-impairment-evidence-guide/","SCIENCE + RESPONSIBLE USE","Cannabis next-day impairment evidence","Separate residual symptoms, driving and work demands, testing, sleep and co-use, evidence limits, and a conservative morning decision gate.","shield",p),
@@ -1312,18 +1341,27 @@ def build() -> None:
     manifest={"name":"Big Bud Man","short_name":"Big Bud Man","start_url":"/","display":"standalone","background_color":"#101712","theme_color":"#101712","icons":[{"src":"/assets/images/favicon.svg","sizes":"any","type":"image/svg+xml"}]}
     write_text(OUT,"site.webmanifest",json.dumps(manifest,indent=2)+"\n")
     publication_manifest={
-        "publication_date":"2026-10-24",
+        "publication_date":"2026-10-25",
         "page_count":3,
         "pages":[
-            {"title":"Panakeia Beta (HURV19PAN) Strain Guide","url":"https://bigbudman.com/strains/panakeia-beta-hurv19pan/","department":"strains and hemp","portfolio_label":"Data-led","search_intent":"verify the documented HURV19PAN variety identity, provenance chain, exact-lot chemistry, hemp status, and finished-product evidence without inventing effects or percentages"},
-            {"title":"Cannabis Home Testing Kit Buying Guide","url":"https://bigbudman.com/gear/cannabis-home-testing-kit-buying-guide/","department":"commercial","portfolio_label":"Exploration","search_intent":"choose a fit-for-purpose home observation or screening system by question, sample, method, controls, limits, records, ownership cost, and licensed-laboratory exit"},
-            {"title":"Cannabis in Federally Assisted Housing: 2026 Guide","url":"https://bigbudman.com/legal/cannabis-federally-assisted-housing-guide/","department":"legal and housing","portfolio_label":"Authority-expansion","search_intent":"identify the federal housing program, applicant or tenant status, conduct, lease and smoke-free rules, accommodation boundary, notice process, and qualified-help route"},
+            {"title":"First Legal Cannabis Purchase Planner","url":"https://bigbudman.com/start-here/","department":"commercial","portfolio_label":"Exploration","search_intent":"plan a first legal-market purchase by seller verification, format, compatible label math, total cost, household control, checkout gates, and a no-pressure exit"},
+            {"title":"Cannabis Official Source Directory","url":"https://bigbudman.com/guides/cannabis-official-source-directory/","department":"guides","portfolio_label":"Authority-expansion","search_intent":"route emergencies, evidence, licenses, product reports, recalls, fraud, work, travel, hemp, and law questions to the current official owner with an auditable handoff"},
+            {"title":"Release Freshness Contract","url":"https://bigbudman.com/editorial-policy/","department":"technical and trust","portfolio_label":"Exploration","search_intent":"document and enforce parity among material release surfaces, primary structured-data modification dates, and canonical sitemap last-modified records"},
         ],
-        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The home-testing guide is a high-intent, product-neutral system comparison, but it adds no merchant, model, price, coupon, ranking, product image, or affiliate link."},
-        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"All three new pages use semantic text, tables, checklists, and existing brand interface assets. No editorial, product, affiliate, stock, or generated image was added or changed."},
-        "search_console":{"report_date":"2026-10-21","decision":"The September 21–October 18 report showed 1,093 impressions, three clicks, 0.274% CTR, and average position 19.199. Stem Cell CBG had the strongest supported opportunity at 19 impressions, one click, and position 6.0, so exactly one Data-led page expands the CBG evidence cluster with a distinct official variety record rather than another rewrite of Stem Cell CBG. One-impression legal queries, Montana at two impressions, navigational About and Contact impressions, and Blue Dream terms near position 48–70 were ignored as too small, navigational, or outside the supported 4–20 range."},
-        "authority":{"action":"Published a citation-ready federal-housing issue-spotter with a program-identification table, admission-versus-tenancy matrix, six-question rule screen, medical-marijuana accommodation boundary, notice-response packet, and direct HUD/eCFR sources. Reciprocal links strengthen the federal property, state-law, official-source, and housing cluster. The HURV19PAN page also preserves an official variety-to-lot evidence chain. No outreach was sent."},
-        "surfaces":["homepage story module","strain library and CBG variety/evidence cluster","gear library and home-testing/COA/comparison cluster","legal library and federal property/housing/state-law cluster","About and editorial-policy trust pages","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","legacy Search Console sitemap compatibility URL","checksum-verified source archive and publication gates"],
+        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The first-purchase planner strengthens a high-intent path with seller verification, compatible comparisons, total-cost arithmetic, and a ten-gate checkout, but adds no merchant, product, price, coupon, ranking, review, or commercial image."},
+        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"The two expanded articles and trust update use semantic text, tables, checklists, and existing brand interface assets. No editorial, product, affiliate, stock, or generated image was added or changed."},
+        "search_console":{"report_date":"2026-10-21","decision":"The September 21–October 18 report showed 1,093 impressions, three clicks, 0.274% CTR, and average position 19.199. No unsupported query cluster was promoted into a Data-led page: the only meaningful position-4-to-20 opportunity, Stem Cell CBG at 19 impressions, one click, and position 6.0, was already materially reinforced on October 15 and again with a distinct documented CBG variety on October 24. Today's work therefore protects breadth with evergreen first-purchase, source-routing, and freshness-integrity improvements. Navigational About and Contact impressions, Montana at two impressions, one-impression legal queries, and Blue Dream terms around position 48–70 were ignored as too weak, navigational, or outside the supported range."},
+        "authority":{"action":"Expanded the official-source directory into a citation-ready routing and handoff asset with owner, jurisdiction, source type, exact-object, status/date, current-source, limits, and next-route checks. Direct current FDA, CPSC, CDC, OCM, Poison Control, SAMHSA, FTC, DOT, NHTSA, TSA, and USDA routes are separated by job. Reciprocal links strengthen the source, claims, complaint, legal, checkout, and label clusters. No outreach was sent and no speculative outreach target was logged."},
+        "freshness_surfaces":{
+            "https://bigbudman.com/":"2026-10-25",
+            "https://bigbudman.com/start-here/":"2026-10-25",
+            "https://bigbudman.com/guides/":"2026-10-25",
+            "https://bigbudman.com/guides/cannabis-official-source-directory/":"2026-10-25",
+            "https://bigbudman.com/editorial-policy/":"2026-10-25",
+            "https://bigbudman.com/updates/":"2026-10-25",
+            "https://bigbudman.com/site-index/":"2026-10-25"
+        },
+        "surfaces":["homepage first-purchase lane","Start Here first-purchase planner and checkout/label/comparison cluster","guide library and official-source/claims/complaint/legal cluster","editorial-policy trust page and release-freshness audit contract","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","legacy Search Console sitemap compatibility URL","checksum-verified source archive and publication gates"],
     }
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]
