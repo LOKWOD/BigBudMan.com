@@ -1,59 +1,58 @@
 {
-  "publication_date": "2026-10-25",
+  "publication_date": "2026-10-26",
   "page_count": 3,
   "pages": [
     {
-      "title": "First Legal Cannabis Purchase Planner",
-      "url": "https://bigbudman.com/start-here/",
-      "department": "commercial",
-      "portfolio_label": "Exploration",
-      "search_intent": "plan a first legal-market purchase by seller verification, format, compatible label math, total cost, household control, checkout gates, and a no-pressure exit"
+      "title": "Guide Library Decision Router",
+      "url": "https://bigbudman.com/guides/",
+      "department": "conversion and discovery",
+      "portfolio_label": "Data-led",
+      "search_intent": "move guide-hub visitors into six distinct high-stakes task paths without product rankings or paid placement"
     },
     {
-      "title": "Cannabis Official Source Directory",
-      "url": "https://bigbudman.com/guides/cannabis-official-source-directory/",
-      "department": "guides",
+      "title": "New York Cannabis Showcase Event Verification Guide",
+      "url": "https://bigbudman.com/guides/new-york-cannabis-showcase-event-verification-guide/",
+      "department": "guides and legal navigation",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "route emergencies, evidence, licenses, product reports, recalls, fraud, work, travel, hemp, and law questions to the current official owner with an auditable handoff"
+      "search_intent": "verify a temporary cannabis sale, permittee, participants, package, price, receipt, transport plan, and the boundary between display and consumption"
     },
     {
-      "title": "Release Freshness Contract",
+      "title": "Collection-Card Review-Date Parity",
       "url": "https://bigbudman.com/editorial-policy/",
       "department": "technical and trust",
       "portfolio_label": "Exploration",
-      "search_intent": "document and enforce parity among material release surfaces, primary structured-data modification dates, and canonical sitemap last-modified records"
+      "search_intent": "make every guide and gear collection card review date auditable against the destination article structured data"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The first-purchase planner strengthens a high-intent path with seller verification, compatible comparisons, total-cost arithmetic, and a ten-gate checkout, but adds no merchant, product, price, coupon, ranking, review, or commercial image."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The conversion improvement routes high-intent guide-hub visitors to first-purchase, label, product-problem, public-event, workplace-testing, and responsible-use decisions; the event guide adds a total-price and checkout record without merchants, products, tickets, prices, coupons, rankings, reviews, or paid placement."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The two expanded articles and trust update use semantic text, tables, checklists, and existing brand interface assets. No editorial, product, affiliate, stock, or generated image was added or changed."
+    "note": "The new guide, hub router, and trust update use semantic text, tables, checklists, and existing brand interface assets. No editorial, event, product, affiliate, stock, or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-10-21",
-    "decision": "The September 21\u2013October 18 report showed 1,093 impressions, three clicks, 0.274% CTR, and average position 19.199. No unsupported query cluster was promoted into a Data-led page: the only meaningful position-4-to-20 opportunity, Stem Cell CBG at 19 impressions, one click, and position 6.0, was already materially reinforced on October 15 and again with a distinct documented CBG variety on October 24. Today's work therefore protects breadth with evergreen first-purchase, source-routing, and freshness-integrity improvements. Navigational About and Contact impressions, Montana at two impressions, one-impression legal queries, and Blue Dream terms around position 48\u201370 were ignored as too weak, navigational, or outside the supported range."
+    "decision": "The September 21\u2013October 18 report showed 1,093 impressions, three clicks, 0.274% CTR, and average position 19.199. The Guides hub was the clearest non-branded navigation surface with engagement (three impressions, one click, position 7.3), so today's one Data-led change adds six task-first paths and improves its route into useful content. The Stem Cell CBG page at 19 impressions, one click, and position 6.0 was deliberately not reinforced again because it already received material support on October 15 and October 24. About and Contact impressions were treated as navigational, Montana and one-impression legal rows as too small, and Blue Dream queries at roughly positions 48\u201370 as outside the supported opportunity range."
   },
   "authority": {
-    "action": "Expanded the official-source directory into a citation-ready routing and handoff asset with owner, jurisdiction, source type, exact-object, status/date, current-source, limits, and next-route checks. Direct current FDA, CPSC, CDC, OCM, Poison Control, SAMHSA, FTC, DOT, NHTSA, TSA, and USDA routes are separated by job. Reciprocal links strengthen the source, claims, complaint, legal, checkout, and label clusters. No outreach was sent and no speculative outreach target was logged."
+    "action": "Published a primary-source-based New York Cannabis Showcase Event verification asset using adopted Part 117, the current OCM legal-activity locator, OCM consumer resources, and CDC driving and poisoning guidance. Its permittee/participant matrix, display-versus-sale boundary, price record, and event-to-home handoff card are connected reciprocally to seller verification and social-hosting resources. No outreach was sent and no speculative outreach target was logged."
   },
   "freshness_surfaces": {
-    "https://bigbudman.com/": "2026-10-25",
-    "https://bigbudman.com/start-here/": "2026-10-25",
-    "https://bigbudman.com/guides/": "2026-10-25",
-    "https://bigbudman.com/guides/cannabis-official-source-directory/": "2026-10-25",
-    "https://bigbudman.com/editorial-policy/": "2026-10-25",
-    "https://bigbudman.com/updates/": "2026-10-25",
-    "https://bigbudman.com/site-index/": "2026-10-25"
+    "https://bigbudman.com/guides/": "2026-10-26",
+    "https://bigbudman.com/guides/new-york-cannabis-showcase-event-verification-guide/": "2026-10-26",
+    "https://bigbudman.com/legal/shop-legal/": "2026-10-26",
+    "https://bigbudman.com/editorial-policy/": "2026-10-26",
+    "https://bigbudman.com/updates/": "2026-10-26",
+    "https://bigbudman.com/site-index/": "2026-10-26"
   },
   "surfaces": [
-    "homepage first-purchase lane",
-    "Start Here first-purchase planner and checkout/label/comparison cluster",
-    "guide library and official-source/claims/complaint/legal cluster",
-    "editorial-policy trust page and release-freshness audit contract",
+    "guide library decision router and collection card",
+    "New York showcase-event verification guide",
+    "seller-verification and social-hosting reciprocal links",
+    "editorial-policy trust page and collection-date audit contract",
     "publication updates",
     "Atom feed",
     "complete site index",

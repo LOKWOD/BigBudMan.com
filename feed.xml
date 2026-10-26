@@ -4,9 +4,25 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-25T00:00:00Z</updated>
+  <updated>2026-10-26T00:00:00Z</updated>
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Verify a Legal New York Dispensary and Product</title>
+    <id>https://bigbudman.com/legal/shop-legal/</id>
+    <link href="https://bigbudman.com/legal/shop-legal/"/>
+    <updated>2026-10-26T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Verify a New York cannabis dispensary, match the exact business and product lot, check the certificate and recall status, and preserve a useful receipt.</summary>
+  </entry>
+  <entry>
+    <title>New York Cannabis Showcase Event Guide</title>
+    <id>https://bigbudman.com/guides/new-york-cannabis-showcase-event-verification-guide/</id>
+    <link href="https://bigbudman.com/guides/new-york-cannabis-showcase-event-verification-guide/"/>
+    <updated>2026-10-26T00:00:00Z</updated>
+    <published>2026-10-26T00:00:00Z</published>
+    <summary>Verify a New York cannabis showcase event, permit, seller, product, price, receipt, transport plan, and the boundary between display and consumption.</summary>
+  </entry>
   <entry>
     <title>First Legal Cannabis Purchase Planner</title>
     <id>https://bigbudman.com/start-here/</id>
@@ -230,21 +246,5 @@
     <updated>2026-10-14T00:00:00Z</updated>
     <published>2026-09-23T00:00:00Z</published>
     <summary>Compare three grow-light systems by actual watts, coverage evidence, controls, setup, annual electricity, maintenance, warranty, and ownership cost.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Vape Guide: Carts &amp; Warning Signs</title>
-    <id>https://bigbudman.com/guides/vapes/</id>
-    <link href="https://bigbudman.com/guides/vapes/"/>
-    <updated>2026-10-13T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Identify a cannabis cartridge, disposable, pod, oil, battery, ingredients, lot evidence, hardware fit, stop-use signs, lung symptoms, and disposal route.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Accessory Return &amp; Warranty Guide</title>
-    <id>https://bigbudman.com/gear/cannabis-accessory-return-warranty-recall-guide/</id>
-    <link href="https://bigbudman.com/gear/cannabis-accessory-return-warranty-recall-guide/"/>
-    <updated>2026-10-13T00:00:00Z</updated>
-    <published>2026-10-13T00:00:00Z</published>
-    <summary>Compare cannabis accessory return terms, warranty coverage, recall identity, evidence, deadlines, support, and safe exit routes with a date checkpoint tool.</summary>
   </entry>
 </feed>

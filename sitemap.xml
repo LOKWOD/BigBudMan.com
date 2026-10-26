@@ -3,7 +3,7 @@
   <url><loc>https://bigbudman.com/about/</loc><lastmod>2026-10-24</lastmod></url>
   <url><loc>https://bigbudman.com/affiliate-disclosure/</loc><lastmod>2026-08-17</lastmod></url>
   <url><loc>https://bigbudman.com/contact/</loc><lastmod>2026-10-16</lastmod></url>
-  <url><loc>https://bigbudman.com/editorial-policy/</loc><lastmod>2026-10-25</lastmod></url>
+  <url><loc>https://bigbudman.com/editorial-policy/</loc><lastmod>2026-10-26</lastmod></url>
   <url><loc>https://bigbudman.com/gear/510-thread-vape-battery-safety/</loc><lastmod>2026-10-01</lastmod></url>
   <url><loc>https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/</loc><lastmod>2026-10-04</lastmod></url>
   <url><loc>https://bigbudman.com/gear/cannabis-accessibility-tools-buying-guide/</loc><lastmod>2026-10-17</lastmod></url>
@@ -96,8 +96,9 @@
   <url><loc>https://bigbudman.com/guides/flower/</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://bigbudman.com/guides/full-spectrum-broad-spectrum-cbd-isolate/</loc><lastmod>2026-09-08</lastmod></url>
   <url><loc>https://bigbudman.com/guides/hemp-seed-oil-vs-cbd-oil/</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>https://bigbudman.com/guides/</loc><lastmod>2026-10-25</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/</loc><lastmod>2026-10-26</lastmod></url>
   <url><loc>https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/new-york-cannabis-showcase-event-verification-guide/</loc><lastmod>2026-10-26</lastmod></url>
   <url><loc>https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/</loc><lastmod>2026-09-21</lastmod></url>
   <url><loc>https://bigbudman.com/guides/new-york-home-cannabis-harvest-drying-curing-log/</loc><lastmod>2026-10-23</lastmod></url>
   <url><loc>https://bigbudman.com/guides/new-york-home-cannabis-pest-mold-ipm-guide/</loc><lastmod>2026-10-06</lastmod></url>
@@ -152,7 +153,7 @@
   <url><loc>https://bigbudman.com/legal/oregon/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/pennsylvania/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/rhode-island/</loc><lastmod>2026-09-01</lastmod></url>
-  <url><loc>https://bigbudman.com/legal/shop-legal/</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://bigbudman.com/legal/shop-legal/</loc><lastmod>2026-10-26</lastmod></url>
   <url><loc>https://bigbudman.com/legal/south-carolina/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/south-dakota/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/tennessee/</loc><lastmod>2026-09-01</lastmod></url>
@@ -166,7 +167,7 @@
   <url><loc>https://bigbudman.com/legal/wyoming/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/privacy/</loc><lastmod>2026-08-17</lastmod></url>
   <url><loc>https://bigbudman.com/responsible-use/</loc><lastmod>2026-08-17</lastmod></url>
-  <url><loc>https://bigbudman.com/site-index/</loc><lastmod>2026-10-25</lastmod></url>
+  <url><loc>https://bigbudman.com/site-index/</loc><lastmod>2026-10-26</lastmod></url>
   <url><loc>https://bigbudman.com/start-here/</loc><lastmod>2026-10-25</lastmod></url>
   <url><loc>https://bigbudman.com/strains/acapulco-gold/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/acdc/</loc><lastmod>2026-08-26</lastmod></url>
@@ -289,5 +290,5 @@
   <url><loc>https://bigbudman.com/strains/zkittlez/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/zoap/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/terms/</loc><lastmod>2026-08-17</lastmod></url>
-  <url><loc>https://bigbudman.com/updates/</loc><lastmod>2026-10-25</lastmod></url>
+  <url><loc>https://bigbudman.com/updates/</loc><lastmod>2026-10-26</lastmod></url>
 </urlset>
