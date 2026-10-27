@@ -4,9 +4,25 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-26T00:00:00Z</updated>
+  <updated>2026-10-27T00:00:00Z</updated>
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>How to Talk to Your Doctor About Cannabis</title>
+    <id>https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/</id>
+    <link href="https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/"/>
+    <updated>2026-10-27T00:00:00Z</updated>
+    <published>2026-10-27T00:00:00Z</published>
+    <summary>Prepare a useful cannabis record for a doctor or pharmacist: exact product, route, timing, medicines, symptoms, questions, and follow-up plan.</summary>
+  </entry>
+  <entry>
+    <title>Home-Grow Temperature &amp; Humidity Monitor</title>
+    <id>https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/</id>
+    <link href="https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/"/>
+    <updated>2026-10-27T00:00:00Z</updated>
+    <published>2026-10-27T00:00:00Z</published>
+    <summary>Compare grow-room temperature and humidity monitors by accuracy claims, logging, alarms, placement, verification, power loss, export, and ownership cost.</summary>
+  </entry>
   <entry>
     <title>Verify a Legal New York Dispensary and Product</title>
     <id>https://bigbudman.com/legal/shop-legal/</id>
@@ -230,21 +246,5 @@
     <updated>2026-10-15T00:00:00Z</updated>
     <published>2026-10-15T00:00:00Z</published>
     <summary>Separate a CBG-dominant chemotype from a cultivar name, package claim, CBG/CBGA lot result, effect story, medical claim, and current legal category.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis and Alcohol: Risks &amp; Emergency Signs</title>
-    <id>https://bigbudman.com/guides/cannabis-and-alcohol-mixing-risks/</id>
-    <link href="https://bigbudman.com/guides/cannabis-and-alcohol-mixing-risks/"/>
-    <updated>2026-10-14T00:00:00Z</updated>
-    <published>2026-09-10T00:00:00Z</published>
-    <summary>Cannabis and alcohol mixing risks, impairment limits, a two-substance event record, emergency warning signs, and a practical sober-host plan.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Grow-Light Comparison &amp; Cost Planner</title>
-    <id>https://bigbudman.com/gear/indoor-cannabis-grow-light-buying-cost-planner/</id>
-    <link href="https://bigbudman.com/gear/indoor-cannabis-grow-light-buying-cost-planner/"/>
-    <updated>2026-10-14T00:00:00Z</updated>
-    <published>2026-09-23T00:00:00Z</published>
-    <summary>Compare three grow-light systems by actual watts, coverage evidence, controls, setup, annual electricity, maintenance, warranty, and ownership cost.</summary>
   </entry>
 </feed>

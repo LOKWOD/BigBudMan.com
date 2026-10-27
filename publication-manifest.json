@@ -1,58 +1,61 @@
 {
-  "publication_date": "2026-10-26",
+  "publication_date": "2026-10-27",
   "page_count": 3,
   "pages": [
     {
-      "title": "Guide Library Decision Router",
-      "url": "https://bigbudman.com/guides/",
-      "department": "conversion and discovery",
-      "portfolio_label": "Data-led",
-      "search_intent": "move guide-hub visitors into six distinct high-stakes task paths without product rankings or paid placement"
-    },
-    {
-      "title": "New York Cannabis Showcase Event Verification Guide",
-      "url": "https://bigbudman.com/guides/new-york-cannabis-showcase-event-verification-guide/",
-      "department": "guides and legal navigation",
+      "title": "How to Talk to Your Doctor About Cannabis",
+      "url": "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/",
+      "department": "health preparation and authority",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "verify a temporary cannabis sale, permittee, participants, package, price, receipt, transport plan, and the boundary between display and consumption"
+      "search_intent": "prepare an exact cannabis product, whole medicine list, symptom timeline, clinician questions, urgent lane, and follow-up record"
     },
     {
-      "title": "Collection-Card Review-Date Parity",
-      "url": "https://bigbudman.com/editorial-policy/",
-      "department": "technical and trust",
+      "title": "Home-Grow Temperature and Humidity Monitor Buying Guide",
+      "url": "https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/",
+      "department": "gear and conversion",
       "portfolio_label": "Exploration",
-      "search_intent": "make every guide and gear collection card review date auditable against the destination article structured data"
+      "search_intent": "compare environmental monitors by measurement job, documented accuracy, placement, logging, alarms, failure behavior, verification, and ownership cost"
+    },
+    {
+      "title": "Visible Citation Parity",
+      "url": "https://bigbudman.com/editorial-policy/",
+      "department": "technical SEO and trust",
+      "portfolio_label": "Exploration",
+      "search_intent": "make every Article citation an exact, audited reflection of the page's visible official-source links"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The conversion improvement routes high-intent guide-hub visitors to first-purchase, label, product-problem, public-event, workplace-testing, and responsible-use decisions; the event guide adds a total-price and checkout record without merchants, products, tickets, prices, coupons, rankings, reviews, or paid placement."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral monitor specification, placement, acceptance-test, failure-path, and first-year-cost worksheet with a buy-nothing option; it contains no merchant, model, price, coupon, stock, ranking, review, or paid placement."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The new guide, hub router, and trust update use semantic text, tables, checklists, and existing brand interface assets. No editorial, event, product, affiliate, stock, or generated image was added or changed."
+    "note": "Both new assets use semantic text, tables, checklists, and existing brand interface assets. No editorial, clinical, grow-room, product, affiliate, stock, or generated image was added or changed, so there is no ambiguous product depiction."
   },
   "search_console": {
     "report_date": "2026-10-21",
-    "decision": "The September 21\u2013October 18 report showed 1,093 impressions, three clicks, 0.274% CTR, and average position 19.199. The Guides hub was the clearest non-branded navigation surface with engagement (three impressions, one click, position 7.3), so today's one Data-led change adds six task-first paths and improves its route into useful content. The Stem Cell CBG page at 19 impressions, one click, and position 6.0 was deliberately not reinforced again because it already received material support on October 15 and October 24. About and Contact impressions were treated as navigational, Montana and one-impression legal rows as too small, and Blue Dream queries at roughly positions 48\u201370 as outside the supported opportunity range."
+    "decision": "The September 21\u2013October 18 report showed 1,093 impressions, three clicks, 0.274% CTR, and average position 19.199. No unaddressed page or query had a sufficiently supported position-4-to-20 opportunity, so no item is primarily Data-led. The Guides hub signal (three impressions, one click, position 7.3) was acted on October 26; Stem Cell CBG (19 impressions, one click, position 6.0) was materially reinforced October 15 and October 24. About and Contact were treated as navigational, Montana and one-impression rows as too small, and Blue Dream positions around 48\u201370 as outside the target band. Today's work therefore expands distinct evergreen authority and technical trust without inventing an analytics mandate."
   },
   "authority": {
-    "action": "Published a primary-source-based New York Cannabis Showcase Event verification asset using adopted Part 117, the current OCM legal-activity locator, OCM consumer resources, and CDC driving and poisoning guidance. Its permittee/participant matrix, display-versus-sale boundary, price record, and event-to-home handoff card are connected reciprocally to seller verification and social-hosting resources. No outreach was sent and no speculative outreach target was logged."
+    "action": "Published a clinician-conversation toolkit grounded in NCCIH, FDA, and AHRQ primary guidance, including a product record, whole-medicine reconciliation, timeline, question set, urgent lane, and one-page handoff. It is reciprocally linked with medication-interaction, surgery, and older-adult safety pages. Article citations across the site are now generated from visible official-source panels and audited for exact parity. No outreach was sent and no speculative outreach target was logged."
   },
   "freshness_surfaces": {
-    "https://bigbudman.com/guides/": "2026-10-26",
-    "https://bigbudman.com/guides/new-york-cannabis-showcase-event-verification-guide/": "2026-10-26",
-    "https://bigbudman.com/legal/shop-legal/": "2026-10-26",
-    "https://bigbudman.com/editorial-policy/": "2026-10-26",
-    "https://bigbudman.com/updates/": "2026-10-26",
-    "https://bigbudman.com/site-index/": "2026-10-26"
+    "https://bigbudman.com/guides/": "2026-10-27",
+    "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/": "2026-10-27",
+    "https://bigbudman.com/gear/": "2026-10-27",
+    "https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/": "2026-10-27",
+    "https://bigbudman.com/editorial-policy/": "2026-10-27",
+    "https://bigbudman.com/updates/": "2026-10-27",
+    "https://bigbudman.com/site-index/": "2026-10-27"
   },
   "surfaces": [
-    "guide library decision router and collection card",
-    "New York showcase-event verification guide",
-    "seller-verification and social-hosting reciprocal links",
-    "editorial-policy trust page and collection-date audit contract",
+    "clinician-conversation toolkit and guide card",
+    "medication, surgery, and older-adult reciprocal links",
+    "environment-monitor buying guide and gear card",
+    "lawful-home-grow, pest/mold, and gear-comparison reciprocal links",
+    "Article citation structured data across pages with official-source panels",
+    "editorial-policy citation contract",
     "publication updates",
     "Atom feed",
     "complete site index",
