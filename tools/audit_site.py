@@ -20,6 +20,7 @@ class Inspector(HTMLParser):
         self.title = ""
         self._in_title = False
         self.h1 = 0
+        self.headings: list[int] = []
         self.description = ""
         self.canonical = ""
         self.links: list[str] = []
@@ -35,6 +36,7 @@ class Inspector(HTMLParser):
         a = dict(attrs)
         if tag == "title": self._in_title = True
         elif tag == "h1": self.h1 += 1
+        if re.fullmatch(r"h[1-6]", tag): self.headings.append(int(tag[1]))
         elif tag == "meta" and a.get("name") == "description": self.description = a.get("content", "")
         elif tag == "link" and a.get("rel") == "canonical": self.canonical = a.get("href", "")
         if tag == "meta": self.meta.append(a)
@@ -98,6 +100,7 @@ def main() -> int:
     incoming_sources: dict[str, set[str]] = {}
     fragment_cache: dict[Path, set[str]] = {}
     honeypot_count = 0
+    collection_card_routes: dict[str, Path] = {}
 
     def document_ids(path: Path) -> set[str]:
         if path not in fragment_cache:
@@ -110,8 +113,53 @@ def main() -> int:
         text = page.read_text(encoding="utf-8")
         parser = Inspector(); parser.feed(text)
         rel = page.relative_to(ROOT)
+        for card_match in re.finditer(r'<a\s+class="library-card"(?P<attrs>[^>]*)>', text, re.I):
+            attrs = card_match.group("attrs")
+            href_match = re.search(r'\bhref="([^"]+)"', attrs)
+            date_match = re.search(r'\bdata-updated="([^"]+)"', attrs)
+            if not href_match or not date_match:
+                failures.append(f"{rel}: collection card is missing href or data-updated")
+                continue
+            href = href_match.group(1)
+            if href in collection_card_routes:
+                failures.append(f"{rel}: duplicate collection card route {href}")
+                continue
+            collection_card_routes[href] = page
+            try:
+                datetime.strptime(date_match.group(1), "%Y-%m-%d")
+            except ValueError:
+                failures.append(f"{rel}: collection card has malformed review date for {href}")
+                continue
+            destination = resolve_local(page, href)
+            if destination is None or not destination.is_file():
+                failures.append(f"{rel}: collection card destination is missing for {href}")
+                continue
+            destination_parser = Inspector()
+            destination_parser.feed(destination.read_text(encoding="utf-8"))
+            destination_modified = ""
+            for raw_schema in destination_parser.jsonld:
+                try:
+                    schema = json.loads(raw_schema)
+                except Exception:
+                    continue
+                nodes = schema.get("@graph", []) if isinstance(schema, dict) else []
+                article = next((node for node in nodes if node.get("@type") == "Article"), None)
+                if article:
+                    destination_modified = article.get("dateModified", "")
+                    break
+            if date_match.group(1) != destination_modified:
+                failures.append(
+                    f"{rel}: collection card date {date_match.group(1)} does not match "
+                    f"{href} article dateModified {destination_modified or 'missing'}"
+                )
         if '<html lang="en-US">' not in text: failures.append(f"{rel}: missing en-US language")
         if parser.h1 != 1: failures.append(f"{rel}: expected one h1, found {parser.h1}")
+        if parser.headings and parser.headings[0] != 1:
+            failures.append(f"{rel}: heading outline starts with h{parser.headings[0]} instead of h1")
+        for previous, current in zip(parser.headings, parser.headings[1:]):
+            if current > previous + 1:
+                failures.append(f"{rel}: heading outline jumps from h{previous} to h{current}")
+                break
         duplicate_ids = [value for value, count in Counter(parser.ids).items() if count > 1]
         if duplicate_ids: failures.append(f"{rel}: duplicate HTML id values: {', '.join(sorted(duplicate_ids))}")
         for section_number, related in enumerate(re.findall(r'<section class="related-section".*?</section>', text, re.S), start=1):
@@ -229,6 +277,20 @@ def main() -> int:
             review_match = re.search(r'Reviewed\s*<time datetime="([^"]+)">', text)
             if review_match and review_match.group(1) != primary.get("dateModified"):
                 failures.append(f"{rel}: visible review date does not match Article dateModified")
+            visible_citations: list[str] = []
+            for source_block in re.findall(r'<div class="official-links"[^>]*>(.*?)</div>', text, re.I | re.S):
+                for source_url in re.findall(r'<a[^>]+href="(https?://[^"]+)"', source_block, re.I):
+                    if source_url not in visible_citations:
+                        visible_citations.append(source_url)
+            schema_citations = primary.get("citation", [])
+            if isinstance(schema_citations, str):
+                schema_citations = [schema_citations]
+            if not isinstance(schema_citations, list):
+                failures.append(f"{rel}: Article citation must be a URL list")
+            elif schema_citations != visible_citations:
+                failures.append(f"{rel}: Article citations do not exactly match visible official-source links")
+            elif any(not isinstance(url, str) or not url.startswith("https://") for url in schema_citations):
+                failures.append(f"{rel}: Article citation contains a non-HTTPS or invalid URL")
         breadcrumb_nodes = [item for item in graph_nodes if item.get("@type") == "BreadcrumbList"]
         breadcrumb_nodes.extend(item for item in schemas if item.get("@type") == "BreadcrumbList")
         if rel.as_posix() not in {"404.html", "thank-you/index.html"}:
@@ -574,8 +636,8 @@ def main() -> int:
         discovery_checks = {
             "index.html": ("guides/cannabis-next-day-impairment-evidence-guide/", "guides/cbn-products-label-evidence-guide/", "legal/cannabis-federal-property-rules-guide/", "guides/cannabis-social-hosting-guest-safety-plan/", "guides/terpenes/", "gear/cannabis-loupe-pocket-microscope-guide/", "guides/cannabis-cbd-chronic-pain-evidence-guide/", "guides/storage/", "gear/cannabis-accessibility-tools-buying-guide/"),
             "strains/index.html": ("stem-cell-cbg/", "panakeia-beta-hurv19pan/", "119 STRAIN FIELD NOTES", "NO VERIFIED CULTIVAR IMAGE"),
-            "guides/index.html": ("cannabis-next-day-impairment-evidence-guide/", "cannabis-cbd-chronic-pain-evidence-guide/", "cannabis-cbd-cancer-claims-evidence-guide/", "cannabis-menu-package-receipt-match-checklist/", "cannabis-exercise-workout-heat-safety/", "new-york-home-cannabis-pest-mold-ipm-guide/", "new-york-home-cannabis-harvest-drying-curing-log/", "cannabis-cbd-epilepsy-seizure-care-guide/", "cannabis-glaucoma-eye-pressure-vision-guide/", "cbd-patches-transdermal-label-evidence-guide/", "cannabis-package-seal-tamper-evidence-checklist/", "cannabis-dry-mouth-dental-oral-health-guide/", "cannabis-edible-label-math-checker/", "cbg-products-label-evidence-guide/", "cannabis-contaminant-test-results-guide/", "cannabis-child-resistant-packaging-home-storage-guide/", "cannabis-official-source-directory/", "cannabis-gummies-drinks-oils-capsules-comparison/", "cannabis-claim-fact-check-worksheet/", "Store cannabis safely by product type", "Thirty useful paths", "Comparing packaged cannabis flower", 'data-guide-sort', 'data-updated="2026-10-23"', 'data-guide-filter="health"', 'data-guide-filter="workplace"'),
-            "gear/index.html": ("cannabis-home-testing-kit-buying-guide/", "used-cannabis-accessory-buying-safety-guide/", "cannabis-accessibility-tools-buying-guide/", "smell-proof-storage/", "cannabis-rolling-tray-buying-guide/", "cannabis-rolling-paper-cone-guide/", "digital-scale-buying-calibration-guide/", "cannabis-tool-cleaning-kit/", "indoor-cannabis-grow-light-buying-cost-planner/", "cannabis-gear-comparison-worksheet/", "cannabis-accessory-return-warranty-recall-guide/", "dry-herb-vaporizer-dosing-capsule-guide/", "Choose a home testing system", "All 26"),
+            "guides/index.html": ("cannabis-allergy-symptom-exposure-guide/", "cannabis-next-day-impairment-evidence-guide/", "cannabis-cbd-chronic-pain-evidence-guide/", "cannabis-cbd-cancer-claims-evidence-guide/", "cannabis-menu-package-receipt-match-checklist/", "cannabis-exercise-workout-heat-safety/", "new-york-home-cannabis-pest-mold-ipm-guide/", "new-york-home-cannabis-harvest-drying-curing-log/", "cannabis-cbd-epilepsy-seizure-care-guide/", "cannabis-glaucoma-eye-pressure-vision-guide/", "cbd-patches-transdermal-label-evidence-guide/", "cannabis-package-seal-tamper-evidence-checklist/", "cannabis-dry-mouth-dental-oral-health-guide/", "cannabis-edible-label-math-checker/", "cbg-products-label-evidence-guide/", "cannabis-contaminant-test-results-guide/", "cannabis-child-resistant-packaging-home-storage-guide/", "cannabis-official-source-directory/", "cannabis-gummies-drinks-oils-capsules-comparison/", "cannabis-claim-fact-check-worksheet/", "Store cannabis safely by product type", "Thirty useful paths", "Comparing packaged cannabis flower", 'data-guide-sort', 'data-updated="2026-10-28"', 'data-guide-filter="health"', 'data-guide-filter="workplace"'),
+            "gear/index.html": ("home-grow-temperature-humidity-monitor-buying-guide/", "cannabis-home-testing-kit-buying-guide/", "used-cannabis-accessory-buying-safety-guide/", "cannabis-accessibility-tools-buying-guide/", "smell-proof-storage/", "cannabis-rolling-tray-buying-guide/", "cannabis-rolling-paper-cone-guide/", "digital-scale-buying-calibration-guide/", "cannabis-tool-cleaning-kit/", "indoor-cannabis-grow-light-buying-cost-planner/", "cannabis-gear-comparison-worksheet/", "cannabis-accessory-return-warranty-recall-guide/", "dry-herb-vaporizer-dosing-capsule-guide/", "Choose a home testing system", "All 27"),
             "guides/read-a-label/index.html": ("Build a date chain", "Preserve a label-to-lot evidence card", "cannabis.ny.gov/part-128-guidance", "cannabis-certificate-of-analysis-coa-guide/", "cannabis-product-recall-batch-checker/"),
             "responsible-use/index.html": ("guides/cannabis-exercise-workout-heat-safety/",),
             "guides/cannabis-exercise-workout-heat-safety/index.html": ("cdc.gov/cannabis/health-effects/brain-health", "cdc.gov/heat-health/risk-factors/heat-and-athletes", "nhtsa.gov/risky-driving/drug-impaired-driving", "2026list_en_final_clean"),
@@ -609,8 +671,8 @@ def main() -> int:
             "gear/cannabis-lighter-flame-safety-guide/index.html": ("Compare three exact models before checkout", "U.S. CPSC: Recalls and Product Safety Warnings", "No merchant, product, price, coupon, ranking, or affiliate link appears"),
             "gear/used-cannabis-accessory-buying-safety-guide/index.html": ("Adjusted used cost", "cpsc.gov/Business--Manufacturing/Online-Sellers-Safety-Guide", "used-lithium-ion-batteries", "No marketplace, merchant, product, model, price, coupon, or affiliate link appears"),
             "editorial-policy/index.html": ("Sitemap date integrity", "legacy Search Console compatibility endpoint", "cannot be later than the current publication batch"),
-            "updates/index.html": ("start-here/", "guides/cannabis-official-source-directory/", "editorial-policy/", "October 25, 2026"),
-            "site-index/index.html": ("start-here/", "guides/cannabis-official-source-directory/", "editorial-policy/", "October 25, 2026", "updates/"),
+            "updates/index.html": ("guides/cannabis-allergy-symptom-exposure-guide/", "gear/dry-herb-vaporizer-buying-safety-guide/", "editorial-policy/", "October 28, 2026"),
+            "site-index/index.html": ("guides/cannabis-allergy-symptom-exposure-guide/", "gear/dry-herb-vaporizer-buying-safety-guide/", "editorial-policy/", "October 28, 2026", "updates/"),
         }
         for discovery_page, markers in discovery_checks.items():
             discovery_text = (ROOT / discovery_page).read_text(encoding="utf-8")
@@ -775,8 +837,13 @@ def main() -> int:
         for marker in ('data-edible-math', 'data-edible-thc-serving', 'data-edible-thc-unit', 'data-edible-status', 'data-edible-reset'):
             if marker not in edible_math: failures.append(f"Edible label math checker is missing marker: {marker}")
         vaporizer = (ROOT / "gear/dry-herb-vaporizer-buying-safety-guide/index.html").read_text(encoding="utf-8")
-        for marker in ('data-vaporizer-cost', 'data-vape-device', 'data-vape-total', 'data-vape-recurring', 'CPSC: Recalls'):
+        for marker in ('data-vaporizer-cost', 'data-vape-device', 'data-vape-total', 'data-vape-recurring', 'CPSC: Recalls', 'Run the recall and remedy screen before price', '2026 Arizer Solo III recall example', 'Require proof before the checkout button'):
             if marker not in vaporizer: failures.append(f"Dry-herb cost guide is missing marker: {marker}")
+        cannabis_allergy = (ROOT / "guides/cannabis-allergy-symptom-exposure-guide/index.html").read_text(encoding="utf-8")
+        for marker in ('Use the emergency lane before the evidence lane', 'Keep four exposure lanes separate', 'Use the one-page exposure handoff', 'CDC/NIOSH: Cannabis industry asthma and allergies', 'NIOSH HHE 2023-0102-3434', 'International cannabis-allergy consensus review'):
+            if marker not in cannabis_allergy: failures.append(f"Cannabis allergy guide is missing authority marker: {marker}")
+        if '"url":"/guides/cannabis-allergy-symptom-exposure-guide/"' not in search_raw or 'occupational' not in search_raw.lower():
+            failures.append("Search index is missing the cannabis-allergy guide or its occupational-exposure vocabulary")
         oral_health = (ROOT / "guides/cannabis-dry-mouth-dental-oral-health-guide/index.html").read_text(encoding="utf-8")
         for marker in ('American Dental Association: Cannabis—Oral Health Effects', 'NIH/NIDCR: Dry Mouth', 'Do not arrive intoxicated', 'SYMPTOM'):
             if marker not in oral_health: failures.append(f"Oral-health guide is missing marker: {marker}")
@@ -818,8 +885,8 @@ def main() -> int:
             failures.append("Editorial policy or Atom feed is missing the feed authorship standard")
         if "Age-gate focus isolation" not in policy:
             failures.append("Editorial policy is missing the age-gate focus-isolation standard")
-        if "Contextual inbound-link floor" not in policy or "October 25, 2026" not in policy:
-            failures.append("Editorial policy is missing the contextual inbound-link standard")
+        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "October 28, 2026" not in policy:
+            failures.append("Editorial policy is missing the current link and collection-date integrity standards")
         deployed_css = (ROOT / "assets/css/styles.css").read_text(encoding="utf-8")
         if "@import" in deployed_css:
             failures.append("Production styles.css still contains a render-blocking CSS import")

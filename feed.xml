@@ -4,9 +4,25 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-27T00:00:00Z</updated>
+  <updated>2026-10-28T00:00:00Z</updated>
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Dry-Herb Vaporizer Buying &amp; Cost Guide</title>
+    <id>https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/</id>
+    <link href="https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/"/>
+    <updated>2026-10-28T00:00:00Z</updated>
+    <published>2026-09-11T00:00:00Z</published>
+    <summary>Compare dry-herb vaporizers by exact-model recalls, airpath, controls, battery architecture, cleaning, support, warranty, and total ownership cost.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Allergy &amp; Exposure Record</title>
+    <id>https://bigbudman.com/guides/cannabis-allergy-symptom-exposure-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-allergy-symptom-exposure-guide/"/>
+    <updated>2026-10-28T00:00:00Z</updated>
+    <published>2026-10-28T00:00:00Z</published>
+    <summary>Separate emergency allergy signs from irritant symptoms, preserve the exact cannabis exposure, and prepare a useful record for an allergist or clinician.</summary>
+  </entry>
   <entry>
     <title>How to Talk to Your Doctor About Cannabis</title>
     <id>https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/</id>
@@ -230,21 +246,5 @@
     <updated>2026-10-15T00:00:00Z</updated>
     <published>2026-10-15T00:00:00Z</published>
     <summary>Separate cannabis intoxication, functional impairment, cannabinoid detection, poisoning, tolerance, and legal conclusions with a primary-source decision guide.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Flower Buying &amp; Quality Checklist</title>
-    <id>https://bigbudman.com/guides/flower/</id>
-    <link href="https://bigbudman.com/guides/flower/"/>
-    <updated>2026-10-15T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Compare cannabis flower by legal source, package and lot match, dates, lab evidence, condition, aroma, storage fit, smoke exposure, and total ownership needs.</summary>
-  </entry>
-  <entry>
-    <title>CBG-Dominant Cannabis Guide</title>
-    <id>https://bigbudman.com/guides/cbg-dominant-cannabis-chemotype-guide/</id>
-    <link href="https://bigbudman.com/guides/cbg-dominant-cannabis-chemotype-guide/"/>
-    <updated>2026-10-15T00:00:00Z</updated>
-    <published>2026-10-15T00:00:00Z</published>
-    <summary>Separate a CBG-dominant chemotype from a cultivar name, package claim, CBG/CBGA lot result, effect story, medical claim, and current legal category.</summary>
   </entry>
 </feed>
