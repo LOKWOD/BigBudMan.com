@@ -158,3 +158,16 @@ This is a research log, not an outreach ledger. No email, form, account, comment
 - **Clusters strengthened:** Home testing ↔ certificate of analysis ↔ contaminant panels ↔ visual inspection ↔ exact-model comparison; HURV19PAN ↔ CBG chemotype ↔ CBG products ↔ exact-lot report; and federal property ↔ federally assisted housing ↔ state law ↔ official-source directory.
 - **Qualified outreach opportunities:** None logged. HUD, USDA, CFIA, NIST, and OCM are primary evidence sources, not assumed promotion targets; no marginal pitch was invented and no outreach was sent.
 
+## 2026-10-29 — cannabis and nicotine co-use record
+
+- **Authority action:** Published a printable, two-product cannabis-and-nicotine co-use record grounded in current CDC, CDC quitline, and National Cancer Institute sources. It separates same-product, same-session, alternating-device, linked-trigger, and cutting-down patterns; keeps cannabis and nicotine/tobacco on separate clocks; preserves ordinary symptom language; and routes tobacco or nicotine quitting to evidence-based support without a safe-ratio claim, product swap, or individualized medication plan.
+- **Cluster strengthened:** Cannabis lung health ↔ cannabis and nicotine co-use ↔ clinician conversation ↔ tolerance, dependence, and withdrawal. Reciprocal contextual links let readers move between exposure evidence, a two-product handoff, and appropriate support without treating “smoking” or “vaping” as one unnamed route.
+- **Trust action:** Sitewide print/PDF provenance now exposes each article's canonical URL and review date, while official-source panels retain their full destination URLs when printed. The deployment audit rejects missing or mismatched print provenance.
+
+| Qualified target | Verified contact route | Exact asset match | Honest pitch angle |
+|---|---|---|---|
+| New York State Department of Health Tobacco Control Program — <https://www.health.ny.gov/prevention/tobacco_control/program_components.htm> | Official program contact page: <https://www.health.ny.gov/prevention/tobacco_control/contact.htm> | [Cannabis & Nicotine Co-Use Guide](https://bigbudman.com/guides/cannabis-nicotine-tobacco-co-use-guide/) | A New York-based, source-linked two-product record that preserves nicotine/tobacco type, cannabis route, timing, symptoms, withdrawal concerns, and the state quitline handoff. Invite factual correction or educational-resource consideration; do not imply NYSDOH review, clinical advice, service eligibility, or endorsement. |
+| North American Quitline Consortium — <https://www.naquitline.org/page/AboutNAQC> | Verified contact form and public organization email: <https://www.naquitline.org/general/?type=contact> | [Cannabis & Nicotine Co-Use Guide](https://bigbudman.com/guides/cannabis-nicotine-tobacco-co-use-guide/) | A consumer-facing intake record that prevents cannabis, cigarettes, tobacco wraps, nicotine vapes, and cues from being collapsed into “smoking.” Invite technical correction or practitioner-resource consideration; do not imply that NAQC reviewed the guide, that every quitline provides the same services, or that the asset replaces quitline assessment. |
+
+- **Outreach status:** Logged only. No email, form, comment, account, call, or submission was sent.
+

@@ -54,6 +54,7 @@ from content_oct25 import GUIDE_OVERRIDES as OCT25_GUIDE_OVERRIDES
 from content_oct26 import GUIDE_OVERRIDES as OCT26_GUIDE_OVERRIDES, NEW_GUIDES as OCT26_NEW_GUIDES, OTHER_OVERRIDES as OCT26_OTHER_OVERRIDES
 from content_oct27 import NEW_GEAR as OCT27_GEAR, NEW_GUIDES as OCT27_GUIDES
 from content_oct28 import GEAR_OVERRIDES as OCT28_GEAR_OVERRIDES, NEW_GUIDES as OCT28_GUIDES
+from content_oct29 import GEAR_OVERRIDES as OCT29_GEAR_OVERRIDES, NEW_GUIDES as OCT29_GUIDES
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -146,6 +147,9 @@ OTHER_ARTICLES = OTHER_ARTICLES + OCT27_GEAR
 GUIDE_PAGES = GUIDE_PAGES + OCT28_GUIDES
 _oct28_gear = {item["path"]: item for item in OCT28_GEAR_OVERRIDES}
 OTHER_ARTICLES = [_oct28_gear.get(item["path"], item) for item in OTHER_ARTICLES]
+GUIDE_PAGES = GUIDE_PAGES + OCT29_GUIDES
+_oct29_gear = {item["path"]: item for item in OCT29_GEAR_OVERRIDES}
+OTHER_ARTICLES = [_oct29_gear.get(item["path"], item) for item in OTHER_ARTICLES]
 
 # Publishing integrity is part of the public editorial standard: the source
 # archive is checksum-verified and tested before publication.
@@ -266,6 +270,18 @@ for _standard in STANDARD_PAGES:
             '<p class="update-line">Policy reviewed October 28, 2026</p>',
         )
         _standard["body"] += '''<h2>Heading hierarchy integrity</h2><p>Every generated HTML document must begin its heading outline with the single page-level <code>h1</code> and may not jump over a level when a new subsection begins. The publication audit reads headings in rendered order and rejects an outline such as <code>h2</code> directly followed by <code>h4</code>. Lower levels may return to a higher level when a section closes. This safeguard protects keyboard and assistive-technology navigation without forcing visual size to determine document structure; typography remains a separate CSS decision.</p>'''
+
+# October 29 makes printable evidence self-identifying outside the browser.
+# Every article PDF carries its canonical URL and review date, and official
+# source destinations remain visible after link interactivity is lost.
+for _standard in STANDARD_PAGES:
+    if _standard["path"] == "editorial-policy/index.html":
+        _standard["updated"] = "October 29, 2026"
+        _standard["body"] = _standard["body"].replace(
+            '<p class="update-line">Policy reviewed October 28, 2026</p>',
+            '<p class="update-line">Policy reviewed October 29, 2026</p>',
+        )
+        _standard["body"] += '''<h2>Print and PDF citation integrity</h2><p>Every article's print output includes the canonical HTTPS URL and visible editorial review date so a worksheet or PDF remains identifiable after it leaves the browser. The printed official-source panel exposes each destination URL in text because an underlined label alone is not inspectable on paper. Publication checks require the provenance block, exact page URL, matching review date, and print-only source-URL rules on every article. Printing preserves the evidence trail; it does not freeze a source, establish that a claim remains current, or replace checking the live page for corrections.</p>'''
 
 # Keep new reference pages inside established topic clusters. These reciprocal
 # links are editorial navigation, not an attempt to manufacture link signals.
@@ -779,6 +795,17 @@ RECIPROCAL_RELATED.setdefault("guides/cannabis-smoke-vape-lung-health-guide/inde
 RECIPROCAL_RELATED.setdefault("guides/how-to-talk-to-doctor-about-cannabis/index.html", []).insert(
     0, ("guides/cannabis-allergy-symptom-exposure-guide/", "ALLERGY HANDOFF", "Preserve the exact exposure, clock-based symptoms, urgent plan, and questions")
 )
+# October 29 connects the nicotine/tobacco co-use record to the established
+# lung, clinician, and withdrawal paths without treating co-use as a route tip.
+RECIPROCAL_RELATED.setdefault("guides/cannabis-smoke-vape-lung-health-guide/index.html", []).insert(
+    0, ("guides/cannabis-nicotine-tobacco-co-use-guide/", "CANNABIS + NICOTINE", "Separate cannabis, tobacco, nicotine, route, timing, symptoms, and support")
+)
+RECIPROCAL_RELATED.setdefault("guides/how-to-talk-to-doctor-about-cannabis/index.html", []).insert(
+    0, ("guides/cannabis-nicotine-tobacco-co-use-guide/", "TWO-PRODUCT HANDOFF", "Bring both product lines, both clocks, symptoms, medicines, and one decision goal")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabis-tolerance-dependence-withdrawal/index.html", []).insert(
+    0, ("guides/cannabis-nicotine-tobacco-co-use-guide/", "NICOTINE + CANNABIS", "Keep co-use, cues, withdrawal concerns, and quit support on separate lines")
+)
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in RECIPROCAL_RELATED:
         _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
@@ -991,9 +1018,10 @@ def add_collection_itemlist(html: str, page: Page, name: str, card_class: str) -
 
 
 def render_guides_hub() -> tuple[Page,str]:
-    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="October 28, 2026",kind="website")
+    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="October 29, 2026",kind="website")
     p="../"
     cards="".join([
+      card("guides/cannabis-nicotine-tobacco-co-use-guide/","HEALTH + CO-USE","Cannabis and nicotine co-use","Separate cannabis, cigarettes, tobacco wraps, nicotine vapes, timing, symptoms, withdrawal concerns, and quit support in one record.","heart",p),
       card("guides/cannabis-allergy-symptom-exposure-guide/","HEALTH + EXPOSURE","Cannabis allergy and exposure record","Separate emergency signs, plant contact, smoke or dust, ingredients, workplace conditions, symptom timing, testing limits, and the clinician handoff.","heart",p),
       card("guides/how-to-talk-to-doctor-about-cannabis/","HEALTH + PREPARATION","Talk to a doctor about cannabis","Build the exact product, whole medicine list, timeline, questions, urgent lane, and follow-up record.","heart",p),
       card("guides/new-york-cannabis-showcase-event-verification-guide/","BUYING + NEW YORK","New York cannabis showcase events","Verify the event permit, seller, participants, product, total price, receipt, transport plan, and boundary between inspection and consumption.","search",p),
@@ -1175,7 +1203,7 @@ def render_gear_hub() -> tuple[Page,str]:
         ("cannabis-ashtray-ember-disposal-guide/","care","FIRE-SAFE DISPOSAL","Choose an ashtray","Compare stability, depth, materials, wind, placement, extinguishing, cleaning, waste, and smoke-exposure limits.","alert",None,None),
         ("cannabis-glass-pipe-water-pipe-buying-guide/","preparation care","GLASSWARE","Choose a pipe or water pipe","Check format, material claims, joint fit, stability, cleaning access, replacement parts, and smoke-exposure limits.","search",None,None),
     ]
-    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, safety evidence, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="October 28, 2026",kind="website")
+    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, safety evidence, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="October 29, 2026",kind="website")
     cards=[]
     for href, categories, kicker, title, description, icon_name, image_src, image_alt in items:
         art = f'<div><img src="{image_src}" alt="{image_alt}"></div>' if image_src else f'<div class="gear-card__icon-art" aria-hidden="true">{icon(icon_name)}</div>'
@@ -1433,27 +1461,27 @@ def build() -> None:
     manifest={"name":"Big Bud Man","short_name":"Big Bud Man","start_url":"/","display":"standalone","background_color":"#101712","theme_color":"#101712","icons":[{"src":"/assets/images/favicon.svg","sizes":"any","type":"image/svg+xml"}]}
     write_text(OUT,"site.webmanifest",json.dumps(manifest,indent=2)+"\n")
     publication_manifest={
-        "publication_date":"2026-10-28",
+        "publication_date":"2026-10-29",
         "page_count":3,
         "pages":[
-            {"title":"Cannabis Allergy and Exposure Record","url":"https://bigbudman.com/guides/cannabis-allergy-symptom-exposure-guide/","department":"health authority and reader safety","portfolio_label":"Authority-expansion","search_intent":"separate emergency signs, plant and product exposures, irritants, workplace patterns, symptom timing, and the clinician handoff without self-testing"},
-            {"title":"Dry-Herb Vaporizer Recall and Checkout Expansion","url":"https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/","department":"gear and conversion","portfolio_label":"Exploration","search_intent":"compare exact vaporizer models by recall identity, battery architecture, airpath, controls, warranty, remedy, and complete ownership cost"},
-            {"title":"Heading Hierarchy Integrity Gate","url":"https://bigbudman.com/editorial-policy/","department":"technical accessibility and publishing integrity","portfolio_label":"Exploration","search_intent":"prevent rendered documents from starting below h1 or skipping heading levels before deployment"},
+            {"title":"Cannabis and Nicotine Co-Use Guide","url":"https://bigbudman.com/guides/cannabis-nicotine-tobacco-co-use-guide/","department":"health authority and reader safety","portfolio_label":"Authority-expansion","search_intent":"separate cannabis, cigarettes, tobacco wraps, nicotine vapes, timing, symptoms, withdrawal concerns, and quit support in one clinician-ready record"},
+            {"title":"Pre-Roll Tube and Case Comparison Expansion","url":"https://bigbudman.com/gear/cannabis-pre-roll-tube-case-buying-guide/","department":"gear and conversion","portfolio_label":"Exploration","search_intent":"compare exact tube and case models by usable interior fit, scoped closure evidence, materials, cleaning, replacement parts, return terms, and ownership cost"},
+            {"title":"Print and PDF Citation Integrity","url":"https://bigbudman.com/editorial-policy/","department":"technical usability and publishing integrity","portfolio_label":"Exploration","search_intent":"keep each printed article identifiable with its canonical URL and review date and preserve official-source destinations outside the browser"},
         ],
-        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement materially expands the purchase-ready dry-herb vaporizer guide with an exact-model recall screen, three-candidate identity table, proof-before-price checkout path, current 2026 CPSC remedy example, warranty evidence, and the existing ownership-cost calculator. It adds no seller, model recommendation, price, coupon, stock, rating, fabricated test, or paid placement."},
-        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"The allergy asset and vaporizer expansion use semantic text, tables, checklists, and existing brand interface assets. No clinical, symptom, workplace, device, product, affiliate, stock, or generated image was added or changed; the CPSC recall is described in text and linked to the exact official notice, so no ambiguous product depiction was introduced."},
-        "search_console":{"report_date":"2026-10-21","decision":"The September 21–October 18 report showed 1,093 impressions, three clicks, 0.274% CTR, and average position 19.199. It is seven days old and usable, but no unaddressed page or query had meaningful volume in the roughly position-4-to-20 band, so no item is primarily Data-led. The Guides hub signal (three impressions, one click, position 7.3) was acted on October 26; Stem Cell CBG (19 impressions, one click, position 6.0) was materially reinforced October 15 and October 24. About and Contact are navigational, Montana and one-impression rows are too small, and Blue Dream positions around 48–70 are outside the target band. Today's work therefore uses verified evergreen gaps and a current product-safety update without inventing an analytics mandate."},
-        "authority":{"action":"Published a citation-worthy cannabis allergy and exposure record grounded in CDC/NIOSH, NIH MedlinePlus, a 2026 NIOSH Health Hazard Evaluation, and the international consensus review. It separates urgent signs, plant contact, inhalation, finished-product ingredients, workplace exposures, observable timing, testing limits, and a one-page clinician handoff. Reciprocal contextual links from the edible-allergen, lung-health, and clinician-conversation pages strengthen the health-and-exposure cluster. No outreach was sent and no speculative outreach target was logged."},
+        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement materially expands the purchase-ready pre-roll tube and case guide with usable-interior fit math, a three-candidate evidence table, acceptance inspection, replacement-part and return gates, and a route into the neutral gear comparison worksheet. It adds no seller, model recommendation, price, coupon, stock, rating, fabricated test, or paid placement."},
+        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"The co-use asset, case comparison, and print/PDF improvement use semantic text, tables, checklists, and existing brand interface assets. No health, tobacco, cannabis, device, case, product, affiliate, stock, or generated image was added or changed, so no ambiguous exact-product depiction or licensing issue was introduced."},
+        "search_console":{"report_date":"2026-10-28","decision":"The September 28–October 25 report showed 841 impressions, four clicks, 0.476% CTR, and average position 22.477. It is one day old and usable, but no unaddressed query or editorial page had meaningful volume in the roughly position-4-to-20 band, so no item is primarily Data-led. The Guides hub (four impressions, one click, position 7) and Stem Cell CBG (19 impressions, one click, position 6) were already reinforced; About, Contact, Affiliate Disclosure, and Editorial Policy are navigational; the Montana query has two impressions; the pre-roll and HTTP rows have one impression; and Blue Dream sits mostly around positions 40–61. Today's data therefore prevented a duplicate or tiny-sample chase while the batch filled distinct evergreen health, buying-decision, and printable-evidence gaps."},
+        "authority":{"action":"Published a citation-worthy cannabis-and-nicotine co-use record grounded in current CDC, CDC quitline, and National Cancer Institute sources. It separates same-product, same-session, alternating-device, linked-trigger, and withdrawal concerns; preserves two exposure clocks; and supplies a one-page clinician and quit-support handoff without a safe ratio or product-swap recommendation. Reciprocal links from the lung-health, clinician-conversation, and tolerance/dependence pages strengthen the health-and-exposure cluster. Two qualified, non-promotional opportunities were logged for the New York State Tobacco Control Program and North American Quitline Consortium; no outreach was sent."},
         "freshness_surfaces":{
-            "https://bigbudman.com/guides/":"2026-10-28",
-            "https://bigbudman.com/guides/cannabis-allergy-symptom-exposure-guide/":"2026-10-28",
-            "https://bigbudman.com/gear/":"2026-10-28",
-            "https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/":"2026-10-28",
-            "https://bigbudman.com/editorial-policy/":"2026-10-28",
-            "https://bigbudman.com/updates/":"2026-10-28",
-            "https://bigbudman.com/site-index/":"2026-10-28"
+            "https://bigbudman.com/guides/":"2026-10-29",
+            "https://bigbudman.com/guides/cannabis-nicotine-tobacco-co-use-guide/":"2026-10-29",
+            "https://bigbudman.com/gear/":"2026-10-29",
+            "https://bigbudman.com/gear/cannabis-pre-roll-tube-case-buying-guide/":"2026-10-29",
+            "https://bigbudman.com/editorial-policy/":"2026-10-29",
+            "https://bigbudman.com/updates/":"2026-10-29",
+            "https://bigbudman.com/site-index/":"2026-10-29"
         },
-        "surfaces":["cannabis-allergy exposure record and guide card","edible-allergen, lung-health, and clinician-conversation reciprocal links","expanded dry-herb vaporizer guide and refreshed gear card","exact-model recall and proof-before-price comparison tables","heading hierarchy audit across every rendered HTML page","editorial-policy heading contract","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","legacy Search Console sitemap compatibility URL","checksum-verified source archive and publication gates"],
+        "surfaces":["cannabis-and-nicotine co-use record and guide card","lung-health, clinician-conversation, and tolerance/dependence reciprocal links","expanded pre-roll tube and case guide and refreshed gear card","usable-interior fit and three-candidate evidence tables","canonical URL and review date on every printed article","visible official-source destinations in print/PDF","print-provenance audit across every rendered article","editorial-policy print contract","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","legacy Search Console sitemap compatibility URL","checksum-verified source archive and publication gates"],
     }
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]

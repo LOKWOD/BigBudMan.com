@@ -209,6 +209,18 @@ def main() -> int:
                 failures.append(f"{rel}: article is missing the copy-citation control")
             if not re.search(r'Reviewed\s*<time datetime="\d{4}-\d{2}-\d{2}">[^<]+</time>', text):
                 failures.append(f"{rel}: visible review date is not machine-readable")
+            provenance = re.search(
+                r'<p class="print-provenance">Big Bud Man · Reviewed <time datetime="(\d{4}-\d{2}-\d{2})">([^<]+)</time> · <a href="([^"]+)">([^<]+)</a></p>',
+                text,
+            )
+            if not provenance:
+                failures.append(f"{rel}: article is missing print/PDF provenance")
+            else:
+                visible_review = re.search(r'Reviewed\s*<time datetime="(\d{4}-\d{2}-\d{2})">([^<]+)</time>', text)
+                if not visible_review or provenance.group(1, 2) != visible_review.group(1, 2):
+                    failures.append(f"{rel}: print/PDF review date differs from visible article date")
+                if provenance.group(3) != parser.canonical or provenance.group(4) != parser.canonical:
+                    failures.append(f"{rel}: print/PDF URL differs from the canonical URL")
         robots = next((item.get("content", "") for item in parser.meta if item.get("name") == "robots"), "")
         if rel.as_posix() in {"404.html", "thank-you/index.html"}:
             if "noindex" not in robots: failures.append(f"{rel}: utility page is indexable")
@@ -631,17 +643,22 @@ def main() -> int:
         styles = (ROOT / "assets/css/styles.css").read_text(encoding="utf-8")
         if ".mobile-toc{display:block" not in styles or ".mobile-toc,.site-footer" not in styles:
             failures.append("Mobile section navigator lacks responsive or print behavior")
+        for marker in ('.print-provenance{display:none}', '.print-provenance{display:block!important', '.official-links a[href^="http"]::after', 'attr(href)', '.prose thead{display:table-header-group}'):
+            if marker not in styles:
+                failures.append(f"Print/PDF citation integrity is missing stylesheet marker: {marker}")
         if "data-mobile-toc" not in app:
             failures.append("Article script does not synchronize mobile section navigation")
         discovery_checks = {
             "index.html": ("guides/cannabis-next-day-impairment-evidence-guide/", "guides/cbn-products-label-evidence-guide/", "legal/cannabis-federal-property-rules-guide/", "guides/cannabis-social-hosting-guest-safety-plan/", "guides/terpenes/", "gear/cannabis-loupe-pocket-microscope-guide/", "guides/cannabis-cbd-chronic-pain-evidence-guide/", "guides/storage/", "gear/cannabis-accessibility-tools-buying-guide/"),
             "strains/index.html": ("stem-cell-cbg/", "panakeia-beta-hurv19pan/", "119 STRAIN FIELD NOTES", "NO VERIFIED CULTIVAR IMAGE"),
-            "guides/index.html": ("cannabis-allergy-symptom-exposure-guide/", "cannabis-next-day-impairment-evidence-guide/", "cannabis-cbd-chronic-pain-evidence-guide/", "cannabis-cbd-cancer-claims-evidence-guide/", "cannabis-menu-package-receipt-match-checklist/", "cannabis-exercise-workout-heat-safety/", "new-york-home-cannabis-pest-mold-ipm-guide/", "new-york-home-cannabis-harvest-drying-curing-log/", "cannabis-cbd-epilepsy-seizure-care-guide/", "cannabis-glaucoma-eye-pressure-vision-guide/", "cbd-patches-transdermal-label-evidence-guide/", "cannabis-package-seal-tamper-evidence-checklist/", "cannabis-dry-mouth-dental-oral-health-guide/", "cannabis-edible-label-math-checker/", "cbg-products-label-evidence-guide/", "cannabis-contaminant-test-results-guide/", "cannabis-child-resistant-packaging-home-storage-guide/", "cannabis-official-source-directory/", "cannabis-gummies-drinks-oils-capsules-comparison/", "cannabis-claim-fact-check-worksheet/", "Store cannabis safely by product type", "Thirty useful paths", "Comparing packaged cannabis flower", 'data-guide-sort', 'data-updated="2026-10-28"', 'data-guide-filter="health"', 'data-guide-filter="workplace"'),
+            "guides/index.html": ("cannabis-nicotine-tobacco-co-use-guide/", "cannabis-allergy-symptom-exposure-guide/", "cannabis-next-day-impairment-evidence-guide/", "cannabis-cbd-chronic-pain-evidence-guide/", "cannabis-cbd-cancer-claims-evidence-guide/", "cannabis-menu-package-receipt-match-checklist/", "cannabis-exercise-workout-heat-safety/", "new-york-home-cannabis-pest-mold-ipm-guide/", "new-york-home-cannabis-harvest-drying-curing-log/", "cannabis-cbd-epilepsy-seizure-care-guide/", "cannabis-glaucoma-eye-pressure-vision-guide/", "cbd-patches-transdermal-label-evidence-guide/", "cannabis-package-seal-tamper-evidence-checklist/", "cannabis-dry-mouth-dental-oral-health-guide/", "cannabis-edible-label-math-checker/", "cbg-products-label-evidence-guide/", "cannabis-contaminant-test-results-guide/", "cannabis-child-resistant-packaging-home-storage-guide/", "cannabis-official-source-directory/", "cannabis-gummies-drinks-oils-capsules-comparison/", "cannabis-claim-fact-check-worksheet/", "Store cannabis safely by product type", "Thirty useful paths", "Comparing packaged cannabis flower", 'data-guide-sort', 'data-updated="2026-10-29"', 'data-guide-filter="health"', 'data-guide-filter="workplace"'),
             "gear/index.html": ("home-grow-temperature-humidity-monitor-buying-guide/", "cannabis-home-testing-kit-buying-guide/", "used-cannabis-accessory-buying-safety-guide/", "cannabis-accessibility-tools-buying-guide/", "smell-proof-storage/", "cannabis-rolling-tray-buying-guide/", "cannabis-rolling-paper-cone-guide/", "digital-scale-buying-calibration-guide/", "cannabis-tool-cleaning-kit/", "indoor-cannabis-grow-light-buying-cost-planner/", "cannabis-gear-comparison-worksheet/", "cannabis-accessory-return-warranty-recall-guide/", "dry-herb-vaporizer-dosing-capsule-guide/", "Choose a home testing system", "All 27"),
             "guides/read-a-label/index.html": ("Build a date chain", "Preserve a label-to-lot evidence card", "cannabis.ny.gov/part-128-guidance", "cannabis-certificate-of-analysis-coa-guide/", "cannabis-product-recall-batch-checker/"),
             "responsible-use/index.html": ("guides/cannabis-exercise-workout-heat-safety/",),
             "guides/cannabis-exercise-workout-heat-safety/index.html": ("cdc.gov/cannabis/health-effects/brain-health", "cdc.gov/heat-health/risk-factors/heat-and-athletes", "nhtsa.gov/risky-driving/drug-impaired-driving", "2026list_en_final_clean"),
             "gear/cannabis-rolling-paper-cone-guide/index.html": ("data-paper-comparison", "Cost per usable item", "No commercial link appears"),
+            "gear/cannabis-pre-roll-tube-case-buying-guide/index.html": ("Turn fit into an auditable record", "Compare three exact candidates before price", "Inspect the delivered item before contact", "No model was purchased, handled, measured, cleaned, filled, tested, ranked, or endorsed"),
+            "guides/cannabis-nicotine-tobacco-co-use-guide/index.html": ("Build a two-product clock", "1-800-QUIT-NOW", "NO SAFE-RATIO MATH", "cdc.gov/cannabis/faq/", "smokefree.gov/tools-tips/quit-methods"),
             "gear/cannabis-ashtray-ember-disposal-guide/index.html": ("cannabis-lighter-flame-safety-guide/",),
             "guides/cannabis-cbd-medication-interactions/index.html": ("cannabis-cbd-chronic-pain-evidence-guide/", "cannabis-cbd-cancer-claims-evidence-guide/"),
             "guides/cannabis-before-surgery-anesthesia/index.html": ("cannabis-cbd-cancer-claims-evidence-guide/",),
@@ -671,8 +688,8 @@ def main() -> int:
             "gear/cannabis-lighter-flame-safety-guide/index.html": ("Compare three exact models before checkout", "U.S. CPSC: Recalls and Product Safety Warnings", "No merchant, product, price, coupon, ranking, or affiliate link appears"),
             "gear/used-cannabis-accessory-buying-safety-guide/index.html": ("Adjusted used cost", "cpsc.gov/Business--Manufacturing/Online-Sellers-Safety-Guide", "used-lithium-ion-batteries", "No marketplace, merchant, product, model, price, coupon, or affiliate link appears"),
             "editorial-policy/index.html": ("Sitemap date integrity", "legacy Search Console compatibility endpoint", "cannot be later than the current publication batch"),
-            "updates/index.html": ("guides/cannabis-allergy-symptom-exposure-guide/", "gear/dry-herb-vaporizer-buying-safety-guide/", "editorial-policy/", "October 28, 2026"),
-            "site-index/index.html": ("guides/cannabis-allergy-symptom-exposure-guide/", "gear/dry-herb-vaporizer-buying-safety-guide/", "editorial-policy/", "October 28, 2026", "updates/"),
+            "updates/index.html": ("guides/cannabis-nicotine-tobacco-co-use-guide/", "gear/cannabis-pre-roll-tube-case-buying-guide/", "editorial-policy/", "October 29, 2026"),
+            "site-index/index.html": ("guides/cannabis-nicotine-tobacco-co-use-guide/", "gear/cannabis-pre-roll-tube-case-buying-guide/", "editorial-policy/", "October 29, 2026", "updates/"),
         }
         for discovery_page, markers in discovery_checks.items():
             discovery_text = (ROOT / discovery_page).read_text(encoding="utf-8")
@@ -885,7 +902,7 @@ def main() -> int:
             failures.append("Editorial policy or Atom feed is missing the feed authorship standard")
         if "Age-gate focus isolation" not in policy:
             failures.append("Editorial policy is missing the age-gate focus-isolation standard")
-        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "October 28, 2026" not in policy:
+        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "October 29, 2026" not in policy:
             failures.append("Editorial policy is missing the current link and collection-date integrity standards")
         deployed_css = (ROOT / "assets/css/styles.css").read_text(encoding="utf-8")
         if "@import" in deployed_css:
