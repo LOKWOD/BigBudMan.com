@@ -1,6 +1,14 @@
 # Big Bud Man authority opportunities
 
-Last reviewed: October 23, 2026
+Last reviewed: October 30, 2026
+
+## October 30, 2026 authority action
+
+- Published a citation-worthy whole-home fire-safety plan grounded in current U.S. Fire Administration, CPSC, and New York OCM sources. It joins alarms and escape practice, flames and embers, lithium-ion device records, medical oxygen, indoor-grow electrical and moisture hazards, and a printable household handoff without presenting cannabis use as safe or replacing local code and professional review.
+- Added reciprocal contextual links from the lighter, ashtray, vape-battery, and New York home-grow paths, turning several narrow resources into a clearer household-safety cluster.
+- Published a product-neutral pH and EC measurement-system guide that keeps pH, conductivity, alkalinity, temperature, calibration standards, probe care, acceptance checks, records, and first-year cost separate. The guide can honestly conclude that no purchase is justified.
+- Added a public forced-color interface standard and a deployment gate so controls, selected states, warnings, links, progress, and keyboard focus remain identifiable when the operating system supplies the palette.
+- No new outreach target was logged. The primary agencies cited by the fire plan are evidence sources, not assumed promotional targets, and the existing qualified list is stronger than manufacturing a marginal contact. No outreach was sent.
 
 ## October 23, 2026 authority action
 

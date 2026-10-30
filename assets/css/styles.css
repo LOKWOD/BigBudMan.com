@@ -226,6 +226,20 @@ svg{stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-l
 .saved-reading{max-height:340px}.saved-reading__head h3 small{display:inline-grid;place-items:center;min-width:27px;height:27px;margin-left:5px;border-radius:50%;background:var(--ink);color:var(--white);font:800 12px/1 var(--sans);vertical-align:middle}.saved-reading__tools{display:flex;gap:14px}.saved-reading__item{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;border-bottom:1px solid var(--line)}.saved-reading__item .search-result{border:0}.saved-reading__item>button{margin-right:2px;border:0;border-bottom:1px solid #7a1f16;padding:5px 0;background:transparent;color:#7a1f16;font-size:10px;font-weight:900;text-transform:uppercase;cursor:pointer}
 @media (max-width:560px){.saved-reading__head{display:grid}.saved-reading__tools{flex-wrap:wrap}.saved-reading__item{grid-template-columns:1fr}.saved-reading__item>button{justify-self:start;margin:0 0 12px 12px}}
 
+/* Preserve control identity and state when an operating system supplies its
+   own high-contrast palette. Decorative brand color is intentionally lost. */
+@media (forced-colors:active){
+  html,body,.site-header,.mobile-nav,.age-card,.search-dialog,.planner,.comparison-calculator,.library-card,.gear-card,.strain-card,.state-card,.related-card,.official-links a,.note-template,.callout,.takeaways{background:Canvas;color:CanvasText}
+  a,.text-button,.share-button,.saved-reading__head button,.saved-reading__item>button{color:LinkText}
+  :focus-visible{outline:3px solid Highlight!important;outline-offset:4px;box-shadow:0 0 0 2px Canvas!important}
+  button,input,select,textarea,.button,.filter-bar button,.guide-filters button,.glossary-filters button{border:2px solid ButtonText;background:ButtonFace;color:ButtonText}
+  button[aria-pressed="true"],.is-active,[aria-current="page"],[aria-current="location"]{border:3px solid Highlight!important;background:Highlight!important;color:HighlightText!important}
+  .live-dot,.reading-progress,.checklist li::before,.article-end>span,.result-icon{background:Highlight;color:HighlightText;forced-color-adjust:none}
+  .source-note,.warning-box,.red-list b,.direction-badge,.legal-date{border:2px solid CanvasText;color:CanvasText}
+  progress{accent-color:Highlight}
+  img{forced-color-adjust:auto}
+}
+
 .print-provenance{display:none}
 @media print{
   @page{margin:14mm}
