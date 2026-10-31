@@ -1,6 +1,14 @@
 # Big Bud Man authority opportunities
 
-Last reviewed: October 30, 2026
+Last reviewed: October 31, 2026
+
+## October 31, 2026 authority action
+
+- Published a citation-worthy New York cannabis seed-and-clone buying and intake guide grounded in current Office of Cannabis Management guidance and New York regulations. Its seller-authority, starter-format, source-identity, plant-health, delivered-condition, plant-count, separation, observation, and rejection records make the asset useful without naming a seller, cultivar, price, rating, coupon, or affiliate product.
+- Added reciprocal contextual links from the established New York home-grow planner, pest-and-mold IPM guide, and legal-shopping guide, strengthening a coherent lawful home-cultivation cluster instead of publishing an isolated page.
+- Materially expanded the manual rolling-machine guide with a measured compatibility card, three-system comparison, annualized device-cost formula, clean return-window test, warranty/service evidence, and a valid no-purchase outcome. It remains product-neutral because no approved affiliate program is configured.
+- Repaired the binary-corrupted checked-in build entry point and added a pre-archive compilation gate to both GitHub workflows. The public editorial policy now documents why readable source entry points must be validated before canonical archive restoration can mask a repository-integrity problem.
+- No new outreach target was logged. The cited regulator and legal reference are evidence sources rather than assumed promotional targets, and the existing qualified list is stronger than manufacturing a marginal contact. No outreach was sent.
 
 ## October 30, 2026 authority action
 

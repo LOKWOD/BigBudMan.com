@@ -1,61 +1,62 @@
 {
-  "publication_date": "2026-10-28",
+  "publication_date": "2026-10-31",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis Allergy and Exposure Record",
-      "url": "https://bigbudman.com/guides/cannabis-allergy-symptom-exposure-guide/",
-      "department": "health authority and reader safety",
+      "title": "New York Cannabis Seeds and Clones Buying Guide",
+      "url": "https://bigbudman.com/guides/new-york-cannabis-seed-clone-buying-guide/",
+      "department": "home-grow authority and legal shopping",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "separate emergency signs, plant and product exposures, irritants, workplace patterns, symptom timing, and the clinician handoff without self-testing"
+      "search_intent": "compare New York seeds, clones, seedlings, immature plants, and propagation material by legal seller, source identity, label, plant-health evidence, care record, plant count, and acceptance path"
     },
     {
-      "title": "Dry-Herb Vaporizer Recall and Checkout Expansion",
-      "url": "https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/",
+      "title": "Cannabis Rolling Machine Fit and Cost Guide",
+      "url": "https://bigbudman.com/gear/cannabis-rolling-machine-buying-guide/",
       "department": "gear and conversion",
       "portfolio_label": "Exploration",
-      "search_intent": "compare exact vaporizer models by recall identity, battery architecture, airpath, controls, warranty, remedy, and complete ownership cost"
+      "search_intent": "compare manual rolling machines by measured paper and tip fit, usable bed, apron service, materials, acceptance test, warranty, and annualized ownership cost"
     },
     {
-      "title": "Heading Hierarchy Integrity Gate",
+      "title": "Checked-In Source Entry-Point Integrity",
       "url": "https://bigbudman.com/editorial-policy/",
-      "department": "technical accessibility and publishing integrity",
+      "department": "source and deployment integrity",
       "portfolio_label": "Exploration",
-      "search_intent": "prevent rendered documents from starting below h1 or skipping heading levels before deployment"
+      "search_intent": "compile the checked-in build and audit entry points before archive restoration so a valid archive cannot mask binary corruption or invalid Python in the public source tree"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The conversion improvement materially expands the purchase-ready dry-herb vaporizer guide with an exact-model recall screen, three-candidate identity table, proof-before-price checkout path, current 2026 CPSC remedy example, warranty evidence, and the existing ownership-cost calculator. It adds no seller, model recommendation, price, coupon, stock, rating, fabricated test, or paid placement."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The conversion improvement materially expands the product-neutral manual rolling-machine guide with a measured compatibility card, three-exact-system comparison, annualized device-cost formula, clean return-window acceptance test, warranty and service evidence, and explicit no-purchase outcome. It adds no seller, model recommendation, price, coupon, stock, rating, fabricated test, product image, or paid placement."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The allergy asset and vaporizer expansion use semantic text, tables, checklists, and existing brand interface assets. No clinical, symptom, workplace, device, product, affiliate, stock, or generated image was added or changed; the CPSC recall is described in text and linked to the exact official notice, so no ambiguous product depiction was introduced."
+    "note": "The seed-and-clone guide, rolling-machine comparison, and source-integrity policy use semantic text, tables, checklists, and existing brand interface assets. No seed, plant, rolling machine, product, affiliate, stock, or generated image was added or changed, so no exact-product mismatch or new licensing issue was introduced."
   },
   "search_console": {
-    "report_date": "2026-10-21",
-    "decision": "The September 21\u2013October 18 report showed 1,093 impressions, three clicks, 0.274% CTR, and average position 19.199. It is seven days old and usable, but no unaddressed page or query had meaningful volume in the roughly position-4-to-20 band, so no item is primarily Data-led. The Guides hub signal (three impressions, one click, position 7.3) was acted on October 26; Stem Cell CBG (19 impressions, one click, position 6.0) was materially reinforced October 15 and October 24. About and Contact are navigational, Montana and one-impression rows are too small, and Blue Dream positions around 48\u201370 are outside the target band. Today's work therefore uses verified evergreen gaps and a current product-safety update without inventing an analytics mandate."
+    "report_date": "2026-10-28",
+    "decision": "The September 28\u2013October 25 report showed 841 impressions, four clicks, 0.476% CTR, and average position 22.477. It is three days old and usable, but no unaddressed query or editorial page had meaningful volume in the roughly position-4-to-20 band, so no item is primarily Data-led. The Guides hub (four impressions, one click, position 7) and Stem Cell CBG (19 impressions, one click, position 6) were already reinforced; About, Contact, Affiliate Disclosure, and Editorial Policy are navigational; the Montana query has two impressions; the HTTP and pre-roll rows have one impression; and Blue Dream sits mostly around positions 40\u201361. The report therefore prevented another overlapping CBG, generic hub, pre-roll-container, Montana, or Blue Dream article while the batch filled distinct lawful-starter, accessory-comparison, and source-integrity gaps."
   },
   "authority": {
-    "action": "Published a citation-worthy cannabis allergy and exposure record grounded in CDC/NIOSH, NIH MedlinePlus, a 2026 NIOSH Health Hazard Evaluation, and the international consensus review. It separates urgent signs, plant contact, inhalation, finished-product ingredients, workplace exposures, observable timing, testing limits, and a one-page clinician handoff. Reciprocal contextual links from the edible-allergen, lung-health, and clinician-conversation pages strengthen the health-and-exposure cluster. No outreach was sent and no speculative outreach target was logged."
+    "action": "Published a citation-worthy New York seed-and-clone purchase and intake record grounded in current OCM home-cultivation guidance, seller verification, personal-home-cultivation rules, and nursery source controls. It keeps seller authority, starter type, source identity, label fields, testing limits, pesticide disclosure, known-pest assurance, delivered condition, plant count, secure placement, and rejection or destruction records separate. Reciprocal links from the home-grow planner, IPM guide, and legal-shopping path strengthen the cultivation cluster. No speculative outreach target was added and no outreach was sent."
   },
   "freshness_surfaces": {
-    "https://bigbudman.com/guides/": "2026-10-28",
-    "https://bigbudman.com/guides/cannabis-allergy-symptom-exposure-guide/": "2026-10-28",
-    "https://bigbudman.com/gear/": "2026-10-28",
-    "https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/": "2026-10-28",
-    "https://bigbudman.com/editorial-policy/": "2026-10-28",
-    "https://bigbudman.com/updates/": "2026-10-28",
-    "https://bigbudman.com/site-index/": "2026-10-28"
+    "https://bigbudman.com/guides/": "2026-10-31",
+    "https://bigbudman.com/guides/new-york-cannabis-seed-clone-buying-guide/": "2026-10-31",
+    "https://bigbudman.com/gear/": "2026-10-31",
+    "https://bigbudman.com/gear/cannabis-rolling-machine-buying-guide/": "2026-10-31",
+    "https://bigbudman.com/editorial-policy/": "2026-10-31",
+    "https://bigbudman.com/updates/": "2026-10-31",
+    "https://bigbudman.com/site-index/": "2026-10-31"
   },
   "surfaces": [
-    "cannabis-allergy exposure record and guide card",
-    "edible-allergen, lung-health, and clinician-conversation reciprocal links",
-    "expanded dry-herb vaporizer guide and refreshed gear card",
-    "exact-model recall and proof-before-price comparison tables",
-    "heading hierarchy audit across every rendered HTML page",
-    "editorial-policy heading contract",
+    "New York seed-and-clone buying and intake guide",
+    "home-grow planner, IPM, and legal-shopping reciprocal links",
+    "expanded rolling-machine fit and cost guide",
+    "paper and accessibility reciprocal links",
+    "checked-in build and audit entry-point repair",
+    "pre-archive Python compilation gates in both GitHub workflows",
+    "public source-integrity editorial contract",
     "publication updates",
     "Atom feed",
     "complete site index",

@@ -24,6 +24,8 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: '3.13'
+      - name: Validate checked-in Python entry points
+        run: python -m py_compile tools/build_site.py tools/audit_site.py
       - name: Verify and restore publication source
         run: |
           cat source/bbm-tools.xz.part-* > /tmp/bbm-tools.tar.xz

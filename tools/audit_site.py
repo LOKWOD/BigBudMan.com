@@ -12,6 +12,7 @@ import sys
 import xml.etree.ElementTree as ET
 
 ROOT = (Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).resolve().parents[1] / "_site").resolve()
+REPOSITORY = Path(__file__).resolve().parents[1]
 
 
 class Inspector(HTMLParser):
@@ -72,6 +73,19 @@ def resolve_local(page: Path, target: str) -> Path | None:
 
 def main() -> int:
     failures: list[str] = []
+    for workflow_name in ("pages.yml", "audit.yml"):
+        workflow_path = REPOSITORY / ".github" / "workflows" / workflow_name
+        try:
+            workflow = workflow_path.read_text(encoding="utf-8")
+            preflight = "Validate checked-in Python entry points"
+            command = "python -m py_compile tools/build_site.py tools/audit_site.py"
+            restore = "Verify and restore publication source"
+            if preflight not in workflow or command not in workflow:
+                failures.append(f"{workflow_name}: missing checked-in Python entry-point preflight")
+            elif workflow.index(preflight) > workflow.index(restore):
+                failures.append(f"{workflow_name}: source preflight must run before archive restoration")
+        except Exception as exc:
+            failures.append(f"{workflow_name}: cannot verify workflow source preflight: {exc}")
     html_files = sorted(ROOT.rglob("*.html"))
     if len(html_files) < 270: failures.append(f"Publication regressed below the 270-page baseline; found {len(html_files)}")
     try:
@@ -651,8 +665,8 @@ def main() -> int:
         discovery_checks = {
             "index.html": ("guides/cannabis-next-day-impairment-evidence-guide/", "guides/cbn-products-label-evidence-guide/", "legal/cannabis-federal-property-rules-guide/", "guides/cannabis-social-hosting-guest-safety-plan/", "guides/terpenes/", "gear/cannabis-loupe-pocket-microscope-guide/", "guides/cannabis-cbd-chronic-pain-evidence-guide/", "guides/storage/", "gear/cannabis-accessibility-tools-buying-guide/"),
             "strains/index.html": ("stem-cell-cbg/", "panakeia-beta-hurv19pan/", "119 STRAIN FIELD NOTES", "NO VERIFIED CULTIVAR IMAGE"),
-            "guides/index.html": ("cannabis-home-fire-safety-plan/", "cannabis-nicotine-tobacco-co-use-guide/", "cannabis-allergy-symptom-exposure-guide/", "cannabis-next-day-impairment-evidence-guide/", "cannabis-cbd-chronic-pain-evidence-guide/", "cannabis-cbd-cancer-claims-evidence-guide/", "cannabis-menu-package-receipt-match-checklist/", "cannabis-exercise-workout-heat-safety/", "new-york-home-cannabis-pest-mold-ipm-guide/", "new-york-home-cannabis-harvest-drying-curing-log/", "cannabis-cbd-epilepsy-seizure-care-guide/", "cannabis-glaucoma-eye-pressure-vision-guide/", "cbd-patches-transdermal-label-evidence-guide/", "cannabis-package-seal-tamper-evidence-checklist/", "cannabis-dry-mouth-dental-oral-health-guide/", "cannabis-edible-label-math-checker/", "cbg-products-label-evidence-guide/", "cannabis-contaminant-test-results-guide/", "cannabis-child-resistant-packaging-home-storage-guide/", "cannabis-official-source-directory/", "cannabis-gummies-drinks-oils-capsules-comparison/", "cannabis-claim-fact-check-worksheet/", "Store cannabis safely by product type", "Thirty useful paths", "Comparing packaged cannabis flower", 'data-guide-sort', 'data-updated="2026-10-30"', 'data-guide-filter="health"', 'data-guide-filter="workplace"'),
-            "gear/index.html": ("home-grow-ph-ec-meter-buying-guide/", "home-grow-temperature-humidity-monitor-buying-guide/", "cannabis-home-testing-kit-buying-guide/", "used-cannabis-accessory-buying-safety-guide/", "cannabis-accessibility-tools-buying-guide/", "smell-proof-storage/", "cannabis-rolling-tray-buying-guide/", "cannabis-rolling-paper-cone-guide/", "digital-scale-buying-calibration-guide/", "cannabis-tool-cleaning-kit/", "indoor-cannabis-grow-light-buying-cost-planner/", "cannabis-gear-comparison-worksheet/", "cannabis-accessory-return-warranty-recall-guide/", "dry-herb-vaporizer-dosing-capsule-guide/", "Choose a home testing system", "All 28"),
+            "guides/index.html": ("new-york-cannabis-seed-clone-buying-guide/", "cannabis-home-fire-safety-plan/", "cannabis-nicotine-tobacco-co-use-guide/", "cannabis-allergy-symptom-exposure-guide/", "cannabis-next-day-impairment-evidence-guide/", "cannabis-cbd-chronic-pain-evidence-guide/", "cannabis-cbd-cancer-claims-evidence-guide/", "cannabis-menu-package-receipt-match-checklist/", "cannabis-exercise-workout-heat-safety/", "new-york-home-cannabis-pest-mold-ipm-guide/", "new-york-home-cannabis-harvest-drying-curing-log/", "cannabis-cbd-epilepsy-seizure-care-guide/", "cannabis-glaucoma-eye-pressure-vision-guide/", "cbd-patches-transdermal-label-evidence-guide/", "cannabis-package-seal-tamper-evidence-checklist/", "cannabis-dry-mouth-dental-oral-health-guide/", "cannabis-edible-label-math-checker/", "cbg-products-label-evidence-guide/", "cannabis-contaminant-test-results-guide/", "cannabis-child-resistant-packaging-home-storage-guide/", "cannabis-official-source-directory/", "cannabis-gummies-drinks-oils-capsules-comparison/", "cannabis-claim-fact-check-worksheet/", "Store cannabis safely by product type", "Thirty useful paths", "Comparing packaged cannabis flower", 'data-guide-sort', 'data-updated="2026-10-31"', 'data-guide-filter="health"', 'data-guide-filter="workplace"'),
+            "gear/index.html": ("cannabis-rolling-machine-buying-guide/", "home-grow-ph-ec-meter-buying-guide/", "home-grow-temperature-humidity-monitor-buying-guide/", "cannabis-home-testing-kit-buying-guide/", "used-cannabis-accessory-buying-safety-guide/", "cannabis-accessibility-tools-buying-guide/", "smell-proof-storage/", "cannabis-rolling-tray-buying-guide/", "cannabis-rolling-paper-cone-guide/", "digital-scale-buying-calibration-guide/", "cannabis-tool-cleaning-kit/", "indoor-cannabis-grow-light-buying-cost-planner/", "cannabis-gear-comparison-worksheet/", "cannabis-accessory-return-warranty-recall-guide/", "dry-herb-vaporizer-dosing-capsule-guide/", "Choose a home testing system", "All 28", "2026-10-31"),
             "guides/read-a-label/index.html": ("Build a date chain", "Preserve a label-to-lot evidence card", "cannabis.ny.gov/part-128-guidance", "cannabis-certificate-of-analysis-coa-guide/", "cannabis-product-recall-batch-checker/"),
             "responsible-use/index.html": ("guides/cannabis-exercise-workout-heat-safety/",),
             "guides/cannabis-exercise-workout-heat-safety/index.html": ("cdc.gov/cannabis/health-effects/brain-health", "cdc.gov/heat-health/risk-factors/heat-and-athletes", "nhtsa.gov/risky-driving/drug-impaired-driving", "2026list_en_final_clean"),
@@ -689,9 +703,11 @@ def main() -> int:
             "gear/used-cannabis-accessory-buying-safety-guide/index.html": ("Adjusted used cost", "cpsc.gov/Business--Manufacturing/Online-Sellers-Safety-Guide", "used-lithium-ion-batteries", "No marketplace, merchant, product, model, price, coupon, or affiliate link appears"),
             "guides/cannabis-home-fire-safety-plan/index.html": ("Map the home by ignition path", "Build the alarm and escape layer first", "usfa.fema.gov/prevention/home-fires/at-risk-audiences/smoking/", "cannabis.ny.gov/system/files/documents/2024/07/homecultivationoverview.pdf"),
             "gear/home-grow-ph-ec-meter-buying-guide/index.html": ("Buy the measurement.", "Compare three exact systems", "nist.gov/programs-projects/ph-metrology", "usgs.gov/publications/chapter-a63"),
-            "editorial-policy/index.html": ("Sitemap date integrity", "legacy Search Console compatibility endpoint", "cannot be later than the current publication batch", "Forced-color interface integrity"),
-            "updates/index.html": ("guides/cannabis-home-fire-safety-plan/", "gear/home-grow-ph-ec-meter-buying-guide/", "editorial-policy/", "October 30, 2026"),
-            "site-index/index.html": ("guides/cannabis-home-fire-safety-plan/", "gear/home-grow-ph-ec-meter-buying-guide/", "editorial-policy/", "October 30, 2026", "updates/"),
+            "guides/new-york-cannabis-seed-clone-buying-guide/index.html": ("Buy a traceable start.", "Compare three exact candidates", "home-cultivation-faqs", "9-NYCRR-115.4", "No seller, seed, plant, cultivar, price, rating, coupon, availability claim, or affiliate link appears"),
+            "gear/cannabis-rolling-machine-buying-guide/index.html": ("Build one compatibility card", "Compare three exact systems before price", "annualized device cost", "Use the return window before product contact", "consumer.ftc.gov/articles/warranties"),
+            "editorial-policy/index.html": ("Sitemap date integrity", "legacy Search Console compatibility endpoint", "cannot be later than the current publication batch", "Forced-color interface integrity", "Checked-in source entry-point integrity"),
+            "updates/index.html": ("guides/new-york-cannabis-seed-clone-buying-guide/", "gear/cannabis-rolling-machine-buying-guide/", "editorial-policy/", "October 31, 2026"),
+            "site-index/index.html": ("guides/new-york-cannabis-seed-clone-buying-guide/", "gear/cannabis-rolling-machine-buying-guide/", "editorial-policy/", "October 31, 2026", "updates/"),
         }
         for discovery_page, markers in discovery_checks.items():
             discovery_text = (ROOT / discovery_page).read_text(encoding="utf-8")
@@ -904,7 +920,7 @@ def main() -> int:
             failures.append("Editorial policy or Atom feed is missing the feed authorship standard")
         if "Age-gate focus isolation" not in policy:
             failures.append("Editorial policy is missing the age-gate focus-isolation standard")
-        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "October 30, 2026" not in policy:
+        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "October 31, 2026" not in policy:
             failures.append("Editorial policy is missing the current link and collection-date integrity standards")
         deployed_css = (ROOT / "assets/css/styles.css").read_text(encoding="utf-8")
         for marker in ("@media (forced-colors:active)", "CanvasText", "HighlightText", 'button[aria-pressed="true"]', ":focus-visible"):
