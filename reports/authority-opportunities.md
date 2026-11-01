@@ -1,6 +1,14 @@
 # Big Bud Man authority opportunities
 
-Last reviewed: October 31, 2026
+Last reviewed: November 1, 2026
+
+## November 1, 2026 authority action
+
+- Published a citation-worthy shared-kitchen edible-safety reference grounded in current New York Department of Health, FDA, and CDC sources. Its stop gate, four-record identity table, kitchen zone map, ingredient and allergen lane, one-page handoff record, service and leftover workflow, cleanup closeout, and exposure-response lane add a reusable household asset without supplying a recipe, dose, serving recommendation, or claim of even distribution.
+- Added reciprocal contextual links from the edible buying guide, allergen guide, social-hosting plan, and storage guide, strengthening a coherent edible → kitchen → household-access → poisoning-response cluster instead of publishing an isolated page.
+- Published a product-neutral home-grow timer and controller guide with an exact load-and-control record, six-system type map, three-candidate worksheet, whole-system cost boundary, 48-hour return-window observation plan, failure-state card, ten checkout gates, and a valid no-purchase outcome. No approved affiliate program or tracking ID is configured.
+- Added a byte-for-byte publication-parity gate so the browseable public files checked into the repository cannot drift from the exact `_site` tree that passed the deployment audit. The public editorial policy now makes the distinction between file identity and factual correctness explicit.
+- No new outreach target was logged. The cited public-health, food-safety, regulator, and product-safety agencies are evidence sources rather than assumed promotional targets, and the existing qualified list is stronger than manufacturing a marginal contact. No outreach was sent.
 
 ## October 31, 2026 authority action
 

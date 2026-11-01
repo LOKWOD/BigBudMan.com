@@ -57,6 +57,7 @@ from content_oct28 import GEAR_OVERRIDES as OCT28_GEAR_OVERRIDES, NEW_GUIDES as 
 from content_oct29 import GEAR_OVERRIDES as OCT29_GEAR_OVERRIDES, NEW_GUIDES as OCT29_GUIDES
 from content_oct30 import NEW_GEAR as OCT30_GEAR, NEW_GUIDES as OCT30_GUIDES
 from content_oct31 import GEAR_OVERRIDES as OCT31_GEAR_OVERRIDES, NEW_GUIDES as OCT31_GUIDES
+from content_nov1 import NEW_GEAR as NOV1_GEAR, NEW_GUIDES as NOV1_GUIDES
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -157,6 +158,8 @@ OTHER_ARTICLES = OTHER_ARTICLES + OCT30_GEAR
 GUIDE_PAGES = GUIDE_PAGES + OCT31_GUIDES
 _oct31_gear = {item["path"]: item for item in OCT31_GEAR_OVERRIDES}
 OTHER_ARTICLES = [_oct31_gear.get(item["path"], item) for item in OTHER_ARTICLES]
+GUIDE_PAGES = GUIDE_PAGES + NOV1_GUIDES
+OTHER_ARTICLES = OTHER_ARTICLES + NOV1_GEAR
 
 # Publishing integrity is part of the public editorial standard: the source
 # archive is checksum-verified and tested before publication.
@@ -312,6 +315,17 @@ for _standard in STANDARD_PAGES:
         )
         _standard["body"] += '''<h2>Checked-in source entry-point integrity</h2><p>The repository's checked-in build and audit entry points must decode as UTF-8 Python and compile before the deployment workflow extracts the canonical source archive. This preflight prevents a valid archive from silently masking a binary-corrupted or syntactically invalid <code>tools/build_site.py</code> or <code>tools/audit_site.py</code> in the public source tree. The workflow still verifies the archive checksum, tests the archive, restores the complete generator, builds the publication, and runs the full site audit. Source readability does not prove editorial correctness; it makes the build path inspectable and stops a class of repository-integrity failure earlier.</p>'''
 
+# November 1 makes the public files in the repository a byte-for-byte witness
+# of the same generated tree that passed the deployment audit.
+for _standard in STANDARD_PAGES:
+    if _standard["path"] == "editorial-policy/index.html":
+        _standard["updated"] = "November 1, 2026"
+        _standard["body"] = _standard["body"].replace(
+            '<p class="update-line">Policy reviewed October 31, 2026</p>',
+            '<p class="update-line">Policy reviewed November 1, 2026</p>',
+        )
+        _standard["body"] += '''<h2>Checked-in publication parity</h2><p>After the generator builds <code>_site</code>, the publication audit compares every deployable file byte for byte with the corresponding checked-in public file at repository root. A missing or different HTML page, stylesheet, script, image, feed, manifest, robots file, sitemap, custom-domain file, or other deployed asset stops publication. This prevents the repository's browseable pages from drifting away from the exact artifact GitHub Pages receives. The parity check proves file identity, not factual correctness; health, legal, product, image, link, metadata, and accessibility checks remain separate gates.</p>'''
+
 # Keep new reference pages inside established topic clusters. These reciprocal
 # links are editorial navigation, not an attempt to manufacture link signals.
 RECIPROCAL_RELATED = {
@@ -359,6 +373,8 @@ RECIPROCAL_RELATED = {
     "guides/cannabis-older-adults-medication-fall-safety/index.html": [("guides/cannabis-glaucoma-eye-pressure-vision-guide/", "VISION + GLAUCOMA", "Keep eye treatment, measurements, products, and falls in one record"), ("guides/cannabis-dry-mouth-dental-oral-health-guide/", "ORAL HEALTH", "Add medicines, dryness, and dental symptoms to the review")],
     "guides/cannabis-before-surgery-anesthesia/index.html": [("guides/cannabis-dry-mouth-dental-oral-health-guide/", "DENTAL VISITS", "Prepare the exact product, route, and last-use record")],
     "guides/storage/index.html": [("guides/cannabis-child-resistant-packaging-home-storage-guide/", "CHILD RESISTANCE", "Audit the package, lock, placement, and household routine"), ("gear/cannabis-stash-jar-buying-guide/", "SECONDARY JAR", "Measure capacity, headspace, costs, claims, identity, and locked fit"), ("guides/cannabis-and-pets-accidental-exposure/", "PET EXPOSURE", "Prepare the call record and close the access route")],
+    "guides/cannabis-edible-allergen-ingredient-label-guide/index.html": [("guides/cannabis-shared-kitchen-edible-safety-plan/", "KITCHEN HANDOFF", "Carry ingredient and allergen evidence through preparation, storage, service, cleanup, and leftovers")],
+    "guides/cannabis-home-fire-safety-plan/index.html": [("gear/home-grow-timer-controller-buying-guide/", "AUTOMATION FAILURE", "Map load, outage, restart, sensor, network, stuck-output, and manual recovery states")],
     "guides/cannabis-and-pets-accidental-exposure/index.html": [("guides/cannabis-child-resistant-packaging-home-storage-guide/", "HOUSEHOLD ACCESS", "Add package and lock layers for children, visitors, and pets")],
     "guides/cbd-products-for-pets-veterinarian-label-guide/index.html": [("guides/cannabis-and-pets-accidental-exposure/", "ACCIDENTAL EXPOSURE", "Call promptly and preserve the exact product, ingredient, and timing record")],
     "gear/smell-proof-storage/index.html": [("gear/cannabis-stash-jar-buying-guide/", "JAR PLANNER", "Measure capacity, headspace, claims, and ownership cost"), ("guides/cannabis-child-resistant-packaging-home-storage-guide/", "PACKAGE + LOCK", "Keep child resistance and household access as separate layers"), ("guides/storage/", "STORAGE SYSTEM", "Match each format to temperature, light, air, moisture, and access controls")],
@@ -874,6 +890,24 @@ RECIPROCAL_RELATED.setdefault("gear/cannabis-rolling-paper-cone-guide/index.html
 RECIPROCAL_RELATED.setdefault("gear/cannabis-accessibility-tools-buying-guide/index.html", []).insert(
     0, ("gear/cannabis-rolling-machine-buying-guide/", "PAPER HANDLING", "Test whether a measured manual roller actually resolves the blocked task")
 )
+# November 1 connects the shared-kitchen authority asset to established edible,
+# allergen, hosting, and storage references, and the controller comparison to
+# the existing grow-planning, lighting, and fire-safety system.
+RECIPROCAL_RELATED.setdefault("guides/edibles/index.html", []).insert(
+    0, ("guides/cannabis-shared-kitchen-edible-safety-plan/", "SHARED KITCHEN", "Keep identity, allergens, access, handoffs, leftovers, cleanup, and response in one chain")
+)
+RECIPROCAL_RELATED.setdefault("guides/storage/index.html", []).insert(
+    0, ("guides/cannabis-shared-kitchen-edible-safety-plan/", "SHARED KITCHEN", "Keep infused food outside the ordinary meal, snack, refrigerator, and cleanup path")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabis-social-hosting-guest-safety-plan/index.html", []).insert(
+    0, ("guides/cannabis-shared-kitchen-edible-safety-plan/", "FOOD CONTROL", "Assign the edible, ingredient, access, leftover, cleanup, and emergency handoff")
+)
+RECIPROCAL_RELATED.setdefault("guides/new-york-home-cannabis-grow-planner/index.html", []).insert(
+    0, ("gear/home-grow-timer-controller-buying-guide/", "CONTROL SYSTEM", "Match exact loads, ratings, environment, failure states, alarms, and support before automation")
+)
+RECIPROCAL_RELATED.setdefault("gear/indoor-cannabis-grow-light-buying-cost-planner/index.html", []).insert(
+    0, ("gear/home-grow-timer-controller-buying-guide/", "TIMER + CONTROLLER", "Carry the exact input, permitted control method, restart behavior, and whole-system cost into automation")
+)
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in RECIPROCAL_RELATED:
         _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
@@ -885,10 +919,10 @@ for _item in GUIDE_PAGES + OTHER_ARTICLES:
             _seen_related.add(_related[0])
             _item["related"].append(_related)
             # The home-grow planner is the shared parent for law, environment,
-            # water measurement, lighting, and IPM; keeping all five visible is
-            # clearer than silently dropping one established safety path.
+            # water measurement, lighting, controls, post-harvest, and IPM;
+            # preserve the whole established safety path.
             if _item["path"] == "guides/new-york-home-cannabis-grow-planner/index.html":
-                _related_limit = 6
+                _related_limit = 7
             elif _item["path"] == "legal/shop-legal/index.html":
                 _related_limit = 5
             else:
@@ -1095,9 +1129,10 @@ def add_collection_itemlist(html: str, page: Page, name: str, card_class: str) -
 
 
 def render_guides_hub() -> tuple[Page,str]:
-    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="October 31, 2026",kind="website")
+    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 1, 2026",kind="website")
     p="../"
     cards="".join([
+      card("guides/cannabis-shared-kitchen-edible-safety-plan/","HOME + EDIBLES","Shared-kitchen edible safety plan","Keep cannabis identity, ingredients, allergens, access, handoffs, service, leftovers, cleanup, waste, and emergency response in one chain.","lock",p),
       card("guides/new-york-cannabis-seed-clone-buying-guide/","BUYING + NEW YORK","New York cannabis seeds and clones","Verify the seller, starter type, source identity, plant-health evidence, label, care record, plant count, delivered condition, and rejection path.","leaf",p),
       card("guides/cannabis-home-fire-safety-plan/","HOME + FIRE SAFETY","Cannabis home fire safety plan","Put alarms, escape, flames, embers, lithium batteries, indoor-grow electrical loads, medical oxygen, and household roles on one page.","alert",p),
       card("guides/cannabis-nicotine-tobacco-co-use-guide/","HEALTH + CO-USE","Cannabis and nicotine co-use","Separate cannabis, cigarettes, tobacco wraps, nicotine vapes, timing, symptoms, withdrawal concerns, and quit support in one record.","heart",p),
@@ -1254,6 +1289,7 @@ def render_strains_hub() -> tuple[Page,str]:
 
 def render_gear_hub() -> tuple[Page,str]:
     items = [
+        ("home-grow-timer-controller-buying-guide/","compare powered care","HOME GROW + CONTROL","Choose a timer or controller system","Match exact loads, ratings, control methods, environment, outage and fault states, recalls, support, return test, and ownership cost.","clock",None,None),
         ("home-grow-ph-ec-meter-buying-guide/","compare powered care","HOME GROW + WATER MEASUREMENT","Choose a pH and EC meter system","Separate pH, conductivity, alkalinity, temperature, standards, probe care, acceptance checks, records, and first-year cost.","search",None,None),
         ("home-grow-temperature-humidity-monitor-buying-guide/","compare powered care","HOME GROW + MEASUREMENT","Choose a temperature and humidity monitor","Compare accuracy claims, logging, alarms, placement, verification, power loss, export, and first-year cost.","clock",None,None),
         ("cannabis-home-testing-kit-buying-guide/","compare care","HOME TESTING + EVIDENCE","Choose a home testing system","Match the question, matrix, sample, method, controls, limits, records, cost, support, and licensed-laboratory exit.","search",None,None),
@@ -1283,7 +1319,7 @@ def render_gear_hub() -> tuple[Page,str]:
         ("cannabis-ashtray-ember-disposal-guide/","care","FIRE-SAFE DISPOSAL","Choose an ashtray","Compare stability, depth, materials, wind, placement, extinguishing, cleaning, waste, and smoke-exposure limits.","alert",None,None),
         ("cannabis-glass-pipe-water-pipe-buying-guide/","preparation care","GLASSWARE","Choose a pipe or water pipe","Check format, material claims, joint fit, stability, cleaning access, replacement parts, and smoke-exposure limits.","search",None,None),
     ]
-    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="October 31, 2026",kind="website")
+    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 1, 2026",kind="website")
     cards=[]
     for href, categories, kicker, title, description, icon_name, image_src, image_alt in items:
         art = f'<div><img src="{image_src}" alt="{image_alt}"></div>' if image_src else f'<div class="gear-card__icon-art" aria-hidden="true">{icon(icon_name)}</div>'
@@ -1541,27 +1577,27 @@ def build() -> None:
     manifest={"name":"Big Bud Man","short_name":"Big Bud Man","start_url":"/","display":"standalone","background_color":"#101712","theme_color":"#101712","icons":[{"src":"/assets/images/favicon.svg","sizes":"any","type":"image/svg+xml"}]}
     write_text(OUT,"site.webmanifest",json.dumps(manifest,indent=2)+"\n")
     publication_manifest={
-        "publication_date":"2026-10-31",
+        "publication_date":"2026-11-01",
         "page_count":3,
         "pages":[
-            {"title":"New York Cannabis Seeds and Clones Buying Guide","url":"https://bigbudman.com/guides/new-york-cannabis-seed-clone-buying-guide/","department":"home-grow authority and legal shopping","portfolio_label":"Authority-expansion","search_intent":"compare New York seeds, clones, seedlings, immature plants, and propagation material by legal seller, source identity, label, plant-health evidence, care record, plant count, and acceptance path"},
-            {"title":"Cannabis Rolling Machine Fit and Cost Guide","url":"https://bigbudman.com/gear/cannabis-rolling-machine-buying-guide/","department":"gear and conversion","portfolio_label":"Exploration","search_intent":"compare manual rolling machines by measured paper and tip fit, usable bed, apron service, materials, acceptance test, warranty, and annualized ownership cost"},
-            {"title":"Checked-In Source Entry-Point Integrity","url":"https://bigbudman.com/editorial-policy/","department":"source and deployment integrity","portfolio_label":"Exploration","search_intent":"compile the checked-in build and audit entry points before archive restoration so a valid archive cannot mask binary corruption or invalid Python in the public source tree"},
+            {"title":"Cannabis Shared-Kitchen and Edible Handoff Safety Plan","url":"https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/","department":"household edible safety and authority","portfolio_label":"Authority-expansion","search_intent":"keep cannabis food identity, ingredients, allergens, access, handoffs, service, leftovers, cleanup, waste, and emergency response auditable in a shared kitchen without supplying a recipe or dose"},
+            {"title":"Home-Grow Timer and Controller Buying Guide","url":"https://bigbudman.com/gear/home-grow-timer-controller-buying-guide/","department":"home-grow equipment and conversion","portfolio_label":"Exploration","search_intent":"compare a timer, smart plug, multi-outlet controller, sensor controller, or manufacturer ecosystem by exact loads, ratings, permitted control method, environment, failure states, return test, support, recalls, and ownership cost"},
+            {"title":"Checked-In Publication Parity","url":"https://bigbudman.com/editorial-policy/","department":"source and deployment integrity","portfolio_label":"Exploration","search_intent":"reject a release when any checked-in public file differs from the exact generated file that passed the deployment audit"},
         ],
-        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement materially expands the product-neutral manual rolling-machine guide with a measured compatibility card, three-exact-system comparison, annualized device-cost formula, clean return-window acceptance test, warranty and service evidence, and explicit no-purchase outcome. It adds no seller, model recommendation, price, coupon, stock, rating, fabricated test, product image, or paid placement."},
-        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"The seed-and-clone guide, rolling-machine comparison, and source-integrity policy use semantic text, tables, checklists, and existing brand interface assets. No seed, plant, rolling machine, product, affiliate, stock, or generated image was added or changed, so no exact-product mismatch or new licensing issue was introduced."},
-        "search_console":{"report_date":"2026-10-28","decision":"The September 28–October 25 report showed 841 impressions, four clicks, 0.476% CTR, and average position 22.477. It is three days old and usable, but no unaddressed query or editorial page had meaningful volume in the roughly position-4-to-20 band, so no item is primarily Data-led. The Guides hub (four impressions, one click, position 7) and Stem Cell CBG (19 impressions, one click, position 6) were already reinforced; About, Contact, Affiliate Disclosure, and Editorial Policy are navigational; the Montana query has two impressions; the HTTP and pre-roll rows have one impression; and Blue Dream sits mostly around positions 40–61. The report therefore prevented another overlapping CBG, generic hub, pre-roll-container, Montana, or Blue Dream article while the batch filled distinct lawful-starter, accessory-comparison, and source-integrity gaps."},
-        "authority":{"action":"Published a citation-worthy New York seed-and-clone purchase and intake record grounded in current OCM home-cultivation guidance, seller verification, personal-home-cultivation rules, and nursery source controls. It keeps seller authority, starter type, source identity, label fields, testing limits, pesticide disclosure, known-pest assurance, delivered condition, plant count, secure placement, and rejection or destruction records separate. Reciprocal links from the home-grow planner, IPM guide, and legal-shopping path strengthen the cultivation cluster. No speculative outreach target was added and no outreach was sent."},
+        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral timer/controller guide with an exact load-and-control record, six-system type map, three-candidate worksheet, ownership-cost boundary, 48-hour return-window observation plan, failure-state card, ten checkout gates, and explicit no-purchase outcome. It adds no merchant, model recommendation, price, coupon, stock, rating, fabricated test, product image, or paid placement."},
+        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"The shared-kitchen plan, timer/controller guide, and publication-parity policy use semantic text, tables, checklists, and existing brand interface assets. No edible, kitchen, timer, controller, smart plug, product, affiliate, stock, or generated image was added or changed, so no exact-product mismatch or new licensing issue was introduced."},
+        "search_console":{"report_date":"2026-10-28","decision":"The September 28–October 25 report showed 841 impressions, four clicks, 0.476% CTR, and average position 22.477. It is four days old and usable, but no unaddressed query or editorial page had meaningful volume in the roughly position-4-to-20 band, so no item is primarily Data-led. The Guides hub and Stem Cell CBG were already reinforced; About, Contact, Affiliate Disclosure, and Editorial Policy are navigational; Montana has two impressions; the HTTP, pre-roll, and federal-property rows have one impression; and Blue Dream sits mostly around positions 40–61. The report therefore prevented another overlapping CBG, generic hub, Montana, pre-roll-container, federal-property, or Blue Dream article while the batch filled distinct shared-kitchen, equipment-control, and source-parity gaps."},
+        "authority":{"action":"Published a citation-worthy shared-kitchen edible-safety reference grounded in current New York Department of Health, FDA, and CDC sources. Its stop gate, four-record identity table, kitchen zone map, ingredient and allergen lane, one-page handoff, service and leftover workflow, cleanup closeout, and exposure-response lane strengthen the edible, allergen, hosting, storage, and poisoning cluster through reciprocal contextual links. No speculative outreach target was added and no outreach was sent."},
         "freshness_surfaces":{
-            "https://bigbudman.com/guides/":"2026-10-31",
-            "https://bigbudman.com/guides/new-york-cannabis-seed-clone-buying-guide/":"2026-10-31",
-            "https://bigbudman.com/gear/":"2026-10-31",
-            "https://bigbudman.com/gear/cannabis-rolling-machine-buying-guide/":"2026-10-31",
-            "https://bigbudman.com/editorial-policy/":"2026-10-31",
-            "https://bigbudman.com/updates/":"2026-10-31",
-            "https://bigbudman.com/site-index/":"2026-10-31"
+            "https://bigbudman.com/guides/":"2026-11-01",
+            "https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/":"2026-11-01",
+            "https://bigbudman.com/gear/":"2026-11-01",
+            "https://bigbudman.com/gear/home-grow-timer-controller-buying-guide/":"2026-11-01",
+            "https://bigbudman.com/editorial-policy/":"2026-11-01",
+            "https://bigbudman.com/updates/":"2026-11-01",
+            "https://bigbudman.com/site-index/":"2026-11-01"
         },
-        "surfaces":["New York seed-and-clone buying and intake guide","home-grow planner, IPM, and legal-shopping reciprocal links","expanded rolling-machine fit and cost guide","paper and accessibility reciprocal links","checked-in build and audit entry-point repair","pre-archive Python compilation gates in both GitHub workflows","public source-integrity editorial contract","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","legacy Search Console sitemap compatibility URL","checksum-verified source archive and publication gates"],
+        "surfaces":["shared-kitchen edible safety and handoff guide","edible, allergen, social-hosting, storage, and poisoning reciprocal links","home-grow timer and controller comparison guide","grow-planning, fire-safety, grow-light, and neutral comparison reciprocal links","checked-in publication parity gate","public source-integrity editorial contract","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","legacy Search Console sitemap compatibility URL","checksum-verified source archive and publication gates"],
     }
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]

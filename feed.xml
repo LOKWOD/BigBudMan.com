@@ -4,9 +4,25 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-10-31T00:00:00Z</updated>
+  <updated>2026-11-01T00:00:00Z</updated>
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Home-Grow Timer &amp; Controller Guide</title>
+    <id>https://bigbudman.com/gear/home-grow-timer-controller-buying-guide/</id>
+    <link href="https://bigbudman.com/gear/home-grow-timer-controller-buying-guide/"/>
+    <updated>2026-11-01T00:00:00Z</updated>
+    <published>2026-11-01T00:00:00Z</published>
+    <summary>Compare a home-grow timer or controller by exact loads, ratings, fail state, manual override, schedule evidence, support, recall status, and total cost.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Shared-Kitchen Safety Plan</title>
+    <id>https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/</id>
+    <link href="https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/"/>
+    <updated>2026-11-01T00:00:00Z</updated>
+    <published>2026-11-01T00:00:00Z</published>
+    <summary>Keep cannabis edibles identifiable and separate in a shared kitchen with an ingredient, allergen, handoff, storage, cleanup, and emergency record.</summary>
+  </entry>
   <entry>
     <title>NY Cannabis Seeds &amp; Clones Buying Guide</title>
     <id>https://bigbudman.com/guides/new-york-cannabis-seed-clone-buying-guide/</id>
@@ -230,21 +246,5 @@
     <updated>2026-10-18T00:00:00Z</updated>
     <published>2026-08-17T00:00:00Z</published>
     <summary>Separate cannabis tolerance, dependence, withdrawal, and use disorder; build a seven-day pattern record and find qualified support without self-diagnosis.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Grinder Buying Guide</title>
-    <id>https://bigbudman.com/gear/grinders/</id>
-    <link href="https://bigbudman.com/gear/grinders/"/>
-    <updated>2026-10-18T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Compare cannabis grinders by hand fit, workflow, contact surfaces, cleanability, parts, warranty, recalls, and ownership cost with an exact-model checkout card.</summary>
-  </entry>
-  <entry>
-    <title>How to Store Cannabis Safely by Product Type</title>
-    <id>https://bigbudman.com/guides/storage/</id>
-    <link href="https://bigbudman.com/guides/storage/"/>
-    <updated>2026-10-17T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Store flower, edibles, drinks, oils, vapes, concentrates, and topicals using original packaging, locked access, condition checks, and a lot record.</summary>
   </entry>
 </feed>

@@ -3,7 +3,7 @@
   <url><loc>https://bigbudman.com/about/</loc><lastmod>2026-10-24</lastmod></url>
   <url><loc>https://bigbudman.com/affiliate-disclosure/</loc><lastmod>2026-08-17</lastmod></url>
   <url><loc>https://bigbudman.com/contact/</loc><lastmod>2026-10-16</lastmod></url>
-  <url><loc>https://bigbudman.com/editorial-policy/</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://bigbudman.com/editorial-policy/</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://bigbudman.com/gear/510-thread-vape-battery-safety/</loc><lastmod>2026-10-01</lastmod></url>
   <url><loc>https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/</loc><lastmod>2026-10-04</lastmod></url>
   <url><loc>https://bigbudman.com/gear/cannabis-accessibility-tools-buying-guide/</loc><lastmod>2026-10-17</lastmod></url>
@@ -29,7 +29,8 @@
   <url><loc>https://bigbudman.com/gear/grinders/</loc><lastmod>2026-10-18</lastmod></url>
   <url><loc>https://bigbudman.com/gear/home-grow-ph-ec-meter-buying-guide/</loc><lastmod>2026-10-30</lastmod></url>
   <url><loc>https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/</loc><lastmod>2026-10-27</lastmod></url>
-  <url><loc>https://bigbudman.com/gear/</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://bigbudman.com/gear/home-grow-timer-controller-buying-guide/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://bigbudman.com/gear/</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://bigbudman.com/gear/indoor-cannabis-grow-light-buying-cost-planner/</loc><lastmod>2026-10-14</lastmod></url>
   <url><loc>https://bigbudman.com/gear/smell-proof-storage/</loc><lastmod>2026-10-08</lastmod></url>
   <url><loc>https://bigbudman.com/gear/used-cannabis-accessory-buying-safety-guide/</loc><lastmod>2026-10-23</lastmod></url>
@@ -78,6 +79,7 @@
   <url><loc>https://bigbudman.com/guides/cannabis-product-disposal-decision-guide/</loc><lastmod>2026-10-22</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/</loc><lastmod>2026-09-26</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-product-recall-batch-checker/</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-smoke-vape-lung-health-guide/</loc><lastmod>2026-09-25</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-social-hosting-guest-safety-plan/</loc><lastmod>2026-10-11</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/</loc><lastmod>2026-09-25</lastmod></url>
@@ -102,7 +104,7 @@
   <url><loc>https://bigbudman.com/guides/full-spectrum-broad-spectrum-cbd-isolate/</loc><lastmod>2026-09-08</lastmod></url>
   <url><loc>https://bigbudman.com/guides/hemp-seed-oil-vs-cbd-oil/</loc><lastmod>2026-09-18</lastmod></url>
   <url><loc>https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/</loc><lastmod>2026-10-27</lastmod></url>
-  <url><loc>https://bigbudman.com/guides/</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://bigbudman.com/guides/new-york-cannabis-seed-clone-buying-guide/</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://bigbudman.com/guides/new-york-cannabis-showcase-event-verification-guide/</loc><lastmod>2026-10-26</lastmod></url>
@@ -174,7 +176,7 @@
   <url><loc>https://bigbudman.com/legal/wyoming/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/privacy/</loc><lastmod>2026-08-17</lastmod></url>
   <url><loc>https://bigbudman.com/responsible-use/</loc><lastmod>2026-08-17</lastmod></url>
-  <url><loc>https://bigbudman.com/site-index/</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://bigbudman.com/site-index/</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://bigbudman.com/start-here/</loc><lastmod>2026-10-25</lastmod></url>
   <url><loc>https://bigbudman.com/strains/acapulco-gold/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/acdc/</loc><lastmod>2026-08-26</lastmod></url>
@@ -297,5 +299,5 @@
   <url><loc>https://bigbudman.com/strains/zkittlez/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/zoap/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/terms/</loc><lastmod>2026-08-17</lastmod></url>
-  <url><loc>https://bigbudman.com/updates/</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://bigbudman.com/updates/</loc><lastmod>2026-11-01</lastmod></url>
 </urlset>
