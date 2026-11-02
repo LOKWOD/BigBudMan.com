@@ -931,6 +931,10 @@ def main() -> int:
         comparison = (ROOT / "guides/cannabis-product-price-label-comparison-calculator/index.html").read_text(encoding="utf-8")
         for marker in ('data-package-comparison', 'data-compare-price', 'data-compare-per-unit', 'data-compare-per-quantity', 'data-compare-per-100', 'data-compare-reset'):
             if marker not in comparison: failures.append(f"Package comparison calculator is missing marker: {marker}")
+        comparison_app = (ROOT / "assets/js/app-20261102.js").read_text(encoding="utf-8")
+        blank_unknown_rule = "const total = price !== null && tax !== null && fee !== null ? price + tax + fee : null;"
+        if blank_unknown_rule not in comparison_app:
+            failures.append("Package comparison calculator does not preserve blank tax and fee fields as unknown")
         basics = (ROOT / "guides/cannabis-101/index.html").read_text(encoding="utf-8")
         for marker in ('CDC: About Cannabis', 'Build a first-purchase evidence card', 'Keep five label bases separate', 'Finish with storage and a response route'):
             if marker not in basics: failures.append(f"Cannabis 101 guide is missing authority marker: {marker}")

@@ -776,7 +776,10 @@
         const count = numberAt(counts, index);
         const quantity = numberAt(quantities, index);
         const mg = numberAt(milligrams, index);
-        const total = price === null ? null : price + (tax ?? 0) + (fee ?? 0);
+        // A checkout total is only comparable when every checkout component
+        // is known. Treating a blank tax or fee as zero would manufacture a
+        // lower total and contradict the worksheet's blank-as-unknown rule.
+        const total = price !== null && tax !== null && fee !== null ? price + tax + fee : null;
         if (total !== null) completed += 1;
         totals[index].textContent = total === null ? '—' : money(total);
         perUnit[index].textContent = total !== null && count > 0 ? money(total / count) : '—';
