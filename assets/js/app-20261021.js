@@ -745,34 +745,45 @@
     renderPaperComparison();
   }
 
-  // Product comparison arithmetic. The rows deliberately normalize only the
-  // label and receipt values entered; they do not score potency or quality.
+  // Product comparison arithmetic. The rows normalize only entered checkout
+  // and label values; blanks remain unknown and no result scores quality.
   const packageComparison = $('[data-package-comparison]');
   if (packageComparison) {
     const money = (value) => value.toLocaleString(undefined, {style:'currency', currency:'USD'});
     const numberAt = (nodes, index) => {
-      const value = Number(nodes[index]?.value || 0);
-      return Number.isFinite(value) ? Math.max(0, value) : 0;
+      const field = nodes[index];
+      if (!field || field.value.trim() === '') return null;
+      const value = Number(field.value);
+      return Number.isFinite(value) ? Math.max(0, value) : null;
     };
     const prices = $$('[data-compare-price]', packageComparison);
+    const taxes = $$('[data-compare-tax]', packageComparison);
+    const fees = $$('[data-compare-fees]', packageComparison);
     const counts = $$('[data-compare-count]', packageComparison);
     const quantities = $$('[data-compare-quantity]', packageComparison);
     const milligrams = $$('[data-compare-mg]', packageComparison);
+    const totals = $$('[data-compare-total]', packageComparison);
     const perUnit = $$('[data-compare-per-unit]', packageComparison);
     const perQuantity = $$('[data-compare-per-quantity]', packageComparison);
     const perHundred = $$('[data-compare-per-100]', packageComparison);
     const status = $('[data-compare-status]', packageComparison);
     const renderComparison = () => {
+      let completed = 0;
       for (let index = 0; index < 3; index += 1) {
         const price = numberAt(prices, index);
+        const tax = numberAt(taxes, index);
+        const fee = numberAt(fees, index);
         const count = numberAt(counts, index);
         const quantity = numberAt(quantities, index);
         const mg = numberAt(milligrams, index);
-        perUnit[index].textContent = money(count > 0 ? price / count : 0);
-        perQuantity[index].textContent = money(quantity > 0 ? price / quantity : 0);
-        perHundred[index].textContent = money(mg > 0 ? price * 100 / mg : 0);
+        const total = price === null ? null : price + (tax ?? 0) + (fee ?? 0);
+        if (total !== null) completed += 1;
+        totals[index].textContent = total === null ? '—' : money(total);
+        perUnit[index].textContent = total !== null && count > 0 ? money(total / count) : '—';
+        perQuantity[index].textContent = total !== null && quantity > 0 ? money(total / quantity) : '—';
+        perHundred[index].textContent = total !== null && mg > 0 ? money(total * 100 / mg) : '—';
       }
-      if (status) status.textContent = 'Results updated locally.';
+      if (status) status.textContent = completed ? `${completed} checkout total${completed === 1 ? '' : 's'} updated locally. Blanks remain unknown.` : 'Worksheet ready. Blank fields remain unknown.';
     };
     $$('input', packageComparison).forEach((input) => input.addEventListener('input', renderComparison));
     $('[data-compare-reset]', packageComparison)?.addEventListener('click', () => {

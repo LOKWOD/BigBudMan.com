@@ -436,6 +436,48 @@ def main() -> int:
     if honeypot_count != 6:
         failures.append(f"Expected six protected newsletter/contact honeypots, found {honeypot_count}")
 
+    # Public inventory claims are part of the release contract. Derive the
+    # counts from the generated publication rather than trusting yesterday's
+    # README summary after a new page or collection card is added.
+    try:
+        readme = (REPOSITORY / "README.md").read_text(encoding="utf-8")
+        documented_match = re.search(
+            r"- (\d+) indexable pages, including (\d+) strain field notes, "
+            r"(\d+) state-law guides, (\d+) practical guide-library entries, "
+            r"(\d+) gear guides,",
+            readme,
+        )
+        if not documented_match:
+            raise ValueError("README publication inventory line is missing or malformed")
+        documented = tuple(int(value) for value in documented_match.groups())
+
+        def collection_count(path: str) -> int:
+            markup = (ROOT / path).read_text(encoding="utf-8")
+            marker = "data-guide-card" if path.startswith("guides/") else "data-gear-card"
+            return len(re.findall(rf"\b{marker}\b", markup, re.I))
+
+        state_count = len(re.findall(
+            r"\bdata-state-card\b",
+            (ROOT / "legal/index.html").read_text(encoding="utf-8"),
+        ))
+        actual = (
+            len(expected_sitemap),
+            len(list(ROOT.glob("strains/*/index.html"))),
+            state_count,
+            collection_count("guides/index.html"),
+            collection_count("gear/index.html"),
+        )
+        if documented != actual:
+            labels = ("indexable", "strain", "state-law", "guide-library", "gear")
+            differences = [
+                f"{label}: README {claimed}, generated {found}"
+                for label, claimed, found in zip(labels, documented, actual)
+                if claimed != found
+            ]
+            failures.append("README publication inventory mismatch: " + "; ".join(differences))
+    except Exception as exc:
+        failures.append(f"Cannot verify README publication inventory: {exc}")
+
     try:
         tree = ET.parse(ROOT / "sitemap.xml")
         ns = {"s":"http://www.sitemaps.org/schemas/sitemap/0.9"}
@@ -689,7 +731,7 @@ def main() -> int:
         discovery_checks = {
             "index.html": ("guides/cannabis-next-day-impairment-evidence-guide/", "guides/cbn-products-label-evidence-guide/", "legal/cannabis-federal-property-rules-guide/", "guides/cannabis-social-hosting-guest-safety-plan/", "guides/terpenes/", "gear/cannabis-loupe-pocket-microscope-guide/", "guides/cannabis-cbd-chronic-pain-evidence-guide/", "guides/storage/", "gear/cannabis-accessibility-tools-buying-guide/"),
             "strains/index.html": ("stem-cell-cbg/", "panakeia-beta-hurv19pan/", "119 STRAIN FIELD NOTES", "NO VERIFIED CULTIVAR IMAGE"),
-            "guides/index.html": ("cannabis-shared-kitchen-edible-safety-plan/", "new-york-cannabis-seed-clone-buying-guide/", "cannabis-home-fire-safety-plan/", "cannabis-nicotine-tobacco-co-use-guide/", "cannabis-allergy-symptom-exposure-guide/", "cannabis-next-day-impairment-evidence-guide/", "cannabis-cbd-chronic-pain-evidence-guide/", "cannabis-cbd-cancer-claims-evidence-guide/", "cannabis-menu-package-receipt-match-checklist/", "cannabis-exercise-workout-heat-safety/", "new-york-home-cannabis-pest-mold-ipm-guide/", "new-york-home-cannabis-harvest-drying-curing-log/", "cannabis-cbd-epilepsy-seizure-care-guide/", "cannabis-glaucoma-eye-pressure-vision-guide/", "cbd-patches-transdermal-label-evidence-guide/", "cannabis-package-seal-tamper-evidence-checklist/", "cannabis-dry-mouth-dental-oral-health-guide/", "cannabis-edible-label-math-checker/", "cbg-products-label-evidence-guide/", "cannabis-contaminant-test-results-guide/", "cannabis-child-resistant-packaging-home-storage-guide/", "cannabis-official-source-directory/", "cannabis-gummies-drinks-oils-capsules-comparison/", "cannabis-claim-fact-check-worksheet/", "Store cannabis safely by product type", "Thirty useful paths", "Comparing packaged cannabis flower", 'data-guide-sort', 'data-updated="2026-11-01"', 'data-guide-filter="health"', 'data-guide-filter="workplace"'),
+            "guides/index.html": ("cannabis-product-dates-condition-decision-guide/", "cannabis-shared-kitchen-edible-safety-plan/", "new-york-cannabis-seed-clone-buying-guide/", "cannabis-home-fire-safety-plan/", "cannabis-nicotine-tobacco-co-use-guide/", "cannabis-allergy-symptom-exposure-guide/", "cannabis-next-day-impairment-evidence-guide/", "cannabis-cbd-chronic-pain-evidence-guide/", "cannabis-cbd-cancer-claims-evidence-guide/", "cannabis-menu-package-receipt-match-checklist/", "cannabis-exercise-workout-heat-safety/", "new-york-home-cannabis-pest-mold-ipm-guide/", "new-york-home-cannabis-harvest-drying-curing-log/", "cannabis-cbd-epilepsy-seizure-care-guide/", "cannabis-glaucoma-eye-pressure-vision-guide/", "cbd-patches-transdermal-label-evidence-guide/", "cannabis-package-seal-tamper-evidence-checklist/", "cannabis-dry-mouth-dental-oral-health-guide/", "cannabis-edible-label-math-checker/", "cbg-products-label-evidence-guide/", "cannabis-contaminant-test-results-guide/", "cannabis-child-resistant-packaging-home-storage-guide/", "cannabis-official-source-directory/", "cannabis-gummies-drinks-oils-capsules-comparison/", "cannabis-claim-fact-check-worksheet/", "Store cannabis safely by product type", "Thirty useful paths", "Comparing packaged cannabis flower", 'data-guide-sort', 'data-updated="2026-11-02"', 'data-guide-filter="health"', 'data-guide-filter="workplace"'),
             "gear/index.html": ("home-grow-timer-controller-buying-guide/", "cannabis-rolling-machine-buying-guide/", "home-grow-ph-ec-meter-buying-guide/", "home-grow-temperature-humidity-monitor-buying-guide/", "cannabis-home-testing-kit-buying-guide/", "used-cannabis-accessory-buying-safety-guide/", "cannabis-accessibility-tools-buying-guide/", "smell-proof-storage/", "cannabis-rolling-tray-buying-guide/", "cannabis-rolling-paper-cone-guide/", "digital-scale-buying-calibration-guide/", "cannabis-tool-cleaning-kit/", "indoor-cannabis-grow-light-buying-cost-planner/", "cannabis-gear-comparison-worksheet/", "cannabis-accessory-return-warranty-recall-guide/", "dry-herb-vaporizer-dosing-capsule-guide/", "Choose a home testing system", "All 29", "2026-11-01"),
             "guides/read-a-label/index.html": ("Build a date chain", "Preserve a label-to-lot evidence card", "cannabis.ny.gov/part-128-guidance", "cannabis-certificate-of-analysis-coa-guide/", "cannabis-product-recall-batch-checker/"),
             "responsible-use/index.html": ("guides/cannabis-exercise-workout-heat-safety/",),
@@ -715,7 +757,7 @@ def main() -> int:
             "guides/cannabis-101/index.html": ("delta-8-thc-label-safety-guide/",),
             "guides/flower/index.html": ("cannabis-flower-freshness-package-date-buying-guide/",),
             "legal/shop-legal/index.html": ("cannabis-menu-package-receipt-match-checklist/", "new-york-cannabis-delivery-online-order-verification-guide/"),
-            "guides/cannabis-product-price-label-comparison-calculator/index.html": ("cannabis-menu-package-receipt-match-checklist/",),
+            "guides/cannabis-product-price-label-comparison-calculator/index.html": ("data-compare-tax", "data-compare-fees", "data-compare-total", "Pass the comparison gate", "valid result is no purchase", "cannabis-product-dates-condition-decision-guide/", "app-20261102.js"),
             "guides/cbd-gummies-label-buying-guide/index.html": ("cannabis-edible-allergen-ingredient-label-guide/",),
             "guides/cannabis-product-complaint-adverse-event-reporting/index.html": ("cannabis-accessory-return-warranty-recall-guide/", "cannabis-menu-package-receipt-match-checklist/", "cannabis-edible-allergen-ingredient-label-guide/"),
             "guides/terpenes/index.html": ("1%", "10 mg/g", "pubmed.ncbi.nlm.nih.gov/40603590", "25-term descriptive vocabulary"),
@@ -731,9 +773,10 @@ def main() -> int:
             "gear/cannabis-rolling-machine-buying-guide/index.html": ("Build one compatibility card", "Compare three exact systems before price", "annualized device cost", "Use the return window before product contact", "consumer.ftc.gov/articles/warranties"),
             "guides/cannabis-shared-kitchen-edible-safety-plan/index.html": ("Start with the no-shared-kitchen gate", "Keep four records from collapsing into one", "Use one edible handoff record", "health.ny.gov/community/cannabis/safety.htm", "fda.gov/food/retail-food-protection/allergen-removal"),
             "gear/home-grow-timer-controller-buying-guide/index.html": ("Build the exact load-and-control record", "Compare three exact systems before price", "Use the return window", "Write the failure-state card", "CCCEI-Brand-Power-Strips-Recalled", "No affiliate or merchant link appears"),
-            "editorial-policy/index.html": ("Sitemap date integrity", "legacy Search Console compatibility endpoint", "cannot be later than the current publication batch", "Forced-color interface integrity", "Checked-in source entry-point integrity", "Checked-in publication parity"),
-            "updates/index.html": ("guides/cannabis-shared-kitchen-edible-safety-plan/", "gear/home-grow-timer-controller-buying-guide/", "editorial-policy/", "November 1, 2026"),
-            "site-index/index.html": ("guides/cannabis-shared-kitchen-edible-safety-plan/", "gear/home-grow-timer-controller-buying-guide/", "editorial-policy/", "November 1, 2026", "updates/"),
+            "guides/cannabis-product-dates-condition-decision-guide/index.html": ("Use the condition and recall gate", "Name the date before interpreting it", "Build the five-record identity", "Use the format-specific condition matrix", "cannabis.ny.gov/part-128-guidance", "cpsc.gov/Recalls/2026/Arizer-Solo-III"),
+            "editorial-policy/index.html": ("Sitemap date integrity", "legacy Search Console compatibility endpoint", "cannot be later than the current publication batch", "Forced-color interface integrity", "Checked-in source entry-point integrity", "Checked-in publication parity", "Documented publication-inventory parity"),
+            "updates/index.html": ("guides/cannabis-product-dates-condition-decision-guide/", "guides/cannabis-product-price-label-comparison-calculator/", "editorial-policy/", "November 2, 2026"),
+            "site-index/index.html": ("guides/cannabis-product-dates-condition-decision-guide/", "guides/cannabis-product-price-label-comparison-calculator/", "editorial-policy/", "November 2, 2026", "updates/"),
         }
         for discovery_page, markers in discovery_checks.items():
             discovery_text = (ROOT / discovery_page).read_text(encoding="utf-8")
@@ -946,7 +989,7 @@ def main() -> int:
             failures.append("Editorial policy or Atom feed is missing the feed authorship standard")
         if "Age-gate focus isolation" not in policy:
             failures.append("Editorial policy is missing the age-gate focus-isolation standard")
-        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "November 1, 2026" not in policy:
+        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "November 2, 2026" not in policy:
             failures.append("Editorial policy is missing the current link and collection-date integrity standards")
         deployed_css = (ROOT / "assets/css/styles.css").read_text(encoding="utf-8")
         for marker in ("@media (forced-colors:active)", "CanvasText", "HighlightText", 'button[aria-pressed="true"]', ":focus-visible"):

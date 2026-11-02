@@ -4,9 +4,25 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-11-01T00:00:00Z</updated>
+  <updated>2026-11-02T00:00:00Z</updated>
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis Product Dates &amp; Condition Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-product-dates-condition-decision-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-product-dates-condition-decision-guide/"/>
+    <updated>2026-11-02T00:00:00Z</updated>
+    <published>2026-11-02T00:00:00Z</published>
+    <summary>Interpret package, expiration, use-by, best-by, and opened dates by exact cannabis format, condition, lot, instructions, recall, and disposal route.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Price &amp; Label Calculator</title>
+    <id>https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/</id>
+    <link href="https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/"/>
+    <updated>2026-11-02T00:00:00Z</updated>
+    <published>2026-09-26T00:00:00Z</published>
+    <summary>Compare three compatible cannabis packages by checkout total, unit count, net quantity, and labeled cannabinoid total without ranking potency as quality.</summary>
+  </entry>
   <entry>
     <title>Home-Grow Timer &amp; Controller Guide</title>
     <id>https://bigbudman.com/gear/home-grow-timer-controller-buying-guide/</id>
@@ -230,21 +246,5 @@
     <updated>2026-10-19T00:00:00Z</updated>
     <published>2026-09-19T00:00:00Z</published>
     <summary>Compare exact lighter models by intended job, controls, fuel or battery system, hand fit, instructions, recalls, ownership cost, storage, and disposal.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Label Field Guide &amp; Checklist</title>
-    <id>https://bigbudman.com/guides/read-a-label/</id>
-    <link href="https://bigbudman.com/guides/read-a-label/"/>
-    <updated>2026-10-19T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Decode a cannabis label by format, reconcile serving and package math, match the lot to the CoA, and preserve a reusable package evidence record.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Tolerance &amp; Withdrawal Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/</id>
-    <link href="https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/"/>
-    <updated>2026-10-18T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Separate cannabis tolerance, dependence, withdrawal, and use disorder; build a seven-day pattern record and find qualified support without self-diagnosis.</summary>
   </entry>
 </feed>

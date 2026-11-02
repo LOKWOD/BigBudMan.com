@@ -58,6 +58,7 @@ from content_oct29 import GEAR_OVERRIDES as OCT29_GEAR_OVERRIDES, NEW_GUIDES as 
 from content_oct30 import NEW_GEAR as OCT30_GEAR, NEW_GUIDES as OCT30_GUIDES
 from content_oct31 import GEAR_OVERRIDES as OCT31_GEAR_OVERRIDES, NEW_GUIDES as OCT31_GUIDES
 from content_nov1 import NEW_GEAR as NOV1_GEAR, NEW_GUIDES as NOV1_GUIDES
+from content_nov2 import GUIDE_OVERRIDES as NOV2_GUIDE_OVERRIDES, NEW_GUIDES as NOV2_GUIDES
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -160,6 +161,8 @@ _oct31_gear = {item["path"]: item for item in OCT31_GEAR_OVERRIDES}
 OTHER_ARTICLES = [_oct31_gear.get(item["path"], item) for item in OTHER_ARTICLES]
 GUIDE_PAGES = GUIDE_PAGES + NOV1_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV1_GEAR
+_nov2_guides = {item["path"]: item for item in NOV2_GUIDE_OVERRIDES}
+GUIDE_PAGES = [_nov2_guides.get(item["path"], item) for item in GUIDE_PAGES] + NOV2_GUIDES
 
 # Publishing integrity is part of the public editorial standard: the source
 # archive is checksum-verified and tested before publication.
@@ -325,6 +328,17 @@ for _standard in STANDARD_PAGES:
             '<p class="update-line">Policy reviewed November 1, 2026</p>',
         )
         _standard["body"] += '''<h2>Checked-in publication parity</h2><p>After the generator builds <code>_site</code>, the publication audit compares every deployable file byte for byte with the corresponding checked-in public file at repository root. A missing or different HTML page, stylesheet, script, image, feed, manifest, robots file, sitemap, custom-domain file, or other deployed asset stops publication. This prevents the repository's browseable pages from drifting away from the exact artifact GitHub Pages receives. The parity check proves file identity, not factual correctness; health, legal, product, image, link, metadata, and accessibility checks remain separate gates.</p>'''
+
+# November 2 makes public inventory claims testable. The README summary must
+# match the generated indexable, guide, gear, strain, and state-guide counts.
+for _standard in STANDARD_PAGES:
+    if _standard["path"] == "editorial-policy/index.html":
+        _standard["updated"] = "November 2, 2026"
+        _standard["body"] = _standard["body"].replace(
+            '<p class="update-line">Policy reviewed November 1, 2026</p>',
+            '<p class="update-line">Policy reviewed November 2, 2026</p>',
+        )
+        _standard["body"] += '''<h2>Documented publication-inventory parity</h2><p>The repository README states the current indexable-page, strain-field-note, state-law-guide, practical-guide, and gear-guide counts. The publication audit derives those same numbers from the generated sitemap, page titles, and visible collection cards, then rejects a release when any documented count drifts. This turns a public size claim into a release gate and prevents yesterday's inventory from surviving after today's pages are published. Matching counts prove catalog parity—not the accuracy, usefulness, or freshness of every page.</p>'''
 
 # Keep new reference pages inside established topic clusters. These reciprocal
 # links are editorial navigation, not an attempt to manufacture link signals.
@@ -908,6 +922,20 @@ RECIPROCAL_RELATED.setdefault("guides/new-york-home-cannabis-grow-planner/index.
 RECIPROCAL_RELATED.setdefault("gear/indoor-cannabis-grow-light-buying-cost-planner/index.html", []).insert(
     0, ("gear/home-grow-timer-controller-buying-guide/", "TIMER + CONTROLLER", "Carry the exact input, permitted control method, restart behavior, and whole-system cost into automation")
 )
+# November 2 connects the cross-format date-and-condition asset to established
+# storage, seal, recall, disposal, and price-comparison decisions.
+RECIPROCAL_RELATED.setdefault("guides/storage/index.html", []).insert(
+    0, ("guides/cannabis-product-dates-condition-decision-guide/", "DATES + CONDITION", "Keep expiration wording, opening state, storage history, condition, lot, and exit route together")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabis-package-seal-tamper-evidence-checklist/index.html", []).insert(
+    0, ("guides/cannabis-product-dates-condition-decision-guide/", "DATE DECISION", "Do not let a future date override a damaged seal, recall, or storage failure")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabis-product-recall-batch-checker/index.html", []).insert(
+    0, ("guides/cannabis-product-dates-condition-decision-guide/", "DATE + LOT", "Route expiration, use-by, opening, condition, and current notice as one record")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabis-product-disposal-decision-guide/index.html", []).insert(
+    0, ("guides/cannabis-product-dates-condition-decision-guide/", "DATE EXIT", "Preserve the product record before choosing return, complaint, recall, or disposal")
+)
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in RECIPROCAL_RELATED:
         _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
@@ -925,6 +953,8 @@ for _item in GUIDE_PAGES + OTHER_ARTICLES:
                 _related_limit = 7
             elif _item["path"] == "legal/shop-legal/index.html":
                 _related_limit = 5
+            elif _item["path"] == "guides/storage/index.html":
+                _related_limit = 6
             else:
                 _related_limit = 4
             if len(_item["related"]) == _related_limit:
@@ -1129,9 +1159,10 @@ def add_collection_itemlist(html: str, page: Page, name: str, card_class: str) -
 
 
 def render_guides_hub() -> tuple[Page,str]:
-    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 1, 2026",kind="website")
+    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 2, 2026",kind="website")
     p="../"
     cards="".join([
+      card("guides/cannabis-product-dates-condition-decision-guide/","PACKAGING + DECISIONS","Product dates and condition guide","Interpret package, expiration, use-by, best-by, and opened dates with the exact format, lot, storage, condition, recall, and exit route.","clock",p),
       card("guides/cannabis-shared-kitchen-edible-safety-plan/","HOME + EDIBLES","Shared-kitchen edible safety plan","Keep cannabis identity, ingredients, allergens, access, handoffs, service, leftovers, cleanup, waste, and emergency response in one chain.","lock",p),
       card("guides/new-york-cannabis-seed-clone-buying-guide/","BUYING + NEW YORK","New York cannabis seeds and clones","Verify the seller, starter type, source identity, plant-health evidence, label, care record, plant count, delivered condition, and rejection path.","leaf",p),
       card("guides/cannabis-home-fire-safety-plan/","HOME + FIRE SAFETY","Cannabis home fire safety plan","Put alarms, escape, flames, embers, lithium batteries, indoor-grow electrical loads, medical oxygen, and household roles on one page.","alert",p),
@@ -1176,7 +1207,7 @@ def render_guides_hub() -> tuple[Page,str]:
       card("guides/disposable-vape-vs-510-cartridge-comparison/","FORMAT + BUYING","Disposable vape versus 510 cartridge","Compare product identity, battery, compatibility, serviceability, ownership cost, storage, and end-of-life routes.","search",p),
       card("guides/cbd-hemp-flower-label-legal-guide/","CBD + HEMP","CBD flower and hemp flower","Verify the package, lot, total-THC basis, report, state rule, smoke risk, claims, and drug-testing uncertainty.","leaf",p),
       card("guides/cannabis-anxiety-paranoia-psychosis-warning-signs/","HEALTH + SAFETY","Anxiety, paranoia, and psychosis warning signs","Use the crisis gate, separate symptoms without diagnosing, preserve the product record, and prepare a useful clinical handoff.","heart",p),
-      card("guides/cannabis-product-price-label-comparison-calculator/","BUYING + LABELS","Product price and label calculator","Compare three like-for-like packages by count, net quantity, and labeled cannabinoid total without ranking potency as quality.","search",p),
+      card("guides/cannabis-product-price-label-comparison-calculator/","BUYING + LABELS","Product price and label calculator","Compare compatible checkout totals by unit count, net quantity, and labeled cannabinoid total, then keep package fit and no-purchase visible.","search",p),
       card("guides/cannabis-smoke-vape-lung-health-guide/","HEALTH + SAFETY","Smoke, vaping, and lung health","Compare smoke, aerosol, dabs, and non-inhaled routes; use the symptom gate and build a clinician-ready exposure record.","heart",p),
       card("guides/cannabis-pre-roll-infused-label-buying-guide/","FORMAT + BUYING","Pre-roll and infused pre-rolls","Separate flower from added concentrate, match the lot, normalize package math, and reject fake quality signals.","search",p),
       card("guides/cannabis-terms-label-lab-glossary/","TERMS + LAB REPORTS","Cannabis terms and label glossary","Search 48 plain-language definitions across cannabinoids, labels, lab notation, formats, plant terms, and safety.","book",p),
@@ -1220,6 +1251,7 @@ def render_guides_hub() -> tuple[Page,str]:
     decision_router=f'''<section class="container guide-paths"><div class="section-head"><p class="eyebrow">START WITH THE DECISION</p><h2>Six high-stakes paths. One useful next page.</h2><p>The guide library earned the clearest non-branded Search Console engagement in the current report. These paths move a reader from the hub to the task—not to a product ranking.</p></div><div class="comparison-grid"><div><span>FIRST PURCHASE</span><h3>Plan before the menu</h3><p>Set purpose, hard limits, format, budget, seller verification, storage, transport, and a no-buy exit.</p><a href="../start-here/">Open the first-purchase planner →</a></div><div><span>PACKAGE IN HAND</span><h3>Rebuild the label</h3><p>Match identity, route, serving and package math, ingredients, dates, lot, report, warnings, and storage.</p><a href="read-a-label/">Open the label guide →</a></div><div><span>PRODUCT PROBLEM</span><h3>Protect the person first</h3><p>Use the urgency gate, preserve product and lot evidence, then choose the official reporting owner.</p><a href="cannabis-product-complaint-adverse-event-reporting/">Open the reporting guide →</a></div><div><span>PUBLIC EVENT</span><h3>Verify the temporary sale</h3><p>Check the event permit, seller, participant roles, package, total price, receipt, and use boundary.</p><a href="new-york-cannabis-showcase-event-verification-guide/">Open the event checklist →</a></div><div><span>WORK + TESTING</span><h3>Identify the policy and specimen</h3><p>Keep employer policy, test stage, laboratory result, CBD risk, review, and legal advice in separate lanes.</p><a href="cannabis-drug-testing-thc-results-guide/">Open the drug-test guide →</a></div><div><span>USE + TRANSPORT</span><h3>Build the sober exit</h3><p>Plan around driving, other substances, obligations, locked storage, urgent help, and patterns worth discussing.</p><a href="../responsible-use/">Open responsible use →</a></div></div><p class="micro">No paid placement, product, merchant, ticket, price, coupon, rating, or affiliate link appears in this router. The repository contains no approved affiliate program or tracking ID.</p></section>'''
     main=f'''<main id="main-content"><section class="hub-hero"><div class="container"><p class="eyebrow">PRACTICAL CANNABIS EDUCATION</p><h1>THE GUIDE<br><em>LIBRARY.</em></h1><p>No endless blog roll. Every page answers a decision an adult can actually have in front of them.</p></div></section><section class="container hub-feature"><a href="../start-here/"><div><p class="kicker">THE BEST FIRST PAGE</p><h2>Start here. Skip the folklore.</h2><p>Six decisions for new and returning adults: purpose, format, batch, context, storage, and exit plan.</p><b>Open the orientation {icon('arrow')}</b></div><img src="../assets/images/guide-field-notes.webp" alt="Unbranded cannabis package, sample jar, notebook, and magnifying glass arranged for close inspection"></a></section>{decision_router}<section class="container guide-library" data-guide-library><div class="guide-tools"><label><span>FIND A GUIDE</span><input type="search" data-guide-search placeholder="Try: delivery, package date, lab report…" autocomplete="off"></label><div class="guide-filters" aria-label="Filter guide library"><button class="is-active" type="button" data-guide-filter="all">All guides</button><button type="button" data-guide-filter="format">Formats</button><button type="button" data-guide-filter="buying">Buying &amp; labels</button><button type="button" data-guide-filter="safety">Safety</button><button type="button" data-guide-filter="cbd">CBD &amp; hemp</button></div><label class="guide-sort"><span>SORT</span><select data-guide-sort><option value="editorial">Editorial order</option><option value="recent">Recently reviewed</option><option value="title">Title A–Z</option></select></label><p aria-live="polite"><span data-guide-count>{guide_count}</span> guides shown</p></div><p class="guide-empty" data-guide-empty hidden>No guide matched that search and filter. Clear the search or choose all guides.</p><div class="library-grid">{cards}</div></section><section class="container guide-paths"><div class="section-head"><p class="eyebrow">READ IN ORDER</p><h2>Thirty useful paths</h2></div><div class="path-list"><a href="../start-here/"><span>New or returning after years</span><b>START HERE → CANNABIS 101 → LABEL</b></a><a href="flower/"><span>Comparing packaged cannabis flower</span><b>SELLER → PACKAGE → LOT REPORT → CONDITION → STORAGE → EXIT</b></a><a href="new-york-home-cannabis-grow-planner/"><span>Planning a New York home grow</span><b>LAW → SPACE → LOAD → STARTER SOURCE → RECORDS → STORAGE</b></a><a href="new-york-home-cannabis-harvest-drying-curing-log/"><span>Carrying a lawful New York home grow through harvest</span><b>BATCH ID → ROOM → CONDITION LOG → CONTAINER → STORAGE</b></a><a href="cannabis-certificate-of-analysis-coa-guide/"><span>Holding a certificate of analysis or QR-linked lab report</span><b>PACKAGE → LOT MATCH → UNITS → PANELS → STATUS</b></a><a href="cbd-capsules-softgels-label-buying-guide/"><span>Comparing CBD capsules or softgels</span><b>UNIT MATH → FORMULA → LOT → CLAIMS → STORAGE</b></a><a href="cannabinoid-hyperemesis-syndrome-warning-signs/"><span>Repeated nausea or vomiting with frequent cannabis use</span><b>STOP USE → URGENCY CHECK → DISCLOSE → CLINICAL FOLLOW-UP</b></a><a href="cannabis-drug-testing-thc-results-guide/"><span>Facing a workplace, home, or program drug test</span><b>POLICY → SPECIMEN → SCREEN → CONFIRM → REVIEW</b></a><a href="cannabis-product-recall-batch-checker/"><span>Checking a recall, quarantine, or safety notice</span><b>PRESERVE PACKAGE → MATCH LOT → FOLLOW OFFICIAL ACTION</b></a><a href="edibles/"><span>Holding a gummy or chocolate</span><b>EDIBLES → LABEL → STORAGE</b></a><a href="cannabis-beverages-label-timing-buying-guide/"><span>Comparing a cannabis seltzer, tonic, or drink</span><b>BEVERAGES → LABEL → LICENSE → STORAGE</b></a><a href="vapes/"><span>Holding a cart or disposable</span><b>VAPES → SHOP LEGAL → RESPONSIBLE USE</b></a><a href="cannabis-concentrates-dabs-label-safety-guide/"><span>Comparing wax, shatter, rosin, resin, or dabs</span><b>CONCENTRATES → LABEL → LICENSE → STORAGE</b></a></div></section>{newsletter('../')}</main>'''
     main = main.replace("Twenty-nine useful paths", "Useful paths through the library")
+    main = main.replace('<div class="path-list">', '<div class="path-list"><a href="cannabis-product-dates-condition-decision-guide/"><span>Deciding what a cannabis product date means</span><b>IDENTITY → DATE WORDING → CONDITION → STORAGE → LOT → EXIT</b></a>', 1)
     main = main.replace('<div class="path-list">', '<div class="path-list"><a href="cannabis-cbd-epilepsy-seizure-care-guide/"><span>Sorting prescription cannabidiol from retail CBD in seizure care</span><b>FIRST AID → MEDICINE → PRODUCT → INTERACTIONS → PLAN</b></a>', 1)
     main = main.replace('<div class="path-list">', '<div class="path-list"><a href="cannabis-claim-fact-check-worksheet/"><span>Checking a cannabis health, safety, product, legal, or comparative claim</span><b>CLAIM → SPEAKER → PRODUCT → SOURCE → MATCH → LIMITS → RULE</b></a>', 1)
     main = main.replace('<div class="path-list">', '<div class="path-list"><a href="cannabis-cbd-liver-health-safety-guide/"><span>Checking a cannabis, CBD, or liver-health claim</span><b>SYMPTOMS → EXACT PRODUCT → MEDICINES → LAB CONTEXT → CLINICIAN</b></a><a href="cannabis-cbd-chronic-pain-evidence-guide/"><span>Checking a cannabis or CBD chronic-pain claim</span><b>URGENCY → CONDITION → EVIDENCE → FUNCTION → HARMS → REVIEW</b></a>', 1)
@@ -1525,6 +1557,7 @@ def build() -> None:
         # the normal GitHub Pages/CDN cache window.
         copy2(source_assets/"js/app.js", OUT/"assets/js/app-20261021.js")
         copy2(source_assets/"js/app.js", OUT/"assets/js/app-20261022.js")
+        copy2(source_assets/"js/app.js", OUT/"assets/js/app-20261102.js")
     write_svg_assets(OUT)
     bundle_stylesheets(OUT)
 
@@ -1545,6 +1578,8 @@ def build() -> None:
             html = html.replace("assets/js/app.js", "assets/js/app-20261021.js")
         if page.path == "guides/cannabis-dispensary-loyalty-rewards-value-privacy-guide/index.html":
             html = html.replace("assets/js/app.js", "assets/js/app-20261022.js")
+        if page.path == "guides/cannabis-product-price-label-comparison-calculator/index.html":
+            html = html.replace("assets/js/app.js", "assets/js/app-20261102.js")
         write_page(page,html); pages.append(page)
 
     for data in STANDARD_PAGES:
@@ -1577,27 +1612,26 @@ def build() -> None:
     manifest={"name":"Big Bud Man","short_name":"Big Bud Man","start_url":"/","display":"standalone","background_color":"#101712","theme_color":"#101712","icons":[{"src":"/assets/images/favicon.svg","sizes":"any","type":"image/svg+xml"}]}
     write_text(OUT,"site.webmanifest",json.dumps(manifest,indent=2)+"\n")
     publication_manifest={
-        "publication_date":"2026-11-01",
+        "publication_date":"2026-11-02",
         "page_count":3,
         "pages":[
-            {"title":"Cannabis Shared-Kitchen and Edible Handoff Safety Plan","url":"https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/","department":"household edible safety and authority","portfolio_label":"Authority-expansion","search_intent":"keep cannabis food identity, ingredients, allergens, access, handoffs, service, leftovers, cleanup, waste, and emergency response auditable in a shared kitchen without supplying a recipe or dose"},
-            {"title":"Home-Grow Timer and Controller Buying Guide","url":"https://bigbudman.com/gear/home-grow-timer-controller-buying-guide/","department":"home-grow equipment and conversion","portfolio_label":"Exploration","search_intent":"compare a timer, smart plug, multi-outlet controller, sensor controller, or manufacturer ecosystem by exact loads, ratings, permitted control method, environment, failure states, return test, support, recalls, and ownership cost"},
-            {"title":"Checked-In Publication Parity","url":"https://bigbudman.com/editorial-policy/","department":"source and deployment integrity","portfolio_label":"Exploration","search_intent":"reject a release when any checked-in public file differs from the exact generated file that passed the deployment audit"},
+            {"title":"Cannabis Product Dates and Condition Decision Guide","url":"https://bigbudman.com/guides/cannabis-product-dates-condition-decision-guide/","department":"product lifecycle, condition, and authority","portfolio_label":"Authority-expansion","search_intent":"interpret package, expiration, use-by, best-by, and opened dates by exact product format, lot, storage, condition, current notice, and verified exit route without inventing a universal shelf life"},
+            {"title":"Cannabis Price and Label Comparison Calculator","url":"https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/","department":"shopping comparison and conversion","portfolio_label":"Exploration","search_intent":"compare three compatible cannabis packages using delivered checkout total, count, net quantity, and labeled cannabinoid basis while keeping evidence, usable quantity, secure storage, dates, and no-purchase visible"},
+            {"title":"Documented Publication-Inventory Parity","url":"https://bigbudman.com/editorial-policy/","department":"technical SEO and public trust","portfolio_label":"Exploration","search_intent":"reject a release when public README counts for indexable pages, strains, state-law guides, practical guides, or gear guides differ from the generated publication"},
         ],
-        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral timer/controller guide with an exact load-and-control record, six-system type map, three-candidate worksheet, ownership-cost boundary, 48-hour return-window observation plan, failure-state card, ten checkout gates, and explicit no-purchase outcome. It adds no merchant, model recommendation, price, coupon, stock, rating, fabricated test, product image, or paid placement."},
-        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"The shared-kitchen plan, timer/controller guide, and publication-parity policy use semantic text, tables, checklists, and existing brand interface assets. No edible, kitchen, timer, controller, smart plug, product, affiliate, stock, or generated image was added or changed, so no exact-product mismatch or new licensing issue was introduced."},
-        "search_console":{"report_date":"2026-10-28","decision":"The September 28–October 25 report showed 841 impressions, four clicks, 0.476% CTR, and average position 22.477. It is four days old and usable, but no unaddressed query or editorial page had meaningful volume in the roughly position-4-to-20 band, so no item is primarily Data-led. The Guides hub and Stem Cell CBG were already reinforced; About, Contact, Affiliate Disclosure, and Editorial Policy are navigational; Montana has two impressions; the HTTP, pre-roll, and federal-property rows have one impression; and Blue Dream sits mostly around positions 40–61. The report therefore prevented another overlapping CBG, generic hub, Montana, pre-roll-container, federal-property, or Blue Dream article while the batch filled distinct shared-kitchen, equipment-control, and source-parity gaps."},
-        "authority":{"action":"Published a citation-worthy shared-kitchen edible-safety reference grounded in current New York Department of Health, FDA, and CDC sources. Its stop gate, four-record identity table, kitchen zone map, ingredient and allergen lane, one-page handoff, service and leftover workflow, cleanup closeout, and exposure-response lane strengthen the edible, allergen, hosting, storage, and poisoning cluster through reciprocal contextual links. No speculative outreach target was added and no outreach was sent."},
+        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement materially expands the neutral price-and-label calculator with product price, mandatory tax, mandatory fees, checkout total, blank-as-unknown behavior, a six-gate compatibility screen, package-fit and likely-waste decisions, an evidence handoff record, and an explicit no-purchase outcome. It adds no merchant, product, price quote, coupon, ranking, stock claim, fabricated test, product image, or paid placement."},
+        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"The dates decision guide, expanded calculator, and publication-inventory policy use semantic text, tables, local arithmetic, checklists, and existing brand interface assets. No cannabis product, package, food, vape, battery, merchant, affiliate, stock, or generated image was added or changed, so no exact-product mismatch or new licensing issue was introduced."},
+        "search_console":{"report_date":"2026-10-28","decision":"The September 28–October 25 report showed 841 impressions, four clicks, 0.476% CTR, and average position 22.477. It is five days old and usable, but no unaddressed query or editorial page had meaningful volume in the roughly position-4-to-20 band, so no item is primarily Data-led. The Guides hub and Stem Cell CBG were already reinforced; About, Contact, Affiliate Disclosure, and Editorial Policy are navigational; Montana has two impressions; the HTTP, pre-roll, and federal-property rows have one impression; and Blue Dream sits mostly around positions 40–61. The report therefore prevented another overlapping CBG, generic hub, Montana, pre-roll, federal-property, or Blue Dream page while the batch filled distinct product-lifecycle, shopping-comparison, and release-integrity gaps."},
+        "authority":{"action":"Published a citation-worthy cross-format product-date and condition decision reference grounded in current New York OCM, FDA, CDC, and CPSC sources. Its hard-stop gate, date-language map, five-record identity, six-format condition matrix, decision router, handoff record, and checkout path strengthen the storage, seal, recall, disposal, label, and price-comparison cluster through reciprocal contextual links. No speculative outreach target was added and no outreach was sent."},
         "freshness_surfaces":{
-            "https://bigbudman.com/guides/":"2026-11-01",
-            "https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/":"2026-11-01",
-            "https://bigbudman.com/gear/":"2026-11-01",
-            "https://bigbudman.com/gear/home-grow-timer-controller-buying-guide/":"2026-11-01",
-            "https://bigbudman.com/editorial-policy/":"2026-11-01",
-            "https://bigbudman.com/updates/":"2026-11-01",
-            "https://bigbudman.com/site-index/":"2026-11-01"
+            "https://bigbudman.com/guides/":"2026-11-02",
+            "https://bigbudman.com/guides/cannabis-product-dates-condition-decision-guide/":"2026-11-02",
+            "https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/":"2026-11-02",
+            "https://bigbudman.com/editorial-policy/":"2026-11-02",
+            "https://bigbudman.com/updates/":"2026-11-02",
+            "https://bigbudman.com/site-index/":"2026-11-02"
         },
-        "surfaces":["shared-kitchen edible safety and handoff guide","edible, allergen, social-hosting, storage, and poisoning reciprocal links","home-grow timer and controller comparison guide","grow-planning, fire-safety, grow-light, and neutral comparison reciprocal links","checked-in publication parity gate","public source-integrity editorial contract","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","legacy Search Console sitemap compatibility URL","checksum-verified source archive and publication gates"],
+        "surfaces":["cross-format product dates and condition decision guide","storage, seal, recall, disposal, label, and price-comparison reciprocal links","expanded checkout-total calculator and compatibility gate","public inventory-count parity gate","editorial policy trust contract","guide hub","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","legacy Search Console sitemap compatibility URL","checksum-verified source archive and publication gates"],
     }
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]

@@ -1,61 +1,60 @@
 {
-  "publication_date": "2026-11-01",
+  "publication_date": "2026-11-02",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis Shared-Kitchen and Edible Handoff Safety Plan",
-      "url": "https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/",
-      "department": "household edible safety and authority",
+      "title": "Cannabis Product Dates and Condition Decision Guide",
+      "url": "https://bigbudman.com/guides/cannabis-product-dates-condition-decision-guide/",
+      "department": "product lifecycle, condition, and authority",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "keep cannabis food identity, ingredients, allergens, access, handoffs, service, leftovers, cleanup, waste, and emergency response auditable in a shared kitchen without supplying a recipe or dose"
+      "search_intent": "interpret package, expiration, use-by, best-by, and opened dates by exact product format, lot, storage, condition, current notice, and verified exit route without inventing a universal shelf life"
     },
     {
-      "title": "Home-Grow Timer and Controller Buying Guide",
-      "url": "https://bigbudman.com/gear/home-grow-timer-controller-buying-guide/",
-      "department": "home-grow equipment and conversion",
+      "title": "Cannabis Price and Label Comparison Calculator",
+      "url": "https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/",
+      "department": "shopping comparison and conversion",
       "portfolio_label": "Exploration",
-      "search_intent": "compare a timer, smart plug, multi-outlet controller, sensor controller, or manufacturer ecosystem by exact loads, ratings, permitted control method, environment, failure states, return test, support, recalls, and ownership cost"
+      "search_intent": "compare three compatible cannabis packages using delivered checkout total, count, net quantity, and labeled cannabinoid basis while keeping evidence, usable quantity, secure storage, dates, and no-purchase visible"
     },
     {
-      "title": "Checked-In Publication Parity",
+      "title": "Documented Publication-Inventory Parity",
       "url": "https://bigbudman.com/editorial-policy/",
-      "department": "source and deployment integrity",
+      "department": "technical SEO and public trust",
       "portfolio_label": "Exploration",
-      "search_intent": "reject a release when any checked-in public file differs from the exact generated file that passed the deployment audit"
+      "search_intent": "reject a release when public README counts for indexable pages, strains, state-law guides, practical guides, or gear guides differ from the generated publication"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral timer/controller guide with an exact load-and-control record, six-system type map, three-candidate worksheet, ownership-cost boundary, 48-hour return-window observation plan, failure-state card, ten checkout gates, and explicit no-purchase outcome. It adds no merchant, model recommendation, price, coupon, stock, rating, fabricated test, product image, or paid placement."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The conversion improvement materially expands the neutral price-and-label calculator with product price, mandatory tax, mandatory fees, checkout total, blank-as-unknown behavior, a six-gate compatibility screen, package-fit and likely-waste decisions, an evidence handoff record, and an explicit no-purchase outcome. It adds no merchant, product, price quote, coupon, ranking, stock claim, fabricated test, product image, or paid placement."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The shared-kitchen plan, timer/controller guide, and publication-parity policy use semantic text, tables, checklists, and existing brand interface assets. No edible, kitchen, timer, controller, smart plug, product, affiliate, stock, or generated image was added or changed, so no exact-product mismatch or new licensing issue was introduced."
+    "note": "The dates decision guide, expanded calculator, and publication-inventory policy use semantic text, tables, local arithmetic, checklists, and existing brand interface assets. No cannabis product, package, food, vape, battery, merchant, affiliate, stock, or generated image was added or changed, so no exact-product mismatch or new licensing issue was introduced."
   },
   "search_console": {
     "report_date": "2026-10-28",
-    "decision": "The September 28\u2013October 25 report showed 841 impressions, four clicks, 0.476% CTR, and average position 22.477. It is four days old and usable, but no unaddressed query or editorial page had meaningful volume in the roughly position-4-to-20 band, so no item is primarily Data-led. The Guides hub and Stem Cell CBG were already reinforced; About, Contact, Affiliate Disclosure, and Editorial Policy are navigational; Montana has two impressions; the HTTP, pre-roll, and federal-property rows have one impression; and Blue Dream sits mostly around positions 40\u201361. The report therefore prevented another overlapping CBG, generic hub, Montana, pre-roll-container, federal-property, or Blue Dream article while the batch filled distinct shared-kitchen, equipment-control, and source-parity gaps."
+    "decision": "The September 28\u2013October 25 report showed 841 impressions, four clicks, 0.476% CTR, and average position 22.477. It is five days old and usable, but no unaddressed query or editorial page had meaningful volume in the roughly position-4-to-20 band, so no item is primarily Data-led. The Guides hub and Stem Cell CBG were already reinforced; About, Contact, Affiliate Disclosure, and Editorial Policy are navigational; Montana has two impressions; the HTTP, pre-roll, and federal-property rows have one impression; and Blue Dream sits mostly around positions 40\u201361. The report therefore prevented another overlapping CBG, generic hub, Montana, pre-roll, federal-property, or Blue Dream page while the batch filled distinct product-lifecycle, shopping-comparison, and release-integrity gaps."
   },
   "authority": {
-    "action": "Published a citation-worthy shared-kitchen edible-safety reference grounded in current New York Department of Health, FDA, and CDC sources. Its stop gate, four-record identity table, kitchen zone map, ingredient and allergen lane, one-page handoff, service and leftover workflow, cleanup closeout, and exposure-response lane strengthen the edible, allergen, hosting, storage, and poisoning cluster through reciprocal contextual links. No speculative outreach target was added and no outreach was sent."
+    "action": "Published a citation-worthy cross-format product-date and condition decision reference grounded in current New York OCM, FDA, CDC, and CPSC sources. Its hard-stop gate, date-language map, five-record identity, six-format condition matrix, decision router, handoff record, and checkout path strengthen the storage, seal, recall, disposal, label, and price-comparison cluster through reciprocal contextual links. No speculative outreach target was added and no outreach was sent."
   },
   "freshness_surfaces": {
-    "https://bigbudman.com/guides/": "2026-11-01",
-    "https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/": "2026-11-01",
-    "https://bigbudman.com/gear/": "2026-11-01",
-    "https://bigbudman.com/gear/home-grow-timer-controller-buying-guide/": "2026-11-01",
-    "https://bigbudman.com/editorial-policy/": "2026-11-01",
-    "https://bigbudman.com/updates/": "2026-11-01",
-    "https://bigbudman.com/site-index/": "2026-11-01"
+    "https://bigbudman.com/guides/": "2026-11-02",
+    "https://bigbudman.com/guides/cannabis-product-dates-condition-decision-guide/": "2026-11-02",
+    "https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/": "2026-11-02",
+    "https://bigbudman.com/editorial-policy/": "2026-11-02",
+    "https://bigbudman.com/updates/": "2026-11-02",
+    "https://bigbudman.com/site-index/": "2026-11-02"
   },
   "surfaces": [
-    "shared-kitchen edible safety and handoff guide",
-    "edible, allergen, social-hosting, storage, and poisoning reciprocal links",
-    "home-grow timer and controller comparison guide",
-    "grow-planning, fire-safety, grow-light, and neutral comparison reciprocal links",
-    "checked-in publication parity gate",
-    "public source-integrity editorial contract",
+    "cross-format product dates and condition decision guide",
+    "storage, seal, recall, disposal, label, and price-comparison reciprocal links",
+    "expanded checkout-total calculator and compatibility gate",
+    "public inventory-count parity gate",
+    "editorial policy trust contract",
+    "guide hub",
     "publication updates",
     "Atom feed",
     "complete site index",
