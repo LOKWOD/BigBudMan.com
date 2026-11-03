@@ -4,9 +4,25 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-11-02T00:00:00Z</updated>
+  <updated>2026-11-03T00:00:00Z</updated>
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Harvest &amp; Trimming Scissors Guide</title>
+    <id>https://bigbudman.com/gear/cannabis-harvest-trimming-scissors-buying-guide/</id>
+    <link href="https://bigbudman.com/gear/cannabis-harvest-trimming-scissors-buying-guide/"/>
+    <updated>2026-11-03T00:00:00Z</updated>
+    <published>2026-11-03T00:00:00Z</published>
+    <summary>Compare harvest and trimming scissors by the exact cutting job, hand fit, blade, spring and lock, cleaning, inspection, return test, and ownership cost.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis &amp; Fertility Evidence Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-fertility-preconception-evidence-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-fertility-preconception-evidence-guide/"/>
+    <updated>2026-11-03T00:00:00Z</updated>
+    <published>2026-11-03T00:00:00Z</published>
+    <summary>Separate what is known, uncertain, and clinically useful about cannabis, sperm, ovulation, conception, fertility treatment, and a preconception visit.</summary>
+  </entry>
   <entry>
     <title>Cannabis Product Dates &amp; Condition Guide</title>
     <id>https://bigbudman.com/guides/cannabis-product-dates-condition-decision-guide/</id>
@@ -230,21 +246,5 @@
     <updated>2026-10-21T00:00:00Z</updated>
     <published>2026-08-17T00:00:00Z</published>
     <summary>Act on possible cannabis exposure in a dog, cat, or other pet: call promptly, preserve the package, report co-ingredients, track signs, and prevent recurrence.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis, CBD &amp; Medication Interactions Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-cbd-medication-interactions/</id>
-    <link href="https://bigbudman.com/guides/cannabis-cbd-medication-interactions/"/>
-    <updated>2026-10-20T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Build a pharmacist-ready cannabis and CBD interaction record with the exact product, medicine list, timing, symptoms, monitoring, and follow-up.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Lighter Buying &amp; Fire-Safety Guide</title>
-    <id>https://bigbudman.com/gear/cannabis-lighter-flame-safety-guide/</id>
-    <link href="https://bigbudman.com/gear/cannabis-lighter-flame-safety-guide/"/>
-    <updated>2026-10-19T00:00:00Z</updated>
-    <published>2026-09-19T00:00:00Z</published>
-    <summary>Compare exact lighter models by intended job, controls, fuel or battery system, hand fit, instructions, recalls, ownership cost, storage, and disposal.</summary>
   </entry>
 </feed>

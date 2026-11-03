@@ -6,7 +6,7 @@ Big Bud Man is a fast, zero-dependency editorial publication for adults 21+. It 
 
 ## Included
 
-- 301 indexable pages, including 119 strain field notes, 50 state-law guides, 84 practical guide-library entries, 29 gear guides, a chronological updates page, and a generated complete site index, plus custom thank-you and 404 pages
+- 303 indexable pages, including 119 strain field notes, 50 state-law guides, 85 practical guide-library entries, 30 gear guides, a chronological updates page, and a generated complete site index, plus custom thank-you and 404 pages
 - 21+ age gate stored only in browser local storage
 - Responsive editorial design with original studio imagery, custom graphics, and operating-system forced-color support
 - Client-side site search with an on-device saved-reading manager and copyable reading list, searchable topic-filtered guide and gear libraries, strain filters, a searchable status-filtered 50-state law library, and semantic current-page navigation
@@ -15,7 +15,7 @@ Big Bud Man is a fast, zero-dependency editorial publication for adults 21+. It 
 - Desktop and native mobile article tables of contents, reading progress, copy-link, citation, checklist-copy, and save-for-later controls, and clean print/PDF output
 - Canonical URLs, search metadata, Open Graph, JSON-LD, XML sitemap, Atom update feed, robots, and web manifest
 - Dependency-free Python generator and static-site audit, with checked-in entry-point compilation before checksum-verified source restoration and byte-for-byte checked-in publication parity
-- GitHub Pages deployment and pull-request audit workflows
+- GitHub Pages deployment, pull-request audit, and post-deploy live discovery-response workflows
 - Newsletter and contact forms routed through FormSubmit
 
 ## Local build
@@ -34,7 +34,7 @@ Then open `http://localhost:8000`.
 
 ## Publishing
 
-A push to `main` verifies the deployable source archive against its committed SHA-256 checksum, tests the archive, restores the generator, builds the full publication, checks every deployable file against its checked-in root copy, audits all pages, and deploys `_site` through GitHub Pages. A checksum, archive, parity, or audit failure stops publication before deployment.
+A push to `main` verifies the deployable source archive against its committed SHA-256 checksum, tests the archive, restores the generator, builds the full publication, checks every deployable file against its checked-in root copy, audits all pages, and deploys `_site` through GitHub Pages. After deployment, a retrying live gate compares the public manifest, canonical XML sitemap, robots declaration, canonical links, and dated freshness surfaces with the audited release. A checksum, archive, parity, audit, or live-response failure stops or flags the release workflow.
 
 ## One-time launch items
 

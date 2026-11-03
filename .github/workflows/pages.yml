@@ -25,7 +25,7 @@ jobs:
         with:
           python-version: '3.13'
       - name: Validate checked-in Python entry points
-        run: python -m py_compile tools/build_site.py tools/audit_site.py
+        run: python -m py_compile tools/build_site.py tools/audit_site.py tools/verify_live.py
       - name: Verify and restore publication source
         run: |
           cat source/bbm-tools.xz.part-* > /tmp/bbm-tools.tar.xz
@@ -55,3 +55,16 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  verify-live:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Checkout audited release
+        uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Verify deployed discovery responses
+        run: python tools/verify_live.py
