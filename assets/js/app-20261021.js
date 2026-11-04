@@ -142,6 +142,7 @@
 
   const localHref = (url) => url === '/' ? prefix || './' : `${prefix}${url.replace(/^\//, '')}`;
   const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+  const resultMeta = (item) => `<span>${escapeHtml(item.category)}<small>Reviewed <time datetime="${escapeHtml(item.updated)}">${escapeHtml(item.updatedLabel)}</time></small></span>`;
   const articleActions = $('.article-actions');
   let saveButton = $('[data-save-article]');
   if (articleActions && !saveButton) {
@@ -198,7 +199,7 @@
     savedResults.innerHTML = matches.map((item) => `
       <div class="saved-reading__item">
         <a class="search-result" href="${localHref(item.url)}">
-          <span>${escapeHtml(item.category)}</span>
+          ${resultMeta(item)}
           <div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></div>
         </a>
         <button type="button" data-saved-remove="${escapeHtml(item.url)}" aria-label="Remove ${escapeHtml(item.title)} from saved reading">Remove</button>
@@ -237,7 +238,7 @@
     }
     searchResults.innerHTML = scored.map(({item}) => `
       <a class="search-result" href="${localHref(item.url)}">
-        <span>${escapeHtml(item.category)}</span>
+        ${resultMeta(item)}
         <div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></div>
       </a>`).join('');
   };

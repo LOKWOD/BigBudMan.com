@@ -1,6 +1,14 @@
 # Big Bud Man authority opportunities
 
-Last reviewed: November 1, 2026
+Last reviewed: November 4, 2026
+
+## November 4, 2026 authority action
+
+- Published a citation-worthy indica, sativa, and hybrid label evidence guide anchored by the peer-reviewed systematic review published October 24, 2026, plus major genetics and six-state commercial-chemistry studies. The guide separates retail shorthand, botanical meaning, cultivar identity, measured chemistry, and personal response; adds an evidence matrix, exact-product record, six-gate comparison, observation boundary, and language crosswalk; and refuses effect, treatment, potency, or safety guarantees.
+- Added reciprocal contextual links from the established terpene and flower guides. The new asset links onward to the label field guide and strain library, creating a clearer retail-shorthand → exact product → lot evidence → limits path without duplicating a strain note or terpene explainer.
+- Published a product-neutral magnifier and task-light guide with a reading-task map, six-system comparison, measured task record, three-candidate worksheet, complete first-year burden, exact-package return-window test, privacy lane, and no-purchase options. No approved affiliate program or tracking ID is configured.
+- Added search-result and saved-reading review dates plus a release gate matching each search date and readable label to the destination page, structured data, and canonical sitemap.
+- No new outreach target was logged. The research publishers and public agencies cited today are evidence sources rather than assumed promoters, and the existing qualified list is stronger than manufacturing a marginal contact. No outreach was sent.
 
 ## November 1, 2026 authority action
 

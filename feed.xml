@@ -4,9 +4,25 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-11-03T00:00:00Z</updated>
+  <updated>2026-11-04T00:00:00Z</updated>
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Indica vs Sativa Labels: Evidence Guide</title>
+    <id>https://bigbudman.com/guides/indica-sativa-hybrid-label-evidence-guide/</id>
+    <link href="https://bigbudman.com/guides/indica-sativa-hybrid-label-evidence-guide/"/>
+    <updated>2026-11-04T00:00:00Z</updated>
+    <published>2026-11-04T00:00:00Z</published>
+    <summary>Learn what indica, sativa, and hybrid labels can and cannot predict, then compare the exact product, chemistry, route, lot, and decision in front of you.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Label Magnifier &amp; Light Guide</title>
+    <id>https://bigbudman.com/gear/cannabis-label-magnifier-task-light-buying-guide/</id>
+    <link href="https://bigbudman.com/gear/cannabis-label-magnifier-task-light-buying-guide/"/>
+    <updated>2026-11-04T00:00:00Z</updated>
+    <published>2026-11-04T00:00:00Z</published>
+    <summary>Compare a magnifier or task light for cannabis labels, lots, QR codes, controls, and package condition by working distance, field of view, glare, fit, and cost.</summary>
+  </entry>
   <entry>
     <title>Harvest &amp; Trimming Scissors Guide</title>
     <id>https://bigbudman.com/gear/cannabis-harvest-trimming-scissors-buying-guide/</id>
@@ -230,21 +246,5 @@
     <updated>2026-10-22T00:00:00Z</updated>
     <published>2026-08-17T00:00:00Z</published>
     <summary>Compare a cannabis loyalty or rewards program by usable value, break-even spend, expiry, exclusions, data collection, consent, and current local rules.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Stash Jar Calculator &amp; Guide</title>
-    <id>https://bigbudman.com/gear/cannabis-stash-jar-buying-guide/</id>
-    <link href="https://bigbudman.com/gear/cannabis-stash-jar-buying-guide/"/>
-    <updated>2026-10-21T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Compare a cannabis stash jar by measured capacity, planned headspace, ownership cost, closure evidence, materials, cleaning, labeling, and locked-storage fit.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis &amp; Pets: Exposure Action Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-and-pets-accidental-exposure/</id>
-    <link href="https://bigbudman.com/guides/cannabis-and-pets-accidental-exposure/"/>
-    <updated>2026-10-21T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Act on possible cannabis exposure in a dog, cat, or other pet: call promptly, preserve the package, report co-ingredients, track signs, and prevent recurrence.</summary>
   </entry>
 </feed>
