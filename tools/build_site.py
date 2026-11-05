@@ -61,6 +61,7 @@ from content_nov1 import NEW_GEAR as NOV1_GEAR, NEW_GUIDES as NOV1_GUIDES
 from content_nov2 import GUIDE_OVERRIDES as NOV2_GUIDE_OVERRIDES, NEW_GUIDES as NOV2_GUIDES
 from content_nov3 import NEW_GEAR as NOV3_GEAR, NEW_GUIDES as NOV3_GUIDES
 from content_nov4 import NEW_GEAR as NOV4_GEAR, NEW_GUIDES as NOV4_GUIDES
+from content_nov5 import NEW_GEAR as NOV5_GEAR, NEW_GUIDES as NOV5_GUIDES
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -169,6 +170,8 @@ GUIDE_PAGES = GUIDE_PAGES + NOV3_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV3_GEAR
 GUIDE_PAGES = GUIDE_PAGES + NOV4_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV4_GEAR
+GUIDE_PAGES = GUIDE_PAGES + NOV5_GUIDES
+OTHER_ARTICLES = OTHER_ARTICLES + NOV5_GEAR
 
 # Publishing integrity is part of the public editorial standard: the source
 # archive is checksum-verified and tested before publication.
@@ -368,6 +371,18 @@ for _standard in STANDARD_PAGES:
             '<p class="update-line">Policy reviewed November 4, 2026</p>',
         )
         _standard["body"] += '''<h2>Search-result review-date parity</h2><p>Every result in the site's global search and saved-reading view now exposes the destination page's editorial review date. The generated search record carries both an ISO date and a readable label derived from the same page object used for structured data and the sitemap. Publication checks require every indexable URL exactly once, reject missing or malformed dates, and compare each search date with the destination's primary <code>dateModified</code> and canonical-sitemap <code>lastmod</code>. A matching date supplies useful review context; it does not promise that an external law, product, source, or search ranking has not changed.</p>'''
+
+# November 5 exposes the original publication date beside the review date on
+# every article and makes both visible dates auditable against metadata and
+# structured data. Readers can now distinguish new work from later review.
+for _standard in STANDARD_PAGES:
+    if _standard["path"] == "editorial-policy/index.html":
+        _standard["updated"] = "November 5, 2026"
+        _standard["body"] = _standard["body"].replace(
+            '<p class="update-line">Policy reviewed November 4, 2026</p>',
+            '<p class="update-line">Policy reviewed November 5, 2026</p>',
+        )
+        _standard["body"] += '''<h2>Visible publication-history parity</h2><p>Every article now displays both its first-published date and latest editorial review date in the reading header and print/PDF provenance block. Publication checks compare those visible dates with the page's <code>article:published_time</code>, <code>article:modified_time</code>, and primary Article structured data, reject a publication date after the review date, and require the same history to survive printing. This makes a new article distinguishable from an older article that was materially reviewed. Matching dates document publication history; they do not prove that every external source, rule, product, or claim remains unchanged.</p>'''
 
 # Keep new reference pages inside established topic clusters. These reciprocal
 # links are editorial navigation, not an attempt to manufacture link signals.
@@ -1001,6 +1016,27 @@ RECIPROCAL_RELATED.setdefault("gear/cannabis-accessibility-tools-buying-guide/in
 RECIPROCAL_RELATED.setdefault("gear/cannabis-loupe-pocket-microscope-guide/index.html", []).insert(
     0, ("gear/cannabis-label-magnifier-task-light-buying-guide/", "READING TOOL", "Separate full-label reading from close condition inspection before buying optics")
 )
+# November 5 connects cognition evidence from established residual-function,
+# clinical-preparation, and research-literacy pages. The measuring guide is
+# routed from the exact oil-label, label-math, and accessibility decisions.
+RECIPROCAL_RELATED.setdefault("guides/cannabis-next-day-impairment-evidence-guide/index.html", []).insert(
+    0, ("guides/cannabis-memory-attention-cognition-evidence-guide/", "MEMORY + ATTENTION", "Separate cognitive domains, acute and residual windows, confounders, and task records")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabis-older-adults-medication-fall-safety/index.html", []).insert(
+    0, ("guides/cannabis-memory-attention-cognition-evidence-guide/", "COGNITION RECORD", "Bring product, timing, medicines, baseline, function, and safety into one review")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabis-claim-fact-check-worksheet/index.html", []).insert(
+    0, ("guides/cannabis-memory-attention-cognition-evidence-guide/", "COGNITION EVIDENCE", "Read population, exposure window, cognitive domain, task, comparator, result, and limitations together")
+)
+RECIPROCAL_RELATED.setdefault("guides/cbd-oil-tincture-label-buying-guide/index.html", []).insert(
+    0, ("gear/cannabis-liquid-measuring-tool-buying-guide/", "MEASURING TOOL", "Match the exact mL instruction, graduations, capacity, package fit, control, care, and exit")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabis-edible-label-math-checker/index.html", []).insert(
+    0, ("gear/cannabis-liquid-measuring-tool-buying-guide/", "LIQUID VOLUME", "Keep milliliters, milligrams, concentration, serving, and device markings in separate fields")
+)
+RECIPROCAL_RELATED.setdefault("gear/cannabis-accessibility-tools-buying-guide/index.html", []).insert(
+    0, ("gear/cannabis-liquid-measuring-tool-buying-guide/", "LIQUID MEASUREMENT", "Solve visibility and hand-control barriers without changing the instructed unit or package routine")
+)
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in RECIPROCAL_RELATED:
         _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
@@ -1224,9 +1260,10 @@ def add_collection_itemlist(html: str, page: Page, name: str, card_class: str) -
 
 
 def render_guides_hub() -> tuple[Page,str]:
-    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 4, 2026",kind="website")
+    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 5, 2026",kind="website")
     p="../"
     cards="".join([
+      card("guides/cannabis-memory-attention-cognition-evidence-guide/","HEALTH + COGNITION","Cannabis, memory, and attention evidence","Separate cognitive domains, acute and residual windows, confounders, task records, claim limits, and the clinical or safety handoff.","heart",p),
       card("guides/indica-sativa-hybrid-label-evidence-guide/","FLOWER + EVIDENCE","Indica, sativa, and hybrid labels","Use the new 2026 systematic review, product identity, exact-lot chemistry, route, and context without turning shorthand into an effect guarantee.","leaf",p),
       card("guides/cannabis-fertility-preconception-evidence-guide/","HEALTH + PRECONCEPTION","Cannabis and fertility evidence","Separate sperm, ovulation, conception, pregnancy, and treatment endpoints; build an exact exposure record for the clinical visit.","heart",p),
       card("guides/cannabis-product-dates-condition-decision-guide/","PACKAGING + DECISIONS","Product dates and condition guide","Interpret package, expiration, use-by, best-by, and opened dates with the exact format, lot, storage, condition, recall, and exit route.","clock",p),
@@ -1389,6 +1426,7 @@ def render_strains_hub() -> tuple[Page,str]:
 
 def render_gear_hub() -> tuple[Page,str]:
     items = [
+        ("cannabis-liquid-measuring-tool-buying-guide/","compare preparation care","MEASUREMENT + LABELS","Choose a liquid measuring tool","Compare the instructed mL task, device type, graduations, capacity, package fit, accessibility, care, return test, and first-year cost.","scale",None,None),
         ("cannabis-label-magnifier-task-light-buying-guide/","compare preparation care","ACCESSIBILITY + LABELS","Choose a label magnifier and task light","Compare the reading task, field, working distance, glare, package stability, privacy, power, return test, and first-year burden.","search",None,None),
         ("cannabis-harvest-trimming-scissors-buying-guide/","compare preparation care","HARVEST + HAND TOOLS","Choose harvest and trimming scissors","Match the cutting job, hand fit, blade, spring, lock, cleaning, return test, inspection, and ownership cost.","leaf",None,None),
         ("home-grow-timer-controller-buying-guide/","compare powered care","HOME GROW + CONTROL","Choose a timer or controller system","Match exact loads, ratings, control methods, environment, outage and fault states, recalls, support, return test, and ownership cost.","clock",None,None),
@@ -1421,7 +1459,7 @@ def render_gear_hub() -> tuple[Page,str]:
         ("cannabis-ashtray-ember-disposal-guide/","care","FIRE-SAFE DISPOSAL","Choose an ashtray","Compare stability, depth, materials, wind, placement, extinguishing, cleaning, waste, and smoke-exposure limits.","alert",None,None),
         ("cannabis-glass-pipe-water-pipe-buying-guide/","preparation care","GLASSWARE","Choose a pipe or water pipe","Check format, material claims, joint fit, stability, cleaning access, replacement parts, and smoke-exposure limits.","search",None,None),
     ]
-    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 4, 2026",kind="website")
+    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 5, 2026",kind="website")
     cards=[]
     for href, categories, kicker, title, description, icon_name, image_src, image_alt in items:
         art = f'<div><img src="{image_src}" alt="{image_alt}"></div>' if image_src else f'<div class="gear-card__icon-art" aria-hidden="true">{icon(icon_name)}</div>'
@@ -1682,27 +1720,27 @@ def build() -> None:
     manifest={"name":"Big Bud Man","short_name":"Big Bud Man","start_url":"/","display":"standalone","background_color":"#101712","theme_color":"#101712","icons":[{"src":"/assets/images/favicon.svg","sizes":"any","type":"image/svg+xml"}]}
     write_text(OUT,"site.webmanifest",json.dumps(manifest,indent=2)+"\n")
     publication_manifest={
-        "publication_date":"2026-11-04",
+        "publication_date":"2026-11-05",
         "page_count":3,
         "pages":[
-            {"title":"Indica, Sativa, and Hybrid Label Evidence Guide","url":"https://bigbudman.com/guides/indica-sativa-hybrid-label-evidence-guide/","department":"guides","portfolio_label":"Authority-expansion","search_intent":"understand what indica, sativa, and hybrid labels can and cannot predict, then compare exact product identity, chemistry, route, lot, and context"},
-            {"title":"Cannabis Label Magnifier and Task Light Buying Guide","url":"https://bigbudman.com/gear/cannabis-label-magnifier-task-light-buying-guide/","department":"gear","portfolio_label":"Exploration","search_intent":"compare a reading aid by exact label task, field of view, working distance, glare, package stability, privacy, power, return testing, and complete first-year burden"},
-            {"title":"Search-Result Review-Date Parity","url":"https://bigbudman.com/editorial-policy/","department":"technical SEO and public trust","portfolio_label":"Exploration","search_intent":"expose each destination review date in site search and saved reading while matching the page, structured data, and sitemap"},
+            {"title":"Cannabis, Memory, Attention, and Cognition Evidence Guide","url":"https://bigbudman.com/guides/cannabis-memory-attention-cognition-evidence-guide/","department":"guides","portfolio_label":"Authority-expansion","search_intent":"separate memory, attention, working memory, learning, processing speed, and executive-function evidence across acute, residual, and longer-term windows"},
+            {"title":"Cannabis Liquid Measuring Tool Buying Guide","url":"https://bigbudman.com/gear/cannabis-liquid-measuring-tool-buying-guide/","department":"gear","portfolio_label":"Exploration","search_intent":"compare an oral syringe, supplied dropper, cup, or calibrated spoon by exact mL task, graduations, capacity, package fit, accessibility, care, and cost"},
+            {"title":"Visible Publication-History Parity","url":"https://bigbudman.com/editorial-policy/","department":"technical SEO and public trust","portfolio_label":"Exploration","search_intent":"show first-published and reviewed dates to readers and in print while matching article metadata and structured data"},
         ],
-        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral magnifier and task-light decision system covering exact reading tasks, optical and digital tool types, working distance, field of view, glare, package stability, privacy, power, a three-system comparison, complete first-year burden, and a realistic return-window test. It adds no merchant, model, price, coupon, ranking, stock claim, fabricated test, product image, or paid placement and preserves existing-tool and no-purchase outcomes."},
-        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"The label-evidence guide, magnifier and task-light guide, and search-date trust control use semantic text, tables, checklists, and existing brand interface assets. No cannabis product, cultivar, plant, magnifier, light, merchant, affiliate, stock, or generated image was added or changed, so no exact-product mismatch or new licensing issue was introduced."},
-        "search_console":{"report_date":"2026-10-28","decision":"The September 28–October 25 report showed 841 impressions, four clicks, 0.476% CTR, and average position 22.477. It is seven days old and usable, but no unaddressed editorial query or page had meaningful volume in the roughly position-4-to-20 band, so no item is primarily Data-led. The Guides hub and Stem Cell CBG had already been reinforced; About, Contact, Affiliate Disclosure, and Editorial Policy are navigational; Montana has two impressions; the HTTP, pre-roll, and federal-property rows have one impression; and Blue Dream sits mostly around positions 40–61. The report prevented another overlapping CBG, hub, Montana, pre-roll, federal-property, or Blue Dream page. The existing sitemap warnings remained a discovery concern, so the release preserves the canonical live-response gate while adding search-result date parity rather than another isolated page."},
-        "authority":{"action":"Published a citation-worthy label-evidence guide anchored by the peer-reviewed systematic review published October 24, 2026 and two major composition/genetics studies. Its meaning map, evidence matrix, exact-product record, six-gate shopping comparison, expectation record, and language crosswalk strengthen the terpene, flower, product-label, and strain-field-note cluster through reciprocal contextual links. No speculative outreach target was added and no outreach was sent."},
+        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral liquid-measuring decision system covering label instructions, mL versus mg, oral syringes, supplied droppers, cups, calibrated spoons, graduations, capacity, package fit, accessibility, care, first-year cost, and return testing. It adds no merchant, model, price, coupon, ranking, availability claim, fabricated test, product image, or paid placement and preserves supplied-device and no-purchase outcomes."},
+        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"The cognition guide, liquid-measuring guide, and publication-history trust control use semantic text, tables, checklists, and existing brand interface assets. No cannabis product, person, brain image, measuring device, merchant, affiliate, stock, or generated image was added or changed, so no exact-product mismatch or new licensing issue was introduced."},
+        "search_console":{"report_date":"2026-11-04","decision":"The October 5–November 1 report showed 786 impressions, four clicks, 0.509% CTR, and average position 24.632. The only new non-navigational signal in the approximate position-4-to-20 band was ‘510 vs disposable’ at two impressions and position 12; that sample is too weak, and an existing substantial comparison already serves the intent, so it was deliberately not expanded or duplicated. Delaware had one click, Montana one impression, and the HTTP federal-property and pre-roll rows one impression each; those were also too small. Blue Dream had 18 impressions but sat near position 45 and was not used to create another strain variation. No item is primarily Data-led. The report instead acted as a cannibalization guard while this batch fills distinct evidence, shopping, and trust gaps."},
+        "authority":{"action":"Published a citation-worthy cognition evidence guide anchored by current CDC guidance, a 2025 meta-analysis, a systematic review, and a large young-adult study. Its domain map, evidence-window matrix, confounder screen, product-time-task record, claim screen, and clinical/work handoff strengthen residual-impairment, older-adult safety, driving, and research-literacy paths through reciprocal contextual links. No tightly matched unsolicited outreach target was strong enough to log, and no outreach was sent."},
         "freshness_surfaces":{
-            "https://bigbudman.com/guides/":"2026-11-04",
-            "https://bigbudman.com/guides/indica-sativa-hybrid-label-evidence-guide/":"2026-11-04",
-            "https://bigbudman.com/gear/":"2026-11-04",
-            "https://bigbudman.com/gear/cannabis-label-magnifier-task-light-buying-guide/":"2026-11-04",
-            "https://bigbudman.com/editorial-policy/":"2026-11-04",
-            "https://bigbudman.com/updates/":"2026-11-04",
-            "https://bigbudman.com/site-index/":"2026-11-04"
+            "https://bigbudman.com/guides/":"2026-11-05",
+            "https://bigbudman.com/guides/cannabis-memory-attention-cognition-evidence-guide/":"2026-11-05",
+            "https://bigbudman.com/gear/":"2026-11-05",
+            "https://bigbudman.com/gear/cannabis-liquid-measuring-tool-buying-guide/":"2026-11-05",
+            "https://bigbudman.com/editorial-policy/":"2026-11-05",
+            "https://bigbudman.com/updates/":"2026-11-05",
+            "https://bigbudman.com/site-index/":"2026-11-05"
         },
-        "surfaces":["indica, sativa, and hybrid evidence map and exact-product record","terpene, flower, label, and strain-library reciprocal links","label magnifier and task-light buying decision system","accessibility, label, inspection, and report-matching reciprocal links","search-result and saved-reading review dates","search-to-page-to-sitemap date parity gate","editorial policy trust contract","guide and gear hubs","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","robots sitemap declaration","checksum-verified source archive and publication gates"],
+        "surfaces":["memory, attention, and cognition evidence map and task record","residual-function, older-adult, driving, and research-literacy reciprocal links","liquid measuring tool buying decision system","oil-label, edible-math, accessibility, and label-record reciprocal links","visible first-published and reviewed dates","metadata, schema, header, and print date-parity gate","editorial policy trust contract","guide and gear hubs","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","robots sitemap declaration","checksum-verified source archive and publication gates"],
     }
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]

@@ -248,16 +248,16 @@ def main() -> int:
             if not re.search(r'Reviewed\s*<time datetime="\d{4}-\d{2}-\d{2}">[^<]+</time>', text):
                 failures.append(f"{rel}: visible review date is not machine-readable")
             provenance = re.search(
-                r'<p class="print-provenance">Big Bud Man · Reviewed <time datetime="(\d{4}-\d{2}-\d{2})">([^<]+)</time> · <a href="([^"]+)">([^<]+)</a></p>',
+                r'<p class="print-provenance">Big Bud Man · First published <time datetime="(\d{4}-\d{2}-\d{2})">([^<]+)</time> · Reviewed <time datetime="(\d{4}-\d{2}-\d{2})">([^<]+)</time> · <a href="([^"]+)">([^<]+)</a></p>',
                 text,
             )
             if not provenance:
                 failures.append(f"{rel}: article is missing print/PDF provenance")
             else:
                 visible_review = re.search(r'Reviewed\s*<time datetime="(\d{4}-\d{2}-\d{2})">([^<]+)</time>', text)
-                if not visible_review or provenance.group(1, 2) != visible_review.group(1, 2):
+                if not visible_review or provenance.group(3, 4) != visible_review.group(1, 2):
                     failures.append(f"{rel}: print/PDF review date differs from visible article date")
-                if provenance.group(3) != parser.canonical or provenance.group(4) != parser.canonical:
+                if provenance.group(5) != parser.canonical or provenance.group(6) != parser.canonical:
                     failures.append(f"{rel}: print/PDF URL differs from the canonical URL")
         robots = next((item.get("content", "") for item in parser.meta if item.get("name") == "robots"), "")
         if rel.as_posix() in {"404.html", "thank-you/index.html"}:
@@ -405,6 +405,32 @@ def main() -> int:
             is_collection_detail = rel.as_posix() != "guides/cannabis-terms-label-lab-glossary/index.html" and any(rel.as_posix().startswith(f"{section}/") and rel.as_posix() != f"{section}/index.html" for section in ("guides", "gear", "strains", "legal"))
             if is_collection_detail and 'aria-current="location"' not in text:
                 failures.append(f"{rel}: collection navigation does not identify the current location")
+        # Article publication history must be equally visible to readers,
+        # printers, metadata consumers, and structured-data consumers.
+        if 'property="article:published_time"' in text:
+            published_match = re.search(r'property="article:published_time" content="(\d{4}-\d{2}-\d{2})"', text)
+            modified_match = re.search(r'property="article:modified_time" content="(\d{4}-\d{2}-\d{2})"', text)
+            schema_match = re.search(r'<script type="application/ld\+json">(.*?)</script>', text, re.S)
+            if not published_match or not modified_match or not schema_match:
+                failures.append(f"{rel}: incomplete article publication-history metadata")
+            else:
+                published_iso = published_match.group(1)
+                modified_iso = modified_match.group(1)
+                if published_iso > modified_iso:
+                    failures.append(f"{rel}: publication date is after review date")
+                if f'First published <time datetime="{published_iso}">' not in text:
+                    failures.append(f"{rel}: visible first-published date does not match metadata")
+                if f'Reviewed <time datetime="{modified_iso}">' not in text:
+                    failures.append(f"{rel}: visible reviewed date does not match metadata")
+                if not re.search(rf'<p class="print-provenance">.*First published <time datetime="{published_iso}">.*Reviewed <time datetime="{modified_iso}">', text, re.S):
+                    failures.append(f"{rel}: print provenance does not preserve both publication dates")
+                try:
+                    schema = json.loads(schema_match.group(1))
+                    article = next((node for node in schema.get("@graph", []) if node.get("@type") == "Article"), None)
+                    if not article or article.get("datePublished") != published_iso or article.get("dateModified") != modified_iso:
+                        failures.append(f"{rel}: Article schema publication history does not match metadata")
+                except Exception as exc:
+                    failures.append(f"{rel}: invalid publication-history schema: {exc}")
         if rel.as_posix() in batch_paths:
             manifest_item = batch_paths[rel.as_posix()]
             visible = re.sub(r"<script\b[^>]*>.*?</script>|<style\b[^>]*>.*?</style>|<[^>]+>", " ", text, flags=re.I | re.S)
@@ -749,8 +775,8 @@ def main() -> int:
         discovery_checks = {
             "index.html": ("guides/cannabis-next-day-impairment-evidence-guide/", "guides/cbn-products-label-evidence-guide/", "legal/cannabis-federal-property-rules-guide/", "guides/cannabis-social-hosting-guest-safety-plan/", "guides/terpenes/", "gear/cannabis-loupe-pocket-microscope-guide/", "guides/cannabis-cbd-chronic-pain-evidence-guide/", "guides/storage/", "gear/cannabis-accessibility-tools-buying-guide/"),
             "strains/index.html": ("stem-cell-cbg/", "panakeia-beta-hurv19pan/", "119 STRAIN FIELD NOTES", "NO VERIFIED CULTIVAR IMAGE"),
-            "guides/index.html": ("indica-sativa-hybrid-label-evidence-guide/", "cannabis-fertility-preconception-evidence-guide/", "cannabis-product-dates-condition-decision-guide/", "cannabis-shared-kitchen-edible-safety-plan/", "new-york-cannabis-seed-clone-buying-guide/", "cannabis-home-fire-safety-plan/", "cannabis-nicotine-tobacco-co-use-guide/", "cannabis-allergy-symptom-exposure-guide/", "cannabis-next-day-impairment-evidence-guide/", "cannabis-cbd-chronic-pain-evidence-guide/", "cannabis-cbd-cancer-claims-evidence-guide/", "cannabis-menu-package-receipt-match-checklist/", "cannabis-exercise-workout-heat-safety/", "new-york-home-cannabis-pest-mold-ipm-guide/", "new-york-home-cannabis-harvest-drying-curing-log/", "cannabis-cbd-epilepsy-seizure-care-guide/", "cannabis-glaucoma-eye-pressure-vision-guide/", "cbd-patches-transdermal-label-evidence-guide/", "cannabis-package-seal-tamper-evidence-checklist/", "cannabis-dry-mouth-dental-oral-health-guide/", "cannabis-edible-label-math-checker/", "cbg-products-label-evidence-guide/", "cannabis-contaminant-test-results-guide/", "cannabis-child-resistant-packaging-home-storage-guide/", "cannabis-official-source-directory/", "cannabis-gummies-drinks-oils-capsules-comparison/", "cannabis-claim-fact-check-worksheet/", "Store cannabis safely by product type", "Thirty useful paths", "Comparing packaged cannabis flower", 'data-guide-sort', 'data-updated="2026-11-04"', 'data-guide-filter="health"', 'data-guide-filter="workplace"'),
-            "gear/index.html": ("cannabis-label-magnifier-task-light-buying-guide/", "cannabis-harvest-trimming-scissors-buying-guide/", "home-grow-timer-controller-buying-guide/", "cannabis-rolling-machine-buying-guide/", "home-grow-ph-ec-meter-buying-guide/", "home-grow-temperature-humidity-monitor-buying-guide/", "cannabis-home-testing-kit-buying-guide/", "used-cannabis-accessory-buying-safety-guide/", "cannabis-accessibility-tools-buying-guide/", "smell-proof-storage/", "cannabis-rolling-tray-buying-guide/", "cannabis-rolling-paper-cone-guide/", "digital-scale-buying-calibration-guide/", "cannabis-tool-cleaning-kit/", "indoor-cannabis-grow-light-buying-cost-planner/", "cannabis-gear-comparison-worksheet/", "cannabis-accessory-return-warranty-recall-guide/", "dry-herb-vaporizer-dosing-capsule-guide/", "Choose a home testing system", "All 31", "2026-11-04"),
+            "guides/index.html": ("cannabis-memory-attention-cognition-evidence-guide/", "indica-sativa-hybrid-label-evidence-guide/", "cannabis-fertility-preconception-evidence-guide/", "cannabis-product-dates-condition-decision-guide/", "cannabis-shared-kitchen-edible-safety-plan/", "new-york-cannabis-seed-clone-buying-guide/", "cannabis-home-fire-safety-plan/", "cannabis-nicotine-tobacco-co-use-guide/", "cannabis-allergy-symptom-exposure-guide/", "cannabis-next-day-impairment-evidence-guide/", "cannabis-cbd-chronic-pain-evidence-guide/", "cannabis-cbd-cancer-claims-evidence-guide/", "cannabis-menu-package-receipt-match-checklist/", "cannabis-exercise-workout-heat-safety/", "new-york-home-cannabis-pest-mold-ipm-guide/", "new-york-home-cannabis-harvest-drying-curing-log/", "cannabis-cbd-epilepsy-seizure-care-guide/", "cannabis-glaucoma-eye-pressure-vision-guide/", "cbd-patches-transdermal-label-evidence-guide/", "cannabis-package-seal-tamper-evidence-checklist/", "cannabis-dry-mouth-dental-oral-health-guide/", "cannabis-edible-label-math-checker/", "cbg-products-label-evidence-guide/", "cannabis-contaminant-test-results-guide/", "cannabis-child-resistant-packaging-home-storage-guide/", "cannabis-official-source-directory/", "cannabis-gummies-drinks-oils-capsules-comparison/", "cannabis-claim-fact-check-worksheet/", "Store cannabis safely by product type", "Thirty useful paths", "Comparing packaged cannabis flower", 'data-guide-sort', 'data-updated="2026-11-05"', 'data-guide-filter="health"', 'data-guide-filter="workplace"'),
+            "gear/index.html": ("cannabis-liquid-measuring-tool-buying-guide/", "cannabis-label-magnifier-task-light-buying-guide/", "cannabis-harvest-trimming-scissors-buying-guide/", "home-grow-timer-controller-buying-guide/", "cannabis-rolling-machine-buying-guide/", "home-grow-ph-ec-meter-buying-guide/", "home-grow-temperature-humidity-monitor-buying-guide/", "cannabis-home-testing-kit-buying-guide/", "used-cannabis-accessory-buying-safety-guide/", "cannabis-accessibility-tools-buying-guide/", "smell-proof-storage/", "cannabis-rolling-tray-buying-guide/", "cannabis-rolling-paper-cone-guide/", "digital-scale-buying-calibration-guide/", "cannabis-tool-cleaning-kit/", "indoor-cannabis-grow-light-buying-cost-planner/", "cannabis-gear-comparison-worksheet/", "cannabis-accessory-return-warranty-recall-guide/", "dry-herb-vaporizer-dosing-capsule-guide/", "Choose a home testing system", "All 32", "2026-11-05"),
             "guides/read-a-label/index.html": ("Build a date chain", "Preserve a label-to-lot evidence card", "cannabis.ny.gov/part-128-guidance", "cannabis-certificate-of-analysis-coa-guide/", "cannabis-product-recall-batch-checker/"),
             "responsible-use/index.html": ("guides/cannabis-exercise-workout-heat-safety/",),
             "guides/cannabis-exercise-workout-heat-safety/index.html": ("cdc.gov/cannabis/health-effects/brain-health", "cdc.gov/heat-health/risk-factors/heat-and-athletes", "nhtsa.gov/risky-driving/drug-impaired-driving", "2026list_en_final_clean"),
@@ -796,9 +822,11 @@ def main() -> int:
             "gear/cannabis-harvest-trimming-scissors-buying-guide/index.html": ("Separate the four cutting jobs", "Build the hand-and-task fit card", "Compare three exact tools before price", "Use the return window before plant contact", "extension.umn.edu", "No scissor, shear, snip"),
             "guides/indica-sativa-hybrid-label-evidence-guide/index.html": ("The short answer is useful but narrow", "Separate five things", "2026 systematic review", "Build the product record", "six-gate shopping comparison", "s42238-026-00528-3", "journal.pone.0267498"),
             "gear/cannabis-label-magnifier-task-light-buying-guide/index.html": ("Translate the barrier into a reading task", "Compare tool types", "Measure the task", "Put three exact systems", "Use the return window", "nei.nih.gov/eye-health-information/vision-rehabilitation", "No magnifier, light, phone app"),
-            "editorial-policy/index.html": ("Sitemap date integrity", "legacy Search Console compatibility endpoint", "cannot be later than the current publication batch", "Forced-color interface integrity", "Checked-in source entry-point integrity", "Checked-in publication parity", "Documented publication-inventory parity", "Deployed discovery-response integrity", "Search-result review-date parity"),
-            "updates/index.html": ("guides/indica-sativa-hybrid-label-evidence-guide/", "gear/cannabis-label-magnifier-task-light-buying-guide/", "editorial-policy/", "November 4, 2026"),
-            "site-index/index.html": ("guides/indica-sativa-hybrid-label-evidence-guide/", "gear/cannabis-label-magnifier-task-light-buying-guide/", "editorial-policy/", "November 4, 2026", "updates/"),
+            "guides/cannabis-memory-attention-cognition-evidence-guide/index.html": ("Start by naming the cognitive job", "Keep three evidence windows separate", "Build one product, time, function, and task record", "CDC: Cannabis and Brain Health", "1-800-222-1222"),
+            "gear/cannabis-liquid-measuring-tool-buying-guide/index.html": ("Start with the label, not the tool aisle", "Compare four measuring systems", "Keep volume and ingredient amount in separate columns", "Use the return window before product contact", "FDA Safe Use Initiative"),
+            "editorial-policy/index.html": ("Sitemap date integrity", "legacy Search Console compatibility endpoint", "cannot be later than the current publication batch", "Forced-color interface integrity", "Checked-in source entry-point integrity", "Checked-in publication parity", "Documented publication-inventory parity", "Deployed discovery-response integrity", "Search-result review-date parity", "Visible publication-history parity"),
+            "updates/index.html": ("guides/cannabis-memory-attention-cognition-evidence-guide/", "gear/cannabis-liquid-measuring-tool-buying-guide/", "editorial-policy/", "November 5, 2026"),
+            "site-index/index.html": ("guides/cannabis-memory-attention-cognition-evidence-guide/", "gear/cannabis-liquid-measuring-tool-buying-guide/", "editorial-policy/", "November 5, 2026", "updates/"),
         }
         for discovery_page, markers in discovery_checks.items():
             discovery_text = (ROOT / discovery_page).read_text(encoding="utf-8")
@@ -1015,7 +1043,7 @@ def main() -> int:
             failures.append("Editorial policy or Atom feed is missing the feed authorship standard")
         if "Age-gate focus isolation" not in policy:
             failures.append("Editorial policy is missing the age-gate focus-isolation standard")
-        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "November 4, 2026" not in policy:
+        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "November 5, 2026" not in policy:
             failures.append("Editorial policy is missing the current link and collection-date integrity standards")
         deployed_css = (ROOT / "assets/css/styles.css").read_text(encoding="utf-8")
         for marker in ("@media (forced-colors:active)", "CanvasText", "HighlightText", 'button[aria-pressed="true"]', ":focus-visible"):

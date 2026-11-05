@@ -1,6 +1,13 @@
 # Big Bud Man authority opportunities
 
-Last reviewed: November 4, 2026
+Last reviewed: November 5, 2026
+
+## November 5, 2026 authority action
+
+- Published a citation-worthy cannabis cognition evidence guide built around a domain map, acute/residual/persistent evidence lanes, current CDC guidance, a 2025 meta-analysis, a recent systematic review, a large young-adult study, a confounder screen, a product-time-task record, and a claims crosswalk. It strengthens the residual-impairment, older-adult safety, driving, and research-literacy cluster with reciprocal contextual links.
+- Published a product-neutral liquid-measuring buying guide that separates milliliters, milligrams, concentration, servings, and drops; compares four device types; and adds exact-fit, accessibility, care, cost, return-window, supplied-device, and no-purchase gates. No approved affiliate program or tracking ID is configured.
+- Added visible first-published dates to every article header and print/PDF provenance block, backed by a new metadata/schema/visible-date parity audit and an updated editorial-policy trust contract.
+- Qualified outreach opportunities logged: none. No sufficiently exact, non-speculative resource-page match was found for either asset, and no outreach was sent.
 
 ## November 4, 2026 authority action
 

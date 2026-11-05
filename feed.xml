@@ -4,9 +4,25 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-11-04T00:00:00Z</updated>
+  <updated>2026-11-05T00:00:00Z</updated>
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis, Memory &amp; Attention: Evidence Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-memory-attention-cognition-evidence-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-memory-attention-cognition-evidence-guide/"/>
+    <updated>2026-11-05T00:00:00Z</updated>
+    <published>2026-11-05T00:00:00Z</published>
+    <summary>Separate acute, residual, and longer-term cannabis cognition evidence, then build a useful memory, attention, product, timing, and task record.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Liquid Measuring Tools: Buying Guide</title>
+    <id>https://bigbudman.com/gear/cannabis-liquid-measuring-tool-buying-guide/</id>
+    <link href="https://bigbudman.com/gear/cannabis-liquid-measuring-tool-buying-guide/"/>
+    <updated>2026-11-05T00:00:00Z</updated>
+    <published>2026-11-05T00:00:00Z</published>
+    <summary>Compare an oral syringe, dropper, cup, or calibrated spoon for a labeled cannabis or CBD liquid by units, graduations, fit, cleaning, and cost.</summary>
+  </entry>
   <entry>
     <title>Indica vs Sativa Labels: Evidence Guide</title>
     <id>https://bigbudman.com/guides/indica-sativa-hybrid-label-evidence-guide/</id>
@@ -230,21 +246,5 @@
     <updated>2026-10-23T00:00:00Z</updated>
     <published>2026-10-23T00:00:00Z</published>
     <summary>Understand what research can and cannot say about next-day cannabis impairment, residual effects, driving, self-checks, testing, and safety planning.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Product Disposal Decision Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-product-disposal-decision-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-product-disposal-decision-guide/"/>
-    <updated>2026-10-22T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Dispose of cannabis products, packaging, vape devices, batteries, glass, recalled lots, and residue with a format-first local decision record.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Loyalty Rewards Value &amp; Privacy Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-dispensary-loyalty-rewards-value-privacy-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-dispensary-loyalty-rewards-value-privacy-guide/"/>
-    <updated>2026-10-22T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Compare a cannabis loyalty or rewards program by usable value, break-even spend, expiry, exclusions, data collection, consent, and current local rules.</summary>
   </entry>
 </feed>
