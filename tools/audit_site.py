@@ -234,6 +234,17 @@ def main() -> int:
             region_tag = text[region_start:region_end + 1]
             if not all(marker in region_tag for marker in ('tabindex="0"', 'role="region"', 'aria-labelledby="')):
                 failures.append(f"{rel}: data table scroll region is not keyboard-focusable and section-labelled")
+        for table_number, table_html in enumerate(re.findall(r'<table\b[^>]*>.*?</table>', text, re.I | re.S), start=1):
+            headers = re.findall(r'<th\b[^>]*>', table_html, re.I)
+            for header in headers:
+                if not re.search(r'\bscope="(?:col|row)"', header, re.I):
+                    failures.append(f"{rel}: table {table_number} has an unscoped header")
+            for thead in re.findall(r'<thead\b[^>]*>.*?</thead>', table_html, re.I | re.S):
+                if re.search(r'<th\b(?![^>]*\bscope="col")[^>]*>', thead, re.I):
+                    failures.append(f"{rel}: table {table_number} has a column header without scope=col")
+            for tbody in re.findall(r'<tbody\b[^>]*>.*?</tbody>', table_html, re.I | re.S):
+                if re.search(r'<th\b(?![^>]*\bscope="row")[^>]*>', tbody, re.I):
+                    failures.append(f"{rel}: table {table_number} has a row header without scope=row")
         for honeypot_tag in re.findall(r'<input\b[^>]*class="honeypot"[^>]*>', text, re.I):
             honeypot_count += 1
             if 'tabindex="-1"' not in honeypot_tag or 'aria-hidden="true"' not in honeypot_tag:
@@ -828,6 +839,40 @@ def main() -> int:
             "updates/index.html": ("guides/cannabis-memory-attention-cognition-evidence-guide/", "gear/cannabis-liquid-measuring-tool-buying-guide/", "editorial-policy/", "November 5, 2026"),
             "site-index/index.html": ("guides/cannabis-memory-attention-cognition-evidence-guide/", "gear/cannabis-liquid-measuring-tool-buying-guide/", "editorial-policy/", "November 5, 2026", "updates/"),
         }
+        discovery_checks["guides/index.html"] = tuple(
+            'data-updated="2026-11-06"' if marker == 'data-updated="2026-11-05"' else marker
+            for marker in discovery_checks["guides/index.html"]
+        ) + ("cannabis-blood-donation-eligibility-guide/",)
+        discovery_checks["gear/index.html"] = tuple(
+            "All 33" if marker == "All 32" else "2026-11-06" if marker == "2026-11-05" else marker
+            for marker in discovery_checks["gear/index.html"]
+        ) + ("cannabis-smoke-air-quality-monitor-buying-guide/",)
+        discovery_checks["guides/cannabis-blood-donation-eligibility-guide/index.html"] = (
+            "Keep five screening lanes separate",
+            "redcrossblood.org/local-homepage/news/article/can-you-donate-blood-if-you-use-cannabis-.html",
+            "Synthetic cannabinoid",
+            "No blood, donor, product, medicine",
+        )
+        discovery_checks["gear/cannabis-smoke-air-quality-monitor-buying-guide/index.html"] = (
+            "Compare three exact monitors before price",
+            "epa.gov/indoor-air-quality-iaq/low-cost-air-pollution-monitors",
+            "SMOKE ALARMS ARE LIFE-SAFETY DEVICES",
+            "No monitor, sensor, alarm, purifier",
+        )
+        discovery_checks["editorial-policy/index.html"] += ("Semantic table-header integrity",)
+        discovery_checks["updates/index.html"] = (
+            "guides/cannabis-blood-donation-eligibility-guide/",
+            "gear/cannabis-smoke-air-quality-monitor-buying-guide/",
+            "editorial-policy/",
+            "November 6, 2026",
+        )
+        discovery_checks["site-index/index.html"] = (
+            "guides/cannabis-blood-donation-eligibility-guide/",
+            "gear/cannabis-smoke-air-quality-monitor-buying-guide/",
+            "editorial-policy/",
+            "November 6, 2026",
+            "updates/",
+        )
         for discovery_page, markers in discovery_checks.items():
             discovery_text = (ROOT / discovery_page).read_text(encoding="utf-8")
             for marker in markers:
@@ -1043,7 +1088,7 @@ def main() -> int:
             failures.append("Editorial policy or Atom feed is missing the feed authorship standard")
         if "Age-gate focus isolation" not in policy:
             failures.append("Editorial policy is missing the age-gate focus-isolation standard")
-        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "November 5, 2026" not in policy:
+        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "November 6, 2026" not in policy:
             failures.append("Editorial policy is missing the current link and collection-date integrity standards")
         deployed_css = (ROOT / "assets/css/styles.css").read_text(encoding="utf-8")
         for marker in ("@media (forced-colors:active)", "CanvasText", "HighlightText", 'button[aria-pressed="true"]', ":focus-visible"):

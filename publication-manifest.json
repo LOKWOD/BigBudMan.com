@@ -1,61 +1,67 @@
 {
-  "publication_date": "2026-11-05",
+  "publication_date": "2026-11-06",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis, Memory, Attention, and Cognition Evidence Guide",
-      "url": "https://bigbudman.com/guides/cannabis-memory-attention-cognition-evidence-guide/",
+      "title": "Cannabis and Blood Donation Eligibility Guide",
+      "url": "https://bigbudman.com/guides/cannabis-blood-donation-eligibility-guide/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "separate memory, attention, working memory, learning, processing speed, and executive-function evidence across acute, residual, and longer-term windows"
+      "search_intent": "separate cannabis use, current impairment, donor history, medications, synthetic cannabinoids, and the blood center's final eligibility decision"
     },
     {
-      "title": "Cannabis Liquid Measuring Tool Buying Guide",
-      "url": "https://bigbudman.com/gear/cannabis-liquid-measuring-tool-buying-guide/",
+      "title": "Cannabis Smoke Air-Quality Monitor Buying Guide",
+      "url": "https://bigbudman.com/gear/cannabis-smoke-air-quality-monitor-buying-guide/",
       "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "compare an oral syringe, supplied dropper, cup, or calibrated spoon by exact mL task, graduations, capacity, package fit, accessibility, care, and cost"
+      "search_intent": "compare indoor-air monitors by pollutant, sensor evidence, placement, data access, upkeep, privacy, life-safety boundary, and first-year cost"
     },
     {
-      "title": "Visible Publication-History Parity",
+      "title": "Semantic Table-Header Integrity",
       "url": "https://bigbudman.com/editorial-policy/",
-      "department": "technical SEO and public trust",
+      "department": "accessibility and public trust",
       "portfolio_label": "Exploration",
-      "search_intent": "show first-published and reviewed dates to readers and in print while matching article metadata and structured data"
+      "search_intent": "make every generated data table expose explicit column and row header relationships and stop publication if those semantics regress"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral liquid-measuring decision system covering label instructions, mL versus mg, oral syringes, supplied droppers, cups, calibrated spoons, graduations, capacity, package fit, accessibility, care, first-year cost, and return testing. It adds no merchant, model, price, coupon, ranking, availability claim, fabricated test, product image, or paid placement and preserves supplied-device and no-purchase outcomes."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral air-monitor decision system covering sensor purpose, performance evidence, display, logging, export, privacy, outage behavior, upkeep, return testing, and first-year cost. It adds no merchant, model, price, coupon, ranking, availability claim, fabricated test, product image, or paid placement and preserves existing-alarm, source-control, and no-purchase outcomes."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The cognition guide, liquid-measuring guide, and publication-history trust control use semantic text, tables, checklists, and existing brand interface assets. No cannabis product, person, brain image, measuring device, merchant, affiliate, stock, or generated image was added or changed, so no exact-product mismatch or new licensing issue was introduced."
+    "note": "Both new guides and the semantic table-header control use text, tables, checklists, and existing brand interface assets. No person, blood product, monitor, sensor, alarm, merchant, affiliate, stock, or generated image was added or changed, so no exact-product mismatch or new licensing issue was introduced."
   },
   "search_console": {
     "report_date": "2026-11-04",
-    "decision": "The October 5\u2013November 1 report showed 786 impressions, four clicks, 0.509% CTR, and average position 24.632. The only new non-navigational signal in the approximate position-4-to-20 band was \u2018510 vs disposable\u2019 at two impressions and position 12; that sample is too weak, and an existing substantial comparison already serves the intent, so it was deliberately not expanded or duplicated. Delaware had one click, Montana one impression, and the HTTP federal-property and pre-roll rows one impression each; those were also too small. Blue Dream had 18 impressions but sat near position 45 and was not used to create another strain variation. No item is primarily Data-led. The report instead acted as a cannibalization guard while this batch fills distinct evidence, shopping, and trust gaps."
+    "decision": "The October 5\u2013November 1 report showed 786 impressions, four clicks, 0.509% CTR, and average position 24.632. \u2018510 vs disposable\u2019 had two impressions at position 12, while Delaware, federal-property, and Montana signals had one impression or click apiece; those samples were too weak to redirect the portfolio and existing pages already serve the intents. Blue Dream had 18 impressions near position 45 and was also not used to create another strain variation. No item is primarily Data-led. The report acted as a cannibalization guard while this batch fills distinct donor-eligibility, indoor-air shopping, and accessibility gaps."
   },
   "authority": {
-    "action": "Published a citation-worthy cognition evidence guide anchored by current CDC guidance, a 2025 meta-analysis, a systematic review, and a large young-adult study. Its domain map, evidence-window matrix, confounder screen, product-time-task record, claim screen, and clinical/work handoff strengthen residual-impairment, older-adult safety, driving, and research-literacy paths through reciprocal contextual links. No tightly matched unsolicited outreach target was strong enough to log, and no outreach was sent."
+    "action": "Published a citation-worthy U.S. blood-donation eligibility decision guide anchored by current American Red Cross and FDA materials. Its five-lane screen, synthetic-cannabinoid distinction, donor-prep record, center call script, and myth checks strengthen responsible-use, clinician-conversation, and cardiovascular-safety paths through reciprocal contextual links. The table-header release gate also improves the accessibility of every comparison and evidence matrix on the site. No tightly matched unsolicited outreach target was strong enough to log, and no outreach was sent."
   },
   "freshness_surfaces": {
-    "https://bigbudman.com/guides/": "2026-11-05",
-    "https://bigbudman.com/guides/cannabis-memory-attention-cognition-evidence-guide/": "2026-11-05",
-    "https://bigbudman.com/gear/": "2026-11-05",
-    "https://bigbudman.com/gear/cannabis-liquid-measuring-tool-buying-guide/": "2026-11-05",
-    "https://bigbudman.com/editorial-policy/": "2026-11-05",
-    "https://bigbudman.com/updates/": "2026-11-05",
-    "https://bigbudman.com/site-index/": "2026-11-05"
+    "https://bigbudman.com/guides/": "2026-11-06",
+    "https://bigbudman.com/guides/cannabis-blood-donation-eligibility-guide/": "2026-11-06",
+    "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/": "2026-11-06",
+    "https://bigbudman.com/guides/cannabis-heart-rate-blood-pressure-safety/": "2026-11-06",
+    "https://bigbudman.com/guides/secondhand-cannabis-smoke-indoor-air/": "2026-11-06",
+    "https://bigbudman.com/guides/cannabis-home-fire-safety-plan/": "2026-11-06",
+    "https://bigbudman.com/gear/": "2026-11-06",
+    "https://bigbudman.com/gear/cannabis-smoke-air-quality-monitor-buying-guide/": "2026-11-06",
+    "https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/": "2026-11-06",
+    "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/": "2026-11-06",
+    "https://bigbudman.com/editorial-policy/": "2026-11-06",
+    "https://bigbudman.com/updates/": "2026-11-06",
+    "https://bigbudman.com/site-index/": "2026-11-06"
   },
   "surfaces": [
-    "memory, attention, and cognition evidence map and task record",
-    "residual-function, older-adult, driving, and research-literacy reciprocal links",
-    "liquid measuring tool buying decision system",
-    "oil-label, edible-math, accessibility, and label-record reciprocal links",
-    "visible first-published and reviewed dates",
-    "metadata, schema, header, and print date-parity gate",
+    "blood-donation five-lane eligibility guide and donor-prep record",
+    "clinician-conversation and cardiovascular reciprocal links",
+    "air-quality monitor sensor, data, placement, cost, and acceptance-test system",
+    "secondhand-smoke, fire-safety, purifier, and gear-comparison reciprocal links",
+    "site-wide row and column table-header scopes",
+    "semantic table-header regression gate",
     "editorial policy trust contract",
     "guide and gear hubs",
     "publication updates",

@@ -1,6 +1,13 @@
 # Big Bud Man authority opportunities
 
-Last reviewed: November 5, 2026
+Last reviewed: November 6, 2026
+
+## November 6, 2026 authority action
+
+- Published a citation-worthy U.S. cannabis and blood-donation eligibility guide grounded in current American Red Cross and FDA materials. Its five-lane screen, synthetic-cannabinoid distinction, donor-prep record, center call script, day-of boundaries, and myth checks strengthen responsible-use, clinician-conversation, and cardiovascular-safety paths without claiming that a website can determine eligibility.
+- Published a product-neutral indoor-air monitor buying guide that separates PM, VOC, CO2, CO, temperature, and humidity; preserves the life-safety role of smoke and carbon-monoxide alarms; and adds a sensor/data card, placement record, three-candidate comparison, clean return-window test, first-year cost formula, and valid no-purchase outcome. No approved affiliate program or tracking ID is configured.
+- Added explicit column and row scope to every generated table header and a release gate that rejects missing or misplaced scope. This materially improves the accessibility of the site's evidence matrices, comparison tables, and worksheets.
+- Added reciprocal contextual links from established clinician-conversation, cardiovascular, secondhand-smoke, fire-safety, purifier, and gear-comparison resources. Qualified outreach opportunities logged: none. The public agencies cited are evidence sources rather than assumed promoters, no sufficiently exact non-speculative resource-page match was found, and no outreach was sent.
 
 ## November 5, 2026 authority action
 

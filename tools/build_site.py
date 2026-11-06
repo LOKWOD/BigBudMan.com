@@ -62,6 +62,7 @@ from content_nov2 import GUIDE_OVERRIDES as NOV2_GUIDE_OVERRIDES, NEW_GUIDES as 
 from content_nov3 import NEW_GEAR as NOV3_GEAR, NEW_GUIDES as NOV3_GUIDES
 from content_nov4 import NEW_GEAR as NOV4_GEAR, NEW_GUIDES as NOV4_GUIDES
 from content_nov5 import NEW_GEAR as NOV5_GEAR, NEW_GUIDES as NOV5_GUIDES
+from content_nov6 import NEW_GEAR as NOV6_GEAR, NEW_GUIDES as NOV6_GUIDES
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -172,6 +173,57 @@ GUIDE_PAGES = GUIDE_PAGES + NOV4_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV4_GEAR
 GUIDE_PAGES = GUIDE_PAGES + NOV5_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV5_GEAR
+GUIDE_PAGES = GUIDE_PAGES + NOV6_GUIDES
+OTHER_ARTICLES = OTHER_ARTICLES + NOV6_GEAR
+
+# November 6 connects both new resources from established, intent-matched
+# pages. These are editorial paths, not generic recent-post links, and the
+# reviewed date records the material navigation improvement.
+_nov6_guide_links = {
+    "guides/how-to-talk-to-doctor-about-cannabis/index.html": (
+        "guides/cannabis-blood-donation-eligibility-guide/",
+        "DONOR SCREENING",
+        "Prepare a precise cannabis and blood-donation eligibility question",
+    ),
+    "guides/cannabis-heart-rate-blood-pressure-safety/index.html": (
+        "guides/cannabis-blood-donation-eligibility-guide/",
+        "BLOOD DONATION",
+        "Keep cannabis use, current function, medication, and center rules separate",
+    ),
+    "guides/secondhand-cannabis-smoke-indoor-air/index.html": (
+        "gear/cannabis-smoke-air-quality-monitor-buying-guide/",
+        "AIR MONITORING",
+        "Choose sensors by pollutant, data need, placement, and safety boundary",
+    ),
+    "guides/cannabis-home-fire-safety-plan/index.html": (
+        "gear/cannabis-smoke-air-quality-monitor-buying-guide/",
+        "MONITOR BOUNDARY",
+        "Keep air monitors separate from required smoke and carbon-monoxide alarms",
+    ),
+}
+GUIDE_PAGES = [
+    ({**item, "updated": "November 6, 2026", "related": [*item["related"], _nov6_guide_links[item["path"]]]}
+     if item["path"] in _nov6_guide_links else item)
+    for item in GUIDE_PAGES
+]
+
+_nov6_gear_links = {
+    "gear/air-purifier-cannabis-smoke-odor-guide/index.html": (
+        "gear/cannabis-smoke-air-quality-monitor-buying-guide/",
+        "MEASURE FIRST",
+        "Compare monitor channels, data access, placement, and first-year cost",
+    ),
+    "gear/cannabis-gear-comparison-worksheet/index.html": (
+        "gear/cannabis-smoke-air-quality-monitor-buying-guide/",
+        "SENSOR WORKFLOW",
+        "Turn an indoor-air question into a three-monitor comparison",
+    ),
+}
+OTHER_ARTICLES = [
+    ({**item, "updated": "November 6, 2026", "related": [*item["related"], _nov6_gear_links[item["path"]]]}
+     if item["path"] in _nov6_gear_links else item)
+    for item in OTHER_ARTICLES
+]
 
 # Publishing integrity is part of the public editorial standard: the source
 # archive is checksum-verified and tested before publication.
@@ -383,6 +435,17 @@ for _standard in STANDARD_PAGES:
             '<p class="update-line">Policy reviewed November 5, 2026</p>',
         )
         _standard["body"] += '''<h2>Visible publication-history parity</h2><p>Every article now displays both its first-published date and latest editorial review date in the reading header and print/PDF provenance block. Publication checks compare those visible dates with the page's <code>article:published_time</code>, <code>article:modified_time</code>, and primary Article structured data, reject a publication date after the review date, and require the same history to survive printing. This makes a new article distinguishable from an older article that was materially reviewed. Matching dates document publication history; they do not prove that every external source, rule, product, or claim remains unchanged.</p>'''
+
+# November 6 makes every table header's row or column relationship explicit.
+# The renderer supplies the semantics and the audit prevents regression.
+for _standard in STANDARD_PAGES:
+    if _standard["path"] == "editorial-policy/index.html":
+        _standard["updated"] = "November 6, 2026"
+        _standard["body"] = _standard["body"].replace(
+            '<p class="update-line">Policy reviewed November 5, 2026</p>',
+            '<p class="update-line">Policy reviewed November 6, 2026</p>',
+        )
+        _standard["body"] += '''<h2>Semantic table-header integrity</h2><p>Every generated data table now gives column headers <code>scope="col"</code> and row headers <code>scope="row"</code>. These explicit relationships help assistive technology announce the right label as a reader moves through a dense comparison, checklist, or evidence matrix. The publication audit inspects every table, rejects an unscoped header, and rejects a column or row header with the wrong scope. Header scope improves navigation; it does not make the table's evidence, measurements, or conclusions more certain.</p>'''
 
 # Keep new reference pages inside established topic clusters. These reciprocal
 # links are editorial navigation, not an attempt to manufacture link signals.
@@ -1037,6 +1100,26 @@ RECIPROCAL_RELATED.setdefault("guides/cannabis-edible-label-math-checker/index.h
 RECIPROCAL_RELATED.setdefault("gear/cannabis-accessibility-tools-buying-guide/index.html", []).insert(
     0, ("gear/cannabis-liquid-measuring-tool-buying-guide/", "LIQUID MEASUREMENT", "Solve visibility and hand-control barriers without changing the instructed unit or package routine")
 )
+# November 6 routes the donor and indoor-air resources from established pages
+# before the four-card related-reading cap is applied.
+RECIPROCAL_RELATED.setdefault("guides/how-to-talk-to-doctor-about-cannabis/index.html", []).insert(
+    0, ("guides/cannabis-blood-donation-eligibility-guide/", "DONOR SCREENING", "Prepare a precise cannabis and blood-donation eligibility question")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabis-heart-rate-blood-pressure-safety/index.html", []).insert(
+    0, ("guides/cannabis-blood-donation-eligibility-guide/", "BLOOD DONATION", "Keep cannabis use, current function, medicines, vital signs, and center rules separate")
+)
+RECIPROCAL_RELATED.setdefault("guides/secondhand-cannabis-smoke-indoor-air/index.html", []).insert(
+    0, ("gear/cannabis-smoke-air-quality-monitor-buying-guide/", "AIR MONITORING", "Choose sensors by pollutant, data need, placement, and safety boundary")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabis-home-fire-safety-plan/index.html", []).insert(
+    0, ("gear/cannabis-smoke-air-quality-monitor-buying-guide/", "MONITOR BOUNDARY", "Keep air monitors separate from required smoke and carbon-monoxide alarms")
+)
+RECIPROCAL_RELATED.setdefault("gear/air-purifier-cannabis-smoke-odor-guide/index.html", []).insert(
+    0, ("gear/cannabis-smoke-air-quality-monitor-buying-guide/", "MEASURE FIRST", "Compare monitor channels, data access, placement, and first-year cost")
+)
+RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
+    0, ("gear/cannabis-smoke-air-quality-monitor-buying-guide/", "SENSOR WORKFLOW", "Turn an indoor-air question into a three-monitor comparison")
+)
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in RECIPROCAL_RELATED:
         _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
@@ -1260,7 +1343,7 @@ def add_collection_itemlist(html: str, page: Page, name: str, card_class: str) -
 
 
 def render_guides_hub() -> tuple[Page,str]:
-    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 5, 2026",kind="website")
+    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 6, 2026",kind="website")
     p="../"
     cards="".join([
       card("guides/cannabis-memory-attention-cognition-evidence-guide/","HEALTH + COGNITION","Cannabis, memory, and attention evidence","Separate cognitive domains, acute and residual windows, confounders, task records, claim limits, and the clinical or safety handoff.","heart",p),
@@ -1351,6 +1434,14 @@ def render_guides_hub() -> tuple[Page,str]:
       card("guides/cannabis-heart-rate-blood-pressure-safety/","HEART + SAFETY","Cannabis, heart rate, and blood pressure","Separate immediate cardiovascular effects, evidence limits, emergency signs, home measurements, and clinician questions.","heart",p),
       card("guides/cannabinoid-hyperemesis-syndrome-warning-signs/","HEALTH + SAFETY","Cannabinoid hyperemesis syndrome","Recognize recurrent-vomiting warning signs, emergency red flags, evidence limits, hot-water risks, and the role of cessation.","alert",p),
     ])
+    cards = card(
+        "guides/cannabis-blood-donation-eligibility-guide/",
+        "HEALTH + DONOR ELIGIBILITY",
+        "Cannabis and blood donation",
+        "Separate cannabis use, current function, health screening, medicines, synthetic cannabinoids, donation type, and the blood center's final decision.",
+        "heart",
+        p,
+    ) + cards
     guide_count = cards.count('data-guide-card')
     decision_router=f'''<section class="container guide-paths"><div class="section-head"><p class="eyebrow">START WITH THE DECISION</p><h2>Six high-stakes paths. One useful next page.</h2><p>The guide library earned the clearest non-branded Search Console engagement in the current report. These paths move a reader from the hub to the task—not to a product ranking.</p></div><div class="comparison-grid"><div><span>FIRST PURCHASE</span><h3>Plan before the menu</h3><p>Set purpose, hard limits, format, budget, seller verification, storage, transport, and a no-buy exit.</p><a href="../start-here/">Open the first-purchase planner →</a></div><div><span>PACKAGE IN HAND</span><h3>Rebuild the label</h3><p>Match identity, route, serving and package math, ingredients, dates, lot, report, warnings, and storage.</p><a href="read-a-label/">Open the label guide →</a></div><div><span>PRODUCT PROBLEM</span><h3>Protect the person first</h3><p>Use the urgency gate, preserve product and lot evidence, then choose the official reporting owner.</p><a href="cannabis-product-complaint-adverse-event-reporting/">Open the reporting guide →</a></div><div><span>PUBLIC EVENT</span><h3>Verify the temporary sale</h3><p>Check the event permit, seller, participant roles, package, total price, receipt, and use boundary.</p><a href="new-york-cannabis-showcase-event-verification-guide/">Open the event checklist →</a></div><div><span>WORK + TESTING</span><h3>Identify the policy and specimen</h3><p>Keep employer policy, test stage, laboratory result, CBD risk, review, and legal advice in separate lanes.</p><a href="cannabis-drug-testing-thc-results-guide/">Open the drug-test guide →</a></div><div><span>USE + TRANSPORT</span><h3>Build the sober exit</h3><p>Plan around driving, other substances, obligations, locked storage, urgent help, and patterns worth discussing.</p><a href="../responsible-use/">Open responsible use →</a></div></div><p class="micro">No paid placement, product, merchant, ticket, price, coupon, rating, or affiliate link appears in this router. The repository contains no approved affiliate program or tracking ID.</p></section>'''
     main=f'''<main id="main-content"><section class="hub-hero"><div class="container"><p class="eyebrow">PRACTICAL CANNABIS EDUCATION</p><h1>THE GUIDE<br><em>LIBRARY.</em></h1><p>No endless blog roll. Every page answers a decision an adult can actually have in front of them.</p></div></section><section class="container hub-feature"><a href="../start-here/"><div><p class="kicker">THE BEST FIRST PAGE</p><h2>Start here. Skip the folklore.</h2><p>Six decisions for new and returning adults: purpose, format, batch, context, storage, and exit plan.</p><b>Open the orientation {icon('arrow')}</b></div><img src="../assets/images/guide-field-notes.webp" alt="Unbranded cannabis package, sample jar, notebook, and magnifying glass arranged for close inspection"></a></section>{decision_router}<section class="container guide-library" data-guide-library><div class="guide-tools"><label><span>FIND A GUIDE</span><input type="search" data-guide-search placeholder="Try: delivery, package date, lab report…" autocomplete="off"></label><div class="guide-filters" aria-label="Filter guide library"><button class="is-active" type="button" data-guide-filter="all">All guides</button><button type="button" data-guide-filter="format">Formats</button><button type="button" data-guide-filter="buying">Buying &amp; labels</button><button type="button" data-guide-filter="safety">Safety</button><button type="button" data-guide-filter="cbd">CBD &amp; hemp</button></div><label class="guide-sort"><span>SORT</span><select data-guide-sort><option value="editorial">Editorial order</option><option value="recent">Recently reviewed</option><option value="title">Title A–Z</option></select></label><p aria-live="polite"><span data-guide-count>{guide_count}</span> guides shown</p></div><p class="guide-empty" data-guide-empty hidden>No guide matched that search and filter. Clear the search or choose all guides.</p><div class="library-grid">{cards}</div></section><section class="container guide-paths"><div class="section-head"><p class="eyebrow">READ IN ORDER</p><h2>Thirty useful paths</h2></div><div class="path-list"><a href="../start-here/"><span>New or returning after years</span><b>START HERE → CANNABIS 101 → LABEL</b></a><a href="flower/"><span>Comparing packaged cannabis flower</span><b>SELLER → PACKAGE → LOT REPORT → CONDITION → STORAGE → EXIT</b></a><a href="new-york-home-cannabis-grow-planner/"><span>Planning a New York home grow</span><b>LAW → SPACE → LOAD → STARTER SOURCE → RECORDS → STORAGE</b></a><a href="new-york-home-cannabis-harvest-drying-curing-log/"><span>Carrying a lawful New York home grow through harvest</span><b>BATCH ID → ROOM → CONDITION LOG → CONTAINER → STORAGE</b></a><a href="cannabis-certificate-of-analysis-coa-guide/"><span>Holding a certificate of analysis or QR-linked lab report</span><b>PACKAGE → LOT MATCH → UNITS → PANELS → STATUS</b></a><a href="cbd-capsules-softgels-label-buying-guide/"><span>Comparing CBD capsules or softgels</span><b>UNIT MATH → FORMULA → LOT → CLAIMS → STORAGE</b></a><a href="cannabinoid-hyperemesis-syndrome-warning-signs/"><span>Repeated nausea or vomiting with frequent cannabis use</span><b>STOP USE → URGENCY CHECK → DISCLOSE → CLINICAL FOLLOW-UP</b></a><a href="cannabis-drug-testing-thc-results-guide/"><span>Facing a workplace, home, or program drug test</span><b>POLICY → SPECIMEN → SCREEN → CONFIRM → REVIEW</b></a><a href="cannabis-product-recall-batch-checker/"><span>Checking a recall, quarantine, or safety notice</span><b>PRESERVE PACKAGE → MATCH LOT → FOLLOW OFFICIAL ACTION</b></a><a href="edibles/"><span>Holding a gummy or chocolate</span><b>EDIBLES → LABEL → STORAGE</b></a><a href="cannabis-beverages-label-timing-buying-guide/"><span>Comparing a cannabis seltzer, tonic, or drink</span><b>BEVERAGES → LABEL → LICENSE → STORAGE</b></a><a href="vapes/"><span>Holding a cart or disposable</span><b>VAPES → SHOP LEGAL → RESPONSIBLE USE</b></a><a href="cannabis-concentrates-dabs-label-safety-guide/"><span>Comparing wax, shatter, rosin, resin, or dabs</span><b>CONCENTRATES → LABEL → LICENSE → STORAGE</b></a></div></section>{newsletter('../')}</main>'''
@@ -1426,6 +1517,7 @@ def render_strains_hub() -> tuple[Page,str]:
 
 def render_gear_hub() -> tuple[Page,str]:
     items = [
+        ("cannabis-smoke-air-quality-monitor-buying-guide/","compare powered care","INDOOR AIR + MEASUREMENT","Choose an indoor-air monitor","Match PM, VOC, CO2, CO, temperature, or humidity to the question; compare evidence, placement, data, privacy, upkeep, and cost.","spark",None,None),
         ("cannabis-liquid-measuring-tool-buying-guide/","compare preparation care","MEASUREMENT + LABELS","Choose a liquid measuring tool","Compare the instructed mL task, device type, graduations, capacity, package fit, accessibility, care, return test, and first-year cost.","scale",None,None),
         ("cannabis-label-magnifier-task-light-buying-guide/","compare preparation care","ACCESSIBILITY + LABELS","Choose a label magnifier and task light","Compare the reading task, field, working distance, glare, package stability, privacy, power, return test, and first-year burden.","search",None,None),
         ("cannabis-harvest-trimming-scissors-buying-guide/","compare preparation care","HARVEST + HAND TOOLS","Choose harvest and trimming scissors","Match the cutting job, hand fit, blade, spring, lock, cleaning, return test, inspection, and ownership cost.","leaf",None,None),
@@ -1459,7 +1551,7 @@ def render_gear_hub() -> tuple[Page,str]:
         ("cannabis-ashtray-ember-disposal-guide/","care","FIRE-SAFE DISPOSAL","Choose an ashtray","Compare stability, depth, materials, wind, placement, extinguishing, cleaning, waste, and smoke-exposure limits.","alert",None,None),
         ("cannabis-glass-pipe-water-pipe-buying-guide/","preparation care","GLASSWARE","Choose a pipe or water pipe","Check format, material claims, joint fit, stability, cleaning access, replacement parts, and smoke-exposure limits.","search",None,None),
     ]
-    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 5, 2026",kind="website")
+    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 6, 2026",kind="website")
     cards=[]
     for href, categories, kicker, title, description, icon_name, image_src, image_alt in items:
         art = f'<div><img src="{image_src}" alt="{image_alt}"></div>' if image_src else f'<div class="gear-card__icon-art" aria-hidden="true">{icon(icon_name)}</div>'
@@ -1720,27 +1812,33 @@ def build() -> None:
     manifest={"name":"Big Bud Man","short_name":"Big Bud Man","start_url":"/","display":"standalone","background_color":"#101712","theme_color":"#101712","icons":[{"src":"/assets/images/favicon.svg","sizes":"any","type":"image/svg+xml"}]}
     write_text(OUT,"site.webmanifest",json.dumps(manifest,indent=2)+"\n")
     publication_manifest={
-        "publication_date":"2026-11-05",
+        "publication_date":"2026-11-06",
         "page_count":3,
         "pages":[
-            {"title":"Cannabis, Memory, Attention, and Cognition Evidence Guide","url":"https://bigbudman.com/guides/cannabis-memory-attention-cognition-evidence-guide/","department":"guides","portfolio_label":"Authority-expansion","search_intent":"separate memory, attention, working memory, learning, processing speed, and executive-function evidence across acute, residual, and longer-term windows"},
-            {"title":"Cannabis Liquid Measuring Tool Buying Guide","url":"https://bigbudman.com/gear/cannabis-liquid-measuring-tool-buying-guide/","department":"gear","portfolio_label":"Exploration","search_intent":"compare an oral syringe, supplied dropper, cup, or calibrated spoon by exact mL task, graduations, capacity, package fit, accessibility, care, and cost"},
-            {"title":"Visible Publication-History Parity","url":"https://bigbudman.com/editorial-policy/","department":"technical SEO and public trust","portfolio_label":"Exploration","search_intent":"show first-published and reviewed dates to readers and in print while matching article metadata and structured data"},
+            {"title":"Cannabis and Blood Donation Eligibility Guide","url":"https://bigbudman.com/guides/cannabis-blood-donation-eligibility-guide/","department":"guides","portfolio_label":"Authority-expansion","search_intent":"separate cannabis use, current impairment, donor history, medications, synthetic cannabinoids, and the blood center's final eligibility decision"},
+            {"title":"Cannabis Smoke Air-Quality Monitor Buying Guide","url":"https://bigbudman.com/gear/cannabis-smoke-air-quality-monitor-buying-guide/","department":"gear","portfolio_label":"Exploration","search_intent":"compare indoor-air monitors by pollutant, sensor evidence, placement, data access, upkeep, privacy, life-safety boundary, and first-year cost"},
+            {"title":"Semantic Table-Header Integrity","url":"https://bigbudman.com/editorial-policy/","department":"accessibility and public trust","portfolio_label":"Exploration","search_intent":"make every generated data table expose explicit column and row header relationships and stop publication if those semantics regress"},
         ],
-        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral liquid-measuring decision system covering label instructions, mL versus mg, oral syringes, supplied droppers, cups, calibrated spoons, graduations, capacity, package fit, accessibility, care, first-year cost, and return testing. It adds no merchant, model, price, coupon, ranking, availability claim, fabricated test, product image, or paid placement and preserves supplied-device and no-purchase outcomes."},
-        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"The cognition guide, liquid-measuring guide, and publication-history trust control use semantic text, tables, checklists, and existing brand interface assets. No cannabis product, person, brain image, measuring device, merchant, affiliate, stock, or generated image was added or changed, so no exact-product mismatch or new licensing issue was introduced."},
-        "search_console":{"report_date":"2026-11-04","decision":"The October 5–November 1 report showed 786 impressions, four clicks, 0.509% CTR, and average position 24.632. The only new non-navigational signal in the approximate position-4-to-20 band was ‘510 vs disposable’ at two impressions and position 12; that sample is too weak, and an existing substantial comparison already serves the intent, so it was deliberately not expanded or duplicated. Delaware had one click, Montana one impression, and the HTTP federal-property and pre-roll rows one impression each; those were also too small. Blue Dream had 18 impressions but sat near position 45 and was not used to create another strain variation. No item is primarily Data-led. The report instead acted as a cannibalization guard while this batch fills distinct evidence, shopping, and trust gaps."},
-        "authority":{"action":"Published a citation-worthy cognition evidence guide anchored by current CDC guidance, a 2025 meta-analysis, a systematic review, and a large young-adult study. Its domain map, evidence-window matrix, confounder screen, product-time-task record, claim screen, and clinical/work handoff strengthen residual-impairment, older-adult safety, driving, and research-literacy paths through reciprocal contextual links. No tightly matched unsolicited outreach target was strong enough to log, and no outreach was sent."},
+        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral air-monitor decision system covering sensor purpose, performance evidence, display, logging, export, privacy, outage behavior, upkeep, return testing, and first-year cost. It adds no merchant, model, price, coupon, ranking, availability claim, fabricated test, product image, or paid placement and preserves existing-alarm, source-control, and no-purchase outcomes."},
+        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"Both new guides and the semantic table-header control use text, tables, checklists, and existing brand interface assets. No person, blood product, monitor, sensor, alarm, merchant, affiliate, stock, or generated image was added or changed, so no exact-product mismatch or new licensing issue was introduced."},
+        "search_console":{"report_date":"2026-11-04","decision":"The October 5–November 1 report showed 786 impressions, four clicks, 0.509% CTR, and average position 24.632. ‘510 vs disposable’ had two impressions at position 12, while Delaware, federal-property, and Montana signals had one impression or click apiece; those samples were too weak to redirect the portfolio and existing pages already serve the intents. Blue Dream had 18 impressions near position 45 and was also not used to create another strain variation. No item is primarily Data-led. The report acted as a cannibalization guard while this batch fills distinct donor-eligibility, indoor-air shopping, and accessibility gaps."},
+        "authority":{"action":"Published a citation-worthy U.S. blood-donation eligibility decision guide anchored by current American Red Cross and FDA materials. Its five-lane screen, synthetic-cannabinoid distinction, donor-prep record, center call script, and myth checks strengthen responsible-use, clinician-conversation, and cardiovascular-safety paths through reciprocal contextual links. The table-header release gate also improves the accessibility of every comparison and evidence matrix on the site. No tightly matched unsolicited outreach target was strong enough to log, and no outreach was sent."},
         "freshness_surfaces":{
-            "https://bigbudman.com/guides/":"2026-11-05",
-            "https://bigbudman.com/guides/cannabis-memory-attention-cognition-evidence-guide/":"2026-11-05",
-            "https://bigbudman.com/gear/":"2026-11-05",
-            "https://bigbudman.com/gear/cannabis-liquid-measuring-tool-buying-guide/":"2026-11-05",
-            "https://bigbudman.com/editorial-policy/":"2026-11-05",
-            "https://bigbudman.com/updates/":"2026-11-05",
-            "https://bigbudman.com/site-index/":"2026-11-05"
+            "https://bigbudman.com/guides/":"2026-11-06",
+            "https://bigbudman.com/guides/cannabis-blood-donation-eligibility-guide/":"2026-11-06",
+            "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/":"2026-11-06",
+            "https://bigbudman.com/guides/cannabis-heart-rate-blood-pressure-safety/":"2026-11-06",
+            "https://bigbudman.com/guides/secondhand-cannabis-smoke-indoor-air/":"2026-11-06",
+            "https://bigbudman.com/guides/cannabis-home-fire-safety-plan/":"2026-11-06",
+            "https://bigbudman.com/gear/":"2026-11-06",
+            "https://bigbudman.com/gear/cannabis-smoke-air-quality-monitor-buying-guide/":"2026-11-06",
+            "https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/":"2026-11-06",
+            "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/":"2026-11-06",
+            "https://bigbudman.com/editorial-policy/":"2026-11-06",
+            "https://bigbudman.com/updates/":"2026-11-06",
+            "https://bigbudman.com/site-index/":"2026-11-06"
         },
-        "surfaces":["memory, attention, and cognition evidence map and task record","residual-function, older-adult, driving, and research-literacy reciprocal links","liquid measuring tool buying decision system","oil-label, edible-math, accessibility, and label-record reciprocal links","visible first-published and reviewed dates","metadata, schema, header, and print date-parity gate","editorial policy trust contract","guide and gear hubs","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","robots sitemap declaration","checksum-verified source archive and publication gates"],
+        "surfaces":["blood-donation five-lane eligibility guide and donor-prep record","clinician-conversation and cardiovascular reciprocal links","air-quality monitor sensor, data, placement, cost, and acceptance-test system","secondhand-smoke, fire-safety, purifier, and gear-comparison reciprocal links","site-wide row and column table-header scopes","semantic table-header regression gate","editorial policy trust contract","guide and gear hubs","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","robots sitemap declaration","checksum-verified source archive and publication gates"],
     }
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]

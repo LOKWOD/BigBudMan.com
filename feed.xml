@@ -4,9 +4,73 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-11-05T00:00:00Z</updated>
+  <updated>2026-11-06T00:00:00Z</updated>
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Secondhand Cannabis Smoke &amp; Indoor Air</title>
+    <id>https://bigbudman.com/guides/secondhand-cannabis-smoke-indoor-air/</id>
+    <link href="https://bigbudman.com/guides/secondhand-cannabis-smoke-indoor-air/"/>
+    <updated>2026-11-06T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Reduce secondhand cannabis smoke exposure with clear indoor, vehicle, ventilation, filtration, child, guest, apartment, and emergency-response guidance.</summary>
+  </entry>
+  <entry>
+    <title>How to Talk to Your Doctor About Cannabis</title>
+    <id>https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/</id>
+    <link href="https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/"/>
+    <updated>2026-11-06T00:00:00Z</updated>
+    <published>2026-10-27T00:00:00Z</published>
+    <summary>Prepare a useful cannabis record for a doctor or pharmacist: exact product, route, timing, medicines, symptoms, questions, and follow-up plan.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis, Heart Rate &amp; Blood Pressure</title>
+    <id>https://bigbudman.com/guides/cannabis-heart-rate-blood-pressure-safety/</id>
+    <link href="https://bigbudman.com/guides/cannabis-heart-rate-blood-pressure-safety/"/>
+    <updated>2026-11-06T00:00:00Z</updated>
+    <published>2026-09-13T00:00:00Z</published>
+    <summary>Understand cannabis heart-rate and blood-pressure effects, evidence limits, smoke and interaction concerns, emergency signs, and clinician questions.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis and Blood Donation: Eligibility Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-blood-donation-eligibility-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-blood-donation-eligibility-guide/"/>
+    <updated>2026-11-06T00:00:00Z</updated>
+    <published>2026-11-06T00:00:00Z</published>
+    <summary>Separate cannabis use from blood-donor eligibility, impairment, health screening, synthetic cannabinoids, medications, and the blood center&#x27;s final decision.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Smoke Air Monitor Buying Guide</title>
+    <id>https://bigbudman.com/gear/cannabis-smoke-air-quality-monitor-buying-guide/</id>
+    <link href="https://bigbudman.com/gear/cannabis-smoke-air-quality-monitor-buying-guide/"/>
+    <updated>2026-11-06T00:00:00Z</updated>
+    <published>2026-11-06T00:00:00Z</published>
+    <summary>Compare an indoor air-quality monitor for cannabis smoke by pollutant, sensor evidence, placement, data access, alerts, lifespan, and total cost.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Smoke Air Cleaner &amp; CADR Planner</title>
+    <id>https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/</id>
+    <link href="https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/"/>
+    <updated>2026-11-06T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Size a cannabis-smoke air cleaner by room volume and smoke CADR, estimate air changes and ownership cost, and understand filtration limits.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Home Fire Safety Plan</title>
+    <id>https://bigbudman.com/guides/cannabis-home-fire-safety-plan/</id>
+    <link href="https://bigbudman.com/guides/cannabis-home-fire-safety-plan/"/>
+    <updated>2026-11-06T00:00:00Z</updated>
+    <published>2026-10-30T00:00:00Z</published>
+    <summary>Build a cannabis-aware home fire plan covering alarms, escape, flames, embers, lithium batteries, indoor-grow electrical loads, and incident records.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Gear Comparison &amp; Cost Calculator</title>
+    <id>https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/</id>
+    <link href="https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/"/>
+    <updated>2026-11-06T00:00:00Z</updated>
+    <published>2026-09-20T00:00:00Z</published>
+    <summary>Compare three cannabis accessories by exact model, first-year cost, ownership cost, cost per use, fit, materials, care, support, warranty, and recalls.</summary>
+  </entry>
   <entry>
     <title>Cannabis, Memory &amp; Attention: Evidence Guide</title>
     <id>https://bigbudman.com/guides/cannabis-memory-attention-cognition-evidence-guide/</id>
@@ -112,14 +176,6 @@
     <summary>Compare pH and EC meters by measurement job, range, accuracy evidence, calibration, probe care, temperature, records, and first-year system cost.</summary>
   </entry>
   <entry>
-    <title>Cannabis Home Fire Safety Plan</title>
-    <id>https://bigbudman.com/guides/cannabis-home-fire-safety-plan/</id>
-    <link href="https://bigbudman.com/guides/cannabis-home-fire-safety-plan/"/>
-    <updated>2026-10-30T00:00:00Z</updated>
-    <published>2026-10-30T00:00:00Z</published>
-    <summary>Build a cannabis-aware home fire plan covering alarms, escape, flames, embers, lithium batteries, indoor-grow electrical loads, and incident records.</summary>
-  </entry>
-  <entry>
     <title>Cannabis Pre-Roll Tube Buying Guide</title>
     <id>https://bigbudman.com/gear/cannabis-pre-roll-tube-case-buying-guide/</id>
     <link href="https://bigbudman.com/gear/cannabis-pre-roll-tube-case-buying-guide/"/>
@@ -150,14 +206,6 @@
     <updated>2026-10-28T00:00:00Z</updated>
     <published>2026-10-28T00:00:00Z</published>
     <summary>Separate emergency allergy signs from irritant symptoms, preserve the exact cannabis exposure, and prepare a useful record for an allergist or clinician.</summary>
-  </entry>
-  <entry>
-    <title>How to Talk to Your Doctor About Cannabis</title>
-    <id>https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/</id>
-    <link href="https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/"/>
-    <updated>2026-10-27T00:00:00Z</updated>
-    <published>2026-10-27T00:00:00Z</published>
-    <summary>Prepare a useful cannabis record for a doctor or pharmacist: exact product, route, timing, medicines, symptoms, questions, and follow-up plan.</summary>
   </entry>
   <entry>
     <title>Home-Grow Temperature &amp; Humidity Monitor</title>
@@ -198,53 +246,5 @@
     <updated>2026-10-25T00:00:00Z</updated>
     <published>2026-09-30T00:00:00Z</published>
     <summary>Route cannabis emergencies, evidence, licenses, recalls, product reports, fraud, work, travel, hemp, and legal questions to the official owner.</summary>
-  </entry>
-  <entry>
-    <title>Panakeia Beta (HURV19PAN) Strain Guide</title>
-    <id>https://bigbudman.com/strains/panakeia-beta-hurv19pan/</id>
-    <link href="https://bigbudman.com/strains/panakeia-beta-hurv19pan/"/>
-    <updated>2026-10-24T00:00:00Z</updated>
-    <published>2026-10-24T00:00:00Z</published>
-    <summary>Read the official HURV19PAN (Panakeia Beta) CBG hemp variety record, then verify the seed, crop, package, cannabinoid report, contaminants, and current law.</summary>
-  </entry>
-  <entry>
-    <title>Federally Assisted Housing &amp; Cannabis (2026)</title>
-    <id>https://bigbudman.com/legal/cannabis-federally-assisted-housing-guide/</id>
-    <link href="https://bigbudman.com/legal/cannabis-federally-assisted-housing-guide/"/>
-    <updated>2026-10-24T00:00:00Z</updated>
-    <published>2026-10-24T00:00:00Z</published>
-    <summary>Identify the housing program, applicant or tenant status, lease and smoke-free rules, federal marijuana limits, notice process, and qualified-help route.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Home Testing Kit Buying Guide</title>
-    <id>https://bigbudman.com/gear/cannabis-home-testing-kit-buying-guide/</id>
-    <link href="https://bigbudman.com/gear/cannabis-home-testing-kit-buying-guide/"/>
-    <updated>2026-10-24T00:00:00Z</updated>
-    <published>2026-10-24T00:00:00Z</published>
-    <summary>Compare cannabis home testing tools by question, sampling, controls, total cost, records, and the point where a licensed lab is needed.</summary>
-  </entry>
-  <entry>
-    <title>Used Cannabis Accessory Buying Guide</title>
-    <id>https://bigbudman.com/gear/used-cannabis-accessory-buying-safety-guide/</id>
-    <link href="https://bigbudman.com/gear/used-cannabis-accessory-buying-safety-guide/"/>
-    <updated>2026-10-23T00:00:00Z</updated>
-    <published>2026-10-23T00:00:00Z</published>
-    <summary>Screen a used cannabis accessory by exact identity, recall status, residue, wear, battery condition, missing parts, warranty, cleaning, and total cost.</summary>
-  </entry>
-  <entry>
-    <title>NY Cannabis Harvest, Drying &amp; Curing Log</title>
-    <id>https://bigbudman.com/guides/new-york-home-cannabis-harvest-drying-curing-log/</id>
-    <link href="https://bigbudman.com/guides/new-york-home-cannabis-harvest-drying-curing-log/"/>
-    <updated>2026-10-23T00:00:00Z</updated>
-    <published>2026-10-23T00:00:00Z</published>
-    <summary>Build a New York home-cannabis harvest, drying, curing, moisture, condition, security, and storage record without inventing a safety certificate.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Next-Day Impairment: Evidence Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-next-day-impairment-evidence-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-next-day-impairment-evidence-guide/"/>
-    <updated>2026-10-23T00:00:00Z</updated>
-    <published>2026-10-23T00:00:00Z</published>
-    <summary>Understand what research can and cannot say about next-day cannabis impairment, residual effects, driving, self-checks, testing, and safety planning.</summary>
   </entry>
 </feed>
