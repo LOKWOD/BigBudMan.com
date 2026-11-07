@@ -384,6 +384,27 @@ def main() -> int:
             if image.get("decoding") != "async": failures.append(f"{rel}: image {src} missing async decoding")
             if not src.endswith("logo-full.webp") and image.get("loading") not in {"lazy", "eager"}:
                 failures.append(f"{rel}: image {src} missing loading hint")
+        brand_roles = {
+            "header": (r'<a class="brand brand--lockup"[^>]*>\s*(<img\b[^>]*>)', "eager", "high"),
+            "footer": (r'<a class="brand brand--footer"[^>]*>\s*(<img\b[^>]*>)', "lazy", None),
+            "age gate": (r'<section class="age-gate".*?<div class="age-card"[^>]*>\s*(<img\b[^>]*>)', "eager", "high"),
+        }
+        for role, (pattern, loading, priority) in brand_roles.items():
+            match = re.search(pattern, text, re.I | re.S)
+            if not match:
+                failures.append(f"{rel}: missing {role} brand image")
+                continue
+            tag = match.group(1)
+            if f'loading="{loading}"' not in tag:
+                failures.append(f"{rel}: {role} brand image must use loading={loading}")
+            if 'decoding="async"' not in tag:
+                failures.append(f"{rel}: {role} brand image must decode asynchronously")
+            if not all(marker in tag for marker in ('width="920"', 'height="499"')):
+                failures.append(f"{rel}: {role} brand image is missing stable intrinsic dimensions")
+            if priority and f'fetchpriority="{priority}"' not in tag:
+                failures.append(f"{rel}: {role} brand image must use fetchpriority={priority}")
+            if not priority and 'fetchpriority=' in tag:
+                failures.append(f"{rel}: {role} brand image must not compete with high-priority content")
         if re.search(r'<div\b(?=[^>]*\bclass=["\'][^"\']*\bcomparison-table\b)(?=[^>]*\btabindex=["\']0["\'])[^>]*>\s*<table\b(?=[^>]*\btabindex=["\']0["\'])', text, re.I):
             failures.append(f"{rel}: responsive table has redundant nested focus targets")
         for region in re.findall(r'<div\b(?=[^>]*\bclass=["\'][^"\']*\bcomparison-table\b)[^>]*>', text, re.I):
@@ -840,13 +861,13 @@ def main() -> int:
             "site-index/index.html": ("guides/cannabis-memory-attention-cognition-evidence-guide/", "gear/cannabis-liquid-measuring-tool-buying-guide/", "editorial-policy/", "November 5, 2026", "updates/"),
         }
         discovery_checks["guides/index.html"] = tuple(
-            'data-updated="2026-11-06"' if marker == 'data-updated="2026-11-05"' else marker
+            'data-updated="2026-11-07"' if marker == 'data-updated="2026-11-05"' else marker
             for marker in discovery_checks["guides/index.html"]
-        ) + ("cannabis-blood-donation-eligibility-guide/",)
+        ) + ("cannabis-blood-donation-eligibility-guide/", "cannabis-migraine-headache-evidence-guide/")
         discovery_checks["gear/index.html"] = tuple(
-            "All 33" if marker == "All 32" else "2026-11-06" if marker == "2026-11-05" else marker
+            "All 34" if marker == "All 32" else "2026-11-07" if marker == "2026-11-05" else marker
             for marker in discovery_checks["gear/index.html"]
-        ) + ("cannabis-smoke-air-quality-monitor-buying-guide/",)
+        ) + ("cannabis-smoke-air-quality-monitor-buying-guide/", "home-grow-ventilation-fan-buying-guide/")
         discovery_checks["guides/cannabis-blood-donation-eligibility-guide/index.html"] = (
             "Keep five screening lanes separate",
             "redcrossblood.org/local-homepage/news/article/can-you-donate-blood-if-you-use-cannabis-.html",
@@ -859,18 +880,30 @@ def main() -> int:
             "SMOKE ALARMS ARE LIFE-SAFETY DEVICES",
             "No monitor, sensor, alarm, purifier",
         )
-        discovery_checks["editorial-policy/index.html"] += ("Semantic table-header integrity",)
+        discovery_checks["guides/cannabis-migraine-headache-evidence-guide/index.html"] = (
+            "Keep result, boundary, and unanswered question together",
+            "pubmed.ncbi.nlm.nih.gov/41469488",
+            "CBD-dominant flower did not beat placebo",
+            "No person, headache, medicine, cannabis product",
+        )
+        discovery_checks["gear/home-grow-ventilation-fan-buying-guide/index.html"] = (
+            "Compare performance where the system operates",
+            "Require exact motor-and-controller compatibility",
+            "cpsc.gov/s3fs-public/finalreport.pdf",
+            "No fan, duct, filter, room, plant",
+        )
+        discovery_checks["editorial-policy/index.html"] += ("Semantic table-header integrity", "Brand-image loading integrity")
         discovery_checks["updates/index.html"] = (
-            "guides/cannabis-blood-donation-eligibility-guide/",
-            "gear/cannabis-smoke-air-quality-monitor-buying-guide/",
+            "guides/cannabis-migraine-headache-evidence-guide/",
+            "gear/home-grow-ventilation-fan-buying-guide/",
             "editorial-policy/",
-            "November 6, 2026",
+            "November 7, 2026",
         )
         discovery_checks["site-index/index.html"] = (
-            "guides/cannabis-blood-donation-eligibility-guide/",
-            "gear/cannabis-smoke-air-quality-monitor-buying-guide/",
+            "guides/cannabis-migraine-headache-evidence-guide/",
+            "gear/home-grow-ventilation-fan-buying-guide/",
             "editorial-policy/",
-            "November 6, 2026",
+            "November 7, 2026",
             "updates/",
         )
         for discovery_page, markers in discovery_checks.items():
@@ -1088,7 +1121,7 @@ def main() -> int:
             failures.append("Editorial policy or Atom feed is missing the feed authorship standard")
         if "Age-gate focus isolation" not in policy:
             failures.append("Editorial policy is missing the age-gate focus-isolation standard")
-        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "November 6, 2026" not in policy:
+        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "November 7, 2026" not in policy:
             failures.append("Editorial policy is missing the current link and collection-date integrity standards")
         deployed_css = (ROOT / "assets/css/styles.css").read_text(encoding="utf-8")
         for marker in ("@media (forced-colors:active)", "CanvasText", "HighlightText", 'button[aria-pressed="true"]', ":focus-visible"):

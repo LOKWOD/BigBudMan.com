@@ -63,6 +63,7 @@ from content_nov3 import NEW_GEAR as NOV3_GEAR, NEW_GUIDES as NOV3_GUIDES
 from content_nov4 import NEW_GEAR as NOV4_GEAR, NEW_GUIDES as NOV4_GUIDES
 from content_nov5 import NEW_GEAR as NOV5_GEAR, NEW_GUIDES as NOV5_GUIDES
 from content_nov6 import NEW_GEAR as NOV6_GEAR, NEW_GUIDES as NOV6_GUIDES
+from content_nov7 import NEW_GEAR as NOV7_GEAR, NEW_GUIDES as NOV7_GUIDES
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -175,6 +176,8 @@ GUIDE_PAGES = GUIDE_PAGES + NOV5_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV5_GEAR
 GUIDE_PAGES = GUIDE_PAGES + NOV6_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV6_GEAR
+GUIDE_PAGES = GUIDE_PAGES + NOV7_GUIDES
+OTHER_ARTICLES = OTHER_ARTICLES + NOV7_GEAR
 
 # November 6 connects both new resources from established, intent-matched
 # pages. These are editorial paths, not generic recent-post links, and the
@@ -222,6 +225,49 @@ _nov6_gear_links = {
 OTHER_ARTICLES = [
     ({**item, "updated": "November 6, 2026", "related": [*item["related"], _nov6_gear_links[item["path"]]]}
      if item["path"] in _nov6_gear_links else item)
+    for item in OTHER_ARTICLES
+]
+
+# November 7 connects both new resources from established, intent-matched
+# pages. The review date records a material navigation improvement.
+_nov7_guide_links = {
+    "guides/cannabis-cbd-chronic-pain-evidence-guide/index.html": (
+        "guides/cannabis-migraine-headache-evidence-guide/",
+        "MIGRAINE EVIDENCE",
+        "Keep one route-specific acute trial inside its real evidence boundaries",
+    ),
+    "guides/how-to-talk-to-doctor-about-cannabis/index.html": (
+        "guides/cannabis-migraine-headache-evidence-guide/",
+        "HEADACHE HANDOFF",
+        "Bring a bounded evidence question and a dated symptom record",
+    ),
+    "guides/cannabis-home-fire-safety-plan/index.html": (
+        "gear/home-grow-ventilation-fan-buying-guide/",
+        "FAN SAFETY",
+        "Check airflow purpose, controls, mounting, power, recalls, and failure states",
+    ),
+}
+GUIDE_PAGES = [
+    ({**item, "updated": "November 7, 2026", "related": [*item["related"], _nov7_guide_links[item["path"]]]}
+     if item["path"] in _nov7_guide_links else item)
+    for item in GUIDE_PAGES
+]
+
+_nov7_gear_links = {
+    "gear/home-grow-temperature-humidity-monitor-buying-guide/index.html": (
+        "gear/home-grow-ventilation-fan-buying-guide/",
+        "AIRFLOW SYSTEM",
+        "Match the monitoring question to the fan, air path, controls, and acceptance test",
+    ),
+    "gear/home-grow-timer-controller-buying-guide/index.html": (
+        "gear/home-grow-ventilation-fan-buying-guide/",
+        "FAN CONTROL",
+        "Require exact motor compatibility, safe minimum speed, restart behavior, and override",
+    ),
+}
+OTHER_ARTICLES = [
+    ({**item, "updated": "November 7, 2026", "related": [*item["related"], _nov7_gear_links[item["path"]]]}
+     if item["path"] in _nov7_gear_links else item)
     for item in OTHER_ARTICLES
 ]
 
@@ -446,6 +492,18 @@ for _standard in STANDARD_PAGES:
             '<p class="update-line">Policy reviewed November 6, 2026</p>',
         )
         _standard["body"] += '''<h2>Semantic table-header integrity</h2><p>Every generated data table now gives column headers <code>scope="col"</code> and row headers <code>scope="row"</code>. These explicit relationships help assistive technology announce the right label as a reader moves through a dense comparison, checklist, or evidence matrix. The publication audit inspects every table, rejects an unscoped header, and rejects a column or row header with the wrong scope. Header scope improves navigation; it does not make the table's evidence, measurements, or conclusions more certain.</p>'''
+
+# November 7 gives each repeated brand image an explicit fetch role. The
+# visible header and age gate can request the shared asset promptly, while the
+# below-the-fold footer does not compete for decode work.
+for _standard in STANDARD_PAGES:
+    if _standard["path"] == "editorial-policy/index.html":
+        _standard["updated"] = "November 7, 2026"
+        _standard["body"] = _standard["body"].replace(
+            '<p class="update-line">Policy reviewed November 6, 2026</p>',
+            '<p class="update-line">Policy reviewed November 7, 2026</p>',
+        )
+        _standard["body"] += '''<h2>Brand-image loading integrity</h2><p>The header and age-confirmation brand image are marked for eager, high-priority loading because either can be the first visible branded asset. The repeated footer image is explicitly lazy-loaded so it does not compete for decode work before a reader reaches the page end. All three keep intrinsic dimensions and asynchronous decoding to reduce layout movement and main-thread blocking. Publication checks inspect those three roles on every generated page and stop the build if priority, loading, dimensions, or decoding semantics regress. Loading hints improve delivery behavior; they do not change editorial claims or guarantee a specific performance score on every device or network.</p>'''
 
 # Keep new reference pages inside established topic clusters. These reciprocal
 # links are editorial navigation, not an attempt to manufacture link signals.
@@ -1120,6 +1178,23 @@ RECIPROCAL_RELATED.setdefault("gear/air-purifier-cannabis-smoke-odor-guide/index
 RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
     0, ("gear/cannabis-smoke-air-quality-monitor-buying-guide/", "SENSOR WORKFLOW", "Turn an indoor-air question into a three-monitor comparison")
 )
+# November 7 routes the migraine and ventilation resources from established
+# pages before the related-reading cap is applied.
+RECIPROCAL_RELATED.setdefault("guides/cannabis-cbd-chronic-pain-evidence-guide/index.html", []).insert(
+    0, ("guides/cannabis-migraine-headache-evidence-guide/", "MIGRAINE EVIDENCE", "Keep one route-specific acute trial inside its real evidence boundaries")
+)
+RECIPROCAL_RELATED.setdefault("guides/how-to-talk-to-doctor-about-cannabis/index.html", []).insert(
+    0, ("guides/cannabis-migraine-headache-evidence-guide/", "HEADACHE HANDOFF", "Bring a bounded evidence question and a dated symptom record")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabis-home-fire-safety-plan/index.html", []).insert(
+    0, ("gear/home-grow-ventilation-fan-buying-guide/", "FAN SAFETY", "Check airflow purpose, controls, mounting, power, recalls, and failure states")
+)
+RECIPROCAL_RELATED.setdefault("gear/home-grow-temperature-humidity-monitor-buying-guide/index.html", []).insert(
+    0, ("gear/home-grow-ventilation-fan-buying-guide/", "AIRFLOW SYSTEM", "Match the monitoring question to the fan, air path, controls, and acceptance test")
+)
+RECIPROCAL_RELATED.setdefault("gear/home-grow-timer-controller-buying-guide/index.html", []).insert(
+    0, ("gear/home-grow-ventilation-fan-buying-guide/", "FAN CONTROL", "Require exact motor compatibility, safe minimum speed, restart behavior, and override")
+)
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in RECIPROCAL_RELATED:
         _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
@@ -1343,9 +1418,10 @@ def add_collection_itemlist(html: str, page: Page, name: str, card_class: str) -
 
 
 def render_guides_hub() -> tuple[Page,str]:
-    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 6, 2026",kind="website")
+    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 7, 2026",kind="website")
     p="../"
     cards="".join([
+      card("guides/cannabis-migraine-headache-evidence-guide/","HEALTH + EVIDENCE","Cannabis and migraine evidence","Keep one acute vaporized-cannabis trial inside its population, route, formulation, comparator, time window, emergency, and clinical boundaries.","heart",p),
       card("guides/cannabis-memory-attention-cognition-evidence-guide/","HEALTH + COGNITION","Cannabis, memory, and attention evidence","Separate cognitive domains, acute and residual windows, confounders, task records, claim limits, and the clinical or safety handoff.","heart",p),
       card("guides/indica-sativa-hybrid-label-evidence-guide/","FLOWER + EVIDENCE","Indica, sativa, and hybrid labels","Use the new 2026 systematic review, product identity, exact-lot chemistry, route, and context without turning shorthand into an effect guarantee.","leaf",p),
       card("guides/cannabis-fertility-preconception-evidence-guide/","HEALTH + PRECONCEPTION","Cannabis and fertility evidence","Separate sperm, ovulation, conception, pregnancy, and treatment endpoints; build an exact exposure record for the clinical visit.","heart",p),
@@ -1517,6 +1593,7 @@ def render_strains_hub() -> tuple[Page,str]:
 
 def render_gear_hub() -> tuple[Page,str]:
     items = [
+        ("home-grow-ventilation-fan-buying-guide/","compare powered care","HOME GROW + AIRFLOW","Choose a ventilation fan system","Compare the air job, installed resistance, fan-curve evidence, authorized controls, environment, electrical safety, recalls, acceptance test, and cost.","spark",None,None),
         ("cannabis-smoke-air-quality-monitor-buying-guide/","compare powered care","INDOOR AIR + MEASUREMENT","Choose an indoor-air monitor","Match PM, VOC, CO2, CO, temperature, or humidity to the question; compare evidence, placement, data, privacy, upkeep, and cost.","spark",None,None),
         ("cannabis-liquid-measuring-tool-buying-guide/","compare preparation care","MEASUREMENT + LABELS","Choose a liquid measuring tool","Compare the instructed mL task, device type, graduations, capacity, package fit, accessibility, care, return test, and first-year cost.","scale",None,None),
         ("cannabis-label-magnifier-task-light-buying-guide/","compare preparation care","ACCESSIBILITY + LABELS","Choose a label magnifier and task light","Compare the reading task, field, working distance, glare, package stability, privacy, power, return test, and first-year burden.","search",None,None),
@@ -1551,7 +1628,7 @@ def render_gear_hub() -> tuple[Page,str]:
         ("cannabis-ashtray-ember-disposal-guide/","care","FIRE-SAFE DISPOSAL","Choose an ashtray","Compare stability, depth, materials, wind, placement, extinguishing, cleaning, waste, and smoke-exposure limits.","alert",None,None),
         ("cannabis-glass-pipe-water-pipe-buying-guide/","preparation care","GLASSWARE","Choose a pipe or water pipe","Check format, material claims, joint fit, stability, cleaning access, replacement parts, and smoke-exposure limits.","search",None,None),
     ]
-    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 6, 2026",kind="website")
+    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 7, 2026",kind="website")
     cards=[]
     for href, categories, kicker, title, description, icon_name, image_src, image_alt in items:
         art = f'<div><img src="{image_src}" alt="{image_alt}"></div>' if image_src else f'<div class="gear-card__icon-art" aria-hidden="true">{icon(icon_name)}</div>'
@@ -1812,33 +1889,32 @@ def build() -> None:
     manifest={"name":"Big Bud Man","short_name":"Big Bud Man","start_url":"/","display":"standalone","background_color":"#101712","theme_color":"#101712","icons":[{"src":"/assets/images/favicon.svg","sizes":"any","type":"image/svg+xml"}]}
     write_text(OUT,"site.webmanifest",json.dumps(manifest,indent=2)+"\n")
     publication_manifest={
-        "publication_date":"2026-11-06",
+        "publication_date":"2026-11-07",
         "page_count":3,
         "pages":[
-            {"title":"Cannabis and Blood Donation Eligibility Guide","url":"https://bigbudman.com/guides/cannabis-blood-donation-eligibility-guide/","department":"guides","portfolio_label":"Authority-expansion","search_intent":"separate cannabis use, current impairment, donor history, medications, synthetic cannabinoids, and the blood center's final eligibility decision"},
-            {"title":"Cannabis Smoke Air-Quality Monitor Buying Guide","url":"https://bigbudman.com/gear/cannabis-smoke-air-quality-monitor-buying-guide/","department":"gear","portfolio_label":"Exploration","search_intent":"compare indoor-air monitors by pollutant, sensor evidence, placement, data access, upkeep, privacy, life-safety boundary, and first-year cost"},
-            {"title":"Semantic Table-Header Integrity","url":"https://bigbudman.com/editorial-policy/","department":"accessibility and public trust","portfolio_label":"Exploration","search_intent":"make every generated data table expose explicit column and row header relationships and stop publication if those semantics regress"},
+            {"title":"Cannabis and Migraine Evidence and Safety Guide","url":"https://bigbudman.com/guides/cannabis-migraine-headache-evidence-guide/","department":"guides","portfolio_label":"Authority-expansion","search_intent":"separate one route-specific acute-migraine trial from class-wide cannabis, CBD, prevention, retail-product, and individual treatment claims"},
+            {"title":"Home-Grow Ventilation Fan Buying Guide","url":"https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/","department":"gear","portfolio_label":"Exploration","search_intent":"compare lawful home-grow circulation and exhaust fans by job, installed restriction, control compatibility, environment, safety, acceptance testing, and first-year cost"},
+            {"title":"Brand-Image Loading Integrity","url":"https://bigbudman.com/editorial-policy/","department":"performance and public trust","portfolio_label":"Exploration","search_intent":"give the visible header and age gate prompt loading priority while deferring the repeated footer image, with a site-wide regression gate"},
         ],
-        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral air-monitor decision system covering sensor purpose, performance evidence, display, logging, export, privacy, outage behavior, upkeep, return testing, and first-year cost. It adds no merchant, model, price, coupon, ranking, availability claim, fabricated test, product image, or paid placement and preserves existing-alarm, source-control, and no-purchase outcomes."},
-        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"Both new guides and the semantic table-header control use text, tables, checklists, and existing brand interface assets. No person, blood product, monitor, sensor, alarm, merchant, affiliate, stock, or generated image was added or changed, so no exact-product mismatch or new licensing issue was introduced."},
-        "search_console":{"report_date":"2026-11-04","decision":"The October 5–November 1 report showed 786 impressions, four clicks, 0.509% CTR, and average position 24.632. ‘510 vs disposable’ had two impressions at position 12, while Delaware, federal-property, and Montana signals had one impression or click apiece; those samples were too weak to redirect the portfolio and existing pages already serve the intents. Blue Dream had 18 impressions near position 45 and was also not used to create another strain variation. No item is primarily Data-led. The report acted as a cannibalization guard while this batch fills distinct donor-eligibility, indoor-air shopping, and accessibility gaps."},
-        "authority":{"action":"Published a citation-worthy U.S. blood-donation eligibility decision guide anchored by current American Red Cross and FDA materials. Its five-lane screen, synthetic-cannabinoid distinction, donor-prep record, center call script, and myth checks strengthen responsible-use, clinician-conversation, and cardiovascular-safety paths through reciprocal contextual links. The table-header release gate also improves the accessibility of every comparison and evidence matrix on the site. No tightly matched unsolicited outreach target was strong enough to log, and no outreach was sent."},
+        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral ventilation-fan decision system covering airflow job, installed restriction, fan-curve evidence, authorized controls, environment, electrical and mounting gates, recall checks, acceptance testing, and first-year cost. It adds no merchant, model, price, coupon, ranking, availability claim, fabricated test, product image, or paid placement and preserves professional-review and no-purchase outcomes."},
+        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"Both new guides use text, evidence tables, checklists, and existing brand interface assets. No person, headache, cannabis product, fan, controller, duct, filter, merchant, affiliate, stock image, or generated image was added. The existing brand image file was not altered; only its context-specific loading semantics changed, so no exact-product mismatch or new licensing issue was introduced."},
+        "search_console":{"report_date":"2026-11-04","decision":"The October 5–November 1 report showed 786 impressions, four clicks, 0.509% CTR, and average position 24.632. ‘510 vs disposable’ had two impressions at position 12, while Delaware, federal-property, and Montana signals had one impression or click apiece; those samples were too weak to redirect the portfolio and existing pages already serve those intents. Blue Dream had 18 impressions near position 45 and was also too weak and off the target 4–20 range for another strain variation. No item is primarily Data-led. The report acted as a cannibalization guard while the batch fills distinct migraine-evidence, lawful-home-grow equipment, and site-delivery gaps."},
+        "authority":{"action":"Published a citation-worthy cannabis-and-migraine evidence guide anchored by the 2026 randomized crossover trial, a current randomized-trial systematic review, NCCIH, FDA, and MedlinePlus. Its result ledger, six transfer checks, emergency boundary, claim screen, and clinician handoff strengthen the chronic-pain, medicine-interaction, clinician-conversation, and driving-safety paths through reciprocal contextual links. No tightly matched unsolicited outreach target was strong enough to log, and no outreach was sent."},
         "freshness_surfaces":{
-            "https://bigbudman.com/guides/":"2026-11-06",
-            "https://bigbudman.com/guides/cannabis-blood-donation-eligibility-guide/":"2026-11-06",
-            "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/":"2026-11-06",
-            "https://bigbudman.com/guides/cannabis-heart-rate-blood-pressure-safety/":"2026-11-06",
-            "https://bigbudman.com/guides/secondhand-cannabis-smoke-indoor-air/":"2026-11-06",
-            "https://bigbudman.com/guides/cannabis-home-fire-safety-plan/":"2026-11-06",
-            "https://bigbudman.com/gear/":"2026-11-06",
-            "https://bigbudman.com/gear/cannabis-smoke-air-quality-monitor-buying-guide/":"2026-11-06",
-            "https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/":"2026-11-06",
-            "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/":"2026-11-06",
-            "https://bigbudman.com/editorial-policy/":"2026-11-06",
-            "https://bigbudman.com/updates/":"2026-11-06",
-            "https://bigbudman.com/site-index/":"2026-11-06"
+            "https://bigbudman.com/guides/":"2026-11-07",
+            "https://bigbudman.com/guides/cannabis-migraine-headache-evidence-guide/":"2026-11-07",
+            "https://bigbudman.com/guides/cannabis-cbd-chronic-pain-evidence-guide/":"2026-11-07",
+            "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/":"2026-11-07",
+            "https://bigbudman.com/guides/cannabis-home-fire-safety-plan/":"2026-11-07",
+            "https://bigbudman.com/gear/":"2026-11-07",
+            "https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/":"2026-11-07",
+            "https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/":"2026-11-07",
+            "https://bigbudman.com/gear/home-grow-timer-controller-buying-guide/":"2026-11-07",
+            "https://bigbudman.com/editorial-policy/":"2026-11-07",
+            "https://bigbudman.com/updates/":"2026-11-07",
+            "https://bigbudman.com/site-index/":"2026-11-07"
         },
-        "surfaces":["blood-donation five-lane eligibility guide and donor-prep record","clinician-conversation and cardiovascular reciprocal links","air-quality monitor sensor, data, placement, cost, and acceptance-test system","secondhand-smoke, fire-safety, purifier, and gear-comparison reciprocal links","site-wide row and column table-header scopes","semantic table-header regression gate","editorial policy trust contract","guide and gear hubs","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","robots sitemap declaration","checksum-verified source archive and publication gates"],
+        "surfaces":["migraine evidence ledger, transfer checks, emergency boundary, claim screen, and clinician handoff","chronic-pain and clinician-conversation reciprocal links","ventilation-fan job, fan-curve, control, electrical, cost, and acceptance-test system","monitor, controller, and fire-safety reciprocal links","site-wide header, footer, and age-gate brand-image loading roles","brand-image loading regression gate","editorial policy trust contract","guide and gear hubs","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","robots sitemap declaration","checksum-verified source archive and publication gates"],
     }
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]
