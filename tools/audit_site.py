@@ -861,13 +861,13 @@ def main() -> int:
             "site-index/index.html": ("guides/cannabis-memory-attention-cognition-evidence-guide/", "gear/cannabis-liquid-measuring-tool-buying-guide/", "editorial-policy/", "November 5, 2026", "updates/"),
         }
         discovery_checks["guides/index.html"] = tuple(
-            'data-updated="2026-11-07"' if marker == 'data-updated="2026-11-05"' else marker
+            'data-updated="2026-11-08"' if marker == 'data-updated="2026-11-05"' else marker
             for marker in discovery_checks["guides/index.html"]
-        ) + ("cannabis-blood-donation-eligibility-guide/", "cannabis-migraine-headache-evidence-guide/")
+        ) + ("cannabis-blood-donation-eligibility-guide/", "cannabis-migraine-headache-evidence-guide/", "cannabis-caregiving-sober-adult-handoff-plan/")
         discovery_checks["gear/index.html"] = tuple(
-            "All 34" if marker == "All 32" else "2026-11-07" if marker == "2026-11-05" else marker
+            "All 35" if marker == "All 32" else "2026-11-08" if marker == "2026-11-05" else marker
             for marker in discovery_checks["gear/index.html"]
-        ) + ("cannabis-smoke-air-quality-monitor-buying-guide/", "home-grow-ventilation-fan-buying-guide/")
+        ) + ("cannabis-smoke-air-quality-monitor-buying-guide/", "home-grow-ventilation-fan-buying-guide/", "cannabis-lockbox-buying-guide/")
         discovery_checks["guides/cannabis-blood-donation-eligibility-guide/index.html"] = (
             "Keep five screening lanes separate",
             "redcrossblood.org/local-homepage/news/article/can-you-donate-blood-if-you-use-cannabis-.html",
@@ -892,18 +892,32 @@ def main() -> int:
             "cpsc.gov/s3fs-public/finalreport.pdf",
             "No fan, duct, filter, room, plant",
         )
-        discovery_checks["editorial-policy/index.html"] += ("Semantic table-header integrity", "Brand-image loading integrity")
+        discovery_checks["guides/cannabis-caregiving-sober-adult-handoff-plan/index.html"] = (
+            "Use a closed-loop sober-adult handoff",
+            "Do not use a clearance countdown",
+            "1-800-222-1222",
+            "cdc.gov/cannabis/health-effects/driving.html",
+            "Household planning for adults 21+",
+        )
+        discovery_checks["gear/cannabis-lockbox-buying-guide/index.html"] = (
+            "Buy access control.",
+            "Measure the loaded interior",
+            "Run an acceptance test before the return deadline",
+            "cpsc.gov/FAQ/Special-Packaging-PPPA-FAQs",
+            "No lockbox, safe, bag, lock, merchant",
+        )
+        discovery_checks["editorial-policy/index.html"] += ("Semantic table-header integrity", "Brand-image loading integrity", "Mobile-navigation state integrity")
         discovery_checks["updates/index.html"] = (
-            "guides/cannabis-migraine-headache-evidence-guide/",
-            "gear/home-grow-ventilation-fan-buying-guide/",
+            "guides/cannabis-caregiving-sober-adult-handoff-plan/",
+            "gear/cannabis-lockbox-buying-guide/",
             "editorial-policy/",
-            "November 7, 2026",
+            "November 8, 2026",
         )
         discovery_checks["site-index/index.html"] = (
-            "guides/cannabis-migraine-headache-evidence-guide/",
-            "gear/home-grow-ventilation-fan-buying-guide/",
+            "guides/cannabis-caregiving-sober-adult-handoff-plan/",
+            "gear/cannabis-lockbox-buying-guide/",
             "editorial-policy/",
-            "November 7, 2026",
+            "November 8, 2026",
             "updates/",
         )
         for discovery_page, markers in discovery_checks.items():
@@ -1121,8 +1135,14 @@ def main() -> int:
             failures.append("Editorial policy or Atom feed is missing the feed authorship standard")
         if "Age-gate focus isolation" not in policy:
             failures.append("Editorial policy is missing the age-gate focus-isolation standard")
-        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "November 7, 2026" not in policy:
+        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "Mobile-navigation state integrity" not in policy or "November 8, 2026" not in policy:
             failures.append("Editorial policy is missing the current link and collection-date integrity standards")
+        for marker in ("mobileNav.hidden = true", "mobileNav.hidden = !opening", "Close menu", "event.key === 'Escape'", "restoreFocus: true"):
+            if marker not in app:
+                failures.append(f"Mobile-navigation script is missing state-integrity marker: {marker}")
+        sample_header = (ROOT / "guides/cannabis-caregiving-sober-adult-handoff-plan/index.html").read_text(encoding="utf-8")
+        if 'data-mobile-nav aria-label="Mobile navigation" hidden' not in sample_header:
+            failures.append("Mobile navigation is not natively hidden in the initial document")
         deployed_css = (ROOT / "assets/css/styles.css").read_text(encoding="utf-8")
         for marker in ("@media (forced-colors:active)", "CanvasText", "HighlightText", 'button[aria-pressed="true"]', ":focus-visible"):
             if marker not in deployed_css:

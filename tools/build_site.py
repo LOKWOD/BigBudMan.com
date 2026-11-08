@@ -64,6 +64,7 @@ from content_nov4 import NEW_GEAR as NOV4_GEAR, NEW_GUIDES as NOV4_GUIDES
 from content_nov5 import NEW_GEAR as NOV5_GEAR, NEW_GUIDES as NOV5_GUIDES
 from content_nov6 import NEW_GEAR as NOV6_GEAR, NEW_GUIDES as NOV6_GUIDES
 from content_nov7 import NEW_GEAR as NOV7_GEAR, NEW_GUIDES as NOV7_GUIDES
+from content_nov8 import NEW_GEAR as NOV8_GEAR, NEW_GUIDES as NOV8_GUIDES
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -178,6 +179,8 @@ GUIDE_PAGES = GUIDE_PAGES + NOV6_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV6_GEAR
 GUIDE_PAGES = GUIDE_PAGES + NOV7_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV7_GEAR
+GUIDE_PAGES = GUIDE_PAGES + NOV8_GUIDES
+OTHER_ARTICLES = OTHER_ARTICLES + NOV8_GEAR
 
 # November 6 connects both new resources from established, intent-matched
 # pages. These are editorial paths, not generic recent-post links, and the
@@ -268,6 +271,54 @@ _nov7_gear_links = {
 OTHER_ARTICLES = [
     ({**item, "updated": "November 7, 2026", "related": [*item["related"], _nov7_gear_links[item["path"]]]}
      if item["path"] in _nov7_gear_links else item)
+    for item in OTHER_ARTICLES
+]
+
+# November 8 links the caregiver plan and access-control buyer's guide from
+# established pages that already own the adjacent intent.
+_nov8_guide_links = {
+    "guides/cannabis-driving-impairment-sober-timer/index.html": (
+        "guides/cannabis-caregiving-sober-adult-handoff-plan/",
+        "CAREGIVING HANDOFF",
+        "Name the sober adult, care job, transport plan, storage, and response route",
+    ),
+    "guides/cannabis-child-resistant-packaging-home-storage-guide/index.html": (
+        "gear/cannabis-lockbox-buying-guide/",
+        "LOCKBOX CHECKLIST",
+        "Compare access, interior fit, relock behavior, recovery, claims, and cost",
+    ),
+    "guides/cannabis-older-adults-medication-fall-safety/index.html": (
+        "guides/cannabis-caregiving-sober-adult-handoff-plan/",
+        "CARE TRANSFER",
+        "Keep medicines, mobility, transport, access, and backup responsibility together",
+    ),
+    "guides/storage/index.html": (
+        "gear/cannabis-lockbox-buying-guide/",
+        "ACCESS CONTROL",
+        "Keep original packaging inside a measured, locked, failure-tested system",
+    ),
+}
+GUIDE_PAGES = [
+    ({**item, "updated": "November 8, 2026", "related": [*item["related"], _nov8_guide_links[item["path"]]]}
+     if item["path"] in _nov8_guide_links else item)
+    for item in GUIDE_PAGES
+]
+
+_nov8_gear_links = {
+    "gear/smell-proof-storage/index.html": (
+        "gear/cannabis-lockbox-buying-guide/",
+        "ACCESS-CONTROL SYSTEM",
+        "Compare users, original-package capacity, lock failure, evidence, and ownership cost",
+    ),
+    "gear/cannabis-gear-comparison-worksheet/index.html": (
+        "gear/cannabis-lockbox-buying-guide/",
+        "LOCKBOX WORKFLOW",
+        "Put three exact enclosures through the same access, fit, claim, recall, and cost screen",
+    ),
+}
+OTHER_ARTICLES = [
+    ({**item, "updated": "November 8, 2026", "related": [*item["related"], _nov8_gear_links[item["path"]]]}
+     if item["path"] in _nov8_gear_links else item)
     for item in OTHER_ARTICLES
 ]
 
@@ -504,6 +555,18 @@ for _standard in STANDARD_PAGES:
             '<p class="update-line">Policy reviewed November 7, 2026</p>',
         )
         _standard["body"] += '''<h2>Brand-image loading integrity</h2><p>The header and age-confirmation brand image are marked for eager, high-priority loading because either can be the first visible branded asset. The repeated footer image is explicitly lazy-loaded so it does not compete for decode work before a reader reaches the page end. All three keep intrinsic dimensions and asynchronous decoding to reduce layout movement and main-thread blocking. Publication checks inspect those three roles on every generated page and stop the build if priority, loading, dimensions, or decoding semantics regress. Loading hints improve delivery behavior; they do not change editorial claims or guarantee a specific performance score on every device or network.</p>'''
+
+# November 8 keeps the collapsed mobile navigation out of the accessibility
+# tree and keyboard order, and makes the toggle state and Escape behavior
+# match the visual state.
+for _standard in STANDARD_PAGES:
+    if _standard["path"] == "editorial-policy/index.html":
+        _standard["updated"] = "November 8, 2026"
+        _standard["body"] = _standard["body"].replace(
+            '<p class="update-line">Policy reviewed November 7, 2026</p>',
+            '<p class="update-line">Policy reviewed November 8, 2026</p>',
+        )
+        _standard["body"] += '''<h2>Mobile-navigation state integrity</h2><p>The collapsed mobile navigation uses the native <code>hidden</code> state, so its links are not presented to assistive technology or keyboard users before the menu opens. The toggle's <code>aria-expanded</code> value and accessible name change with the visible state. Escape closes an open menu and restores focus to the toggle; crossing the desktop breakpoint also closes it. Publication checks require the initial hidden state and each script behavior. These controls keep interface state consistent; they do not change page hierarchy, URLs, or editorial content.</p>'''
 
 # Keep new reference pages inside established topic clusters. These reciprocal
 # links are editorial navigation, not an attempt to manufacture link signals.
@@ -1195,6 +1258,26 @@ RECIPROCAL_RELATED.setdefault("gear/home-grow-temperature-humidity-monitor-buyin
 RECIPROCAL_RELATED.setdefault("gear/home-grow-timer-controller-buying-guide/index.html", []).insert(
     0, ("gear/home-grow-ventilation-fan-buying-guide/", "FAN CONTROL", "Require exact motor compatibility, safe minimum speed, restart behavior, and override")
 )
+# November 8 connects the caregiving authority asset and the lockbox decision
+# system from established, non-duplicative pages in their topic clusters.
+RECIPROCAL_RELATED.setdefault("guides/cannabis-driving-impairment-sober-timer/index.html", []).insert(
+    0, ("guides/cannabis-caregiving-sober-adult-handoff-plan/", "CAREGIVING HANDOFF", "Name the sober adult, care job, transport plan, storage, and response route")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabis-older-adults-medication-fall-safety/index.html", []).insert(
+    0, ("guides/cannabis-caregiving-sober-adult-handoff-plan/", "CARE TRANSFER", "Keep medicines, mobility, transport, access, and backup responsibility together")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabis-child-resistant-packaging-home-storage-guide/index.html", []).insert(
+    0, ("gear/cannabis-lockbox-buying-guide/", "LOCKBOX CHECKLIST", "Compare access, interior fit, relock behavior, recovery, claims, and cost")
+)
+RECIPROCAL_RELATED.setdefault("guides/storage/index.html", []).insert(
+    0, ("gear/cannabis-lockbox-buying-guide/", "ACCESS CONTROL", "Keep original packaging inside a measured, locked, failure-tested system")
+)
+RECIPROCAL_RELATED.setdefault("gear/smell-proof-storage/index.html", []).insert(
+    0, ("gear/cannabis-lockbox-buying-guide/", "ACCESS-CONTROL SYSTEM", "Compare users, original-package capacity, lock failure, evidence, and ownership cost")
+)
+RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
+    0, ("gear/cannabis-lockbox-buying-guide/", "LOCKBOX WORKFLOW", "Put three exact enclosures through the same access, fit, claim, recall, and cost screen")
+)
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in RECIPROCAL_RELATED:
         _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
@@ -1418,9 +1501,10 @@ def add_collection_itemlist(html: str, page: Page, name: str, card_class: str) -
 
 
 def render_guides_hub() -> tuple[Page,str]:
-    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 7, 2026",kind="website")
+    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 8, 2026",kind="website")
     p="../"
     cards="".join([
+      card("guides/cannabis-caregiving-sober-adult-handoff-plan/","RESPONSIBLE USE + CARE","Cannabis and caregiving handoff plan","Name the care job, sober adult, transport, medicines, locked storage, infant-feeding boundary, exposure response, and failure plan.","shield",p),
       card("guides/cannabis-migraine-headache-evidence-guide/","HEALTH + EVIDENCE","Cannabis and migraine evidence","Keep one acute vaporized-cannabis trial inside its population, route, formulation, comparator, time window, emergency, and clinical boundaries.","heart",p),
       card("guides/cannabis-memory-attention-cognition-evidence-guide/","HEALTH + COGNITION","Cannabis, memory, and attention evidence","Separate cognitive domains, acute and residual windows, confounders, task records, claim limits, and the clinical or safety handoff.","heart",p),
       card("guides/indica-sativa-hybrid-label-evidence-guide/","FLOWER + EVIDENCE","Indica, sativa, and hybrid labels","Use the new 2026 systematic review, product identity, exact-lot chemistry, route, and context without turning shorthand into an effect guarantee.","leaf",p),
@@ -1593,6 +1677,7 @@ def render_strains_hub() -> tuple[Page,str]:
 
 def render_gear_hub() -> tuple[Page,str]:
     items = [
+        ("cannabis-lockbox-buying-guide/","compare storage care","STORAGE + ACCESS CONTROL","Choose a cannabis lockbox","Compare users, original-package capacity, lock and relock behavior, recovery, mounting, evidence, recalls, return terms, and first-year cost.","lock",None,None),
         ("home-grow-ventilation-fan-buying-guide/","compare powered care","HOME GROW + AIRFLOW","Choose a ventilation fan system","Compare the air job, installed resistance, fan-curve evidence, authorized controls, environment, electrical safety, recalls, acceptance test, and cost.","spark",None,None),
         ("cannabis-smoke-air-quality-monitor-buying-guide/","compare powered care","INDOOR AIR + MEASUREMENT","Choose an indoor-air monitor","Match PM, VOC, CO2, CO, temperature, or humidity to the question; compare evidence, placement, data, privacy, upkeep, and cost.","spark",None,None),
         ("cannabis-liquid-measuring-tool-buying-guide/","compare preparation care","MEASUREMENT + LABELS","Choose a liquid measuring tool","Compare the instructed mL task, device type, graduations, capacity, package fit, accessibility, care, return test, and first-year cost.","scale",None,None),
@@ -1628,7 +1713,7 @@ def render_gear_hub() -> tuple[Page,str]:
         ("cannabis-ashtray-ember-disposal-guide/","care","FIRE-SAFE DISPOSAL","Choose an ashtray","Compare stability, depth, materials, wind, placement, extinguishing, cleaning, waste, and smoke-exposure limits.","alert",None,None),
         ("cannabis-glass-pipe-water-pipe-buying-guide/","preparation care","GLASSWARE","Choose a pipe or water pipe","Check format, material claims, joint fit, stability, cleaning access, replacement parts, and smoke-exposure limits.","search",None,None),
     ]
-    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 7, 2026",kind="website")
+    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 8, 2026",kind="website")
     cards=[]
     for href, categories, kicker, title, description, icon_name, image_src, image_alt in items:
         art = f'<div><img src="{image_src}" alt="{image_alt}"></div>' if image_src else f'<div class="gear-card__icon-art" aria-hidden="true">{icon(icon_name)}</div>'
@@ -1889,32 +1974,33 @@ def build() -> None:
     manifest={"name":"Big Bud Man","short_name":"Big Bud Man","start_url":"/","display":"standalone","background_color":"#101712","theme_color":"#101712","icons":[{"src":"/assets/images/favicon.svg","sizes":"any","type":"image/svg+xml"}]}
     write_text(OUT,"site.webmanifest",json.dumps(manifest,indent=2)+"\n")
     publication_manifest={
-        "publication_date":"2026-11-07",
+        "publication_date":"2026-11-08",
         "page_count":3,
         "pages":[
-            {"title":"Cannabis and Migraine Evidence and Safety Guide","url":"https://bigbudman.com/guides/cannabis-migraine-headache-evidence-guide/","department":"guides","portfolio_label":"Authority-expansion","search_intent":"separate one route-specific acute-migraine trial from class-wide cannabis, CBD, prevention, retail-product, and individual treatment claims"},
-            {"title":"Home-Grow Ventilation Fan Buying Guide","url":"https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/","department":"gear","portfolio_label":"Exploration","search_intent":"compare lawful home-grow circulation and exhaust fans by job, installed restriction, control compatibility, environment, safety, acceptance testing, and first-year cost"},
-            {"title":"Brand-Image Loading Integrity","url":"https://bigbudman.com/editorial-policy/","department":"performance and public trust","portfolio_label":"Exploration","search_intent":"give the visible header and age gate prompt loading priority while deferring the repeated footer image, with a site-wide regression gate"},
+            {"title":"Cannabis and Caregiving Sober-Adult Handoff Plan","url":"https://bigbudman.com/guides/cannabis-caregiving-sober-adult-handoff-plan/","department":"guides","portfolio_label":"Authority-expansion","search_intent":"plan a closed-loop sober-adult transfer of supervision, medicines, transport, storage, infant-care boundaries, and exposure response without a guessed clearance timer"},
+            {"title":"Cannabis Lockbox Buying Guide and Access-Control Checklist","url":"https://bigbudman.com/gear/cannabis-lockbox-buying-guide/","department":"gear","portfolio_label":"Exploration","search_intent":"compare lockboxes by people, original-package capacity, authorized access, relock and recovery behavior, placement, claim evidence, recalls, returns, and first-year cost"},
+            {"title":"Mobile-Navigation State Integrity","url":"https://bigbudman.com/editorial-policy/","department":"accessibility and usability","portfolio_label":"Exploration","search_intent":"keep collapsed mobile navigation out of the accessibility tree and keyboard order while synchronizing visible state, accessible name, Escape behavior, and focus return"},
         ],
-        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral ventilation-fan decision system covering airflow job, installed restriction, fan-curve evidence, authorized controls, environment, electrical and mounting gates, recall checks, acceptance testing, and first-year cost. It adds no merchant, model, price, coupon, ranking, availability claim, fabricated test, product image, or paid placement and preserves professional-review and no-purchase outcomes."},
-        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"Both new guides use text, evidence tables, checklists, and existing brand interface assets. No person, headache, cannabis product, fan, controller, duct, filter, merchant, affiliate, stock image, or generated image was added. The existing brand image file was not altered; only its context-specific loading semantics changed, so no exact-product mismatch or new licensing issue was introduced."},
-        "search_console":{"report_date":"2026-11-04","decision":"The October 5–November 1 report showed 786 impressions, four clicks, 0.509% CTR, and average position 24.632. ‘510 vs disposable’ had two impressions at position 12, while Delaware, federal-property, and Montana signals had one impression or click apiece; those samples were too weak to redirect the portfolio and existing pages already serve those intents. Blue Dream had 18 impressions near position 45 and was also too weak and off the target 4–20 range for another strain variation. No item is primarily Data-led. The report acted as a cannibalization guard while the batch fills distinct migraine-evidence, lawful-home-grow equipment, and site-delivery gaps."},
-        "authority":{"action":"Published a citation-worthy cannabis-and-migraine evidence guide anchored by the 2026 randomized crossover trial, a current randomized-trial systematic review, NCCIH, FDA, and MedlinePlus. Its result ledger, six transfer checks, emergency boundary, claim screen, and clinician handoff strengthen the chronic-pain, medicine-interaction, clinician-conversation, and driving-safety paths through reciprocal contextual links. No tightly matched unsolicited outreach target was strong enough to log, and no outreach was sent."},
+        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral lockbox decision system covering authorized and excluded users, original-package fit, lock and relock behavior, lost-access recovery, placement, evidence, recalls, acceptance testing, returns, and first-year cost. It adds no merchant, model, price, discount, ranking, availability claim, fabricated test, product image, or paid placement and preserves the no-purchase outcome."},
+        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"Both new pages use original text, evidence tables, checklists, and existing brand interface assets. No caregiver, child, dependent adult, cannabis product, lockbox, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."},
+        "search_console":{"report_date":"2026-11-04","decision":"The October 5–November 1 report showed 786 impressions, four clicks, 0.509% CTR, and average position 24.632. ‘510 vs disposable’ had two impressions at position 12, while Delaware, federal-property, and Montana signals had one impression or click apiece; those samples were too weak to redirect the portfolio and existing pages already serve those intents. Blue Dream had 18 impressions near position 45 and was outside the target 4–20 range. No item is primarily Data-led. The report acted as a cannibalization guard while the batch fills distinct caregiving, household access-control, and mobile-navigation gaps."},
+        "authority":{"action":"Published a citation-worthy cannabis-caregiving handoff plan grounded in current CDC driving and infant-care guidance, New York OCM storage guidance, and National Capital Poison Center response guidance. Its closed-loop handoff, care-job matrix, no-clearance-timer screen, transport gate, two-layer storage system, and exposure-response plan strengthen the responsible-use, driving, child-resistant packaging, older-adult, and social-hosting cluster through reciprocal contextual links. Three narrowly matched educational-resource or technical-feedback opportunities were logged; no outreach was sent."},
         "freshness_surfaces":{
-            "https://bigbudman.com/guides/":"2026-11-07",
-            "https://bigbudman.com/guides/cannabis-migraine-headache-evidence-guide/":"2026-11-07",
-            "https://bigbudman.com/guides/cannabis-cbd-chronic-pain-evidence-guide/":"2026-11-07",
-            "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/":"2026-11-07",
-            "https://bigbudman.com/guides/cannabis-home-fire-safety-plan/":"2026-11-07",
-            "https://bigbudman.com/gear/":"2026-11-07",
-            "https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/":"2026-11-07",
-            "https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/":"2026-11-07",
-            "https://bigbudman.com/gear/home-grow-timer-controller-buying-guide/":"2026-11-07",
-            "https://bigbudman.com/editorial-policy/":"2026-11-07",
-            "https://bigbudman.com/updates/":"2026-11-07",
-            "https://bigbudman.com/site-index/":"2026-11-07"
+            "https://bigbudman.com/guides/":"2026-11-08",
+            "https://bigbudman.com/guides/cannabis-caregiving-sober-adult-handoff-plan/":"2026-11-08",
+            "https://bigbudman.com/guides/cannabis-driving-impairment-sober-timer/":"2026-11-08",
+            "https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/":"2026-11-08",
+            "https://bigbudman.com/guides/cannabis-older-adults-medication-fall-safety/":"2026-11-08",
+            "https://bigbudman.com/guides/storage/":"2026-11-08",
+            "https://bigbudman.com/gear/":"2026-11-08",
+            "https://bigbudman.com/gear/cannabis-lockbox-buying-guide/":"2026-11-08",
+            "https://bigbudman.com/gear/smell-proof-storage/":"2026-11-08",
+            "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/":"2026-11-08",
+            "https://bigbudman.com/editorial-policy/":"2026-11-08",
+            "https://bigbudman.com/updates/":"2026-11-08",
+            "https://bigbudman.com/site-index/":"2026-11-08"
         },
-        "surfaces":["migraine evidence ledger, transfer checks, emergency boundary, claim screen, and clinician handoff","chronic-pain and clinician-conversation reciprocal links","ventilation-fan job, fan-curve, control, electrical, cost, and acceptance-test system","monitor, controller, and fire-safety reciprocal links","site-wide header, footer, and age-gate brand-image loading roles","brand-image loading regression gate","editorial policy trust contract","guide and gear hubs","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","robots sitemap declaration","checksum-verified source archive and publication gates"],
+        "surfaces":["caregiving handoff card, care-job matrix, no-clearance-timer screen, transport gate, storage system, exposure response, and six-gate audit","driving, packaging, older-adult, and storage reciprocal links","lockbox access, capacity, lock failure, claim-evidence, safety, cost, and acceptance-test system","smell-proof storage and gear-comparison reciprocal links","site-wide initial mobile-navigation hidden state","synchronized toggle name and expanded state","Escape close and focus return","mobile-navigation regression gate","editorial policy trust contract","guide and gear hubs","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","robots sitemap declaration","checksum-verified source archive and publication gates"],
     }
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]

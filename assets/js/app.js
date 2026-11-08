@@ -29,19 +29,29 @@
   const menuButton = $('[data-menu-toggle]');
   const mobileNav = $('[data-mobile-nav]');
   if (menuButton && mobileNav) {
-    const closeMenu = () => {
+    const closeMenu = ({ restoreFocus = false } = {}) => {
       menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', 'Open menu');
       mobileNav.classList.remove('is-open');
+      mobileNav.hidden = true;
       body.classList.remove('menu-open');
+      if (restoreFocus) menuButton.focus();
     };
     menuButton.addEventListener('click', () => {
       const opening = menuButton.getAttribute('aria-expanded') !== 'true';
       menuButton.setAttribute('aria-expanded', String(opening));
+      menuButton.setAttribute('aria-label', opening ? 'Close menu' : 'Open menu');
+      mobileNav.hidden = !opening;
       mobileNav.classList.toggle('is-open', opening);
       body.classList.toggle('menu-open', opening);
     });
     $$('a', mobileNav).forEach((link) => link.addEventListener('click', closeMenu));
     window.addEventListener('resize', () => { if (window.innerWidth > 1100) closeMenu(); });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
+        closeMenu({ restoreFocus: true });
+      }
+    });
   }
 
   // Age confirmation. The page remains in the DOM for accessibility and search indexing.
