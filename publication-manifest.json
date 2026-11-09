@@ -1,69 +1,66 @@
 {
-  "publication_date": "2026-11-08",
+  "publication_date": "2026-11-09",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis and Caregiving Sober-Adult Handoff Plan",
-      "url": "https://bigbudman.com/guides/cannabis-caregiving-sober-adult-handoff-plan/",
+      "title": "Cannabis Moving Day and Relocation Checklist",
+      "url": "https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "plan a closed-loop sober-adult transfer of supervision, medicines, transport, storage, infant-care boundaries, and exposure response without a guessed clearance timer"
+      "search_intent": "classify a move by origin, route, destination, property, carrier and product, then decide lawful disposition, controlled same-jurisdiction packing, vehicle access, and arrival handoff"
     },
     {
-      "title": "Cannabis Lockbox Buying Guide and Access-Control Checklist",
-      "url": "https://bigbudman.com/gear/cannabis-lockbox-buying-guide/",
+      "title": "Home-Grow Watering Tools Buying Guide",
+      "url": "https://bigbudman.com/gear/home-grow-watering-tools-buying-guide/",
       "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "compare lockboxes by people, original-package capacity, authorized access, relock and recovery behavior, placement, claim evidence, recalls, returns, and first-year cost"
+      "search_intent": "compare watering cans, wands, reservoirs, manual or powered pumps, tubing and containment by task fit, delivery evidence, wet safety, care, recalls and first-year cost"
     },
     {
-      "title": "Mobile-Navigation State Integrity",
+      "title": "Site-Search Dialog Accessible Naming",
       "url": "https://bigbudman.com/editorial-policy/",
       "department": "accessibility and usability",
       "portfolio_label": "Exploration",
-      "search_intent": "keep collapsed mobile navigation out of the accessibility tree and keyboard order while synchronizing visible state, accessible name, Escape behavior, and focus return"
+      "search_intent": "give the native site-search dialog a stable programmatic name and concise instructions while preserving the labeled input and live results"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral lockbox decision system covering authorized and excluded users, original-package fit, lock and relock behavior, lost-access recovery, placement, evidence, recalls, acceptance testing, returns, and first-year cost. It adds no merchant, model, price, discount, ranking, availability claim, fabricated test, product image, or paid placement and preserves the no-purchase outcome."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral home-grow watering-tool decision system covering source-to-plant fit, filled handling, measured delivery, vessels, pumps, tubing, wet and electrical boundaries, runoff, care, recalls, return testing, and first-year cost. It adds no merchant, model, live price, discount, ranking, availability claim, fabricated test, product image, or paid placement and preserves the no-purchase outcome."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "Both new pages use original text, evidence tables, checklists, and existing brand interface assets. No caregiver, child, dependent adult, cannabis product, lockbox, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."
+    "note": "Both new pages use original text, evidence tables, checklists, and existing brand interface assets. No cannabis product, moving container, watering tool, pump, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."
   },
   "search_console": {
     "report_date": "2026-11-04",
-    "decision": "The October 5\u2013November 1 report showed 786 impressions, four clicks, 0.509% CTR, and average position 24.632. \u2018510 vs disposable\u2019 had two impressions at position 12, while Delaware, federal-property, and Montana signals had one impression or click apiece; those samples were too weak to redirect the portfolio and existing pages already serve those intents. Blue Dream had 18 impressions near position 45 and was outside the target 4\u201320 range. No item is primarily Data-led. The report acted as a cannibalization guard while the batch fills distinct caregiving, household access-control, and mobile-navigation gaps."
+    "decision": "The October 5\u2013November 1 report showed 786 impressions, four clicks, 0.509% CTR, and average position 24.632. \u2018510 vs disposable\u2019 had only two impressions at position 12 and is already served by the disposable-versus-510 comparison; Delaware, federal-property and Montana signals had one impression or click each. Blue Dream had 18 impressions near position 45, outside the target 4\u201320 range. Those samples were deliberately ignored as too weak or duplicative, so no item is primarily Data-led. The report served as a cannibalization guard while the batch fills distinct relocation, watering-equipment, and accessibility gaps."
   },
   "authority": {
-    "action": "Published a citation-worthy cannabis-caregiving handoff plan grounded in current CDC driving and infant-care guidance, New York OCM storage guidance, and National Capital Poison Center response guidance. Its closed-loop handoff, care-job matrix, no-clearance-timer screen, transport gate, two-layer storage system, and exposure-response plan strengthen the responsible-use, driving, child-resistant packaging, older-adult, and social-hosting cluster through reciprocal contextual links. Three narrowly matched educational-resource or technical-feedback opportunities were logged; no outreach was sent."
+    "action": "Published a citation-worthy cannabis moving-day decision record and six-gate audit grounded in current New York OCM, USPS, and DEA sources. It separates same-jurisdiction transfer from state-line, international, federal, tribal, property, carrier, disposal, vehicle, and arrival questions rather than pretending legal status is one switch. Reciprocal contextual links strengthen the official-source, disposal, storage, federal-boundary, and lawful-relocation cluster. Three narrowly matched correction or educational-resource opportunities were logged; no outreach was sent."
   },
   "freshness_surfaces": {
-    "https://bigbudman.com/guides/": "2026-11-08",
-    "https://bigbudman.com/guides/cannabis-caregiving-sober-adult-handoff-plan/": "2026-11-08",
-    "https://bigbudman.com/guides/cannabis-driving-impairment-sober-timer/": "2026-11-08",
-    "https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/": "2026-11-08",
-    "https://bigbudman.com/guides/cannabis-older-adults-medication-fall-safety/": "2026-11-08",
-    "https://bigbudman.com/guides/storage/": "2026-11-08",
-    "https://bigbudman.com/gear/": "2026-11-08",
-    "https://bigbudman.com/gear/cannabis-lockbox-buying-guide/": "2026-11-08",
-    "https://bigbudman.com/gear/smell-proof-storage/": "2026-11-08",
-    "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/": "2026-11-08",
-    "https://bigbudman.com/editorial-policy/": "2026-11-08",
-    "https://bigbudman.com/updates/": "2026-11-08",
-    "https://bigbudman.com/site-index/": "2026-11-08"
+    "https://bigbudman.com/guides/": "2026-11-09",
+    "https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/": "2026-11-09",
+    "https://bigbudman.com/guides/cannabis-official-source-directory/": "2026-11-09",
+    "https://bigbudman.com/guides/cannabis-product-disposal-decision-guide/": "2026-11-09",
+    "https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/": "2026-11-09",
+    "https://bigbudman.com/gear/": "2026-11-09",
+    "https://bigbudman.com/gear/home-grow-watering-tools-buying-guide/": "2026-11-09",
+    "https://bigbudman.com/gear/home-grow-ph-ec-meter-buying-guide/": "2026-11-09",
+    "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/": "2026-11-09",
+    "https://bigbudman.com/editorial-policy/": "2026-11-09",
+    "https://bigbudman.com/updates/": "2026-11-09",
+    "https://bigbudman.com/site-index/": "2026-11-09"
   },
   "surfaces": [
-    "caregiving handoff card, care-job matrix, no-clearance-timer screen, transport gate, storage system, exposure response, and six-gate audit",
-    "driving, packaging, older-adult, and storage reciprocal links",
-    "lockbox access, capacity, lock failure, claim-evidence, safety, cost, and acceptance-test system",
-    "smell-proof storage and gear-comparison reciprocal links",
-    "site-wide initial mobile-navigation hidden state",
-    "synchronized toggle name and expanded state",
-    "Escape close and focus return",
-    "mobile-navigation regression gate",
+    "moving-day classification matrix, product-and-route record, state-line stop gate, disposition screen, controlled same-jurisdiction transfer, arrival handoff, and six-gate audit",
+    "official-source, disposal, storage, and grow-plan reciprocal links",
+    "watering-tool task map, water-path record, specification matrix, wet and electrical stop gates, plain-water return test, cost boundary, and ten-gate checkout",
+    "pH/EC meter and gear-comparison reciprocal links",
+    "site-wide search-dialog accessible name and description",
+    "search-dialog regression gate",
     "editorial policy trust contract",
     "guide and gear hubs",
     "publication updates",

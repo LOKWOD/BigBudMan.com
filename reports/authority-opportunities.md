@@ -217,6 +217,20 @@ This is a research log, not an outreach ledger. No email, form, account, comment
 
 - **Outreach status:** Logged only. No email, form, comment, account, call, or submission was sent.
 
+## 2026-11-09 — moving-day jurisdiction and household-goods handoff
+
+- **Authority action:** Published a citation-ready cannabis moving-day checklist that classifies the move before packing, separates same-jurisdiction transfer from state-line, international, federal, tribal, property, mail, carrier, and vehicle questions, and supplies a product-and-route record, lawful-disposition screen, controlled packing chain, arrival handoff, and six-gate audit. Current New York OCM, USPS, and DEA sources are attached to the decisions they support.
+- **Cluster strengthened:** Official-source directory ↔ product disposal ↔ storage ↔ federal-property boundaries ↔ moving-day route and arrival. The companion watering-tool guide separately strengthens the lawful home-grow equipment cluster through the grow planner, pH/EC measurement guide, IPM guide, and product-comparison worksheet.
+- **Trust action:** The moving guide uses New York only as an official worked example, requires origin/route/destination verification, distinguishes marijuana from exact hemp/CBD questions, refuses to treat a receipt or medical card as route permission, and preserves a no-transport outcome. The watering guide separates product selection from cultivation prescriptions and rejects unverified materials, precision, electrical, and safety claims.
+
+| Qualified target | Verified contact route | Exact asset match | Honest pitch angle |
+|---|---|---|---|
+| American Trucking Associations Moving & Storage Conference — <https://www.trucking.org/moving-storage-conference> | Official ATA contact page: <https://www.trucking.org/contact-us> · Moving & Storage Conference contact listed there | [Cannabis Moving Day Checklist](https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/) | A source-linked consumer checklist that tells readers to resolve product, route, property, carrier, access, and disposition before handing household goods to a mover. Invite factual correction or consumer-education consideration; do not imply ATA review, carrier authorization, legal advice, or endorsement. |
+| National Association of Senior & Specialty Move Managers — <https://www.nasmm.org/> | Official association contact shown at <https://www.nasmm.org/> | [Cannabis Moving Day Checklist](https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/) | A closed-loop inventory and handoff record for older adults, families, and move managers that keeps medicines, cannabis products, unauthorized access, movers, storage, disposal, and arrival separate. Invite technical feedback or member-resource consideration; do not imply NASMM review, client-specific advice, or permission to handle a product. |
+| New York State Office of Cannabis Management consumer education — <https://cannabis.ny.gov/consumers> | Official contact route: <https://cannabis.ny.gov/contact-us> · 1-888-626-5151 | [Cannabis Moving Day Checklist](https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/) | A New York-based route, packing, storage, vehicle, disposal, and arrival checklist that links directly to OCM's current adult-use boundary and storage information. Invite factual correction or consumer-resource consideration; do not imply OCM review, nationwide scope, legal advice, or endorsement. |
+
+- **Outreach status:** Logged only. No email, form, comment, account, call, or submission was sent.
+
 ## 2026-11-08 — caregiving handoff and household access control
 
 - **Authority action:** Published a citation-ready cannabis caregiving plan that turns broad “responsible use” advice into a closed-loop sober-adult handoff, named care-job matrix, no-clearance-timer screen, transport gate, medicine and access record, two-layer locked-storage system, exposure response, and six-gate pre-use audit. Current CDC, New York OCM, and Poison Control sources are attached to the decisions they support.
