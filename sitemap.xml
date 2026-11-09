@@ -245,7 +245,7 @@
   <url><loc>https://bigbudman.com/strains/headband/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/hindu-kush/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/ice-cream-cake/</loc><lastmod>2026-08-26</lastmod></url>
-  <url><loc>https://bigbudman.com/strains/</loc><lastmod>2026-10-24</lastmod></url>
+  <url><loc>https://bigbudman.com/strains/</loc><lastmod>2026-11-09</lastmod></url>
   <url><loc>https://bigbudman.com/strains/jack-herer/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/jealousy/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/kosher-kush/</loc><lastmod>2026-08-26</lastmod></url>
@@ -270,7 +270,7 @@
   <url><loc>https://bigbudman.com/strains/peanut-butter-breath/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/pennywise/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/permanent-marker/</loc><lastmod>2026-08-26</lastmod></url>
-  <url><loc>https://bigbudman.com/strains/pine-walker-seedless/</loc><lastmod>2026-09-01</lastmod></url>
+  <url><loc>https://bigbudman.com/strains/pine-walker-seedless/</loc><lastmod>2026-11-09</lastmod></url>
   <url><loc>https://bigbudman.com/strains/pineapple-express/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/platinum-og/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/purple-haze/</loc><lastmod>2026-08-26</lastmod></url>
@@ -279,7 +279,7 @@
   <url><loc>https://bigbudman.com/strains/red-congolese/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/remedy/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/ringos-gift/</loc><lastmod>2026-08-26</lastmod></url>
-  <url><loc>https://bigbudman.com/strains/royal-cbdv-automatic/</loc><lastmod>2026-09-15</lastmod></url>
+  <url><loc>https://bigbudman.com/strains/royal-cbdv-automatic/</loc><lastmod>2026-11-09</lastmod></url>
   <url><loc>https://bigbudman.com/strains/rs11/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/runtz/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/sfv-og/</loc><lastmod>2026-08-26</lastmod></url>
@@ -308,6 +308,7 @@
   <url><loc>https://bigbudman.com/strains/thai/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/trainwreck/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/tropicana-cookies/</loc><lastmod>2026-08-26</lastmod></url>
+  <url><loc>https://bigbudman.com/strains/vitality-seedless-cbdv/</loc><lastmod>2026-11-09</lastmod></url>
   <url><loc>https://bigbudman.com/strains/wedding-cake/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/white-cbg/</loc><lastmod>2026-09-04</lastmod></url>
   <url><loc>https://bigbudman.com/strains/white-widow/</loc><lastmod>2026-08-26</lastmod></url>

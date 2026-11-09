@@ -17,11 +17,11 @@
       "search_intent": "compare watering cans, wands, reservoirs, manual or powered pumps, tubing and containment by task fit, delivery evidence, wet safety, care, recalls and first-year cost"
     },
     {
-      "title": "Site-Search Dialog Accessible Naming",
-      "url": "https://bigbudman.com/editorial-policy/",
-      "department": "accessibility and usability",
+      "title": "Vitality Seedless CBDV Strain Guide",
+      "url": "https://bigbudman.com/strains/vitality-seedless-cbdv/",
+      "department": "strains",
       "portfolio_label": "Exploration",
-      "search_intent": "give the native site-search dialog a stable programmatic name and concise instructions while preserving the labeled input and live results"
+      "search_intent": "verify a named CBDV-focused hemp cultivar through breeder identity, independent trial context, triploid and seedless claim boundaries, and finished-batch evidence"
     }
   ],
   "monetization": {
@@ -31,11 +31,11 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "Both new pages use original text, evidence tables, checklists, and existing brand interface assets. No cannabis product, moving container, watering tool, pump, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."
+    "note": "All three new pages use original text, evidence tables, checklists, and existing brand interface assets. The Vitality Seedless profile explicitly withholds a cultivar photograph because no exact, licensed finished-product image was verified. No moving container, watering tool, pump, cannabis product, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."
   },
   "search_console": {
     "report_date": "2026-11-04",
-    "decision": "The October 5\u2013November 1 report showed 786 impressions, four clicks, 0.509% CTR, and average position 24.632. \u2018510 vs disposable\u2019 had only two impressions at position 12 and is already served by the disposable-versus-510 comparison; Delaware, federal-property and Montana signals had one impression or click each. Blue Dream had 18 impressions near position 45, outside the target 4\u201320 range. Those samples were deliberately ignored as too weak or duplicative, so no item is primarily Data-led. The report served as a cannibalization guard while the batch fills distinct relocation, watering-equipment, and accessibility gaps."
+    "decision": "The October 5\u2013November 1 report showed 786 impressions, four clicks, 0.509% CTR, and average position 24.632. \u2018510 vs disposable\u2019 had only two impressions at position 12 and is already served by the disposable-versus-510 comparison; Delaware, federal-property and Montana signals had one impression or click each. Blue Dream had 18 impressions near position 45, outside the target 4\u201320 range. Those samples were deliberately ignored as too weak or duplicative, so no item is primarily Data-led. The report served as a cannibalization guard while the batch fills distinct relocation, watering-equipment, and CBDV evidence gaps."
   },
   "authority": {
     "action": "Published a citation-worthy cannabis moving-day decision record and six-gate audit grounded in current New York OCM, USPS, and DEA sources. It separates same-jurisdiction transfer from state-line, international, federal, tribal, property, carrier, disposal, vehicle, and arrival questions rather than pretending legal status is one switch. Reciprocal contextual links strengthen the official-source, disposal, storage, federal-boundary, and lawful-relocation cluster. Three narrowly matched correction or educational-resource opportunities were logged; no outreach was sent."
@@ -50,6 +50,10 @@
     "https://bigbudman.com/gear/home-grow-watering-tools-buying-guide/": "2026-11-09",
     "https://bigbudman.com/gear/home-grow-ph-ec-meter-buying-guide/": "2026-11-09",
     "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/": "2026-11-09",
+    "https://bigbudman.com/strains/": "2026-11-09",
+    "https://bigbudman.com/strains/vitality-seedless-cbdv/": "2026-11-09",
+    "https://bigbudman.com/strains/pine-walker-seedless/": "2026-11-09",
+    "https://bigbudman.com/strains/royal-cbdv-automatic/": "2026-11-09",
     "https://bigbudman.com/editorial-policy/": "2026-11-09",
     "https://bigbudman.com/updates/": "2026-11-09",
     "https://bigbudman.com/site-index/": "2026-11-09"
@@ -59,10 +63,12 @@
     "official-source, disposal, storage, and grow-plan reciprocal links",
     "watering-tool task map, water-path record, specification matrix, wet and electrical stop gates, plain-water return test, cost boundary, and ten-gate checkout",
     "pH/EC meter and gear-comparison reciprocal links",
+    "CBDV breeder-versus-retail claim audit, independent trial boundary, finished-batch report workflow, and no-verified-image disclosure",
+    "CBDV-specific strain filter and reciprocal links from Pine Walker Seedless and Royal CBDV Automatic",
     "site-wide search-dialog accessible name and description",
     "search-dialog regression gate",
     "editorial policy trust contract",
-    "guide and gear hubs",
+    "guide, gear, and strain hubs",
     "publication updates",
     "Atom feed",
     "complete site index",
