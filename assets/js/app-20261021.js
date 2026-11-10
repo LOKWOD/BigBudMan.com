@@ -328,6 +328,7 @@
       flower: {title:'Use the flower quality guide', text:'Freshness, cure, source, and manageable potency matter more than chasing the biggest percentage.', url:'guides/flower/', cta:'Open flower guide'},
       vape: {title:'Check the vape source and hardware', text:'Concentrated oil and compact hardware reward deliberate pacing and licensed sourcing.', url:'guides/vapes/', cta:'Open vape guide'},
       concentrate: {title:'Decode the concentrate before the device', text:'Translate wax, shatter, rosin, resin, and dabs; then verify potency units, the exact batch, lawful source, equipment, and storage.', url:'guides/cannabis-concentrates-dabs-label-safety-guide/', cta:'Open concentrate guide'},
+      concentrateContainer: {title:'Keep the lot identity before changing containers', text:'Preserve the original package, then compare exact contact materials, usable fit, closure, cleaning, label identity, locked storage, and total cost.', url:'gear/cannabis-concentrate-container-buying-guide/', cta:'Open container guide'},
       urgent: {title:'Use the exposure response plan', text:'Separate 911 warning signs from poison-center questions, preserve the exact product record, and skip fake antidotes.', url:'guides/cannabis-overconsumption-poisoning-response/', cta:'Open response guide'},
       mental: {title:'Use the mental-health safety gate', text:'Separate anxiety, panic, paranoia, disorientation, hallucinations, and losing touch with reality; then choose the right crisis route and preserve the exact record.', url:'guides/cannabis-anxiety-paranoia-psychosis-warning-signs/', cta:'Open warning-sign guide'},
       compare: {title:'Normalize the package, not the hype', text:'Compare three like-for-like products by price, count, net quantity, and labeled cannabinoid total while keeping quality and safety gates separate.', url:'guides/cannabis-product-price-label-comparison-calculator/', cta:'Open comparison calculator'},
@@ -345,6 +346,7 @@
       if (answers.priority === 'recall') return routes.recall;
       if (answers.priority === 'lab') return routes.lab;
       if (answers.priority === 'legal') return routes.legal;
+      if (answers.priority === 'gear' && answers.format === 'concentrate') return routes.concentrateContainer;
       if (answers.priority === 'gear') return routes.gear;
       if (answers.priority === 'label') return routes.label;
       if (answers.format === 'beverage') return routes.beverage;
@@ -357,23 +359,45 @@
     };
     $$('[data-answer]', quiz).forEach((button) => button.addEventListener('click', () => {
       answers[button.dataset.answer] = button.dataset.value;
-      const step = Number(button.closest('[data-step]')?.dataset.step || 1);
-      $(`[data-step="${step}"]`, quiz)?.classList.remove('is-active');
+      const currentStep = button.closest('[data-step]');
+      const step = Number(currentStep?.dataset.step || 1);
+      currentStep?.classList.remove('is-active');
+      if (currentStep) currentStep.hidden = true;
       if (step < 3) {
-        $(`[data-step="${step + 1}"]`, quiz)?.classList.add('is-active');
+        const nextStep = $(`[data-step="${step + 1}"]`, quiz);
+        if (nextStep) {
+          nextStep.hidden = false;
+          nextStep.classList.add('is-active');
+          window.setTimeout(() => $('h3', nextStep)?.focus(), 0);
+        }
         if (count) count.textContent = String(step + 1).padStart(2, '0');
       } else {
         const route = chooseRoute();
-        if (resultContent) resultContent.innerHTML = `<div class="result-icon">${document.querySelector('.lane-card svg')?.outerHTML || ''}</div><h3>${route.title}</h3><p>${route.text}</p><a class="button button--primary" href="${route.url}">${route.cta} →</a>`;
-        result?.classList.add('is-active');
+        if (resultContent) resultContent.innerHTML = `<div class="result-icon">${document.querySelector('.lane-card svg')?.outerHTML || ''}</div><h3 tabindex="-1">${route.title}</h3><p>${route.text}</p><a class="button button--primary" href="${route.url}">${route.cta} →</a>`;
+        if (result) {
+          result.hidden = false;
+          result.classList.add('is-active');
+          window.setTimeout(() => $('h3', result)?.focus(), 0);
+        }
       }
     }));
     $('[data-quiz-reset]', quiz)?.addEventListener('click', () => {
       Object.keys(answers).forEach((key) => delete answers[key]);
-      $$('.quiz-step', quiz).forEach((step) => step.classList.remove('is-active'));
-      $('[data-step="1"]', quiz)?.classList.add('is-active');
-      result?.classList.remove('is-active');
+      $$('.quiz-step', quiz).forEach((step) => {
+        step.classList.remove('is-active');
+        step.hidden = true;
+      });
+      const firstStep = $('[data-step="1"]', quiz);
+      if (firstStep) {
+        firstStep.hidden = false;
+        firstStep.classList.add('is-active');
+      }
+      if (result) {
+        result.classList.remove('is-active');
+        result.hidden = true;
+      }
       if (count) count.textContent = '01';
+      window.setTimeout(() => $('h3', firstStep)?.focus(), 0);
     });
   }
 

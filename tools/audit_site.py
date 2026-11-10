@@ -707,7 +707,7 @@ def main() -> int:
     except Exception as exc:
         failures.append(f"Invalid legal hub: {exc}")
 
-    for required in ["CNAME","robots.txt","sitemap.xml","index.php","feed.xml","site.webmanifest","publication-manifest.json","site-index/index.html","updates/index.html","assets/css/styles.css","assets/js/app.js","assets/js/search-index.js","assets/images/og-card.png","assets/images/logo-full.webp","assets/images/logo-mark.svg","assets/images/strain-cbd-flower.webp","assets/images/strain-balanced-cannabinoids.webp"]:
+    for required in ["CNAME","robots.txt","sitemap.xml","index.php","feed.xml","site.webmanifest","publication-manifest.json","site-index/index.html","updates/index.html","assets/css/styles.css","assets/js/app.js","assets/js/app-20261110.js","assets/js/search-index.js","assets/images/og-card.png","assets/images/logo-full.webp","assets/images/logo-mark.svg","assets/images/strain-cbd-flower.webp","assets/images/strain-balanced-cannabinoids.webp"]:
         if not (ROOT/required).exists(): failures.append(f"Missing required file: {required}")
     for image in sorted((ROOT/"assets/images").glob("*.webp")):
         raw=image.read_bytes()
@@ -754,6 +754,13 @@ def main() -> int:
             if marker not in app: failures.append(f"Age-gate dialog description is missing JavaScript marker: {marker}")
         for marker in ("routes.concentrate", "cannabis-concentrates-dabs-label-safety-guide"):
             if marker not in app: failures.append(f"Homepage router is missing concentrate marker: {marker}")
+        for marker in ('role="status" aria-live="polite"', 'role="group" aria-labelledby="quiz-question-1"', 'role="group" aria-labelledby="quiz-question-2" hidden', 'role="group" aria-labelledby="quiz-question-3" hidden', 'data-quiz-result aria-live="polite" hidden', 'app-20261110.js'):
+            if marker not in home: failures.append(f"Homepage guide finder is missing accessible progression marker: {marker}")
+        quiz_buttons = re.findall(r'<button\b[^>]+data-answer="[^"]+"[^>]*>', home)
+        if not quiz_buttons or any('type="button"' not in button for button in quiz_buttons):
+            failures.append("Homepage guide-finder answers are not explicit non-submit buttons")
+        for marker in ("routes.concentrateContainer", "cannabis-concentrate-container-buying-guide", "currentStep.hidden = true", "nextStep.hidden = false", "result.hidden = false", "result.hidden = true", "firstStep.hidden = false", "$('h3', nextStep)?.focus()", "$('h3', result)?.focus()", "$('h3', firstStep)?.focus()"):
+            if marker not in app: failures.append(f"Homepage guide-finder script is missing progression marker: {marker}")
         search_raw = (ROOT / "assets/js/search-index.js").read_text(encoding="utf-8")
         if '"url":"/guides/cannabis-concentrates-dabs-label-safety-guide/"' not in search_raw or 'shatter' not in search_raw:
             failures.append("Search index is missing the concentrate route or its shelf-language aliases")
@@ -872,13 +879,13 @@ def main() -> int:
             "site-index/index.html": ("guides/cannabis-memory-attention-cognition-evidence-guide/", "gear/cannabis-liquid-measuring-tool-buying-guide/", "editorial-policy/", "November 5, 2026", "updates/"),
         }
         discovery_checks["guides/index.html"] = tuple(
-            'data-updated="2026-11-09"' if marker == 'data-updated="2026-11-05"' else marker
+            'data-updated="2026-11-10"' if marker == 'data-updated="2026-11-05"' else marker
             for marker in discovery_checks["guides/index.html"]
-        ) + ("cannabis-blood-donation-eligibility-guide/", "cannabis-migraine-headache-evidence-guide/", "cannabis-caregiving-sober-adult-handoff-plan/", "cannabis-moving-day-relocation-checklist/")
+        ) + ("cannabis-blood-donation-eligibility-guide/", "cannabis-migraine-headache-evidence-guide/", "cannabis-caregiving-sober-adult-handoff-plan/", "cannabis-moving-day-relocation-checklist/", "cannabis-diabetes-blood-sugar-dka-safety/")
         discovery_checks["gear/index.html"] = tuple(
-            "All 36" if marker == "All 32" else "2026-11-09" if marker == "2026-11-05" else marker
+            "All 37" if marker == "All 32" else "2026-11-10" if marker == "2026-11-05" else marker
             for marker in discovery_checks["gear/index.html"]
-        ) + ("cannabis-smoke-air-quality-monitor-buying-guide/", "home-grow-ventilation-fan-buying-guide/", "cannabis-lockbox-buying-guide/", "home-grow-watering-tools-buying-guide/")
+        ) + ("cannabis-smoke-air-quality-monitor-buying-guide/", "home-grow-ventilation-fan-buying-guide/", "cannabis-lockbox-buying-guide/", "home-grow-watering-tools-buying-guide/", "cannabis-concentrate-container-buying-guide/")
         discovery_checks["guides/cannabis-blood-donation-eligibility-guide/index.html"] = (
             "Keep five screening lanes separate",
             "redcrossblood.org/local-homepage/news/article/can-you-donate-blood-if-you-use-cannabis-.html",
@@ -929,18 +936,30 @@ def main() -> int:
             "cpsc.gov/FAQ/Extension-Cords",
             "No tool, pump, vessel, tubing, liquid, plant",
         )
-        discovery_checks["editorial-policy/index.html"] += ("Semantic table-header integrity", "Brand-image loading integrity", "Mobile-navigation state integrity", "Site-search dialog naming integrity")
+        discovery_checks["guides/cannabis-diabetes-blood-sugar-dka-safety/index.html"] = (
+            "Start with the evidence boundary",
+            "Do not diagnose by appearance",
+            "diabetesjournals.org/care/article/49/Supplement_1/S89/163932",
+            "not diagnosis, individualized medical advice",
+        )
+        discovery_checks["gear/cannabis-concentrate-container-buying-guide/index.html"] = (
+            "Define the container job before shopping",
+            "Run an empty return-window test",
+            "cannabis.ny.gov/part-128-guidance",
+            "No container, liner, tool, concentrate",
+        )
+        discovery_checks["editorial-policy/index.html"] += ("Semantic table-header integrity", "Brand-image loading integrity", "Mobile-navigation state integrity", "Site-search dialog naming integrity", "Guide-finder progression integrity")
         discovery_checks["updates/index.html"] = (
-            "guides/cannabis-moving-day-relocation-checklist/",
-            "gear/home-grow-watering-tools-buying-guide/",
+            "guides/cannabis-diabetes-blood-sugar-dka-safety/",
+            "gear/cannabis-concentrate-container-buying-guide/",
             "editorial-policy/",
-            "November 9, 2026",
+            "November 10, 2026",
         )
         discovery_checks["site-index/index.html"] = (
-            "guides/cannabis-moving-day-relocation-checklist/",
-            "gear/home-grow-watering-tools-buying-guide/",
+            "guides/cannabis-diabetes-blood-sugar-dka-safety/",
+            "gear/cannabis-concentrate-container-buying-guide/",
             "editorial-policy/",
-            "November 9, 2026",
+            "November 10, 2026",
             "updates/",
         )
         for discovery_page, markers in discovery_checks.items():
@@ -1158,7 +1177,7 @@ def main() -> int:
             failures.append("Editorial policy or Atom feed is missing the feed authorship standard")
         if "Age-gate focus isolation" not in policy:
             failures.append("Editorial policy is missing the age-gate focus-isolation standard")
-        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "Mobile-navigation state integrity" not in policy or "Site-search dialog naming integrity" not in policy or "November 9, 2026" not in policy:
+        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "Mobile-navigation state integrity" not in policy or "Site-search dialog naming integrity" not in policy or "Guide-finder progression integrity" not in policy or "November 10, 2026" not in policy:
             failures.append("Editorial policy is missing the current link and collection-date integrity standards")
         sample_search = (ROOT / "guides/cannabis-moving-day-relocation-checklist/index.html").read_text(encoding="utf-8")
         for marker in ('aria-labelledby="site-search-title"', 'aria-describedby="site-search-help"', 'id="site-search-title"', 'id="site-search-help"'):

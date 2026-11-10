@@ -66,6 +66,7 @@ from content_nov6 import NEW_GEAR as NOV6_GEAR, NEW_GUIDES as NOV6_GUIDES
 from content_nov7 import NEW_GEAR as NOV7_GEAR, NEW_GUIDES as NOV7_GUIDES
 from content_nov8 import NEW_GEAR as NOV8_GEAR, NEW_GUIDES as NOV8_GUIDES
 from content_nov9 import NEW_GEAR as NOV9_GEAR, NEW_GUIDES as NOV9_GUIDES, NEW_STRAINS as NOV9_STRAINS
+from content_nov10 import NEW_GEAR as NOV10_GEAR, NEW_GUIDES as NOV10_GUIDES
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -186,6 +187,8 @@ GUIDE_PAGES = GUIDE_PAGES + NOV8_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV8_GEAR
 GUIDE_PAGES = GUIDE_PAGES + NOV9_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV9_GEAR
+GUIDE_PAGES = GUIDE_PAGES + NOV10_GUIDES
+OTHER_ARTICLES = OTHER_ARTICLES + NOV10_GEAR
 
 # November 6 connects both new resources from established, intent-matched
 # pages. These are editorial paths, not generic recent-post links, and the
@@ -233,6 +236,55 @@ _nov6_gear_links = {
 OTHER_ARTICLES = [
     ({**item, "updated": "November 6, 2026", "related": [*item["related"], _nov6_gear_links[item["path"]]]}
      if item["path"] in _nov6_gear_links else item)
+    for item in OTHER_ARTICLES
+]
+
+# November 10 connects the diabetes safety record and concentrate-container
+# decision system from established pages that already own adjacent clinical,
+# product-format, storage, and equipment decisions.
+_nov10_guide_links = {
+    "guides/cannabis-cbd-medication-interactions/index.html": (
+        "guides/cannabis-diabetes-blood-sugar-dka-safety/",
+        "DIABETES + MEDICINES",
+        "Keep glucose, ketone, insulin, medicine, cannabis, symptom, and emergency records together",
+    ),
+    "guides/cannabinoid-hyperemesis-syndrome-warning-signs/index.html": (
+        "guides/cannabis-diabetes-blood-sugar-dka-safety/",
+        "DIABETES + VOMITING",
+        "Do not let a CHS label hide DKA, dehydration, or another urgent cause",
+    ),
+    "guides/cannabis-concentrates-dabs-label-safety-guide/index.html": (
+        "gear/cannabis-concentrate-container-buying-guide/",
+        "CONTAINER SYSTEM",
+        "Preserve the retail package and compare contact, fit, closure, identity, care, and locked storage",
+    ),
+    "guides/storage/index.html": (
+        "gear/cannabis-concentrate-container-buying-guide/",
+        "CONCENTRATE CONTAINERS",
+        "Keep the original package, exact lot, secondary organizer, and household lock as separate layers",
+    ),
+}
+GUIDE_PAGES = [
+    ({**item, "updated": "November 10, 2026", "related": [*item["related"], _nov10_guide_links[item["path"]]]}
+     if item["path"] in _nov10_guide_links else item)
+    for item in GUIDE_PAGES
+]
+
+_nov10_gear_links = {
+    "gear/cannabis-stash-jar-buying-guide/index.html": (
+        "gear/cannabis-concentrate-container-buying-guide/",
+        "CONCENTRATE-SPECIFIC FIT",
+        "Add contact-path, lid-intrusion, liner, identity, and original-package boundaries",
+    ),
+    "gear/cannabis-gear-comparison-worksheet/index.html": (
+        "gear/cannabis-concentrate-container-buying-guide/",
+        "CONTAINER WORKFLOW",
+        "Run exact containers through contact, usable fit, claims, care, returns, and first-year cost",
+    ),
+}
+OTHER_ARTICLES = [
+    ({**item, "updated": "November 10, 2026", "related": [*item["related"], _nov10_gear_links[item["path"]]]}
+     if item["path"] in _nov10_gear_links else item)
     for item in OTHER_ARTICLES
 ]
 
@@ -368,6 +420,18 @@ _nov9_gear_links = {
 OTHER_ARTICLES = [
     ({**item, "updated": "November 9, 2026", "related": [*item["related"], _nov9_gear_links[item["path"]]]}
      if item["path"] in _nov9_gear_links else item)
+    for item in OTHER_ARTICLES
+]
+
+# Preserve the newer review date where November 10 pages add contextual links
+# to articles that also participated in the November 9 cluster.
+_nov10_reviewed_paths = set(_nov10_guide_links) | set(_nov10_gear_links)
+GUIDE_PAGES = [
+    ({**item, "updated": "November 10, 2026"} if item["path"] in _nov10_reviewed_paths else item)
+    for item in GUIDE_PAGES
+]
+OTHER_ARTICLES = [
+    ({**item, "updated": "November 10, 2026"} if item["path"] in _nov10_reviewed_paths else item)
     for item in OTHER_ARTICLES
 ]
 
@@ -627,6 +691,17 @@ for _standard in STANDARD_PAGES:
             '<p class="update-line">Policy reviewed November 9, 2026</p>',
         )
         _standard["body"] += '''<h2>Site-search dialog naming integrity</h2><p>The native site-search dialog uses an explicit <code>aria-labelledby</code> relationship to its visible heading and an <code>aria-describedby</code> relationship to concise search instructions. This gives the modal a stable programmatic name and purpose when it opens, while the search field keeps its own label and dynamic results remain in a polite live region. Publication checks require unique dialog labels and their matching targets on every generated page. Accessible naming improves orientation; it does not change search ranking, index membership, or editorial conclusions.</p>'''
+
+# November 10 makes the homepage guide finder expose its question, progress,
+# and result changes to keyboard and assistive-technology users.
+for _standard in STANDARD_PAGES:
+    if _standard["path"] == "editorial-policy/index.html":
+        _standard["updated"] = "November 10, 2026"
+        _standard["body"] = _standard["body"].replace(
+            '<p class="update-line">Policy reviewed November 9, 2026</p>',
+            '<p class="update-line">Policy reviewed November 10, 2026</p>',
+        )
+        _standard["body"] += '''<h2>Guide-finder progression integrity</h2><p>The homepage's three-question guide finder exposes each question as a named group, identifies the current step through a polite progress status, removes inactive questions from the accessibility tree, and moves keyboard focus to the next question or resulting recommendation after an answer. Every answer is an explicit non-submit button; restarting restores the first question and its focus target. Publication checks reject missing group names, hidden-state controls, progress semantics, result focus, or reset behavior. The finder routes readers to existing editorial pages; it does not diagnose, personalize medical advice, save a profile, or rank a commercial product.</p>'''
 
 # Keep new reference pages inside established topic clusters. These reciprocal
 # links are editorial navigation, not an attempt to manufacture link signals.
@@ -1355,6 +1430,26 @@ RECIPROCAL_RELATED.setdefault("gear/home-grow-ph-ec-meter-buying-guide/index.htm
 RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
     0, ("gear/home-grow-watering-tools-buying-guide/", "WATERING TOOL WORKFLOW", "Compare exact models by task, wet path, delivery, safety, care, recalls, and cost")
 )
+# November 10 returns the diabetes and concentrate-container resources from
+# established clinical, format, storage, and neutral comparison pages.
+RECIPROCAL_RELATED.setdefault("guides/cannabis-cbd-medication-interactions/index.html", []).insert(
+    0, ("guides/cannabis-diabetes-blood-sugar-dka-safety/", "DIABETES + MEDICINES", "Keep glucose, ketone, insulin, medicine, cannabis, symptom, and emergency records together")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabinoid-hyperemesis-syndrome-warning-signs/index.html", []).insert(
+    0, ("guides/cannabis-diabetes-blood-sugar-dka-safety/", "DIABETES + VOMITING", "Do not let a CHS label hide DKA, dehydration, or another urgent cause")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabis-concentrates-dabs-label-safety-guide/index.html", []).insert(
+    0, ("gear/cannabis-concentrate-container-buying-guide/", "CONTAINER SYSTEM", "Preserve the retail package and compare contact, fit, closure, identity, care, and locked storage")
+)
+RECIPROCAL_RELATED.setdefault("guides/storage/index.html", []).insert(
+    0, ("gear/cannabis-concentrate-container-buying-guide/", "CONCENTRATE CONTAINERS", "Keep the original package, exact lot, secondary organizer, and household lock as separate layers")
+)
+RECIPROCAL_RELATED.setdefault("gear/cannabis-stash-jar-buying-guide/index.html", []).insert(
+    0, ("gear/cannabis-concentrate-container-buying-guide/", "CONCENTRATE-SPECIFIC FIT", "Add contact-path, lid-intrusion, liner, identity, and original-package boundaries")
+)
+RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
+    0, ("gear/cannabis-concentrate-container-buying-guide/", "CONTAINER WORKFLOW", "Run exact containers through contact, usable fit, claims, care, returns, and first-year cost")
+)
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in RECIPROCAL_RELATED:
         _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
@@ -1370,10 +1465,12 @@ for _item in GUIDE_PAGES + OTHER_ARTICLES:
             # preserve the whole established safety path.
             if _item["path"] == "guides/new-york-home-cannabis-grow-planner/index.html":
                 _related_limit = 8
+            elif _item["path"] == "guides/cannabis-cbd-medication-interactions/index.html":
+                _related_limit = 5
             elif _item["path"] == "legal/shop-legal/index.html":
                 _related_limit = 5
             elif _item["path"] == "guides/storage/index.html":
-                _related_limit = 6
+                _related_limit = 7
             else:
                 _related_limit = 4
             if len(_item["related"]) == _related_limit:
@@ -1442,7 +1539,7 @@ def render_home() -> tuple[Page, str]:
         path="index.html", title="Big Bud Man | Legal Cannabis, Without the Haze",
         description="Independent cannabis guides for adults 21+: strains, edibles, labels, gear, responsible use, and reviewed legal starting points for all 50 states.",
         category="Home", h1="Legal weed. Clear-headed guidance.",
-        dek="Independent cannabis education for adults 21+.", body="", updated="October 25, 2026", kind="website",
+        dek="Independent cannabis education for adults 21+.", body="", updated="November 10, 2026", kind="website",
     )
     main = f'''<main id="main-content">
 <section class="hero"><div class="hero-noise"></div><div class="container hero-grid">
@@ -1461,12 +1558,12 @@ def render_home() -> tuple[Page, str]:
 <a class="lane-card lane-card--amber" href="guides/read-a-label/"><span>02</span><div>{icon('tag')}<h3>Holding a package?</h3><p>Separate the serving from the package total, then find the batch, date, ingredients, and test link.</p><b>Decode the label {icon('arrow')}</b></div></a>
 <a class="lane-card lane-card--cream" href="legal/"><span>03</span><div>{icon('scale')}<h3>Checking your state?</h3><p>Search all 50 states for adult-use, medical, limited-CBD, possession, home-grow, and official-source basics.</p><b>Open the law library {icon('arrow')}</b></div></a>
 </div></section>
-<section class="quiz-section"><div class="container quiz-grid"><div class="quiz-intro"><p class="eyebrow">CLEAR-LANE FINDER</p><h2>Tell us the decision.<br>We’ll point to the guide.</h2><p>Three clicks. No account, no saved cannabis profile, no fake recommendation engine.</p><div class="quiz-counter"><b data-quiz-count>01</b><span>/ 03</span></div></div>
+<section class="quiz-section"><div class="container quiz-grid"><div class="quiz-intro"><p class="eyebrow">CLEAR-LANE FINDER</p><h2>Tell us the decision.<br>We’ll point to the guide.</h2><p>Three clicks. No account, no saved cannabis profile, no fake recommendation engine.</p><div class="quiz-counter" role="status" aria-live="polite" aria-atomic="true"><span class="sr-only">Question </span><b data-quiz-count>01</b><span> / 03</span></div></div>
 <div class="quiz-card" data-quiz>
-<div class="quiz-step is-active" data-step="1"><p class="quiz-label">QUESTION ONE</p><h3>How familiar are you?</h3><div class="choice-grid"><button data-answer="experience" data-value="new">Brand new</button><button data-answer="experience" data-value="returning">Returning after years</button><button data-answer="experience" data-value="current">Current consumer</button><button data-answer="experience" data-value="research">Just researching</button></div></div>
-<div class="quiz-step" data-step="2"><p class="quiz-label">QUESTION TWO</p><h3>Which format is in front of you?</h3><div class="choice-grid"><button data-answer="format" data-value="edible">Edible or gummy</button><button data-answer="format" data-value="beverage">Cannabis beverage</button><button data-answer="format" data-value="flower">Flower or pre-roll</button><button data-answer="format" data-value="vape">Vape</button><button data-answer="format" data-value="concentrate">Concentrate or dab</button><button data-answer="format" data-value="basics">Not sure yet</button></div></div>
-<div class="quiz-step" data-step="3"><p class="quiz-label">QUESTION THREE</p><h3>What matters right now?</h3><div class="choice-grid"><button data-answer="priority" data-value="urgent">Too much or accidental exposure</button><button data-answer="priority" data-value="mental">Anxiety, paranoia, or losing touch</button><button data-answer="priority" data-value="compare">Compare package price and labels</button><button data-answer="priority" data-value="recall">Check a recall</button><button data-answer="priority" data-value="lab">Read the lab report</button><button data-answer="priority" data-value="label">Read the label</button><button data-answer="priority" data-value="legal">Know the law</button><button data-answer="priority" data-value="gear">Compare gear</button><button data-answer="priority" data-value="basics">Build the basics</button></div></div>
-<div class="quiz-result" data-quiz-result><div data-quiz-result-content></div><button class="text-button" type="button" data-quiz-reset>Start over</button></div>
+<div class="quiz-step is-active" data-step="1" role="group" aria-labelledby="quiz-question-1"><p class="quiz-label">QUESTION ONE</p><h3 id="quiz-question-1" tabindex="-1">How familiar are you?</h3><div class="choice-grid"><button type="button" data-answer="experience" data-value="new">Brand new</button><button type="button" data-answer="experience" data-value="returning">Returning after years</button><button type="button" data-answer="experience" data-value="current">Current consumer</button><button type="button" data-answer="experience" data-value="research">Just researching</button></div></div>
+<div class="quiz-step" data-step="2" role="group" aria-labelledby="quiz-question-2" hidden><p class="quiz-label">QUESTION TWO</p><h3 id="quiz-question-2" tabindex="-1">Which format is in front of you?</h3><div class="choice-grid"><button type="button" data-answer="format" data-value="edible">Edible or gummy</button><button type="button" data-answer="format" data-value="beverage">Cannabis beverage</button><button type="button" data-answer="format" data-value="flower">Flower or pre-roll</button><button type="button" data-answer="format" data-value="vape">Vape</button><button type="button" data-answer="format" data-value="concentrate">Concentrate or dab</button><button type="button" data-answer="format" data-value="basics">Not sure yet</button></div></div>
+<div class="quiz-step" data-step="3" role="group" aria-labelledby="quiz-question-3" hidden><p class="quiz-label">QUESTION THREE</p><h3 id="quiz-question-3" tabindex="-1">What matters right now?</h3><div class="choice-grid"><button type="button" data-answer="priority" data-value="urgent">Too much or accidental exposure</button><button type="button" data-answer="priority" data-value="mental">Anxiety, paranoia, or losing touch</button><button type="button" data-answer="priority" data-value="compare">Compare package price and labels</button><button type="button" data-answer="priority" data-value="recall">Check a recall</button><button type="button" data-answer="priority" data-value="lab">Read the lab report</button><button type="button" data-answer="priority" data-value="label">Read the label</button><button type="button" data-answer="priority" data-value="legal">Know the law</button><button type="button" data-answer="priority" data-value="gear">Compare gear</button><button type="button" data-answer="priority" data-value="basics">Build the basics</button></div></div>
+<div class="quiz-result" data-quiz-result aria-live="polite" hidden><div data-quiz-result-content></div><button class="text-button" type="button" data-quiz-reset>Start over</button></div>
 </div></div></section>
 <section class="container featured-section"><div class="section-head section-head--split"><div><p class="eyebrow">FAMOUS NAMES, HONEST CAVEATS</p><h2>Strain field notes</h2></div><a class="text-link" href="strains/">Explore all {len(STRAINS)} {icon('arrow')}</a></div>
 <div class="strain-feature-grid">
@@ -1593,9 +1690,10 @@ def add_collection_itemlist(html: str, page: Page, name: str, card_class: str) -
 
 
 def render_guides_hub() -> tuple[Page,str]:
-    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 9, 2026",kind="website")
+    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 10, 2026",kind="website")
     p="../"
     cards="".join([
+      card("guides/cannabis-diabetes-blood-sugar-dka-safety/","HEALTH + DIABETES","Cannabis and diabetes safety","Separate low-glucose look-alikes, DKA and vomiting red flags, medicines, product claims, monitoring, emergency response, and the clinician handoff.","heart",p),
       card("guides/cannabis-moving-day-relocation-checklist/","LAW + HOUSEHOLD PLANNING","Cannabis moving day checklist","Classify the move, verify origin, route, destination, property and carrier rules, then control disposition, packing, transport, access, and arrival.","scale",p),
       card("guides/cannabis-caregiving-sober-adult-handoff-plan/","RESPONSIBLE USE + CARE","Cannabis and caregiving handoff plan","Name the care job, sober adult, transport, medicines, locked storage, infant-feeding boundary, exposure response, and failure plan.","shield",p),
       card("guides/cannabis-migraine-headache-evidence-guide/","HEALTH + EVIDENCE","Cannabis and migraine evidence","Keep one acute vaporized-cannabis trial inside its population, route, formulation, comparator, time window, emergency, and clinical boundaries.","heart",p),
@@ -1771,6 +1869,7 @@ def render_strains_hub() -> tuple[Page,str]:
 
 def render_gear_hub() -> tuple[Page,str]:
     items = [
+        ("cannabis-concentrate-container-buying-guide/","compare storage care","CONCENTRATES + STORAGE","Choose a concentrate container","Preserve the original package, then compare contact materials, usable fit, closure claims, label identity, cleaning, locked storage, returns, and cost.","lock",None,None),
         ("home-grow-watering-tools-buying-guide/","compare powered care","HOME GROW + WATER PATH","Choose a watering tool system","Compare source-to-plant fit, filled handling, measured delivery, vessels, pumps, tubing, runoff, wet safety, cleaning, recalls, and first-year cost.","scale",None,None),
         ("cannabis-lockbox-buying-guide/","compare storage care","STORAGE + ACCESS CONTROL","Choose a cannabis lockbox","Compare users, original-package capacity, lock and relock behavior, recovery, mounting, evidence, recalls, return terms, and first-year cost.","lock",None,None),
         ("home-grow-ventilation-fan-buying-guide/","compare powered care","HOME GROW + AIRFLOW","Choose a ventilation fan system","Compare the air job, installed resistance, fan-curve evidence, authorized controls, environment, electrical safety, recalls, acceptance test, and cost.","spark",None,None),
@@ -1808,7 +1907,7 @@ def render_gear_hub() -> tuple[Page,str]:
         ("cannabis-ashtray-ember-disposal-guide/","care","FIRE-SAFE DISPOSAL","Choose an ashtray","Compare stability, depth, materials, wind, placement, extinguishing, cleaning, waste, and smoke-exposure limits.","alert",None,None),
         ("cannabis-glass-pipe-water-pipe-buying-guide/","preparation care","GLASSWARE","Choose a pipe or water pipe","Check format, material claims, joint fit, stability, cleaning access, replacement parts, and smoke-exposure limits.","search",None,None),
     ]
-    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 9, 2026",kind="website")
+    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 10, 2026",kind="website")
     cards=[]
     for href, categories, kicker, title, description, icon_name, image_src, image_alt in items:
         art = f'<div><img src="{image_src}" alt="{image_alt}"></div>' if image_src else f'<div class="gear-card__icon-art" aria-hidden="true">{icon(icon_name)}</div>'
@@ -2015,11 +2114,14 @@ def build() -> None:
         copy2(source_assets/"js/app.js", OUT/"assets/js/app-20261021.js")
         copy2(source_assets/"js/app.js", OUT/"assets/js/app-20261022.js")
         copy2(source_assets/"js/app.js", OUT/"assets/js/app-20261102.js")
+        copy2(source_assets/"js/app.js", OUT/"assets/js/app-20261110.js")
     write_svg_assets(OUT)
     bundle_stylesheets(OUT)
 
     pages: list[Page] = []
-    page, html = render_home(); write_page(page,html); pages.append(page)
+    page, html = render_home()
+    html = html.replace("assets/js/app.js", "assets/js/app-20261110.js")
+    write_page(page,html); pages.append(page)
 
     for data in GUIDE_PAGES + STRAIN_PAGES + OTHER_ARTICLES:
         page=make_page(data)
@@ -2069,36 +2171,34 @@ def build() -> None:
     manifest={"name":"Big Bud Man","short_name":"Big Bud Man","start_url":"/","display":"standalone","background_color":"#101712","theme_color":"#101712","icons":[{"src":"/assets/images/favicon.svg","sizes":"any","type":"image/svg+xml"}]}
     write_text(OUT,"site.webmanifest",json.dumps(manifest,indent=2)+"\n")
     publication_manifest={
-        "publication_date":"2026-11-09",
+        "publication_date":"2026-11-10",
         "page_count":3,
         "pages":[
-            {"title":"Cannabis Moving Day and Relocation Checklist","url":"https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/","department":"guides","portfolio_label":"Authority-expansion","search_intent":"classify a move by origin, route, destination, property, carrier and product, then decide lawful disposition, controlled same-jurisdiction packing, vehicle access, and arrival handoff"},
-            {"title":"Home-Grow Watering Tools Buying Guide","url":"https://bigbudman.com/gear/home-grow-watering-tools-buying-guide/","department":"gear","portfolio_label":"Exploration","search_intent":"compare watering cans, wands, reservoirs, manual or powered pumps, tubing and containment by task fit, delivery evidence, wet safety, care, recalls and first-year cost"},
-            {"title":"Vitality Seedless CBDV Strain Guide","url":"https://bigbudman.com/strains/vitality-seedless-cbdv/","department":"strains","portfolio_label":"Exploration","search_intent":"verify a named CBDV-focused hemp cultivar through breeder identity, independent trial context, triploid and seedless claim boundaries, and finished-batch evidence"},
+            {"title":"Cannabis and Diabetes: Blood Sugar and DKA Safety Guide","url":"https://bigbudman.com/guides/cannabis-diabetes-blood-sugar-dka-safety/","department":"guides","portfolio_label":"Authority-expansion","search_intent":"separate cannabis effects from glucose emergencies, understand current DKA guidance, preserve the diabetes plan, audit product claims, and prepare a clinician handoff"},
+            {"title":"Cannabis Concentrate Container Buying Guide","url":"https://bigbudman.com/gear/cannabis-concentrate-container-buying-guide/","department":"gear","portfolio_label":"Exploration","search_intent":"compare concentrate containers by original-package preservation, documented contact materials, usable fit, closure claims, label identity, care, locked storage, and first-year cost"},
+            {"title":"Accessible Homepage Guide Finder","url":"https://bigbudman.com/","department":"experience","portfolio_label":"Exploration","search_intent":"move through the three-question guide finder with programmatic question groups, announced progress, correct hidden state, keyboard focus, and a concentrate-container route"},
         ],
-        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral home-grow watering-tool decision system covering source-to-plant fit, filled handling, measured delivery, vessels, pumps, tubing, wet and electrical boundaries, runoff, care, recalls, return testing, and first-year cost. It adds no merchant, model, live price, discount, ranking, availability claim, fabricated test, product image, or paid placement and preserves the no-purchase outcome."},
-        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"All three new pages use original text, evidence tables, checklists, and existing brand interface assets. The Vitality Seedless profile explicitly withholds a cultivar photograph because no exact, licensed finished-product image was verified. No moving container, watering tool, pump, cannabis product, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."},
-        "search_console":{"report_date":"2026-11-04","decision":"The October 5–November 1 report showed 786 impressions, four clicks, 0.509% CTR, and average position 24.632. ‘510 vs disposable’ had only two impressions at position 12 and is already served by the disposable-versus-510 comparison; Delaware, federal-property and Montana signals had one impression or click each. Blue Dream had 18 impressions near position 45, outside the target 4–20 range. Those samples were deliberately ignored as too weak or duplicative, so no item is primarily Data-led. The report served as a cannibalization guard while the batch fills distinct relocation, watering-equipment, and CBDV evidence gaps."},
-        "authority":{"action":"Published a citation-worthy cannabis moving-day decision record and six-gate audit grounded in current New York OCM, USPS, and DEA sources. It separates same-jurisdiction transfer from state-line, international, federal, tribal, property, carrier, disposal, vehicle, and arrival questions rather than pretending legal status is one switch. Reciprocal contextual links strengthen the official-source, disposal, storage, federal-boundary, and lawful-relocation cluster. Three narrowly matched correction or educational-resource opportunities were logged; no outreach was sent."},
+        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral concentrate-container decision system covering original-package preservation, exact contact materials, usable cavity, closure and marketing claims, empty return-window testing, locked storage, returns, and first-year cost. The homepage finder now routes concentrate-plus-gear intent directly to it. No merchant, model, live price, discount, ranking, availability claim, fabricated test, product image, or paid placement was added; buying nothing remains a valid outcome."},
+        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"The two new articles use original text, evidence tables, checklists, and existing brand interface assets; the guide-finder change is semantic and behavioral. No diabetes device, cannabis product, container, liner, tool, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."},
+        "search_console":{"report_date":"2026-11-04","decision":"The October 5–November 1 report is six days old and valid: 786 impressions, four clicks, 0.509% CTR, and average position 24.632. ‘510 vs disposable’ had two impressions at position 12 but already maps to the existing comparison page; Delaware, federal-property, and Montana signals were single-impression or single-click samples. Blue Dream had 18 impressions near position 45, outside the target 4–20 range. Those signals were deliberately ignored as too weak, duplicative, or out of range, so no item is primarily Data-led. The report served as a cannibalization guard while the batch expands distinct diabetes-safety and concentrate-container intent."},
+        "authority":{"action":"Published a citation-worthy cannabis-and-diabetes safety matrix, DKA and vomiting stop gate, exact product-and-glucose record, and clinician-handoff worksheet grounded in the ADA 2026 Standards of Care, CDC, NIDDK, and FDA. Reciprocal links strengthen the medication-interaction, cannabinoid-hyperemesis, urgent-response, and diabetes-safety cluster. No speculative outreach target was logged and no outreach was sent."},
         "freshness_surfaces":{
-            "https://bigbudman.com/guides/":"2026-11-09",
-            "https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/":"2026-11-09",
-            "https://bigbudman.com/guides/cannabis-official-source-directory/":"2026-11-09",
-            "https://bigbudman.com/guides/cannabis-product-disposal-decision-guide/":"2026-11-09",
-            "https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/":"2026-11-09",
-            "https://bigbudman.com/gear/":"2026-11-09",
-            "https://bigbudman.com/gear/home-grow-watering-tools-buying-guide/":"2026-11-09",
-            "https://bigbudman.com/gear/home-grow-ph-ec-meter-buying-guide/":"2026-11-09",
-            "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/":"2026-11-09",
-            "https://bigbudman.com/strains/":"2026-11-09",
-            "https://bigbudman.com/strains/vitality-seedless-cbdv/":"2026-11-09",
-            "https://bigbudman.com/strains/pine-walker-seedless/":"2026-11-09",
-            "https://bigbudman.com/strains/royal-cbdv-automatic/":"2026-11-09",
-            "https://bigbudman.com/editorial-policy/":"2026-11-09",
-            "https://bigbudman.com/updates/":"2026-11-09",
-            "https://bigbudman.com/site-index/":"2026-11-09"
+            "https://bigbudman.com/":"2026-11-10",
+            "https://bigbudman.com/guides/":"2026-11-10",
+            "https://bigbudman.com/guides/cannabis-diabetes-blood-sugar-dka-safety/":"2026-11-10",
+            "https://bigbudman.com/guides/cannabis-cbd-medication-interactions/":"2026-11-10",
+            "https://bigbudman.com/guides/cannabinoid-hyperemesis-syndrome-warning-signs/":"2026-11-10",
+            "https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/":"2026-11-10",
+            "https://bigbudman.com/guides/storage/":"2026-11-10",
+            "https://bigbudman.com/gear/":"2026-11-10",
+            "https://bigbudman.com/gear/cannabis-concentrate-container-buying-guide/":"2026-11-10",
+            "https://bigbudman.com/gear/cannabis-stash-jar-buying-guide/":"2026-11-10",
+            "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/":"2026-11-10",
+            "https://bigbudman.com/editorial-policy/":"2026-11-10",
+            "https://bigbudman.com/updates/":"2026-11-10",
+            "https://bigbudman.com/site-index/":"2026-11-10"
         },
-        "surfaces":["moving-day classification matrix, product-and-route record, state-line stop gate, disposition screen, controlled same-jurisdiction transfer, arrival handoff, and six-gate audit","official-source, disposal, storage, and grow-plan reciprocal links","watering-tool task map, water-path record, specification matrix, wet and electrical stop gates, plain-water return test, cost boundary, and ten-gate checkout","pH/EC meter and gear-comparison reciprocal links","CBDV breeder-versus-retail claim audit, independent trial boundary, finished-batch report workflow, and no-verified-image disclosure","CBDV-specific strain filter and reciprocal links from Pine Walker Seedless and Royal CBDV Automatic","site-wide search-dialog accessible name and description","search-dialog regression gate","editorial policy trust contract","guide, gear, and strain hubs","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","robots sitemap declaration","checksum-verified source archive and publication gates"],
+        "surfaces":["diabetes evidence boundary, symptom-look-alike matrix, DKA and vomiting stop gate, low-glucose usability screen, exact product audit, clinician handoff, and official clinical sources","medication-interaction, cannabinoid-hyperemesis, urgent-response, and diabetes-safety reciprocal links","concentrate-container job matrix, contact-material evidence screen, usable-cavity calculation, claim boundary table, empty return-window test, three-layer storage system, first-year cost, and eleven-gate checkout","concentrate-format, storage, stash-jar, tool-care, and gear-comparison reciprocal links","homepage guide-finder named question groups, announced progress, hidden-state integrity, next-question and result focus, reset focus, and concentrate-container routing","guide-finder regression gate","editorial policy trust contract","guide and gear hubs","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","robots sitemap declaration","checksum-verified source archive and publication gates"],
     }
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]

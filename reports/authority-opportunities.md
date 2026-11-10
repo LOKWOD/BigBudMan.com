@@ -217,6 +217,14 @@ This is a research log, not an outreach ledger. No email, form, account, comment
 
 - **Outreach status:** Logged only. No email, form, comment, account, call, or submission was sent.
 
+## 2026-11-10 — diabetes emergency separation and clinician handoff
+
+- **Authority action:** Published a citation-ready cannabis-and-diabetes safety asset grounded in the American Diabetes Association's 2026 Standards of Care, CDC, NIDDK, and FDA. It separates low-glucose look-alikes from intoxication, makes DKA and repeated vomiting a distinct stop gate, preserves insulin and sick-day-plan boundaries, audits retail product and treatment claims, and produces one exact glucose, ketone, medicine, product, symptom, and clinician-handoff record.
+- **Cluster strengthened:** Medication interactions ↔ cannabinoid hyperemesis and repeated vomiting ↔ poisoning response ↔ no-driving planning ↔ diabetes safety. Reciprocal contextual links reach the new guide from established medication and CHS pages; the companion container guide strengthens concentrates ↔ format safety ↔ storage ↔ jar fit ↔ cleaning and product-neutral comparison.
+- **Trust action:** The guide states the ADA's current type 1/DKA-risk recommendation without turning it into an individualized treatment plan. It refuses glucose targets, insulin changes, personal timing rules, CBD diabetes claims, home diagnosis, and a single explanation for vomiting or confusion. The container guide preserves the original retail package and rejects unsourced material, childproof, airtight, leakproof, nonstick, UV, and grade claims.
+- **Qualified outreach opportunities:** None logged. The primary clinical and regulator sources are evidence providers, not presumed promotion targets, and no narrowly qualified resource-page or education contact was verified strongly enough to justify an entry.
+- **Outreach status:** No email, form, comment, account, call, or submission was sent.
+
 ## 2026-11-09 — moving-day jurisdiction and household-goods handoff
 
 - **Authority action:** Published a citation-ready cannabis moving-day checklist that classifies the move before packing, separates same-jurisdiction transfer from state-line, international, federal, tribal, property, mail, carrier, and vehicle questions, and supplies a product-and-route record, lawful-disposition screen, controlled packing chain, arrival handoff, and six-gate audit. Current New York OCM, USPS, and DEA sources are attached to the decisions they support.
