@@ -4,7 +4,7 @@ from __future__ import annotations
 from pathlib import Path
 from shutil import copy2, copytree, rmtree
 from html import escape
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 import re
 from urllib.parse import urljoin
@@ -67,6 +67,7 @@ from content_nov7 import NEW_GEAR as NOV7_GEAR, NEW_GUIDES as NOV7_GUIDES
 from content_nov8 import NEW_GEAR as NOV8_GEAR, NEW_GUIDES as NOV8_GUIDES
 from content_nov9 import NEW_GEAR as NOV9_GEAR, NEW_GUIDES as NOV9_GUIDES, NEW_STRAINS as NOV9_STRAINS
 from content_nov10 import NEW_GEAR as NOV10_GEAR, NEW_GUIDES as NOV10_GUIDES
+from content_nov11 import NEW_GEAR as NOV11_GEAR, NEW_GUIDES as NOV11_GUIDES
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -189,6 +190,8 @@ GUIDE_PAGES = GUIDE_PAGES + NOV9_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV9_GEAR
 GUIDE_PAGES = GUIDE_PAGES + NOV10_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV10_GEAR
+GUIDE_PAGES = GUIDE_PAGES + NOV11_GUIDES
+OTHER_ARTICLES = OTHER_ARTICLES + NOV11_GEAR
 
 # November 6 connects both new resources from established, intent-matched
 # pages. These are editorial paths, not generic recent-post links, and the
@@ -432,6 +435,56 @@ GUIDE_PAGES = [
 ]
 OTHER_ARTICLES = [
     ({**item, "updated": "November 10, 2026"} if item["path"] in _nov10_reviewed_paths else item)
+    for item in OTHER_ARTICLES
+]
+
+# November 11 connects the PTSD evidence boundary and exact-device charging
+# system from established pages that already own adjacent clinical and hardware
+# decisions. The routes are deliberately narrow so they add context rather
+# than manufacturing generic cross-links.
+_nov11_guide_links = {
+    "guides/cannabis-anxiety-paranoia-psychosis-warning-signs/index.html": (
+        "guides/cannabis-ptsd-evidence-safety-guide/",
+        "PTSD EVIDENCE",
+        "Separate short-term relief reports from treatment evidence, function, and urgent warning signs",
+    ),
+    "guides/cannabis-tolerance-dependence-withdrawal/index.html": (
+        "guides/cannabis-ptsd-evidence-safety-guide/",
+        "PTSD + USE PATTERN",
+        "Track PTSD care, tolerance, withdrawal, function, and treatment participation in separate lanes",
+    ),
+    "guides/how-to-talk-to-doctor-about-cannabis/index.html": (
+        "guides/cannabis-ptsd-evidence-safety-guide/",
+        "PTSD CLINICIAN HANDOFF",
+        "Bring the exact product, pattern, treatment, function, and evidence questions to the visit",
+    ),
+}
+GUIDE_PAGES = [
+    ({**item, "updated": "November 11, 2026", "related": [*item["related"], _nov11_guide_links[item["path"]]]}
+     if item["path"] in _nov11_guide_links else item)
+    for item in GUIDE_PAGES
+]
+
+_nov11_gear_links = {
+    "gear/510-thread-vape-battery-safety/index.html": (
+        "gear/cannabis-device-charger-cable-buying-guide/",
+        "CHARGING SYSTEM",
+        "Match the exact device, battery, port, cable, power source, instructions, condition, and recall status",
+    ),
+    "gear/dry-herb-vaporizer-buying-safety-guide/index.html": (
+        "gear/cannabis-device-charger-cable-buying-guide/",
+        "CHARGER + CABLE",
+        "Verify maker-supported charging parts and a visible, attended charging setup",
+    ),
+    "gear/cannabis-gear-comparison-worksheet/index.html": (
+        "gear/cannabis-device-charger-cable-buying-guide/",
+        "CHARGING WORKFLOW",
+        "Compare replacement parts by documented compatibility, condition, recalls, returns, and total cost",
+    ),
+}
+OTHER_ARTICLES = [
+    ({**item, "updated": "November 11, 2026", "related": [*item["related"], _nov11_gear_links[item["path"]]]}
+     if item["path"] in _nov11_gear_links else item)
     for item in OTHER_ARTICLES
 ]
 
@@ -705,6 +758,15 @@ for _standard in STANDARD_PAGES:
 
 # Keep new reference pages inside established topic clusters. These reciprocal
 # links are editorial navigation, not an attempt to manufacture link signals.
+for _standard in STANDARD_PAGES:
+    if _standard["path"] == "editorial-policy/index.html":
+        _standard["updated"] = "November 11, 2026"
+        _standard["body"] = _standard["body"].replace(
+            '<p class="update-line">Policy reviewed November 10, 2026</p>',
+            '<p class="update-line">Policy reviewed November 11, 2026</p>',
+        )
+        _standard["body"] += '''<h2>Fresh static discovery path</h2><p>The complete site index publishes a dated, server-rendered list of every indexable page plus a separate fourteen-day recently updated section. Its optional browser filter changes only what a reader sees after the full HTML arrives; every crawl path remains present without JavaScript. Each entry includes a visible review date, and publication checks compare the index with the same source catalog that produces search, the Atom feed, and both canonical and legacy sitemap surfaces. This improves discovery and auditability; it does not control when an external search engine processes a submitted sitemap or indexes a URL.</p>'''
+
 RECIPROCAL_RELATED = {
     "guides/full-spectrum-broad-spectrum-cbd-isolate/index.html": [
         ("guides/cbd-drinks-powders-label-buying-guide/", "CBD DRINKS", "Apply spectrum language to a beverage lot"),
@@ -1450,6 +1512,26 @@ RECIPROCAL_RELATED.setdefault("gear/cannabis-stash-jar-buying-guide/index.html",
 RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
     0, ("gear/cannabis-concentrate-container-buying-guide/", "CONTAINER WORKFLOW", "Run exact containers through contact, usable fit, claims, care, returns, and first-year cost")
 )
+# November 11 returns both new resources from established, intent-matched
+# clinical and hardware pages after the historical reciprocal-link merge.
+RECIPROCAL_RELATED.setdefault("guides/cannabis-anxiety-paranoia-psychosis-warning-signs/index.html", []).insert(
+    0, ("guides/cannabis-ptsd-evidence-safety-guide/", "PTSD EVIDENCE", "Separate short-term relief reports from treatment evidence, function, and urgent warning signs")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabis-tolerance-dependence-withdrawal/index.html", []).insert(
+    0, ("guides/cannabis-ptsd-evidence-safety-guide/", "PTSD + USE PATTERN", "Track PTSD care, tolerance, withdrawal, function, and treatment participation in separate lanes")
+)
+RECIPROCAL_RELATED.setdefault("guides/how-to-talk-to-doctor-about-cannabis/index.html", []).insert(
+    0, ("guides/cannabis-ptsd-evidence-safety-guide/", "PTSD CLINICIAN HANDOFF", "Bring the exact product, pattern, treatment, function, and evidence questions to the visit")
+)
+RECIPROCAL_RELATED.setdefault("gear/510-thread-vape-battery-safety/index.html", []).insert(
+    0, ("gear/cannabis-device-charger-cable-buying-guide/", "CHARGING SYSTEM", "Match the exact device, battery, port, cable, power source, instructions, condition, and recall status")
+)
+RECIPROCAL_RELATED.setdefault("gear/dry-herb-vaporizer-buying-safety-guide/index.html", []).insert(
+    0, ("gear/cannabis-device-charger-cable-buying-guide/", "CHARGER + CABLE", "Verify maker-supported charging parts and a visible, attended charging setup")
+)
+RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
+    0, ("gear/cannabis-device-charger-cable-buying-guide/", "CHARGING WORKFLOW", "Compare replacement parts by documented compatibility, condition, recalls, returns, and total cost")
+)
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in RECIPROCAL_RELATED:
         _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
@@ -1690,9 +1772,10 @@ def add_collection_itemlist(html: str, page: Page, name: str, card_class: str) -
 
 
 def render_guides_hub() -> tuple[Page,str]:
-    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 10, 2026",kind="website")
+    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 11, 2026",kind="website")
     p="../"
     cards="".join([
+      card("guides/cannabis-ptsd-evidence-safety-guide/","HEALTH + EVIDENCE","Cannabis and PTSD evidence","Separate reported short-term relief from treatment evidence, long-term function, use-pattern concerns, concurrent care, urgent warning signs, and the clinician handoff.","heart",p),
       card("guides/cannabis-diabetes-blood-sugar-dka-safety/","HEALTH + DIABETES","Cannabis and diabetes safety","Separate low-glucose look-alikes, DKA and vomiting red flags, medicines, product claims, monitoring, emergency response, and the clinician handoff.","heart",p),
       card("guides/cannabis-moving-day-relocation-checklist/","LAW + HOUSEHOLD PLANNING","Cannabis moving day checklist","Classify the move, verify origin, route, destination, property and carrier rules, then control disposition, packing, transport, access, and arrival.","scale",p),
       card("guides/cannabis-caregiving-sober-adult-handoff-plan/","RESPONSIBLE USE + CARE","Cannabis and caregiving handoff plan","Name the care job, sober adult, transport, medicines, locked storage, infant-feeding boundary, exposure response, and failure plan.","shield",p),
@@ -1869,6 +1952,7 @@ def render_strains_hub() -> tuple[Page,str]:
 
 def render_gear_hub() -> tuple[Page,str]:
     items = [
+        ("cannabis-device-charger-cable-buying-guide/","compare powered care","POWER + COMPATIBILITY","Choose a charger and cable system","Match the exact device, battery, input, port, cable, power source, condition, recall status, attended setup, disposal route, returns, and total cost.","spark",None,None),
         ("cannabis-concentrate-container-buying-guide/","compare storage care","CONCENTRATES + STORAGE","Choose a concentrate container","Preserve the original package, then compare contact materials, usable fit, closure claims, label identity, cleaning, locked storage, returns, and cost.","lock",None,None),
         ("home-grow-watering-tools-buying-guide/","compare powered care","HOME GROW + WATER PATH","Choose a watering tool system","Compare source-to-plant fit, filled handling, measured delivery, vessels, pumps, tubing, runoff, wet safety, cleaning, recalls, and first-year cost.","scale",None,None),
         ("cannabis-lockbox-buying-guide/","compare storage care","STORAGE + ACCESS CONTROL","Choose a cannabis lockbox","Compare users, original-package capacity, lock and relock behavior, recovery, mounting, evidence, recalls, return terms, and first-year cost.","lock",None,None),
@@ -1907,7 +1991,7 @@ def render_gear_hub() -> tuple[Page,str]:
         ("cannabis-ashtray-ember-disposal-guide/","care","FIRE-SAFE DISPOSAL","Choose an ashtray","Compare stability, depth, materials, wind, placement, extinguishing, cleaning, waste, and smoke-exposure limits.","alert",None,None),
         ("cannabis-glass-pipe-water-pipe-buying-guide/","preparation care","GLASSWARE","Choose a pipe or water pipe","Check format, material claims, joint fit, stability, cleaning access, replacement parts, and smoke-exposure limits.","search",None,None),
     ]
-    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 10, 2026",kind="website")
+    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 11, 2026",kind="website")
     cards=[]
     for href, categories, kicker, title, description, icon_name, image_src, image_alt in items:
         art = f'<div><img src="{image_src}" alt="{image_alt}"></div>' if image_src else f'<div class="gear-card__icon-art" aria-hidden="true">{icon(icon_name)}</div>'
@@ -1995,21 +2079,23 @@ def render_site_index(pages: list[Page]) -> tuple[Page, str]:
     page = Page(
         "site-index/index.html",
         "Complete Site Index | Big Bud Man",
-        "Browse every indexable Big Bud Man guide, strain field note, gear page, legal resource, and publication page from one crawlable index.",
+        "Browse every indexable Big Bud Man guide, strain field note, gear page, legal resource, and publication page with visible review dates.",
         "Site index",
         "Every useful page.<br>One clean index.",
-        "A human-readable crawl path for the complete publication, grouped by the decision or collection it belongs to.",
+        "A dated, human-readable crawl path for the complete publication, with a fourteen-day update view and an optional local filter.",
         "",
         updated=latest_label,
         kind="website",
     )
     visible = [item for item in pages if item.path not in {"404.html", "thank-you/index.html"}]
+    if not any(item.path == page.path for item in visible):
+        visible.append(page)
     groups = [
         ("Guides and responsible use", lambda item: item.path.startswith("guides/") or item.path in {"start-here/index.html", "responsible-use/index.html"}),
         ("Gear", lambda item: item.path.startswith("gear/")),
         ("Law and licensed access", lambda item: item.path.startswith("legal/")),
         ("Strain field notes", lambda item: item.path.startswith("strains/")),
-        ("About, policies, and contact", lambda item: not any((item.path.startswith("guides/"), item.path.startswith("gear/"), item.path.startswith("legal/"), item.path.startswith("strains/"))) and item.path not in {"start-here/index.html", "responsible-use/index.html", "index.html"}),
+        ("About, policies, and contact", lambda item: not any((item.path.startswith("guides/"), item.path.startswith("gear/"), item.path.startswith("legal/"), item.path.startswith("strains/"))) and item.path not in {"start-here/index.html", "responsible-use/index.html"}),
     ]
 
     def route_for(item: Page) -> str:
@@ -2017,12 +2103,36 @@ def render_site_index(pages: list[Page]) -> tuple[Page, str]:
             return "../"
         return f"../{item.path[:-10]}" if item.path.endswith("/index.html") else f"../{item.path}"
 
+    recent_cutoff = latest_date - timedelta(days=13)
+    recent = sorted(
+        (
+            item for item in visible
+            if item.kind == "article" and datetime.strptime(item.updated, "%B %d, %Y") >= recent_cutoff
+        ),
+        key=lambda item: (datetime.strptime(item.updated, "%B %d, %Y"), clean_text(item.title).lower()),
+        reverse=True,
+    )
+    recent_links = "".join(
+        f'<li><a href="{route_for(item)}"><span>{escape(clean_text(item.title).removesuffix(" | Big Bud Man"))}</span>'
+        f'<time datetime="{datetime.strptime(item.updated, "%B %d, %Y").strftime("%Y-%m-%d")}">Reviewed {escape(item.updated)}</time></a></li>'
+        for item in recent
+    )
+
     sections = []
     for heading, predicate in groups:
         members = sorted((item for item in visible if predicate(item)), key=lambda item: clean_text(item.title).lower())
-        links = "".join(f'<li><a href="{route_for(item)}">{escape(clean_text(item.title).removesuffix(" | Big Bud Man"))}</a></li>' for item in members)
-        sections.append(f'<section><h2>{heading} <small>({len(members)})</small></h2><ul class="checklist">{links}</ul></section>')
-    body = f'''<p class="update-line">Generated from the publication source · {latest_label}</p><p>This page is built from the same source list as search and the XML sitemap. It gives readers and crawlers a direct route to every indexable collection page and article without relying on JavaScript.</p>{"".join(sections)}<section><h2>Machine-readable discovery</h2><p><a class="inline-cta" href="../sitemap.xml">Open the XML sitemap <span>→</span></a></p><p><a class="inline-cta" href="../feed.xml">Open the Atom update feed <span>→</span></a></p></section>'''
+        links = "".join(
+            f'<li data-site-index-item data-search="{escape((clean_text(item.title) + " " + clean_text(item.category)).lower(), quote=True)}">'
+            f'<a href="{route_for(item)}"><span>{escape(clean_text(item.title).removesuffix(" | Big Bud Man"))}</span>'
+            f'<time datetime="{datetime.strptime(item.updated, "%B %d, %Y").strftime("%Y-%m-%d")}">Reviewed {escape(item.updated)}</time></a></li>'
+            for item in members
+        )
+        sections.append(
+            f'<section data-site-index-group><h2>{heading} '
+            f'<small>(<span data-site-index-group-count>{len(members)}</span>)</small></h2>'
+            f'<ul class="site-index-list">{links}</ul></section>'
+        )
+    body = f'''<p class="update-line">Generated from the publication source · {latest_label}</p><p>This page is built from the same source catalog as site search, the Atom feed, and the XML sitemap. Every route below is present in the initial HTML; the filter is an optional reading aid and never creates or hides a crawl path from the source.</p><section class="site-index-recent" data-site-index-recent><h2>Reviewed in the last 14 days <small>({len(recent)})</small></h2><p>New and materially reviewed articles from {recent_cutoff.strftime("%B %d, %Y").replace(" 0", " ")} through {latest_label}.</p><ul class="site-index-list">{recent_links}</ul></section><div class="site-index-tools" data-site-index-filter><label for="site-index-search"><span>FILTER THE COMPLETE INDEX</span><input id="site-index-search" type="search" placeholder="Try PTSD, charger, storage, or New York" autocomplete="off" data-site-index-search aria-controls="site-index-results"></label><button type="button" data-site-index-clear>Clear</button><p data-site-index-status role="status" aria-live="polite"><b>{len(visible)}</b> pages shown</p></div><p class="site-index-empty" data-site-index-empty hidden>No matching pages. Clear the filter or try a broader term.</p><div id="site-index-results" data-site-index-results>{"".join(sections)}</div><section><h2>Machine-readable discovery</h2><p><a class="inline-cta" href="../sitemap.xml">Open the XML sitemap <span>→</span></a></p><p><a class="inline-cta" href="../feed.xml">Open the Atom update feed <span>→</span></a></p></section>'''
     main = f'''<main id="main-content"><header class="standard-hero"><div class="container"><p class="eyebrow">SITE INDEX</p><h1>{page.h1}</h1><p>{page.dek}</p></div></header><div class="container standard-shell"><article class="prose prose--standard">{body}</article></div></main>'''
     return page, layout(page, main, [("Site index", None)])
 
@@ -2115,6 +2225,7 @@ def build() -> None:
         copy2(source_assets/"js/app.js", OUT/"assets/js/app-20261022.js")
         copy2(source_assets/"js/app.js", OUT/"assets/js/app-20261102.js")
         copy2(source_assets/"js/app.js", OUT/"assets/js/app-20261110.js")
+        copy2(source_assets/"js/app.js", OUT/"assets/js/app-20261111.js")
     write_svg_assets(OUT)
     bundle_stylesheets(OUT)
 
@@ -2162,6 +2273,7 @@ def build() -> None:
     pages.append(page)
 
     page, html = render_site_index(pages)
+    html = html.replace("assets/js/app.js", "assets/js/app-20261111.js")
     write_page(page, html)
     pages.append(page)
 
@@ -2171,34 +2283,33 @@ def build() -> None:
     manifest={"name":"Big Bud Man","short_name":"Big Bud Man","start_url":"/","display":"standalone","background_color":"#101712","theme_color":"#101712","icons":[{"src":"/assets/images/favicon.svg","sizes":"any","type":"image/svg+xml"}]}
     write_text(OUT,"site.webmanifest",json.dumps(manifest,indent=2)+"\n")
     publication_manifest={
-        "publication_date":"2026-11-10",
+        "publication_date":"2026-11-11",
         "page_count":3,
         "pages":[
-            {"title":"Cannabis and Diabetes: Blood Sugar and DKA Safety Guide","url":"https://bigbudman.com/guides/cannabis-diabetes-blood-sugar-dka-safety/","department":"guides","portfolio_label":"Authority-expansion","search_intent":"separate cannabis effects from glucose emergencies, understand current DKA guidance, preserve the diabetes plan, audit product claims, and prepare a clinician handoff"},
-            {"title":"Cannabis Concentrate Container Buying Guide","url":"https://bigbudman.com/gear/cannabis-concentrate-container-buying-guide/","department":"gear","portfolio_label":"Exploration","search_intent":"compare concentrate containers by original-package preservation, documented contact materials, usable fit, closure claims, label identity, care, locked storage, and first-year cost"},
-            {"title":"Accessible Homepage Guide Finder","url":"https://bigbudman.com/","department":"experience","portfolio_label":"Exploration","search_intent":"move through the three-question guide finder with programmatic question groups, announced progress, correct hidden state, keyboard focus, and a concentrate-container route"},
+            {"title":"Cannabis and PTSD Evidence Guide","url":"https://bigbudman.com/guides/cannabis-ptsd-evidence-safety-guide/","department":"guides","portfolio_label":"Authority-expansion","search_intent":"separate reported short-term relief from PTSD treatment evidence, record function and use patterns, preserve concurrent care, recognize urgent warning signs, and prepare a clinician handoff"},
+            {"title":"Cannabis Device Charger and Cable Guide","url":"https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/","department":"gear","portfolio_label":"Exploration","search_intent":"compare a replacement charging system by exact-device instructions, battery architecture, input, connector, cable, power source, condition, recall status, returns, and total cost"},
+            {"title":"Dated and Searchable Complete Site Index","url":"https://bigbudman.com/site-index/","department":"experience","portfolio_label":"Data-led","search_intent":"reach every indexable page through server-rendered links, inspect visible review dates and a fourteen-day update view, or narrow the complete index with an accessible local filter"},
         ],
-        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral concentrate-container decision system covering original-package preservation, exact contact materials, usable cavity, closure and marketing claims, empty return-window testing, locked storage, returns, and first-year cost. The homepage finder now routes concentrate-plus-gear intent directly to it. No merchant, model, live price, discount, ranking, availability claim, fabricated test, product image, or paid placement was added; buying nothing remains a valid outcome."},
-        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"The two new articles use original text, evidence tables, checklists, and existing brand interface assets; the guide-finder change is semantic and behavioral. No diabetes device, cannabis product, container, liner, tool, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."},
-        "search_console":{"report_date":"2026-11-04","decision":"The October 5–November 1 report is six days old and valid: 786 impressions, four clicks, 0.509% CTR, and average position 24.632. ‘510 vs disposable’ had two impressions at position 12 but already maps to the existing comparison page; Delaware, federal-property, and Montana signals were single-impression or single-click samples. Blue Dream had 18 impressions near position 45, outside the target 4–20 range. Those signals were deliberately ignored as too weak, duplicative, or out of range, so no item is primarily Data-led. The report served as a cannibalization guard while the batch expands distinct diabetes-safety and concentrate-container intent."},
-        "authority":{"action":"Published a citation-worthy cannabis-and-diabetes safety matrix, DKA and vomiting stop gate, exact product-and-glucose record, and clinician-handoff worksheet grounded in the ADA 2026 Standards of Care, CDC, NIDDK, and FDA. Reciprocal links strengthen the medication-interaction, cannabinoid-hyperemesis, urgent-response, and diabetes-safety cluster. No speculative outreach target was logged and no outreach was sent."},
+        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral charger-and-cable decision system covering exact-device instructions, input, port, cable, power source, battery condition, recall status, disposal, returns, and total cost. No merchant, model, live price, discount, ranking, availability claim, fabricated test, product image, paid placement, or generic product link was added; using the maker-supported existing equipment or buying nothing remains a valid outcome."},
+        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"The two new articles and site-index upgrade use original text, evidence tables, checklists, and existing brand interface assets. No PTSD illustration, cannabis product, device, battery, charger, cable, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."},
+        "search_console":{"report_date":"2026-11-04","decision":"The October 5–November 1 report is seven days old and valid: 786 impressions, four clicks, 0.509% CTR, and average position 24.632. Search Console still records the canonical sitemap as pending with one error and the legacy WordPress endpoint with two errors, so the Data-led item strengthens the site-owned discovery path with a complete dated server-rendered index, a fourteen-day recent view, and an optional accessible filter; it does not claim to change Google’s processing state. ‘510 vs disposable’ had only two impressions at position 12 and already maps to an existing comparison page; Blue Dream had 18 impressions near position 45, outside the target 4–20 range; single-impression legal queries were also too weak. Those query signals were deliberately ignored as tiny, duplicative, or out of range."},
+        "authority":{"action":"Published a citation-worthy PTSD evidence boundary with a six-claim matrix, five-horizon function record, concurrent-care plan, urgent-response lane, and clinician handoff grounded in the 2023 VA/DoD PTSD guideline, VA National Center for PTSD, and NIH/NCCIH. Reciprocal links strengthen the PTSD, mental-health response, tolerance and withdrawal, and clinician-conversation cluster. No speculative outreach target was logged and no outreach was sent."},
         "freshness_surfaces":{
-            "https://bigbudman.com/":"2026-11-10",
-            "https://bigbudman.com/guides/":"2026-11-10",
-            "https://bigbudman.com/guides/cannabis-diabetes-blood-sugar-dka-safety/":"2026-11-10",
-            "https://bigbudman.com/guides/cannabis-cbd-medication-interactions/":"2026-11-10",
-            "https://bigbudman.com/guides/cannabinoid-hyperemesis-syndrome-warning-signs/":"2026-11-10",
-            "https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/":"2026-11-10",
-            "https://bigbudman.com/guides/storage/":"2026-11-10",
-            "https://bigbudman.com/gear/":"2026-11-10",
-            "https://bigbudman.com/gear/cannabis-concentrate-container-buying-guide/":"2026-11-10",
-            "https://bigbudman.com/gear/cannabis-stash-jar-buying-guide/":"2026-11-10",
-            "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/":"2026-11-10",
-            "https://bigbudman.com/editorial-policy/":"2026-11-10",
-            "https://bigbudman.com/updates/":"2026-11-10",
-            "https://bigbudman.com/site-index/":"2026-11-10"
+            "https://bigbudman.com/guides/":"2026-11-11",
+            "https://bigbudman.com/guides/cannabis-ptsd-evidence-safety-guide/":"2026-11-11",
+            "https://bigbudman.com/guides/cannabis-anxiety-paranoia-psychosis-warning-signs/":"2026-11-11",
+            "https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/":"2026-11-11",
+            "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/":"2026-11-11",
+            "https://bigbudman.com/gear/":"2026-11-11",
+            "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/":"2026-11-11",
+            "https://bigbudman.com/gear/510-thread-vape-battery-safety/":"2026-11-11",
+            "https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/":"2026-11-11",
+            "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/":"2026-11-11",
+            "https://bigbudman.com/editorial-policy/":"2026-11-11",
+            "https://bigbudman.com/updates/":"2026-11-11",
+            "https://bigbudman.com/site-index/":"2026-11-11"
         },
-        "surfaces":["diabetes evidence boundary, symptom-look-alike matrix, DKA and vomiting stop gate, low-glucose usability screen, exact product audit, clinician handoff, and official clinical sources","medication-interaction, cannabinoid-hyperemesis, urgent-response, and diabetes-safety reciprocal links","concentrate-container job matrix, contact-material evidence screen, usable-cavity calculation, claim boundary table, empty return-window test, three-layer storage system, first-year cost, and eleven-gate checkout","concentrate-format, storage, stash-jar, tool-care, and gear-comparison reciprocal links","homepage guide-finder named question groups, announced progress, hidden-state integrity, next-question and result focus, reset focus, and concentrate-container routing","guide-finder regression gate","editorial policy trust contract","guide and gear hubs","publication updates","Atom feed","complete site index","search index","canonical XML sitemap","robots sitemap declaration","checksum-verified source archive and publication gates"],
+        "surfaces":["PTSD evidence boundary, six-claim matrix, five-horizon function record, concurrent-care plan, urgent-response lane, clinician handoff, and official clinical sources","mental-health response, tolerance and withdrawal, and clinician-conversation reciprocal links","charger-and-cable system map, maker-supported replacement record, connector-shape boundary, damage stop gate, visible charging setup, total-cost screen, and ten-gate checkout","510-battery, dry-herb-vaporizer, and gear-comparison reciprocal links","dated complete site index, fourteen-day recent view, visible review dates, accessible local filter, and no-JavaScript crawl path","site-index regression gate","editorial policy trust contract","guide and gear hubs","publication updates","Atom feed","search index","canonical and legacy XML sitemap surfaces","robots sitemap declaration","checksum-verified source archive and publication gates"],
     }
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]

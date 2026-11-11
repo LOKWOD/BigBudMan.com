@@ -1,75 +1,73 @@
 {
-  "publication_date": "2026-11-10",
+  "publication_date": "2026-11-11",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis and Diabetes: Blood Sugar and DKA Safety Guide",
-      "url": "https://bigbudman.com/guides/cannabis-diabetes-blood-sugar-dka-safety/",
+      "title": "Cannabis and PTSD Evidence Guide",
+      "url": "https://bigbudman.com/guides/cannabis-ptsd-evidence-safety-guide/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "separate cannabis effects from glucose emergencies, understand current DKA guidance, preserve the diabetes plan, audit product claims, and prepare a clinician handoff"
+      "search_intent": "separate reported short-term relief from PTSD treatment evidence, record function and use patterns, preserve concurrent care, recognize urgent warning signs, and prepare a clinician handoff"
     },
     {
-      "title": "Cannabis Concentrate Container Buying Guide",
-      "url": "https://bigbudman.com/gear/cannabis-concentrate-container-buying-guide/",
+      "title": "Cannabis Device Charger and Cable Guide",
+      "url": "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/",
       "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "compare concentrate containers by original-package preservation, documented contact materials, usable fit, closure claims, label identity, care, locked storage, and first-year cost"
+      "search_intent": "compare a replacement charging system by exact-device instructions, battery architecture, input, connector, cable, power source, condition, recall status, returns, and total cost"
     },
     {
-      "title": "Accessible Homepage Guide Finder",
-      "url": "https://bigbudman.com/",
+      "title": "Dated and Searchable Complete Site Index",
+      "url": "https://bigbudman.com/site-index/",
       "department": "experience",
-      "portfolio_label": "Exploration",
-      "search_intent": "move through the three-question guide finder with programmatic question groups, announced progress, correct hidden state, keyboard focus, and a concentrate-container route"
+      "portfolio_label": "Data-led",
+      "search_intent": "reach every indexable page through server-rendered links, inspect visible review dates and a fourteen-day update view, or narrow the complete index with an accessible local filter"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral concentrate-container decision system covering original-package preservation, exact contact materials, usable cavity, closure and marketing claims, empty return-window testing, locked storage, returns, and first-year cost. The homepage finder now routes concentrate-plus-gear intent directly to it. No merchant, model, live price, discount, ranking, availability claim, fabricated test, product image, or paid placement was added; buying nothing remains a valid outcome."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral charger-and-cable decision system covering exact-device instructions, input, port, cable, power source, battery condition, recall status, disposal, returns, and total cost. No merchant, model, live price, discount, ranking, availability claim, fabricated test, product image, paid placement, or generic product link was added; using the maker-supported existing equipment or buying nothing remains a valid outcome."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The two new articles use original text, evidence tables, checklists, and existing brand interface assets; the guide-finder change is semantic and behavioral. No diabetes device, cannabis product, container, liner, tool, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."
+    "note": "The two new articles and site-index upgrade use original text, evidence tables, checklists, and existing brand interface assets. No PTSD illustration, cannabis product, device, battery, charger, cable, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."
   },
   "search_console": {
     "report_date": "2026-11-04",
-    "decision": "The October 5\u2013November 1 report is six days old and valid: 786 impressions, four clicks, 0.509% CTR, and average position 24.632. \u2018510 vs disposable\u2019 had two impressions at position 12 but already maps to the existing comparison page; Delaware, federal-property, and Montana signals were single-impression or single-click samples. Blue Dream had 18 impressions near position 45, outside the target 4\u201320 range. Those signals were deliberately ignored as too weak, duplicative, or out of range, so no item is primarily Data-led. The report served as a cannibalization guard while the batch expands distinct diabetes-safety and concentrate-container intent."
+    "decision": "The October 5\u2013November 1 report is seven days old and valid: 786 impressions, four clicks, 0.509% CTR, and average position 24.632. Search Console still records the canonical sitemap as pending with one error and the legacy WordPress endpoint with two errors, so the Data-led item strengthens the site-owned discovery path with a complete dated server-rendered index, a fourteen-day recent view, and an optional accessible filter; it does not claim to change Google\u2019s processing state. \u2018510 vs disposable\u2019 had only two impressions at position 12 and already maps to an existing comparison page; Blue Dream had 18 impressions near position 45, outside the target 4\u201320 range; single-impression legal queries were also too weak. Those query signals were deliberately ignored as tiny, duplicative, or out of range."
   },
   "authority": {
-    "action": "Published a citation-worthy cannabis-and-diabetes safety matrix, DKA and vomiting stop gate, exact product-and-glucose record, and clinician-handoff worksheet grounded in the ADA 2026 Standards of Care, CDC, NIDDK, and FDA. Reciprocal links strengthen the medication-interaction, cannabinoid-hyperemesis, urgent-response, and diabetes-safety cluster. No speculative outreach target was logged and no outreach was sent."
+    "action": "Published a citation-worthy PTSD evidence boundary with a six-claim matrix, five-horizon function record, concurrent-care plan, urgent-response lane, and clinician handoff grounded in the 2023 VA/DoD PTSD guideline, VA National Center for PTSD, and NIH/NCCIH. Reciprocal links strengthen the PTSD, mental-health response, tolerance and withdrawal, and clinician-conversation cluster. No speculative outreach target was logged and no outreach was sent."
   },
   "freshness_surfaces": {
-    "https://bigbudman.com/": "2026-11-10",
-    "https://bigbudman.com/guides/": "2026-11-10",
-    "https://bigbudman.com/guides/cannabis-diabetes-blood-sugar-dka-safety/": "2026-11-10",
-    "https://bigbudman.com/guides/cannabis-cbd-medication-interactions/": "2026-11-10",
-    "https://bigbudman.com/guides/cannabinoid-hyperemesis-syndrome-warning-signs/": "2026-11-10",
-    "https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/": "2026-11-10",
-    "https://bigbudman.com/guides/storage/": "2026-11-10",
-    "https://bigbudman.com/gear/": "2026-11-10",
-    "https://bigbudman.com/gear/cannabis-concentrate-container-buying-guide/": "2026-11-10",
-    "https://bigbudman.com/gear/cannabis-stash-jar-buying-guide/": "2026-11-10",
-    "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/": "2026-11-10",
-    "https://bigbudman.com/editorial-policy/": "2026-11-10",
-    "https://bigbudman.com/updates/": "2026-11-10",
-    "https://bigbudman.com/site-index/": "2026-11-10"
+    "https://bigbudman.com/guides/": "2026-11-11",
+    "https://bigbudman.com/guides/cannabis-ptsd-evidence-safety-guide/": "2026-11-11",
+    "https://bigbudman.com/guides/cannabis-anxiety-paranoia-psychosis-warning-signs/": "2026-11-11",
+    "https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/": "2026-11-11",
+    "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/": "2026-11-11",
+    "https://bigbudman.com/gear/": "2026-11-11",
+    "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/": "2026-11-11",
+    "https://bigbudman.com/gear/510-thread-vape-battery-safety/": "2026-11-11",
+    "https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/": "2026-11-11",
+    "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/": "2026-11-11",
+    "https://bigbudman.com/editorial-policy/": "2026-11-11",
+    "https://bigbudman.com/updates/": "2026-11-11",
+    "https://bigbudman.com/site-index/": "2026-11-11"
   },
   "surfaces": [
-    "diabetes evidence boundary, symptom-look-alike matrix, DKA and vomiting stop gate, low-glucose usability screen, exact product audit, clinician handoff, and official clinical sources",
-    "medication-interaction, cannabinoid-hyperemesis, urgent-response, and diabetes-safety reciprocal links",
-    "concentrate-container job matrix, contact-material evidence screen, usable-cavity calculation, claim boundary table, empty return-window test, three-layer storage system, first-year cost, and eleven-gate checkout",
-    "concentrate-format, storage, stash-jar, tool-care, and gear-comparison reciprocal links",
-    "homepage guide-finder named question groups, announced progress, hidden-state integrity, next-question and result focus, reset focus, and concentrate-container routing",
-    "guide-finder regression gate",
+    "PTSD evidence boundary, six-claim matrix, five-horizon function record, concurrent-care plan, urgent-response lane, clinician handoff, and official clinical sources",
+    "mental-health response, tolerance and withdrawal, and clinician-conversation reciprocal links",
+    "charger-and-cable system map, maker-supported replacement record, connector-shape boundary, damage stop gate, visible charging setup, total-cost screen, and ten-gate checkout",
+    "510-battery, dry-herb-vaporizer, and gear-comparison reciprocal links",
+    "dated complete site index, fourteen-day recent view, visible review dates, accessible local filter, and no-JavaScript crawl path",
+    "site-index regression gate",
     "editorial policy trust contract",
     "guide and gear hubs",
     "publication updates",
     "Atom feed",
-    "complete site index",
     "search index",
-    "canonical XML sitemap",
+    "canonical and legacy XML sitemap surfaces",
     "robots sitemap declaration",
     "checksum-verified source archive and publication gates"
   ]

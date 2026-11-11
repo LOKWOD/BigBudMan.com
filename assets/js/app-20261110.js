@@ -1657,6 +1657,43 @@
     renderLoyaltyValue();
   }
 
+  // The complete site index is fully present in the initial HTML. This local
+  // filter only changes the reader's view and reports the remaining count.
+  const siteIndex = $('[data-site-index-filter]');
+  if (siteIndex) {
+    const input = $('[data-site-index-search]', siteIndex);
+    const clear = $('[data-site-index-clear]', siteIndex);
+    const status = $('[data-site-index-status]', siteIndex);
+    const results = $('[data-site-index-results]');
+    const groups = $$('[data-site-index-group]', results || document);
+    const items = $$('[data-site-index-item]', results || document);
+    const empty = $('[data-site-index-empty]');
+    const renderSiteIndex = () => {
+      const words = (input?.value || '').trim().toLowerCase().split(/\s+/).filter(Boolean);
+      let visible = 0;
+      items.forEach((item) => {
+        const show = words.every((word) => (item.dataset.search || '').includes(word));
+        item.hidden = !show;
+        if (show) visible += 1;
+      });
+      groups.forEach((group) => {
+        const groupVisible = $$('[data-site-index-item]', group).filter((item) => !item.hidden).length;
+        group.hidden = groupVisible === 0;
+        const count = $('[data-site-index-group-count]', group);
+        if (count) count.textContent = String(groupVisible);
+      });
+      if (status) status.innerHTML = `<b>${visible}</b> ${visible === 1 ? 'page' : 'pages'} shown`;
+      if (empty) empty.hidden = visible !== 0;
+    };
+    input?.addEventListener('input', renderSiteIndex);
+    clear?.addEventListener('click', () => {
+      if (input) input.value = '';
+      renderSiteIndex();
+      input?.focus();
+    });
+    renderSiteIndex();
+  }
+
   // Glossary filtering keeps every definition in the HTML and only narrows
   // the visible set. Without JavaScript the complete reference remains usable.
   const glossary = $('[data-glossary]');

@@ -707,7 +707,7 @@ def main() -> int:
     except Exception as exc:
         failures.append(f"Invalid legal hub: {exc}")
 
-    for required in ["CNAME","robots.txt","sitemap.xml","index.php","feed.xml","site.webmanifest","publication-manifest.json","site-index/index.html","updates/index.html","assets/css/styles.css","assets/js/app.js","assets/js/app-20261110.js","assets/js/search-index.js","assets/images/og-card.png","assets/images/logo-full.webp","assets/images/logo-mark.svg","assets/images/strain-cbd-flower.webp","assets/images/strain-balanced-cannabinoids.webp"]:
+    for required in ["CNAME","robots.txt","sitemap.xml","index.php","feed.xml","site.webmanifest","publication-manifest.json","site-index/index.html","updates/index.html","assets/css/styles.css","assets/js/app.js","assets/js/app-20261110.js","assets/js/app-20261111.js","assets/js/search-index.js","assets/images/og-card.png","assets/images/logo-full.webp","assets/images/logo-mark.svg","assets/images/strain-cbd-flower.webp","assets/images/strain-balanced-cannabinoids.webp"]:
         if not (ROOT/required).exists(): failures.append(f"Missing required file: {required}")
     for image in sorted((ROOT/"assets/images").glob("*.webp")):
         raw=image.read_bytes()
@@ -879,13 +879,13 @@ def main() -> int:
             "site-index/index.html": ("guides/cannabis-memory-attention-cognition-evidence-guide/", "gear/cannabis-liquid-measuring-tool-buying-guide/", "editorial-policy/", "November 5, 2026", "updates/"),
         }
         discovery_checks["guides/index.html"] = tuple(
-            'data-updated="2026-11-10"' if marker == 'data-updated="2026-11-05"' else marker
+            'data-updated="2026-11-11"' if marker == 'data-updated="2026-11-05"' else marker
             for marker in discovery_checks["guides/index.html"]
-        ) + ("cannabis-blood-donation-eligibility-guide/", "cannabis-migraine-headache-evidence-guide/", "cannabis-caregiving-sober-adult-handoff-plan/", "cannabis-moving-day-relocation-checklist/", "cannabis-diabetes-blood-sugar-dka-safety/")
+        ) + ("cannabis-blood-donation-eligibility-guide/", "cannabis-migraine-headache-evidence-guide/", "cannabis-caregiving-sober-adult-handoff-plan/", "cannabis-moving-day-relocation-checklist/", "cannabis-diabetes-blood-sugar-dka-safety/", "cannabis-ptsd-evidence-safety-guide/")
         discovery_checks["gear/index.html"] = tuple(
-            "All 37" if marker == "All 32" else "2026-11-10" if marker == "2026-11-05" else marker
+            "All 38" if marker == "All 32" else "2026-11-11" if marker == "2026-11-05" else marker
             for marker in discovery_checks["gear/index.html"]
-        ) + ("cannabis-smoke-air-quality-monitor-buying-guide/", "home-grow-ventilation-fan-buying-guide/", "cannabis-lockbox-buying-guide/", "home-grow-watering-tools-buying-guide/", "cannabis-concentrate-container-buying-guide/")
+        ) + ("cannabis-smoke-air-quality-monitor-buying-guide/", "home-grow-ventilation-fan-buying-guide/", "cannabis-lockbox-buying-guide/", "home-grow-watering-tools-buying-guide/", "cannabis-concentrate-container-buying-guide/", "cannabis-device-charger-cable-buying-guide/")
         discovery_checks["guides/cannabis-blood-donation-eligibility-guide/index.html"] = (
             "Keep five screening lanes separate",
             "redcrossblood.org/local-homepage/news/article/can-you-donate-blood-if-you-use-cannabis-.html",
@@ -948,19 +948,36 @@ def main() -> int:
             "cannabis.ny.gov/part-128-guidance",
             "No container, liner, tool, concentrate",
         )
-        discovery_checks["editorial-policy/index.html"] += ("Semantic table-header integrity", "Brand-image loading integrity", "Mobile-navigation state integrity", "Site-search dialog naming integrity", "Guide-finder progression integrity")
+        discovery_checks["guides/cannabis-ptsd-evidence-safety-guide/index.html"] = (
+            "Keep six different claims in six different boxes",
+            "Separate immediate change from long-term function",
+            "ptsd.va.gov/professional/treat/cooccurring/marijuana_ptsd_vets.asp",
+            "healthquality.va.gov/guidelines/MH/ptsd/",
+            "not diagnosis, a PTSD assessment",
+        )
+        discovery_checks["gear/cannabis-device-charger-cable-buying-guide/index.html"] = (
+            "Match the whole charging system",
+            "Treat connector shape as one field",
+            "fda.gov/tobacco-products/tobacco-products-ingredients-components/tips-help-avoid-vape-battery-fires-or-explosions",
+            "epa.gov/recycle/frequent-questions-lithium-ion-batteries",
+            "No charger, cable, battery, vaporizer",
+        )
+        discovery_checks["editorial-policy/index.html"] += ("Semantic table-header integrity", "Brand-image loading integrity", "Mobile-navigation state integrity", "Site-search dialog naming integrity", "Guide-finder progression integrity", "Fresh static discovery path")
         discovery_checks["updates/index.html"] = (
-            "guides/cannabis-diabetes-blood-sugar-dka-safety/",
-            "gear/cannabis-concentrate-container-buying-guide/",
+            "guides/cannabis-ptsd-evidence-safety-guide/",
+            "gear/cannabis-device-charger-cable-buying-guide/",
             "editorial-policy/",
-            "November 10, 2026",
+            "November 11, 2026",
         )
         discovery_checks["site-index/index.html"] = (
-            "guides/cannabis-diabetes-blood-sugar-dka-safety/",
-            "gear/cannabis-concentrate-container-buying-guide/",
+            "guides/cannabis-ptsd-evidence-safety-guide/",
+            "gear/cannabis-device-charger-cable-buying-guide/",
             "editorial-policy/",
-            "November 10, 2026",
+            "November 11, 2026",
             "updates/",
+            "data-site-index-filter",
+            "data-site-index-item",
+            "app-20261111.js",
         )
         for discovery_page, markers in discovery_checks.items():
             discovery_text = (ROOT / discovery_page).read_text(encoding="utf-8")
@@ -1177,7 +1194,7 @@ def main() -> int:
             failures.append("Editorial policy or Atom feed is missing the feed authorship standard")
         if "Age-gate focus isolation" not in policy:
             failures.append("Editorial policy is missing the age-gate focus-isolation standard")
-        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "Mobile-navigation state integrity" not in policy or "Site-search dialog naming integrity" not in policy or "Guide-finder progression integrity" not in policy or "November 10, 2026" not in policy:
+        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "Mobile-navigation state integrity" not in policy or "Site-search dialog naming integrity" not in policy or "Guide-finder progression integrity" not in policy or "Fresh static discovery path" not in policy or "November 11, 2026" not in policy:
             failures.append("Editorial policy is missing the current link and collection-date integrity standards")
         sample_search = (ROOT / "guides/cannabis-moving-day-relocation-checklist/index.html").read_text(encoding="utf-8")
         for marker in ('aria-labelledby="site-search-title"', 'aria-describedby="site-search-help"', 'id="site-search-title"', 'id="site-search-help"'):
@@ -1210,7 +1227,7 @@ def main() -> int:
         returns = (ROOT / "gear/cannabis-accessory-return-warranty-recall-guide/index.html").read_text(encoding="utf-8")
         for marker in ("data-return-deadline", "data-return-purchase", "data-return-end", "FTC: Warranties", "SaferProducts.gov", "November 12, 2026"):
             if marker not in returns: failures.append(f"Accessory return guide is missing marker: {marker}")
-        for marker in ("bbm-saved-reading-v1", "renderSaved", "resultMeta", "item.updatedLabel", "[data-saved-clear]", "data-saved-copy", "data-saved-remove", "data-copy-citation", "Article citation copied.", "data-copy-checklists", "Article checklists copied", "data-paper-comparison", "renderPaperComparison", "data-paper-unit", "data-lockbox-comparison", "renderLockboxComparison", "data-lock-fit", "data-lock-unit-cost", "data-stash-jar-planner", "renderStashJar", "data-jar-working", "data-jar-total", "data-loyalty-value", "renderLoyaltyValue", "data-loyalty-net", "data-loyalty-break-even", "data-tray-comparison", "renderTrayComparison", "data-tray-task-fit", "data-tray-store-fit", "data-tray-unit-cost", "data-humidity-comparison", "renderHumidityComparison", "data-humidity-first", "data-humidity-total", "data-scale-check", "renderScaleCheck", "data-scale-tolerance-result", "data-cleaning-cost", "renderCleaningCost", "data-cleaning-cycle", "data-grow-light-comparison", "renderGrowComparison", "data-grow-electricity", "data-grow-total", "data-preroll-planner", "renderPreroll", "data-glossary", "renderGlossary", "setActiveToggle", "data-package-comparison", "renderComparison", "data-edible-math", "renderEdibleMath", "data-vaporizer-cost", "renderVaporizerCost", "data-grinder-cost", "renderGrinderCost", "data-air-cleaner-planner", "renderAirCleaner", "data-air-needed", "data-gear-cost-comparison", "renderGearCostComparison", "data-gear-per-use", "data-return-deadline", "renderReturnDeadline", "addMonthsClamped", "data-cbg-evidence", "renderCbgEvidence", "data-cbg-layer", "routes.mental", "routes.compare"):
+        for marker in ("bbm-saved-reading-v1", "renderSaved", "resultMeta", "item.updatedLabel", "[data-saved-clear]", "data-saved-copy", "data-saved-remove", "data-copy-citation", "Article citation copied.", "data-copy-checklists", "Article checklists copied", "data-paper-comparison", "renderPaperComparison", "data-paper-unit", "data-lockbox-comparison", "renderLockboxComparison", "data-lock-fit", "data-lock-unit-cost", "data-stash-jar-planner", "renderStashJar", "data-jar-working", "data-jar-total", "data-loyalty-value", "renderLoyaltyValue", "data-loyalty-net", "data-loyalty-break-even", "data-tray-comparison", "renderTrayComparison", "data-tray-task-fit", "data-tray-store-fit", "data-tray-unit-cost", "data-humidity-comparison", "renderHumidityComparison", "data-humidity-first", "data-humidity-total", "data-scale-check", "renderScaleCheck", "data-scale-tolerance-result", "data-cleaning-cost", "renderCleaningCost", "data-cleaning-cycle", "data-grow-light-comparison", "renderGrowComparison", "data-grow-electricity", "data-grow-total", "data-preroll-planner", "renderPreroll", "data-glossary", "renderGlossary", "data-site-index-filter", "renderSiteIndex", "data-site-index-group-count", "setActiveToggle", "data-package-comparison", "renderComparison", "data-edible-math", "renderEdibleMath", "data-vaporizer-cost", "renderVaporizerCost", "data-grinder-cost", "renderGrinderCost", "data-air-cleaner-planner", "renderAirCleaner", "data-air-needed", "data-gear-cost-comparison", "renderGearCostComparison", "data-gear-per-use", "data-return-deadline", "renderReturnDeadline", "addMonthsClamped", "data-cbg-evidence", "renderCbgEvidence", "data-cbg-layer", "routes.mental", "routes.compare"):
             if marker not in app: failures.append(f"Site JavaScript is missing saved-reading or calculator marker: {marker}")
         if '"url":"/updates/"' not in search_raw:
             failures.append("Search index is missing publication updates")
