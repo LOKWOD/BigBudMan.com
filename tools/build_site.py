@@ -68,7 +68,7 @@ from content_nov8 import NEW_GEAR as NOV8_GEAR, NEW_GUIDES as NOV8_GUIDES
 from content_nov9 import NEW_GEAR as NOV9_GEAR, NEW_GUIDES as NOV9_GUIDES, NEW_STRAINS as NOV9_STRAINS
 from content_nov10 import NEW_GEAR as NOV10_GEAR, NEW_GUIDES as NOV10_GUIDES
 from content_nov11 import NEW_GEAR as NOV11_GEAR, NEW_GUIDES as NOV11_GUIDES
-from content_nov12 import NEW_GEAR as NOV12_GEAR, NEW_GUIDES as NOV12_GUIDES, STATE_OVERRIDES as NOV12_STATE_OVERRIDES
+from content_nov12 import NEW_GEAR as NOV12_GEAR, NEW_GUIDES as NOV12_GUIDES, NEW_STRAINS as NOV12_STRAINS, STATE_OVERRIDES as NOV12_STATE_OVERRIDES
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -149,8 +149,8 @@ GUIDE_PAGES = [_oct24_guides.get(item["path"], item) for item in GUIDE_PAGES] + 
 _oct24_gear = {item["path"]: item for item in OCT24_GEAR_OVERRIDES}
 OTHER_ARTICLES = [_oct24_gear.get(item["path"], item) for item in OTHER_ARTICLES] + OCT24_GEAR
 CANNABINOID_LABELS["cbdv"] = "CBDV-focused hemp"
-STRAINS = STRAINS + OCT24_FOLLOWUP_STRAINS + NOV9_STRAINS
-STRAIN_PAGES = STRAIN_PAGES + [strain_page(item) for item in NOV9_STRAINS]
+STRAINS = STRAINS + OCT24_FOLLOWUP_STRAINS + NOV9_STRAINS + NOV12_STRAINS
+STRAIN_PAGES = STRAIN_PAGES + [strain_page(item) for item in NOV9_STRAINS + NOV12_STRAINS]
 STRAIN_PAGES = STRAIN_PAGES + OCT24_FOLLOWUP_STRAIN_PAGES
 _oct25_guides = {item["path"]: item for item in OCT25_GUIDE_OVERRIDES}
 GUIDE_PAGES = [_oct25_guides.get(item["path"], item) for item in GUIDE_PAGES]
@@ -495,6 +495,12 @@ OTHER_ARTICLES = [
 # November 12 connects the sleep-apnea evidence boundary and the grow-room
 # moisture system from established pages that own adjacent decisions.
 _nov12_guide_links = {
+    "guides/cbd-hemp-flower-label-legal-guide/index.html": (
+        "strains/cherry-blonde-cbd/", "CBD CULTIVAR RECORD", "Separate breeder identity, university-trial context, the finished lot, and the current product rule"
+    ),
+    "guides/cannabis-certificate-of-analysis-coa-guide/index.html": (
+        "strains/cherry-blonde-cbd/", "LOT-MATCH EXAMPLE", "Apply the package, lot, dates, units, panels, and report-status chain to a named CBD cultivar"
+    ),
     "guides/cannabis-cbd-and-sleep/index.html": (
         "guides/cannabis-sleep-apnea-osa-evidence-safety-guide/", "SLEEP APNEA", "Separate sedation and perceived sleep from measured airway, oxygen, treatment, and next-day outcomes"
     ),
@@ -1592,6 +1598,12 @@ RECIPROCAL_RELATED.setdefault("gear/home-grow-temperature-humidity-monitor-buyin
 RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
     0, ("gear/home-grow-dehumidifier-buying-guide/", "DEHUMIDIFIER WORKFLOW", "Compare capacity conditions, drainage, efficiency, operating range, recalls, service, and first-year cost")
 )
+RECIPROCAL_RELATED.setdefault("guides/cbd-hemp-flower-label-legal-guide/index.html", []).insert(
+    0, ("strains/cherry-blonde-cbd/", "CBD CULTIVAR RECORD", "Separate breeder identity, university-trial context, the finished lot, and the current product rule")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabis-certificate-of-analysis-coa-guide/index.html", []).insert(
+    0, ("strains/cherry-blonde-cbd/", "LOT-MATCH EXAMPLE", "Apply the package, lot, dates, units, panels, and report-status chain to a named CBD cultivar")
+)
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in RECIPROCAL_RELATED:
         _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
@@ -1638,6 +1650,19 @@ for _strain_page in STRAIN_PAGES:
             ("strains/pine-walker-seedless/", "CBDV FIELD NOTE", "Keep two named CBDV lines, sources, and finished batches separate"),
             ("guides/cannabis-certificate-of-analysis-coa-guide/", "LOT EVIDENCE", "Match the package, lot, dates, units, panels, and report status"),
             ("guides/cbd-hemp-flower-label-legal-guide/", "CBD + HEMP", "Separate production hemp, the finished product, and the rule at each checkpoint"),
+        ]
+    if _strain_page["path"] == "strains/cherry-wine/index.html":
+        _strain_page["updated"] = "November 12, 2026"
+        _strain_page["related"] = [
+            ("strains/cherry-blonde-cbd/", "DISTINCT CBD FIELD NOTE", "Compare the breeder record and finished-lot evidence without transferring Cherry Wine folklore"),
+            *_strain_page["related"][:2],
+        ]
+    if _strain_page["path"] == "strains/cherry-blonde-cbd/index.html":
+        _strain_page["related"] = [
+            ("strains/cherry-wine/", "SEPARATE NAME", "Keep the listed parent, shared words, retail identity, and finished batch in separate lanes"),
+            ("guides/cannabis-certificate-of-analysis-coa-guide/", "LOT EVIDENCE", "Match the package, lot, dates, units, panels, and report status"),
+            ("guides/cbd-hemp-flower-label-legal-guide/", "CBD + HEMP", "Separate production hemp, the finished product, and the current rule at every checkpoint"),
+            ("guides/cannabis-product-complaint-adverse-event-reporting/", "PRODUCT PROBLEM", "Preserve the package, lot, observation, and correct reporting route"),
         ]
 
 
@@ -1977,7 +2002,7 @@ def render_guides_hub() -> tuple[Page,str]:
 
 
 def render_strains_hub() -> tuple[Page,str]:
-    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} strain field notes across THC, CBD, CBDV, CBG, hemp, and mixed-ratio names, with lineage, batch, and evidence caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the question—not end it.","",updated="November 9, 2026",kind="website")
+    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} strain field notes across THC, CBD, CBDV, CBG, hemp, and mixed-ratio names, with lineage, batch, and evidence caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the question—not end it.","",updated="November 12, 2026",kind="website")
     items=[]
     for strain in sorted(STRAINS, key=lambda item: item["name"].lower()):
       aliases = " ".join(strain.get("aliases", []))
@@ -2350,17 +2375,22 @@ def build() -> None:
         "publication_date":"2026-11-12",
         "page_count":3,
         "pages":[
-            {"title":"Arkansas Medical Cannabis Access Workflow","url":"https://bigbudman.com/legal/arkansas/","department":"legal","portfolio_label":"Data-led","search_intent":"verify Arkansas patient, renewal, caregiver, visiting-patient, licensed-dispensary, and official-source steps without changing the established state-page intent"},
+            {"title":"Cherry Blonde CBD Hemp Field Note","url":"https://bigbudman.com/strains/cherry-blonde-cbd/","department":"strains","portfolio_label":"Authority-expansion","search_intent":"verify a named CBD-hemp cultivar through breeder attribution, independent trial identity, name-collision checks, finished-lot evidence, and current legal boundaries"},
             {"title":"Cannabis and Sleep Apnea Evidence and Safety Guide","url":"https://bigbudman.com/guides/cannabis-sleep-apnea-osa-evidence-safety-guide/","department":"guides","portfolio_label":"Authority-expansion","search_intent":"separate perceived sleep and sedation from measured airway, oxygen, treatment, next-day function, and clinician decisions"},
             {"title":"Home-Grow Dehumidifier Buying Guide","url":"https://bigbudman.com/gear/home-grow-dehumidifier-buying-guide/","department":"gear","portfolio_label":"Exploration","search_intent":"compare exact dehumidifiers by measured moisture load, rated conditions, efficiency, drainage, heat, electrical fit, recalls, return testing, and first-year cost"},
         ],
         "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral dehumidifier decision and acceptance-test system covering measured moisture load, capacity conditions, efficiency, drainage, operating range, electrical fit, recalls, returns, and first-year cost. No merchant, model, live price, discount, ranking, availability claim, fabricated test, product image, paid placement, or generic product link was added; correcting the moisture source, using supported existing equipment, or buying nothing remains a valid outcome."},
-        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"The two new articles and Arkansas expansion use original text, evidence tables, checklists, and existing brand interface assets. No patient, cannabis product, PAP device, dehumidifier, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."},
-        "search_console":{"report_date":"2026-11-11","decision":"The October 12–November 8 report is one day old and valid: 815 impressions, three clicks, 0.368% CTR, and average position 24.093. The Arkansas legal page had six impressions, one click, 16.7% CTR, and average position 9.667—the only page-level signal with more than a token sample in the target 4–20 band—so the Data-led item preserves that URL while adding current patient, renewal, caregiver, visiting-patient, dispensary, and primary-source workflows. ‘510 vs disposable’ had two impressions at position 12 but already maps to an existing page; Delaware had two impressions and one click; Blue Dream impressions averaged about position 48; single-impression legal and health rows were too weak. Those signals were deliberately ignored as duplicative, tiny, or out of range."},
-        "authority":{"action":"Published a citation-worthy sleep-apnea evidence translator with an outcome-lane matrix, study-transfer screen, clinician handoff, conservative next-day task gate, and current AASM, NIH/NCCIH, NHLBI, and peer-reviewed sources. Reciprocal links strengthen the sleep, next-day impairment, medication-interaction, and clinician-conversation cluster. The Arkansas page also adds a primary-source role map. No speculative outreach target was logged and no outreach was sent."},
+        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"The three new pages and Arkansas supporting expansion use original text, evidence tables, checklists, and existing brand interface assets. The Cherry Blonde page explicitly withholds a cultivar photo because no exact licensed image was verified. No patient, cannabis product, PAP device, dehumidifier, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."},
+        "search_console":{"report_date":"2026-11-11","decision":"The October 12–November 8 report is one day old and valid: 815 impressions, three clicks, 0.368% CTR, and average position 24.093. The Arkansas legal page had six impressions, one click, 16.7% CTR, and average position 9.667—the only page-level signal with more than a token sample in the target 4–20 band—so the analytics-led action preserves that established URL and adds current patient, renewal, caregiver, visiting-patient, dispensary, and primary-source workflows rather than creating a cannibalizing page. ‘510 vs disposable’ had two impressions at position 12 but already maps to an existing page; Delaware had two impressions and one click; Blue Dream had 33 impressions near position 48; single-impression legal and health rows were too weak. Those signals were deliberately ignored as duplicative, tiny, or out of range. None of the three new pages is presented as primarily Data-led."},
+        "authority":{"action":"Published two citation-worthy evidence assets: a sleep-apnea outcome translator with a study-transfer screen and clinician handoff, and a Cherry Blonde CBD field note that separates a commercial breeder record from an independent University of Vermont trial and the finished-lot evidence chain. Reciprocal links strengthen the sleep, next-day impairment, CBD-hemp, CoA, product-complaint, and named-cultivar clusters. The Arkansas page also adds a primary-source role map. No speculative outreach target was logged and no outreach was sent."},
         "freshness_surfaces":{
             "https://bigbudman.com/legal/":"2026-11-12",
             "https://bigbudman.com/legal/arkansas/":"2026-11-12",
+            "https://bigbudman.com/strains/":"2026-11-12",
+            "https://bigbudman.com/strains/cherry-blonde-cbd/":"2026-11-12",
+            "https://bigbudman.com/strains/cherry-wine/":"2026-11-12",
+            "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/":"2026-11-12",
+            "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/":"2026-11-12",
             "https://bigbudman.com/guides/":"2026-11-12",
             "https://bigbudman.com/guides/cannabis-sleep-apnea-osa-evidence-safety-guide/":"2026-11-12",
             "https://bigbudman.com/guides/cannabis-cbd-and-sleep/":"2026-11-12",
@@ -2374,7 +2404,7 @@ def build() -> None:
             "https://bigbudman.com/updates/":"2026-11-12",
             "https://bigbudman.com/site-index/":"2026-11-12"
         },
-        "surfaces":["Arkansas patient, renewal, caregiver, visiting-patient, dispensary, and primary-source workflow","sleep-apnea outcome matrix, study-transfer screen, clinician handoff, conservative next-day gate, and official clinical sources","sleep, next-day impairment, and clinician-conversation reciprocal links","dehumidifier moisture-job map, exact-model comparison, drainage plan, cost scenario, return-window acceptance test, and official efficiency and recall sources","ventilation, temperature-humidity monitoring, and gear-comparison reciprocal links","legal, guide, and gear hubs","publication updates","complete site index","Atom feed","search index","canonical and legacy XML sitemap surfaces","robots sitemap declaration","checksum-verified source archive and publication gates"],
+        "surfaces":["Cherry Blonde breeder-versus-trial evidence map, name-collision table, finished-lot chain, and source boundaries","Cherry Wine, CBD-hemp, CoA, and product-complaint reciprocal links","Arkansas patient, renewal, caregiver, visiting-patient, dispensary, and primary-source workflow","sleep-apnea outcome matrix, study-transfer screen, clinician handoff, conservative next-day gate, and official clinical sources","sleep, next-day impairment, and clinician-conversation reciprocal links","dehumidifier moisture-job map, exact-model comparison, drainage plan, cost scenario, return-window acceptance test, and official efficiency and recall sources","ventilation, temperature-humidity monitoring, and gear-comparison reciprocal links","strain, legal, guide, and gear hubs","publication updates","complete site index","Atom feed","search index","canonical and legacy XML sitemap surfaces","robots sitemap declaration","checksum-verified source archive and publication gates"],
     }
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]

@@ -3,11 +3,11 @@
   "page_count": 3,
   "pages": [
     {
-      "title": "Arkansas Medical Cannabis Access Workflow",
-      "url": "https://bigbudman.com/legal/arkansas/",
-      "department": "legal",
-      "portfolio_label": "Data-led",
-      "search_intent": "verify Arkansas patient, renewal, caregiver, visiting-patient, licensed-dispensary, and official-source steps without changing the established state-page intent"
+      "title": "Cherry Blonde CBD Hemp Field Note",
+      "url": "https://bigbudman.com/strains/cherry-blonde-cbd/",
+      "department": "strains",
+      "portfolio_label": "Authority-expansion",
+      "search_intent": "verify a named CBD-hemp cultivar through breeder attribution, independent trial identity, name-collision checks, finished-lot evidence, and current legal boundaries"
     },
     {
       "title": "Cannabis and Sleep Apnea Evidence and Safety Guide",
@@ -31,18 +31,23 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The two new articles and Arkansas expansion use original text, evidence tables, checklists, and existing brand interface assets. No patient, cannabis product, PAP device, dehumidifier, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."
+    "note": "The three new pages and Arkansas supporting expansion use original text, evidence tables, checklists, and existing brand interface assets. The Cherry Blonde page explicitly withholds a cultivar photo because no exact licensed image was verified. No patient, cannabis product, PAP device, dehumidifier, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."
   },
   "search_console": {
     "report_date": "2026-11-11",
-    "decision": "The October 12\u2013November 8 report is one day old and valid: 815 impressions, three clicks, 0.368% CTR, and average position 24.093. The Arkansas legal page had six impressions, one click, 16.7% CTR, and average position 9.667\u2014the only page-level signal with more than a token sample in the target 4\u201320 band\u2014so the Data-led item preserves that URL while adding current patient, renewal, caregiver, visiting-patient, dispensary, and primary-source workflows. \u2018510 vs disposable\u2019 had two impressions at position 12 but already maps to an existing page; Delaware had two impressions and one click; Blue Dream impressions averaged about position 48; single-impression legal and health rows were too weak. Those signals were deliberately ignored as duplicative, tiny, or out of range."
+    "decision": "The October 12\u2013November 8 report is one day old and valid: 815 impressions, three clicks, 0.368% CTR, and average position 24.093. The Arkansas legal page had six impressions, one click, 16.7% CTR, and average position 9.667\u2014the only page-level signal with more than a token sample in the target 4\u201320 band\u2014so the analytics-led action preserves that established URL and adds current patient, renewal, caregiver, visiting-patient, dispensary, and primary-source workflows rather than creating a cannibalizing page. \u2018510 vs disposable\u2019 had two impressions at position 12 but already maps to an existing page; Delaware had two impressions and one click; Blue Dream had 33 impressions near position 48; single-impression legal and health rows were too weak. Those signals were deliberately ignored as duplicative, tiny, or out of range. None of the three new pages is presented as primarily Data-led."
   },
   "authority": {
-    "action": "Published a citation-worthy sleep-apnea evidence translator with an outcome-lane matrix, study-transfer screen, clinician handoff, conservative next-day task gate, and current AASM, NIH/NCCIH, NHLBI, and peer-reviewed sources. Reciprocal links strengthen the sleep, next-day impairment, medication-interaction, and clinician-conversation cluster. The Arkansas page also adds a primary-source role map. No speculative outreach target was logged and no outreach was sent."
+    "action": "Published two citation-worthy evidence assets: a sleep-apnea outcome translator with a study-transfer screen and clinician handoff, and a Cherry Blonde CBD field note that separates a commercial breeder record from an independent University of Vermont trial and the finished-lot evidence chain. Reciprocal links strengthen the sleep, next-day impairment, CBD-hemp, CoA, product-complaint, and named-cultivar clusters. The Arkansas page also adds a primary-source role map. No speculative outreach target was logged and no outreach was sent."
   },
   "freshness_surfaces": {
     "https://bigbudman.com/legal/": "2026-11-12",
     "https://bigbudman.com/legal/arkansas/": "2026-11-12",
+    "https://bigbudman.com/strains/": "2026-11-12",
+    "https://bigbudman.com/strains/cherry-blonde-cbd/": "2026-11-12",
+    "https://bigbudman.com/strains/cherry-wine/": "2026-11-12",
+    "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/": "2026-11-12",
+    "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/": "2026-11-12",
     "https://bigbudman.com/guides/": "2026-11-12",
     "https://bigbudman.com/guides/cannabis-sleep-apnea-osa-evidence-safety-guide/": "2026-11-12",
     "https://bigbudman.com/guides/cannabis-cbd-and-sleep/": "2026-11-12",
@@ -57,12 +62,14 @@
     "https://bigbudman.com/site-index/": "2026-11-12"
   },
   "surfaces": [
+    "Cherry Blonde breeder-versus-trial evidence map, name-collision table, finished-lot chain, and source boundaries",
+    "Cherry Wine, CBD-hemp, CoA, and product-complaint reciprocal links",
     "Arkansas patient, renewal, caregiver, visiting-patient, dispensary, and primary-source workflow",
     "sleep-apnea outcome matrix, study-transfer screen, clinician handoff, conservative next-day gate, and official clinical sources",
     "sleep, next-day impairment, and clinician-conversation reciprocal links",
     "dehumidifier moisture-job map, exact-model comparison, drainage plan, cost scenario, return-window acceptance test, and official efficiency and recall sources",
     "ventilation, temperature-humidity monitoring, and gear-comparison reciprocal links",
-    "legal, guide, and gear hubs",
+    "strain, legal, guide, and gear hubs",
     "publication updates",
     "complete site index",
     "Atom feed",
