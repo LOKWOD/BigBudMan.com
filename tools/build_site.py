@@ -68,6 +68,7 @@ from content_nov8 import NEW_GEAR as NOV8_GEAR, NEW_GUIDES as NOV8_GUIDES
 from content_nov9 import NEW_GEAR as NOV9_GEAR, NEW_GUIDES as NOV9_GUIDES, NEW_STRAINS as NOV9_STRAINS
 from content_nov10 import NEW_GEAR as NOV10_GEAR, NEW_GUIDES as NOV10_GUIDES
 from content_nov11 import NEW_GEAR as NOV11_GEAR, NEW_GUIDES as NOV11_GUIDES
+from content_nov12 import NEW_GEAR as NOV12_GEAR, NEW_GUIDES as NOV12_GUIDES, STATE_OVERRIDES as NOV12_STATE_OVERRIDES
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -192,6 +193,9 @@ GUIDE_PAGES = GUIDE_PAGES + NOV10_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV10_GEAR
 GUIDE_PAGES = GUIDE_PAGES + NOV11_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV11_GEAR
+GUIDE_PAGES = GUIDE_PAGES + NOV12_GUIDES
+OTHER_ARTICLES = OTHER_ARTICLES + NOV12_GEAR
+STATE_LAWS = [({**item, **NOV12_STATE_OVERRIDES[item["code"]]} if item["code"] in NOV12_STATE_OVERRIDES else item) for item in STATE_LAWS]
 
 # November 6 connects both new resources from established, intent-matched
 # pages. These are editorial paths, not generic recent-post links, and the
@@ -485,6 +489,42 @@ _nov11_gear_links = {
 OTHER_ARTICLES = [
     ({**item, "updated": "November 11, 2026", "related": [*item["related"], _nov11_gear_links[item["path"]]]}
      if item["path"] in _nov11_gear_links else item)
+    for item in OTHER_ARTICLES
+]
+
+# November 12 connects the sleep-apnea evidence boundary and the grow-room
+# moisture system from established pages that own adjacent decisions.
+_nov12_guide_links = {
+    "guides/cannabis-cbd-and-sleep/index.html": (
+        "guides/cannabis-sleep-apnea-osa-evidence-safety-guide/", "SLEEP APNEA", "Separate sedation and perceived sleep from measured airway, oxygen, treatment, and next-day outcomes"
+    ),
+    "guides/cannabis-next-day-impairment-evidence-guide/index.html": (
+        "guides/cannabis-sleep-apnea-osa-evidence-safety-guide/", "OSA + NEXT DAY", "Keep sleepiness, residual impairment, treatment status, and task demands in separate lanes"
+    ),
+    "guides/how-to-talk-to-doctor-about-cannabis/index.html": (
+        "guides/cannabis-sleep-apnea-osa-evidence-safety-guide/", "SLEEP-CLINIC HANDOFF", "Bring OSA treatment, exact product, co-use, night observations, and next-day function to the visit"
+    ),
+}
+GUIDE_PAGES = [
+    ({**item, "updated": "November 12, 2026", "related": [*item["related"], _nov12_guide_links[item["path"]]]}
+     if item["path"] in _nov12_guide_links else item)
+    for item in GUIDE_PAGES
+]
+
+_nov12_gear_links = {
+    "gear/home-grow-ventilation-fan-buying-guide/index.html": (
+        "gear/home-grow-dehumidifier-buying-guide/", "MOISTURE LOAD", "Size moisture removal, drainage, heat, electrical fit, recalls, and cost beside the room air path"
+    ),
+    "gear/home-grow-temperature-humidity-monitor-buying-guide/index.html": (
+        "gear/home-grow-dehumidifier-buying-guide/", "CONTROL + VERIFICATION", "Use independent measurements to verify the room response and acceptance test"
+    ),
+    "gear/cannabis-gear-comparison-worksheet/index.html": (
+        "gear/home-grow-dehumidifier-buying-guide/", "DEHUMIDIFIER WORKFLOW", "Compare capacity conditions, drainage, efficiency, operating range, recalls, service, and first-year cost"
+    ),
+}
+OTHER_ARTICLES = [
+    ({**item, "updated": "November 12, 2026", "related": [*item["related"], _nov12_gear_links[item["path"]]]}
+     if item["path"] in _nov12_gear_links else item)
     for item in OTHER_ARTICLES
 ]
 
@@ -1532,6 +1572,26 @@ RECIPROCAL_RELATED.setdefault("gear/dry-herb-vaporizer-buying-safety-guide/index
 RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
     0, ("gear/cannabis-device-charger-cable-buying-guide/", "CHARGING WORKFLOW", "Compare replacement parts by documented compatibility, condition, recalls, returns, and total cost")
 )
+# November 12 preserves the new reciprocal cluster links after the historical
+# merge and related-card limit are applied.
+RECIPROCAL_RELATED.setdefault("guides/cannabis-cbd-and-sleep/index.html", []).insert(
+    0, ("guides/cannabis-sleep-apnea-osa-evidence-safety-guide/", "SLEEP APNEA", "Separate sedation and perceived sleep from measured airway, oxygen, treatment, and next-day outcomes")
+)
+RECIPROCAL_RELATED.setdefault("guides/cannabis-next-day-impairment-evidence-guide/index.html", []).insert(
+    0, ("guides/cannabis-sleep-apnea-osa-evidence-safety-guide/", "OSA + NEXT DAY", "Keep sleepiness, residual impairment, treatment status, and task demands in separate lanes")
+)
+RECIPROCAL_RELATED.setdefault("guides/how-to-talk-to-doctor-about-cannabis/index.html", []).insert(
+    0, ("guides/cannabis-sleep-apnea-osa-evidence-safety-guide/", "SLEEP-CLINIC HANDOFF", "Bring OSA treatment, exact product, co-use, night observations, and next-day function to the visit")
+)
+RECIPROCAL_RELATED.setdefault("gear/home-grow-ventilation-fan-buying-guide/index.html", []).insert(
+    0, ("gear/home-grow-dehumidifier-buying-guide/", "MOISTURE LOAD", "Size moisture removal, drainage, heat, electrical fit, recalls, and cost beside the room air path")
+)
+RECIPROCAL_RELATED.setdefault("gear/home-grow-temperature-humidity-monitor-buying-guide/index.html", []).insert(
+    0, ("gear/home-grow-dehumidifier-buying-guide/", "CONTROL + VERIFICATION", "Use independent measurements to verify the room response and acceptance test")
+)
+RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
+    0, ("gear/home-grow-dehumidifier-buying-guide/", "DEHUMIDIFIER WORKFLOW", "Compare capacity conditions, drainage, efficiency, operating range, recalls, service, and first-year cost")
+)
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in RECIPROCAL_RELATED:
         _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
@@ -1772,9 +1832,10 @@ def add_collection_itemlist(html: str, page: Page, name: str, card_class: str) -
 
 
 def render_guides_hub() -> tuple[Page,str]:
-    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 11, 2026",kind="website")
+    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 12, 2026",kind="website")
     p="../"
     cards="".join([
+      card("guides/cannabis-sleep-apnea-osa-evidence-safety-guide/","HEALTH + SLEEP","Cannabis and sleep apnea","Separate sedation and subjective sleep from measured airway events, oxygen burden, treatment use, next-day function, and the sleep-clinic handoff.","heart",p),
       card("guides/cannabis-ptsd-evidence-safety-guide/","HEALTH + EVIDENCE","Cannabis and PTSD evidence","Separate reported short-term relief from treatment evidence, long-term function, use-pattern concerns, concurrent care, urgent warning signs, and the clinician handoff.","heart",p),
       card("guides/cannabis-diabetes-blood-sugar-dka-safety/","HEALTH + DIABETES","Cannabis and diabetes safety","Separate low-glucose look-alikes, DKA and vomiting red flags, medicines, product claims, monitoring, emergency response, and the clinician handoff.","heart",p),
       card("guides/cannabis-moving-day-relocation-checklist/","LAW + HOUSEHOLD PLANNING","Cannabis moving day checklist","Classify the move, verify origin, route, destination, property and carrier rules, then control disposition, packing, transport, access, and arrival.","scale",p),
@@ -1952,6 +2013,7 @@ def render_strains_hub() -> tuple[Page,str]:
 
 def render_gear_hub() -> tuple[Page,str]:
     items = [
+        ("home-grow-dehumidifier-buying-guide/","compare powered care","HOME GROW + MOISTURE","Choose a dehumidifier system","Compare measured moisture load, capacity conditions, efficiency, drainage, heat, electrical fit, recalls, return testing, and first-year cost.","clock",None,None),
         ("cannabis-device-charger-cable-buying-guide/","compare powered care","POWER + COMPATIBILITY","Choose a charger and cable system","Match the exact device, battery, input, port, cable, power source, condition, recall status, attended setup, disposal route, returns, and total cost.","spark",None,None),
         ("cannabis-concentrate-container-buying-guide/","compare storage care","CONCENTRATES + STORAGE","Choose a concentrate container","Preserve the original package, then compare contact materials, usable fit, closure claims, label identity, cleaning, locked storage, returns, and cost.","lock",None,None),
         ("home-grow-watering-tools-buying-guide/","compare powered care","HOME GROW + WATER PATH","Choose a watering tool system","Compare source-to-plant fit, filled handling, measured delivery, vessels, pumps, tubing, runoff, wet safety, cleaning, recalls, and first-year cost.","scale",None,None),
@@ -1991,7 +2053,7 @@ def render_gear_hub() -> tuple[Page,str]:
         ("cannabis-ashtray-ember-disposal-guide/","care","FIRE-SAFE DISPOSAL","Choose an ashtray","Compare stability, depth, materials, wind, placement, extinguishing, cleaning, waste, and smoke-exposure limits.","alert",None,None),
         ("cannabis-glass-pipe-water-pipe-buying-guide/","preparation care","GLASSWARE","Choose a pipe or water pipe","Check format, material claims, joint fit, stability, cleaning access, replacement parts, and smoke-exposure limits.","search",None,None),
     ]
-    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 11, 2026",kind="website")
+    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 12, 2026",kind="website")
     cards=[]
     for href, categories, kicker, title, description, icon_name, image_src, image_alt in items:
         art = f'<div><img src="{image_src}" alt="{image_alt}"></div>' if image_src else f'<div class="gear-card__icon-art" aria-hidden="true">{icon(icon_name)}</div>'
@@ -2004,7 +2066,7 @@ def render_gear_hub() -> tuple[Page,str]:
 
 
 def render_legal_hub() -> tuple[Page,str]:
-    page=Page("legal/index.html","Cannabis Laws in All 50 States (2026) | Big Bud Man","Search reviewed cannabis laws for all 50 states plus federal property, federally assisted housing, mailing, and flying rules, with current official sources.","50-state legal library","Know your state.<br>Then verify it.","A practical 50-state starting point for possession, home grow, medical access, retail status, federal property and housing, mailing, air travel, and official sources.","",updated="October 24, 2026",kind="website")
+    page=Page("legal/index.html","Cannabis Laws in All 50 States (2026) | Big Bud Man","Search reviewed cannabis laws for all 50 states plus federal property, federally assisted housing, mailing, and flying rules, with current official sources.","50-state legal library","Know your state.<br>Then verify it.","A practical 50-state starting point for possession, home grow, medical access, retail status, federal property and housing, mailing, air travel, and official sources.","",updated="November 12, 2026",kind="website")
     cards=[]
     for item in STATE_LAWS:
         search_text=(item['name']+' '+item['code']+' '+STATUS_LABELS[item['status']]+' '+item['summary']+' '+item['policy_pulse']['direction']).lower()
@@ -2029,6 +2091,7 @@ def render_legal_hub() -> tuple[Page,str]:
 
 def render_state_page(item: dict) -> tuple[Page,str]:
     label=STATUS_LABELS[item["status"]]
+    review_date=item.get("updated", REVIEW_DATE)
     page=Page(
         f"legal/{item['slug']}/index.html",
         f"{item['name']} Cannabis Laws (2026) | Big Bud Man",
@@ -2037,8 +2100,8 @@ def render_state_page(item: dict) -> tuple[Page,str]:
         f"{item['name']}<br>cannabis laws.",
         item["summary"],
         "",
-        updated=REVIEW_DATE,
-        read_time="7 min read",
+        updated=review_date,
+        read_time=item.get("read_time", "7 min read"),
     )
     status_box=f'''<div class="state-status state-status--{item['status']}"><div><span>STATE</span><b>{item['code']}</b></div><div><span>STATUS</span><b>{label}</b></div><div><span>ADULT POSSESSION</span><b>{'Legal within limits' if item['status']=='adult' else 'Not generally legal'}</b></div><div><span>HOME GROW</span><b>{escape(item['home_grow_label'])}</b></div></div>'''
     sections=[
@@ -2050,8 +2113,9 @@ def render_state_page(item: dict) -> tuple[Page,str]:
         ("purchase-access", "What you need to buy legally", render_purchase_access(item)),
         ("travel", "Travel, work, housing, and federal edges", f'''<ul class="red-list"><li><b>STATE LINES</b><span>Do not take cannabis across a state border—even between two adult-use states.</span></li><li><b>FEDERAL PROPERTY</b><span>State permission does not control federal buildings, lands, installations, or federal transportation rules.</span></li><li><b>WORK</b><span>Legal possession does not guarantee workplace use or protection from a lawful drug policy.</span></li><li><b>HOUSING</b><span>Smoking, cultivation, and possession can be restricted by leases, federal housing rules, or property policy.</span></li><li><b>TRIBAL LAND</b><span>Tribal law and jurisdiction can differ from the surrounding state; verify with the relevant tribal authority.</span></li></ul>'''),
         ("direction", "Six-month legal direction", render_policy_pulse(item)),
-        ("sources", "Official sources", f'''<div class="official-links"><a href="{item['source_url']}" rel="noopener"><b>{escape(item['source_label'])}</b><span>Primary state source for current program rules and updates ↗</span></a><a href="{NCSL_SOURCE}" rel="noopener"><b>National Conference of State Legislatures</b><span>50-state program classification and statutory overview ↗</span></a><a href="{DEA_SOURCE}" rel="noopener"><b>U.S. Drug Enforcement Administration</b><span>Current federal marijuana scheduling actions and records ↗</span></a></div><p class="micro">Research review: {REVIEW_DATE}. Check the linked agency again before acting; laws and implementation can change after review.</p>'''),
     ]
+    sections.extend(item.get("extra_sections", []))
+    sections.append(("sources", "Official sources", f'''<div class="official-links"><a href="{item['source_url']}" rel="noopener"><b>{escape(item['source_label'])}</b><span>Primary state source for current program rules and updates ↗</span></a><a href="{NCSL_SOURCE}" rel="noopener"><b>National Conference of State Legislatures</b><span>50-state program classification and statutory overview ↗</span></a><a href="{DEA_SOURCE}" rel="noopener"><b>U.S. Drug Enforcement Administration</b><span>Current federal marijuana scheduling actions and records ↗</span></a></div><p class="micro">Research review: {review_date}. Check the linked agency again before acting; laws and implementation can change after review.</p>'''))
     peers=[peer for peer in STATE_LAWS if peer["status"] == item["status"]]
     peer_position=next(index for index, peer in enumerate(peers) if peer["code"] == item["code"])
     previous=peers[(peer_position - 1) % len(peers)]
@@ -2061,7 +2125,7 @@ def render_state_page(item: dict) -> tuple[Page,str]:
         (f"legal/{following['slug']}/", "SAME STATUS", f"{following['name']} cannabis laws"),
         ("legal/", "ALL 50 STATES", "Return to the law library"),
     ]
-    notice=f'''<span class="live-dot"></span> Reviewed {REVIEW_DATE}. Educational overview, not legal advice. Verify current rules with <a href="{item['source_url']}" rel="noopener">{escape(item['source_label'])}</a>.'''
+    notice=f'''<span class="live-dot"></span> Reviewed {review_date}. Educational overview, not legal advice. Verify current rules with <a href="{item['source_url']}" rel="noopener">{escape(item['source_label'])}</a>.'''
     html=render_article(page,[item["summary"],item["possession"],item["home_grow"]],sections,related,[("Legal","legal/"),(item["name"],None)],notice)
     return page,html
 
@@ -2283,33 +2347,34 @@ def build() -> None:
     manifest={"name":"Big Bud Man","short_name":"Big Bud Man","start_url":"/","display":"standalone","background_color":"#101712","theme_color":"#101712","icons":[{"src":"/assets/images/favicon.svg","sizes":"any","type":"image/svg+xml"}]}
     write_text(OUT,"site.webmanifest",json.dumps(manifest,indent=2)+"\n")
     publication_manifest={
-        "publication_date":"2026-11-11",
+        "publication_date":"2026-11-12",
         "page_count":3,
         "pages":[
-            {"title":"Cannabis and PTSD Evidence Guide","url":"https://bigbudman.com/guides/cannabis-ptsd-evidence-safety-guide/","department":"guides","portfolio_label":"Authority-expansion","search_intent":"separate reported short-term relief from PTSD treatment evidence, record function and use patterns, preserve concurrent care, recognize urgent warning signs, and prepare a clinician handoff"},
-            {"title":"Cannabis Device Charger and Cable Guide","url":"https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/","department":"gear","portfolio_label":"Exploration","search_intent":"compare a replacement charging system by exact-device instructions, battery architecture, input, connector, cable, power source, condition, recall status, returns, and total cost"},
-            {"title":"Dated and Searchable Complete Site Index","url":"https://bigbudman.com/site-index/","department":"experience","portfolio_label":"Data-led","search_intent":"reach every indexable page through server-rendered links, inspect visible review dates and a fourteen-day update view, or narrow the complete index with an accessible local filter"},
+            {"title":"Arkansas Medical Cannabis Access Workflow","url":"https://bigbudman.com/legal/arkansas/","department":"legal","portfolio_label":"Data-led","search_intent":"verify Arkansas patient, renewal, caregiver, visiting-patient, licensed-dispensary, and official-source steps without changing the established state-page intent"},
+            {"title":"Cannabis and Sleep Apnea Evidence and Safety Guide","url":"https://bigbudman.com/guides/cannabis-sleep-apnea-osa-evidence-safety-guide/","department":"guides","portfolio_label":"Authority-expansion","search_intent":"separate perceived sleep and sedation from measured airway, oxygen, treatment, next-day function, and clinician decisions"},
+            {"title":"Home-Grow Dehumidifier Buying Guide","url":"https://bigbudman.com/gear/home-grow-dehumidifier-buying-guide/","department":"gear","portfolio_label":"Exploration","search_intent":"compare exact dehumidifiers by measured moisture load, rated conditions, efficiency, drainage, heat, electrical fit, recalls, return testing, and first-year cost"},
         ],
-        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral charger-and-cable decision system covering exact-device instructions, input, port, cable, power source, battery condition, recall status, disposal, returns, and total cost. No merchant, model, live price, discount, ranking, availability claim, fabricated test, product image, paid placement, or generic product link was added; using the maker-supported existing equipment or buying nothing remains a valid outcome."},
-        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"The two new articles and site-index upgrade use original text, evidence tables, checklists, and existing brand interface assets. No PTSD illustration, cannabis product, device, battery, charger, cable, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."},
-        "search_console":{"report_date":"2026-11-04","decision":"The October 5–November 1 report is seven days old and valid: 786 impressions, four clicks, 0.509% CTR, and average position 24.632. Search Console still records the canonical sitemap as pending with one error and the legacy WordPress endpoint with two errors, so the Data-led item strengthens the site-owned discovery path with a complete dated server-rendered index, a fourteen-day recent view, and an optional accessible filter; it does not claim to change Google’s processing state. ‘510 vs disposable’ had only two impressions at position 12 and already maps to an existing comparison page; Blue Dream had 18 impressions near position 45, outside the target 4–20 range; single-impression legal queries were also too weak. Those query signals were deliberately ignored as tiny, duplicative, or out of range."},
-        "authority":{"action":"Published a citation-worthy PTSD evidence boundary with a six-claim matrix, five-horizon function record, concurrent-care plan, urgent-response lane, and clinician handoff grounded in the 2023 VA/DoD PTSD guideline, VA National Center for PTSD, and NIH/NCCIH. Reciprocal links strengthen the PTSD, mental-health response, tolerance and withdrawal, and clinician-conversation cluster. No speculative outreach target was logged and no outreach was sent."},
+        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral dehumidifier decision and acceptance-test system covering measured moisture load, capacity conditions, efficiency, drainage, operating range, electrical fit, recalls, returns, and first-year cost. No merchant, model, live price, discount, ranking, availability claim, fabricated test, product image, paid placement, or generic product link was added; correcting the moisture source, using supported existing equipment, or buying nothing remains a valid outcome."},
+        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"The two new articles and Arkansas expansion use original text, evidence tables, checklists, and existing brand interface assets. No patient, cannabis product, PAP device, dehumidifier, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."},
+        "search_console":{"report_date":"2026-11-11","decision":"The October 12–November 8 report is one day old and valid: 815 impressions, three clicks, 0.368% CTR, and average position 24.093. The Arkansas legal page had six impressions, one click, 16.7% CTR, and average position 9.667—the only page-level signal with more than a token sample in the target 4–20 band—so the Data-led item preserves that URL while adding current patient, renewal, caregiver, visiting-patient, dispensary, and primary-source workflows. ‘510 vs disposable’ had two impressions at position 12 but already maps to an existing page; Delaware had two impressions and one click; Blue Dream impressions averaged about position 48; single-impression legal and health rows were too weak. Those signals were deliberately ignored as duplicative, tiny, or out of range."},
+        "authority":{"action":"Published a citation-worthy sleep-apnea evidence translator with an outcome-lane matrix, study-transfer screen, clinician handoff, conservative next-day task gate, and current AASM, NIH/NCCIH, NHLBI, and peer-reviewed sources. Reciprocal links strengthen the sleep, next-day impairment, medication-interaction, and clinician-conversation cluster. The Arkansas page also adds a primary-source role map. No speculative outreach target was logged and no outreach was sent."},
         "freshness_surfaces":{
-            "https://bigbudman.com/guides/":"2026-11-11",
-            "https://bigbudman.com/guides/cannabis-ptsd-evidence-safety-guide/":"2026-11-11",
-            "https://bigbudman.com/guides/cannabis-anxiety-paranoia-psychosis-warning-signs/":"2026-11-11",
-            "https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/":"2026-11-11",
-            "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/":"2026-11-11",
-            "https://bigbudman.com/gear/":"2026-11-11",
-            "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/":"2026-11-11",
-            "https://bigbudman.com/gear/510-thread-vape-battery-safety/":"2026-11-11",
-            "https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/":"2026-11-11",
-            "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/":"2026-11-11",
-            "https://bigbudman.com/editorial-policy/":"2026-11-11",
-            "https://bigbudman.com/updates/":"2026-11-11",
-            "https://bigbudman.com/site-index/":"2026-11-11"
+            "https://bigbudman.com/legal/":"2026-11-12",
+            "https://bigbudman.com/legal/arkansas/":"2026-11-12",
+            "https://bigbudman.com/guides/":"2026-11-12",
+            "https://bigbudman.com/guides/cannabis-sleep-apnea-osa-evidence-safety-guide/":"2026-11-12",
+            "https://bigbudman.com/guides/cannabis-cbd-and-sleep/":"2026-11-12",
+            "https://bigbudman.com/guides/cannabis-next-day-impairment-evidence-guide/":"2026-11-12",
+            "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/":"2026-11-12",
+            "https://bigbudman.com/gear/":"2026-11-12",
+            "https://bigbudman.com/gear/home-grow-dehumidifier-buying-guide/":"2026-11-12",
+            "https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/":"2026-11-12",
+            "https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/":"2026-11-12",
+            "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/":"2026-11-12",
+            "https://bigbudman.com/updates/":"2026-11-12",
+            "https://bigbudman.com/site-index/":"2026-11-12"
         },
-        "surfaces":["PTSD evidence boundary, six-claim matrix, five-horizon function record, concurrent-care plan, urgent-response lane, clinician handoff, and official clinical sources","mental-health response, tolerance and withdrawal, and clinician-conversation reciprocal links","charger-and-cable system map, maker-supported replacement record, connector-shape boundary, damage stop gate, visible charging setup, total-cost screen, and ten-gate checkout","510-battery, dry-herb-vaporizer, and gear-comparison reciprocal links","dated complete site index, fourteen-day recent view, visible review dates, accessible local filter, and no-JavaScript crawl path","site-index regression gate","editorial policy trust contract","guide and gear hubs","publication updates","Atom feed","search index","canonical and legacy XML sitemap surfaces","robots sitemap declaration","checksum-verified source archive and publication gates"],
+        "surfaces":["Arkansas patient, renewal, caregiver, visiting-patient, dispensary, and primary-source workflow","sleep-apnea outcome matrix, study-transfer screen, clinician handoff, conservative next-day gate, and official clinical sources","sleep, next-day impairment, and clinician-conversation reciprocal links","dehumidifier moisture-job map, exact-model comparison, drainage plan, cost scenario, return-window acceptance test, and official efficiency and recall sources","ventilation, temperature-humidity monitoring, and gear-comparison reciprocal links","legal, guide, and gear hubs","publication updates","complete site index","Atom feed","search index","canonical and legacy XML sitemap surfaces","robots sitemap declaration","checksum-verified source archive and publication gates"],
     }
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]

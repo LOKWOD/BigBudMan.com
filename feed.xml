@@ -4,16 +4,80 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-11-11T00:00:00Z</updated>
+  <updated>2026-11-12T00:00:00Z</updated>
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
   <entry>
     <title>How to Talk to Your Doctor About Cannabis</title>
     <id>https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/</id>
     <link href="https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/"/>
-    <updated>2026-11-11T00:00:00Z</updated>
+    <updated>2026-11-12T00:00:00Z</updated>
     <published>2026-10-27T00:00:00Z</published>
     <summary>Prepare a useful cannabis record for a doctor or pharmacist: exact product, route, timing, medicines, symptoms, questions, and follow-up plan.</summary>
+  </entry>
+  <entry>
+    <title>Home-Grow Ventilation Fan Buying Guide</title>
+    <id>https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/</id>
+    <link href="https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/"/>
+    <updated>2026-11-12T00:00:00Z</updated>
+    <published>2026-11-07T00:00:00Z</published>
+    <summary>Compare a home-grow fan by air job, airflow evidence, pressure, controls, environment, cleaning, noise, electrical safety, recalls, and cost.</summary>
+  </entry>
+  <entry>
+    <title>Home-Grow Temperature &amp; Humidity Monitor</title>
+    <id>https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/</id>
+    <link href="https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/"/>
+    <updated>2026-11-12T00:00:00Z</updated>
+    <published>2026-10-27T00:00:00Z</published>
+    <summary>Compare grow-room temperature and humidity monitors by accuracy claims, logging, alarms, placement, verification, power loss, export, and ownership cost.</summary>
+  </entry>
+  <entry>
+    <title>Home-Grow Dehumidifier Buying Guide</title>
+    <id>https://bigbudman.com/gear/home-grow-dehumidifier-buying-guide/</id>
+    <link href="https://bigbudman.com/gear/home-grow-dehumidifier-buying-guide/"/>
+    <updated>2026-11-12T00:00:00Z</updated>
+    <published>2026-11-12T00:00:00Z</published>
+    <summary>Choose a lawful home-grow dehumidifier by measured moisture load, capacity conditions, efficiency, drainage, heat, electrical fit, recalls, and cost.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis, CBD &amp; Sleep Evidence</title>
+    <id>https://bigbudman.com/guides/cannabis-cbd-and-sleep/</id>
+    <link href="https://bigbudman.com/guides/cannabis-cbd-and-sleep/"/>
+    <updated>2026-11-12T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Understand cannabis and CBD sleep claims, study limits, next-day impairment, tolerance, withdrawal, medication risks, and when insomnia needs clinical care.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Next-Day Impairment: Evidence Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-next-day-impairment-evidence-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-next-day-impairment-evidence-guide/"/>
+    <updated>2026-11-12T00:00:00Z</updated>
+    <published>2026-10-23T00:00:00Z</published>
+    <summary>Understand what research can and cannot say about next-day cannabis impairment, residual effects, driving, self-checks, testing, and safety planning.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Gear Comparison &amp; Cost Calculator</title>
+    <id>https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/</id>
+    <link href="https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/"/>
+    <updated>2026-11-12T00:00:00Z</updated>
+    <published>2026-09-20T00:00:00Z</published>
+    <summary>Compare three cannabis accessories by exact model, first-year cost, ownership cost, cost per use, fit, materials, care, support, warranty, and recalls.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis &amp; Sleep Apnea: Evidence and Safety</title>
+    <id>https://bigbudman.com/guides/cannabis-sleep-apnea-osa-evidence-safety-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-sleep-apnea-osa-evidence-safety-guide/"/>
+    <updated>2026-11-12T00:00:00Z</updated>
+    <published>2026-11-12T00:00:00Z</published>
+    <summary>Cannabis and obstructive sleep apnea: what studies do and do not show, treatment boundaries, next-day safety, and a clinician-ready record.</summary>
+  </entry>
+  <entry>
+    <title>Arkansas Cannabis Laws (2026)</title>
+    <id>https://bigbudman.com/legal/arkansas/</id>
+    <link href="https://bigbudman.com/legal/arkansas/"/>
+    <updated>2026-11-12T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Arkansas cannabis laws for 2026: medical only, purchase and medical-card rules, possession, home grow, retail access, and official state sources.</summary>
   </entry>
   <entry>
     <title>Dry-Herb Vaporizer Buying &amp; Cost Guide</title>
@@ -30,14 +94,6 @@
     <updated>2026-11-11T00:00:00Z</updated>
     <published>2026-08-17T00:00:00Z</published>
     <summary>Separate cannabis tolerance, dependence, withdrawal, and use disorder; build a seven-day pattern record and find qualified support without self-diagnosis.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Gear Comparison &amp; Cost Calculator</title>
-    <id>https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/</id>
-    <link href="https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/"/>
-    <updated>2026-11-11T00:00:00Z</updated>
-    <published>2026-09-20T00:00:00Z</published>
-    <summary>Compare three cannabis accessories by exact model, first-year cost, ownership cost, cost per use, fit, materials, care, support, warranty, and recalls.</summary>
   </entry>
   <entry>
     <title>Cannabis Device Charger &amp; Cable Guide</title>
@@ -190,61 +246,5 @@
     <updated>2026-11-09T00:00:00Z</updated>
     <published>2026-09-30T00:00:00Z</published>
     <summary>Route cannabis emergencies, evidence, licenses, recalls, product reports, fraud, work, travel, hemp, and legal questions to the official owner.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Moving Day Checklist</title>
-    <id>https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/</id>
-    <link href="https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/"/>
-    <updated>2026-11-09T00:00:00Z</updated>
-    <published>2026-11-09T00:00:00Z</published>
-    <summary>Plan a cannabis move without hiding jurisdiction changes, state-line travel, movers, vehicles, batteries, storage, disposal, or the arrival handoff.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis and Driving: No Sober Timer</title>
-    <id>https://bigbudman.com/guides/cannabis-driving-impairment-sober-timer/</id>
-    <link href="https://bigbudman.com/guides/cannabis-driving-impairment-sober-timer/"/>
-    <updated>2026-11-08T00:00:00Z</updated>
-    <published>2026-09-11T00:00:00Z</published>
-    <summary>Why no universal cannabis sober timer proves driving fitness, what THC tests can and cannot show, and how to make a reliable transportation plan.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Safety for Older Adults</title>
-    <id>https://bigbudman.com/guides/cannabis-older-adults-medication-fall-safety/</id>
-    <link href="https://bigbudman.com/guides/cannabis-older-adults-medication-fall-safety/"/>
-    <updated>2026-11-08T00:00:00Z</updated>
-    <published>2026-09-23T00:00:00Z</published>
-    <summary>Cannabis safety for older adults: medicines, dizziness and falls, driving, product records, caregiver boundaries, and clinician questions.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Lockbox Fit &amp; Smell-Proof Storage</title>
-    <id>https://bigbudman.com/gear/smell-proof-storage/</id>
-    <link href="https://bigbudman.com/gear/smell-proof-storage/"/>
-    <updated>2026-11-08T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Compare three cannabis lockboxes by usable interior fit, upright package clearance, delivered cost, volume, lock design, odor claims, materials, and care.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Lockbox Buying Guide</title>
-    <id>https://bigbudman.com/gear/cannabis-lockbox-buying-guide/</id>
-    <link href="https://bigbudman.com/gear/cannabis-lockbox-buying-guide/"/>
-    <updated>2026-11-08T00:00:00Z</updated>
-    <published>2026-11-08T00:00:00Z</published>
-    <summary>Compare a cannabis lockbox by users, contents, lock behavior, access, portability, mounting, evidence, recalls, return terms, and first-year cost.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Child-Resistant Packaging &amp; Storage</title>
-    <id>https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/"/>
-    <updated>2026-11-08T00:00:00Z</updated>
-    <published>2026-10-01T00:00:00Z</published>
-    <summary>Audit cannabis child-resistant packaging, reclosure, original labels, locked home storage, visitor routines, and an accidental-exposure response plan.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis &amp; Caregiving Handoff Plan</title>
-    <id>https://bigbudman.com/guides/cannabis-caregiving-sober-adult-handoff-plan/</id>
-    <link href="https://bigbudman.com/guides/cannabis-caregiving-sober-adult-handoff-plan/"/>
-    <updated>2026-11-08T00:00:00Z</updated>
-    <published>2026-11-08T00:00:00Z</published>
-    <summary>Build a cannabis caregiving handoff that protects supervision, transport, storage, medicines, exposure response, and the dependent person&#x27;s routine.</summary>
   </entry>
 </feed>

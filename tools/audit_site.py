@@ -879,13 +879,13 @@ def main() -> int:
             "site-index/index.html": ("guides/cannabis-memory-attention-cognition-evidence-guide/", "gear/cannabis-liquid-measuring-tool-buying-guide/", "editorial-policy/", "November 5, 2026", "updates/"),
         }
         discovery_checks["guides/index.html"] = tuple(
-            'data-updated="2026-11-11"' if marker == 'data-updated="2026-11-05"' else marker
+            'data-updated="2026-11-12"' if marker == 'data-updated="2026-11-05"' else marker
             for marker in discovery_checks["guides/index.html"]
-        ) + ("cannabis-blood-donation-eligibility-guide/", "cannabis-migraine-headache-evidence-guide/", "cannabis-caregiving-sober-adult-handoff-plan/", "cannabis-moving-day-relocation-checklist/", "cannabis-diabetes-blood-sugar-dka-safety/", "cannabis-ptsd-evidence-safety-guide/")
+        ) + ("cannabis-blood-donation-eligibility-guide/", "cannabis-migraine-headache-evidence-guide/", "cannabis-caregiving-sober-adult-handoff-plan/", "cannabis-moving-day-relocation-checklist/", "cannabis-diabetes-blood-sugar-dka-safety/", "cannabis-ptsd-evidence-safety-guide/", "cannabis-sleep-apnea-osa-evidence-safety-guide/")
         discovery_checks["gear/index.html"] = tuple(
-            "All 38" if marker == "All 32" else "2026-11-11" if marker == "2026-11-05" else marker
+            "All 39" if marker == "All 32" else "2026-11-12" if marker == "2026-11-05" else marker
             for marker in discovery_checks["gear/index.html"]
-        ) + ("cannabis-smoke-air-quality-monitor-buying-guide/", "home-grow-ventilation-fan-buying-guide/", "cannabis-lockbox-buying-guide/", "home-grow-watering-tools-buying-guide/", "cannabis-concentrate-container-buying-guide/", "cannabis-device-charger-cable-buying-guide/")
+        ) + ("cannabis-smoke-air-quality-monitor-buying-guide/", "home-grow-ventilation-fan-buying-guide/", "cannabis-lockbox-buying-guide/", "home-grow-watering-tools-buying-guide/", "cannabis-concentrate-container-buying-guide/", "cannabis-device-charger-cable-buying-guide/", "home-grow-dehumidifier-buying-guide/")
         discovery_checks["guides/cannabis-blood-donation-eligibility-guide/index.html"] = (
             "Keep five screening lanes separate",
             "redcrossblood.org/local-homepage/news/article/can-you-donate-blood-if-you-use-cannabis-.html",

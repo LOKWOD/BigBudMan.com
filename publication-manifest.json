@@ -1,70 +1,70 @@
 {
-  "publication_date": "2026-11-11",
+  "publication_date": "2026-11-12",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis and PTSD Evidence Guide",
-      "url": "https://bigbudman.com/guides/cannabis-ptsd-evidence-safety-guide/",
+      "title": "Arkansas Medical Cannabis Access Workflow",
+      "url": "https://bigbudman.com/legal/arkansas/",
+      "department": "legal",
+      "portfolio_label": "Data-led",
+      "search_intent": "verify Arkansas patient, renewal, caregiver, visiting-patient, licensed-dispensary, and official-source steps without changing the established state-page intent"
+    },
+    {
+      "title": "Cannabis and Sleep Apnea Evidence and Safety Guide",
+      "url": "https://bigbudman.com/guides/cannabis-sleep-apnea-osa-evidence-safety-guide/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "separate reported short-term relief from PTSD treatment evidence, record function and use patterns, preserve concurrent care, recognize urgent warning signs, and prepare a clinician handoff"
+      "search_intent": "separate perceived sleep and sedation from measured airway, oxygen, treatment, next-day function, and clinician decisions"
     },
     {
-      "title": "Cannabis Device Charger and Cable Guide",
-      "url": "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/",
+      "title": "Home-Grow Dehumidifier Buying Guide",
+      "url": "https://bigbudman.com/gear/home-grow-dehumidifier-buying-guide/",
       "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "compare a replacement charging system by exact-device instructions, battery architecture, input, connector, cable, power source, condition, recall status, returns, and total cost"
-    },
-    {
-      "title": "Dated and Searchable Complete Site Index",
-      "url": "https://bigbudman.com/site-index/",
-      "department": "experience",
-      "portfolio_label": "Data-led",
-      "search_intent": "reach every indexable page through server-rendered links, inspect visible review dates and a fourteen-day update view, or narrow the complete index with an accessible local filter"
+      "search_intent": "compare exact dehumidifiers by measured moisture load, rated conditions, efficiency, drainage, heat, electrical fit, recalls, return testing, and first-year cost"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral charger-and-cable decision system covering exact-device instructions, input, port, cable, power source, battery condition, recall status, disposal, returns, and total cost. No merchant, model, live price, discount, ranking, availability claim, fabricated test, product image, paid placement, or generic product link was added; using the maker-supported existing equipment or buying nothing remains a valid outcome."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral dehumidifier decision and acceptance-test system covering measured moisture load, capacity conditions, efficiency, drainage, operating range, electrical fit, recalls, returns, and first-year cost. No merchant, model, live price, discount, ranking, availability claim, fabricated test, product image, paid placement, or generic product link was added; correcting the moisture source, using supported existing equipment, or buying nothing remains a valid outcome."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The two new articles and site-index upgrade use original text, evidence tables, checklists, and existing brand interface assets. No PTSD illustration, cannabis product, device, battery, charger, cable, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."
+    "note": "The two new articles and Arkansas expansion use original text, evidence tables, checklists, and existing brand interface assets. No patient, cannabis product, PAP device, dehumidifier, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."
   },
   "search_console": {
-    "report_date": "2026-11-04",
-    "decision": "The October 5\u2013November 1 report is seven days old and valid: 786 impressions, four clicks, 0.509% CTR, and average position 24.632. Search Console still records the canonical sitemap as pending with one error and the legacy WordPress endpoint with two errors, so the Data-led item strengthens the site-owned discovery path with a complete dated server-rendered index, a fourteen-day recent view, and an optional accessible filter; it does not claim to change Google\u2019s processing state. \u2018510 vs disposable\u2019 had only two impressions at position 12 and already maps to an existing comparison page; Blue Dream had 18 impressions near position 45, outside the target 4\u201320 range; single-impression legal queries were also too weak. Those query signals were deliberately ignored as tiny, duplicative, or out of range."
+    "report_date": "2026-11-11",
+    "decision": "The October 12\u2013November 8 report is one day old and valid: 815 impressions, three clicks, 0.368% CTR, and average position 24.093. The Arkansas legal page had six impressions, one click, 16.7% CTR, and average position 9.667\u2014the only page-level signal with more than a token sample in the target 4\u201320 band\u2014so the Data-led item preserves that URL while adding current patient, renewal, caregiver, visiting-patient, dispensary, and primary-source workflows. \u2018510 vs disposable\u2019 had two impressions at position 12 but already maps to an existing page; Delaware had two impressions and one click; Blue Dream impressions averaged about position 48; single-impression legal and health rows were too weak. Those signals were deliberately ignored as duplicative, tiny, or out of range."
   },
   "authority": {
-    "action": "Published a citation-worthy PTSD evidence boundary with a six-claim matrix, five-horizon function record, concurrent-care plan, urgent-response lane, and clinician handoff grounded in the 2023 VA/DoD PTSD guideline, VA National Center for PTSD, and NIH/NCCIH. Reciprocal links strengthen the PTSD, mental-health response, tolerance and withdrawal, and clinician-conversation cluster. No speculative outreach target was logged and no outreach was sent."
+    "action": "Published a citation-worthy sleep-apnea evidence translator with an outcome-lane matrix, study-transfer screen, clinician handoff, conservative next-day task gate, and current AASM, NIH/NCCIH, NHLBI, and peer-reviewed sources. Reciprocal links strengthen the sleep, next-day impairment, medication-interaction, and clinician-conversation cluster. The Arkansas page also adds a primary-source role map. No speculative outreach target was logged and no outreach was sent."
   },
   "freshness_surfaces": {
-    "https://bigbudman.com/guides/": "2026-11-11",
-    "https://bigbudman.com/guides/cannabis-ptsd-evidence-safety-guide/": "2026-11-11",
-    "https://bigbudman.com/guides/cannabis-anxiety-paranoia-psychosis-warning-signs/": "2026-11-11",
-    "https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/": "2026-11-11",
-    "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/": "2026-11-11",
-    "https://bigbudman.com/gear/": "2026-11-11",
-    "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/": "2026-11-11",
-    "https://bigbudman.com/gear/510-thread-vape-battery-safety/": "2026-11-11",
-    "https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/": "2026-11-11",
-    "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/": "2026-11-11",
-    "https://bigbudman.com/editorial-policy/": "2026-11-11",
-    "https://bigbudman.com/updates/": "2026-11-11",
-    "https://bigbudman.com/site-index/": "2026-11-11"
+    "https://bigbudman.com/legal/": "2026-11-12",
+    "https://bigbudman.com/legal/arkansas/": "2026-11-12",
+    "https://bigbudman.com/guides/": "2026-11-12",
+    "https://bigbudman.com/guides/cannabis-sleep-apnea-osa-evidence-safety-guide/": "2026-11-12",
+    "https://bigbudman.com/guides/cannabis-cbd-and-sleep/": "2026-11-12",
+    "https://bigbudman.com/guides/cannabis-next-day-impairment-evidence-guide/": "2026-11-12",
+    "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/": "2026-11-12",
+    "https://bigbudman.com/gear/": "2026-11-12",
+    "https://bigbudman.com/gear/home-grow-dehumidifier-buying-guide/": "2026-11-12",
+    "https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/": "2026-11-12",
+    "https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/": "2026-11-12",
+    "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/": "2026-11-12",
+    "https://bigbudman.com/updates/": "2026-11-12",
+    "https://bigbudman.com/site-index/": "2026-11-12"
   },
   "surfaces": [
-    "PTSD evidence boundary, six-claim matrix, five-horizon function record, concurrent-care plan, urgent-response lane, clinician handoff, and official clinical sources",
-    "mental-health response, tolerance and withdrawal, and clinician-conversation reciprocal links",
-    "charger-and-cable system map, maker-supported replacement record, connector-shape boundary, damage stop gate, visible charging setup, total-cost screen, and ten-gate checkout",
-    "510-battery, dry-herb-vaporizer, and gear-comparison reciprocal links",
-    "dated complete site index, fourteen-day recent view, visible review dates, accessible local filter, and no-JavaScript crawl path",
-    "site-index regression gate",
-    "editorial policy trust contract",
-    "guide and gear hubs",
+    "Arkansas patient, renewal, caregiver, visiting-patient, dispensary, and primary-source workflow",
+    "sleep-apnea outcome matrix, study-transfer screen, clinician handoff, conservative next-day gate, and official clinical sources",
+    "sleep, next-day impairment, and clinician-conversation reciprocal links",
+    "dehumidifier moisture-job map, exact-model comparison, drainage plan, cost scenario, return-window acceptance test, and official efficiency and recall sources",
+    "ventilation, temperature-humidity monitoring, and gear-comparison reciprocal links",
+    "legal, guide, and gear hubs",
     "publication updates",
+    "complete site index",
     "Atom feed",
     "search index",
     "canonical and legacy XML sitemap surfaces",
