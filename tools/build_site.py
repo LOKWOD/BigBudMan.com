@@ -69,6 +69,7 @@ from content_nov9 import NEW_GEAR as NOV9_GEAR, NEW_GUIDES as NOV9_GUIDES, NEW_S
 from content_nov10 import NEW_GEAR as NOV10_GEAR, NEW_GUIDES as NOV10_GUIDES
 from content_nov11 import NEW_GEAR as NOV11_GEAR, NEW_GUIDES as NOV11_GUIDES
 from content_nov12 import NEW_GEAR as NOV12_GEAR, NEW_GUIDES as NOV12_GUIDES, NEW_STRAINS as NOV12_STRAINS, STATE_OVERRIDES as NOV12_STATE_OVERRIDES
+from content_nov13 import EDITORIAL_POLICY_APPEND as NOV13_POLICY_APPEND, NEW_GEAR as NOV13_GEAR, NEW_GUIDES as NOV13_GUIDES, PUBLICATION_MANIFEST as NOV13_PUBLICATION_MANIFEST
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -196,6 +197,8 @@ OTHER_ARTICLES = OTHER_ARTICLES + NOV11_GEAR
 GUIDE_PAGES = GUIDE_PAGES + NOV12_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV12_GEAR
 STATE_LAWS = [({**item, **NOV12_STATE_OVERRIDES[item["code"]]} if item["code"] in NOV12_STATE_OVERRIDES else item) for item in STATE_LAWS]
+GUIDE_PAGES = GUIDE_PAGES + NOV13_GUIDES
+OTHER_ARTICLES = OTHER_ARTICLES + NOV13_GEAR
 
 # November 6 connects both new resources from established, intent-matched
 # pages. These are editorial paths, not generic recent-post links, and the
@@ -534,6 +537,46 @@ OTHER_ARTICLES = [
     for item in OTHER_ARTICLES
 ]
 
+# November 13 connects the symbol reference and infusion-appliance workflow
+# from established pages that already own the complete-label, kitchen-safety,
+# cleaning, and comparison decisions.
+_nov13_guide_links = {
+    "guides/read-a-label/index.html": (
+        "guides/cannabis-warning-symbol-package-icon-guide/", "WARNING SYMBOLS", "Interpret the jurisdiction-specific mark without substituting it for identity, quantity, lot, testing, or legal permission"
+    ),
+    "guides/cannabis-terms-label-lab-glossary/index.html": (
+        "guides/cannabis-warning-symbol-package-icon-guide/", "PACKAGE ICONS", "Keep a regulated symbol inside its jurisdiction, product category, rule version, and evidence boundary"
+    ),
+    "guides/cannabis-package-seal-tamper-evidence-checklist/index.html": (
+        "guides/cannabis-warning-symbol-package-icon-guide/", "SYMBOL + PACKAGE", "Separate a required mark from closure, seal, damage, lot, seller, and complaint evidence"
+    ),
+    "guides/cannabis-shared-kitchen-edible-safety-plan/index.html": (
+        "gear/cannabis-infusion-appliance-buying-guide/", "INFUSION APPLIANCE", "Compare the exact kitchen job, food-contact path, cross-contact, cleaning, household access, recalls, returns, and cost"
+    ),
+    "guides/edibles/index.html": (
+        "gear/cannabis-infusion-appliance-buying-guide/", "KITCHEN EQUIPMENT", "Keep appliance claims separate from potency, serving, delayed effects, storage, and impairment"
+    ),
+}
+GUIDE_PAGES = [
+    ({**item, "updated": "November 13, 2026", "related": [*item["related"], _nov13_guide_links[item["path"]]]}
+     if item["path"] in _nov13_guide_links else item)
+    for item in GUIDE_PAGES
+]
+
+_nov13_gear_links = {
+    "gear/cannabis-tool-cleaning-kit/index.html": (
+        "gear/cannabis-infusion-appliance-buying-guide/", "INFUSION CLEANING", "Map every food-contact surface, allowed care method, inspection point, wear part, drying step, and retirement line"
+    ),
+    "gear/cannabis-gear-comparison-worksheet/index.html": (
+        "gear/cannabis-infusion-appliance-buying-guide/", "APPLIANCE WORKFLOW", "Compare three exact machines by intended use, capacity, food-contact path, cleaning, recalls, returns, service, and first-year cost"
+    ),
+}
+OTHER_ARTICLES = [
+    ({**item, "updated": "November 13, 2026", "related": [*item["related"], _nov13_gear_links[item["path"]]]}
+     if item["path"] in _nov13_gear_links else item)
+    for item in OTHER_ARTICLES
+]
+
 # Publishing integrity is part of the public editorial standard: the source
 # archive is checksum-verified and tested before publication.
 for _policy in STANDARD_PAGES:
@@ -812,6 +855,15 @@ for _standard in STANDARD_PAGES:
             '<p class="update-line">Policy reviewed November 11, 2026</p>',
         )
         _standard["body"] += '''<h2>Fresh static discovery path</h2><p>The complete site index publishes a dated, server-rendered list of every indexable page plus a separate fourteen-day recently updated section. Its optional browser filter changes only what a reader sees after the full HTML arrives; every crawl path remains present without JavaScript. Each entry includes a visible review date, and publication checks compare the index with the same source catalog that produces search, the Atom feed, and both canonical and legacy sitemap surfaces. This improves discovery and auditability; it does not control when an external search engine processes a submitted sitemap or indexes a URL.</p>'''
+
+for _standard in STANDARD_PAGES:
+    if _standard["path"] == "editorial-policy/index.html":
+        _standard["updated"] = "November 13, 2026"
+        _standard["body"] = _standard["body"].replace(
+            '<p class="update-line">Policy reviewed November 11, 2026</p>',
+            '<p class="update-line">Policy reviewed November 13, 2026</p>',
+        )
+        _standard["body"] += NOV13_POLICY_APPEND
 
 RECIPROCAL_RELATED = {
     "guides/full-spectrum-broad-spectrum-cbd-isolate/index.html": [
@@ -1857,9 +1909,10 @@ def add_collection_itemlist(html: str, page: Page, name: str, card_class: str) -
 
 
 def render_guides_hub() -> tuple[Page,str]:
-    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 12, 2026",kind="website")
+    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 13, 2026",kind="website")
     p="../"
     cards="".join([
+      card("guides/cannabis-warning-symbol-package-icon-guide/","LABELS + OFFICIAL SOURCES","Cannabis warning symbols and package icons","Compare New York, California, Colorado, and Minnesota official systems, then keep every mark inside its jurisdiction, product category, rule version, and evidence boundary.","tag",p),
       card("guides/cannabis-sleep-apnea-osa-evidence-safety-guide/","HEALTH + SLEEP","Cannabis and sleep apnea","Separate sedation and subjective sleep from measured airway events, oxygen burden, treatment use, next-day function, and the sleep-clinic handoff.","heart",p),
       card("guides/cannabis-ptsd-evidence-safety-guide/","HEALTH + EVIDENCE","Cannabis and PTSD evidence","Separate reported short-term relief from treatment evidence, long-term function, use-pattern concerns, concurrent care, urgent warning signs, and the clinician handoff.","heart",p),
       card("guides/cannabis-diabetes-blood-sugar-dka-safety/","HEALTH + DIABETES","Cannabis and diabetes safety","Separate low-glucose look-alikes, DKA and vomiting red flags, medicines, product claims, monitoring, emergency response, and the clinician handoff.","heart",p),
@@ -2038,6 +2091,7 @@ def render_strains_hub() -> tuple[Page,str]:
 
 def render_gear_hub() -> tuple[Page,str]:
     items = [
+        ("cannabis-infusion-appliance-buying-guide/","compare preparation powered care","KITCHEN + INFUSION APPLIANCE","Choose an infusion appliance","Compare the exact kitchen job, capacity, food-contact path, heat, cleaning, cross-contact, recalls, returns, service, and first-year cost.","gear",None,None),
         ("home-grow-dehumidifier-buying-guide/","compare powered care","HOME GROW + MOISTURE","Choose a dehumidifier system","Compare measured moisture load, capacity conditions, efficiency, drainage, heat, electrical fit, recalls, return testing, and first-year cost.","clock",None,None),
         ("cannabis-device-charger-cable-buying-guide/","compare powered care","POWER + COMPATIBILITY","Choose a charger and cable system","Match the exact device, battery, input, port, cable, power source, condition, recall status, attended setup, disposal route, returns, and total cost.","spark",None,None),
         ("cannabis-concentrate-container-buying-guide/","compare storage care","CONCENTRATES + STORAGE","Choose a concentrate container","Preserve the original package, then compare contact materials, usable fit, closure claims, label identity, cleaning, locked storage, returns, and cost.","lock",None,None),
@@ -2078,7 +2132,7 @@ def render_gear_hub() -> tuple[Page,str]:
         ("cannabis-ashtray-ember-disposal-guide/","care","FIRE-SAFE DISPOSAL","Choose an ashtray","Compare stability, depth, materials, wind, placement, extinguishing, cleaning, waste, and smoke-exposure limits.","alert",None,None),
         ("cannabis-glass-pipe-water-pipe-buying-guide/","preparation care","GLASSWARE","Choose a pipe or water pipe","Check format, material claims, joint fit, stability, cleaning access, replacement parts, and smoke-exposure limits.","search",None,None),
     ]
-    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 12, 2026",kind="website")
+    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 13, 2026",kind="website")
     cards=[]
     for href, categories, kicker, title, description, icon_name, image_src, image_alt in items:
         art = f'<div><img src="{image_src}" alt="{image_alt}"></div>' if image_src else f'<div class="gear-card__icon-art" aria-hidden="true">{icon(icon_name)}</div>'
@@ -2269,8 +2323,8 @@ def render_thanks() -> tuple[Page,str]:
 
 
 def render_404() -> tuple[Page,str]:
-    page=Page("404.html","Page Not Found | Big Bud Man","The requested Big Bud Man page could not be found. Search the cannabis guide library or return to the home page.","Not found","That page wandered off.","Use search or head back to a page that exists.","",kind="website")
-    main=f'''<main id="main-content" class="not-found"><div class="container"><p class="eyebrow">ERROR 404</p><div class="error-code">4<img src="assets/images/logo-mark.svg" alt="">4</div><h1>THAT PAGE WANDERED OFF.</h1><p>The URL may be old, mistyped, or too high to find its way home.</p><div class="hero-actions"><a class="button button--primary" href="./">Return home</a><button class="button button--outline" type="button" data-search-open>Search the library</button></div></div></main>'''
+    page=Page("404.html","Page Not Found | Big Bud Man","The requested Big Bud Man page could not be found. Search the cannabis guide library or return to the home page.","Not found","That page wandered off.","Use search or head back to a page that exists.","",updated="November 13, 2026",kind="website")
+    main=f'''<main id="main-content" class="not-found"><div class="container"><p class="eyebrow">ERROR 404</p><div class="error-code">4<img src="/assets/images/logo-mark.svg" alt="">4</div><h1>THAT PAGE WANDERED OFF.</h1><p>The URL may be old, mistyped, or too high to find its way home.</p><div class="hero-actions"><a class="button button--primary" href="/">Return home</a><button class="button button--outline" type="button" data-search-open>Search the library</button></div></div></main>'''
     return page, layout(page, main)
 
 
@@ -2406,6 +2460,7 @@ def build() -> None:
         },
         "surfaces":["Cherry Blonde breeder-versus-trial evidence map, name-collision table, finished-lot chain, and source boundaries","Cherry Wine, CBD-hemp, CoA, and product-complaint reciprocal links","Arkansas patient, renewal, caregiver, visiting-patient, dispensary, and primary-source workflow","sleep-apnea outcome matrix, study-transfer screen, clinician handoff, conservative next-day gate, and official clinical sources","sleep, next-day impairment, and clinician-conversation reciprocal links","dehumidifier moisture-job map, exact-model comparison, drainage plan, cost scenario, return-window acceptance test, and official efficiency and recall sources","ventilation, temperature-humidity monitoring, and gear-comparison reciprocal links","strain, legal, guide, and gear hubs","publication updates","complete site index","Atom feed","search index","canonical and legacy XML sitemap surfaces","robots sitemap declaration","checksum-verified source archive and publication gates"],
     }
+    publication_manifest = NOV13_PUBLICATION_MANIFEST
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]
     strain_aliases = {

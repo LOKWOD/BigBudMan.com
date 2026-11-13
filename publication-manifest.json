@@ -1,81 +1,69 @@
 {
-  "publication_date": "2026-11-12",
+  "publication_date": "2026-11-13",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cherry Blonde CBD Hemp Field Note",
-      "url": "https://bigbudman.com/strains/cherry-blonde-cbd/",
-      "department": "strains",
-      "portfolio_label": "Authority-expansion",
-      "search_intent": "verify a named CBD-hemp cultivar through breeder attribution, independent trial identity, name-collision checks, finished-lot evidence, and current legal boundaries"
-    },
-    {
-      "title": "Cannabis and Sleep Apnea Evidence and Safety Guide",
-      "url": "https://bigbudman.com/guides/cannabis-sleep-apnea-osa-evidence-safety-guide/",
+      "title": "Cannabis Warning Symbols and Package Icons",
+      "url": "https://bigbudman.com/guides/cannabis-warning-symbol-package-icon-guide/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "separate perceived sleep and sedation from measured airway, oxygen, treatment, next-day function, and clinician decisions"
+      "search_intent": "decode jurisdiction-specific cannabis warning marks without substituting an icon for product identity, potency, testing, lawful sale, or permission"
     },
     {
-      "title": "Home-Grow Dehumidifier Buying Guide",
-      "url": "https://bigbudman.com/gear/home-grow-dehumidifier-buying-guide/",
+      "title": "Cannabis Infusion Appliance Buying Guide",
+      "url": "https://bigbudman.com/gear/cannabis-infusion-appliance-buying-guide/",
       "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "compare exact dehumidifiers by measured moisture load, rated conditions, efficiency, drainage, heat, electrical fit, recalls, return testing, and first-year cost"
+      "search_intent": "compare exact infusion appliances by intended kitchen job, food-contact path, capacity, heat, cleaning, cross-contact, recalls, returns, service, and ownership cost"
+    },
+    {
+      "title": "Nested-URL 404 Route Repair",
+      "url": "https://bigbudman.com/404.html",
+      "department": "technical",
+      "portfolio_label": "Exploration",
+      "search_intent": "preserve working search, navigation, home recovery, scripts, styles, and imagery when GitHub Pages serves the custom 404 from a missing nested URL"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral dehumidifier decision and acceptance-test system covering measured moisture load, capacity conditions, efficiency, drainage, operating range, electrical fit, recalls, returns, and first-year cost. No merchant, model, live price, discount, ranking, availability claim, fabricated test, product image, paid placement, or generic product link was added; correcting the moisture source, using supported existing equipment, or buying nothing remains a valid outcome."
+    "reason": "No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral infusion-appliance comparison, cost, and return-window acceptance system. It does not name or rank a merchant or model, publish live prices, invent testing, or force a purchase; safe existing equipment or buying nothing remains a valid outcome."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The three new pages and Arkansas supporting expansion use original text, evidence tables, checklists, and existing brand interface assets. The Cherry Blonde page explicitly withholds a cultivar photo because no exact licensed image was verified. No patient, cannabis product, PAP device, dehumidifier, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."
+    "note": "Both new editorial pages use original text, evidence tables, checklists, and existing brand interface assets. No symbol artwork, appliance photo, stock image, merchant image, affiliate image, or generated image was added or changed. The 404 repair reuses the established logo mark from its canonical root-relative asset path."
   },
   "search_console": {
     "report_date": "2026-11-11",
-    "decision": "The October 12\u2013November 8 report is one day old and valid: 815 impressions, three clicks, 0.368% CTR, and average position 24.093. The Arkansas legal page had six impressions, one click, 16.7% CTR, and average position 9.667\u2014the only page-level signal with more than a token sample in the target 4\u201320 band\u2014so the analytics-led action preserves that established URL and adds current patient, renewal, caregiver, visiting-patient, dispensary, and primary-source workflows rather than creating a cannibalizing page. \u2018510 vs disposable\u2019 had two impressions at position 12 but already maps to an existing page; Delaware had two impressions and one click; Blue Dream had 33 impressions near position 48; single-impression legal and health rows were too weak. Those signals were deliberately ignored as duplicative, tiny, or out of range. None of the three new pages is presented as primarily Data-led."
+    "decision": "The October 12\u2013November 8 report is two days old and valid: 815 impressions, three clicks, 0.368% CTR, and average position 24.093. Arkansas was the only page-level signal with more than a token sample in the target 4\u201320 band, and that established URL was materially improved on November 12; repeating it today would add no distinct reader purpose. The 510-versus-disposable row had two impressions and already maps to a complete existing page, Delaware had only two impressions, Blue Dream was near position 48, and the remaining rows were single-impression noise. Those signals were deliberately ignored as already addressed, duplicative, too small, or out of range. No item in this batch is labeled Data-led; the report acted as a cannibalization and diversity guard."
   },
   "authority": {
-    "action": "Published two citation-worthy evidence assets: a sleep-apnea outcome translator with a study-transfer screen and clinician handoff, and a Cherry Blonde CBD field note that separates a commercial breeder record from an independent University of Vermont trial and the finished-lot evidence chain. Reciprocal links strengthen the sleep, next-day impairment, CBD-hemp, CoA, product-complaint, and named-cultivar clusters. The Arkansas page also adds a primary-source role map. No speculative outreach target was logged and no outreach was sent."
+    "action": "Published a citation-worthy, cross-jurisdiction warning-symbol reference built from current New York, California, Colorado, and Minnesota primary sources. Its comparison matrix, six-question evidence map, unknown-icon workflow, publisher checklist, and official-source directory are reciprocally linked from established label, glossary, package-condition, and source pages. The infusion guide also strengthens the shared-kitchen, edibles, cleaning, and comparison cluster. No speculative outreach target was logged and no outreach was sent."
   },
   "freshness_surfaces": {
-    "https://bigbudman.com/legal/": "2026-11-12",
-    "https://bigbudman.com/legal/arkansas/": "2026-11-12",
-    "https://bigbudman.com/strains/": "2026-11-12",
-    "https://bigbudman.com/strains/cherry-blonde-cbd/": "2026-11-12",
-    "https://bigbudman.com/strains/cherry-wine/": "2026-11-12",
-    "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/": "2026-11-12",
-    "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/": "2026-11-12",
-    "https://bigbudman.com/guides/": "2026-11-12",
-    "https://bigbudman.com/guides/cannabis-sleep-apnea-osa-evidence-safety-guide/": "2026-11-12",
-    "https://bigbudman.com/guides/cannabis-cbd-and-sleep/": "2026-11-12",
-    "https://bigbudman.com/guides/cannabis-next-day-impairment-evidence-guide/": "2026-11-12",
-    "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/": "2026-11-12",
-    "https://bigbudman.com/gear/": "2026-11-12",
-    "https://bigbudman.com/gear/home-grow-dehumidifier-buying-guide/": "2026-11-12",
-    "https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/": "2026-11-12",
-    "https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/": "2026-11-12",
-    "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/": "2026-11-12",
-    "https://bigbudman.com/updates/": "2026-11-12",
-    "https://bigbudman.com/site-index/": "2026-11-12"
+    "https://bigbudman.com/guides/": "2026-11-13",
+    "https://bigbudman.com/guides/cannabis-warning-symbol-package-icon-guide/": "2026-11-13",
+    "https://bigbudman.com/guides/read-a-label/": "2026-11-13",
+    "https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/": "2026-11-13",
+    "https://bigbudman.com/guides/cannabis-package-seal-tamper-evidence-checklist/": "2026-11-13",
+    "https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/": "2026-11-13",
+    "https://bigbudman.com/guides/edibles/": "2026-11-13",
+    "https://bigbudman.com/gear/": "2026-11-13",
+    "https://bigbudman.com/gear/cannabis-infusion-appliance-buying-guide/": "2026-11-13",
+    "https://bigbudman.com/gear/cannabis-tool-cleaning-kit/": "2026-11-13",
+    "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/": "2026-11-13",
+    "https://bigbudman.com/editorial-policy/": "2026-11-13",
+    "https://bigbudman.com/updates/": "2026-11-13",
+    "https://bigbudman.com/site-index/": "2026-11-13"
   },
   "surfaces": [
-    "Cherry Blonde breeder-versus-trial evidence map, name-collision table, finished-lot chain, and source boundaries",
-    "Cherry Wine, CBD-hemp, CoA, and product-complaint reciprocal links",
-    "Arkansas patient, renewal, caregiver, visiting-patient, dispensary, and primary-source workflow",
-    "sleep-apnea outcome matrix, study-transfer screen, clinician handoff, conservative next-day gate, and official clinical sources",
-    "sleep, next-day impairment, and clinician-conversation reciprocal links",
-    "dehumidifier moisture-job map, exact-model comparison, drainage plan, cost scenario, return-window acceptance test, and official efficiency and recall sources",
-    "ventilation, temperature-humidity monitoring, and gear-comparison reciprocal links",
-    "strain, legal, guide, and gear hubs",
-    "publication updates",
-    "complete site index",
-    "Atom feed",
-    "search index",
-    "canonical and legacy XML sitemap surfaces",
-    "robots sitemap declaration",
+    "warning-symbol cross-jurisdiction matrix, package evidence map, unknown-icon workflow, publisher checklist, and primary-source directory",
+    "label, glossary, package-condition, official-source, kitchen-safety, edibles, cleaning, and comparison reciprocal links",
+    "infusion-appliance exact-model screen, food-contact map, cross-contact plan, first-year cost formula, return-window acceptance test, and potency boundary",
+    "root-relative custom 404 navigation, assets, scripts, search recovery, and automated nested-route regression gate",
+    "guide and gear hubs",
+    "publication updates and complete site index",
+    "Atom feed, search index, canonical sitemap, legacy sitemap endpoint, robots declaration, and structured metadata",
     "checksum-verified source archive and publication gates"
   ]
 }

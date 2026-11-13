@@ -4,9 +4,81 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-11-12T00:00:00Z</updated>
+  <updated>2026-11-13T00:00:00Z</updated>
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Cannabis Warning Symbols &amp; Package Icons</title>
+    <id>https://bigbudman.com/guides/cannabis-warning-symbol-package-icon-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-warning-symbol-package-icon-guide/"/>
+    <updated>2026-11-13T00:00:00Z</updated>
+    <published>2026-11-13T00:00:00Z</published>
+    <summary>Decode cannabis warning symbols without mistaking an icon for nationwide approval, product identity, potency, testing, or legal permission.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Tool Cleaning Kit &amp; Cost Planner</title>
+    <id>https://bigbudman.com/gear/cannabis-tool-cleaning-kit/</id>
+    <link href="https://bigbudman.com/gear/cannabis-tool-cleaning-kit/"/>
+    <updated>2026-11-13T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Build a compatible cannabis-tool cleaning kit, compare cleaners and parts, and calculate first-year cost, recurring cost, and maintenance time.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Terms, Label &amp; Lab Glossary</title>
+    <id>https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/</id>
+    <link href="https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/"/>
+    <updated>2026-11-13T00:00:00Z</updated>
+    <published>2026-09-25T00:00:00Z</published>
+    <summary>Search plain-language cannabis terms for labels, lab reports, cannabinoids, formats, cultivation, safety, and legal-market shopping.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Shared-Kitchen Safety Plan</title>
+    <id>https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/</id>
+    <link href="https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/"/>
+    <updated>2026-11-13T00:00:00Z</updated>
+    <published>2026-11-01T00:00:00Z</published>
+    <summary>Keep cannabis edibles identifiable and separate in a shared kitchen with an ingredient, allergen, handoff, storage, cleanup, and emergency record.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Package Seal Checklist</title>
+    <id>https://bigbudman.com/guides/cannabis-package-seal-tamper-evidence-checklist/</id>
+    <link href="https://bigbudman.com/guides/cannabis-package-seal-tamper-evidence-checklist/"/>
+    <updated>2026-11-13T00:00:00Z</updated>
+    <published>2026-10-04T00:00:00Z</published>
+    <summary>Inspect a cannabis package seal, tamper evidence, child resistance, label integrity, lot identity, condition, and complaint route before use.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Label Field Guide &amp; Checklist</title>
+    <id>https://bigbudman.com/guides/read-a-label/</id>
+    <link href="https://bigbudman.com/guides/read-a-label/"/>
+    <updated>2026-11-13T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Decode a cannabis label by format, reconcile serving and package math, match the lot to the CoA, and preserve a reusable package evidence record.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Infusion Appliance Buying Guide</title>
+    <id>https://bigbudman.com/gear/cannabis-infusion-appliance-buying-guide/</id>
+    <link href="https://bigbudman.com/gear/cannabis-infusion-appliance-buying-guide/"/>
+    <updated>2026-11-13T00:00:00Z</updated>
+    <published>2026-11-13T00:00:00Z</published>
+    <summary>Compare a cannabis infusion appliance by intended task, food-contact materials, capacity, heat, cleaning, safety, recalls, returns, and first-year cost.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Gear Comparison &amp; Cost Calculator</title>
+    <id>https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/</id>
+    <link href="https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/"/>
+    <updated>2026-11-13T00:00:00Z</updated>
+    <published>2026-09-20T00:00:00Z</published>
+    <summary>Compare three cannabis accessories by exact model, first-year cost, ownership cost, cost per use, fit, materials, care, support, warranty, and recalls.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Edibles: Label, Timing &amp; Buying Guide</title>
+    <id>https://bigbudman.com/guides/edibles/</id>
+    <link href="https://bigbudman.com/guides/edibles/"/>
+    <updated>2026-11-13T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Compare cannabis edibles by licensed source, serving and package math, ingredients, timing uncertainty, lot evidence, storage, and emergency planning.</summary>
+  </entry>
   <entry>
     <title>How to Talk to Your Doctor About Cannabis</title>
     <id>https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/</id>
@@ -70,14 +142,6 @@
     <updated>2026-11-12T00:00:00Z</updated>
     <published>2026-10-23T00:00:00Z</published>
     <summary>Understand what research can and cannot say about next-day cannabis impairment, residual effects, driving, self-checks, testing, and safety planning.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Gear Comparison &amp; Cost Calculator</title>
-    <id>https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/</id>
-    <link href="https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/"/>
-    <updated>2026-11-12T00:00:00Z</updated>
-    <published>2026-09-20T00:00:00Z</published>
-    <summary>Compare three cannabis accessories by exact model, first-year cost, ownership cost, cost per use, fit, materials, care, support, warranty, and recalls.</summary>
   </entry>
   <entry>
     <title>Cannabis Certificate of Analysis (CoA) Guide</title>
@@ -182,69 +246,5 @@
     <updated>2026-11-10T00:00:00Z</updated>
     <published>2026-11-10T00:00:00Z</published>
     <summary>Cannabis and diabetes: low-glucose look-alikes, DKA and vomiting red flags, product records, medicines, and clinician questions.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Stash Jar Calculator &amp; Guide</title>
-    <id>https://bigbudman.com/gear/cannabis-stash-jar-buying-guide/</id>
-    <link href="https://bigbudman.com/gear/cannabis-stash-jar-buying-guide/"/>
-    <updated>2026-11-10T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Compare a cannabis stash jar by measured capacity, planned headspace, ownership cost, closure evidence, materials, cleaning, labeling, and locked-storage fit.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Concentrates &amp; Dabs Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/"/>
-    <updated>2026-11-10T00:00:00Z</updated>
-    <published>2026-09-15T00:00:00Z</published>
-    <summary>Understand cannabis concentrates, dabs, wax, shatter, rosin, resin, potency labels, licensed sourcing, equipment heat, storage, and safer decisions.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Concentrate Container Buying Guide</title>
-    <id>https://bigbudman.com/gear/cannabis-concentrate-container-buying-guide/</id>
-    <link href="https://bigbudman.com/gear/cannabis-concentrate-container-buying-guide/"/>
-    <updated>2026-11-10T00:00:00Z</updated>
-    <published>2026-11-10T00:00:00Z</published>
-    <summary>Compare concentrate containers by original-package fit, contact materials, usable cavity, closure, cleaning, label identity, locked storage, and cost.</summary>
-  </entry>
-  <entry>
-    <title>Cannabinoid Hyperemesis: Signs &amp; Next Steps</title>
-    <id>https://bigbudman.com/guides/cannabinoid-hyperemesis-syndrome-warning-signs/</id>
-    <link href="https://bigbudman.com/guides/cannabinoid-hyperemesis-syndrome-warning-signs/"/>
-    <updated>2026-11-10T00:00:00Z</updated>
-    <published>2026-09-19T00:00:00Z</published>
-    <summary>Cannabinoid hyperemesis syndrome warning signs, emergency red flags, evidence limits, hot-water risks, clinical evaluation, cessation, and follow-up.</summary>
-  </entry>
-  <entry>
-    <title>Vitality Seedless CBDV Strain Guide</title>
-    <id>https://bigbudman.com/strains/vitality-seedless-cbdv/</id>
-    <link href="https://bigbudman.com/strains/vitality-seedless-cbdv/"/>
-    <updated>2026-11-09T00:00:00Z</updated>
-    <published>2026-11-09T00:00:00Z</published>
-    <summary>Vitality Seedless CBDV hemp field note: breeder identity, independent trial context, claim boundaries, lot-report checks, and legal cautions.</summary>
-  </entry>
-  <entry>
-    <title>Royal CBDV Automatic Strain Guide</title>
-    <id>https://bigbudman.com/strains/royal-cbdv-automatic/</id>
-    <link href="https://bigbudman.com/strains/royal-cbdv-automatic/"/>
-    <updated>2026-11-09T00:00:00Z</updated>
-    <published>2026-09-15T00:00:00Z</published>
-    <summary>Royal CBDV Automatic field note: breeder-listed Solomatic × Durban Poison lineage, CBDV claim boundaries, finished-batch CoA checks, and legal cautions.</summary>
-  </entry>
-  <entry>
-    <title>Pine Walker Seedless Strain Guide</title>
-    <id>https://bigbudman.com/strains/pine-walker-seedless/</id>
-    <link href="https://bigbudman.com/strains/pine-walker-seedless/"/>
-    <updated>2026-11-09T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Pine Walker Seedless CBDV hemp field note: breeder-documented lineage and aroma claims, batch and CoA checks, legal caveats, and responsible-use context.</summary>
-  </entry>
-  <entry>
-    <title>New York Home Cannabis Grow Planner</title>
-    <id>https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/</id>
-    <link href="https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/"/>
-    <updated>2026-11-09T00:00:00Z</updated>
-    <published>2026-09-21T00:00:00Z</published>
-    <summary>Plan a New York home cannabis grow around plant limits, residence rules, access, electrical load, moisture, records, storage, and lawful starter sources.</summary>
   </entry>
 </feed>
