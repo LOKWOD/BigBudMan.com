@@ -61,7 +61,7 @@
   <url><loc>https://bigbudman.com/guides/cannabis-cbd-epilepsy-seizure-care-guide/</loc><lastmod>2026-10-05</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-cbd-liver-health-safety-guide/</loc><lastmod>2026-10-10</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-cbd-medication-interactions/</loc><lastmod>2026-11-10</lastmod></url>
-  <url><loc>https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/</loc><lastmod>2026-11-08</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/</loc><lastmod>2026-10-16</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/</loc><lastmod>2026-11-10</lastmod></url>
@@ -109,7 +109,7 @@
   <url><loc>https://bigbudman.com/guides/cbd-capsules-softgels-label-buying-guide/</loc><lastmod>2026-09-20</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cbd-drinks-powders-label-buying-guide/</loc><lastmod>2026-09-27</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cbd-gummies-label-buying-guide/</loc><lastmod>2026-09-16</lastmod></url>
-  <url><loc>https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cbd-oil-tincture-label-buying-guide/</loc><lastmod>2026-09-11</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cbd-patches-transdermal-label-evidence-guide/</loc><lastmod>2026-10-04</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cbd-products-for-pets-veterinarian-label-guide/</loc><lastmod>2026-09-22</lastmod></url>
@@ -201,6 +201,7 @@
   <url><loc>https://bigbudman.com/responsible-use/</loc><lastmod>2026-08-17</lastmod></url>
   <url><loc>https://bigbudman.com/site-index/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://bigbudman.com/start-here/</loc><lastmod>2026-10-25</lastmod></url>
+  <url><loc>https://bigbudman.com/strains/abacus-cbd-hemp/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://bigbudman.com/strains/acapulco-gold/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/acdc/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/afghani/</loc><lastmod>2026-08-26</lastmod></url>
@@ -219,7 +220,7 @@
   <url><loc>https://bigbudman.com/strains/blueberry/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/bruce-banner/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/bubba-kush/</loc><lastmod>2026-08-26</lastmod></url>
-  <url><loc>https://bigbudman.com/strains/cakeberry-brulee/</loc><lastmod>2026-09-12</lastmod></url>
+  <url><loc>https://bigbudman.com/strains/cakeberry-brulee/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://bigbudman.com/strains/canna-tsu/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/cannatonic/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/cbd-critical-mass/</loc><lastmod>2026-08-26</lastmod></url>
@@ -228,7 +229,7 @@
   <url><loc>https://bigbudman.com/strains/cheese/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/chemberry/</loc><lastmod>2026-09-14</lastmod></url>
   <url><loc>https://bigbudman.com/strains/chemdawg/</loc><lastmod>2026-08-26</lastmod></url>
-  <url><loc>https://bigbudman.com/strains/cherry-blonde-cbd/</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://bigbudman.com/strains/cherry-blonde-cbd/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://bigbudman.com/strains/cherry-pie/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/cherry-wine/</loc><lastmod>2026-11-12</lastmod></url>
   <url><loc>https://bigbudman.com/strains/colombian-gold/</loc><lastmod>2026-08-26</lastmod></url>
@@ -254,7 +255,7 @@
   <url><loc>https://bigbudman.com/strains/headband/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/hindu-kush/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/ice-cream-cake/</loc><lastmod>2026-08-26</lastmod></url>
-  <url><loc>https://bigbudman.com/strains/</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://bigbudman.com/strains/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://bigbudman.com/strains/jack-herer/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/jealousy/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/kosher-kush/</loc><lastmod>2026-08-26</lastmod></url>

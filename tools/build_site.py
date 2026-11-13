@@ -69,7 +69,7 @@ from content_nov9 import NEW_GEAR as NOV9_GEAR, NEW_GUIDES as NOV9_GUIDES, NEW_S
 from content_nov10 import NEW_GEAR as NOV10_GEAR, NEW_GUIDES as NOV10_GUIDES
 from content_nov11 import NEW_GEAR as NOV11_GEAR, NEW_GUIDES as NOV11_GUIDES
 from content_nov12 import NEW_GEAR as NOV12_GEAR, NEW_GUIDES as NOV12_GUIDES, NEW_STRAINS as NOV12_STRAINS, STATE_OVERRIDES as NOV12_STATE_OVERRIDES
-from content_nov13 import EDITORIAL_POLICY_APPEND as NOV13_POLICY_APPEND, NEW_GEAR as NOV13_GEAR, NEW_GUIDES as NOV13_GUIDES, PUBLICATION_MANIFEST as NOV13_PUBLICATION_MANIFEST
+from content_nov13 import EDITORIAL_POLICY_APPEND as NOV13_POLICY_APPEND, NEW_GEAR as NOV13_GEAR, NEW_GUIDES as NOV13_GUIDES, NEW_STRAINS as NOV13_STRAINS, PUBLICATION_MANIFEST as NOV13_PUBLICATION_MANIFEST
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -150,8 +150,8 @@ GUIDE_PAGES = [_oct24_guides.get(item["path"], item) for item in GUIDE_PAGES] + 
 _oct24_gear = {item["path"]: item for item in OCT24_GEAR_OVERRIDES}
 OTHER_ARTICLES = [_oct24_gear.get(item["path"], item) for item in OTHER_ARTICLES] + OCT24_GEAR
 CANNABINOID_LABELS["cbdv"] = "CBDV-focused hemp"
-STRAINS = STRAINS + OCT24_FOLLOWUP_STRAINS + NOV9_STRAINS + NOV12_STRAINS
-STRAIN_PAGES = STRAIN_PAGES + [strain_page(item) for item in NOV9_STRAINS + NOV12_STRAINS]
+STRAINS = STRAINS + OCT24_FOLLOWUP_STRAINS + NOV9_STRAINS + NOV12_STRAINS + NOV13_STRAINS
+STRAIN_PAGES = STRAIN_PAGES + [strain_page(item) for item in NOV9_STRAINS + NOV12_STRAINS + NOV13_STRAINS]
 STRAIN_PAGES = STRAIN_PAGES + OCT24_FOLLOWUP_STRAIN_PAGES
 _oct25_guides = {item["path"]: item for item in OCT25_GUIDE_OVERRIDES}
 GUIDE_PAGES = [_oct25_guides.get(item["path"], item) for item in GUIDE_PAGES]
@@ -555,6 +555,12 @@ _nov13_guide_links = {
     ),
     "guides/edibles/index.html": (
         "gear/cannabis-infusion-appliance-buying-guide/", "KITCHEN EQUIPMENT", "Keep appliance claims separate from potency, serving, delayed effects, storage, and impairment"
+    ),
+    "guides/cannabis-certificate-of-analysis-coa-guide/index.html": (
+        "strains/abacus-cbd-hemp/", "TRIAL VS LOT", "Keep university cultivar research separate from the finished package, lot, dates, units, panels, and report status"
+    ),
+    "guides/cbd-hemp-flower-label-legal-guide/index.html": (
+        "strains/abacus-cbd-hemp/", "ABACUS FIELD NOTE", "Separate agricultural trial identity, neighboring names, finished-lot evidence, and the current product rule"
     ),
 }
 GUIDE_PAGES = [
@@ -1710,11 +1716,25 @@ for _strain_page in STRAIN_PAGES:
             *_strain_page["related"][:2],
         ]
     if _strain_page["path"] == "strains/cherry-blonde-cbd/index.html":
+        _strain_page["updated"] = "November 13, 2026"
         _strain_page["related"] = [
+            ("strains/abacus-cbd-hemp/", "UNIVERSITY TRIAL RECORD", "Compare named agricultural evidence without transferring results or identity"),
             ("strains/cherry-wine/", "SEPARATE NAME", "Keep the listed parent, shared words, retail identity, and finished batch in separate lanes"),
             ("guides/cannabis-certificate-of-analysis-coa-guide/", "LOT EVIDENCE", "Match the package, lot, dates, units, panels, and report status"),
             ("guides/cbd-hemp-flower-label-legal-guide/", "CBD + HEMP", "Separate production hemp, the finished product, and the current rule at every checkpoint"),
-            ("guides/cannabis-product-complaint-adverse-event-reporting/", "PRODUCT PROBLEM", "Preserve the package, lot, observation, and correct reporting route"),
+        ]
+    if _strain_page["path"] == "strains/cakeberry-brulee/index.html":
+        _strain_page["updated"] = "November 13, 2026"
+        _strain_page["related"] = [
+            ("strains/abacus-cbd-hemp/", "TRIAL EVIDENCE", "Compare two UVM trial entries without transferring chemistry, source, or finished-lot identity"),
+            *_strain_page["related"][:2],
+        ]
+    if _strain_page["path"] == "strains/abacus-cbd-hemp/index.html":
+        _strain_page["related"] = [
+            ("strains/cherry-blonde-cbd/", "DISTINCT CBD FIELD NOTE", "Keep breeder attribution, university trial identity, and the finished lot in separate lanes"),
+            ("strains/cakeberry-brulee/", "SEPARATE TRIAL ENTRY", "Compare a neighboring UVM entry without borrowing its source or results"),
+            ("guides/cannabis-certificate-of-analysis-coa-guide/", "LOT EVIDENCE", "Match the package, lot, dates, units, panels, and report status"),
+            ("guides/cbd-hemp-flower-label-legal-guide/", "CBD + HEMP", "Separate production hemp, the finished product, and the current rule at every checkpoint"),
         ]
 
 
@@ -2055,7 +2075,7 @@ def render_guides_hub() -> tuple[Page,str]:
 
 
 def render_strains_hub() -> tuple[Page,str]:
-    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} strain field notes across THC, CBD, CBDV, CBG, hemp, and mixed-ratio names, with lineage, batch, and evidence caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the question—not end it.","",updated="November 12, 2026",kind="website")
+    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} strain field notes across THC, CBD, CBDV, CBG, hemp, and mixed-ratio names, with lineage, batch, and evidence caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the question—not end it.","",updated="November 13, 2026",kind="website")
     items=[]
     for strain in sorted(STRAINS, key=lambda item: item["name"].lower()):
       aliases = " ".join(strain.get("aliases", []))
