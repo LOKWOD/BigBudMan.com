@@ -2,6 +2,20 @@
 
 Last reviewed: November 14, 2026
 
+## November 14, 2026 — complete three-page batch
+
+- **Authority action:** Published a citation-ready cannabis laboratory-report limits translator grounded in New York OCM's February 9, 2026 quality-system standard plus current NIST and EPA measurement references. Its ND/LOD/LOQ table, analytical-boundary map, complete-row record, pass/fail reconstruction, uncertainty boundary, and package-to-limit worksheet prevent a qualifier from becoming a fabricated zero, dose, or universal safety claim.
+- **Cluster strengthened:** Certificate of analysis ↔ contaminant results ↔ laboratory glossary ↔ flower freshness ↔ named-cultivar lot evidence. Established pages link back to the new limits guide, while Hash Plant supplies a concrete name-to-package example and the drying-rack guide connects post-harvest records to room monitoring.
+- **Trust action:** Hash Plant uses an explicit image-withheld panel because no exact licensed cultivar image was verified. The drying-rack guide remains product-neutral, separates crop support from room moisture control, and includes a valid buy-nothing outcome. No approved affiliate program or tracking ID is configured.
+
+### Qualified opportunity logged
+
+| Exact target | Contact route | Exact asset match | Honest pitch angle |
+|---|---|---|---|
+| New York State Office of Cannabis Management — Laboratories and consumer education | Official contact route: <https://cannabis.ny.gov/contact-us> · laboratory standards: <https://cannabis.ny.gov/laboratory-quality-system-standard> | [Cannabis Lab Report Limits: ND, LOD & LOQ](https://bigbudman.com/guides/cannabis-lab-report-detection-quantitation-limits-guide/) | A consumer-facing translator that keeps the analyte, matrix, method, result, qualifier, unit, LOD, LOQ, reporting limit, acceptance limit, uncertainty, decision rule, and sample boundary together using OCM's current standard. Invite factual correction or educational-resource consideration; do not imply OCM review, laboratory auditing, legal advice, product clearance, or endorsement. |
+
+No outreach was sent.
+
 ## November 14, 2026 authority action
 
 - Published a citation-worthy cannabis seed-storage and inventory guide that keeps lawful possession, source identity, inner packet, outer container, cool/dry/dark/stable storage, moisture control, access, opening history, condition, and the eventual planting decision in one auditable chain.

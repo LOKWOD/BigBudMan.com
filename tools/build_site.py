@@ -71,6 +71,7 @@ from content_nov11 import NEW_GEAR as NOV11_GEAR, NEW_GUIDES as NOV11_GUIDES
 from content_nov12 import NEW_GEAR as NOV12_GEAR, NEW_GUIDES as NOV12_GUIDES, NEW_STRAINS as NOV12_STRAINS, STATE_OVERRIDES as NOV12_STATE_OVERRIDES
 from content_nov13 import EDITORIAL_POLICY_APPEND as NOV13_POLICY_APPEND, NEW_GEAR as NOV13_GEAR, NEW_GUIDES as NOV13_GUIDES, NEW_STRAINS as NOV13_STRAINS, PUBLICATION_MANIFEST as NOV13_PUBLICATION_MANIFEST
 from content_nov14 import EDITORIAL_POLICY_APPEND as NOV14_POLICY_APPEND, NEW_GUIDES as NOV14_GUIDES, PUBLICATION_MANIFEST as NOV14_PUBLICATION_MANIFEST
+from content_nov14_batch import NEW_GEAR as NOV14_BATCH_GEAR, NEW_GUIDES as NOV14_BATCH_GUIDES, NEW_STRAINS as NOV14_BATCH_STRAINS, PUBLICATION_MANIFEST as NOV14_BATCH_PUBLICATION_MANIFEST
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -201,6 +202,10 @@ STATE_LAWS = [({**item, **NOV12_STATE_OVERRIDES[item["code"]]} if item["code"] i
 GUIDE_PAGES = GUIDE_PAGES + NOV13_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV13_GEAR
 GUIDE_PAGES = GUIDE_PAGES + NOV14_GUIDES
+GUIDE_PAGES = GUIDE_PAGES + NOV14_BATCH_GUIDES
+OTHER_ARTICLES = OTHER_ARTICLES + NOV14_BATCH_GEAR
+STRAINS = STRAINS + NOV14_BATCH_STRAINS
+STRAIN_PAGES = STRAIN_PAGES + [strain_page(item) for item in NOV14_BATCH_STRAINS]
 
 # November 6 connects both new resources from established, intent-matched
 # pages. These are editorial paths, not generic recent-post links, and the
@@ -248,6 +253,43 @@ _nov6_gear_links = {
 OTHER_ARTICLES = [
     ({**item, "updated": "November 6, 2026", "related": [*item["related"], _nov6_gear_links[item["path"]]]}
      if item["path"] in _nov6_gear_links else item)
+    for item in OTHER_ARTICLES
+]
+
+# The complete November 14 batch adds distinct cultivar, equipment, and
+# laboratory-literacy routes. These links come from established pages that
+# already own the adjacent decision; they are not generic recent-post links.
+_nov14_batch_guide_links = {
+    "guides/read-a-label/index.html": (
+        "strains/hash-plant/", "CULTIVAR NAME BOUNDARY", "Keep the attributed breeder story separate from product form, finished producer, lot, and report"
+    ),
+    "guides/cannabis-flower-freshness-package-date-buying-guide/index.html": (
+        "strains/hash-plant/", "NAMED FLOWER EXAMPLE", "Apply source, identity, date, condition, lot-report, and recall checks to Hash Plant"
+    ),
+    "guides/new-york-home-cannabis-harvest-drying-curing-log/index.html": (
+        "gear/cannabis-drying-rack-buying-guide/", "DRYING SUPPORT", "Compare usable area, spacing, room fit, air-path boundaries, cleaning, access, returns, and cost"
+    ),
+    "guides/cannabis-certificate-of-analysis-coa-guide/index.html": (
+        "guides/cannabis-lab-report-detection-quantitation-limits-guide/", "ND · LOD · LOQ", "Translate detection, quantitation, reporting, uncertainty, and decision boundaries without inventing zero"
+    ),
+    "guides/cannabis-contaminant-test-results-guide/index.html": (
+        "guides/cannabis-lab-report-detection-quantitation-limits-guide/", "REPORTING LIMITS", "Keep analyte, matrix, method, result, qualifier, unit, limits, and decision rule together"
+    ),
+}
+GUIDE_PAGES = [
+    ({**item, "updated": "November 14, 2026", "related": [*item["related"], _nov14_batch_guide_links[item["path"]]]}
+     if item["path"] in _nov14_batch_guide_links else item)
+    for item in GUIDE_PAGES
+]
+
+_nov14_batch_gear_links = {
+    "gear/home-grow-temperature-humidity-monitor-buying-guide/index.html": (
+        "gear/cannabis-drying-rack-buying-guide/", "RACK + ROOM", "Keep support area, sensor placement, circulation, moisture removal, inspection access, and failure response together"
+    ),
+}
+OTHER_ARTICLES = [
+    ({**item, "updated": "November 14, 2026", "related": [*item["related"], _nov14_batch_gear_links[item["path"]]]}
+     if item["path"] in _nov14_batch_gear_links else item)
     for item in OTHER_ARTICLES
 ]
 
@@ -612,6 +654,21 @@ _nov14_gear_links = {
 OTHER_ARTICLES = [
     ({**item, "updated": "November 14, 2026", "related": [*item["related"], _nov14_gear_links[item["path"]]]}
      if item["path"] in _nov14_gear_links else item)
+    for item in OTHER_ARTICLES
+]
+
+# Later daily link passes may touch some established pages that also support
+# the complete November 14 batch. Preserve the newest material review date.
+_nov14_batch_reviewed_guides = set(_nov14_batch_guide_links)
+_nov14_batch_reviewed_gear = set(_nov14_batch_gear_links)
+GUIDE_PAGES = [
+    ({**item, "updated": "November 14, 2026", "related": [*item["related"], _nov14_batch_guide_links[item["path"]]]}
+     if item["path"] in _nov14_batch_reviewed_guides else item)
+    for item in GUIDE_PAGES
+]
+OTHER_ARTICLES = [
+    ({**item, "updated": "November 14, 2026", "related": [*item["related"], _nov14_batch_gear_links[item["path"]]]}
+     if item["path"] in _nov14_batch_reviewed_gear else item)
     for item in OTHER_ARTICLES
 ]
 
@@ -1703,6 +1760,12 @@ RECIPROCAL_RELATED.setdefault("guides/cbd-hemp-flower-label-legal-guide/index.ht
 RECIPROCAL_RELATED.setdefault("guides/cannabis-certificate-of-analysis-coa-guide/index.html", []).insert(
     0, ("strains/cherry-blonde-cbd/", "LOT-MATCH EXAMPLE", "Apply the package, lot, dates, units, panels, and report-status chain to a named CBD cultivar")
 )
+# November 14 keeps the complete batch inside established decision paths after
+# the historical reciprocal merge and per-page related-card cap are applied.
+for _source, _link in _nov14_batch_guide_links.items():
+    RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
+for _source, _link in _nov14_batch_gear_links.items():
+    RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in RECIPROCAL_RELATED:
         _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
@@ -1973,6 +2036,7 @@ def render_guides_hub() -> tuple[Page,str]:
     page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 14, 2026",kind="website")
     p="../"
     cards="".join([
+      card("guides/cannabis-lab-report-detection-quantitation-limits-guide/","LAB REPORTS + MEASUREMENT","Cannabis lab report limits: ND, LOD and LOQ","Translate detection, quantitation, reporting limits, qualifiers, units, uncertainty, pass/fail rules, and exact-sample boundaries without inventing zero.","search",p),
       card("guides/cannabis-seed-storage-record-guide/","HOME GROW + STORAGE","Cannabis seed storage and inventory","Build a lawful cool, dry, dark, stable system with source identity, access control, opening history, condition checks, and a planting decision record.","leaf",p),
       card("guides/cannabis-warning-symbol-package-icon-guide/","LABELS + OFFICIAL SOURCES","Cannabis warning symbols and package icons","Compare New York, California, Colorado, and Minnesota official systems, then keep every mark inside its jurisdiction, product category, rule version, and evidence boundary.","tag",p),
       card("guides/cannabis-sleep-apnea-osa-evidence-safety-guide/","HEALTH + SLEEP","Cannabis and sleep apnea","Separate sedation and subjective sleep from measured airway events, oxygen burden, treatment use, next-day function, and the sleep-clinic handoff.","heart",p),
@@ -2153,6 +2217,7 @@ def render_strains_hub() -> tuple[Page,str]:
 
 def render_gear_hub() -> tuple[Page,str]:
     items = [
+        ("cannabis-drying-rack-buying-guide/","compare preparation care","HOME GROW + DRYING SUPPORT","Choose a drying rack system","Compare support format, usable area, room fit, spacing, air-path boundaries, materials, cleaning, access, return testing, and first-year cost.","leaf",None,None),
         ("cannabis-infusion-appliance-buying-guide/","compare preparation powered care","KITCHEN + INFUSION APPLIANCE","Choose an infusion appliance","Compare the exact kitchen job, capacity, food-contact path, heat, cleaning, cross-contact, recalls, returns, service, and first-year cost.","gear",None,None),
         ("home-grow-dehumidifier-buying-guide/","compare powered care","HOME GROW + MOISTURE","Choose a dehumidifier system","Compare measured moisture load, capacity conditions, efficiency, drainage, heat, electrical fit, recalls, return testing, and first-year cost.","clock",None,None),
         ("cannabis-device-charger-cable-buying-guide/","compare powered care","POWER + COMPATIBILITY","Choose a charger and cable system","Match the exact device, battery, input, port, cable, power source, condition, recall status, attended setup, disposal route, returns, and total cost.","spark",None,None),
@@ -2529,6 +2594,7 @@ def build() -> None:
     }
     publication_manifest = NOV13_PUBLICATION_MANIFEST
     publication_manifest = NOV14_PUBLICATION_MANIFEST
+    publication_manifest = NOV14_BATCH_PUBLICATION_MANIFEST
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]
     strain_aliases = {
