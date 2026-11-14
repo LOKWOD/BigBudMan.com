@@ -1,77 +1,49 @@
 {
-  "publication_date": "2026-11-13",
-  "page_count": 3,
+  "publication_date": "2026-11-14",
+  "page_count": 1,
   "pages": [
     {
-      "title": "Cannabis Warning Symbols and Package Icons",
-      "url": "https://bigbudman.com/guides/cannabis-warning-symbol-package-icon-guide/",
+      "title": "Cannabis Seed Storage and Inventory Guide",
+      "url": "https://bigbudman.com/guides/cannabis-seed-storage-record-guide/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "decode jurisdiction-specific cannabis warning marks without substituting an icon for product identity, potency, testing, lawful sale, or permission"
-    },
-    {
-      "title": "Cannabis Infusion Appliance Buying Guide",
-      "url": "https://bigbudman.com/gear/cannabis-infusion-appliance-buying-guide/",
-      "department": "gear",
-      "portfolio_label": "Exploration",
-      "search_intent": "compare exact infusion appliances by intended kitchen job, food-contact path, capacity, heat, cleaning, cross-contact, recalls, returns, service, and ownership cost"
-    },
-    {
-      "title": "Abacus CBD Hemp Cultivar Field Note",
-      "url": "https://bigbudman.com/strains/abacus-cbd-hemp/",
-      "department": "strains",
-      "portfolio_label": "Exploration",
-      "search_intent": "understand the plain Abacus CBD-hemp name through bounded UVM and USU agricultural evidence without transferring trial results, neighboring names, chemistry, effects, or legality to a retail lot"
+      "search_intent": "store lawfully acquired cannabis seed with identity, temperature, moisture, access-control, opening-history, and planting-decision records without promising cultivar authenticity or viability"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral infusion-appliance comparison, cost, and return-window acceptance system. It does not name or rank a merchant or model, publish live prices, invent testing, or force a purchase; safe existing equipment or buying nothing remains a valid outcome."
+    "reason": "No approved affiliate program or tracking ID is configured. The conversion improvement is a product-neutral seed-storage container comparison with eight checkout gates, total-system cost, a valid buy-nothing outcome, and contextual paths to existing inventory and lockbox guides. No merchant, model, live price, stock, discount, rating, test, or product image was added."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three new editorial pages use original text, evidence tables, checklists, and existing brand interface assets. No symbol artwork, appliance photo, cultivar photo, stock image, merchant image, affiliate image, or generated image was added or changed. The Abacus field note explicitly withholds a cultivar image because no exact licensed photograph was verified."
+    "note": "The new guide and hub changes use text, tables, checklists, and existing interface assets. No seed, cultivar, container, merchant, affiliate, stock, or generated image was added or changed; this avoids implying that a generic seed photo authenticates genetics or condition."
   },
   "search_console": {
     "report_date": "2026-11-11",
-    "decision": "The October 12\u2013November 8 report is two days old and valid: 815 impressions, three clicks, 0.368% CTR, and average position 24.093. Arkansas was the only page-level signal with more than a token sample in the target 4\u201320 band, and that established URL was materially improved on November 12; repeating it today would add no distinct reader purpose. The 510-versus-disposable row had two impressions and already maps to a complete existing page, Delaware had only two impressions, Blue Dream was near position 48, and the remaining rows were single-impression noise. Those signals were deliberately ignored as already addressed, duplicative, too small, or out of range. No item in this batch is labeled Data-led; the report acted as a cannibalization and diversity guard."
+    "decision": "The October 12\u2013November 8 report is three days old and valid: 815 impressions, three clicks, 0.368% CTR, and average position 24.093. Arkansas was the only page-level signal with more than a token sample inside positions 4\u201320 and was materially reinforced on November 12. The two-impression 510-versus-disposable row already maps to a complete existing page; Delaware had two impressions, Blue Dream was near position 48, and remaining rows were single-impression noise. Those signals were deliberately ignored as already addressed, duplicative, too small, or out of range. No item is labeled Data-led; the report prevented cannibalization and repeat work."
   },
   "authority": {
-    "action": "Published a citation-worthy, cross-jurisdiction warning-symbol reference built from current New York, California, Colorado, and Minnesota primary sources. Its comparison matrix, six-question evidence map, unknown-icon workflow, publisher checklist, and official-source directory are reciprocally linked from established label, glossary, package-condition, and source pages. The infusion guide also strengthens the shared-kitchen, edibles, cleaning, and comparison cluster. No speculative outreach target was logged and no outreach was sent."
+    "action": "Published a citation-worthy seed-storage and inventory record grounded in current New York OCM rules plus University of Minnesota, Penn State, and Minnesota Department of Agriculture guidance. The system map, eight-gate container screen, receipt-to-planting record, condition-response matrix, and reciprocal links strengthen the lawful starter-material, home-grow planning, inventory, and access-control cluster. One qualified New York OCM public-information opportunity was logged; no outreach was sent."
   },
   "freshness_surfaces": {
-    "https://bigbudman.com/guides/": "2026-11-13",
-    "https://bigbudman.com/guides/cannabis-warning-symbol-package-icon-guide/": "2026-11-13",
-    "https://bigbudman.com/guides/read-a-label/": "2026-11-13",
-    "https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/": "2026-11-13",
-    "https://bigbudman.com/guides/cannabis-package-seal-tamper-evidence-checklist/": "2026-11-13",
-    "https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/": "2026-11-13",
-    "https://bigbudman.com/guides/edibles/": "2026-11-13",
-    "https://bigbudman.com/gear/": "2026-11-13",
-    "https://bigbudman.com/gear/cannabis-infusion-appliance-buying-guide/": "2026-11-13",
-    "https://bigbudman.com/gear/cannabis-tool-cleaning-kit/": "2026-11-13",
-    "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/": "2026-11-13",
-    "https://bigbudman.com/strains/": "2026-11-13",
-    "https://bigbudman.com/strains/abacus-cbd-hemp/": "2026-11-13",
-    "https://bigbudman.com/strains/cherry-blonde-cbd/": "2026-11-13",
-    "https://bigbudman.com/strains/cakeberry-brulee/": "2026-11-13",
-    "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/": "2026-11-13",
-    "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/": "2026-11-13",
-    "https://bigbudman.com/editorial-policy/": "2026-11-13",
-    "https://bigbudman.com/updates/": "2026-11-13",
-    "https://bigbudman.com/site-index/": "2026-11-13"
+    "https://bigbudman.com/guides/": "2026-11-14",
+    "https://bigbudman.com/guides/cannabis-seed-storage-record-guide/": "2026-11-14",
+    "https://bigbudman.com/guides/new-york-cannabis-seed-clone-buying-guide/": "2026-11-14",
+    "https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/": "2026-11-14",
+    "https://bigbudman.com/gear/": "2026-11-14",
+    "https://bigbudman.com/strains/": "2026-11-14",
+    "https://bigbudman.com/legal/": "2026-11-14",
+    "https://bigbudman.com/gear/cannabis-inventory-label-record-kit/": "2026-11-14",
+    "https://bigbudman.com/gear/cannabis-lockbox-buying-guide/": "2026-11-14",
+    "https://bigbudman.com/editorial-policy/": "2026-11-14",
+    "https://bigbudman.com/updates/": "2026-11-14",
+    "https://bigbudman.com/site-index/": "2026-11-14"
   },
   "surfaces": [
-    "warning-symbol cross-jurisdiction matrix, package evidence map, unknown-icon workflow, publisher checklist, and primary-source directory",
-    "label, glossary, package-condition, official-source, kitchen-safety, edibles, cleaning, and comparison reciprocal links",
-    "infusion-appliance exact-model screen, food-contact map, cross-contact plan, first-year cost formula, return-window acceptance test, and potency boundary",
-    "Abacus UVM-and-USU agricultural evidence map, name-collision boundary, trial-transfer screen, finished-lot chain, and source limits",
-    "Abacus reciprocal links from the strain, CoA, and CBD-hemp clusters",
-    "root-relative custom 404 navigation, assets, scripts, search recovery, and automated nested-route regression gate",
-    "guide and gear hubs",
-    "publication updates and complete site index",
-    "Atom feed, search index, canonical sitemap, legacy sitemap endpoint, robots declaration, and structured metadata",
-    "checksum-verified source archive and publication gates"
+    "seed legal-and-identity gate, storage-system map, receipt-to-planting record, eight-gate container comparison, pre-opening handoff, and condition-response matrix",
+    "seed-source, home-grow planning, inventory, lockbox, guide-hub, and gear-hub contextual paths",
+    "guide, gear, strain, and legal filter-to-status accessibility relationships plus audit gate",
+    "publication updates, complete site index, Atom feed, search index, canonical and legacy sitemaps, robots declaration, structured metadata, and checksum-verified source archive"
   ]
 }

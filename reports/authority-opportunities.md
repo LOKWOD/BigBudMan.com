@@ -1,6 +1,20 @@
 # Big Bud Man authority opportunities
 
-Last reviewed: November 6, 2026
+Last reviewed: November 14, 2026
+
+## November 14, 2026 authority action
+
+- Published a citation-worthy cannabis seed-storage and inventory guide that keeps lawful possession, source identity, inner packet, outer container, cool/dry/dark/stable storage, moisture control, access, opening history, condition, and the eventual planting decision in one auditable chain.
+- Added reciprocal contextual links from the established New York seed-and-clone, home-grow planner, inventory-record, and lockbox pages. Added a product-neutral eight-gate container screen plus a gear-hub checkout path that preserves repair, reuse, verified used equipment, and buying nothing as valid outcomes.
+- Connected the filter and sort controls on the guide, gear, strain, and 50-state law hubs to their live result-count status for assistive-technology users, with a publication regression check.
+
+### Qualified opportunity logged
+
+| Exact target | Contact route | Exact asset match | Honest pitch angle |
+|---|---|---|---|
+| New York State Office of Cannabis Management consumer education — <https://cannabis.ny.gov/consumers> | OCM public information route on the official consumer page: `info@ocm.ny.gov` or 1-888-OCM-5151 | [Cannabis Seed Storage & Inventory Guide](https://bigbudman.com/guides/cannabis-seed-storage-record-guide/) | A New York-law-bounded handoff from lawful starter-material acquisition to secure, labeled storage and pre-planting re-verification, with general horticultural storage guidance clearly separated from OCM authority. Invite factual correction or educational-resource consideration; do not imply OCM review, legal advice, cultivar authentication, germination assurance, or endorsement. |
+
+No outreach was sent.
 
 ## November 6, 2026 authority action
 
