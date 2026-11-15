@@ -4,9 +4,81 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-11-14T00:00:00Z</updated>
+  <updated>2026-11-15T00:00:00Z</updated>
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Verify a Legal New York Dispensary and Product</title>
+    <id>https://bigbudman.com/legal/shop-legal/</id>
+    <link href="https://bigbudman.com/legal/shop-legal/"/>
+    <updated>2026-11-15T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Verify a New York cannabis dispensary, match the exact business and product lot, check the certificate and recall status, and preserve a useful receipt.</summary>
+  </entry>
+  <entry>
+    <title>NY Cannabis Delivery Verification</title>
+    <id>https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/</id>
+    <link href="https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/"/>
+    <updated>2026-11-15T00:00:00Z</updated>
+    <published>2026-09-29T00:00:00Z</published>
+    <summary>Verify a New York cannabis delivery order from license listing to website, payment, ID check, handoff, receipt, product lot, and complaint route.</summary>
+  </entry>
+  <entry>
+    <title>Dry-Herb Vaporizer Dosing Capsule Guide</title>
+    <id>https://bigbudman.com/gear/dry-herb-vaporizer-dosing-capsule-guide/</id>
+    <link href="https://bigbudman.com/gear/dry-herb-vaporizer-dosing-capsule-guide/"/>
+    <updated>2026-11-15T00:00:00Z</updated>
+    <published>2026-10-15T00:00:00Z</published>
+    <summary>Compare dry-herb vaporizer dosing capsules by exact-device fit, documented care, return testing, recurring burden, and complete system cost.</summary>
+  </entry>
+  <entry>
+    <title>Dry-Herb Vaporizer Buying &amp; Cost Guide</title>
+    <id>https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/</id>
+    <link href="https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/"/>
+    <updated>2026-11-15T00:00:00Z</updated>
+    <published>2026-09-11T00:00:00Z</published>
+    <summary>Compare dry-herb vaporizers by exact-model recalls, airpath, controls, battery architecture, cleaning, support, warranty, and total ownership cost.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis QR Code Safety &amp; CoA Verification</title>
+    <id>https://bigbudman.com/guides/cannabis-qr-code-coa-verification-safety-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-qr-code-coa-verification-safety-guide/"/>
+    <updated>2026-11-15T00:00:00Z</updated>
+    <published>2026-11-15T00:00:00Z</published>
+    <summary>Scan a cannabis package QR code more safely, verify its destination and exact-lot certificate, and respond to a suspicious or mismatched link.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Label Field Guide &amp; Checklist</title>
+    <id>https://bigbudman.com/guides/read-a-label/</id>
+    <link href="https://bigbudman.com/guides/read-a-label/"/>
+    <updated>2026-11-15T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Decode a cannabis label by format, reconcile serving and package math, match the lot to the CoA, and preserve a reusable package evidence record.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Lab Report Limits: ND, LOD &amp; LOQ</title>
+    <id>https://bigbudman.com/guides/cannabis-lab-report-detection-quantitation-limits-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-lab-report-detection-quantitation-limits-guide/"/>
+    <updated>2026-11-15T00:00:00Z</updated>
+    <published>2026-11-14T00:00:00Z</published>
+    <summary>Read ND, LOD, LOQ, reporting limits, estimated results, units, pass/fail decisions, and measurement uncertainty on a cannabis certificate of analysis.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Gear Comparison &amp; Cost Calculator</title>
+    <id>https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/</id>
+    <link href="https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/"/>
+    <updated>2026-11-15T00:00:00Z</updated>
+    <published>2026-09-20T00:00:00Z</published>
+    <summary>Compare three cannabis accessories by exact model, first-year cost, ownership cost, cost per use, fit, materials, care, support, warranty, and recalls.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Certificate of Analysis (CoA) Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/"/>
+    <updated>2026-11-15T00:00:00Z</updated>
+    <published>2026-09-19T00:00:00Z</published>
+    <summary>Match a cannabis package to its certificate of analysis and read potency, units, reporting limits, contaminant panels, status, and report dates.</summary>
+  </entry>
   <entry>
     <title>New York Home Cannabis Grow Planner</title>
     <id>https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/</id>
@@ -64,22 +136,6 @@
     <summary>Compare a cannabis lockbox by users, contents, lock behavior, access, portability, mounting, evidence, recalls, return terms, and first-year cost.</summary>
   </entry>
   <entry>
-    <title>Cannabis Label Field Guide &amp; Checklist</title>
-    <id>https://bigbudman.com/guides/read-a-label/</id>
-    <link href="https://bigbudman.com/guides/read-a-label/"/>
-    <updated>2026-11-14T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Decode a cannabis label by format, reconcile serving and package math, match the lot to the CoA, and preserve a reusable package evidence record.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Lab Report Limits: ND, LOD &amp; LOQ</title>
-    <id>https://bigbudman.com/guides/cannabis-lab-report-detection-quantitation-limits-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-lab-report-detection-quantitation-limits-guide/"/>
-    <updated>2026-11-14T00:00:00Z</updated>
-    <published>2026-11-14T00:00:00Z</published>
-    <summary>Read ND, LOD, LOQ, reporting limits, estimated results, units, pass/fail decisions, and measurement uncertainty on a cannabis certificate of analysis.</summary>
-  </entry>
-  <entry>
     <title>Cannabis Inventory, Label and Record Kit</title>
     <id>https://bigbudman.com/gear/cannabis-inventory-label-record-kit/</id>
     <link href="https://bigbudman.com/gear/cannabis-inventory-label-record-kit/"/>
@@ -110,14 +166,6 @@
     <updated>2026-11-14T00:00:00Z</updated>
     <published>2026-10-02T00:00:00Z</published>
     <summary>Read cannabis pesticide, microbial, mycotoxin, metal, solvent, moisture, water-activity, and foreign-material results without guessing.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Certificate of Analysis (CoA) Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/"/>
-    <updated>2026-11-14T00:00:00Z</updated>
-    <published>2026-09-19T00:00:00Z</published>
-    <summary>Match a cannabis package to its certificate of analysis and read potency, units, reporting limits, contaminant panels, status, and report dates.</summary>
   </entry>
   <entry>
     <title>Cherry Blonde CBD Hemp Field Note</title>
@@ -176,14 +224,6 @@
     <summary>Compare a cannabis infusion appliance by intended task, food-contact materials, capacity, heat, cleaning, safety, recalls, returns, and first-year cost.</summary>
   </entry>
   <entry>
-    <title>Cannabis Gear Comparison &amp; Cost Calculator</title>
-    <id>https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/</id>
-    <link href="https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/"/>
-    <updated>2026-11-13T00:00:00Z</updated>
-    <published>2026-09-20T00:00:00Z</published>
-    <summary>Compare three cannabis accessories by exact model, first-year cost, ownership cost, cost per use, fit, materials, care, support, warranty, and recalls.</summary>
-  </entry>
-  <entry>
     <title>Cannabis Edibles: Label, Timing &amp; Buying Guide</title>
     <id>https://bigbudman.com/guides/edibles/</id>
     <link href="https://bigbudman.com/guides/edibles/"/>
@@ -206,45 +246,5 @@
     <updated>2026-11-13T00:00:00Z</updated>
     <published>2026-09-26T00:00:00Z</published>
     <summary>Identify CBD and hemp flower using the package, lot, cannabinoid report, total-THC basis, seller, state rules, smoke risks, and claim limits—not appearance.</summary>
-  </entry>
-  <entry>
-    <title>Abacus CBD Hemp Cultivar Field Note</title>
-    <id>https://bigbudman.com/strains/abacus-cbd-hemp/</id>
-    <link href="https://bigbudman.com/strains/abacus-cbd-hemp/"/>
-    <updated>2026-11-13T00:00:00Z</updated>
-    <published>2026-11-13T00:00:00Z</published>
-    <summary>Abacus CBD hemp field note: UVM and USU trial identity, name-collision boundaries, study-transfer checks, lot evidence, and current legal cautions.</summary>
-  </entry>
-  <entry>
-    <title>How to Talk to Your Doctor About Cannabis</title>
-    <id>https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/</id>
-    <link href="https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/"/>
-    <updated>2026-11-12T00:00:00Z</updated>
-    <published>2026-10-27T00:00:00Z</published>
-    <summary>Prepare a useful cannabis record for a doctor or pharmacist: exact product, route, timing, medicines, symptoms, questions, and follow-up plan.</summary>
-  </entry>
-  <entry>
-    <title>Home-Grow Ventilation Fan Buying Guide</title>
-    <id>https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/</id>
-    <link href="https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/"/>
-    <updated>2026-11-12T00:00:00Z</updated>
-    <published>2026-11-07T00:00:00Z</published>
-    <summary>Compare a home-grow fan by air job, airflow evidence, pressure, controls, environment, cleaning, noise, electrical safety, recalls, and cost.</summary>
-  </entry>
-  <entry>
-    <title>Home-Grow Dehumidifier Buying Guide</title>
-    <id>https://bigbudman.com/gear/home-grow-dehumidifier-buying-guide/</id>
-    <link href="https://bigbudman.com/gear/home-grow-dehumidifier-buying-guide/"/>
-    <updated>2026-11-12T00:00:00Z</updated>
-    <published>2026-11-12T00:00:00Z</published>
-    <summary>Choose a lawful home-grow dehumidifier by measured moisture load, capacity conditions, efficiency, drainage, heat, electrical fit, recalls, and cost.</summary>
-  </entry>
-  <entry>
-    <title>Cherry Wine Strain Guide</title>
-    <id>https://bigbudman.com/strains/cherry-wine/</id>
-    <link href="https://bigbudman.com/strains/cherry-wine/"/>
-    <updated>2026-11-12T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Explore Cherry Wine strain history, common aroma and effect folklore, potency cautions, label checks, batch variation, and responsible-use context.</summary>
   </entry>
 </feed>

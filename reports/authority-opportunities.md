@@ -1,6 +1,20 @@
 # Big Bud Man authority opportunities
 
-Last reviewed: November 14, 2026
+Last reviewed: November 15, 2026
+
+## November 15, 2026 authority action
+
+- **Authority action:** Published a citation-ready cannabis QR destination and exact-lot verification guide grounded in current FTC, CISA, and New York OCM guidance. Its code-job map, host preview, package-to-report match, suspicious-request screen, recovery lanes, accessible alternative, and narrow verification record prevent a scannable square from becoming an unsupported authenticity, safety, legality, or endorsement claim.
+- **Cluster strengthened:** Label reading ↔ CoA interpretation ↔ laboratory limits ↔ licensed-seller verification ↔ New York delivery/payment verification ↔ product-problem reporting. Established pages link back to the new asset, and the guide hub now exposes a static scan-and-verify decision path.
+- **Trust and conversion action:** Materially expanded the product-neutral dosing-capsule guide with a three-system comparison, recurring-burden formulas, clean return-window test, rejection gates, and an ownership-cost path. No approved affiliate program or tracking ID is configured; no merchant, model recommendation, price, stock, rating, discount, testing claim, or product image was added.
+
+### Qualified opportunity logged
+
+| Exact target | Contact route | Exact asset match | Honest pitch angle |
+|---|---|---|---|
+| New York State Office of Cannabis Management — Consumer Education | Official contact route: <https://cannabis.ny.gov/contact-us> · consumer guidance: <https://cannabis.ny.gov/consumers> | [Cannabis QR Code Safety & CoA Verification](https://bigbudman.com/guides/cannabis-qr-code-coa-verification-safety-guide/) | A New York-bounded consumer handoff from storefront verification to package identity, QR destination, exact-lot CoA match, and an accessible non-camera route, with general FTC/CISA digital-safety guidance clearly separated from OCM authority. Invite factual correction or educational-resource consideration; do not imply OCM review, product authentication, laboratory auditing, legal advice, or endorsement. |
+
+No outreach was sent.
 
 ## November 14, 2026 — complete three-page batch
 
