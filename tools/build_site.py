@@ -72,7 +72,7 @@ from content_nov12 import NEW_GEAR as NOV12_GEAR, NEW_GUIDES as NOV12_GUIDES, NE
 from content_nov13 import EDITORIAL_POLICY_APPEND as NOV13_POLICY_APPEND, NEW_GEAR as NOV13_GEAR, NEW_GUIDES as NOV13_GUIDES, NEW_STRAINS as NOV13_STRAINS, PUBLICATION_MANIFEST as NOV13_PUBLICATION_MANIFEST
 from content_nov14 import EDITORIAL_POLICY_APPEND as NOV14_POLICY_APPEND, NEW_GUIDES as NOV14_GUIDES, PUBLICATION_MANIFEST as NOV14_PUBLICATION_MANIFEST
 from content_nov14_batch import NEW_GEAR as NOV14_BATCH_GEAR, NEW_GUIDES as NOV14_BATCH_GUIDES, NEW_STRAINS as NOV14_BATCH_STRAINS, PUBLICATION_MANIFEST as NOV14_BATCH_PUBLICATION_MANIFEST
-from content_nov15 import EDITORIAL_POLICY_APPEND as NOV15_POLICY_APPEND, GEAR_OVERRIDES as NOV15_GEAR_OVERRIDES, NEW_GUIDES as NOV15_GUIDES, PUBLICATION_MANIFEST as NOV15_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV15_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV15_REVIEWED_RELATED_PATHS
+from content_nov15 import EDITORIAL_POLICY_APPEND as NOV15_POLICY_APPEND, GEAR_OVERRIDES as NOV15_GEAR_OVERRIDES, NEW_GUIDES as NOV15_GUIDES, NEW_STRAIN_PAGES as NOV15_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV15_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV15_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV15_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV15_REVIEWED_RELATED_PATHS
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -210,6 +210,9 @@ STRAIN_PAGES = STRAIN_PAGES + [strain_page(item) for item in NOV14_BATCH_STRAINS
 GUIDE_PAGES = GUIDE_PAGES + NOV15_GUIDES
 _nov15_gear = {item["path"]: item for item in NOV15_GEAR_OVERRIDES}
 OTHER_ARTICLES = [_nov15_gear.get(item["path"], item) for item in OTHER_ARTICLES]
+CANNABINOID_LABELS["industrial"] = "grain / fiber hemp"
+STRAINS = STRAINS + NOV15_STRAIN_RECORDS
+STRAIN_PAGES = STRAIN_PAGES + NOV15_STRAIN_PAGES
 
 # November 6 connects both new resources from established, intent-matched
 # pages. These are editorial paths, not generic recent-post links, and the
@@ -1782,6 +1785,12 @@ for _source, _link in _nov14_batch_gear_links.items():
 for _source, _links in NOV15_RECIPROCAL_LINKS.items():
     for _link in reversed(_links):
         RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
+for _source in (
+    "guides/read-a-label/index.html",
+    "guides/cannabis-terms-label-lab-glossary/index.html",
+    "guides/cannabis-package-seal-tamper-evidence-checklist/index.html",
+):
+    RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _nov13_guide_links[_source])
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in NOV15_REVIEWED_RELATED_PATHS:
         _item["updated"] = "November 15, 2026"
@@ -1812,6 +1821,12 @@ for _item in GUIDE_PAGES + OTHER_ARTICLES:
                 break
 
 for _strain_page in STRAIN_PAGES:
+    if _strain_page["path"] == "strains/panakeia-beta-hurv19pan/index.html":
+        _strain_page["updated"] = "November 15, 2026"
+        _strain_page["related"] = [
+            ("strains/henola-hemp/", "GRAIN-HEMP COMPARISON", "Compare official variety identity, intended crop, trial evidence, and the finished-lot boundary"),
+            *_strain_page["related"][:2],
+        ]
     if _strain_page["path"] in {"strains/stem-cell-cbg/index.html", "strains/white-cbg/index.html"}:
         _strain_page["related"] = [
             ("strains/panakeia-beta-hurv19pan/", "DOCUMENTED VARIETY", "Compare HURV19PAN identity without transferring chemistry"),
@@ -1901,7 +1916,7 @@ def render_home() -> tuple[Page, str]:
         path="index.html", title="Big Bud Man | Legal Cannabis, Without the Haze",
         description="Independent cannabis guides for adults 21+: strains, edibles, labels, gear, responsible use, and reviewed legal starting points for all 50 states.",
         category="Home", h1="Legal weed. Clear-headed guidance.",
-        dek="Independent cannabis education for adults 21+.", body="", updated="November 10, 2026", kind="website",
+        dek="Independent cannabis education for adults 21+.", body="", updated="November 15, 2026", kind="website",
     )
     main = f'''<main id="main-content">
 <section class="hero"><div class="hero-noise"></div><div class="container hero-grid">
@@ -2004,6 +2019,11 @@ def render_home() -> tuple[Page, str]:
     main = main.replace(
         '<div class="story-stack">',
         '<div class="story-stack"><a href="gear/cannabis-home-testing-kit-buying-guide/"><p class="kicker">HOME TESTING + EVIDENCE</p><h3>Choose the question, sample, controls, limits, and licensed-lab exit before the device</h3>'+icon('arrow')+'</a>',
+        1,
+    )
+    main = main.replace(
+        '<div class="story-stack">',
+        '<div class="story-stack"><a href="legal/marijuana-rescheduling-status-november-2026/"><p class="kicker">FEDERAL STATUS · NOV. 2026</p><h3>Separate the narrow Schedule III rule from the broader unfinished proceeding</h3>'+icon('arrow')+'</a>',
         1,
     )
     return page, layout(page, main)
@@ -2208,7 +2228,7 @@ def render_guides_hub() -> tuple[Page,str]:
 
 
 def render_strains_hub() -> tuple[Page,str]:
-    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} strain field notes across THC, CBD, CBDV, CBG, hemp, and mixed-ratio names, with lineage, batch, and evidence caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the question—not end it.","",updated="November 14, 2026",kind="website")
+    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} strain field notes across THC, CBD, CBDV, CBG, grain and fiber hemp, and mixed-ratio names, with lineage, batch, and evidence caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the question—not end it.","",updated="November 15, 2026",kind="website")
     items=[]
     for strain in sorted(STRAINS, key=lambda item: item["name"].lower()):
       aliases = " ".join(strain.get("aliases", []))
@@ -2220,6 +2240,8 @@ def render_strains_hub() -> tuple[Page,str]:
           photo_alt = f"Representative hemp flower photograph for the {strain['name']} field note; not a verified cultivar or batch image"
       elif strain["cannabinoid"] == "ratio":
           photo_alt = f"Representative mixed THC and CBD cannabis flower photograph for the {strain['name']} field note; not a verified cultivar or batch image"
+      elif strain["cannabinoid"] == "industrial":
+          photo_alt = f"No verified cultivar photograph is published for the {strain['name']} field note"
       else:
           photo_alt = f"Representative cannabis flower photograph for the {strain['name']} field note; not a verified cultivar or batch image"
       if strain["image"]:
@@ -2229,6 +2251,11 @@ def render_strains_hub() -> tuple[Page,str]:
       hub_label = strain.get("hub_label", f"{strain['lean'].upper()} RETAIL SHORTHAND")
       items.append(f'''<a class="strain-card strain-card--{strain['color']}" data-strain-card data-lean="{strain['lean']}" data-cannabinoid="{strain['cannabinoid']}" data-search="{escape(search_text)}" href="{strain['slug']}/">{card_art}<div><p class="kicker">FIELD NOTE</p><h2>{strain['name']}</h2><b>{hub_label} · {strain['shorthand']}</b><p>{strain['reality']}</p><em>Read the honest note {icon('arrow')}</em></div></a>''')
     main=f'''<main id="main-content"><section class="hub-hero strain-hub-hero"><div class="container"><p class="eyebrow">{len(STRAINS)} STRAIN FIELD NOTES</p><h1>FAMOUS NAMES.<br><em>HONEST CAVEATS.</em></h1><p>History, aroma language, reputation, cannabinoid context, batch questions, and the warning every strain page should carry.</p><div class="strain-disclaimer">{icon('alert')}<span>No strain name guarantees an effect, potency, cannabinoid ratio, lineage, or medical outcome. Products vary by producer, batch, format, storage, and person.</span></div></div></section><section class="container strain-library"><div class="cbd-library-note"><div><span>HEMP IS IN THE LIBRARY</span><h2>CBD-rich, CBDV-focused, CBG-dominant, and mixed-ratio flower belongs in the same honest conversation.</h2></div><p>Use the cannabinoid filter to find CBD-forward, CBDV-focused, CBG-dominant, and THC:CBD ratio names. Then verify the current certificate of analysis: the cultivar name cannot prove cannabinoid content, legality, or a medical outcome.</p></div><div class="strain-tools" data-strain-filter><label class="strain-search"><span>SEARCH THE LIBRARY</span><input type="search" data-strain-search placeholder="Try Lantz, CBDV, citrus, Kush…" autocomplete="off"></label><div class="filter-bar"><div class="strain-filter-groups"><div class="filter-group"><span>RETAIL SHORTHAND</span><button class="is-active" data-filter="all">All effects</button><button data-filter="balanced">Balanced</button><button data-filter="bright">Bright</button><button data-filter="heavy">Heavy</button></div><div class="filter-group"><span>CANNABINOID PROFILE</span><button class="is-active" data-cannabinoid-filter="all">All profiles</button><button data-cannabinoid-filter="thc">THC-dominant</button><button data-cannabinoid-filter="cbd">CBD-rich</button><button data-cannabinoid-filter="cbdv">CBDV-focused</button><button data-cannabinoid-filter="cbg">CBG-dominant</button><button data-cannabinoid-filter="ratio">THC:CBD ratio</button></div></div><p aria-live="polite"><span data-strain-count>{len(STRAINS)}</span> field notes</p></div></div><p class="strain-empty" data-strain-empty hidden>No field note matched that combination. Clear a filter or try a family, aroma word, or alternate spelling.</p><div class="strain-grid">{''.join(items)}</div></section><section class="container strain-method"><div class="section-head"><p class="eyebrow">THE METHOD</p><h2>How to use a strain page</h2></div><div class="method-grid"><div><span>01</span><h3>Read the story</h3><p>Learn why the name matters culturally.</p></div><div><span>02</span><h3>Check the caveat</h3><p>See where standardization ends.</p></div><div><span>03</span><h3>Inspect the batch</h3><p>Producer, format, potency, date, aroma.</p></div><div><span>04</span><h3>Write your note</h3><p>Record what actually happened in context.</p></div></div></section>{newsletter('../')}</main>'''
+    main = main.replace(
+        '<button data-cannabinoid-filter="ratio">THC:CBD ratio</button>',
+        '<button data-cannabinoid-filter="ratio">THC:CBD ratio</button><button data-cannabinoid-filter="industrial">Grain / fiber hemp</button>',
+        1,
+    )
     main = main.replace('data-strain-search placeholder=', 'data-strain-search aria-controls="strain-results" placeholder=')
     main = main.replace('<div class="filter-group"><span>RETAIL SHORTHAND</span>', '<div class="filter-group" role="group" aria-label="Filter by retail shorthand" aria-describedby="strain-result-status"><span>RETAIL SHORTHAND</span>')
     main = main.replace('<div class="filter-group"><span>CANNABINOID PROFILE</span>', '<div class="filter-group" role="group" aria-label="Filter by cannabinoid profile" aria-describedby="strain-result-status"><span>CANNABINOID PROFILE</span>')
@@ -2304,19 +2331,24 @@ def render_gear_hub() -> tuple[Page,str]:
 
 
 def render_legal_hub() -> tuple[Page,str]:
-    page=Page("legal/index.html","Cannabis Laws in All 50 States (2026) | Big Bud Man","Search reviewed cannabis laws for all 50 states plus federal property, federally assisted housing, mailing, and flying rules, with current official sources.","50-state legal library","Know your state.<br>Then verify it.","A practical 50-state starting point for possession, home grow, medical access, retail status, federal property and housing, mailing, air travel, and official sources.","",updated="November 14, 2026",kind="website")
+    page=Page("legal/index.html","Cannabis Laws in All 50 States (2026) | Big Bud Man","Search reviewed cannabis laws for all 50 states plus current federal rescheduling, federal property, housing, mailing, and flying rules.","50-state legal library","Know your state.<br>Then verify it.","A practical 50-state starting point for possession, home grow, medical access, retail status, federal scheduling and property rules, housing, mailing, air travel, and official sources.","",updated="November 15, 2026",kind="website")
     cards=[]
     for item in STATE_LAWS:
         search_text=(item['name']+' '+item['code']+' '+STATUS_LABELS[item['status']]+' '+item['summary']+' '+item['policy_pulse']['direction']).lower()
         cards.append(f'''<a class="state-card state-card--{item['status']}" data-state-card data-status="{item['status']}" data-search="{escape(search_text)}" href="{item['slug']}/"><div class="state-card__top"><b>{item['code']}</b><span>{STATUS_LABELS[item['status']]}</span></div><span class="state-card__signal">Six-month signal · {escape(item['policy_pulse']['direction'])}</span><h2>{item['name']}</h2><p>{escape(item['summary'])}</p><em>Open state guide {icon('arrow')}</em></a>''')
     counts={key:sum(item["status"]==key for item in STATE_LAWS) for key in STATUS_LABELS}
     main=f'''<main id="main-content"><section class="hub-hero legal-hero"><div class="container"><p class="eyebrow">ALL 50 STATES · OFFICIAL LINKS · PURCHASE CREDENTIALS</p><h1>KNOW YOUR STATE.<br><em>THEN VERIFY IT.</em></h1><p>Every state page now separates recreational ID rules from medical cards, certifications, registry enrollment, official application steps, and states where patient retail is not actually available.</p><span class="legal-date">50 STATE PAGES REVIEWED <b>{REVIEW_DATE.upper()}</b></span></div></section>
-<section class="container legal-overview"><div class="legal-summary"><div><b>{counts['adult']}</b><span>adult-use states</span></div><div><b>{counts['medical']}</b><span>medical-only states</span></div><div><b>{counts['limited']}</b><span>limited CBD / defense</span></div><div><b>{counts['restricted']}</b><span>no public program</span></div></div><div class="federal-banner">{icon('alert')}<p><b>Federal law changed narrowly on April 28, 2026.</b> FDA-approved marijuana products and marijuana covered by qualifying state medical licenses moved to Schedule III. General adult-use and unlicensed marijuana remain federally prohibited; interstate transport is still restricted. Read the <a href="https://www.justice.gov/opa/pr/justice-department-places-fda-approved-marijuana-products-and-products-containing-marijuana" rel="noopener">DOJ announcement</a> and <a href="{DEA_SOURCE}" rel="noopener">DEA record</a>.</p></div></section>
+<section class="container legal-overview"><div class="legal-summary"><div><b>{counts['adult']}</b><span>adult-use states</span></div><div><b>{counts['medical']}</b><span>medical-only states</span></div><div><b>{counts['limited']}</b><span>limited CBD / defense</span></div><div><b>{counts['restricted']}</b><span>no public program</span></div></div><div class="federal-banner">{icon('alert')}<p><b>Federal law changed narrowly on April 28, 2026.</b> FDA-approved marijuana drug products and marijuana within the final rule's qualifying state medical-license scope moved to Schedule III; the broader proposal remains a separate proceeding. <a href="marijuana-rescheduling-status-november-2026/">Read the dated November 2026 status guide</a> and verify the current <a href="{DEA_SOURCE}" rel="noopener">DEA record</a>.</p></div></section>
 <section class="container state-library" data-state-library><div class="state-tools"><label><span>FIND A STATE</span><input type="search" data-state-search placeholder="Type a state or abbreviation…" autocomplete="off"></label><div class="state-filters" aria-label="Filter states by cannabis law status"><button class="is-active" data-state-filter="all">All 50</button><button data-state-filter="adult">Adult use</button><button data-state-filter="medical">Medical only</button><button data-state-filter="limited">Limited CBD</button><button data-state-filter="restricted">No public program</button></div><p aria-live="polite"><span data-state-count>50</span> state guides</p></div><p class="state-empty" data-state-empty hidden>No state matched that search and filter.</p><div class="state-grid">{''.join(cards)}</div></section>
 <section class="container legal-method"><div><p class="eyebrow">HOW TO READ THE MAP</p><h2>Legal is not one switch.</h2></div><div class="legal-method__grid">{''.join(f'<article><span>{STATUS_LABELS[key]}</span><p>{STATUS_DESCRIPTIONS[key]}</p></article>' for key in STATUS_LABELS)}</div></section>
 <section class="container legal-sources"><div><p class="eyebrow">RESEARCH BASELINE</p><h2>Current law first. Direction second.</h2><p>Program categories were cross-checked against NCSL and every page points to a state regulator, health department, commission, statute, or legislature. The six-month signal covers March 1–September 1, 2026 and labels proposals, vetoes, failed bills, and implementation separately from current law.</p></div><a class="button button--dark" href="{NCSL_SOURCE}" rel="noopener">Open the NCSL 50-state report {icon('arrow')}</a></section>
 <section class="container legal-grid legal-grid--secondary"><a class="legal-card legal-card--feature" href="new-york/"><div><img src="../assets/images/new-york-v2.svg" alt="Editorial map graphic of New York State with Central New York highlighted"></div><span>DEEP DIVE · NEW YORK</span><h2>Adult-use basics</h2><p>Age, possession, sales, public use, vehicles, travel, growing, work, and housing.</p><b>Open New York guide {icon('arrow')}</b></a><a class="legal-card" href="shop-legal/"><div class="legal-card__icon">{icon('check')}</div><span>NEW YORK LICENSED MARKET</span><h2>Verify a shop</h2><p>Match the exact name and address on OCM’s live list, then verify the product.</p><b>Open verification guide {icon('arrow')}</b></a><a class="legal-card" href="cannabis-federal-property-rules-guide/"><div class="legal-card__icon">{icon('alert')}</div><span>FEDERAL PROPERTY · 2026</span><h2>Crossing a federal boundary?</h2><p>Identify the managing agency, exact product, current schedule and property-specific rule.</p><b>Open federal-property guide {icon('arrow')}</b></a><a class="legal-card" href="cannabis-federally-assisted-housing-guide/"><div class="legal-card__icon">{icon('alert')}</div><span>FEDERALLY ASSISTED HOUSING · 2026</span><h2>Which housing rule controls?</h2><p>Separate program, admission or tenancy, lease, smoke-free policy, conduct, notice, and review route.</p><b>Open federal-housing guide {icon('arrow')}</b></a><a class="legal-card" href="mailing-cannabis-cbd-usps-rules/"><div class="legal-card__icon">{icon('alert')}</div><span>FEDERAL MAIL RULES</span><h2>Can you mail cannabis or CBD?</h2><p>Separate controlled substances from qualifying domestic hemp, then check records and the international ban.</p><b>Open mailing explainer {icon('arrow')}</b></a><a class="legal-card" href="flying-with-cannabis-cbd-tsa-rules/"><div class="legal-card__icon">{icon('alert')}</div><span>FEDERAL AIR TRAVEL</span><h2>Flying with cannabis or CBD</h2><p>Separate TSA screening from federal status, airport jurisdiction, destination law, airline policy, and battery safety.</p><b>Open flying explainer {icon('arrow')}</b></a></section>
 <section class="container legal-warning"><div>{icon('alert')}</div><div><h2>Education, not legal advice</h2><p>Laws, regulations, court decisions, local rules, tribal law, property policies, employer policies, and federal consequences can change the answer. These pages identify the issue and official source; they do not replace a lawyer.</p></div></section>{newsletter('../')}</main>'''
+    main = main.replace(
+        '<a class="legal-card" href="cannabis-federal-property-rules-guide/">',
+        '<a class="legal-card" href="marijuana-rescheduling-status-november-2026/"><div class="legal-card__icon">'+icon('scale')+'</div><span>FEDERAL STATUS · NOV. 2026</span><h2>What changed—and what did not?</h2><p>Separate the narrow April rule, qualifying medical-license scope, and broader unfinished proceeding.</p><b>Open dated rescheduling guide '+icon('arrow')+'</b></a><a class="legal-card" href="cannabis-federal-property-rules-guide/">',
+        1,
+    )
     main = main.replace('data-state-search placeholder=', 'data-state-search aria-controls="state-results" placeholder=')
     main = main.replace('<div class="state-filters" aria-label="Filter states by cannabis law status">', '<div class="state-filters" role="group" aria-label="Filter states by cannabis law status" aria-describedby="state-result-status">')
     main = main.replace('<button class="is-active" data-state-filter="all">', '<button class="is-active" type="button" data-state-filter="all" aria-pressed="true" aria-controls="state-results">')

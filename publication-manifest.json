@@ -1,6 +1,6 @@
 {
   "publication_date": "2026-11-15",
-  "page_count": 2,
+  "page_count": 3,
   "pages": [
     {
       "title": "Cannabis QR Code Safety and CoA Verification",
@@ -10,11 +10,18 @@
       "search_intent": "scan a cannabis package QR code more safely, verify its destination and exact-lot certificate, and respond to a suspicious, inaccessible, or mismatched link"
     },
     {
-      "title": "Dry-Herb Vaporizer Dosing Capsule Guide",
-      "url": "https://bigbudman.com/gear/dry-herb-vaporizer-dosing-capsule-guide/",
-      "department": "gear",
+      "title": "Henola Hemp Cultivar Field Note",
+      "url": "https://bigbudman.com/strains/henola-hemp/",
+      "department": "strains",
       "portfolio_label": "Exploration",
-      "search_intent": "compare an exact dry-herb vaporizer capsule system by documented fit, adapter, care status, clean return testing, recurring burden, and complete ownership cost"
+      "search_intent": "verify Henola as a documented grain and oilseed hemp cultivar while separating USDA identity, plant-variety protection, seed-lot provenance, university trial evidence, compliance, and finished-product claims"
+    },
+    {
+      "title": "Marijuana Rescheduling Status (November 2026)",
+      "url": "https://bigbudman.com/legal/marijuana-rescheduling-status-november-2026/",
+      "department": "legal",
+      "portfolio_label": "Authority-expansion",
+      "search_intent": "distinguish the narrow April 28 2026 Schedule III final rule from the broader pending marijuana-rescheduling proceeding and identify what federal, state, product, license, and activity questions remain"
     }
   ],
   "monetization": {
@@ -24,14 +31,14 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "Both materially changed resources intentionally use text, tables, checklists, and existing interface assets. No QR code, cannabis package, certificate, device, capsule, merchant, affiliate, stock, product, or generated image was added or changed, avoiding a fake scannable destination or exact-model mismatch."
+    "note": "All three new pages and the improved dosing-capsule resource intentionally use text, tables, checklists, and existing interface assets. Henola uses the IMAGE WITHHELD panel because no exact licensed cultivar photograph was verified. No QR code, package, certificate, device, capsule, cultivar, crop, merchant, affiliate, product, or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-11-11",
     "decision": "The October 12\u2013November 8 report is four days old and valid: 815 impressions, three clicks, 0.368% CTR, and average position 24.093. Arkansas was the only page-level signal with more than a token sample in positions 4\u201320 and was materially reinforced on November 12. The two-impression 510-versus-disposable row already maps to a complete page; Delaware had two impressions, Blue Dream averaged about position 48, and the remaining rows were one-impression noise. No item is labeled Data-led; those weak or already-served signals were deliberately ignored. The sitemap-submission error favored stronger static hub and reciprocal discovery paths but does not justify inventing a new canonical endpoint or claiming Search Console property access."
   },
   "authority": {
-    "action": "Published a citation-worthy QR destination and exact-lot verification asset grounded in current FTC, CISA, and New York OCM guidance. Its job map, destination record, character-by-character package/report match, suspicious-request screen, recovery lanes, accessible alternative, and bounded New York example strengthen the label, CoA, laboratory-limit, licensed-seller, fraud, and product-complaint cluster. One qualified New York OCM consumer-education opportunity was logged; no outreach was sent."
+    "action": "Published two citation-worthy primary-source assets: a QR destination and exact-lot verification workflow grounded in FTC, CISA, and New York OCM guidance, and a dated federal rescheduling digest built from the April 28 Federal Register final rule, DEA's regulatory index and 2026 docket, DOJ, and FDA sources. Reciprocal links strengthen the label, CoA, federal-property, terminology, hemp-cultivar, and 50-state-law clusters. One qualified New York OCM consumer-education opportunity was logged; no outreach was sent."
   },
   "freshness_surfaces": {
     "https://bigbudman.com/guides/": "2026-11-15",
@@ -45,6 +52,14 @@
     "https://bigbudman.com/gear/dry-herb-vaporizer-dosing-capsule-guide/": "2026-11-15",
     "https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/": "2026-11-15",
     "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/": "2026-11-15",
+    "https://bigbudman.com/strains/": "2026-11-15",
+    "https://bigbudman.com/strains/henola-hemp/": "2026-11-15",
+    "https://bigbudman.com/strains/panakeia-beta-hurv19pan/": "2026-11-15",
+    "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/": "2026-11-15",
+    "https://bigbudman.com/legal/": "2026-11-15",
+    "https://bigbudman.com/legal/marijuana-rescheduling-status-november-2026/": "2026-11-15",
+    "https://bigbudman.com/legal/cannabis-federal-property-rules-guide/": "2026-11-15",
+    "https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/": "2026-11-15",
     "https://bigbudman.com/editorial-policy/": "2026-11-15",
     "https://bigbudman.com/updates/": "2026-11-15",
     "https://bigbudman.com/site-index/": "2026-11-15"
@@ -52,6 +67,8 @@
   "surfaces": [
     "QR job map, pre-scan package check, host preview, exact-lot match, New York worked example, suspicious-request screen, recovery lanes, accessible alternative, and verification record",
     "dosing-capsule three-system worksheet, recurring-burden formulas, clean return-window test, rejection gates, and ownership-cost path",
+    "Henola USDA identity, PVP, provenance-disagreement, grain/oilseed purpose, site-year trial, seed-lot, production, and finished-product boundaries",
+    "federal rescheduling three-lane scope map, final-rule/broader-proceeding split, six-term translator, unchanged-questions matrix, and official status-check workflow",
     "guide-hub verification path plus reciprocal links from label, CoA, laboratory-limit, payment-scam, licensed-seller, vaporizer, and gear-comparison resources",
     "editorial trust boundary, publication updates, complete site index, Atom feed, search index, canonical and legacy sitemaps, robots declaration, structured metadata, and checksum-verified source archive"
   ]
