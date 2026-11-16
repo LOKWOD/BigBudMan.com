@@ -1,6 +1,21 @@
 # Big Bud Man authority opportunities
 
-Last reviewed: November 15, 2026
+Last reviewed: November 16, 2026
+
+## November 16, 2026 authority action
+
+- **Authority action:** Published a citation-ready ten-layer cannabis identity translator grounded in USDA's versioned Hemp Phenotyping and Protocol Handbook, the European Medicines Agency's scoped terminology compilation, and peer-reviewed chemical-nomenclature research. It keeps strain, cultivar, variety, accession, chemotype, chemovar, clone, batch, lot, and finished product attached to the evidence each term can and cannot carry.
+- **Cluster strengthened:** Glossary ↔ indica/sativa label evidence ↔ CBG chemotype ↔ CBD-hemp package evidence ↔ seed records ↔ named cultivar field notes. Established pages link back to the translator, while the BaOx field note provides a worked example that preserves USDA's spelling correction and crop-use uncertainty.
+- **Trust and conversion action:** Published a product-neutral photo-documentation kit guide with a no-purchase baseline, exact phone/stand geometry, glare and lighting screen, twelve-frame package sequence, original-file and privacy workflow, delivered-cost record, and clean return-window test. No approved affiliate program or tracking ID is configured; no merchant, product, live price, rating, availability, warranty, testing claim, or product image was added.
+
+### Qualified opportunities logged
+
+| Exact target | Contact route | Exact asset match | Honest pitch angle |
+|---|---|---|---|
+| USDA ARS Plant Genetic Resources Unit — Hemp Collection | Official project contact: <https://www.ars.usda.gov/northeast-area/geneva-ny/plant-genetic-resources-unit-pgru/hemp-collection-collaborations/hemp-collaborations/> | [Cannabis Strain vs Cultivar vs Chemotype vs Lot](https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/) | A consumer-facing translator built around USDA's current accession, top-name, cultivar, crop-use, chemotype, segregation, sampling, and method fields, with BaOx as a bounded worked example. Invite factual correction or resource consideration; do not imply USDA review, cultivar authentication, seed availability, legal advice, or endorsement. |
+| Cornell Hemp Research Team | Team and project-lead route: <https://hemp.cals.cornell.edu/about/cornell-hemp-team/> | [BaOx Hemp Cultivar Field Note](https://bigbudman.com/strains/baox-hemp/) | A source-preserving field note that connects Cornell's historic Boax trial entry to USDA's current BaOx accession and explicitly retains spelling, purpose, field-transfer, chemistry, and finished-lot uncertainty. Invite factual correction or historical-source clarification; do not imply Cornell review, current seed availability, crop recommendation, compliance, product identity, or endorsement. |
+
+No outreach was sent.
 
 ## November 15, 2026 authority action
 

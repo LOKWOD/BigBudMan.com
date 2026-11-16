@@ -1,75 +1,70 @@
 {
-  "publication_date": "2026-11-15",
+  "publication_date": "2026-11-16",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis QR Code Safety and CoA Verification",
-      "url": "https://bigbudman.com/guides/cannabis-qr-code-coa-verification-safety-guide/",
-      "department": "guides",
-      "portfolio_label": "Authority-expansion",
-      "search_intent": "scan a cannabis package QR code more safely, verify its destination and exact-lot certificate, and respond to a suspicious, inaccessible, or mismatched link"
-    },
-    {
-      "title": "Henola Hemp Cultivar Field Note",
-      "url": "https://bigbudman.com/strains/henola-hemp/",
+      "title": "BaOx Hemp Cultivar Field Note",
+      "url": "https://bigbudman.com/strains/baox-hemp/",
       "department": "strains",
       "portfolio_label": "Exploration",
-      "search_intent": "verify Henola as a documented grain and oilseed hemp cultivar while separating USDA identity, plant-variety protection, seed-lot provenance, university trial evidence, compliance, and finished-product claims"
+      "search_intent": "verify BaOx and BoAx naming, USDA accession identity, historic CBD-floral research context, field-result limits, seed-lot provenance, compliance, and finished-product boundaries"
     },
     {
-      "title": "Marijuana Rescheduling Status (November 2026)",
-      "url": "https://bigbudman.com/legal/marijuana-rescheduling-status-november-2026/",
-      "department": "legal",
+      "title": "Cannabis Product Photo Documentation Kit Guide",
+      "url": "https://bigbudman.com/gear/cannabis-product-photo-documentation-kit-buying-guide/",
+      "department": "gear",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "distinguish the narrow April 28 2026 Schedule III final rule from the broader pending marijuana-rescheduling proceeding and identify what federal, state, product, license, and activity questions remain"
+      "search_intent": "choose and use a phone stand, lighting, backdrop, scale reference, and file workflow for clear package, label, lot, damage, recall, and complaint photos"
+    },
+    {
+      "title": "Cannabis Strain vs Cultivar vs Chemotype vs Lot",
+      "url": "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/",
+      "department": "guides",
+      "portfolio_label": "Authority-expansion",
+      "search_intent": "translate strain, cultivar, variety, accession, chemotype, chemovar, clone, batch, lot, and product into the evidence each term can and cannot carry"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured. The conversion improvement materially expands an existing purchase-intent dosing-capsule guide with a three-system worksheet, complete recurring-burden formulas, a clean seven-step return-window test, explicit rejection gates, and a direct path to the site's product-neutral ownership-cost worksheet. No merchant, model recommendation, live price, stock, rating, discount, testing claim, or affiliate link was added."
+    "reason": "No approved affiliate program or tracking ID is configured. The high-intent photography-kit guide defines a complete purchase workflow, compatibility checks, rejection gates, no-purchase option, delivered-cost record, and return-window test without merchant links, commission pressure, live prices, ratings, stock, warranties, or invented testing."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three new pages and the improved dosing-capsule resource intentionally use text, tables, checklists, and existing interface assets. Henola uses the IMAGE WITHHELD panel because no exact licensed cultivar photograph was verified. No QR code, package, certificate, device, capsule, cultivar, crop, merchant, affiliate, product, or generated image was added or changed."
+    "note": "All three pages intentionally use text, tables, checklists, and existing interface assets. BaOx uses an IMAGE WITHHELD panel because a repository image cannot establish universal cultivar appearance and no licensed exact editorial image was selected. No product, cultivar, package, gear, affiliate, stock, or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-11-11",
-    "decision": "The October 12\u2013November 8 report is four days old and valid: 815 impressions, three clicks, 0.368% CTR, and average position 24.093. Arkansas was the only page-level signal with more than a token sample in positions 4\u201320 and was materially reinforced on November 12. The two-impression 510-versus-disposable row already maps to a complete page; Delaware had two impressions, Blue Dream averaged about position 48, and the remaining rows were one-impression noise. No item is labeled Data-led; those weak or already-served signals were deliberately ignored. The sitemap-submission error favored stronger static hub and reciprocal discovery paths but does not justify inventing a new canonical endpoint or claiming Search Console property access."
+    "decision": "The October 12\u2013November 8 BigBudMan report is five days old and valid: 815 impressions, three clicks, about 0.4% CTR, and average position 24.1. The two-impression \u201c510 vs disposable\u201d query at position 12 already maps to a complete comparison; Arkansas's six-impression, one-click page at position 9.7 was reinforced on November 12; Delaware had only two impressions, and Blue Dream averaged about position 47.6. No page is labeled Data-led. Those tiny, already-served, or weak-position signals were deliberately ignored. The reported sitemap errors favored stronger hub, reciprocal, complete-index, and canonical sitemap discovery paths instead of another isolated page or invented submission claim."
   },
   "authority": {
-    "action": "Published two citation-worthy primary-source assets: a QR destination and exact-lot verification workflow grounded in FTC, CISA, and New York OCM guidance, and a dated federal rescheduling digest built from the April 28 Federal Register final rule, DEA's regulatory index and 2026 docket, DOJ, and FDA sources. Reciprocal links strengthen the label, CoA, federal-property, terminology, hemp-cultivar, and 50-state-law clusters. One qualified New York OCM consumer-education opportunity was logged; no outreach was sent."
+    "action": "Published a citation-worthy ten-layer cannabis identity translator grounded in USDA's versioned hemp descriptor system, EMA terminology work, and peer-reviewed chemical-name research; added reciprocal contextual links from the glossary, indica/sativa, chemotype, CBD-hemp, seed, complaint, label, QR, and gear clusters. The BaOx profile preserves a documented spelling correction and conflicting crop-use context rather than manufacturing certainty. Two qualified public-sector or university resource opportunities were logged; no outreach was sent."
   },
   "freshness_surfaces": {
-    "https://bigbudman.com/guides/": "2026-11-15",
-    "https://bigbudman.com/guides/cannabis-qr-code-coa-verification-safety-guide/": "2026-11-15",
-    "https://bigbudman.com/guides/read-a-label/": "2026-11-15",
-    "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/": "2026-11-15",
-    "https://bigbudman.com/guides/cannabis-lab-report-detection-quantitation-limits-guide/": "2026-11-15",
-    "https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/": "2026-11-15",
-    "https://bigbudman.com/legal/shop-legal/": "2026-11-15",
-    "https://bigbudman.com/gear/": "2026-11-15",
-    "https://bigbudman.com/gear/dry-herb-vaporizer-dosing-capsule-guide/": "2026-11-15",
-    "https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/": "2026-11-15",
-    "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/": "2026-11-15",
-    "https://bigbudman.com/strains/": "2026-11-15",
-    "https://bigbudman.com/strains/henola-hemp/": "2026-11-15",
-    "https://bigbudman.com/strains/panakeia-beta-hurv19pan/": "2026-11-15",
-    "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/": "2026-11-15",
-    "https://bigbudman.com/legal/": "2026-11-15",
-    "https://bigbudman.com/legal/marijuana-rescheduling-status-november-2026/": "2026-11-15",
-    "https://bigbudman.com/legal/cannabis-federal-property-rules-guide/": "2026-11-15",
-    "https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/": "2026-11-15",
-    "https://bigbudman.com/editorial-policy/": "2026-11-15",
-    "https://bigbudman.com/updates/": "2026-11-15",
-    "https://bigbudman.com/site-index/": "2026-11-15"
+    "https://bigbudman.com/strains/": "2026-11-16",
+    "https://bigbudman.com/strains/baox-hemp/": "2026-11-16",
+    "https://bigbudman.com/guides/": "2026-11-16",
+    "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/": "2026-11-16",
+    "https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/": "2026-11-16",
+    "https://bigbudman.com/guides/indica-sativa-hybrid-label-evidence-guide/": "2026-11-16",
+    "https://bigbudman.com/guides/cbg-dominant-cannabis-chemotype-guide/": "2026-11-16",
+    "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/": "2026-11-16",
+    "https://bigbudman.com/guides/cannabis-seed-storage-record-guide/": "2026-11-16",
+    "https://bigbudman.com/gear/": "2026-11-16",
+    "https://bigbudman.com/gear/cannabis-product-photo-documentation-kit-buying-guide/": "2026-11-16",
+    "https://bigbudman.com/gear/cannabis-label-magnifier-task-light-buying-guide/": "2026-11-16",
+    "https://bigbudman.com/guides/cannabis-product-complaint-adverse-event-reporting/": "2026-11-16",
+    "https://bigbudman.com/guides/read-a-label/": "2026-11-16",
+    "https://bigbudman.com/guides/cannabis-qr-code-coa-verification-safety-guide/": "2026-11-16",
+    "https://bigbudman.com/editorial-policy/": "2026-11-16",
+    "https://bigbudman.com/updates/": "2026-11-16",
+    "https://bigbudman.com/site-index/": "2026-11-16"
   },
   "surfaces": [
-    "QR job map, pre-scan package check, host preview, exact-lot match, New York worked example, suspicious-request screen, recovery lanes, accessible alternative, and verification record",
-    "dosing-capsule three-system worksheet, recurring-burden formulas, clean return-window test, rejection gates, and ownership-cost path",
-    "Henola USDA identity, PVP, provenance-disagreement, grain/oilseed purpose, site-year trial, seed-lot, production, and finished-product boundaries",
-    "federal rescheduling three-lane scope map, final-rule/broader-proceeding split, six-term translator, unchanged-questions matrix, and official status-check workflow",
-    "guide-hub verification path plus reciprocal links from label, CoA, laboratory-limit, payment-scam, licensed-seller, vaporizer, and gear-comparison resources",
-    "editorial trust boundary, publication updates, complete site index, Atom feed, search index, canonical and legacy sitemaps, robots declaration, structured metadata, and checksum-verified source archive"
+    "BaOx current USDA identity, spelling history, accession interpretation, historic CBD-floral research context, chemistry boundary, field-transfer test, seed-to-lot record, and finished-product gate",
+    "product-photo job map, no-buy setup, stand geometry, lighting and glare screen, scale-reference boundary, twelve-frame capture sequence, original-file and privacy workflow, kit comparison, and return-window test",
+    "ten-layer strain/cultivar/accession/chemotype/chemovar/clone/batch/lot/product translator, evidence map, worked BaOx example, and noun-specific question prompts",
+    "reciprocal contextual paths from glossary, indica/sativa, CBG chemotype, CBD hemp, seed, complaint, label, QR, and exact-job gear resources",
+    "strain, guide, and gear hubs; homepage daily module; publication updates; complete site index; Atom feed; search index; canonical and legacy XML sitemaps; robots declaration; structured metadata; and checksum-verified source archive"
   ]
 }
