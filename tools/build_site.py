@@ -74,6 +74,7 @@ from content_nov14 import EDITORIAL_POLICY_APPEND as NOV14_POLICY_APPEND, NEW_GU
 from content_nov14_batch import NEW_GEAR as NOV14_BATCH_GEAR, NEW_GUIDES as NOV14_BATCH_GUIDES, NEW_STRAINS as NOV14_BATCH_STRAINS, PUBLICATION_MANIFEST as NOV14_BATCH_PUBLICATION_MANIFEST
 from content_nov15 import EDITORIAL_POLICY_APPEND as NOV15_POLICY_APPEND, GEAR_OVERRIDES as NOV15_GEAR_OVERRIDES, NEW_GUIDES as NOV15_GUIDES, NEW_STRAIN_PAGES as NOV15_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV15_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV15_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV15_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV15_REVIEWED_RELATED_PATHS
 from content_nov16 import EDITORIAL_POLICY_APPEND as NOV16_POLICY_APPEND, NEW_GEAR as NOV16_GEAR, NEW_GUIDES as NOV16_GUIDES, NEW_STRAIN_PAGES as NOV16_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV16_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV16_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV16_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV16_REVIEWED_RELATED_PATHS
+from content_nov17 import EDITORIAL_POLICY_APPEND as NOV17_POLICY_APPEND, NEW_GUIDES as NOV17_GUIDES, PUBLICATION_MANIFEST as NOV17_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV17_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV17_REVIEWED_RELATED_PATHS, STRAIN_OVERRIDES as NOV17_STRAIN_OVERRIDES
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -218,6 +219,9 @@ GUIDE_PAGES = GUIDE_PAGES + NOV16_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV16_GEAR
 STRAINS = STRAINS + NOV16_STRAIN_RECORDS
 STRAIN_PAGES = STRAIN_PAGES + NOV16_STRAIN_PAGES
+GUIDE_PAGES = GUIDE_PAGES + NOV17_GUIDES
+_nov17_strains = {item["path"]: item for item in NOV17_STRAIN_OVERRIDES}
+STRAIN_PAGES = [_nov17_strains.get(item["path"], item) for item in STRAIN_PAGES]
 
 # November 6 connects both new resources from established, intent-matched
 # pages. These are editorial paths, not generic recent-post links, and the
@@ -998,6 +1002,12 @@ for _standard in STANDARD_PAGES:
             '<p class="update-line">Policy reviewed November 16, 2026</p>',
         )
         _standard["body"] += NOV16_POLICY_APPEND
+        _standard["updated"] = "November 17, 2026"
+        _standard["body"] = _standard["body"].replace(
+            '<p class="update-line">Policy reviewed November 16, 2026</p>',
+            '<p class="update-line">Policy reviewed November 17, 2026</p>',
+        )
+        _standard["body"] += NOV17_POLICY_APPEND
 
 RECIPROCAL_RELATED = {
     "guides/full-spectrum-broad-spectrum-cbd-isolate/index.html": [
@@ -1802,6 +1812,9 @@ for _source, _links in NOV15_RECIPROCAL_LINKS.items():
 for _source, _links in NOV16_RECIPROCAL_LINKS.items():
     for _link in reversed(_links):
         RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
+for _source, _links in NOV17_RECIPROCAL_LINKS.items():
+    for _link in reversed(_links):
+        RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
 for _source in (
     "guides/read-a-label/index.html",
     "guides/cannabis-terms-label-lab-glossary/index.html",
@@ -1814,6 +1827,9 @@ for _item in GUIDE_PAGES + OTHER_ARTICLES:
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in NOV16_REVIEWED_RELATED_PATHS:
         _item["updated"] = "November 16, 2026"
+for _item in GUIDE_PAGES + OTHER_ARTICLES:
+    if _item["path"] in NOV17_REVIEWED_RELATED_PATHS:
+        _item["updated"] = "November 17, 2026"
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in RECIPROCAL_RELATED:
         _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
@@ -2099,7 +2115,7 @@ def add_collection_itemlist(html: str, page: Page, name: str, card_class: str) -
 
 
 def render_guides_hub() -> tuple[Page,str]:
-    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 16, 2026",kind="website")
+    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 17, 2026",kind="website")
     p="../"
     cards="".join([
       card("guides/cannabis-lab-report-detection-quantitation-limits-guide/","LAB REPORTS + MEASUREMENT","Cannabis lab report limits: ND, LOD and LOQ","Translate detection, quantitation, reporting limits, qualifiers, units, uncertainty, pass/fail rules, and exact-sample boundaries without inventing zero.","search",p),
@@ -2216,6 +2232,14 @@ def render_guides_hub() -> tuple[Page,str]:
         p,
     ) + cards
     cards = card(
+        "guides/cannabis-potency-units-percent-mg-g-ml-serving-guide/",
+        "BUYING + LABEL MATH",
+        "Cannabis potency units: %, mg/g, and mg/mL",
+        "Translate compatible concentration, serving, and package units without mixing analytes, mass and volume bases, routes, or dose advice.",
+        "search",
+        p,
+    ) + cards
+    cards = card(
         "guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/",
         "TERMS + EVIDENCE",
         "Strain, cultivar, chemotype, and lot",
@@ -2263,7 +2287,7 @@ def render_guides_hub() -> tuple[Page,str]:
 
 
 def render_strains_hub() -> tuple[Page,str]:
-    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} strain field notes across THC, CBD, CBDV, CBG, grain and fiber hemp, and mixed-ratio names, with lineage, batch, and evidence caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the question—not end it.","",updated="November 16, 2026",kind="website")
+    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} strain field notes across THC, CBD, CBDV, CBG, grain and fiber hemp, and mixed-ratio names, with lineage, batch, and evidence caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the question—not end it.","",updated="November 17, 2026",kind="website")
     items=[]
     for strain in sorted(STRAINS, key=lambda item: item["name"].lower()):
       aliases = " ".join(strain.get("aliases", []))
@@ -2692,6 +2716,7 @@ def build() -> None:
     publication_manifest = NOV14_BATCH_PUBLICATION_MANIFEST
     publication_manifest = NOV15_PUBLICATION_MANIFEST
     publication_manifest = NOV16_PUBLICATION_MANIFEST
+    publication_manifest = NOV17_PUBLICATION_MANIFEST
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]
     strain_aliases = {

@@ -371,6 +371,18 @@ def main() -> int:
             review_match = re.search(r'Reviewed\s*<time datetime="([^"]+)">', text)
             if review_match and review_match.group(1) != primary.get("dateModified"):
                 failures.append(f"{rel}: visible review date does not match Article dateModified")
+            source_review_labels = re.findall(r'Sources (?:reviewed|checked)\s+([^.<]+)', text, re.I)
+            for source_review_label in source_review_labels:
+                try:
+                    source_review_date = datetime.strptime(source_review_label.strip(), "%B %d, %Y")
+                    article_review_date = datetime.strptime(primary.get("dateModified", ""), "%Y-%m-%d")
+                except (TypeError, ValueError):
+                    failures.append(f"{rel}: invalid visible source-review date: {source_review_label.strip()}")
+                    continue
+                if source_review_date > article_review_date:
+                    failures.append(f"{rel}: source-review date is later than Article dateModified")
+                if batch_date and source_review_date > batch_date:
+                    failures.append(f"{rel}: source-review date is after the current publication batch")
             visible_citations: list[str] = []
             for source_block in re.findall(r'<div class="official-links"[^>]*>(.*?)</div>', text, re.I | re.S):
                 for source_url in re.findall(r'<a[^>]+href="(https?://[^"]+)"', source_block, re.I):
@@ -1236,7 +1248,7 @@ def main() -> int:
             failures.append("Editorial policy or Atom feed is missing the feed authorship standard")
         if "Age-gate focus isolation" not in policy:
             failures.append("Editorial policy is missing the age-gate focus-isolation standard")
-        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "Mobile-navigation state integrity" not in policy or "Site-search dialog naming integrity" not in policy or "Guide-finder progression integrity" not in policy or "Fresh static discovery path" not in policy or "Nested 404 route integrity" not in policy or "Collection-control outcome relationship" not in policy or "QR destination and product-evidence boundary" not in policy or "Plant-name and chemical-class boundary" not in policy or "November 16, 2026" not in policy:
+        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "Mobile-navigation state integrity" not in policy or "Site-search dialog naming integrity" not in policy or "Guide-finder progression integrity" not in policy or "Fresh static discovery path" not in policy or "Nested 404 route integrity" not in policy or "Collection-control outcome relationship" not in policy or "QR destination and product-evidence boundary" not in policy or "Plant-name and chemical-class boundary" not in policy or "Source-review chronology integrity" not in policy or "Named-product research boundary" not in policy or "November 17, 2026" not in policy:
             failures.append("Editorial policy is missing the current link and collection-date integrity standards")
         sample_search = (ROOT / "guides/cannabis-moving-day-relocation-checklist/index.html").read_text(encoding="utf-8")
         for marker in ('aria-labelledby="site-search-title"', 'aria-describedby="site-search-help"', 'id="site-search-title"', 'id="site-search-help"'):

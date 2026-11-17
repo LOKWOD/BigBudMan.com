@@ -1,70 +1,65 @@
 {
-  "publication_date": "2026-11-16",
+  "publication_date": "2026-11-17",
   "page_count": 3,
   "pages": [
     {
-      "title": "BaOx Hemp Cultivar Field Note",
-      "url": "https://bigbudman.com/strains/baox-hemp/",
+      "title": "Blue Dream Strain Guide",
+      "url": "https://bigbudman.com/strains/blue-dream/",
       "department": "strains",
-      "portfolio_label": "Exploration",
-      "search_intent": "verify BaOx and BoAx naming, USDA accession identity, historic CBD-floral research context, field-result limits, seed-lot provenance, compliance, and finished-product boundaries"
+      "portfolio_label": "Data-led",
+      "search_intent": "understand what the Blue Dream name can prove, interpret research samples, distinguish product formats, and verify the exact retail lot"
     },
     {
-      "title": "Cannabis Product Photo Documentation Kit Guide",
-      "url": "https://bigbudman.com/gear/cannabis-product-photo-documentation-kit-buying-guide/",
-      "department": "gear",
-      "portfolio_label": "Authority-expansion",
-      "search_intent": "choose and use a phone stand, lighting, backdrop, scale reference, and file workflow for clear package, label, lot, damage, recall, and complaint photos"
-    },
-    {
-      "title": "Cannabis Strain vs Cultivar vs Chemotype vs Lot",
-      "url": "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/",
+      "title": "Cannabis Potency Units: %, mg/g, mg/mL & Servings",
+      "url": "https://bigbudman.com/guides/cannabis-potency-units-percent-mg-g-ml-serving-guide/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "translate strain, cultivar, variety, accession, chemotype, chemovar, clone, batch, lot, and product into the evidence each term can and cannot carry"
+      "search_intent": "translate and compare cannabis potency units without mixing analytes, mass and volume bases, serving counts, package totals, routes, or dose advice"
+    },
+    {
+      "title": "Source-Review Chronology Integrity",
+      "url": "https://bigbudman.com/editorial-policy/",
+      "department": "trust and technical publishing",
+      "portfolio_label": "Exploration",
+      "search_intent": "explain and enforce how visible source-review dates relate to article and publication dates"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured. The high-intent photography-kit guide defines a complete purchase workflow, compatibility checks, rejection gates, no-purchase option, delivered-cost record, and return-window test without merchant links, commission pressure, live prices, ratings, stock, warranties, or invented testing."
+    "reason": "No approved affiliate program or tracking ID is configured. The conversion improvement is a product-neutral path from unit compatibility to label reading, exact-lot CoA review, edible arithmetic, and the existing price-and-label calculator. It keeps no purchase and a smaller or clearer package as valid outcomes and adds no merchant, live price, rating, discount, stock, product image, or invented test claim."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three pages intentionally use text, tables, checklists, and existing interface assets. BaOx uses an IMAGE WITHHELD panel because a repository image cannot establish universal cultivar appearance and no licensed exact editorial image was selected. No product, cultivar, package, gear, affiliate, stock, or generated image was added or changed."
+    "note": "The Blue Dream page retains the site's existing representative cannabis-flower image with explicit alt text and an on-page disclosure that it is not a verified cultivar or batch image. The final desktop and mobile page were visually checked. The potency guide and policy improvement add no image. No product, package, merchant, affiliate, stock, or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-11-11",
-    "decision": "The October 12\u2013November 8 BigBudMan report is five days old and valid: 815 impressions, three clicks, about 0.4% CTR, and average position 24.1. The two-impression \u201c510 vs disposable\u201d query at position 12 already maps to a complete comparison; Arkansas's six-impression, one-click page at position 9.7 was reinforced on November 12; Delaware had only two impressions, and Blue Dream averaged about position 47.6. No page is labeled Data-led. Those tiny, already-served, or weak-position signals were deliberately ignored. The reported sitemap errors favored stronger hub, reciprocal, complete-index, and canonical sitemap discovery paths instead of another isolated page or invented submission claim."
+    "decision": "The October 12\u2013November 8 report is six days old and valid: 815 impressions, three clicks, about 0.4% CTR, and average position 24.1. Blue Dream had 33 impressions, zero clicks, and average position about 47.6\u2014the strongest non-legal page-volume signal\u2014so the existing URL received a material evidence, intent, and internal-path expansion without a title rewrite or cannibalizing new page. The two-impression 510-versus-disposable row already has a complete exact-match page; Delaware's two impressions and remaining one-impression rows were deliberately ignored as too weak, duplicative, or irrelevant. Legacy sitemap submission errors remain an owner-side Search Console cleanup item; the canonical sitemap and static legacy recovery endpoint were preserved."
   },
   "authority": {
-    "action": "Published a citation-worthy ten-layer cannabis identity translator grounded in USDA's versioned hemp descriptor system, EMA terminology work, and peer-reviewed chemical-name research; added reciprocal contextual links from the glossary, indica/sativa, chemotype, CBD-hemp, seed, complaint, label, QR, and gear clusters. The BaOx profile preserves a documented spelling correction and conflicting crop-use context rather than manufacturing certainty. Two qualified public-sector or university resource opportunities were logged; no outreach was sent."
+    "action": "Published a citation-ready cannabis potency-unit translator grounded in current New York OCM, California DCC, and NIST sources, with explicit formulas, invalid-conversion gates, a six-field record, and reciprocal links from established label, CoA, lab-limit, edible-math, and price-comparison pages. The Blue Dream field note adds a peer-reviewed sample-by-sample evidence matrix instead of recycling strain folklore. A source-review chronology release gate and public policy statement strengthen trust. One qualified New York consumer-education opportunity was logged; no outreach was sent."
   },
   "freshness_surfaces": {
-    "https://bigbudman.com/strains/": "2026-11-16",
-    "https://bigbudman.com/strains/baox-hemp/": "2026-11-16",
-    "https://bigbudman.com/guides/": "2026-11-16",
-    "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/": "2026-11-16",
-    "https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/": "2026-11-16",
-    "https://bigbudman.com/guides/indica-sativa-hybrid-label-evidence-guide/": "2026-11-16",
-    "https://bigbudman.com/guides/cbg-dominant-cannabis-chemotype-guide/": "2026-11-16",
-    "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/": "2026-11-16",
-    "https://bigbudman.com/guides/cannabis-seed-storage-record-guide/": "2026-11-16",
-    "https://bigbudman.com/gear/": "2026-11-16",
-    "https://bigbudman.com/gear/cannabis-product-photo-documentation-kit-buying-guide/": "2026-11-16",
-    "https://bigbudman.com/gear/cannabis-label-magnifier-task-light-buying-guide/": "2026-11-16",
-    "https://bigbudman.com/guides/cannabis-product-complaint-adverse-event-reporting/": "2026-11-16",
-    "https://bigbudman.com/guides/read-a-label/": "2026-11-16",
-    "https://bigbudman.com/guides/cannabis-qr-code-coa-verification-safety-guide/": "2026-11-16",
-    "https://bigbudman.com/editorial-policy/": "2026-11-16",
-    "https://bigbudman.com/updates/": "2026-11-16",
-    "https://bigbudman.com/site-index/": "2026-11-16"
+    "https://bigbudman.com/strains/": "2026-11-17",
+    "https://bigbudman.com/strains/blue-dream/": "2026-11-17",
+    "https://bigbudman.com/guides/": "2026-11-17",
+    "https://bigbudman.com/guides/cannabis-potency-units-percent-mg-g-ml-serving-guide/": "2026-11-17",
+    "https://bigbudman.com/guides/read-a-label/": "2026-11-17",
+    "https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/": "2026-11-17",
+    "https://bigbudman.com/guides/cannabis-edible-label-math-checker/": "2026-11-17",
+    "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/": "2026-11-17",
+    "https://bigbudman.com/guides/cannabis-lab-report-detection-quantitation-limits-guide/": "2026-11-17",
+    "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/": "2026-11-17",
+    "https://bigbudman.com/guides/indica-sativa-hybrid-label-evidence-guide/": "2026-11-17",
+    "https://bigbudman.com/editorial-policy/": "2026-11-17",
+    "https://bigbudman.com/updates/": "2026-11-17",
+    "https://bigbudman.com/site-index/": "2026-11-17"
   },
   "surfaces": [
-    "BaOx current USDA identity, spelling history, accession interpretation, historic CBD-floral research context, chemistry boundary, field-transfer test, seed-to-lot record, and finished-product gate",
-    "product-photo job map, no-buy setup, stand geometry, lighting and glare screen, scale-reference boundary, twelve-frame capture sequence, original-file and privacy workflow, kit comparison, and return-window test",
-    "ten-layer strain/cultivar/accession/chemotype/chemovar/clone/batch/lot/product translator, evidence map, worked BaOx example, and noun-specific question prompts",
-    "reciprocal contextual paths from glossary, indica/sativa, CBG chemotype, CBD hemp, seed, complaint, label, QR, and exact-job gear resources",
-    "strain, guide, and gear hubs; homepage daily module; publication updates; complete site index; Atom feed; search index; canonical and legacy XML sitemaps; robots declaration; structured metadata; and checksum-verified source archive"
+    "Blue Dream name-boundary matrix, four-study sample map, five-format comparison, package-to-lot record, checkout gates, and reciprocal strain terminology paths",
+    "potency unit map, mass and volume formulas, serving/package reconciliation, total-cannabinoid boundary, comparison screen, worksheet, and product-neutral shopping path",
+    "source-review chronology publication audit and public policy contract",
+    "guide and strain hubs; homepage daily module; publication updates; complete site index; Atom feed; search index; canonical and legacy XML sitemap surfaces; robots declaration; structured metadata; and checksum-verified source archive"
   ]
 }
