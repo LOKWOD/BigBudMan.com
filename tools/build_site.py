@@ -74,7 +74,7 @@ from content_nov14 import EDITORIAL_POLICY_APPEND as NOV14_POLICY_APPEND, NEW_GU
 from content_nov14_batch import NEW_GEAR as NOV14_BATCH_GEAR, NEW_GUIDES as NOV14_BATCH_GUIDES, NEW_STRAINS as NOV14_BATCH_STRAINS, PUBLICATION_MANIFEST as NOV14_BATCH_PUBLICATION_MANIFEST
 from content_nov15 import EDITORIAL_POLICY_APPEND as NOV15_POLICY_APPEND, GEAR_OVERRIDES as NOV15_GEAR_OVERRIDES, NEW_GUIDES as NOV15_GUIDES, NEW_STRAIN_PAGES as NOV15_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV15_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV15_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV15_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV15_REVIEWED_RELATED_PATHS
 from content_nov16 import EDITORIAL_POLICY_APPEND as NOV16_POLICY_APPEND, NEW_GEAR as NOV16_GEAR, NEW_GUIDES as NOV16_GUIDES, NEW_STRAIN_PAGES as NOV16_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV16_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV16_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV16_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV16_REVIEWED_RELATED_PATHS
-from content_nov17 import EDITORIAL_POLICY_APPEND as NOV17_POLICY_APPEND, NEW_GUIDES as NOV17_GUIDES, PUBLICATION_MANIFEST as NOV17_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV17_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV17_REVIEWED_RELATED_PATHS, STRAIN_OVERRIDES as NOV17_STRAIN_OVERRIDES
+from content_nov17 import EDITORIAL_POLICY_APPEND as NOV17_POLICY_APPEND, NEW_GEAR as NOV17_GEAR, NEW_GUIDES as NOV17_GUIDES, NEW_STRAIN_PAGES as NOV17_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV17_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV17_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV17_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV17_REVIEWED_RELATED_PATHS, STRAIN_OVERRIDES as NOV17_STRAIN_OVERRIDES
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -220,6 +220,9 @@ OTHER_ARTICLES = OTHER_ARTICLES + NOV16_GEAR
 STRAINS = STRAINS + NOV16_STRAIN_RECORDS
 STRAIN_PAGES = STRAIN_PAGES + NOV16_STRAIN_PAGES
 GUIDE_PAGES = GUIDE_PAGES + NOV17_GUIDES
+OTHER_ARTICLES = OTHER_ARTICLES + NOV17_GEAR
+STRAINS = STRAINS + NOV17_STRAIN_RECORDS
+STRAIN_PAGES = STRAIN_PAGES + NOV17_STRAIN_PAGES
 _nov17_strains = {item["path"]: item for item in NOV17_STRAIN_OVERRIDES}
 STRAIN_PAGES = [_nov17_strains.get(item["path"], item) for item in STRAIN_PAGES]
 
@@ -2330,6 +2333,7 @@ def render_strains_hub() -> tuple[Page,str]:
 
 def render_gear_hub() -> tuple[Page,str]:
     items = [
+        ("cbd-oil-dropper-replacement-bottle-fit-guide/","compare preparation care","CBD OIL + REPLACEMENT HARDWARE","Replace a CBD oil dropper","Match the bottle neck finish, closure function, pipette geometry, materials, markings, access control, care, prescription boundary, and return path.","scale",None,None),
         ("cannabis-product-photo-documentation-kit-buying-guide/","compare preparation care","PACKAGE PHOTOS + RECORDS","Choose a product-photo documentation kit","Compare the no-buy setup, phone and stand geometry, lighting, glare, backdrop, scale reference, file privacy, return test, and delivered cost.","search",None,None),
         ("cannabis-drying-rack-buying-guide/","compare preparation care","HOME GROW + DRYING SUPPORT","Choose a drying rack system","Compare support format, usable area, room fit, spacing, air-path boundaries, materials, cleaning, access, return testing, and first-year cost.","leaf",None,None),
         ("cannabis-infusion-appliance-buying-guide/","compare preparation powered care","KITCHEN + INFUSION APPLIANCE","Choose an infusion appliance","Compare the exact kitchen job, capacity, food-contact path, heat, cleaning, cross-contact, recalls, returns, service, and first-year cost.","gear",None,None),
@@ -2373,7 +2377,7 @@ def render_gear_hub() -> tuple[Page,str]:
         ("cannabis-ashtray-ember-disposal-guide/","care","FIRE-SAFE DISPOSAL","Choose an ashtray","Compare stability, depth, materials, wind, placement, extinguishing, cleaning, waste, and smoke-exposure limits.","alert",None,None),
         ("cannabis-glass-pipe-water-pipe-buying-guide/","preparation care","GLASSWARE","Choose a pipe or water pipe","Check format, material claims, joint fit, stability, cleaning access, replacement parts, and smoke-exposure limits.","search",None,None),
     ]
-    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 16, 2026",kind="website")
+    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 17, 2026",kind="website")
     cards=[]
     for href, categories, kicker, title, description, icon_name, image_src, image_alt in items:
         art = f'<div><img src="{image_src}" alt="{image_alt}"></div>' if image_src else f'<div class="gear-card__icon-art" aria-hidden="true">{icon(icon_name)}</div>'
