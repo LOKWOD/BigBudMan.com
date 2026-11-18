@@ -75,6 +75,7 @@ from content_nov14_batch import NEW_GEAR as NOV14_BATCH_GEAR, NEW_GUIDES as NOV1
 from content_nov15 import EDITORIAL_POLICY_APPEND as NOV15_POLICY_APPEND, GEAR_OVERRIDES as NOV15_GEAR_OVERRIDES, NEW_GUIDES as NOV15_GUIDES, NEW_STRAIN_PAGES as NOV15_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV15_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV15_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV15_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV15_REVIEWED_RELATED_PATHS
 from content_nov16 import EDITORIAL_POLICY_APPEND as NOV16_POLICY_APPEND, NEW_GEAR as NOV16_GEAR, NEW_GUIDES as NOV16_GUIDES, NEW_STRAIN_PAGES as NOV16_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV16_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV16_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV16_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV16_REVIEWED_RELATED_PATHS
 from content_nov17 import EDITORIAL_POLICY_APPEND as NOV17_POLICY_APPEND, NEW_GEAR as NOV17_GEAR, NEW_GUIDES as NOV17_GUIDES, NEW_STRAIN_PAGES as NOV17_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV17_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV17_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV17_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV17_REVIEWED_RELATED_PATHS, STRAIN_OVERRIDES as NOV17_STRAIN_OVERRIDES
+from content_nov18 import EDITORIAL_POLICY_APPEND as NOV18_POLICY_APPEND, NEW_GEAR as NOV18_GEAR, NEW_GUIDES as NOV18_GUIDES, PUBLICATION_MANIFEST as NOV18_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV18_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV18_REVIEWED_RELATED_PATHS
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -225,6 +226,8 @@ STRAINS = STRAINS + NOV17_STRAIN_RECORDS
 STRAIN_PAGES = STRAIN_PAGES + NOV17_STRAIN_PAGES
 _nov17_strains = {item["path"]: item for item in NOV17_STRAIN_OVERRIDES}
 STRAIN_PAGES = [_nov17_strains.get(item["path"], item) for item in STRAIN_PAGES]
+GUIDE_PAGES = GUIDE_PAGES + NOV18_GUIDES
+OTHER_ARTICLES = OTHER_ARTICLES + NOV18_GEAR
 
 # November 6 connects both new resources from established, intent-matched
 # pages. These are editorial paths, not generic recent-post links, and the
@@ -1011,6 +1014,15 @@ for _standard in STANDARD_PAGES:
             '<p class="update-line">Policy reviewed November 17, 2026</p>',
         )
         _standard["body"] += NOV17_POLICY_APPEND
+
+for _standard in STANDARD_PAGES:
+    if _standard["path"] == "editorial-policy/index.html":
+        _standard["updated"] = "November 18, 2026"
+        _standard["body"] = _standard["body"].replace(
+            '<p class="update-line">Policy reviewed November 17, 2026</p>',
+            '<p class="update-line">Policy reviewed November 18, 2026</p>',
+        )
+        _standard["body"] += NOV18_POLICY_APPEND
 
 RECIPROCAL_RELATED = {
     "guides/full-spectrum-broad-spectrum-cbd-isolate/index.html": [
@@ -1818,6 +1830,9 @@ for _source, _links in NOV16_RECIPROCAL_LINKS.items():
 for _source, _links in NOV17_RECIPROCAL_LINKS.items():
     for _link in reversed(_links):
         RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
+for _source, _links in NOV18_RECIPROCAL_LINKS.items():
+    for _link in reversed(_links):
+        RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
 for _source in (
     "guides/read-a-label/index.html",
     "guides/cannabis-terms-label-lab-glossary/index.html",
@@ -1834,6 +1849,9 @@ for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in NOV17_REVIEWED_RELATED_PATHS:
         _item["updated"] = "November 17, 2026"
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
+    if _item["path"] in NOV18_REVIEWED_RELATED_PATHS:
+        _item["updated"] = "November 18, 2026"
+for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in RECIPROCAL_RELATED:
         _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
         _seen_related: set[str] = set()
@@ -1847,7 +1865,7 @@ for _item in GUIDE_PAGES + OTHER_ARTICLES:
             # water measurement, lighting, controls, post-harvest, and IPM;
             # preserve the whole established safety path.
             if _item["path"] == "guides/new-york-home-cannabis-grow-planner/index.html":
-                _related_limit = 8
+                _related_limit = 9
             elif _item["path"] == "guides/cannabis-cbd-medication-interactions/index.html":
                 _related_limit = 5
             elif _item["path"] == "legal/shop-legal/index.html":
@@ -2118,9 +2136,10 @@ def add_collection_itemlist(html: str, page: Page, name: str, card_class: str) -
 
 
 def render_guides_hub() -> tuple[Page,str]:
-    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 17, 2026",kind="website")
+    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 18, 2026",kind="website")
     p="../"
     cards="".join([
+      card("guides/cannabis-cut-down-quit-support-plan/","RESPONSIBLE USE + SUPPORT","Cannabis cut-down or quit support plan","Turn a change goal into an exact baseline, support map, withdrawal handoff, safety gates, review process, and verified treatment routes.","shield",p),
       card("guides/cannabis-lab-report-detection-quantitation-limits-guide/","LAB REPORTS + MEASUREMENT","Cannabis lab report limits: ND, LOD and LOQ","Translate detection, quantitation, reporting limits, qualifiers, units, uncertainty, pass/fail rules, and exact-sample boundaries without inventing zero.","search",p),
       card("guides/cannabis-seed-storage-record-guide/","HOME GROW + STORAGE","Cannabis seed storage and inventory","Build a lawful cool, dry, dark, stable system with source identity, access control, opening history, condition checks, and a planting decision record.","leaf",p),
       card("guides/cannabis-warning-symbol-package-icon-guide/","LABELS + OFFICIAL SOURCES","Cannabis warning symbols and package icons","Compare New York, California, Colorado, and Minnesota official systems, then keep every mark inside its jurisdiction, product category, rule version, and evidence boundary.","tag",p),
@@ -2333,6 +2352,7 @@ def render_strains_hub() -> tuple[Page,str]:
 
 def render_gear_hub() -> tuple[Page,str]:
     items = [
+        ("home-grow-plant-support-trellis-buying-guide/","compare preparation care","HOME GROW + PLANT SUPPORT","Choose a plant-support system","Compare stakes, ties, cages, mesh, frames, and clips by room access, load path, materials, cleaning, safe release, harvest exit, returns, and first-cycle cost.","leaf",None,None),
         ("cbd-oil-dropper-replacement-bottle-fit-guide/","compare preparation care","CBD OIL + REPLACEMENT HARDWARE","Replace a CBD oil dropper","Match the bottle neck finish, closure function, pipette geometry, materials, markings, access control, care, prescription boundary, and return path.","scale",None,None),
         ("cannabis-product-photo-documentation-kit-buying-guide/","compare preparation care","PACKAGE PHOTOS + RECORDS","Choose a product-photo documentation kit","Compare the no-buy setup, phone and stand geometry, lighting, glare, backdrop, scale reference, file privacy, return test, and delivered cost.","search",None,None),
         ("cannabis-drying-rack-buying-guide/","compare preparation care","HOME GROW + DRYING SUPPORT","Choose a drying rack system","Compare support format, usable area, room fit, spacing, air-path boundaries, materials, cleaning, access, return testing, and first-year cost.","leaf",None,None),
@@ -2377,7 +2397,7 @@ def render_gear_hub() -> tuple[Page,str]:
         ("cannabis-ashtray-ember-disposal-guide/","care","FIRE-SAFE DISPOSAL","Choose an ashtray","Compare stability, depth, materials, wind, placement, extinguishing, cleaning, waste, and smoke-exposure limits.","alert",None,None),
         ("cannabis-glass-pipe-water-pipe-buying-guide/","preparation care","GLASSWARE","Choose a pipe or water pipe","Check format, material claims, joint fit, stability, cleaning access, replacement parts, and smoke-exposure limits.","search",None,None),
     ]
-    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 17, 2026",kind="website")
+    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 18, 2026",kind="website")
     cards=[]
     for href, categories, kicker, title, description, icon_name, image_src, image_alt in items:
         art = f'<div><img src="{image_src}" alt="{image_alt}"></div>' if image_src else f'<div class="gear-card__icon-art" aria-hidden="true">{icon(icon_name)}</div>'
@@ -2721,6 +2741,7 @@ def build() -> None:
     publication_manifest = NOV15_PUBLICATION_MANIFEST
     publication_manifest = NOV16_PUBLICATION_MANIFEST
     publication_manifest = NOV17_PUBLICATION_MANIFEST
+    publication_manifest = NOV18_PUBLICATION_MANIFEST
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]
     strain_aliases = {

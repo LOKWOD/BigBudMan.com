@@ -1,74 +1,58 @@
 {
-  "publication_date": "2026-11-17",
-  "page_count": 3,
+  "publication_date": "2026-11-18",
+  "page_count": 2,
   "pages": [
     {
-      "title": "ArkRyder CBD Hemp Cultivar Field Note",
-      "url": "https://bigbudman.com/strains/arkryder-hemp/",
-      "department": "strains",
-      "portfolio_label": "Exploration",
-      "search_intent": "interpret ArkRyder multi-state field data, AOSCA variety-review scope, sample-size limits, seed-lot identity, compliance, and finished-product evidence without inventing a universal profile"
-    },
-    {
-      "title": "CBD Oil Dropper Replacement & Bottle-Fit Guide",
-      "url": "https://bigbudman.com/gear/cbd-oil-dropper-replacement-bottle-fit-guide/",
-      "department": "gear",
-      "portfolio_label": "Authority-expansion",
-      "search_intent": "replace a CBD oil dropper by matching bottle neck finish, closure function, child resistance, pipette geometry, materials, markings, care, and prescription boundaries"
-    },
-    {
-      "title": "Cannabis Potency Units: %, mg/g, mg/mL & Servings",
-      "url": "https://bigbudman.com/guides/cannabis-potency-units-percent-mg-g-ml-serving-guide/",
+      "title": "Cannabis Cut-Down or Quit Support Plan",
+      "url": "https://bigbudman.com/guides/cannabis-cut-down-quit-support-plan/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "translate and compare cannabis potency units without mixing analytes, mass and volume bases, serving counts, package totals, routes, or dose advice"
+      "search_intent": "turn a cannabis cut-down, pause, or quit intention into a bounded goal, exact baseline, support map, withdrawal handoff, safety gates, review process, and verified treatment routes"
+    },
+    {
+      "title": "Home-Grow Plant Support & Trellis Guide",
+      "url": "https://bigbudman.com/gear/home-grow-plant-support-trellis-buying-guide/",
+      "department": "gear",
+      "portfolio_label": "Exploration",
+      "search_intent": "compare lawful home-grow stakes, ties, cages, mesh, frames, and clips by room access, complete load path, materials, cleaning, safe release, harvest exit, returns, and first-cycle cost"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured. The high-intent dropper-replacement guide defines exact bottle/closure fit, markings, materials, access control, care, a dry acceptance test, return path, and valid no-purchase outcomes without naming a merchant, live price, rating, discount, stock claim, product image, or invented testing. The potency guide retains its product-neutral path from compatible units to label, lot-report, arithmetic, and price-comparison checks."
+    "reason": "No approved affiliate program or tracking ID is configured. The conversion improvement is a product-neutral plant-support system that moves a purchase-ready reader through the real job, room and access map, support-type tradeoffs, complete load path, three-candidate comparison, total first-cycle cost, dry acceptance test, returns, and a valid no-purchase exit. No merchant, product, live price, rating, discount, availability, fabricated test, product image, or paid conclusion was added."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three new pages are deliberately image-free: ArkRyder uses an IMAGE WITHHELD panel because no exact licensed cultivar image was selected, and the gear and unit guides use text, tables, and interface assets rather than generic or mismatched product art. The materially updated Blue Dream page retains one existing representative flower placement with explicit alt text and an on-page statement that it is not a verified cultivar or batch image; that retained placement was visually rechecked. No affiliate or product image was added or changed."
+    "note": "Both new pages deliberately use text, tables, checklists, and existing interface assets rather than stock, generated, patient, treatment, plant, merchant, or product imagery. No existing image was changed, and no ambiguous exact-product visual or licensing claim was introduced."
   },
   "search_console": {
     "report_date": "2026-11-11",
-    "decision": "The October 12\u2013November 8 report is six days old and valid: 815 impressions, three clicks, about 0.4% CTR, and average position 24.1. Blue Dream had 33 impressions, zero clicks, and average position about 47.6\u2014the strongest non-legal page-volume signal\u2014so the existing URL received a material evidence, opening, and internal-path expansion without a title rewrite or a cannibalizing new Blue Dream URL. None of the three genuinely new pages is labeled Data-led because the remaining two-impression 510-versus-disposable query, Delaware's two impressions, and one-impression rows were too weak, already served, or irrelevant. Legacy sitemap submission errors remain an owner-side Search Console cleanup item; the canonical sitemap and static legacy recovery endpoint were preserved and the new pages strengthen hub and reciprocal crawl paths."
+    "decision": "The October 12\u2013November 8 report is seven days old and valid: 815 impressions, three clicks, about 0.4% CTR, and average position 24.1. The only meaningful non-legal volume signal\u2014Blue Dream, 33 impressions and zero clicks\u2014was already materially reinforced on November 17, so repeating that cluster would violate the diversity rule. The unused 510-versus-disposable query had only two impressions at position 12; Delaware had two impressions and one click; remaining rows were single impressions or irrelevant. Those signals were deliberately ignored as too weak, already served, or duplicative. No item in this batch is labeled Data-led; the report informed the decision to preserve breadth instead of manufacturing another thin query variation."
   },
   "authority": {
-    "action": "Published a citation-ready cannabis potency-unit translator grounded in current New York OCM, California DCC, and NIST sources, with explicit formulas, invalid-conversion gates, a six-field record, and reciprocal links from established label, CoA, lab-limit, edible-math, and price-comparison pages. Added an ArkRyder evidence matrix grounded in UW\u2013Madison Extension, the Midwestern Hemp Database, AOSCA, and USDA, plus a product-neutral CBD dropper fit system grounded in FDA and glass-packaging standards. The Blue Dream update remains a focused Search Console reinforcement, while a source-review chronology release gate and public policy statement strengthen trust. Two qualified public or university opportunities are logged; no outreach was sent."
+    "action": "Published a citation-ready cut-down or quit support planner grounded in current CDC, SAMHSA, and VA sources, with an observable-goal map, seven-field baseline, warning-signal evidence table, support sequence, withdrawal handoff, hard safety gates, and treatment routes. Reciprocal links connect it to the established withdrawal, clinician-conversation, driving-safety, and mental-health cluster. Added a public external-source transport and behavior-change boundary to the editorial policy and release audit. No outreach was sent and no speculative outreach target was logged."
   },
   "freshness_surfaces": {
-    "https://bigbudman.com/strains/": "2026-11-17",
-    "https://bigbudman.com/strains/arkryder-hemp/": "2026-11-17",
-    "https://bigbudman.com/strains/blue-dream/": "2026-11-17",
-    "https://bigbudman.com/guides/": "2026-11-17",
-    "https://bigbudman.com/guides/cannabis-potency-units-percent-mg-g-ml-serving-guide/": "2026-11-17",
-    "https://bigbudman.com/guides/read-a-label/": "2026-11-17",
-    "https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/": "2026-11-17",
-    "https://bigbudman.com/guides/cannabis-edible-label-math-checker/": "2026-11-17",
-    "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/": "2026-11-17",
-    "https://bigbudman.com/guides/cannabis-lab-report-detection-quantitation-limits-guide/": "2026-11-17",
-    "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/": "2026-11-17",
-    "https://bigbudman.com/guides/indica-sativa-hybrid-label-evidence-guide/": "2026-11-17",
-    "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/": "2026-11-17",
-    "https://bigbudman.com/gear/": "2026-11-17",
-    "https://bigbudman.com/gear/cbd-oil-dropper-replacement-bottle-fit-guide/": "2026-11-17",
-    "https://bigbudman.com/gear/cannabis-liquid-measuring-tool-buying-guide/": "2026-11-17",
-    "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/": "2026-11-17",
-    "https://bigbudman.com/guides/cbd-oil-tincture-label-buying-guide/": "2026-11-17",
-    "https://bigbudman.com/editorial-policy/": "2026-11-17",
-    "https://bigbudman.com/updates/": "2026-11-17",
-    "https://bigbudman.com/site-index/": "2026-11-17"
+    "https://bigbudman.com/guides/": "2026-11-18",
+    "https://bigbudman.com/guides/cannabis-cut-down-quit-support-plan/": "2026-11-18",
+    "https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/": "2026-11-18",
+    "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/": "2026-11-18",
+    "https://bigbudman.com/guides/cannabis-driving-impairment-sober-timer/": "2026-11-18",
+    "https://bigbudman.com/gear/": "2026-11-18",
+    "https://bigbudman.com/gear/home-grow-plant-support-trellis-buying-guide/": "2026-11-18",
+    "https://bigbudman.com/gear/home-grow-watering-tools-buying-guide/": "2026-11-18",
+    "https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/": "2026-11-18",
+    "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/": "2026-11-18",
+    "https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/": "2026-11-18",
+    "https://bigbudman.com/editorial-policy/": "2026-11-18",
+    "https://bigbudman.com/updates/": "2026-11-18",
+    "https://bigbudman.com/site-index/": "2026-11-18"
   },
   "surfaces": [
-    "ArkRyder public-record map, time-point and sample-size matrix, field-to-product transfer test, AOSCA scope boundary, consumer evidence gate, and image-withheld policy",
-    "CBD oil dropper two-lane product screen, failure map, bottle/closure/pipette fit matrix, markings boundary, prescription hard stop, no-product acceptance test, care plan, and purchase worksheet",
-    "potency unit map, mass and volume formulas, serving/package reconciliation, total-cannabinoid boundary, comparison screen, worksheet, and product-neutral shopping path",
-    "Blue Dream name-boundary matrix, four-study sample map, five-format comparison, package-to-lot record, checkout gates, and reciprocal strain terminology paths as supporting Data-led authority work rather than a new URL",
-    "source-review chronology publication audit and public policy contract",
-    "guide, gear, and strain hubs; homepage daily module; publication updates; complete site index; Atom feed; search index; canonical and legacy XML sitemap surfaces; robots declaration; structured metadata; and checksum-verified source archive"
+    "cut-down or quit observable-goal map, seven-day baseline, warning-signal evidence table, support sequence, withdrawal handoff, safety gates, review process, and current federal help routes",
+    "plant-support job map, six-system comparison, room and access record, complete load path, three-candidate worksheet, first-cycle cost, dry acceptance test, and hard stop rules",
+    "external-source HTTPS, opener-isolation, new-context referrer, and unapproved-affiliate publication gate plus public editorial-policy contract",
+    "guide and gear hubs; homepage daily module; reciprocal responsible-use and lawful-grow cluster links; publication updates; complete site index; Atom feed; search index; canonical and legacy XML sitemap surfaces; robots declaration; structured metadata; and checksum-verified source archive"
   ]
 }

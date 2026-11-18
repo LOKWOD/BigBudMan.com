@@ -4,9 +4,81 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-11-17T00:00:00Z</updated>
+  <updated>2026-11-18T00:00:00Z</updated>
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>New York Home Cannabis Grow Planner</title>
+    <id>https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/</id>
+    <link href="https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/"/>
+    <updated>2026-11-18T00:00:00Z</updated>
+    <published>2026-09-21T00:00:00Z</published>
+    <summary>Plan a New York home cannabis grow around plant limits, residence rules, access, electrical load, moisture, records, storage, and lawful starter sources.</summary>
+  </entry>
+  <entry>
+    <title>How to Talk to Your Doctor About Cannabis</title>
+    <id>https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/</id>
+    <link href="https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/"/>
+    <updated>2026-11-18T00:00:00Z</updated>
+    <published>2026-10-27T00:00:00Z</published>
+    <summary>Prepare a useful cannabis record for a doctor or pharmacist: exact product, route, timing, medicines, symptoms, questions, and follow-up plan.</summary>
+  </entry>
+  <entry>
+    <title>Home-Grow Watering Tools Buying Guide</title>
+    <id>https://bigbudman.com/gear/home-grow-watering-tools-buying-guide/</id>
+    <link href="https://bigbudman.com/gear/home-grow-watering-tools-buying-guide/"/>
+    <updated>2026-11-18T00:00:00Z</updated>
+    <published>2026-11-09T00:00:00Z</published>
+    <summary>Compare lawful home-grow watering cans, wands, reservoirs, and pumps by the task, measured delivery, materials, spills, power, cleaning, parts, and cost.</summary>
+  </entry>
+  <entry>
+    <title>Home-Grow Ventilation Fan Buying Guide</title>
+    <id>https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/</id>
+    <link href="https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/"/>
+    <updated>2026-11-18T00:00:00Z</updated>
+    <published>2026-11-07T00:00:00Z</published>
+    <summary>Compare a home-grow fan by air job, airflow evidence, pressure, controls, environment, cleaning, noise, electrical safety, recalls, and cost.</summary>
+  </entry>
+  <entry>
+    <title>Home-Grow Plant Support &amp; Trellis Guide</title>
+    <id>https://bigbudman.com/gear/home-grow-plant-support-trellis-buying-guide/</id>
+    <link href="https://bigbudman.com/gear/home-grow-plant-support-trellis-buying-guide/"/>
+    <updated>2026-11-18T00:00:00Z</updated>
+    <published>2026-11-18T00:00:00Z</published>
+    <summary>Compare lawful home-grow plant supports by access, frame fit, mesh, ties, load path, cleaning, harvest exit, injury risks, returns, and total cost.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis and Driving: No Sober Timer</title>
+    <id>https://bigbudman.com/guides/cannabis-driving-impairment-sober-timer/</id>
+    <link href="https://bigbudman.com/guides/cannabis-driving-impairment-sober-timer/"/>
+    <updated>2026-11-18T00:00:00Z</updated>
+    <published>2026-09-11T00:00:00Z</published>
+    <summary>Why no universal cannabis sober timer proves driving fitness, what THC tests can and cannot show, and how to make a reliable transportation plan.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Tolerance &amp; Withdrawal Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/</id>
+    <link href="https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/"/>
+    <updated>2026-11-18T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Separate cannabis tolerance, dependence, withdrawal, and use disorder; build a seven-day pattern record and find qualified support without self-diagnosis.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Gear Comparison &amp; Cost Calculator</title>
+    <id>https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/</id>
+    <link href="https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/"/>
+    <updated>2026-11-18T00:00:00Z</updated>
+    <published>2026-09-20T00:00:00Z</published>
+    <summary>Compare three cannabis accessories by exact model, first-year cost, ownership cost, cost per use, fit, materials, care, support, warranty, and recalls.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Cut-Down or Quit Support Plan</title>
+    <id>https://bigbudman.com/guides/cannabis-cut-down-quit-support-plan/</id>
+    <link href="https://bigbudman.com/guides/cannabis-cut-down-quit-support-plan/"/>
+    <updated>2026-11-18T00:00:00Z</updated>
+    <published>2026-11-18T00:00:00Z</published>
+    <summary>Build a cannabis cut-down or quit support record: goals, triggers, product inventory, withdrawal planning, safety gates, clinical help, and treatment routes.</summary>
+  </entry>
   <entry>
     <title>Indica vs Sativa Labels: Evidence Guide</title>
     <id>https://bigbudman.com/guides/indica-sativa-hybrid-label-evidence-guide/</id>
@@ -62,14 +134,6 @@
     <updated>2026-11-17T00:00:00Z</updated>
     <published>2026-11-14T00:00:00Z</published>
     <summary>Read ND, LOD, LOQ, reporting limits, estimated results, units, pass/fail decisions, and measurement uncertainty on a cannabis certificate of analysis.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Gear Comparison &amp; Cost Calculator</title>
-    <id>https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/</id>
-    <link href="https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/"/>
-    <updated>2026-11-17T00:00:00Z</updated>
-    <published>2026-09-20T00:00:00Z</published>
-    <summary>Compare three cannabis accessories by exact model, first-year cost, ownership cost, cost per use, fit, materials, care, support, warranty, and recalls.</summary>
   </entry>
   <entry>
     <title>Cannabis Edible Label Math Checker</title>
@@ -182,69 +246,5 @@
     <updated>2026-11-16T00:00:00Z</updated>
     <published>2026-10-15T00:00:00Z</published>
     <summary>Separate a CBG-dominant chemotype from a cultivar name, package claim, CBG/CBGA lot result, effect story, medical claim, and current legal category.</summary>
-  </entry>
-  <entry>
-    <title>BaOx Hemp Cultivar Field Note</title>
-    <id>https://bigbudman.com/strains/baox-hemp/</id>
-    <link href="https://bigbudman.com/strains/baox-hemp/"/>
-    <updated>2026-11-16T00:00:00Z</updated>
-    <published>2026-11-16T00:00:00Z</published>
-    <summary>BaOx hemp field note: USDA accession, BoAx spelling history, CBD-floral research, field variability, compliance, seed, and finished-lot boundaries.</summary>
-  </entry>
-  <entry>
-    <title>Verify a Legal New York Dispensary and Product</title>
-    <id>https://bigbudman.com/legal/shop-legal/</id>
-    <link href="https://bigbudman.com/legal/shop-legal/"/>
-    <updated>2026-11-15T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Verify a New York cannabis dispensary, match the exact business and product lot, check the certificate and recall status, and preserve a useful receipt.</summary>
-  </entry>
-  <entry>
-    <title>Panakeia Beta (HURV19PAN) Strain Guide</title>
-    <id>https://bigbudman.com/strains/panakeia-beta-hurv19pan/</id>
-    <link href="https://bigbudman.com/strains/panakeia-beta-hurv19pan/"/>
-    <updated>2026-11-15T00:00:00Z</updated>
-    <published>2026-10-24T00:00:00Z</published>
-    <summary>Read the official HURV19PAN (Panakeia Beta) CBG hemp variety record, then verify the seed, crop, package, cannabinoid report, contaminants, and current law.</summary>
-  </entry>
-  <entry>
-    <title>NY Cannabis Delivery Verification</title>
-    <id>https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/</id>
-    <link href="https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/"/>
-    <updated>2026-11-15T00:00:00Z</updated>
-    <published>2026-09-29T00:00:00Z</published>
-    <summary>Verify a New York cannabis delivery order from license listing to website, payment, ID check, handoff, receipt, product lot, and complaint route.</summary>
-  </entry>
-  <entry>
-    <title>Marijuana Rescheduling Status (Nov. 2026)</title>
-    <id>https://bigbudman.com/legal/marijuana-rescheduling-status-november-2026/</id>
-    <link href="https://bigbudman.com/legal/marijuana-rescheduling-status-november-2026/"/>
-    <updated>2026-11-15T00:00:00Z</updated>
-    <published>2026-11-15T00:00:00Z</published>
-    <summary>Dated federal marijuana rescheduling guide: the narrow April 2026 Schedule III rule, broader pending process, and what did not change.</summary>
-  </entry>
-  <entry>
-    <title>Henola Hemp Cultivar Field Note</title>
-    <id>https://bigbudman.com/strains/henola-hemp/</id>
-    <link href="https://bigbudman.com/strains/henola-hemp/"/>
-    <updated>2026-11-15T00:00:00Z</updated>
-    <published>2026-11-15T00:00:00Z</published>
-    <summary>Henola hemp field note: USDA cultivar identity, grain and oilseed purpose, trial evidence, seed provenance, testing, and legal boundaries.</summary>
-  </entry>
-  <entry>
-    <title>Dry-Herb Vaporizer Dosing Capsule Guide</title>
-    <id>https://bigbudman.com/gear/dry-herb-vaporizer-dosing-capsule-guide/</id>
-    <link href="https://bigbudman.com/gear/dry-herb-vaporizer-dosing-capsule-guide/"/>
-    <updated>2026-11-15T00:00:00Z</updated>
-    <published>2026-10-15T00:00:00Z</published>
-    <summary>Compare dry-herb vaporizer dosing capsules by exact-device fit, documented care, return testing, recurring burden, and complete system cost.</summary>
-  </entry>
-  <entry>
-    <title>Dry-Herb Vaporizer Buying &amp; Cost Guide</title>
-    <id>https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/</id>
-    <link href="https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/"/>
-    <updated>2026-11-15T00:00:00Z</updated>
-    <published>2026-09-11T00:00:00Z</published>
-    <summary>Compare dry-herb vaporizers by exact-model recalls, airpath, controls, battery architecture, cleaning, support, warranty, and total ownership cost.</summary>
   </entry>
 </feed>

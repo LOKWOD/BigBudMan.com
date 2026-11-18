@@ -26,6 +26,7 @@ class Inspector(HTMLParser):
         self.canonical = ""
         self.links: list[str] = []
         self.anchors: list[str] = []
+        self.anchor_attrs: list[dict[str, str | None]] = []
         self.ids: list[str] = []
         self.images: list[tuple[str, str | None]] = []
         self.image_attrs: list[dict[str, str | None]] = []
@@ -48,7 +49,9 @@ class Inspector(HTMLParser):
             self.images.append((a.get("src", ""), a.get("alt")))
             self.image_attrs.append(a)
         if tag == "form": self.forms.append(a.get("action", ""))
-        if tag == "a" and a.get("href"): self.anchors.append(a["href"])
+        if tag == "a" and a.get("href"):
+            self.anchors.append(a["href"])
+            self.anchor_attrs.append(a)
         if a.get("id"): self.ids.append(a["id"])
     def handle_endtag(self, tag: str) -> None:
         if tag == "title": self._in_title = False
@@ -472,6 +475,18 @@ def main() -> int:
                 source_rel = rel.as_posix()
                 if source_rel not in {"site-index/index.html", "updates/index.html"} and source_rel != target_rel:
                     incoming_sources.setdefault(target_url, set()).add(source_rel)
+        for anchor in parser.anchor_attrs:
+            target = anchor.get("href", "") or ""
+            parts = urlsplit(target)
+            if parts.scheme not in {"http", "https"} or parts.netloc.lower() == "bigbudman.com":
+                continue
+            if parts.scheme != "https":
+                failures.append(f"{rel}: external source link does not use HTTPS: {target}")
+            relationships = set((anchor.get("rel") or "").lower().split())
+            if "noopener" not in relationships:
+                failures.append(f"{rel}: external source link is missing rel=noopener: {target}")
+            if (anchor.get("target") or "").lower() == "_blank" and "noreferrer" not in relationships:
+                failures.append(f"{rel}: target=_blank external link is missing rel=noreferrer: {target}")
         for action in parser.forms:
             if action and not action.startswith("https://formsubmit.co/"): failures.append(f"{rel}: unexpected form action {action}")
         if rel.as_posix() not in {"404.html", "thank-you/index.html"}:
@@ -869,7 +884,7 @@ def main() -> int:
             "index.html": ("guides/cannabis-next-day-impairment-evidence-guide/", "guides/cbn-products-label-evidence-guide/", "legal/cannabis-federal-property-rules-guide/", "legal/marijuana-rescheduling-status-november-2026/", "guides/cannabis-social-hosting-guest-safety-plan/", "guides/terpenes/", "gear/cannabis-loupe-pocket-microscope-guide/", "guides/cannabis-cbd-chronic-pain-evidence-guide/", "guides/storage/", "gear/cannabis-accessibility-tools-buying-guide/", "guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/", "strains/baox-hemp/", "gear/cannabis-product-photo-documentation-kit-buying-guide/"),
             "strains/index.html": ("stem-cell-cbg/", "panakeia-beta-hurv19pan/", "cherry-blonde-cbd/", "abacus-cbd-hemp/", "hash-plant/", "henola-hemp/", "baox-hemp/", "arkryder-hemp/", "126 STRAIN FIELD NOTES", "NO VERIFIED CULTIVAR IMAGE", 'data-cannabinoid-filter="industrial"'),
             "guides/index.html": ("cannabis-lab-report-detection-quantitation-limits-guide/", "cannabis-memory-attention-cognition-evidence-guide/", "indica-sativa-hybrid-label-evidence-guide/", "cannabis-fertility-preconception-evidence-guide/", "cannabis-product-dates-condition-decision-guide/", "cannabis-shared-kitchen-edible-safety-plan/", "new-york-cannabis-seed-clone-buying-guide/", "cannabis-home-fire-safety-plan/", "cannabis-nicotine-tobacco-co-use-guide/", "cannabis-allergy-symptom-exposure-guide/", "cannabis-next-day-impairment-evidence-guide/", "cannabis-cbd-chronic-pain-evidence-guide/", "cannabis-cbd-cancer-claims-evidence-guide/", "cannabis-menu-package-receipt-match-checklist/", "cannabis-exercise-workout-heat-safety/", "new-york-home-cannabis-pest-mold-ipm-guide/", "new-york-home-cannabis-harvest-drying-curing-log/", "cannabis-cbd-epilepsy-seizure-care-guide/", "cannabis-glaucoma-eye-pressure-vision-guide/", "cbd-patches-transdermal-label-evidence-guide/", "cannabis-package-seal-tamper-evidence-checklist/", "cannabis-dry-mouth-dental-oral-health-guide/", "cannabis-edible-label-math-checker/", "cbg-products-label-evidence-guide/", "cannabis-contaminant-test-results-guide/", "cannabis-child-resistant-packaging-home-storage-guide/", "cannabis-official-source-directory/", "cannabis-gummies-drinks-oils-capsules-comparison/", "cannabis-claim-fact-check-worksheet/", "Store cannabis safely by product type", "Thirty useful paths", "Comparing packaged cannabis flower", 'data-guide-sort', 'data-updated="2026-11-05"', 'data-guide-filter="health"', 'data-guide-filter="workplace"'),
-            "gear/index.html": ("cbd-oil-dropper-replacement-bottle-fit-guide/", "cannabis-product-photo-documentation-kit-buying-guide/", "cannabis-drying-rack-buying-guide/", "cannabis-liquid-measuring-tool-buying-guide/", "cannabis-label-magnifier-task-light-buying-guide/", "cannabis-harvest-trimming-scissors-buying-guide/", "home-grow-timer-controller-buying-guide/", "cannabis-rolling-machine-buying-guide/", "home-grow-ph-ec-meter-buying-guide/", "home-grow-temperature-humidity-monitor-buying-guide/", "cannabis-home-testing-kit-buying-guide/", "used-cannabis-accessory-buying-safety-guide/", "cannabis-accessibility-tools-buying-guide/", "smell-proof-storage/", "cannabis-rolling-tray-buying-guide/", "cannabis-rolling-paper-cone-guide/", "digital-scale-buying-calibration-guide/", "cannabis-tool-cleaning-kit/", "indoor-cannabis-grow-light-buying-cost-planner/", "cannabis-gear-comparison-worksheet/", "cannabis-accessory-return-warranty-recall-guide/", "dry-herb-vaporizer-dosing-capsule-guide/", "Choose a home testing system", "All 43", "2026-11-17"),
+            "gear/index.html": ("home-grow-plant-support-trellis-buying-guide/", "cbd-oil-dropper-replacement-bottle-fit-guide/", "cannabis-product-photo-documentation-kit-buying-guide/", "cannabis-drying-rack-buying-guide/", "cannabis-liquid-measuring-tool-buying-guide/", "cannabis-label-magnifier-task-light-buying-guide/", "cannabis-harvest-trimming-scissors-buying-guide/", "home-grow-timer-controller-buying-guide/", "cannabis-rolling-machine-buying-guide/", "home-grow-ph-ec-meter-buying-guide/", "home-grow-temperature-humidity-monitor-buying-guide/", "cannabis-home-testing-kit-buying-guide/", "used-cannabis-accessory-buying-safety-guide/", "cannabis-accessibility-tools-buying-guide/", "smell-proof-storage/", "cannabis-rolling-tray-buying-guide/", "cannabis-rolling-paper-cone-guide/", "digital-scale-buying-calibration-guide/", "cannabis-tool-cleaning-kit/", "indoor-cannabis-grow-light-buying-cost-planner/", "cannabis-gear-comparison-worksheet/", "cannabis-accessory-return-warranty-recall-guide/", "dry-herb-vaporizer-dosing-capsule-guide/", "Choose a home testing system", "All 44", "2026-11-18"),
             "guides/read-a-label/index.html": ("Build a date chain", "Preserve a label-to-lot evidence card", "cannabis.ny.gov/part-128-guidance", "cannabis-certificate-of-analysis-coa-guide/", "cannabis-product-recall-batch-checker/"),
             "responsible-use/index.html": ("guides/cannabis-exercise-workout-heat-safety/",),
             "guides/cannabis-exercise-workout-heat-safety/index.html": ("cdc.gov/cannabis/health-effects/brain-health", "cdc.gov/heat-health/risk-factors/heat-and-athletes", "nhtsa.gov/risky-driving/drug-impaired-driving", "2026list_en_final_clean"),
@@ -1248,7 +1263,7 @@ def main() -> int:
             failures.append("Editorial policy or Atom feed is missing the feed authorship standard")
         if "Age-gate focus isolation" not in policy:
             failures.append("Editorial policy is missing the age-gate focus-isolation standard")
-        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "Mobile-navigation state integrity" not in policy or "Site-search dialog naming integrity" not in policy or "Guide-finder progression integrity" not in policy or "Fresh static discovery path" not in policy or "Nested 404 route integrity" not in policy or "Collection-control outcome relationship" not in policy or "QR destination and product-evidence boundary" not in policy or "Plant-name and chemical-class boundary" not in policy or "Source-review chronology integrity" not in policy or "Named-product research boundary" not in policy or "November 17, 2026" not in policy:
+        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "Mobile-navigation state integrity" not in policy or "Site-search dialog naming integrity" not in policy or "Guide-finder progression integrity" not in policy or "Fresh static discovery path" not in policy or "Nested 404 route integrity" not in policy or "Collection-control outcome relationship" not in policy or "QR destination and product-evidence boundary" not in policy or "Plant-name and chemical-class boundary" not in policy or "Source-review chronology integrity" not in policy or "Named-product research boundary" not in policy or "External-source transport and relationship integrity" not in policy or "Behavior-change content boundary" not in policy or "November 18, 2026" not in policy:
             failures.append("Editorial policy is missing the current link and collection-date integrity standards")
         sample_search = (ROOT / "guides/cannabis-moving-day-relocation-checklist/index.html").read_text(encoding="utf-8")
         for marker in ('aria-labelledby="site-search-title"', 'aria-describedby="site-search-help"', 'id="site-search-title"', 'id="site-search-help"'):
