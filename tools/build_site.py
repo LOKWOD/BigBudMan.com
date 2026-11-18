@@ -75,7 +75,7 @@ from content_nov14_batch import NEW_GEAR as NOV14_BATCH_GEAR, NEW_GUIDES as NOV1
 from content_nov15 import EDITORIAL_POLICY_APPEND as NOV15_POLICY_APPEND, GEAR_OVERRIDES as NOV15_GEAR_OVERRIDES, NEW_GUIDES as NOV15_GUIDES, NEW_STRAIN_PAGES as NOV15_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV15_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV15_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV15_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV15_REVIEWED_RELATED_PATHS
 from content_nov16 import EDITORIAL_POLICY_APPEND as NOV16_POLICY_APPEND, NEW_GEAR as NOV16_GEAR, NEW_GUIDES as NOV16_GUIDES, NEW_STRAIN_PAGES as NOV16_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV16_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV16_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV16_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV16_REVIEWED_RELATED_PATHS
 from content_nov17 import EDITORIAL_POLICY_APPEND as NOV17_POLICY_APPEND, NEW_GEAR as NOV17_GEAR, NEW_GUIDES as NOV17_GUIDES, NEW_STRAIN_PAGES as NOV17_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV17_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV17_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV17_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV17_REVIEWED_RELATED_PATHS, STRAIN_OVERRIDES as NOV17_STRAIN_OVERRIDES
-from content_nov18 import EDITORIAL_POLICY_APPEND as NOV18_POLICY_APPEND, NEW_GEAR as NOV18_GEAR, NEW_GUIDES as NOV18_GUIDES, PUBLICATION_MANIFEST as NOV18_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV18_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV18_REVIEWED_RELATED_PATHS
+from content_nov18 import EDITORIAL_POLICY_APPEND as NOV18_POLICY_APPEND, NEW_GEAR as NOV18_GEAR, NEW_GUIDES as NOV18_GUIDES, NEW_STRAIN_PAGES as NOV18_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV18_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV18_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV18_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV18_REVIEWED_RELATED_PATHS
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -228,6 +228,8 @@ _nov17_strains = {item["path"]: item for item in NOV17_STRAIN_OVERRIDES}
 STRAIN_PAGES = [_nov17_strains.get(item["path"], item) for item in STRAIN_PAGES]
 GUIDE_PAGES = GUIDE_PAGES + NOV18_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV18_GEAR
+STRAINS = STRAINS + NOV18_STRAIN_RECORDS
+STRAIN_PAGES = STRAIN_PAGES + NOV18_STRAIN_PAGES
 
 # November 6 connects both new resources from established, intent-matched
 # pages. These are editorial paths, not generic recent-post links, and the
@@ -1975,7 +1977,7 @@ def render_home() -> tuple[Page, str]:
         path="index.html", title="Big Bud Man | Legal Cannabis, Without the Haze",
         description="Independent cannabis guides for adults 21+: strains, edibles, labels, gear, responsible use, and reviewed legal starting points for all 50 states.",
         category="Home", h1="Legal weed. Clear-headed guidance.",
-        dek="Independent cannabis education for adults 21+.", body="", updated="November 16, 2026", kind="website",
+        dek="Independent cannabis education for adults 21+.", body="", updated="November 18, 2026", kind="website",
     )
     main = f'''<main id="main-content">
 <section class="hero"><div class="hero-noise"></div><div class="container hero-grid">
@@ -2087,7 +2089,7 @@ def render_home() -> tuple[Page, str]:
     )
     main = main.replace(
         '<div class="story-stack">',
-        '<div class="story-stack"><a href="guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/"><p class="kicker">IDENTITY + TERMINOLOGY</p><h3>Separate strain, cultivar, accession, chemotype, chemovar, batch, and lot</h3>'+icon('arrow')+'</a><a href="strains/baox-hemp/"><p class="kicker">CBD HEMP FIELD NOTE</p><h3>Follow BaOx from spelling history to USDA accession and finished-lot boundaries</h3>'+icon('arrow')+'</a><a href="gear/cannabis-product-photo-documentation-kit-buying-guide/"><p class="kicker">PACKAGE PHOTOS + GEAR</p><h3>Build a clear, private, original-file record before buying a documentation kit</h3>'+icon('arrow')+'</a>',
+        '<div class="story-stack"><a href="strains/tjs-cbd-hemp/"><p class="kicker">CBD HEMP + RESEARCH MAP</p><h3>Follow TJ’s CBD across five different scientific questions without turning a study into a retail promise</h3>'+icon('arrow')+'</a><a href="guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/"><p class="kicker">IDENTITY + TERMINOLOGY</p><h3>Separate strain, cultivar, accession, chemotype, chemovar, batch, and lot</h3>'+icon('arrow')+'</a><a href="strains/baox-hemp/"><p class="kicker">CBD HEMP FIELD NOTE</p><h3>Follow BaOx from spelling history to USDA accession and finished-lot boundaries</h3>'+icon('arrow')+'</a><a href="gear/cannabis-product-photo-documentation-kit-buying-guide/"><p class="kicker">PACKAGE PHOTOS + GEAR</p><h3>Build a clear, private, original-file record before buying a documentation kit</h3>'+icon('arrow')+'</a>',
         1,
     )
     return page, layout(page, main)
@@ -2309,7 +2311,7 @@ def render_guides_hub() -> tuple[Page,str]:
 
 
 def render_strains_hub() -> tuple[Page,str]:
-    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} strain field notes across THC, CBD, CBDV, CBG, grain and fiber hemp, and mixed-ratio names, with lineage, batch, and evidence caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the question—not end it.","",updated="November 17, 2026",kind="website")
+    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} strain field notes across THC, CBD, CBDV, CBG, grain and fiber hemp, and mixed-ratio names, with lineage, batch, and evidence caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the question—not end it.","",updated="November 18, 2026",kind="website")
     items=[]
     for strain in sorted(STRAINS, key=lambda item: item["name"].lower()):
       aliases = " ".join(strain.get("aliases", []))

@@ -1,6 +1,21 @@
 # Big Bud Man authority opportunities
 
-Last reviewed: November 17, 2026
+Last reviewed: November 18, 2026
+
+## November 18, 2026 authority action
+
+- **Authority action:** Completed the three-page batch with a citation-ready TJ's CBD research map grounded in Cornell-led peer-reviewed field, stress, canopy, nutrient, microbiome, and powdery-mildew genetics work. The map keeps the contributed clonal material, propagation route, study unit, site, treatment, sample, method, outcome, and finished-product boundary attached instead of blending six research questions into a commercial strain profile. The batch's cut-down or quit planner remains a second substantial authority asset with an observable goal, baseline, warning-signal table, support sequence, withdrawal handoff, hard safety gates, review process, and verified CDC, SAMHSA, and VA help routes.
+- **Cluster strengthened:** Cultivar and chemotype terminology ↔ CBD-hemp package evidence ↔ exact-lot CoA interpretation ↔ named CBD-hemp field notes. Established identity, CBD-flower, and CoA pages now link back to the research map; the new page links onward to the package, report, and BaOx accession paths. The responsible-use cluster separately connects change planning to withdrawal, clinician conversation, driving safety, and mental-health warning signs.
+- **Trust action:** TJ's CBD explicitly withholds a cultivar photograph because no exact licensed research-material image was verified. It distinguishes a study's Chemotype III classification from a permanent percentage, dose, effect, legal conclusion, or product identity and names which claims the reviewed papers do not support. The public editorial-policy update and release audit also enforce HTTPS and opener isolation for external source links and reject affiliate-looking destinations while no approved affiliate program is configured.
+- **Conversion action:** The plant-support guide supplies a product-neutral job map, room and access record, six-system comparison, complete load path, three-candidate worksheet, first-cycle cost, dry acceptance test, return route, and valid no-purchase exit. No merchant, product, live price, stock, rating, discount, fabricated test, product image, or commission-weighted conclusion was added.
+
+### Qualified opportunity logged
+
+| Exact target | Contact route | Exact asset match | Honest pitch angle |
+|---|---|---|---|
+| Cornell Hemp Research Team | Team and project-lead route: <https://hemp.cals.cornell.edu/about/cornell-hemp-team/> | [TJ's CBD Hemp Cultivar Research Map](https://bigbudman.com/strains/tjs-cbd-hemp/) | A consumer-facing primary-source map that preserves the distinct material, propagation, field, canopy, stress, nutrient, microbiome, pathology, and finished-product boundaries across Cornell-led TJ's CBD research. Invite factual correction or educational-resource consideration; do not imply Cornell review, cultivar authentication, seed or clone availability, crop recommendation, compliance, medical use, product identity, or endorsement. |
+
+No outreach was sent.
 
 ## November 17, 2026 authority action
 

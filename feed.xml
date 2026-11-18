@@ -8,6 +8,14 @@
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
   <entry>
+    <title>TJ&#x27;s CBD Hemp Cultivar Research Map</title>
+    <id>https://bigbudman.com/strains/tjs-cbd-hemp/</id>
+    <link href="https://bigbudman.com/strains/tjs-cbd-hemp/"/>
+    <updated>2026-11-18T00:00:00Z</updated>
+    <published>2026-11-18T00:00:00Z</published>
+    <summary>TJ&#x27;s CBD hemp field note: trace clonal material across Cornell research, keep each study in scope, and verify any finished product by exact lot.</summary>
+  </entry>
+  <entry>
     <title>New York Home Cannabis Grow Planner</title>
     <id>https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/</id>
     <link href="https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/"/>
@@ -64,6 +72,14 @@
     <summary>Separate cannabis tolerance, dependence, withdrawal, and use disorder; build a seven-day pattern record and find qualified support without self-diagnosis.</summary>
   </entry>
   <entry>
+    <title>Cannabis Strain, Cultivar, Chemotype &amp; Lot</title>
+    <id>https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/"/>
+    <updated>2026-11-18T00:00:00Z</updated>
+    <published>2026-11-16T00:00:00Z</published>
+    <summary>Translate cannabis strain, cultivar, variety, accession, chemotype, chemovar, batch, lot, and product into the evidence each term can and cannot carry.</summary>
+  </entry>
+  <entry>
     <title>Cannabis Gear Comparison &amp; Cost Calculator</title>
     <id>https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/</id>
     <link href="https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/"/>
@@ -80,20 +96,28 @@
     <summary>Build a cannabis cut-down or quit support record: goals, triggers, product inventory, withdrawal planning, safety gates, clinical help, and treatment routes.</summary>
   </entry>
   <entry>
+    <title>Cannabis Certificate of Analysis (CoA) Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/"/>
+    <updated>2026-11-18T00:00:00Z</updated>
+    <published>2026-09-19T00:00:00Z</published>
+    <summary>Match a cannabis package to its certificate of analysis and read potency, units, reporting limits, contaminant panels, status, and report dates.</summary>
+  </entry>
+  <entry>
+    <title>CBD Flower &amp; Hemp Flower Guide</title>
+    <id>https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/</id>
+    <link href="https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/"/>
+    <updated>2026-11-18T00:00:00Z</updated>
+    <published>2026-09-26T00:00:00Z</published>
+    <summary>Identify CBD and hemp flower using the package, lot, cannabinoid report, total-THC basis, seller, state rules, smoke risks, and claim limits—not appearance.</summary>
+  </entry>
+  <entry>
     <title>Indica vs Sativa Labels: Evidence Guide</title>
     <id>https://bigbudman.com/guides/indica-sativa-hybrid-label-evidence-guide/</id>
     <link href="https://bigbudman.com/guides/indica-sativa-hybrid-label-evidence-guide/"/>
     <updated>2026-11-17T00:00:00Z</updated>
     <published>2026-11-04T00:00:00Z</published>
     <summary>Learn what indica, sativa, and hybrid labels can and cannot predict, then compare the exact product, chemistry, route, lot, and decision in front of you.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Strain, Cultivar, Chemotype &amp; Lot</title>
-    <id>https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/"/>
-    <updated>2026-11-17T00:00:00Z</updated>
-    <published>2026-11-16T00:00:00Z</published>
-    <summary>Translate cannabis strain, cultivar, variety, accession, chemotype, chemovar, batch, lot, and product into the evidence each term can and cannot carry.</summary>
   </entry>
   <entry>
     <title>Cannabis Price &amp; Label Calculator</title>
@@ -144,14 +168,6 @@
     <summary>Cross-check THC and CBD per serving, per piece, package totals, and a selected number of pieces without turning arithmetic into dosing advice.</summary>
   </entry>
   <entry>
-    <title>Cannabis Certificate of Analysis (CoA) Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/"/>
-    <updated>2026-11-17T00:00:00Z</updated>
-    <published>2026-09-19T00:00:00Z</published>
-    <summary>Match a cannabis package to its certificate of analysis and read potency, units, reporting limits, contaminant panels, status, and report dates.</summary>
-  </entry>
-  <entry>
     <title>CBD Oil and Tincture Label Guide</title>
     <id>https://bigbudman.com/guides/cbd-oil-tincture-label-buying-guide/</id>
     <link href="https://bigbudman.com/guides/cbd-oil-tincture-label-buying-guide/"/>
@@ -166,14 +182,6 @@
     <updated>2026-11-17T00:00:00Z</updated>
     <published>2026-11-17T00:00:00Z</published>
     <summary>Replace a CBD oil dropper without guessing: match neck finish, closure, child resistance, pipette, materials, units, care, and prescription boundaries.</summary>
-  </entry>
-  <entry>
-    <title>CBD Flower &amp; Hemp Flower Guide</title>
-    <id>https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/</id>
-    <link href="https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/"/>
-    <updated>2026-11-17T00:00:00Z</updated>
-    <published>2026-09-26T00:00:00Z</published>
-    <summary>Identify CBD and hemp flower using the package, lot, cannabinoid report, total-THC basis, seller, state rules, smoke risks, and claim limits—not appearance.</summary>
   </entry>
   <entry>
     <title>Blue Dream Strain Guide</title>
@@ -238,13 +246,5 @@
     <updated>2026-11-16T00:00:00Z</updated>
     <published>2026-11-04T00:00:00Z</published>
     <summary>Compare a magnifier or task light for cannabis labels, lots, QR codes, controls, and package condition by working distance, field of view, glare, fit, and cost.</summary>
-  </entry>
-  <entry>
-    <title>CBG-Dominant Cannabis Guide</title>
-    <id>https://bigbudman.com/guides/cbg-dominant-cannabis-chemotype-guide/</id>
-    <link href="https://bigbudman.com/guides/cbg-dominant-cannabis-chemotype-guide/"/>
-    <updated>2026-11-16T00:00:00Z</updated>
-    <published>2026-10-15T00:00:00Z</published>
-    <summary>Separate a CBG-dominant chemotype from a cultivar name, package claim, CBG/CBGA lot result, effect story, medical claim, and current legal category.</summary>
   </entry>
 </feed>
