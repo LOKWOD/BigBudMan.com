@@ -76,7 +76,7 @@ from content_nov15 import EDITORIAL_POLICY_APPEND as NOV15_POLICY_APPEND, GEAR_O
 from content_nov16 import EDITORIAL_POLICY_APPEND as NOV16_POLICY_APPEND, NEW_GEAR as NOV16_GEAR, NEW_GUIDES as NOV16_GUIDES, NEW_STRAIN_PAGES as NOV16_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV16_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV16_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV16_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV16_REVIEWED_RELATED_PATHS
 from content_nov17 import EDITORIAL_POLICY_APPEND as NOV17_POLICY_APPEND, NEW_GEAR as NOV17_GEAR, NEW_GUIDES as NOV17_GUIDES, NEW_STRAIN_PAGES as NOV17_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV17_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV17_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV17_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV17_REVIEWED_RELATED_PATHS, STRAIN_OVERRIDES as NOV17_STRAIN_OVERRIDES
 from content_nov18 import EDITORIAL_POLICY_APPEND as NOV18_POLICY_APPEND, NEW_GEAR as NOV18_GEAR, NEW_GUIDES as NOV18_GUIDES, NEW_STRAIN_PAGES as NOV18_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV18_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV18_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV18_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV18_REVIEWED_RELATED_PATHS
-from content_nov19 import EDITORIAL_POLICY_APPEND as NOV19_POLICY_APPEND, NEW_GEAR as NOV19_GEAR, NEW_GUIDES as NOV19_GUIDES, PUBLICATION_MANIFEST as NOV19_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV19_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV19_REVIEWED_RELATED_PATHS
+from content_nov19 import EDITORIAL_POLICY_APPEND as NOV19_POLICY_APPEND, NEW_GEAR as NOV19_GEAR, NEW_GUIDES as NOV19_GUIDES, NEW_STRAIN_PAGES as NOV19_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV19_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV19_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV19_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV19_REVIEWED_RELATED_PATHS
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -233,6 +233,8 @@ STRAINS = STRAINS + NOV18_STRAIN_RECORDS
 STRAIN_PAGES = STRAIN_PAGES + NOV18_STRAIN_PAGES
 GUIDE_PAGES = GUIDE_PAGES + NOV19_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV19_GEAR
+STRAINS = STRAINS + NOV19_STRAIN_RECORDS
+STRAIN_PAGES = STRAIN_PAGES + NOV19_STRAIN_PAGES
 
 # November 6 connects both new resources from established, intent-matched
 # pages. These are editorial paths, not generic recent-post links, and the
@@ -2112,7 +2114,7 @@ def render_home() -> tuple[Page, str]:
     )
     main = main.replace(
         '<div class="story-stack">',
-        '<div class="story-stack"><a href="guides/cannabis-health-evidence-library/"><p class="kicker">HEALTH EVIDENCE + DECISIONS</p><h3>Route the question, separate research from the product, and prepare the clinical handoff</h3>'+icon('arrow')+'</a><a href="gear/cannabis-replacement-parts-compatibility-guide/"><p class="kicker">REPAIR + COMPATIBILITY</p><h3>Match the exact model, part, interface, safety scope, cost, and exit path</h3>'+icon('arrow')+'</a>',
+        '<div class="story-stack"><a href="strains/nbs-cbd-1-hemp/"><p class="kicker">CBD HEMP + OFFICIAL RECORD</p><h3>Trace NBS CBD-1 from variety certificate to exact-lot boundaries</h3>'+icon('arrow')+'</a><a href="guides/cannabis-health-evidence-library/"><p class="kicker">HEALTH EVIDENCE + DECISIONS</p><h3>Route the question, separate research from the product, and prepare the clinical handoff</h3>'+icon('arrow')+'</a><a href="gear/cannabis-replacement-parts-compatibility-guide/"><p class="kicker">REPAIR + COMPATIBILITY</p><h3>Match the exact model, part, interface, safety scope, cost, and exit path</h3>'+icon('arrow')+'</a>',
         1,
     )
     return page, layout(page, main)
@@ -2335,7 +2337,7 @@ def render_guides_hub() -> tuple[Page,str]:
 
 
 def render_strains_hub() -> tuple[Page,str]:
-    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} strain field notes across THC, CBD, CBDV, CBG, grain and fiber hemp, and mixed-ratio names, with lineage, batch, and evidence caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the question—not end it.","",updated="November 18, 2026",kind="website")
+    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} strain field notes across THC, CBD, CBDV, CBG, grain and fiber hemp, and mixed-ratio names, with lineage, batch, and evidence caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the question—not end it.","",updated="November 19, 2026",kind="website")
     items=[]
     for strain in sorted(STRAINS, key=lambda item: item["name"].lower()):
       aliases = " ".join(strain.get("aliases", []))

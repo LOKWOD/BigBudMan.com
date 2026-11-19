@@ -1,6 +1,6 @@
 {
   "publication_date": "2026-11-19",
-  "page_count": 2,
+  "page_count": 3,
   "pages": [
     {
       "title": "Cannabis Health Evidence Library & Decision Map",
@@ -15,6 +15,13 @@
       "department": "gear",
       "portfolio_label": "Exploration",
       "search_intent": "match a replacement part to an exact cannabis accessory model and revision by interface, material, safety, support, total cost, acceptance test, and exit route"
+    },
+    {
+      "title": "NBS CBD-1 Hemp Cultivar Field Note",
+      "url": "https://bigbudman.com/strains/nbs-cbd-1-hemp/",
+      "department": "strains",
+      "portfolio_label": "Exploration",
+      "search_intent": "trace NBS CBD-1 through its USDA PVP record and germplasm accession while separating applicant-described variety traits from exact seed, production, laboratory, and finished-product evidence"
     }
   ],
   "monetization": {
@@ -24,17 +31,22 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "Both new pages use text, tables, checklists, and existing interface assets. No health, patient, product, replacement-part, merchant, stock, generated, or ambiguous exact-model image was introduced, and no existing image was changed."
+    "note": "All three new pages use text, tables, checklists, and existing interface assets. The NBS CBD-1 page explicitly withholds a cultivar photograph because the USDA accession has no image and no exact licensed image was verified. No health, patient, product, replacement-part, merchant, stock, generated, or ambiguous exact-model image was introduced, and no existing image was changed."
   },
   "search_console": {
     "report_date": "2026-11-18",
     "decision": "The October 19\u2013November 15 report is one day old and valid: 830 impressions, three clicks, 0.36% CTR, and average position 20.69. Arkansas at ten impressions and position 10.2 was already materially reinforced November 12; Blue Dream's 48-impression family was already materially reinforced November 17. The only remaining product signals\u2014510 versus disposable and trimming scissors\u2014had two impressions each, while Delaware had two impressions and one click. Those rows were deliberately ignored as too weak, already served, or insufficient to justify another cluster variation. The report's canonical-sitemap error prompted live and generated-file verification, not filler content: the current sitemap is valid and reachable, while stale Search Console submissions require property-owner cleanup. No content item is labeled Data-led today; analytics protected diversity and focused the technical verification."
   },
   "authority": {
-    "action": "Published a citation-ready health evidence library that connects urgent-care, medicines, population, condition, product, and claim-verification lanes to current CDC, NCCIH, and FDA entry points and to established Big Bud Man guides through reciprocal contextual links. Added a public, executable source-review freshness contract to the editorial policy and release audit. No outreach opportunity was logged and no outreach was sent; the asset itself and its transparent sourcing were the higher-value authority action."
+    "action": "Published two citation-ready authority assets: a health evidence library that connects urgent-care, medicines, population, condition, product, and claim-verification lanes to current CDC, NCCIH, and FDA entry points; and an NBS CBD-1 identity file that reconciles its USDA PVP certificate, selection history, germplasm accession, applicant-described traits, and finished-product boundaries. Reciprocal contextual links connect both assets to established topic clusters. Added a public, executable source-review freshness contract to the editorial policy and release audit. No outreach opportunity was logged and no outreach was sent; the assets and transparent sourcing were the higher-value authority action."
   },
   "freshness_surfaces": {
     "https://bigbudman.com/": "2026-11-19",
+    "https://bigbudman.com/strains/": "2026-11-19",
+    "https://bigbudman.com/strains/nbs-cbd-1-hemp/": "2026-11-19",
+    "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/": "2026-11-19",
+    "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/": "2026-11-19",
+    "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/": "2026-11-19",
     "https://bigbudman.com/guides/": "2026-11-19",
     "https://bigbudman.com/guides/cannabis-health-evidence-library/": "2026-11-19",
     "https://bigbudman.com/guides/cannabis-official-source-directory/": "2026-11-19",
@@ -53,7 +65,8 @@
   "surfaces": [
     "health-question route table, evidence ladder, four-layer research/approval/product/person model, exact decision record, library map, claim audit, current official source block, and reciprocal health-cluster links",
     "replacement-part parent-product record, risk classes, seven-layer compatibility stack, three-candidate table, repair-versus-replace cost frame, six checkout gates, acceptance sequence, end-of-life handoff, and reciprocal commercial-path links",
+    "NBS CBD-1 PVP-to-accession chronology, attributed trait boundary, six-layer identity chain, exact-product record, unsupported-claim screen, primary USDA/FDA source block, and reciprocal CBD-hemp identity links",
     "public dated source-review freshness policy plus automated maximum-age and active-release equality checks",
-    "homepage, guide hub, gear hub, related-content modules, site index, update log, Atom feed, sitemap, metadata, canonicals, social cards, structured data, and publication manifest"
+    "homepage, strain hub, guide hub, gear hub, related-content modules, site index, update log, Atom feed, search data, sitemap, metadata, canonicals, social cards, structured data, and publication manifest"
   ]
 }
