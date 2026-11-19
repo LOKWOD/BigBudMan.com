@@ -1,72 +1,59 @@
 {
-  "publication_date": "2026-11-18",
-  "page_count": 3,
+  "publication_date": "2026-11-19",
+  "page_count": 2,
   "pages": [
     {
-      "title": "Cannabis Cut-Down or Quit Support Plan",
-      "url": "https://bigbudman.com/guides/cannabis-cut-down-quit-support-plan/",
+      "title": "Cannabis Health Evidence Library & Decision Map",
+      "url": "https://bigbudman.com/guides/cannabis-health-evidence-library/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "turn a cannabis cut-down, pause, or quit intention into a bounded goal, exact baseline, support map, withdrawal handoff, safety gates, review process, and verified treatment routes"
+      "search_intent": "route a cannabis health question to the right urgency, evidence tier, official source, exact-product record, and clinician or pharmacist conversation"
     },
     {
-      "title": "Home-Grow Plant Support & Trellis Guide",
-      "url": "https://bigbudman.com/gear/home-grow-plant-support-trellis-buying-guide/",
+      "title": "Cannabis Gear Replacement Parts Compatibility Guide",
+      "url": "https://bigbudman.com/gear/cannabis-replacement-parts-compatibility-guide/",
       "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "compare lawful home-grow stakes, ties, cages, mesh, frames, and clips by room access, complete load path, materials, cleaning, safe release, harvest exit, returns, and first-cycle cost"
-    },
-    {
-      "title": "TJ's CBD Hemp Cultivar Research Map",
-      "url": "https://bigbudman.com/strains/tjs-cbd-hemp/",
-      "department": "strains",
-      "portfolio_label": "Exploration",
-      "search_intent": "trace one named clonal high-CBD hemp cultivar across field characterization, stress, canopy, nutrient, microbiome, and disease-genetics research without transferring a study result to a finished product"
+      "search_intent": "match a replacement part to an exact cannabis accessory model and revision by interface, material, safety, support, total cost, acceptance test, and exit route"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured. The conversion improvement is a product-neutral plant-support system that moves a purchase-ready reader through the real job, room and access map, support-type tradeoffs, complete load path, three-candidate comparison, total first-cycle cost, dry acceptance test, returns, and a valid no-purchase exit. No merchant, product, live price, rating, discount, availability, fabricated test, product image, or paid conclusion was added."
+    "reason": "No approved affiliate program or tracking ID is configured. The conversion improvement is a product-neutral repair-or-replace workflow that takes a purchase-ready reader through exact model and part identity, six compatibility layers, three-candidate evidence, delivered ownership cost, checkout gates, return rights, and a valid manufacturer-service, retirement, or no-purchase outcome. No merchant, product, price, rating, discount, stock claim, fabricated test, or product image was added."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three new pages deliberately use text, tables, checklists, and existing interface assets rather than stock, generated, patient, treatment, plant, merchant, or product imagery. The TJ's CBD page explicitly withholds a cultivar photograph because no exact licensed image was verified. No existing image was changed, and no ambiguous exact-product visual or licensing claim was introduced."
+    "note": "Both new pages use text, tables, checklists, and existing interface assets. No health, patient, product, replacement-part, merchant, stock, generated, or ambiguous exact-model image was introduced, and no existing image was changed."
   },
   "search_console": {
-    "report_date": "2026-11-11",
-    "decision": "The October 12\u2013November 8 report is seven days old and valid: 815 impressions, three clicks, about 0.4% CTR, and average position 24.1. The only meaningful non-legal volume signal\u2014Blue Dream, 33 impressions and zero clicks\u2014was already materially reinforced on November 17, so repeating that cluster would violate the diversity rule. The unused 510-versus-disposable query had only two impressions at position 12; Delaware had two impressions and one click; remaining rows were single impressions or irrelevant. Those signals were deliberately ignored as too weak, already served, or duplicative. No item in this batch is labeled Data-led; the report informed the decision to preserve breadth instead of manufacturing another thin query variation."
+    "report_date": "2026-11-18",
+    "decision": "The October 19\u2013November 15 report is one day old and valid: 830 impressions, three clicks, 0.36% CTR, and average position 20.69. Arkansas at ten impressions and position 10.2 was already materially reinforced November 12; Blue Dream's 48-impression family was already materially reinforced November 17. The only remaining product signals\u2014510 versus disposable and trimming scissors\u2014had two impressions each, while Delaware had two impressions and one click. Those rows were deliberately ignored as too weak, already served, or insufficient to justify another cluster variation. The report's canonical-sitemap error prompted live and generated-file verification, not filler content: the current sitemap is valid and reachable, while stale Search Console submissions require property-owner cleanup. No content item is labeled Data-led today; analytics protected diversity and focused the technical verification."
   },
   "authority": {
-    "action": "Published two citation-ready authority assets: a cut-down or quit support planner grounded in current CDC, SAMHSA, and VA sources, and a TJ's CBD research map that keeps six peer-reviewed questions, study material, propagation, site, sample, method, outcome, and finished-product boundaries separate. Reciprocal links connect the planner to withdrawal, clinician-conversation, driving-safety, and mental-health pages, and the cultivar map to the identity, CBD-hemp, CoA, and named-cultivar cluster. Added a public external-source transport and behavior-change boundary to the editorial policy and release audit. Logged Cornell's hemp research team as a narrowly qualified factual-correction and resource opportunity; no outreach was sent."
+    "action": "Published a citation-ready health evidence library that connects urgent-care, medicines, population, condition, product, and claim-verification lanes to current CDC, NCCIH, and FDA entry points and to established Big Bud Man guides through reciprocal contextual links. Added a public, executable source-review freshness contract to the editorial policy and release audit. No outreach opportunity was logged and no outreach was sent; the asset itself and its transparent sourcing were the higher-value authority action."
   },
   "freshness_surfaces": {
-    "https://bigbudman.com/": "2026-11-18",
-    "https://bigbudman.com/strains/": "2026-11-18",
-    "https://bigbudman.com/strains/tjs-cbd-hemp/": "2026-11-18",
-    "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/": "2026-11-18",
-    "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/": "2026-11-18",
-    "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/": "2026-11-18",
-    "https://bigbudman.com/guides/": "2026-11-18",
-    "https://bigbudman.com/guides/cannabis-cut-down-quit-support-plan/": "2026-11-18",
-    "https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/": "2026-11-18",
-    "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/": "2026-11-18",
-    "https://bigbudman.com/guides/cannabis-driving-impairment-sober-timer/": "2026-11-18",
-    "https://bigbudman.com/gear/": "2026-11-18",
-    "https://bigbudman.com/gear/home-grow-plant-support-trellis-buying-guide/": "2026-11-18",
-    "https://bigbudman.com/gear/home-grow-watering-tools-buying-guide/": "2026-11-18",
-    "https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/": "2026-11-18",
-    "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/": "2026-11-18",
-    "https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/": "2026-11-18",
-    "https://bigbudman.com/editorial-policy/": "2026-11-18",
-    "https://bigbudman.com/updates/": "2026-11-18",
-    "https://bigbudman.com/site-index/": "2026-11-18"
+    "https://bigbudman.com/": "2026-11-19",
+    "https://bigbudman.com/guides/": "2026-11-19",
+    "https://bigbudman.com/guides/cannabis-health-evidence-library/": "2026-11-19",
+    "https://bigbudman.com/guides/cannabis-official-source-directory/": "2026-11-19",
+    "https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/": "2026-11-19",
+    "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/": "2026-11-19",
+    "https://bigbudman.com/gear/": "2026-11-19",
+    "https://bigbudman.com/gear/cannabis-replacement-parts-compatibility-guide/": "2026-11-19",
+    "https://bigbudman.com/gear/cannabis-accessory-return-warranty-recall-guide/": "2026-11-19",
+    "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/": "2026-11-19",
+    "https://bigbudman.com/gear/cannabis-tool-cleaning-kit/": "2026-11-19",
+    "https://bigbudman.com/gear/used-cannabis-accessory-buying-safety-guide/": "2026-11-19",
+    "https://bigbudman.com/editorial-policy/": "2026-11-19",
+    "https://bigbudman.com/updates/": "2026-11-19",
+    "https://bigbudman.com/site-index/": "2026-11-19"
   },
   "surfaces": [
-    "cut-down or quit observable-goal map, seven-day baseline, warning-signal evidence table, support sequence, withdrawal handoff, safety gates, review process, and current federal help routes",
-    "plant-support job map, six-system comparison, room and access record, complete load path, three-candidate worksheet, first-cycle cost, dry acceptance test, and hard stop rules",
-    "TJ's CBD six-question research map, material and propagation record, study-to-product transfer test, exact-lot consumer record, claim boundaries, and primary-source digest",
-    "external-source HTTPS, opener-isolation, new-context referrer, and unapproved-affiliate publication gate plus public editorial-policy contract",
-    "guide, gear, and strain hubs; homepage daily module; reciprocal responsible-use, lawful-grow, CBD-hemp identity, and exact-lot cluster links; publication updates; complete site index; Atom feed; search index; canonical and legacy XML sitemap surfaces; robots declaration; structured metadata; and checksum-verified source archive"
+    "health-question route table, evidence ladder, four-layer research/approval/product/person model, exact decision record, library map, claim audit, current official source block, and reciprocal health-cluster links",
+    "replacement-part parent-product record, risk classes, seven-layer compatibility stack, three-candidate table, repair-versus-replace cost frame, six checkout gates, acceptance sequence, end-of-life handoff, and reciprocal commercial-path links",
+    "public dated source-review freshness policy plus automated maximum-age and active-release equality checks",
+    "homepage, guide hub, gear hub, related-content modules, site index, update log, Atom feed, sitemap, metadata, canonicals, social cards, structured data, and publication manifest"
   ]
 }
