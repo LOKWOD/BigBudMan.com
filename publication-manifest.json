@@ -17,11 +17,11 @@
       "search_intent": "document recurring cannabis smoke or odor in shared air, map the pathway, request source control, limit filtration claims, and use the correct property or health route"
     },
     {
-      "title": "Complete Site Index and Machine-Readable Coverage Inventory",
-      "url": "https://bigbudman.com/site-index/",
-      "department": "technical-seo",
-      "portfolio_label": "Data-led",
-      "search_intent": "audit every canonical page's topic, core angle, dates, sitemap membership, and contextual inbound/outbound crawl paths from one reproducible inventory"
+      "title": "Santiam Hemp Cultivar Field Note",
+      "url": "https://bigbudman.com/strains/santiam-hemp/",
+      "department": "strains",
+      "portfolio_label": "Exploration",
+      "search_intent": "trace Santiam through its USDA PVP application and germplasm accession while separating applicant-described variety traits from exact seed, crop, laboratory, and finished-product evidence"
     }
   ],
   "monetization": {
@@ -31,14 +31,14 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "Both new guides and the inventory upgrade use text, tables, checklists, and existing interface assets. No person, apartment, smoke plume, cannabis product, terminal, receipt, payment-provider logo, merchant, product image, stock image, or generated image was added or changed, so there is no new exact-product mismatch or image-license issue."
+    "note": "Both new guides and the Santiam profile use text, tables, checklists, and existing interface assets. The Santiam page explicitly withholds a cultivar photograph because the USDA accession has no image and no exact licensed image was verified. No person, apartment, smoke plume, cannabis product, terminal, receipt, payment-provider logo, merchant, product image, stock image, or generated image was added or changed."
   },
   "search_console": {
     "report_date": "2026-11-18",
-    "decision": "The October 19\u2013November 15 report is two days old and valid: 830 impressions, three clicks, 0.36% CTR, and average position 20.69. Arkansas at ten impressions and position 10.2 was already materially reinforced November 12, and Blue Dream's 48-impression family was materially reinforced November 17. The report's stale/erroring submitted sitemap records selected the Data-led technical action: publish and audit a canonical coverage/link inventory beside the live sitemap while preserving the legacy compatibility payload. The 510-versus-disposable and trimming-scissors rows had two impressions each; Delaware had two impressions and one click; the chronic-pain HTTP row had one impression. Those query/page signals were deliberately ignored as too weak, already served, or insufficient to justify another cluster variation."
+    "decision": "The October 19\u2013November 15 report is two days old and valid: 830 impressions, three clicks, 0.36% CTR, and average position 20.69. Arkansas at ten impressions and position 10.2 was already materially reinforced November 12, and Blue Dream's 48-impression family was materially reinforced November 17. The report's stale/erroring submitted sitemap records selected the technical authority action outside the three-page portfolio: publish and audit a canonical coverage/link inventory beside the live sitemap while preserving the legacy compatibility payload. The 510-versus-disposable and trimming-scissors rows had two impressions each; Delaware had two impressions and one click; the chronic-pain HTTP row had one impression. Those query/page signals were deliberately ignored as too weak, already served, or insufficient to justify another cluster variation. No new page is Data-led today; analytics protected diversity and focused crawl verification."
   },
   "authority": {
-    "action": "Published a citation-ready shared-air resolution asset with an episode record, pathway map, source-control ladder, conversation script, cleaner/monitor claim boundaries, and current CDC, EPA, and HUD entry points. Reciprocal contextual links strengthen the secondhand-smoke, air-cleaner, monitor, and social-hosting cluster. The new machine-readable coverage inventory and public policy contract strengthen trust by exposing canonical scope, dates, topics, core angles, and contextual link paths. No outreach opportunity was logged and no outreach was sent; the on-site authority and auditability work was the higher-value action."
+    "action": "Published a citation-ready shared-air resolution asset with an episode record, pathway map, source-control ladder, conversation script, cleaner/monitor claim boundaries, and current CDC, EPA, and HUD entry points. Added an evidence-first Santiam identity file that reconciles its USDA PVP application, germplasm accession, applicant-described traits, and exact-lot boundaries. Reciprocal links strengthen the secondhand-smoke and hemp identity clusters. The machine-readable coverage inventory and public policy contract strengthen trust by exposing canonical scope, dates, topics, core angles, and contextual link paths. No outreach opportunity was logged and no outreach was sent; the on-site authority and auditability work was the higher-value action."
   },
   "freshness_surfaces": {
     "https://bigbudman.com/": "2026-11-20",
@@ -53,6 +53,11 @@
     "https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/": "2026-11-20",
     "https://bigbudman.com/gear/cannabis-smoke-air-quality-monitor-buying-guide/": "2026-11-20",
     "https://bigbudman.com/guides/cannabis-social-hosting-guest-safety-plan/": "2026-11-20",
+    "https://bigbudman.com/strains/": "2026-11-20",
+    "https://bigbudman.com/strains/santiam-hemp/": "2026-11-20",
+    "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/": "2026-11-20",
+    "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/": "2026-11-20",
+    "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/": "2026-11-20",
     "https://bigbudman.com/editorial-policy/": "2026-11-20",
     "https://bigbudman.com/updates/": "2026-11-20",
     "https://bigbudman.com/site-index/": "2026-11-20"
@@ -62,6 +67,7 @@
     "shared-air triage, episode record, pathway map, source-control ladder, neutral conversation script, cleaner/monitor claim limits, escalation map, and current CDC/EPA/HUD sources",
     "payment, seller-verification, menu/package/receipt, loyalty, and delivery reciprocal links",
     "secondhand-smoke, air-cleaner, monitor, and social-hosting reciprocal links",
+    "Santiam PVP/accession identity record, applicant-claim boundaries, exact-lot worksheet, and hemp/CoA/cultivar reciprocal links",
     "machine-readable canonical content inventory with topics, core angles, dates, contextual inlinks/outlinks, sitemap parity, and public editorial-policy contract",
     "homepage, guide hub, site index, publication updates, Atom feed, search data, sitemap, legacy sitemap payload, metadata, canonicals, social cards, structured data, and publication manifest"
   ]

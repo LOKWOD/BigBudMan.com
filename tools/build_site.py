@@ -77,7 +77,7 @@ from content_nov16 import EDITORIAL_POLICY_APPEND as NOV16_POLICY_APPEND, NEW_GE
 from content_nov17 import EDITORIAL_POLICY_APPEND as NOV17_POLICY_APPEND, NEW_GEAR as NOV17_GEAR, NEW_GUIDES as NOV17_GUIDES, NEW_STRAIN_PAGES as NOV17_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV17_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV17_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV17_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV17_REVIEWED_RELATED_PATHS, STRAIN_OVERRIDES as NOV17_STRAIN_OVERRIDES
 from content_nov18 import EDITORIAL_POLICY_APPEND as NOV18_POLICY_APPEND, NEW_GEAR as NOV18_GEAR, NEW_GUIDES as NOV18_GUIDES, NEW_STRAIN_PAGES as NOV18_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV18_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV18_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV18_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV18_REVIEWED_RELATED_PATHS
 from content_nov19 import EDITORIAL_POLICY_APPEND as NOV19_POLICY_APPEND, NEW_GEAR as NOV19_GEAR, NEW_GUIDES as NOV19_GUIDES, NEW_STRAIN_PAGES as NOV19_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV19_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV19_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV19_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV19_REVIEWED_RELATED_PATHS
-from content_nov20 import EDITORIAL_POLICY_APPEND as NOV20_POLICY_APPEND, NEW_GUIDES as NOV20_GUIDES, PUBLICATION_MANIFEST as NOV20_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV20_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV20_REVIEWED_RELATED_PATHS
+from content_nov20 import EDITORIAL_POLICY_APPEND as NOV20_POLICY_APPEND, NEW_GUIDES as NOV20_GUIDES, NEW_STRAIN_PAGES as NOV20_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV20_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV20_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV20_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV20_REVIEWED_RELATED_PATHS
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -236,6 +236,9 @@ GUIDE_PAGES = GUIDE_PAGES + NOV19_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV19_GEAR
 STRAINS = STRAINS + NOV19_STRAIN_RECORDS
 STRAIN_PAGES = STRAIN_PAGES + NOV19_STRAIN_PAGES
+CANNABINOID_LABELS["hemp"] = "documented hemp cultivar"
+STRAINS = STRAINS + NOV20_STRAIN_RECORDS
+STRAIN_PAGES = STRAIN_PAGES + NOV20_STRAIN_PAGES
 GUIDE_PAGES = GUIDE_PAGES + NOV20_GUIDES
 
 # November 6 connects both new resources from established, intent-matched
@@ -2363,7 +2366,7 @@ def render_guides_hub() -> tuple[Page,str]:
 
 
 def render_strains_hub() -> tuple[Page,str]:
-    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} strain field notes across THC, CBD, CBDV, CBG, grain and fiber hemp, and mixed-ratio names, with lineage, batch, and evidence caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the question—not end it.","",updated="November 19, 2026",kind="website")
+    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} THC, CBD, CBDV, CBG, hemp, grain/fiber, and mixed-ratio field notes with lineage, batch, and evidence caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the question—not end it.","",updated="November 20, 2026",kind="website")
     items=[]
     for strain in sorted(STRAINS, key=lambda item: item["name"].lower()):
       aliases = " ".join(strain.get("aliases", []))
@@ -2375,7 +2378,7 @@ def render_strains_hub() -> tuple[Page,str]:
           photo_alt = f"Representative hemp flower photograph for the {strain['name']} field note; not a verified cultivar or batch image"
       elif strain["cannabinoid"] == "ratio":
           photo_alt = f"Representative mixed THC and CBD cannabis flower photograph for the {strain['name']} field note; not a verified cultivar or batch image"
-      elif strain["cannabinoid"] == "industrial":
+      elif strain["cannabinoid"] in {"industrial", "hemp"}:
           photo_alt = f"No verified cultivar photograph is published for the {strain['name']} field note"
       else:
           photo_alt = f"Representative cannabis flower photograph for the {strain['name']} field note; not a verified cultivar or batch image"
@@ -2388,7 +2391,7 @@ def render_strains_hub() -> tuple[Page,str]:
     main=f'''<main id="main-content"><section class="hub-hero strain-hub-hero"><div class="container"><p class="eyebrow">{len(STRAINS)} STRAIN FIELD NOTES</p><h1>FAMOUS NAMES.<br><em>HONEST CAVEATS.</em></h1><p>History, aroma language, reputation, cannabinoid context, batch questions, and the warning every strain page should carry.</p><div class="strain-disclaimer">{icon('alert')}<span>No strain name guarantees an effect, potency, cannabinoid ratio, lineage, or medical outcome. Products vary by producer, batch, format, storage, and person.</span></div></div></section><section class="container strain-library"><div class="cbd-library-note"><div><span>HEMP IS IN THE LIBRARY</span><h2>CBD-rich, CBDV-focused, CBG-dominant, and mixed-ratio flower belongs in the same honest conversation.</h2></div><p>Use the cannabinoid filter to find CBD-forward, CBDV-focused, CBG-dominant, and THC:CBD ratio names. Then verify the current certificate of analysis: the cultivar name cannot prove cannabinoid content, legality, or a medical outcome.</p></div><div class="strain-tools" data-strain-filter><label class="strain-search"><span>SEARCH THE LIBRARY</span><input type="search" data-strain-search placeholder="Try Lantz, CBDV, citrus, Kush…" autocomplete="off"></label><div class="filter-bar"><div class="strain-filter-groups"><div class="filter-group"><span>RETAIL SHORTHAND</span><button class="is-active" data-filter="all">All effects</button><button data-filter="balanced">Balanced</button><button data-filter="bright">Bright</button><button data-filter="heavy">Heavy</button></div><div class="filter-group"><span>CANNABINOID PROFILE</span><button class="is-active" data-cannabinoid-filter="all">All profiles</button><button data-cannabinoid-filter="thc">THC-dominant</button><button data-cannabinoid-filter="cbd">CBD-rich</button><button data-cannabinoid-filter="cbdv">CBDV-focused</button><button data-cannabinoid-filter="cbg">CBG-dominant</button><button data-cannabinoid-filter="ratio">THC:CBD ratio</button></div></div><p aria-live="polite"><span data-strain-count>{len(STRAINS)}</span> field notes</p></div></div><p class="strain-empty" data-strain-empty hidden>No field note matched that combination. Clear a filter or try a family, aroma word, or alternate spelling.</p><div class="strain-grid">{''.join(items)}</div></section><section class="container strain-method"><div class="section-head"><p class="eyebrow">THE METHOD</p><h2>How to use a strain page</h2></div><div class="method-grid"><div><span>01</span><h3>Read the story</h3><p>Learn why the name matters culturally.</p></div><div><span>02</span><h3>Check the caveat</h3><p>See where standardization ends.</p></div><div><span>03</span><h3>Inspect the batch</h3><p>Producer, format, potency, date, aroma.</p></div><div><span>04</span><h3>Write your note</h3><p>Record what actually happened in context.</p></div></div></section>{newsletter('../')}</main>'''
     main = main.replace(
         '<button data-cannabinoid-filter="ratio">THC:CBD ratio</button>',
-        '<button data-cannabinoid-filter="ratio">THC:CBD ratio</button><button data-cannabinoid-filter="industrial">Grain / fiber hemp</button>',
+        '<button data-cannabinoid-filter="ratio">THC:CBD ratio</button><button data-cannabinoid-filter="hemp">Documented hemp</button><button data-cannabinoid-filter="industrial">Grain / fiber hemp</button>',
         1,
     )
     main = main.replace('data-strain-search placeholder=', 'data-strain-search aria-controls="strain-results" placeholder=')

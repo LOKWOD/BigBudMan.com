@@ -1,7 +1,7 @@
 {
   "generated": "2026-11-20",
   "scope": "Every indexable canonical BigBudMan.com page. Links are unique internal destinations inside main content; global header and footer navigation are excluded.",
-  "page_count": 347,
+  "page_count": 348,
   "pages": [
     {
       "url": "https://bigbudman.com/",
@@ -1939,7 +1939,7 @@
       "core_angle": "Match a cannabis package to its certificate of analysis and read potency, units, reporting limits, contaminant panels, status, and report dates.",
       "department": "guides",
       "published": "2026-09-19",
-      "updated": "2026-11-19",
+      "updated": "2026-11-20",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/gear/cannabis-home-testing-kit-buying-guide/",
@@ -1983,6 +1983,7 @@
         "https://bigbudman.com/strains/cherry-blonde-cbd/",
         "https://bigbudman.com/strains/hash-plant/",
         "https://bigbudman.com/strains/nbs-cbd-1-hemp/",
+        "https://bigbudman.com/strains/santiam-hemp/",
         "https://bigbudman.com/strains/sour-chem-cbd/",
         "https://bigbudman.com/strains/stem-cell-cbg/",
         "https://bigbudman.com/strains/tjs-cbd-hemp/",
@@ -1993,11 +1994,11 @@
         "https://bigbudman.com/gear/cannabis-inventory-label-record-kit/",
         "https://bigbudman.com/guides/cannabis-potency-units-percent-mg-g-ml-serving-guide/",
         "https://bigbudman.com/guides/cannabis-product-recall-batch-checker/",
-        "https://bigbudman.com/guides/cannabis-qr-code-coa-verification-safety-guide/",
         "https://bigbudman.com/guides/read-a-label/",
         "https://bigbudman.com/guides/thca-vs-thc-cannabis-labels/",
         "https://bigbudman.com/legal/shop-legal/",
         "https://bigbudman.com/strains/nbs-cbd-1-hemp/",
+        "https://bigbudman.com/strains/santiam-hemp/",
         "https://bigbudman.com/strains/tjs-cbd-hemp/"
       ]
     },
@@ -3136,7 +3137,6 @@
       "contextual_inlinks": [
         "https://bigbudman.com/gear/cannabis-product-photo-documentation-kit-buying-guide/",
         "https://bigbudman.com/guides/",
-        "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
         "https://bigbudman.com/guides/cannabis-lab-report-detection-quantitation-limits-guide/",
         "https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/",
         "https://bigbudman.com/guides/read-a-label/",
@@ -3330,7 +3330,7 @@
       "core_angle": "Translate cannabis strain, cultivar, variety, accession, chemotype, chemovar, batch, lot, and product into the evidence each term can and cannot carry.",
       "department": "guides",
       "published": "2026-11-16",
-      "updated": "2026-11-19",
+      "updated": "2026-11-20",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/",
@@ -3348,8 +3348,8 @@
       "contextual_outlinks": [
         "https://bigbudman.com/strains/arkryder-hemp/",
         "https://bigbudman.com/strains/baox-hemp/",
-        "https://bigbudman.com/strains/blue-dream/",
         "https://bigbudman.com/strains/nbs-cbd-1-hemp/",
+        "https://bigbudman.com/strains/santiam-hemp/",
         "https://bigbudman.com/strains/tjs-cbd-hemp/"
       ]
     },
@@ -3523,7 +3523,7 @@
       "core_angle": "Identify CBD and hemp flower using the package, lot, cannabinoid report, total-THC basis, seller, state rules, smoke risks, and claim limits—not appearance.",
       "department": "guides",
       "published": "2026-09-26",
-      "updated": "2026-11-19",
+      "updated": "2026-11-20",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/",
@@ -3535,6 +3535,7 @@
         "https://bigbudman.com/strains/cherry-blonde-cbd/",
         "https://bigbudman.com/strains/henola-hemp/",
         "https://bigbudman.com/strains/nbs-cbd-1-hemp/",
+        "https://bigbudman.com/strains/santiam-hemp/",
         "https://bigbudman.com/strains/sour-chem-cbd/",
         "https://bigbudman.com/strains/tjs-cbd-hemp/",
         "https://bigbudman.com/strains/vitality-seedless-cbdv/",
@@ -3545,8 +3546,8 @@
         "https://bigbudman.com/legal/",
         "https://bigbudman.com/strains/",
         "https://bigbudman.com/strains/arkryder-hemp/",
-        "https://bigbudman.com/strains/baox-hemp/",
         "https://bigbudman.com/strains/nbs-cbd-1-hemp/",
+        "https://bigbudman.com/strains/santiam-hemp/",
         "https://bigbudman.com/strains/tjs-cbd-hemp/"
       ]
     },
@@ -6222,6 +6223,7 @@
         "https://bigbudman.com/strains/royal-cbdv-automatic/",
         "https://bigbudman.com/strains/rs11/",
         "https://bigbudman.com/strains/runtz/",
+        "https://bigbudman.com/strains/santiam-hemp/",
         "https://bigbudman.com/strains/sfv-og/",
         "https://bigbudman.com/strains/skunk-1/",
         "https://bigbudman.com/strains/skywalker-og/",
@@ -6286,12 +6288,12 @@
     {
       "url": "https://bigbudman.com/strains/",
       "slug": "strains",
-      "title": "128 Cannabis Strain Field Notes",
+      "title": "129 Cannabis Strain Field Notes",
       "topic": "Strain library",
-      "core_angle": "Search 128 strain field notes across THC, CBD, CBDV, CBG, grain and fiber hemp, and mixed-ratio names, with lineage, batch, and evidence caveats.",
+      "core_angle": "Search 129 THC, CBD, CBDV, CBG, hemp, grain/fiber, and mixed-ratio field notes with lineage, batch, and evidence caveats.",
       "department": "strains",
       "published": "2026-08-17",
-      "updated": "2026-11-19",
+      "updated": "2026-11-20",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/",
@@ -6395,6 +6397,7 @@
         "https://bigbudman.com/strains/royal-cbdv-automatic/",
         "https://bigbudman.com/strains/rs11/",
         "https://bigbudman.com/strains/runtz/",
+        "https://bigbudman.com/strains/santiam-hemp/",
         "https://bigbudman.com/strains/sfv-og/",
         "https://bigbudman.com/strains/skunk-1/",
         "https://bigbudman.com/strains/skywalker-og/",
@@ -6706,9 +6709,9 @@
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/cannabis-seed-storage-record-guide/",
         "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/",
-        "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/strains/",
+        "https://bigbudman.com/strains/santiam-hemp/",
         "https://bigbudman.com/strains/tjs-cbd-hemp/",
         "https://bigbudman.com/updates/"
       ],
@@ -6794,7 +6797,6 @@
       "updated": "2026-11-17",
       "contextual_inlinks": [
         "https://bigbudman.com/",
-        "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/",
         "https://bigbudman.com/guides/indica-sativa-hybrid-label-evidence-guide/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/strains/",
@@ -8018,6 +8020,7 @@
         "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/strains/",
+        "https://bigbudman.com/strains/santiam-hemp/",
         "https://bigbudman.com/updates/"
       ],
       "contextual_outlinks": [
@@ -8478,6 +8481,30 @@
         "https://bigbudman.com/guides/read-a-label/",
         "https://bigbudman.com/strains/rs11/",
         "https://bigbudman.com/strains/skywalker-og/"
+      ]
+    },
+    {
+      "url": "https://bigbudman.com/strains/santiam-hemp/",
+      "slug": "strains/santiam-hemp",
+      "title": "Santiam Hemp Cultivar Field Note",
+      "topic": "Hemp cultivar identity field note",
+      "core_angle": "Trace Santiam hemp through USDA PVP and germplasm records while separating applicant-described traits from exact-lot chemistry, identity, and legal claims.",
+      "department": "strains",
+      "published": "2026-11-20",
+      "updated": "2026-11-20",
+      "contextual_inlinks": [
+        "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
+        "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/",
+        "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/",
+        "https://bigbudman.com/site-index/",
+        "https://bigbudman.com/strains/",
+        "https://bigbudman.com/updates/"
+      ],
+      "contextual_outlinks": [
+        "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
+        "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/",
+        "https://bigbudman.com/strains/baox-hemp/",
+        "https://bigbudman.com/strains/nbs-cbd-1-hemp/"
       ]
     },
     {
@@ -9394,6 +9421,7 @@
         "https://bigbudman.com/strains/panakeia-beta-hurv19pan/",
         "https://bigbudman.com/strains/pine-walker-seedless/",
         "https://bigbudman.com/strains/royal-cbdv-automatic/",
+        "https://bigbudman.com/strains/santiam-hemp/",
         "https://bigbudman.com/strains/sour-brulee/",
         "https://bigbudman.com/strains/sour-chem-cbd/",
         "https://bigbudman.com/strains/sour-special-sauce/",
