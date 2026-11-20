@@ -1,72 +1,68 @@
 {
-  "publication_date": "2026-11-19",
+  "publication_date": "2026-11-20",
   "page_count": 3,
   "pages": [
     {
-      "title": "Cannabis Health Evidence Library & Decision Map",
-      "url": "https://bigbudman.com/guides/cannabis-health-evidence-library/",
+      "title": "Cannabis Dispensary Payment & Receipt Guide",
+      "url": "https://bigbudman.com/guides/cannabis-dispensary-payment-receipt-guide/",
+      "department": "guides",
+      "portfolio_label": "Exploration",
+      "search_intent": "identify a dispensary payment transaction, compare fees and privacy trails, reconcile receipt/package/account records, and preserve an electronic-transfer error packet"
+    },
+    {
+      "title": "Cannabis Smoke & Odor Shared-Air Plan",
+      "url": "https://bigbudman.com/guides/cannabis-smoke-odor-neighbor-shared-air-plan/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "route a cannabis health question to the right urgency, evidence tier, official source, exact-product record, and clinician or pharmacist conversation"
+      "search_intent": "document recurring cannabis smoke or odor in shared air, map the pathway, request source control, limit filtration claims, and use the correct property or health route"
     },
     {
-      "title": "Cannabis Gear Replacement Parts Compatibility Guide",
-      "url": "https://bigbudman.com/gear/cannabis-replacement-parts-compatibility-guide/",
-      "department": "gear",
-      "portfolio_label": "Exploration",
-      "search_intent": "match a replacement part to an exact cannabis accessory model and revision by interface, material, safety, support, total cost, acceptance test, and exit route"
-    },
-    {
-      "title": "NBS CBD-1 Hemp Cultivar Field Note",
-      "url": "https://bigbudman.com/strains/nbs-cbd-1-hemp/",
-      "department": "strains",
-      "portfolio_label": "Exploration",
-      "search_intent": "trace NBS CBD-1 through its USDA PVP record and germplasm accession while separating applicant-described variety traits from exact seed, production, laboratory, and finished-product evidence"
+      "title": "Complete Site Index and Machine-Readable Coverage Inventory",
+      "url": "https://bigbudman.com/site-index/",
+      "department": "technical-seo",
+      "portfolio_label": "Data-led",
+      "search_intent": "audit every canonical page's topic, core angle, dates, sitemap membership, and contextual inbound/outbound crawl paths from one reproducible inventory"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured. The conversion improvement is a product-neutral repair-or-replace workflow that takes a purchase-ready reader through exact model and part identity, six compatibility layers, three-candidate evidence, delivered ownership cost, checkout gates, return rights, and a valid manufacturer-service, retirement, or no-purchase outcome. No merchant, product, price, rating, discount, stock claim, fabricated test, or product image was added."
+    "reason": "No approved affiliate program or tracking ID is configured. The conversion improvement is a product-neutral payment-and-receipt guide for a purchase-ready reader: it identifies the transaction type, exposes total fees, reconciles licensed seller/product/tax/tender records, protects payment and loyalty data, and preserves an error packet. No merchant, payment provider, product, price, discount, rating, stock claim, fabricated test, cannabis sale, product image, or affiliate link was added; cancellation, another tender, or no purchase remains a valid outcome."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three new pages use text, tables, checklists, and existing interface assets. The NBS CBD-1 page explicitly withholds a cultivar photograph because the USDA accession has no image and no exact licensed image was verified. No health, patient, product, replacement-part, merchant, stock, generated, or ambiguous exact-model image was introduced, and no existing image was changed."
+    "note": "Both new guides and the inventory upgrade use text, tables, checklists, and existing interface assets. No person, apartment, smoke plume, cannabis product, terminal, receipt, payment-provider logo, merchant, product image, stock image, or generated image was added or changed, so there is no new exact-product mismatch or image-license issue."
   },
   "search_console": {
     "report_date": "2026-11-18",
-    "decision": "The October 19\u2013November 15 report is one day old and valid: 830 impressions, three clicks, 0.36% CTR, and average position 20.69. Arkansas at ten impressions and position 10.2 was already materially reinforced November 12; Blue Dream's 48-impression family was already materially reinforced November 17. The only remaining product signals\u2014510 versus disposable and trimming scissors\u2014had two impressions each, while Delaware had two impressions and one click. Those rows were deliberately ignored as too weak, already served, or insufficient to justify another cluster variation. The report's canonical-sitemap error prompted live and generated-file verification, not filler content: the current sitemap is valid and reachable, while stale Search Console submissions require property-owner cleanup. No content item is labeled Data-led today; analytics protected diversity and focused the technical verification."
+    "decision": "The October 19\u2013November 15 report is two days old and valid: 830 impressions, three clicks, 0.36% CTR, and average position 20.69. Arkansas at ten impressions and position 10.2 was already materially reinforced November 12, and Blue Dream's 48-impression family was materially reinforced November 17. The report's stale/erroring submitted sitemap records selected the Data-led technical action: publish and audit a canonical coverage/link inventory beside the live sitemap while preserving the legacy compatibility payload. The 510-versus-disposable and trimming-scissors rows had two impressions each; Delaware had two impressions and one click; the chronic-pain HTTP row had one impression. Those query/page signals were deliberately ignored as too weak, already served, or insufficient to justify another cluster variation."
   },
   "authority": {
-    "action": "Published two citation-ready authority assets: a health evidence library that connects urgent-care, medicines, population, condition, product, and claim-verification lanes to current CDC, NCCIH, and FDA entry points; and an NBS CBD-1 identity file that reconciles its USDA PVP certificate, selection history, germplasm accession, applicant-described traits, and finished-product boundaries. Reciprocal contextual links connect both assets to established topic clusters. Added a public, executable source-review freshness contract to the editorial policy and release audit. No outreach opportunity was logged and no outreach was sent; the assets and transparent sourcing were the higher-value authority action."
+    "action": "Published a citation-ready shared-air resolution asset with an episode record, pathway map, source-control ladder, conversation script, cleaner/monitor claim boundaries, and current CDC, EPA, and HUD entry points. Reciprocal contextual links strengthen the secondhand-smoke, air-cleaner, monitor, and social-hosting cluster. The new machine-readable coverage inventory and public policy contract strengthen trust by exposing canonical scope, dates, topics, core angles, and contextual link paths. No outreach opportunity was logged and no outreach was sent; the on-site authority and auditability work was the higher-value action."
   },
   "freshness_surfaces": {
-    "https://bigbudman.com/": "2026-11-19",
-    "https://bigbudman.com/strains/": "2026-11-19",
-    "https://bigbudman.com/strains/nbs-cbd-1-hemp/": "2026-11-19",
-    "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/": "2026-11-19",
-    "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/": "2026-11-19",
-    "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/": "2026-11-19",
-    "https://bigbudman.com/guides/": "2026-11-19",
-    "https://bigbudman.com/guides/cannabis-health-evidence-library/": "2026-11-19",
-    "https://bigbudman.com/guides/cannabis-official-source-directory/": "2026-11-19",
-    "https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/": "2026-11-19",
-    "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/": "2026-11-19",
-    "https://bigbudman.com/gear/": "2026-11-19",
-    "https://bigbudman.com/gear/cannabis-replacement-parts-compatibility-guide/": "2026-11-19",
-    "https://bigbudman.com/gear/cannabis-accessory-return-warranty-recall-guide/": "2026-11-19",
-    "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/": "2026-11-19",
-    "https://bigbudman.com/gear/cannabis-tool-cleaning-kit/": "2026-11-19",
-    "https://bigbudman.com/gear/used-cannabis-accessory-buying-safety-guide/": "2026-11-19",
-    "https://bigbudman.com/editorial-policy/": "2026-11-19",
-    "https://bigbudman.com/updates/": "2026-11-19",
-    "https://bigbudman.com/site-index/": "2026-11-19"
+    "https://bigbudman.com/": "2026-11-20",
+    "https://bigbudman.com/guides/": "2026-11-20",
+    "https://bigbudman.com/guides/cannabis-dispensary-payment-receipt-guide/": "2026-11-20",
+    "https://bigbudman.com/legal/shop-legal/": "2026-11-20",
+    "https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/": "2026-11-20",
+    "https://bigbudman.com/guides/cannabis-dispensary-loyalty-rewards-value-privacy-guide/": "2026-11-20",
+    "https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/": "2026-11-20",
+    "https://bigbudman.com/guides/cannabis-smoke-odor-neighbor-shared-air-plan/": "2026-11-20",
+    "https://bigbudman.com/guides/secondhand-cannabis-smoke-indoor-air/": "2026-11-20",
+    "https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/": "2026-11-20",
+    "https://bigbudman.com/gear/cannabis-smoke-air-quality-monitor-buying-guide/": "2026-11-20",
+    "https://bigbudman.com/guides/cannabis-social-hosting-guest-safety-plan/": "2026-11-20",
+    "https://bigbudman.com/editorial-policy/": "2026-11-20",
+    "https://bigbudman.com/updates/": "2026-11-20",
+    "https://bigbudman.com/site-index/": "2026-11-20"
   },
   "surfaces": [
-    "health-question route table, evidence ladder, four-layer research/approval/product/person model, exact decision record, library map, claim audit, current official source block, and reciprocal health-cluster links",
-    "replacement-part parent-product record, risk classes, seven-layer compatibility stack, three-candidate table, repair-versus-replace cost frame, six checkout gates, acceptance sequence, end-of-life handoff, and reciprocal commercial-path links",
-    "NBS CBD-1 PVP-to-accession chronology, attributed trait boundary, six-layer identity chain, exact-product record, unsupported-claim screen, primary USDA/FDA source block, and reciprocal CBD-hemp identity links",
-    "public dated source-review freshness policy plus automated maximum-age and active-release equality checks",
-    "homepage, strain hub, guide hub, gear hub, related-content modules, site index, update log, Atom feed, search data, sitemap, metadata, canonicals, social cards, structured data, and publication manifest"
+    "dispensary tender map, six pre-terminal questions, two-record reconciliation, fee worksheet, privacy screen, error packet, scam vetoes, and primary New York OCM/CFPB sources",
+    "shared-air triage, episode record, pathway map, source-control ladder, neutral conversation script, cleaner/monitor claim limits, escalation map, and current CDC/EPA/HUD sources",
+    "payment, seller-verification, menu/package/receipt, loyalty, and delivery reciprocal links",
+    "secondhand-smoke, air-cleaner, monitor, and social-hosting reciprocal links",
+    "machine-readable canonical content inventory with topics, core angles, dates, contextual inlinks/outlinks, sitemap parity, and public editorial-policy contract",
+    "homepage, guide hub, site index, publication updates, Atom feed, search data, sitemap, legacy sitemap payload, metadata, canonicals, social cards, structured data, and publication manifest"
   ]
 }

@@ -7,7 +7,7 @@ from html import escape
 from datetime import datetime, timedelta
 import json
 import re
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlsplit
 
 from site_core import (
     Page, DOMAIN, CONTACT_EMAIL, OCM, OCM_VERIFY, article_main, breadcrumbs,
@@ -77,6 +77,7 @@ from content_nov16 import EDITORIAL_POLICY_APPEND as NOV16_POLICY_APPEND, NEW_GE
 from content_nov17 import EDITORIAL_POLICY_APPEND as NOV17_POLICY_APPEND, NEW_GEAR as NOV17_GEAR, NEW_GUIDES as NOV17_GUIDES, NEW_STRAIN_PAGES as NOV17_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV17_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV17_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV17_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV17_REVIEWED_RELATED_PATHS, STRAIN_OVERRIDES as NOV17_STRAIN_OVERRIDES
 from content_nov18 import EDITORIAL_POLICY_APPEND as NOV18_POLICY_APPEND, NEW_GEAR as NOV18_GEAR, NEW_GUIDES as NOV18_GUIDES, NEW_STRAIN_PAGES as NOV18_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV18_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV18_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV18_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV18_REVIEWED_RELATED_PATHS
 from content_nov19 import EDITORIAL_POLICY_APPEND as NOV19_POLICY_APPEND, NEW_GEAR as NOV19_GEAR, NEW_GUIDES as NOV19_GUIDES, NEW_STRAIN_PAGES as NOV19_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV19_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV19_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV19_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV19_REVIEWED_RELATED_PATHS
+from content_nov20 import EDITORIAL_POLICY_APPEND as NOV20_POLICY_APPEND, NEW_GUIDES as NOV20_GUIDES, PUBLICATION_MANIFEST as NOV20_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV20_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV20_REVIEWED_RELATED_PATHS
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -235,6 +236,7 @@ GUIDE_PAGES = GUIDE_PAGES + NOV19_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV19_GEAR
 STRAINS = STRAINS + NOV19_STRAIN_RECORDS
 STRAIN_PAGES = STRAIN_PAGES + NOV19_STRAIN_PAGES
+GUIDE_PAGES = GUIDE_PAGES + NOV20_GUIDES
 
 # November 6 connects both new resources from established, intent-matched
 # pages. These are editorial paths, not generic recent-post links, and the
@@ -1039,6 +1041,15 @@ for _standard in STANDARD_PAGES:
             '<p class="update-line">Policy reviewed November 19, 2026</p>',
         )
         _standard["body"] += NOV19_POLICY_APPEND
+
+for _standard in STANDARD_PAGES:
+    if _standard["path"] == "editorial-policy/index.html":
+        _standard["updated"] = "November 20, 2026"
+        _standard["body"] = _standard["body"].replace(
+            '<p class="update-line">Policy reviewed November 19, 2026</p>',
+            '<p class="update-line">Policy reviewed November 20, 2026</p>',
+        )
+        _standard["body"] += NOV20_POLICY_APPEND
 
 RECIPROCAL_RELATED = {
     "guides/full-spectrum-broad-spectrum-cbd-isolate/index.html": [
@@ -1852,6 +1863,9 @@ for _source, _links in NOV18_RECIPROCAL_LINKS.items():
 for _source, _links in NOV19_RECIPROCAL_LINKS.items():
     for _link in reversed(_links):
         RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
+for _source, _links in NOV20_RECIPROCAL_LINKS.items():
+    for _link in reversed(_links):
+        RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
 for _source in (
     "guides/read-a-label/index.html",
     "guides/cannabis-terms-label-lab-glossary/index.html",
@@ -1874,6 +1888,9 @@ for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in NOV19_REVIEWED_RELATED_PATHS:
         _item["updated"] = "November 19, 2026"
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
+    if _item["path"] in NOV20_REVIEWED_RELATED_PATHS:
+        _item["updated"] = "November 20, 2026"
+for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in RECIPROCAL_RELATED:
         _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
         _seen_related: set[str] = set()
@@ -1891,7 +1908,9 @@ for _item in GUIDE_PAGES + OTHER_ARTICLES:
             elif _item["path"] == "guides/cannabis-cbd-medication-interactions/index.html":
                 _related_limit = 5
             elif _item["path"] == "legal/shop-legal/index.html":
-                _related_limit = 6
+                # Keep the established delivery-verification route after the
+                # payment/receipt authority link added in this release.
+                _related_limit = 7
             elif _item["path"] == "guides/storage/index.html":
                 _related_limit = 7
             elif _item["path"] == "guides/cannabis-product-complaint-adverse-event-reporting/index.html":
@@ -1997,7 +2016,7 @@ def render_home() -> tuple[Page, str]:
         path="index.html", title="Big Bud Man | Legal Cannabis, Without the Haze",
         description="Independent cannabis guides for adults 21+: strains, edibles, labels, gear, responsible use, and reviewed legal starting points for all 50 states.",
         category="Home", h1="Legal weed. Clear-headed guidance.",
-        dek="Independent cannabis education for adults 21+.", body="", updated="November 19, 2026", kind="website",
+        dek="Independent cannabis education for adults 21+.", body="", updated="November 20, 2026", kind="website",
     )
     main = f'''<main id="main-content">
 <section class="hero"><div class="hero-noise"></div><div class="container hero-grid">
@@ -2040,6 +2059,11 @@ def render_home() -> tuple[Page, str]:
     main = main.replace(
         '<a href="strains/stem-cell-cbg/"><p class="kicker">CBG CULTIVAR + EVIDENCE</p><h3>Separate Stem Cell\'s breeder record from the current product and lot</h3>'+icon('arrow')+'</a>',
         '',
+        1,
+    )
+    main = main.replace(
+        '<div class="story-stack">',
+        '<div class="story-stack"><a href="guides/cannabis-dispensary-payment-receipt-guide/"><p class="kicker">PAYMENT + RECEIPT</p><h3>Name the tender, total fees, statement record, and error route</h3>'+icon('arrow')+'</a><a href="guides/cannabis-smoke-odor-neighbor-shared-air-plan/"><p class="kicker">SHARED AIR + SOURCE CONTROL</p><h3>Document the pathway and ask for the change that stops the source</h3>'+icon('arrow')+'</a>',
         1,
     )
     main = main.replace(
@@ -2163,9 +2187,11 @@ def add_collection_itemlist(html: str, page: Page, name: str, card_class: str) -
 
 
 def render_guides_hub() -> tuple[Page,str]:
-    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 19, 2026",kind="website")
+    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 20, 2026",kind="website")
     p="../"
     cards="".join([
+      card("guides/cannabis-dispensary-payment-receipt-guide/","SHOPPING + PAYMENT","Dispensary payment and receipt guide","Identify the transaction, total fees, receipt fields, statement descriptor, privacy trail, error record, and stop-payment red flags.","tag",p),
+      card("guides/cannabis-smoke-odor-neighbor-shared-air-plan/","RESPONSIBLE USE + SHARED AIR","Cannabis smoke and odor shared-air plan","Triage danger, document the episode and pathway, request source control, limit cleaner claims, and use the correct property route.","shield",p),
       card("guides/cannabis-health-evidence-library/","HEALTH + EVIDENCE","Cannabis health evidence library","Route urgent, medicine, population, condition, product, and claim questions through the right evidence lane, source, record, and clinical handoff.","heart",p),
       card("guides/cannabis-cut-down-quit-support-plan/","RESPONSIBLE USE + SUPPORT","Cannabis cut-down or quit support plan","Turn a change goal into an exact baseline, support map, withdrawal handoff, safety gates, review process, and verified treatment routes.","shield",p),
       card("guides/cannabis-lab-report-detection-quantitation-limits-guide/","LAB REPORTS + MEASUREMENT","Cannabis lab report limits: ND, LOD and LOQ","Translate detection, quantitation, reporting limits, qualifiers, units, uncertainty, pass/fail rules, and exact-sample boundaries without inventing zero.","search",p),
@@ -2579,7 +2605,7 @@ def render_site_index(pages: list[Page]) -> tuple[Page, str]:
             f'<small>(<span data-site-index-group-count>{len(members)}</span>)</small></h2>'
             f'<ul class="site-index-list">{links}</ul></section>'
         )
-    body = f'''<p class="update-line">Generated from the publication source · {latest_label}</p><p>This page is built from the same source catalog as site search, the Atom feed, and the XML sitemap. Every route below is present in the initial HTML; the filter is an optional reading aid and never creates or hides a crawl path from the source.</p><section class="site-index-recent" data-site-index-recent><h2>Reviewed in the last 14 days <small>({len(recent)})</small></h2><p>New and materially reviewed articles from {recent_cutoff.strftime("%B %d, %Y").replace(" 0", " ")} through {latest_label}.</p><ul class="site-index-list">{recent_links}</ul></section><div class="site-index-tools" data-site-index-filter><label for="site-index-search"><span>FILTER THE COMPLETE INDEX</span><input id="site-index-search" type="search" placeholder="Try PTSD, charger, storage, or New York" autocomplete="off" data-site-index-search aria-controls="site-index-results"></label><button type="button" data-site-index-clear>Clear</button><p data-site-index-status role="status" aria-live="polite"><b>{len(visible)}</b> pages shown</p></div><p class="site-index-empty" data-site-index-empty hidden>No matching pages. Clear the filter or try a broader term.</p><div id="site-index-results" data-site-index-results>{"".join(sections)}</div><section><h2>Machine-readable discovery</h2><p><a class="inline-cta" href="../sitemap.xml">Open the XML sitemap <span>→</span></a></p><p><a class="inline-cta" href="../feed.xml">Open the Atom update feed <span>→</span></a></p></section>'''
+    body = f'''<p class="update-line">Generated from the publication source · {latest_label}</p><p>This page is built from the same source catalog as site search, the Atom feed, the content inventory, and the XML sitemap. Every route below is present in the initial HTML; the filter is an optional reading aid and never creates or hides a crawl path from the source.</p><section class="site-index-recent" data-site-index-recent><h2>Reviewed in the last 14 days <small>({len(recent)})</small></h2><p>New and materially reviewed articles from {recent_cutoff.strftime("%B %d, %Y").replace(" 0", " ")} through {latest_label}.</p><ul class="site-index-list">{recent_links}</ul></section><div class="site-index-tools" data-site-index-filter><label for="site-index-search"><span>FILTER THE COMPLETE INDEX</span><input id="site-index-search" type="search" placeholder="Try PTSD, charger, storage, or New York" autocomplete="off" data-site-index-search aria-controls="site-index-results"></label><button type="button" data-site-index-clear>Clear</button><p data-site-index-status role="status" aria-live="polite"><b>{len(visible)}</b> pages shown</p></div><p class="site-index-empty" data-site-index-empty hidden>No matching pages. Clear the filter or try a broader term.</p><div id="site-index-results" data-site-index-results>{"".join(sections)}</div><section><h2>Machine-readable discovery</h2><p><a class="inline-cta" href="../content-inventory.json">Open the canonical coverage and link inventory <span>→</span></a></p><p><a class="inline-cta" href="../sitemap.xml">Open the XML sitemap <span>→</span></a></p><p><a class="inline-cta" href="../feed.xml">Open the Atom update feed <span>→</span></a></p></section>'''
     main = f'''<main id="main-content"><header class="standard-hero"><div class="container"><p class="eyebrow">SITE INDEX</p><h1>{page.h1}</h1><p>{page.dek}</p></div></header><div class="container standard-shell"><article class="prose prose--standard">{body}</article></div></main>'''
     return page, layout(page, main, [("Site index", None)])
 
@@ -2634,6 +2660,50 @@ def render_404() -> tuple[Page,str]:
 
 def write_page(page: Page, html: str) -> None:
     write_text(OUT, page.path, optimize_images(OUT, page.path, html))
+
+
+def write_content_inventory(pages: list[Page]) -> None:
+    """Publish canonical coverage, dates, angles, and main-content link paths."""
+    canonical_pages = {canonical(page.path): page for page in pages}
+    outgoing: dict[str, list[str]] = {}
+    incoming: dict[str, set[str]] = {url: set() for url in canonical_pages}
+    for source_url, page in canonical_pages.items():
+        markup = (OUT / page.path).read_text(encoding="utf-8")
+        main_match = re.search(r"<main\b[^>]*>(.*?)</main>", markup, re.I | re.S)
+        main_markup = main_match.group(1) if main_match else ""
+        targets: set[str] = set()
+        for href in re.findall(r'<a\b[^>]*\bhref="([^"]+)"', main_markup, re.I):
+            resolved = urlsplit(urljoin(source_url, href))
+            if resolved.scheme not in {"http", "https"} or resolved.netloc != "bigbudman.com":
+                continue
+            target = f"https://bigbudman.com{resolved.path or '/'}"
+            if target in canonical_pages and target != source_url:
+                targets.add(target)
+                incoming[target].add(source_url)
+        outgoing[source_url] = sorted(targets)
+    records = []
+    for url, page in sorted(canonical_pages.items()):
+        route = urlsplit(url).path.strip("/")
+        department = route.split("/", 1)[0] if route else "home"
+        records.append({
+            "url": url,
+            "slug": route or "/",
+            "title": clean_text(page.title).removesuffix(" | Big Bud Man"),
+            "topic": clean_text(page.category),
+            "core_angle": clean_text(page.description),
+            "department": department,
+            "published": datetime.strptime(page.published, "%B %d, %Y").strftime("%Y-%m-%d"),
+            "updated": datetime.strptime(page.updated, "%B %d, %Y").strftime("%Y-%m-%d"),
+            "contextual_inlinks": sorted(incoming[url]),
+            "contextual_outlinks": outgoing[url],
+        })
+    payload = {
+        "generated": "2026-11-20",
+        "scope": "Every indexable canonical BigBudMan.com page. Links are unique internal destinations inside main content; global header and footer navigation are excluded.",
+        "page_count": len(records),
+        "pages": records,
+    }
+    write_text(OUT, "content-inventory.json", json.dumps(payload, indent=2, ensure_ascii=False) + "\n")
 
 
 def bundle_stylesheets(output_root: Path) -> None:
@@ -2726,7 +2796,7 @@ def build() -> None:
 
     write_text(OUT,"CNAME","bigbudman.com\n")
     write_text(OUT,".nojekyll","\n")
-    write_text(OUT,"robots.txt",f"User-agent: *\nAllow: /\n\nSitemap: {DOMAIN}/sitemap.xml\n# Human-readable index: {DOMAIN}/site-index/\n# Publication updates: {DOMAIN}/updates/\n")
+    write_text(OUT,"robots.txt",f"User-agent: *\nAllow: /\n\nSitemap: {DOMAIN}/sitemap.xml\n# Human-readable index: {DOMAIN}/site-index/\n# Machine-readable coverage: {DOMAIN}/content-inventory.json\n# Publication updates: {DOMAIN}/updates/\n")
     manifest={"name":"Big Bud Man","short_name":"Big Bud Man","start_url":"/","display":"standalone","background_color":"#101712","theme_color":"#101712","icons":[{"src":"/assets/images/favicon.svg","sizes":"any","type":"image/svg+xml"}]}
     write_text(OUT,"site.webmanifest",json.dumps(manifest,indent=2)+"\n")
     publication_manifest={
@@ -2772,8 +2842,10 @@ def build() -> None:
     publication_manifest = NOV17_PUBLICATION_MANIFEST
     publication_manifest = NOV18_PUBLICATION_MANIFEST
     publication_manifest = NOV19_PUBLICATION_MANIFEST
+    publication_manifest = NOV20_PUBLICATION_MANIFEST
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]
+    write_content_inventory(indexable)
     strain_aliases = {
         f"strains/{strain['slug']}/index.html": " ".join(strain.get("aliases", []))
         for strain in STRAINS

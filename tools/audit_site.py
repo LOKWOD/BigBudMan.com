@@ -705,6 +705,43 @@ def main() -> int:
     except Exception as exc:
         failures.append(f"Invalid search index: {exc}")
 
+    try:
+        inventory = json.loads((ROOT / "content-inventory.json").read_text(encoding="utf-8"))
+        records = inventory.get("pages", [])
+        inventory_urls = [item.get("url", "") for item in records]
+        inventory_titles = [item.get("title", "") for item in records]
+        if inventory.get("generated") != batch.get("publication_date"):
+            failures.append("Content inventory date does not match the current publication batch")
+        if inventory.get("page_count") != len(records):
+            failures.append("Content inventory page_count does not match its records")
+        if len(inventory_urls) != len(set(inventory_urls)):
+            failures.append("Content inventory contains duplicate canonical URLs")
+        if len(inventory_titles) != len(set(inventory_titles)):
+            failures.append("Content inventory contains duplicate titles")
+        if set(inventory_urls) != expected_sitemap:
+            failures.append(f"Content inventory URL set mismatch: expected {len(expected_sitemap)}, found {len(set(inventory_urls))}")
+        for item in records:
+            url = item.get("url", "")
+            for field in ("slug", "title", "topic", "core_angle", "department", "published", "updated"):
+                if not item.get(field):
+                    failures.append(f"Content inventory has a blank {field} for {url or '(missing URL)'}")
+            if item.get("updated") != expected_sitemap_dates.get(url):
+                failures.append(f"Content inventory review date mismatch for {url}: expected {expected_sitemap_dates.get(url, '(missing)')}, found {item.get('updated', '(missing)')}")
+            for field in ("contextual_inlinks", "contextual_outlinks"):
+                links = item.get(field)
+                if not isinstance(links, list) or len(links) != len(set(links)):
+                    failures.append(f"Content inventory has an invalid {field} list for {url}")
+                    continue
+                unknown = set(links) - expected_sitemap
+                if unknown:
+                    failures.append(f"Content inventory {field} for {url} contains unknown URLs: {', '.join(sorted(unknown))}")
+            if url != "https://bigbudman.com/" and not item.get("contextual_inlinks"):
+                failures.append(f"Content inventory exposes an isolated canonical page: {url}")
+        if '../content-inventory.json' not in (ROOT / "site-index/index.html").read_text(encoding="utf-8"):
+            failures.append("Site index does not expose the machine-readable content inventory")
+    except Exception as exc:
+        failures.append(f"Invalid content inventory: {exc}")
+
     for route in sorted(expected_search):
         if route.startswith(("/strains/", "/legal/")) and route not in {"/strains/", "/legal/"} and incoming.get(route, 0) < 2:
             failures.append(f"{route}: fewer than two internal links")
@@ -763,7 +800,7 @@ def main() -> int:
     except Exception as exc:
         failures.append(f"Invalid legal hub: {exc}")
 
-    for required in ["CNAME","robots.txt","sitemap.xml","index.php","feed.xml","site.webmanifest","publication-manifest.json","site-index/index.html","updates/index.html","assets/css/styles.css","assets/js/app.js","assets/js/app-20261110.js","assets/js/app-20261111.js","assets/js/search-index.js","assets/images/og-card.png","assets/images/logo-full.webp","assets/images/logo-mark.svg","assets/images/strain-cbd-flower.webp","assets/images/strain-balanced-cannabinoids.webp"]:
+    for required in ["CNAME","robots.txt","sitemap.xml","index.php","feed.xml","site.webmanifest","publication-manifest.json","content-inventory.json","site-index/index.html","updates/index.html","assets/css/styles.css","assets/js/app.js","assets/js/app-20261110.js","assets/js/app-20261111.js","assets/js/search-index.js","assets/images/og-card.png","assets/images/logo-full.webp","assets/images/logo-mark.svg","assets/images/strain-cbd-flower.webp","assets/images/strain-balanced-cannabinoids.webp"]:
         if not (ROOT/required).exists(): failures.append(f"Missing required file: {required}")
     for image in sorted((ROOT/"assets/images").glob("*.webp")):
         raw=image.read_bytes()
@@ -1270,7 +1307,7 @@ def main() -> int:
             failures.append("Editorial policy or Atom feed is missing the feed authorship standard")
         if "Age-gate focus isolation" not in policy:
             failures.append("Editorial policy is missing the age-gate focus-isolation standard")
-        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "Mobile-navigation state integrity" not in policy or "Site-search dialog naming integrity" not in policy or "Guide-finder progression integrity" not in policy or "Fresh static discovery path" not in policy or "Nested 404 route integrity" not in policy or "Collection-control outcome relationship" not in policy or "QR destination and product-evidence boundary" not in policy or "Plant-name and chemical-class boundary" not in policy or "Source-review chronology integrity" not in policy or "Named-product research boundary" not in policy or "External-source transport and relationship integrity" not in policy or "Behavior-change content boundary" not in policy or "Dated source-review freshness gate" not in policy or "November 19, 2026" not in policy:
+        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "Mobile-navigation state integrity" not in policy or "Site-search dialog naming integrity" not in policy or "Guide-finder progression integrity" not in policy or "Fresh static discovery path" not in policy or "Nested 404 route integrity" not in policy or "Collection-control outcome relationship" not in policy or "QR destination and product-evidence boundary" not in policy or "Plant-name and chemical-class boundary" not in policy or "Source-review chronology integrity" not in policy or "Named-product research boundary" not in policy or "External-source transport and relationship integrity" not in policy or "Behavior-change content boundary" not in policy or "Dated source-review freshness gate" not in policy or "Machine-readable coverage and link inventory" not in policy or "content-inventory.json" not in policy or "November 20, 2026" not in policy:
             failures.append("Editorial policy is missing the current link and collection-date integrity standards")
         sample_search = (ROOT / "guides/cannabis-moving-day-relocation-checklist/index.html").read_text(encoding="utf-8")
         for marker in ('aria-labelledby="site-search-title"', 'aria-describedby="site-search-help"', 'id="site-search-title"', 'id="site-search-help"'):
@@ -1310,7 +1347,7 @@ def main() -> int:
         if '"url":"/site-index/"' not in search_raw:
             failures.append("Search index is missing the complete site index")
         robots = (ROOT / "robots.txt").read_text(encoding="utf-8")
-        if "https://bigbudman.com/sitemap.xml" not in robots or "https://bigbudman.com/site-index/" not in robots or "https://bigbudman.com/updates/" not in robots:
+        if "https://bigbudman.com/sitemap.xml" not in robots or "https://bigbudman.com/site-index/" not in robots or "https://bigbudman.com/content-inventory.json" not in robots or "https://bigbudman.com/updates/" not in robots:
             failures.append("robots.txt does not expose all crawl-discovery surfaces")
         if (ROOT / "index.php").read_text(encoding="utf-8") != (ROOT / "sitemap.xml").read_text(encoding="utf-8"):
             failures.append("Legacy Search Console sitemap endpoint does not mirror the canonical sitemap")

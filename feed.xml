@@ -4,9 +4,89 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-11-19T00:00:00Z</updated>
+  <updated>2026-11-20T00:00:00Z</updated>
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Verify a Legal New York Dispensary and Product</title>
+    <id>https://bigbudman.com/legal/shop-legal/</id>
+    <link href="https://bigbudman.com/legal/shop-legal/"/>
+    <updated>2026-11-20T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Verify a New York cannabis dispensary, match the exact business and product lot, check the certificate and recall status, and preserve a useful receipt.</summary>
+  </entry>
+  <entry>
+    <title>Secondhand Cannabis Smoke &amp; Indoor Air</title>
+    <id>https://bigbudman.com/guides/secondhand-cannabis-smoke-indoor-air/</id>
+    <link href="https://bigbudman.com/guides/secondhand-cannabis-smoke-indoor-air/"/>
+    <updated>2026-11-20T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Reduce secondhand cannabis smoke exposure with clear indoor, vehicle, ventilation, filtration, child, guest, apartment, and emergency-response guidance.</summary>
+  </entry>
+  <entry>
+    <title>NY Cannabis Delivery Verification</title>
+    <id>https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/</id>
+    <link href="https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/"/>
+    <updated>2026-11-20T00:00:00Z</updated>
+    <published>2026-09-29T00:00:00Z</published>
+    <summary>Verify a New York cannabis delivery order from license listing to website, payment, ID check, handoff, receipt, product lot, and complaint route.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Social Hosting &amp; Guest Safety Plan</title>
+    <id>https://bigbudman.com/guides/cannabis-social-hosting-guest-safety-plan/</id>
+    <link href="https://bigbudman.com/guides/cannabis-social-hosting-guest-safety-plan/"/>
+    <updated>2026-11-20T00:00:00Z</updated>
+    <published>2026-10-11T00:00:00Z</published>
+    <summary>Plan an adult cannabis gathering with consent, original packaging, locked storage, sober transportation, impairment limits and emergency response.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Smoke Air Monitor Buying Guide</title>
+    <id>https://bigbudman.com/gear/cannabis-smoke-air-quality-monitor-buying-guide/</id>
+    <link href="https://bigbudman.com/gear/cannabis-smoke-air-quality-monitor-buying-guide/"/>
+    <updated>2026-11-20T00:00:00Z</updated>
+    <published>2026-11-06T00:00:00Z</published>
+    <summary>Compare an indoor air-quality monitor for cannabis smoke by pollutant, sensor evidence, placement, data access, alerts, lifespan, and total cost.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Smoke Air Cleaner &amp; CADR Planner</title>
+    <id>https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/</id>
+    <link href="https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/"/>
+    <updated>2026-11-20T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Size a cannabis-smoke air cleaner by room volume and smoke CADR, estimate air changes and ownership cost, and understand filtration limits.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Smoke &amp; Odor Shared-Air Plan</title>
+    <id>https://bigbudman.com/guides/cannabis-smoke-odor-neighbor-shared-air-plan/</id>
+    <link href="https://bigbudman.com/guides/cannabis-smoke-odor-neighbor-shared-air-plan/"/>
+    <updated>2026-11-20T00:00:00Z</updated>
+    <published>2026-11-20T00:00:00Z</published>
+    <summary>Document cannabis smoke or odor in shared air, map the pathway, use source control, communicate facts, and choose the correct property route.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Menu-to-Package Match Checklist</title>
+    <id>https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/</id>
+    <link href="https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/"/>
+    <updated>2026-11-20T00:00:00Z</updated>
+    <published>2026-10-07T00:00:00Z</published>
+    <summary>Compare a cannabis menu, cart, sealed package, lot evidence, and receipt before purchase without treating marketing copy as the product record.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Loyalty Rewards Value &amp; Privacy Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-dispensary-loyalty-rewards-value-privacy-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-dispensary-loyalty-rewards-value-privacy-guide/"/>
+    <updated>2026-11-20T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Compare a cannabis loyalty or rewards program by usable value, break-even spend, expiry, exclusions, data collection, consent, and current local rules.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Dispensary Payment &amp; Receipt Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-dispensary-payment-receipt-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-dispensary-payment-receipt-guide/"/>
+    <updated>2026-11-20T00:00:00Z</updated>
+    <published>2026-11-20T00:00:00Z</published>
+    <summary>Compare dispensary payment methods, fees, receipt fields, statement descriptors, privacy, and error records without assuming one tender works everywhere.</summary>
+  </entry>
   <entry>
     <title>Used Cannabis Accessory Buying Guide</title>
     <id>https://bigbudman.com/gear/used-cannabis-accessory-buying-safety-guide/</id>
@@ -166,85 +246,5 @@
     <updated>2026-11-18T00:00:00Z</updated>
     <published>2026-08-17T00:00:00Z</published>
     <summary>Separate cannabis tolerance, dependence, withdrawal, and use disorder; build a seven-day pattern record and find qualified support without self-diagnosis.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Gear Comparison &amp; Cost Calculator</title>
-    <id>https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/</id>
-    <link href="https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/"/>
-    <updated>2026-11-18T00:00:00Z</updated>
-    <published>2026-09-20T00:00:00Z</published>
-    <summary>Compare three cannabis accessories by exact model, first-year cost, ownership cost, cost per use, fit, materials, care, support, warranty, and recalls.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Cut-Down or Quit Support Plan</title>
-    <id>https://bigbudman.com/guides/cannabis-cut-down-quit-support-plan/</id>
-    <link href="https://bigbudman.com/guides/cannabis-cut-down-quit-support-plan/"/>
-    <updated>2026-11-18T00:00:00Z</updated>
-    <published>2026-11-18T00:00:00Z</published>
-    <summary>Build a cannabis cut-down or quit support record: goals, triggers, product inventory, withdrawal planning, safety gates, clinical help, and treatment routes.</summary>
-  </entry>
-  <entry>
-    <title>Indica vs Sativa Labels: Evidence Guide</title>
-    <id>https://bigbudman.com/guides/indica-sativa-hybrid-label-evidence-guide/</id>
-    <link href="https://bigbudman.com/guides/indica-sativa-hybrid-label-evidence-guide/"/>
-    <updated>2026-11-17T00:00:00Z</updated>
-    <published>2026-11-04T00:00:00Z</published>
-    <summary>Learn what indica, sativa, and hybrid labels can and cannot predict, then compare the exact product, chemistry, route, lot, and decision in front of you.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Price &amp; Label Calculator</title>
-    <id>https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/</id>
-    <link href="https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/"/>
-    <updated>2026-11-17T00:00:00Z</updated>
-    <published>2026-09-26T00:00:00Z</published>
-    <summary>Compare three compatible cannabis packages by checkout total, unit count, net quantity, and labeled cannabinoid total without ranking potency as quality.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Potency Units: %, mg/g &amp; mg/mL</title>
-    <id>https://bigbudman.com/guides/cannabis-potency-units-percent-mg-g-ml-serving-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-potency-units-percent-mg-g-ml-serving-guide/"/>
-    <updated>2026-11-17T00:00:00Z</updated>
-    <published>2026-11-17T00:00:00Z</published>
-    <summary>Translate cannabis percent, mg/g, mg/mL, per-serving, and package-total labels without mixing analytes, mass and volume bases, product formats, or dose advice.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Liquid Measuring Tools: Buying Guide</title>
-    <id>https://bigbudman.com/gear/cannabis-liquid-measuring-tool-buying-guide/</id>
-    <link href="https://bigbudman.com/gear/cannabis-liquid-measuring-tool-buying-guide/"/>
-    <updated>2026-11-17T00:00:00Z</updated>
-    <published>2026-11-05T00:00:00Z</published>
-    <summary>Compare an oral syringe, dropper, cup, or calibrated spoon for a labeled cannabis or CBD liquid by units, graduations, fit, cleaning, and cost.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Label Field Guide &amp; Checklist</title>
-    <id>https://bigbudman.com/guides/read-a-label/</id>
-    <link href="https://bigbudman.com/guides/read-a-label/"/>
-    <updated>2026-11-17T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Decode a cannabis label by format, reconcile serving and package math, match the lot to the CoA, and preserve a reusable package evidence record.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Lab Report Limits: ND, LOD &amp; LOQ</title>
-    <id>https://bigbudman.com/guides/cannabis-lab-report-detection-quantitation-limits-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-lab-report-detection-quantitation-limits-guide/"/>
-    <updated>2026-11-17T00:00:00Z</updated>
-    <published>2026-11-14T00:00:00Z</published>
-    <summary>Read ND, LOD, LOQ, reporting limits, estimated results, units, pass/fail decisions, and measurement uncertainty on a cannabis certificate of analysis.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Edible Label Math Checker</title>
-    <id>https://bigbudman.com/guides/cannabis-edible-label-math-checker/</id>
-    <link href="https://bigbudman.com/guides/cannabis-edible-label-math-checker/"/>
-    <updated>2026-11-17T00:00:00Z</updated>
-    <published>2026-10-02T00:00:00Z</published>
-    <summary>Cross-check THC and CBD per serving, per piece, package totals, and a selected number of pieces without turning arithmetic into dosing advice.</summary>
-  </entry>
-  <entry>
-    <title>CBD Oil and Tincture Label Guide</title>
-    <id>https://bigbudman.com/guides/cbd-oil-tincture-label-buying-guide/</id>
-    <link href="https://bigbudman.com/guides/cbd-oil-tincture-label-buying-guide/"/>
-    <updated>2026-11-17T00:00:00Z</updated>
-    <published>2026-09-11T00:00:00Z</published>
-    <summary>Choose a CBD oil or tincture by concentration math, ingredients, serving directions, lot-matched lab evidence, THC risk, claims, and storage.</summary>
   </entry>
 </feed>

@@ -78,6 +78,21 @@ def verify_once(base_url: str, timeout: int) -> str:
     if live_records != expected_records:
         raise RuntimeError("canonical sitemap: live URL/lastmod records do not match the checked-in release")
 
+    expected_inventory = json.loads((ROOT / "content-inventory.json").read_text(encoding="utf-8"))
+    live_inventory_bytes, inventory_type = request(urljoin(base_url, "content-inventory.json"), timeout)
+    if "json" not in inventory_type.lower():
+        raise RuntimeError(f"content inventory: expected JSON content type, received {inventory_type!r}")
+    try:
+        live_inventory = json.loads(live_inventory_bytes)
+    except json.JSONDecodeError as exc:
+        raise RuntimeError(f"content inventory: invalid live JSON: {exc}") from exc
+    if live_inventory != expected_inventory:
+        raise RuntimeError("content inventory: live payload does not match the checked-in release")
+    inventory_urls = [record["url"] for record in live_inventory["pages"]]
+    sitemap_urls = [url for url, _ in live_records]
+    if live_inventory.get("page_count") != len(live_records) or inventory_urls != sitemap_urls:
+        raise RuntimeError("content inventory: live page count or canonical order differs from the sitemap")
+
     robots_bytes, robots_type = request(urljoin(base_url, "robots.txt"), timeout)
     if not any(token in robots_type.lower() for token in ("text/plain", "text/")):
         raise RuntimeError(f"robots.txt: expected text content type, received {robots_type!r}")
@@ -103,7 +118,7 @@ def verify_once(base_url: str, timeout: int) -> str:
             raise RuntimeError(f"{url}: freshness date {expected_date} is not visible in the live HTML")
         checked += 1
 
-    return f"manifest, robots, {len(live_records)} sitemap URLs, and {checked} freshness surfaces"
+    return f"manifest, robots, content inventory, {len(live_records)} sitemap URLs, and {checked} freshness surfaces"
 
 
 def main() -> int:
