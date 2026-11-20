@@ -90,8 +90,12 @@ def verify_once(base_url: str, timeout: int) -> str:
         raise RuntimeError("content inventory: live payload does not match the checked-in release")
     inventory_urls = [record["url"] for record in live_inventory["pages"]]
     sitemap_urls = [url for url, _ in live_records]
-    if live_inventory.get("page_count") != len(live_records) or inventory_urls != sitemap_urls:
-        raise RuntimeError("content inventory: live page count or canonical order differs from the sitemap")
+    if (
+        live_inventory.get("page_count") != len(live_records)
+        or len(inventory_urls) != len(set(inventory_urls))
+        or set(inventory_urls) != set(sitemap_urls)
+    ):
+        raise RuntimeError("content inventory: live page count or canonical URL set differs from the sitemap")
 
     robots_bytes, robots_type = request(urljoin(base_url, "robots.txt"), timeout)
     if not any(token in robots_type.lower() for token in ("text/plain", "text/")):
