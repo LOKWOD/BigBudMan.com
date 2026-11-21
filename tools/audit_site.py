@@ -1092,6 +1092,62 @@ def main() -> int:
             "data-site-index-item",
             "app-20261111.js",
         )
+        discovery_checks["index.html"] += (
+            "guides/cannabis-research-study-reading-checklist/",
+            "gear/cannabis-rosin-press-buying-safety-guide/",
+            "guides/cannabis-product-response-experience-log/",
+        )
+        discovery_checks["guides/index.html"] += (
+            "cannabis-research-study-reading-checklist/",
+            "cannabis-product-response-experience-log/",
+            'data-updated="2026-11-21"',
+        )
+        discovery_checks["gear/index.html"] = tuple(
+            "All 46" if marker == "All 45" else "2026-11-21" if marker == "2026-11-19" else marker
+            for marker in discovery_checks["gear/index.html"]
+        ) + ("cannabis-rosin-press-buying-safety-guide/",)
+        discovery_checks["guides/cannabis-research-study-reading-checklist/index.html"] = (
+            "Run the ten-field transfer screen",
+            "Build a one-study claim card",
+            "nccih.nih.gov/health/know-science",
+            "clinicaltrials.gov/study-basics/glossary",
+            "not medical advice",
+        )
+        discovery_checks["gear/cannabis-rosin-press-buying-safety-guide/index.html"] = (
+            "Keep force, plate area, and control separate",
+            "Put three exact machines through one comparison",
+            "osha.gov/etools/machine-guarding/presses/hydraulic",
+            "No press, model, seller, manual, certification, price, yield, output, or product image was tested",
+        )
+        discovery_checks["guides/cannabis-product-response-experience-log/index.html"] = (
+            "Use the safety gate before the form",
+            "Describe observation, function, and interpretation in three columns",
+            "1-800-222-1222",
+            "fda.gov/safety/medwatch",
+            "not individualized medical advice",
+        )
+        discovery_checks["editorial-policy/index.html"] += (
+            "Study-transfer and product-response boundaries",
+            "Policy reviewed November 21, 2026",
+        )
+        discovery_checks["updates/index.html"] = (
+            "guides/cannabis-research-study-reading-checklist/",
+            "gear/cannabis-rosin-press-buying-safety-guide/",
+            "guides/cannabis-product-response-experience-log/",
+            "editorial-policy/",
+            "November 21, 2026",
+        )
+        discovery_checks["site-index/index.html"] = (
+            "guides/cannabis-research-study-reading-checklist/",
+            "gear/cannabis-rosin-press-buying-safety-guide/",
+            "guides/cannabis-product-response-experience-log/",
+            "editorial-policy/",
+            "November 21, 2026",
+            "updates/",
+            "data-site-index-filter",
+            "data-site-index-item",
+            "app-20261111.js",
+        )
         for discovery_page, markers in discovery_checks.items():
             discovery_text = (ROOT / discovery_page).read_text(encoding="utf-8")
             for marker in markers:
@@ -1307,7 +1363,7 @@ def main() -> int:
             failures.append("Editorial policy or Atom feed is missing the feed authorship standard")
         if "Age-gate focus isolation" not in policy:
             failures.append("Editorial policy is missing the age-gate focus-isolation standard")
-        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "Mobile-navigation state integrity" not in policy or "Site-search dialog naming integrity" not in policy or "Guide-finder progression integrity" not in policy or "Fresh static discovery path" not in policy or "Nested 404 route integrity" not in policy or "Collection-control outcome relationship" not in policy or "QR destination and product-evidence boundary" not in policy or "Plant-name and chemical-class boundary" not in policy or "Source-review chronology integrity" not in policy or "Named-product research boundary" not in policy or "External-source transport and relationship integrity" not in policy or "Behavior-change content boundary" not in policy or "Dated source-review freshness gate" not in policy or "Machine-readable coverage and link inventory" not in policy or "content-inventory.json" not in policy or "November 20, 2026" not in policy:
+        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "Mobile-navigation state integrity" not in policy or "Site-search dialog naming integrity" not in policy or "Guide-finder progression integrity" not in policy or "Fresh static discovery path" not in policy or "Nested 404 route integrity" not in policy or "Collection-control outcome relationship" not in policy or "QR destination and product-evidence boundary" not in policy or "Plant-name and chemical-class boundary" not in policy or "Source-review chronology integrity" not in policy or "Named-product research boundary" not in policy or "External-source transport and relationship integrity" not in policy or "Behavior-change content boundary" not in policy or "Dated source-review freshness gate" not in policy or "Machine-readable coverage and link inventory" not in policy or "content-inventory.json" not in policy or "Study-transfer and product-response boundaries" not in policy or "November 21, 2026" not in policy:
             failures.append("Editorial policy is missing the current link and collection-date integrity standards")
         sample_search = (ROOT / "guides/cannabis-moving-day-relocation-checklist/index.html").read_text(encoding="utf-8")
         for marker in ('aria-labelledby="site-search-title"', 'aria-describedby="site-search-help"', 'id="site-search-title"', 'id="site-search-help"'):
