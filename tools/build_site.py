@@ -79,6 +79,7 @@ from content_nov18 import EDITORIAL_POLICY_APPEND as NOV18_POLICY_APPEND, NEW_GE
 from content_nov19 import EDITORIAL_POLICY_APPEND as NOV19_POLICY_APPEND, NEW_GEAR as NOV19_GEAR, NEW_GUIDES as NOV19_GUIDES, NEW_STRAIN_PAGES as NOV19_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV19_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV19_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV19_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV19_REVIEWED_RELATED_PATHS
 from content_nov20 import EDITORIAL_POLICY_APPEND as NOV20_POLICY_APPEND, NEW_GUIDES as NOV20_GUIDES, NEW_STRAIN_PAGES as NOV20_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV20_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV20_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV20_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV20_REVIEWED_RELATED_PATHS
 from content_nov21 import EDITORIAL_POLICY_APPEND as NOV21_POLICY_APPEND, NEW_GEAR as NOV21_GEAR, NEW_GUIDES as NOV21_GUIDES, PUBLICATION_MANIFEST as NOV21_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV21_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV21_REVIEWED_RELATED_PATHS
+from content_nov22 import AFFILIATE_DISCLOSURE_APPEND as NOV22_AFFILIATE_APPEND, EDITORIAL_POLICY_APPEND as NOV22_POLICY_APPEND, NEW_GEAR as NOV22_GEAR, NEW_GUIDES as NOV22_GUIDES, PUBLICATION_MANIFEST as NOV22_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV22_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV22_REVIEWED_RELATED_PATHS
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -243,6 +244,8 @@ STRAIN_PAGES = STRAIN_PAGES + NOV20_STRAIN_PAGES
 GUIDE_PAGES = GUIDE_PAGES + NOV20_GUIDES
 GUIDE_PAGES = GUIDE_PAGES + NOV21_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV21_GEAR
+GUIDE_PAGES = GUIDE_PAGES + NOV22_GUIDES
+OTHER_ARTICLES = OTHER_ARTICLES + NOV22_GEAR
 
 # November 6 connects both new resources from established, intent-matched
 # pages. These are editorial paths, not generic recent-post links, and the
@@ -1066,6 +1069,19 @@ for _standard in STANDARD_PAGES:
         )
         _standard["body"] += NOV21_POLICY_APPEND
 
+for _standard in STANDARD_PAGES:
+    if _standard["path"] == "editorial-policy/index.html":
+        _standard["updated"] = "November 22, 2026"
+        _standard["body"] = _standard["body"].replace(
+            '<p class="update-line">Policy reviewed November 21, 2026</p>',
+            '<p class="update-line">Policy reviewed November 22, 2026</p>',
+        )
+        _standard["body"] += NOV22_POLICY_APPEND
+    elif _standard["path"] == "affiliate-disclosure/index.html":
+        _standard["updated"] = "November 22, 2026"
+        _standard["dek"] = "Current status first: no live editorial link earns Big Bud Man a purchase commission. If that changes, the relationship will be disclosed before the link."
+        _standard["body"] = NOV22_AFFILIATE_APPEND + _standard["body"]
+
 RECIPROCAL_RELATED = {
     "guides/full-spectrum-broad-spectrum-cbd-isolate/index.html": [
         ("guides/cbd-drinks-powders-label-buying-guide/", "CBD DRINKS", "Apply spectrum language to a beverage lot"),
@@ -1884,6 +1900,9 @@ for _source, _links in NOV20_RECIPROCAL_LINKS.items():
 for _source, _links in NOV21_RECIPROCAL_LINKS.items():
     for _link in reversed(_links):
         RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
+for _source, _links in NOV22_RECIPROCAL_LINKS.items():
+    for _link in reversed(_links):
+        RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
 for _source in (
     "guides/read-a-label/index.html",
     "guides/cannabis-terms-label-lab-glossary/index.html",
@@ -1912,6 +1931,9 @@ for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in NOV21_REVIEWED_RELATED_PATHS:
         _item["updated"] = "November 21, 2026"
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
+    if _item["path"] in NOV22_REVIEWED_RELATED_PATHS:
+        _item["updated"] = "November 22, 2026"
+for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in RECIPROCAL_RELATED:
         _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
         _seen_related: set[str] = set()
@@ -1931,9 +1953,9 @@ for _item in GUIDE_PAGES + OTHER_ARTICLES:
             elif _item["path"] == "legal/shop-legal/index.html":
                 # Keep the established delivery-verification route after the
                 # payment/receipt authority link added in this release.
-                _related_limit = 7
+                _related_limit = 8
             elif _item["path"] == "guides/storage/index.html":
-                _related_limit = 7
+                _related_limit = 8
             elif _item["path"] == "guides/cannabis-product-complaint-adverse-event-reporting/index.html":
                 # Preserve the established ingredient/allergen path after the
                 # response-log evidence route added in this release.
@@ -2039,7 +2061,7 @@ def render_home() -> tuple[Page, str]:
         path="index.html", title="Big Bud Man | Legal Cannabis, Without the Haze",
         description="Independent cannabis guides for adults 21+: strains, edibles, labels, gear, responsible use, and reviewed legal starting points for all 50 states.",
         category="Home", h1="Legal weed. Clear-headed guidance.",
-        dek="Independent cannabis education for adults 21+.", body="", updated="November 21, 2026", kind="website",
+        dek="Independent cannabis education for adults 21+.", body="", updated="November 22, 2026", kind="website",
     )
     main = f'''<main id="main-content">
 <section class="hero"><div class="hero-noise"></div><div class="container hero-grid">
@@ -2074,7 +2096,7 @@ def render_home() -> tuple[Page, str]:
 <section class="ny-section"><div class="container ny-grid"><div class="ny-map"><img src="assets/images/new-york-v2.svg" alt="Editorial map graphic of New York State with Central New York highlighted"><span class="map-pin"><b>SYRACUSE</b><br>CENTRAL NY VIEW</span></div><div class="ny-copy"><p class="eyebrow">NEW YORK LEGAL BASICS</p><h2>Know the edges.</h2><p>Adults 21+ may possess up to three ounces of cannabis and 24 grams of concentrate under New York law. That does not legalize unlicensed sales, vehicle use, impaired driving, state-line travel, or federal-property possession.</p><div class="number-grid"><div><b>21+</b><span>adult use</span></div><div><b>3 oz</b><span>cannabis</span></div><div><b>24 g</b><span>concentrate</span></div></div><a class="button button--dark" href="legal/new-york/">Open the New York guide</a><p class="micro">Reviewed August 26, 2026. Always confirm current rules with OCM.</p></div></div></section>
 <section class="container library-preview"><div class="section-head section-head--split"><div><p class="eyebrow">THE LIBRARY</p><h2>Useful before exhaustive</h2></div><a class="text-link" href="guides/">Browse all guides {icon('arrow')}</a></div><div class="library-preview-grid">
 <a class="big-story" href="guides/edibles/"><div><p class="kicker">FORMAT GUIDE</p><h3>Edibles without the classic mistake</h3><p>The mistake is not mysterious: taking more because the first serving has not announced itself yet.</p><b>Read the timing guide {icon('arrow')}</b></div><img src="assets/images/edible-timing.webp" alt="Studio still life of a single gummy beside an analog timer"></a>
-<div class="story-stack"><a href="guides/delta-8-thc-label-safety-guide/"><p class="kicker">DELTA-8 THC + SAFETY</p><h3>Separate intoxicating THC from hemp and CBD framing</h3>{icon('arrow')}</a><a href="guides/cannabis-edible-allergen-ingredient-label-guide/"><p class="kicker">EDIBLES + ALLERGENS</p><h3>Read ingredients and cross-contact language before checkout</h3>{icon('arrow')}</a><a href="strains/stem-cell-cbg/"><p class="kicker">CBG CULTIVAR + EVIDENCE</p><h3>Separate Stem Cell's breeder record from the current product and lot</h3>{icon('arrow')}</a><a href="guides/cbd-drinks-powders-label-buying-guide/"><p class="kicker">CBD DRINKS + POWDERS</p><h3>Reconcile format, serving math, ingredients, lot evidence, and claims</h3>{icon('arrow')}</a><a href="guides/cannabis-product-complaint-adverse-event-reporting/"><p class="kicker">PRODUCT PROBLEM + REPORTING</p><h3>Preserve the person, package, lot, evidence, and correct complaint route</h3>{icon('arrow')}</a><a href="guides/disposable-vape-vs-510-cartridge-comparison/"><p class="kicker">VAPE SYSTEM + BUYING</p><h3>Compare integrated pens and 510 systems beyond the oil</h3>{icon('arrow')}</a><a href="guides/cbd-hemp-flower-label-legal-guide/"><p class="kicker">CBD + HEMP FLOWER</p><h3>Verify identity, total THC, lot evidence, and the rule that applies</h3>{icon('arrow')}</a><a href="guides/cannabis-anxiety-paranoia-psychosis-warning-signs/"><p class="kicker">MENTAL HEALTH + RESPONSE</p><h3>Separate fear, paranoia, disorientation, and psychosis warning signs</h3>{icon('arrow')}</a><a href="guides/cannabis-product-price-label-comparison-calculator/"><p class="kicker">PRICE + LABEL WORKSHEET</p><h3>Normalize three packages without turning potency into quality</h3>{icon('arrow')}</a><a href="guides/cannabis-smoke-vape-lung-health-guide/"><p class="kicker">LUNG HEALTH + ROUTES</p><h3>Separate smoke, aerosol, symptoms, and evidence limits</h3>{icon('arrow')}</a><a href="guides/cannabis-pre-roll-infused-label-buying-guide/"><p class="kicker">PRE-ROLL + CHECKOUT</p><h3>Compare plain and infused packs on identity, lot, and honest math</h3>{icon('arrow')}</a><a href="guides/cannabis-terms-label-lab-glossary/"><p class="kicker">48-TERM GLOSSARY</p><h3>Decode labels, laboratory notation, formats, and plant language</h3>{icon('arrow')}</a><a href="guides/cannabis-certificate-of-analysis-coa-guide/"><p class="kicker">LAB REPORT + BUYING</p><h3>Match the lot before trusting the pass badge</h3>{icon('arrow')}</a><a href="legal/shop-legal/"><p class="kicker">CHECKOUT VERIFICATION</p><h3>Verify the seller, product, certificate, and receipt</h3>{icon('arrow')}</a></div>
+<div class="story-stack"><a href="guides/first-cannabis-dispensary-visit-checklist/"><p class="kicker">FIRST VISIT + CHECKOUT</p><h3>Verify the store, package, receipt, trip home, and locked storage</h3>{icon('arrow')}</a><a href="guides/cannabis-power-outage-evacuation-safety-plan/"><p class="kicker">OUTAGE + EVACUATION</p><h3>Keep life safety, storage, batteries, pets, and damaged products in one plan</h3>{icon('arrow')}</a><a href="guides/delta-8-thc-label-safety-guide/"><p class="kicker">DELTA-8 THC + SAFETY</p><h3>Separate intoxicating THC from hemp and CBD framing</h3>{icon('arrow')}</a><a href="guides/cannabis-edible-allergen-ingredient-label-guide/"><p class="kicker">EDIBLES + ALLERGENS</p><h3>Read ingredients and cross-contact language before checkout</h3>{icon('arrow')}</a><a href="strains/stem-cell-cbg/"><p class="kicker">CBG CULTIVAR + EVIDENCE</p><h3>Separate Stem Cell's breeder record from the current product and lot</h3>{icon('arrow')}</a><a href="guides/cbd-drinks-powders-label-buying-guide/"><p class="kicker">CBD DRINKS + POWDERS</p><h3>Reconcile format, serving math, ingredients, lot evidence, and claims</h3>{icon('arrow')}</a><a href="guides/cannabis-product-complaint-adverse-event-reporting/"><p class="kicker">PRODUCT PROBLEM + REPORTING</p><h3>Preserve the person, package, lot, evidence, and correct complaint route</h3>{icon('arrow')}</a><a href="guides/disposable-vape-vs-510-cartridge-comparison/"><p class="kicker">VAPE SYSTEM + BUYING</p><h3>Compare integrated pens and 510 systems beyond the oil</h3>{icon('arrow')}</a><a href="guides/cbd-hemp-flower-label-legal-guide/"><p class="kicker">CBD + HEMP FLOWER</p><h3>Verify identity, total THC, lot evidence, and the rule that applies</h3>{icon('arrow')}</a><a href="guides/cannabis-anxiety-paranoia-psychosis-warning-signs/"><p class="kicker">MENTAL HEALTH + RESPONSE</p><h3>Separate fear, paranoia, disorientation, and psychosis warning signs</h3>{icon('arrow')}</a><a href="guides/cannabis-product-price-label-comparison-calculator/"><p class="kicker">PRICE + LABEL WORKSHEET</p><h3>Normalize three packages without turning potency into quality</h3>{icon('arrow')}</a><a href="guides/cannabis-smoke-vape-lung-health-guide/"><p class="kicker">LUNG HEALTH + ROUTES</p><h3>Separate smoke, aerosol, symptoms, and evidence limits</h3>{icon('arrow')}</a><a href="guides/cannabis-pre-roll-infused-label-buying-guide/"><p class="kicker">PRE-ROLL + CHECKOUT</p><h3>Compare plain and infused packs on identity, lot, and honest math</h3>{icon('arrow')}</a><a href="guides/cannabis-terms-label-lab-glossary/"><p class="kicker">48-TERM GLOSSARY</p><h3>Decode labels, laboratory notation, formats, and plant language</h3>{icon('arrow')}</a><a href="guides/cannabis-certificate-of-analysis-coa-guide/"><p class="kicker">LAB REPORT + BUYING</p><h3>Match the lot before trusting the pass badge</h3>{icon('arrow')}</a><a href="legal/shop-legal/"><p class="kicker">CHECKOUT VERIFICATION</p><h3>Verify the seller, product, certificate, and receipt</h3>{icon('arrow')}</a></div>
 </div></section>
 <section class="rules-section"><div class="container"><div class="section-head"><p class="eyebrow">THE SIX NON-NEGOTIABLES</p><h2>A responsible-use baseline</h2></div><ol class="rules-grid"><li><span>01</span><p><b>Adults only.</b><br>No access, use, or youth-targeted packaging.</p></li><li><span>02</span><p><b>No impaired driving.</b><br>Cars, boats, machinery, and ladders can wait.</p></li><li><span>03</span><p><b>Wait for the format.</b><br>Delayed products do not care that you are impatient.</p></li><li><span>04</span><p><b>Keep the package.</b><br>Identity and emergency information matter.</p></li><li><span>05</span><p><b>Lock every product.</b><br>Out of sight is not secure.</p></li><li><span>06</span><p><b>Notice the pattern.</b><br>Use should not quietly shrink the rest of life.</p></li></ol></div></section>
 {newsletter('')}
@@ -2215,9 +2237,11 @@ def add_collection_itemlist(html: str, page: Page, name: str, card_class: str) -
 
 
 def render_guides_hub() -> tuple[Page,str]:
-    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 21, 2026",kind="website")
+    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 22, 2026",kind="website")
     p="../"
     cards="".join([
+      card("guides/first-cannabis-dispensary-visit-checklist/","BUYING + FIRST VISIT","First cannabis dispensary visit","Verify the store, prepare a short shopping brief, inspect the package, reconcile the receipt, and plan lawful transport and locked storage.","search",p),
+      card("guides/cannabis-power-outage-evacuation-safety-plan/","EMERGENCY + HOUSEHOLD","Cannabis power-outage and evacuation plan","Pre-decide life safety, storage, battery, medical, pet, transport, damage-quarantine, and return-home gates.","alert",p),
       card("guides/cannabis-research-study-reading-checklist/","RESEARCH LITERACY + EVIDENCE","How to read cannabis research","Identify design, population, product, route, outcome, result, harms, conflicts, uncertainty, and transfer limits.","book",p),
       card("guides/cannabis-product-response-experience-log/","RESPONSIBLE USE + RECORDS","Cannabis product response log","Record exact product and lot identity, route, clock, context, observations, function, urgent help, and the clinical handoff.","shield",p),
       card("guides/cannabis-dispensary-payment-receipt-guide/","SHOPPING + PAYMENT","Dispensary payment and receipt guide","Identify the transaction, total fees, receipt fields, statement descriptor, privacy trail, error record, and stop-payment red flags.","tag",p),
@@ -2729,7 +2753,7 @@ def write_content_inventory(pages: list[Page]) -> None:
             "contextual_outlinks": outgoing[url],
         })
     payload = {
-        "generated": "2026-11-21",
+        "generated": "2026-11-22",
         "scope": "Every indexable canonical BigBudMan.com page. Links are unique internal destinations inside main content; global header and footer navigation are excluded.",
         "page_count": len(records),
         "pages": records,
@@ -2875,6 +2899,7 @@ def build() -> None:
     publication_manifest = NOV19_PUBLICATION_MANIFEST
     publication_manifest = NOV20_PUBLICATION_MANIFEST
     publication_manifest = NOV21_PUBLICATION_MANIFEST
+    publication_manifest = NOV22_PUBLICATION_MANIFEST
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]
     write_content_inventory(indexable)

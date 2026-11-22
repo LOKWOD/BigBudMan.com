@@ -78,6 +78,12 @@ def verify_once(base_url: str, timeout: int) -> str:
     if live_records != expected_records:
         raise RuntimeError("canonical sitemap: live URL/lastmod records do not match the checked-in release")
 
+    legacy_url = urljoin(base_url, "index.php?xml_sitemap=params=")
+    live_legacy_sitemap, _legacy_type = request(legacy_url, timeout)
+    live_legacy_records = sitemap_records(live_legacy_sitemap, "live legacy sitemap endpoint")
+    if live_legacy_records != live_records:
+        raise RuntimeError("legacy sitemap endpoint: live URL/lastmod records do not match the live canonical sitemap")
+
     expected_inventory = json.loads((ROOT / "content-inventory.json").read_text(encoding="utf-8"))
     live_inventory_bytes, inventory_type = request(urljoin(base_url, "content-inventory.json"), timeout)
     if "json" not in inventory_type.lower():
@@ -122,7 +128,7 @@ def verify_once(base_url: str, timeout: int) -> str:
             raise RuntimeError(f"{url}: freshness date {expected_date} is not visible in the live HTML")
         checked += 1
 
-    return f"manifest, robots, content inventory, {len(live_records)} sitemap URLs, and {checked} freshness surfaces"
+    return f"manifest, robots, content inventory, {len(live_records)} canonical sitemap URLs, live legacy sitemap parity, and {checked} freshness surfaces"
 
 
 def main() -> int:

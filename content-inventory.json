@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-21",
+  "generated": "2026-11-22",
   "scope": "Every indexable canonical BigBudMan.com page. Links are unique internal destinations inside main content; global header and footer navigation are excluded.",
-  "page_count": 351,
+  "page_count": 353,
   "pages": [
     {
       "url": "https://bigbudman.com/",
@@ -11,7 +11,7 @@
       "core_angle": "Independent cannabis guides for adults 21+: strains, edibles, labels, gear, responsible use, and reviewed legal starting points for all 50 states.",
       "department": "home",
       "published": "2026-08-17",
-      "updated": "2026-11-21",
+      "updated": "2026-11-22",
       "contextual_inlinks": [
         "https://bigbudman.com/site-index/"
       ],
@@ -51,6 +51,7 @@
         "https://bigbudman.com/guides/cannabis-next-day-impairment-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-official-source-directory/",
         "https://bigbudman.com/guides/cannabis-package-seal-tamper-evidence-checklist/",
+        "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/",
         "https://bigbudman.com/guides/cannabis-pre-roll-infused-label-buying-guide/",
         "https://bigbudman.com/guides/cannabis-product-complaint-adverse-event-reporting/",
         "https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/",
@@ -68,6 +69,7 @@
         "https://bigbudman.com/guides/delta-8-thc-label-safety-guide/",
         "https://bigbudman.com/guides/disposable-vape-vs-510-cartridge-comparison/",
         "https://bigbudman.com/guides/edibles/",
+        "https://bigbudman.com/guides/first-cannabis-dispensary-visit-checklist/",
         "https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/",
         "https://bigbudman.com/guides/read-a-label/",
         "https://bigbudman.com/guides/storage/",
@@ -114,7 +116,7 @@
       "core_angle": "Big Bud Man affiliate-link and commercial-disclosure policy, including how gear recommendations remain editorially independent.",
       "department": "affiliate-disclosure",
       "published": "2026-08-17",
-      "updated": "2026-08-17",
+      "updated": "2026-11-22",
       "contextual_inlinks": [
         "https://bigbudman.com/site-index/"
       ],
@@ -148,7 +150,7 @@
       "core_angle": "How Big Bud Man researches, writes, reviews, updates, corrects, and monetizes independent legal-cannabis education.",
       "department": "editorial-policy",
       "published": "2026-08-17",
-      "updated": "2026-11-21",
+      "updated": "2026-11-22",
       "contextual_inlinks": [
         "https://bigbudman.com/about/",
         "https://bigbudman.com/site-index/"
@@ -392,12 +394,13 @@
       "core_angle": "Compare a charger or cable for a cannabis vape or vaporizer by exact-device instructions, input, connector, battery, damage, recalls, and cost.",
       "department": "gear",
       "published": "2026-11-11",
-      "updated": "2026-11-19",
+      "updated": "2026-11-22",
       "contextual_inlinks": [
         "https://bigbudman.com/gear/",
         "https://bigbudman.com/gear/510-thread-vape-battery-safety/",
         "https://bigbudman.com/gear/cannabis-replacement-parts-compatibility-guide/",
         "https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/",
+        "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
       ],
@@ -405,8 +408,8 @@
         "https://bigbudman.com/gear/510-thread-vape-battery-safety/",
         "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/",
         "https://bigbudman.com/gear/cannabis-replacement-parts-compatibility-guide/",
-        "https://bigbudman.com/gear/cannabis-vape-battery-cartridge-disposal-guide/",
-        "https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/"
+        "https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/",
+        "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/"
       ]
     },
     {
@@ -657,7 +660,6 @@
       "contextual_inlinks": [
         "https://bigbudman.com/gear/",
         "https://bigbudman.com/gear/cannabis-ashtray-ember-disposal-guide/",
-        "https://bigbudman.com/guides/cannabis-home-fire-safety-plan/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
       ],
@@ -1028,7 +1030,6 @@
       "updated": "2026-09-22",
       "contextual_inlinks": [
         "https://bigbudman.com/gear/",
-        "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/",
         "https://bigbudman.com/gear/cannabis-replacement-parts-compatibility-guide/",
         "https://bigbudman.com/guides/cannabis-product-disposal-decision-guide/",
         "https://bigbudman.com/guides/cannabis-smoke-vape-lung-health-guide/",
@@ -1429,7 +1430,7 @@
       "core_angle": "Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.",
       "department": "guides",
       "published": "2026-08-17",
-      "updated": "2026-11-21",
+      "updated": "2026-11-22",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/site-index/"
@@ -1486,6 +1487,7 @@
         "https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/",
         "https://bigbudman.com/guides/cannabis-package-seal-tamper-evidence-checklist/",
         "https://bigbudman.com/guides/cannabis-potency-units-percent-mg-g-ml-serving-guide/",
+        "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/",
         "https://bigbudman.com/guides/cannabis-pre-roll-infused-label-buying-guide/",
         "https://bigbudman.com/guides/cannabis-pregnancy-breastfeeding-guidance/",
         "https://bigbudman.com/guides/cannabis-product-complaint-adverse-event-reporting/",
@@ -1523,6 +1525,7 @@
         "https://bigbudman.com/guides/disposable-vape-vs-510-cartridge-comparison/",
         "https://bigbudman.com/guides/dot-cannabis-cbd-drug-testing-safety-sensitive-workers/",
         "https://bigbudman.com/guides/edibles/",
+        "https://bigbudman.com/guides/first-cannabis-dispensary-visit-checklist/",
         "https://bigbudman.com/guides/flower/",
         "https://bigbudman.com/guides/full-spectrum-broad-spectrum-cbd-isolate/",
         "https://bigbudman.com/guides/hemp-seed-oil-vs-cbd-oil/",
@@ -1577,7 +1580,7 @@
       "core_angle": "A practical Cannabis 101 guide to THC, CBD, formats, labels, product identity, marketing claims, impairment, storage, and first-purchase questions.",
       "department": "guides",
       "published": "2026-08-17",
-      "updated": "2026-10-12",
+      "updated": "2026-11-22",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/",
@@ -1590,6 +1593,7 @@
         "https://bigbudman.com/guides/cannabis-edible-label-math-checker/",
         "https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/",
         "https://bigbudman.com/guides/delta-8-thc-label-safety-guide/",
+        "https://bigbudman.com/guides/first-cannabis-dispensary-visit-checklist/",
         "https://bigbudman.com/guides/read-a-label/"
       ]
     },
@@ -1649,7 +1653,7 @@
       "core_angle": "Act on possible cannabis exposure in a dog, cat, or other pet: call promptly, preserve the package, report co-ingredients, track signs, and prevent recurrence.",
       "department": "guides",
       "published": "2026-08-17",
-      "updated": "2026-10-21",
+      "updated": "2026-11-22",
       "contextual_inlinks": [
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cbd-products-for-pets-veterinarian-label-guide/",
@@ -1659,6 +1663,7 @@
       ],
       "contextual_outlinks": [
         "https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/",
+        "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/",
         "https://bigbudman.com/guides/cbd-products-for-pets-veterinarian-label-guide/",
         "https://bigbudman.com/guides/full-spectrum-broad-spectrum-cbd-isolate/",
         "https://bigbudman.com/guides/secondhand-cannabis-smoke-indoor-air/",
@@ -2223,7 +2228,7 @@
       "core_angle": "Compare dispensary payment methods, fees, receipt fields, statement descriptors, privacy, and error records without assuming one tender works everywhere.",
       "department": "guides",
       "published": "2026-11-20",
-      "updated": "2026-11-20",
+      "updated": "2026-11-22",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/",
@@ -2238,7 +2243,7 @@
         "https://bigbudman.com/guides/cannabis-dispensary-loyalty-rewards-value-privacy-guide/",
         "https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/",
         "https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/",
-        "https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/",
+        "https://bigbudman.com/guides/first-cannabis-dispensary-visit-checklist/",
         "https://bigbudman.com/legal/shop-legal/"
       ]
     },
@@ -2566,7 +2571,7 @@
       "core_angle": "Build a cannabis-aware home fire plan covering alarms, escape, flames, embers, lithium batteries, indoor-grow electrical loads, and incident records.",
       "department": "guides",
       "published": "2026-10-30",
-      "updated": "2026-11-07",
+      "updated": "2026-11-22",
       "contextual_inlinks": [
         "https://bigbudman.com/gear/510-thread-vape-battery-safety/",
         "https://bigbudman.com/gear/cannabis-ashtray-ember-disposal-guide/",
@@ -2575,14 +2580,15 @@
         "https://bigbudman.com/gear/cannabis-smoke-air-quality-monitor-buying-guide/",
         "https://bigbudman.com/gear/home-grow-timer-controller-buying-guide/",
         "https://bigbudman.com/guides/",
+        "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
       ],
       "contextual_outlinks": [
-        "https://bigbudman.com/gear/cannabis-lighter-flame-safety-guide/",
         "https://bigbudman.com/gear/cannabis-smoke-air-quality-monitor-buying-guide/",
         "https://bigbudman.com/gear/home-grow-timer-controller-buying-guide/",
-        "https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/"
+        "https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/",
+        "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/"
       ]
     },
     {
@@ -2664,13 +2670,14 @@
       "core_angle": "Compare a cannabis menu, cart, sealed package, lot evidence, and receipt before purchase without treating marketing copy as the product record.",
       "department": "guides",
       "published": "2026-10-07",
-      "updated": "2026-11-20",
+      "updated": "2026-11-22",
       "contextual_inlinks": [
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-dispensary-loyalty-rewards-value-privacy-guide/",
         "https://bigbudman.com/guides/cannabis-dispensary-payment-receipt-guide/",
         "https://bigbudman.com/guides/cannabis-product-complaint-adverse-event-reporting/",
         "https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/",
+        "https://bigbudman.com/guides/first-cannabis-dispensary-visit-checklist/",
         "https://bigbudman.com/guides/new-york-cannabis-showcase-event-verification-guide/",
         "https://bigbudman.com/legal/shop-legal/",
         "https://bigbudman.com/site-index/",
@@ -2681,7 +2688,7 @@
         "https://bigbudman.com/guides/cannabis-dispensary-loyalty-rewards-value-privacy-guide/",
         "https://bigbudman.com/guides/cannabis-dispensary-payment-receipt-guide/",
         "https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/",
-        "https://bigbudman.com/guides/cannabis-product-recall-batch-checker/",
+        "https://bigbudman.com/guides/first-cannabis-dispensary-visit-checklist/",
         "https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/",
         "https://bigbudman.com/guides/read-a-label/",
         "https://bigbudman.com/legal/shop-legal/"
@@ -2717,19 +2724,20 @@
       "core_angle": "Plan a cannabis move without hiding jurisdiction changes, state-line travel, movers, vehicles, batteries, storage, disposal, or the arrival handoff.",
       "department": "guides",
       "published": "2026-11-09",
-      "updated": "2026-11-09",
+      "updated": "2026-11-22",
       "contextual_inlinks": [
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-official-source-directory/",
+        "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/",
         "https://bigbudman.com/guides/cannabis-product-disposal-decision-guide/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
       ],
       "contextual_outlinks": [
         "https://bigbudman.com/guides/cannabis-official-source-directory/",
+        "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/",
         "https://bigbudman.com/guides/cannabis-product-disposal-decision-guide/",
-        "https://bigbudman.com/guides/storage/",
-        "https://bigbudman.com/legal/cannabis-federal-property-rules-guide/"
+        "https://bigbudman.com/guides/storage/"
       ]
     },
     {
@@ -2928,6 +2936,33 @@
       ]
     },
     {
+      "url": "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/",
+      "slug": "guides/cannabis-power-outage-evacuation-safety-plan",
+      "title": "Cannabis Power-Outage & Evacuation Plan",
+      "topic": "Cannabis emergency readiness, outage safety and evacuation checklist",
+      "core_angle": "Cannabis power-outage and evacuation plan for locked storage, batteries, medicines, pets, damaged products, transport, and return-home records.",
+      "department": "guides",
+      "published": "2026-11-22",
+      "updated": "2026-11-22",
+      "contextual_inlinks": [
+        "https://bigbudman.com/",
+        "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/",
+        "https://bigbudman.com/guides/",
+        "https://bigbudman.com/guides/cannabis-and-pets-accidental-exposure/",
+        "https://bigbudman.com/guides/cannabis-home-fire-safety-plan/",
+        "https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/",
+        "https://bigbudman.com/guides/storage/",
+        "https://bigbudman.com/site-index/",
+        "https://bigbudman.com/updates/"
+      ],
+      "contextual_outlinks": [
+        "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/",
+        "https://bigbudman.com/guides/cannabis-home-fire-safety-plan/",
+        "https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/",
+        "https://bigbudman.com/guides/storage/"
+      ]
+    },
+    {
       "url": "https://bigbudman.com/guides/cannabis-pre-roll-infused-label-buying-guide/",
       "slug": "guides/cannabis-pre-roll-infused-label-buying-guide",
       "title": "Cannabis Pre-Roll Buying Guide",
@@ -3117,7 +3152,6 @@
         "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
         "https://bigbudman.com/guides/cannabis-contaminant-test-results-guide/",
         "https://bigbudman.com/guides/cannabis-flower-freshness-package-date-buying-guide/",
-        "https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/",
         "https://bigbudman.com/guides/cannabis-package-seal-tamper-evidence-checklist/",
         "https://bigbudman.com/guides/cannabis-product-complaint-adverse-event-reporting/",
         "https://bigbudman.com/guides/cannabis-product-dates-condition-decision-guide/",
@@ -3203,7 +3237,6 @@
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-lab-report-detection-quantitation-limits-guide/",
         "https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/",
-        "https://bigbudman.com/guides/read-a-label/",
         "https://bigbudman.com/legal/shop-legal/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
@@ -3932,6 +3965,33 @@
       ]
     },
     {
+      "url": "https://bigbudman.com/guides/first-cannabis-dispensary-visit-checklist/",
+      "slug": "guides/first-cannabis-dispensary-visit-checklist",
+      "title": "First Cannabis Dispensary Visit Checklist",
+      "topic": "First dispensary visit, licensed-retailer verification and shopping checklist",
+      "core_angle": "First dispensary visit checklist: verify the seller, prepare questions, inspect the package, reconcile the receipt, and plan the trip home.",
+      "department": "guides",
+      "published": "2026-11-22",
+      "updated": "2026-11-22",
+      "contextual_inlinks": [
+        "https://bigbudman.com/",
+        "https://bigbudman.com/guides/",
+        "https://bigbudman.com/guides/cannabis-101/",
+        "https://bigbudman.com/guides/cannabis-dispensary-payment-receipt-guide/",
+        "https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/",
+        "https://bigbudman.com/guides/read-a-label/",
+        "https://bigbudman.com/legal/shop-legal/",
+        "https://bigbudman.com/site-index/",
+        "https://bigbudman.com/updates/"
+      ],
+      "contextual_outlinks": [
+        "https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/",
+        "https://bigbudman.com/guides/read-a-label/",
+        "https://bigbudman.com/legal/",
+        "https://bigbudman.com/legal/shop-legal/"
+      ]
+    },
+    {
       "url": "https://bigbudman.com/guides/flower/",
       "slug": "guides/flower",
       "title": "Cannabis Flower Buying & Quality Checklist",
@@ -4085,7 +4145,6 @@
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/",
-        "https://bigbudman.com/guides/cannabis-dispensary-payment-receipt-guide/",
         "https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/",
         "https://bigbudman.com/guides/cannabis-qr-code-coa-verification-safety-guide/",
         "https://bigbudman.com/legal/shop-legal/",
@@ -4251,7 +4310,7 @@
       "core_angle": "Decode a cannabis label by format, reconcile serving and package math, match the lot to the CoA, and preserve a reusable package evidence record.",
       "department": "guides",
       "published": "2026-08-17",
-      "updated": "2026-11-17",
+      "updated": "2026-11-22",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/gear/cannabis-inventory-label-record-kit/",
@@ -4284,6 +4343,7 @@
         "https://bigbudman.com/guides/cbd-oil-tincture-label-buying-guide/",
         "https://bigbudman.com/guides/cbd-topicals-label-buying-guide/",
         "https://bigbudman.com/guides/cbda-on-cannabis-hemp-labels/",
+        "https://bigbudman.com/guides/first-cannabis-dispensary-visit-checklist/",
         "https://bigbudman.com/guides/full-spectrum-broad-spectrum-cbd-isolate/",
         "https://bigbudman.com/guides/hemp-seed-oil-vs-cbd-oil/",
         "https://bigbudman.com/guides/indica-sativa-hybrid-label-evidence-guide/",
@@ -4415,8 +4475,8 @@
         "https://bigbudman.com/guides/cannabis-edible-label-math-checker/",
         "https://bigbudman.com/guides/cannabis-potency-units-percent-mg-g-ml-serving-guide/",
         "https://bigbudman.com/guides/cannabis-product-recall-batch-checker/",
-        "https://bigbudman.com/guides/cannabis-qr-code-coa-verification-safety-guide/",
-        "https://bigbudman.com/guides/cannabis-warning-symbol-package-icon-guide/"
+        "https://bigbudman.com/guides/cannabis-warning-symbol-package-icon-guide/",
+        "https://bigbudman.com/guides/first-cannabis-dispensary-visit-checklist/"
       ]
     },
     {
@@ -4461,7 +4521,7 @@
       "core_angle": "Store flower, edibles, drinks, oils, vapes, concentrates, and topicals using original packaging, locked access, condition checks, and a lot record.",
       "department": "guides",
       "published": "2026-08-17",
-      "updated": "2026-11-10",
+      "updated": "2026-11-22",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/gear/510-thread-vape-battery-safety/",
@@ -4480,6 +4540,7 @@
         "https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/",
         "https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/",
         "https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/",
+        "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/",
         "https://bigbudman.com/guides/cannabis-pregnancy-breastfeeding-guidance/",
         "https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/",
         "https://bigbudman.com/guides/cbd-capsules-softgels-label-buying-guide/",
@@ -4500,6 +4561,7 @@
         "https://bigbudman.com/gear/cannabis-stash-jar-buying-guide/",
         "https://bigbudman.com/gear/smell-proof-storage/",
         "https://bigbudman.com/guides/cannabis-and-pets-accidental-exposure/",
+        "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/",
         "https://bigbudman.com/guides/cannabis-product-dates-condition-decision-guide/",
         "https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/"
       ]
@@ -4612,6 +4674,7 @@
         "https://bigbudman.com/guides/cannabis-social-hosting-guest-safety-plan/",
         "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/",
         "https://bigbudman.com/guides/cbg-dominant-cannabis-chemotype-guide/",
+        "https://bigbudman.com/guides/first-cannabis-dispensary-visit-checklist/",
         "https://bigbudman.com/guides/thca-vs-thc-cannabis-labels/",
         "https://bigbudman.com/legal/alabama/",
         "https://bigbudman.com/legal/alaska/",
@@ -4845,7 +4908,6 @@
       "updated": "2026-11-15",
       "contextual_inlinks": [
         "https://bigbudman.com/",
-        "https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/",
         "https://bigbudman.com/legal/",
         "https://bigbudman.com/legal/cannabis-federally-assisted-housing-guide/",
         "https://bigbudman.com/legal/flying-with-cannabis-cbd-tsa-rules/",
@@ -5679,7 +5741,7 @@
       "core_angle": "Verify a New York cannabis dispensary, match the exact business and product lot, check the certificate and recall status, and preserve a useful receipt.",
       "department": "legal",
       "published": "2026-08-17",
-      "updated": "2026-11-20",
+      "updated": "2026-11-22",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/cannabis-beverages-label-timing-buying-guide/",
@@ -5696,6 +5758,7 @@
         "https://bigbudman.com/guides/cannabis-product-recall-batch-checker/",
         "https://bigbudman.com/guides/cannabis-qr-code-coa-verification-safety-guide/",
         "https://bigbudman.com/guides/edibles/",
+        "https://bigbudman.com/guides/first-cannabis-dispensary-visit-checklist/",
         "https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/",
         "https://bigbudman.com/guides/new-york-cannabis-seed-clone-buying-guide/",
         "https://bigbudman.com/guides/new-york-cannabis-showcase-event-verification-guide/",
@@ -5713,6 +5776,7 @@
         "https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/",
         "https://bigbudman.com/guides/cannabis-product-recall-batch-checker/",
         "https://bigbudman.com/guides/cannabis-qr-code-coa-verification-safety-guide/",
+        "https://bigbudman.com/guides/first-cannabis-dispensary-visit-checklist/",
         "https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/",
         "https://bigbudman.com/guides/new-york-cannabis-seed-clone-buying-guide/",
         "https://bigbudman.com/guides/new-york-cannabis-showcase-event-verification-guide/",
@@ -5999,7 +6063,7 @@
       "core_angle": "Browse every indexable Big Bud Man guide, strain field note, gear page, legal resource, and publication page with visible review dates.",
       "department": "site-index",
       "published": "2026-08-17",
-      "updated": "2026-11-21",
+      "updated": "2026-11-22",
       "contextual_inlinks": [
         "https://bigbudman.com/guides/cannabis-health-evidence-library/"
       ],
@@ -6108,6 +6172,7 @@
         "https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/",
         "https://bigbudman.com/guides/cannabis-package-seal-tamper-evidence-checklist/",
         "https://bigbudman.com/guides/cannabis-potency-units-percent-mg-g-ml-serving-guide/",
+        "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/",
         "https://bigbudman.com/guides/cannabis-pre-roll-infused-label-buying-guide/",
         "https://bigbudman.com/guides/cannabis-pregnancy-breastfeeding-guidance/",
         "https://bigbudman.com/guides/cannabis-product-complaint-adverse-event-reporting/",
@@ -6145,6 +6210,7 @@
         "https://bigbudman.com/guides/disposable-vape-vs-510-cartridge-comparison/",
         "https://bigbudman.com/guides/dot-cannabis-cbd-drug-testing-safety-sensitive-workers/",
         "https://bigbudman.com/guides/edibles/",
+        "https://bigbudman.com/guides/first-cannabis-dispensary-visit-checklist/",
         "https://bigbudman.com/guides/flower/",
         "https://bigbudman.com/guides/full-spectrum-broad-spectrum-cbd-isolate/",
         "https://bigbudman.com/guides/hemp-seed-oil-vs-cbd-oil/",
@@ -9338,7 +9404,7 @@
       "core_angle": "See newly published and materially reviewed Big Bud Man guides, gear resources, legal explainers, and collection updates in date order.",
       "department": "updates",
       "published": "2026-08-17",
-      "updated": "2026-11-21",
+      "updated": "2026-11-22",
       "contextual_inlinks": [
         "https://bigbudman.com/site-index/"
       ],
@@ -9440,6 +9506,7 @@
         "https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/",
         "https://bigbudman.com/guides/cannabis-package-seal-tamper-evidence-checklist/",
         "https://bigbudman.com/guides/cannabis-potency-units-percent-mg-g-ml-serving-guide/",
+        "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/",
         "https://bigbudman.com/guides/cannabis-pre-roll-infused-label-buying-guide/",
         "https://bigbudman.com/guides/cannabis-pregnancy-breastfeeding-guidance/",
         "https://bigbudman.com/guides/cannabis-product-complaint-adverse-event-reporting/",
@@ -9477,6 +9544,7 @@
         "https://bigbudman.com/guides/disposable-vape-vs-510-cartridge-comparison/",
         "https://bigbudman.com/guides/dot-cannabis-cbd-drug-testing-safety-sensitive-workers/",
         "https://bigbudman.com/guides/edibles/",
+        "https://bigbudman.com/guides/first-cannabis-dispensary-visit-checklist/",
         "https://bigbudman.com/guides/flower/",
         "https://bigbudman.com/guides/full-spectrum-broad-spectrum-cbd-isolate/",
         "https://bigbudman.com/guides/hemp-seed-oil-vs-cbd-oil/",

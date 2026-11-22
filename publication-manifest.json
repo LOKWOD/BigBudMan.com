@@ -1,70 +1,63 @@
 {
-  "publication_date": "2026-11-21",
-  "page_count": 3,
+  "publication_date": "2026-11-22",
+  "page_count": 2,
   "pages": [
     {
-      "title": "How to Read Cannabis Research: Study Checklist",
-      "url": "https://bigbudman.com/guides/cannabis-research-study-reading-checklist/",
+      "title": "First Cannabis Dispensary Visit Checklist",
+      "url": "https://bigbudman.com/guides/first-cannabis-dispensary-visit-checklist/",
+      "department": "guides",
+      "portfolio_label": "Exploration",
+      "search_intent": "prepare for a first licensed cannabis dispensary visit, verify the store, ask bounded questions, inspect the package, reconcile payment and receipt, and plan lawful transport and locked storage"
+    },
+    {
+      "title": "Cannabis Power-Outage & Evacuation Plan",
+      "url": "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "read a cannabis study by design, population, product, route, comparator, outcome, result, harms, conflicts, bias, and transfer limits without overclaiming one paper"
-    },
-    {
-      "title": "Cannabis Rosin Press Buying & Safety Guide",
-      "url": "https://bigbudman.com/gear/cannabis-rosin-press-buying-safety-guide/",
-      "department": "gear",
-      "portfolio_label": "Exploration",
-      "search_intent": "compare exact rosin presses by lawful job, drive system, force evidence, plate geometry, guarding, controls, utilities, service, recalls, return test, and ownership cost"
-    },
-    {
-      "title": "Cannabis Product Response & Adverse-Event Log",
-      "url": "https://bigbudman.com/guides/cannabis-product-response-experience-log/",
-      "department": "guides",
-      "portfolio_label": "Exploration",
-      "search_intent": "record exact cannabis product and lot identity, route, clock time, context, observable response, function, warning signs, help, and the clinical or adverse-event handoff without dose advice"
+      "search_intent": "build a cannabis-specific outage and evacuation plan covering life safety, inventory, locked storage, batteries, medical handoff, pets, transport, damage quarantine, and return home"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured. The conversion improvement is a product-neutral rosin-press decision system for a purchase-ready reader: it compares three exact machines, rejects unsupported tonnage and safety claims, prices the complete ownership system, and uses the return window before material contact. No merchant, model, price, rating, coupon, availability, yield, fabricated test, product image, or affiliate link was added; repair, borrowing, licensed processing, or no purchase remains valid."
+    "reason": "No approved affiliate program or tracking ID is configured. The conversion improvement is a product-neutral first-dispensary-visit decision path that routes a purchase-ready reader through licensed-seller verification, a short shopping brief, package and lot inspection, payment/receipt reconciliation, transport, locked storage, and a clear walk-away rule. The affiliate disclosure now states the active status plainly. No merchant, product, price, rating, discount, fabricated test, product image, or commercial conclusion was added."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "All three pages use original text, tables, checklists, and existing interface assets. No study figure, patient, cannabis product, rosin press, merchant, affiliate, stock, generated, or product image was added or changed, so there is no exact-product mismatch or new licensing question."
+    "note": "Both guides and the technical/trust changes use original text, tables, checklists, and existing interface assets. No product, store, patient, emergency, stock, affiliate, generated, or third-party image was added or changed; no exact-product or licensing mismatch was introduced."
   },
   "search_console": {
     "report_date": "2026-11-18",
-    "decision": "The October 19\u2013November 15 report is three days old and valid: 830 impressions, three clicks, 0.361% CTR, and average position 20.688. Arkansas at ten impressions and position 10.2 was materially reinforced November 12; the roughly 48-impression Blue Dream family was materially reinforced November 17; sitemap-discovery parity was materially repaired and audited November 20. The remaining 510-versus-disposable and trimming-scissors rows had two impressions each, while Delaware had two impressions and one click and chronic-pain HTTP had one impression. Those signals were deliberately ignored as too weak, already served, stale-address noise, or duplicative. No new page is primarily Data-led today; analytics protected diversity and prevented another near-duplicate cluster page."
+    "decision": "The October 19\u2013November 15 report is four days old and valid: 830 impressions, three clicks, 0.361% CTR, and average position 20.688. Its sitemap section still reports errors on the legacy query endpoint and the canonical sitemap from old 2023\u20132025 submissions, while both live payloads currently parse. That supported one Data-led improvement: the post-deploy audit now requests and compares the live legacy endpoint against the canonical sitemap. The 36-impression Blue Dream row and 10-impression Arkansas page were already materially reinforced November 17 and November 12. The two-impression 510/disposable and trimming-scissors rows, two-impression Delaware page, and single-impression HTTP chronic-pain row were deliberately ignored as too weak, already served, or stale-address noise."
   },
   "authority": {
-    "action": "Published a citation-ready cannabis-study reading checklist with a design map, ten-field transfer screen, result and bias checks, and printable one-study claim card using NCCIH and ClinicalTrials.gov sources. Reciprocal links strengthen the health-evidence, claim-checking, official-source, concentrate-equipment, responsible-use, clinical-handoff, and adverse-event clusters. The product-response log adds a reusable evidence-preservation asset and the editorial policy now states study-transfer and response-record boundaries. No outreach opportunity was logged and no outreach was sent; strengthening the on-site evidence system was the higher-value authority action."
+    "action": "Published a citation-ready power-outage and evacuation asset with a life-safety gate, offline household inventory, outage control matrix, evacuation go/no-go card, damage screen, return-home record, and Ready.gov, EPA, CPSC, and Poison Control sources. Reciprocal links strengthen home-fire, storage, relocation, charger/battery, and pet-safety paths. The editorial policy now records the emergency and live-sitemap boundaries. No outreach opportunity was logged and no outreach was sent; the on-site emergency asset and cluster were the higher-value authority action."
   },
   "freshness_surfaces": {
-    "https://bigbudman.com/": "2026-11-21",
-    "https://bigbudman.com/guides/": "2026-11-21",
-    "https://bigbudman.com/guides/cannabis-research-study-reading-checklist/": "2026-11-21",
-    "https://bigbudman.com/guides/cannabis-health-evidence-library/": "2026-11-21",
-    "https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/": "2026-11-21",
-    "https://bigbudman.com/guides/cannabis-official-source-directory/": "2026-11-21",
-    "https://bigbudman.com/gear/": "2026-11-21",
-    "https://bigbudman.com/gear/cannabis-rosin-press-buying-safety-guide/": "2026-11-21",
-    "https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/": "2026-11-21",
-    "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/": "2026-11-21",
-    "https://bigbudman.com/gear/cannabis-accessory-return-warranty-recall-guide/": "2026-11-21",
-    "https://bigbudman.com/guides/cannabis-product-response-experience-log/": "2026-11-21",
-    "https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/": "2026-11-21",
-    "https://bigbudman.com/guides/cannabis-product-complaint-adverse-event-reporting/": "2026-11-21",
-    "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/": "2026-11-21",
-    "https://bigbudman.com/editorial-policy/": "2026-11-21",
-    "https://bigbudman.com/updates/": "2026-11-21",
-    "https://bigbudman.com/site-index/": "2026-11-21"
+    "https://bigbudman.com/": "2026-11-22",
+    "https://bigbudman.com/guides/": "2026-11-22",
+    "https://bigbudman.com/guides/first-cannabis-dispensary-visit-checklist/": "2026-11-22",
+    "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/": "2026-11-22",
+    "https://bigbudman.com/legal/shop-legal/": "2026-11-22",
+    "https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/": "2026-11-22",
+    "https://bigbudman.com/guides/cannabis-dispensary-payment-receipt-guide/": "2026-11-22",
+    "https://bigbudman.com/guides/read-a-label/": "2026-11-22",
+    "https://bigbudman.com/guides/cannabis-home-fire-safety-plan/": "2026-11-22",
+    "https://bigbudman.com/guides/storage/": "2026-11-22",
+    "https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/": "2026-11-22",
+    "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/": "2026-11-22",
+    "https://bigbudman.com/guides/cannabis-and-pets-accidental-exposure/": "2026-11-22",
+    "https://bigbudman.com/affiliate-disclosure/": "2026-11-22",
+    "https://bigbudman.com/editorial-policy/": "2026-11-22",
+    "https://bigbudman.com/updates/": "2026-11-22",
+    "https://bigbudman.com/site-index/": "2026-11-22"
   },
   "surfaces": [
-    "research-design map, ten-field study-transfer screen, result/bias checks, printable claim card, and official NCCIH/ClinicalTrials.gov sources",
-    "rosin-press job card, drive-system matrix, force-and-geometry evidence table, safety gate, three-machine comparison, ownership-cost worksheet, and return-window test",
-    "product-response safety gate, exact-identity record, clock timeline, observation/function split, clinical handoff, reporting trail, and privacy controls",
-    "health-evidence, claim-checking, official-source, concentrate, gear-comparison, return/recall, poisoning-response, complaint, and clinician-handoff reciprocal links",
-    "homepage, guide and gear hubs, editorial policy, updates, complete site index, Atom feed, search index, canonical and legacy sitemaps, robots declaration, metadata, social tags, structured data, content inventory, publication manifest, and source-archive gates"
+    "first-dispensary-visit verification, shopping brief, package handoff, receipt and walk-away asset",
+    "power-outage and evacuation life-safety, inventory, battery, transport, damage and return-home asset",
+    "live canonical-to-legacy sitemap response parity gate",
+    "current no-active-affiliate status and conditional disclosure standard",
+    "reciprocal guide, legal, fire, storage, transport, device and pet-safety links",
+    "guide hub, homepage, updates, site index, feed, search index, canonical and legacy sitemap, robots, source archive and publication checks"
   ]
 }

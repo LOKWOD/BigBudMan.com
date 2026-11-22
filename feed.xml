@@ -4,9 +4,105 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-11-21T00:00:00Z</updated>
+  <updated>2026-11-22T00:00:00Z</updated>
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>Verify a Legal New York Dispensary and Product</title>
+    <id>https://bigbudman.com/legal/shop-legal/</id>
+    <link href="https://bigbudman.com/legal/shop-legal/"/>
+    <updated>2026-11-22T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Verify a New York cannabis dispensary, match the exact business and product lot, check the certificate and recall status, and preserve a useful receipt.</summary>
+  </entry>
+  <entry>
+    <title>How to Store Cannabis Safely by Product Type</title>
+    <id>https://bigbudman.com/guides/storage/</id>
+    <link href="https://bigbudman.com/guides/storage/"/>
+    <updated>2026-11-22T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Store flower, edibles, drinks, oils, vapes, concentrates, and topicals using original packaging, locked access, condition checks, and a lot record.</summary>
+  </entry>
+  <entry>
+    <title>First Cannabis Dispensary Visit Checklist</title>
+    <id>https://bigbudman.com/guides/first-cannabis-dispensary-visit-checklist/</id>
+    <link href="https://bigbudman.com/guides/first-cannabis-dispensary-visit-checklist/"/>
+    <updated>2026-11-22T00:00:00Z</updated>
+    <published>2026-11-22T00:00:00Z</published>
+    <summary>First dispensary visit checklist: verify the seller, prepare questions, inspect the package, reconcile the receipt, and plan the trip home.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Power-Outage &amp; Evacuation Plan</title>
+    <id>https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/</id>
+    <link href="https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/"/>
+    <updated>2026-11-22T00:00:00Z</updated>
+    <published>2026-11-22T00:00:00Z</published>
+    <summary>Cannabis power-outage and evacuation plan for locked storage, batteries, medicines, pets, damaged products, transport, and return-home records.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Moving Day Checklist</title>
+    <id>https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/</id>
+    <link href="https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/"/>
+    <updated>2026-11-22T00:00:00Z</updated>
+    <published>2026-11-09T00:00:00Z</published>
+    <summary>Plan a cannabis move without hiding jurisdiction changes, state-line travel, movers, vehicles, batteries, storage, disposal, or the arrival handoff.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Menu-to-Package Match Checklist</title>
+    <id>https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/</id>
+    <link href="https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/"/>
+    <updated>2026-11-22T00:00:00Z</updated>
+    <published>2026-10-07T00:00:00Z</published>
+    <summary>Compare a cannabis menu, cart, sealed package, lot evidence, and receipt before purchase without treating marketing copy as the product record.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Label Field Guide &amp; Checklist</title>
+    <id>https://bigbudman.com/guides/read-a-label/</id>
+    <link href="https://bigbudman.com/guides/read-a-label/"/>
+    <updated>2026-11-22T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Decode a cannabis label by format, reconcile serving and package math, match the lot to the CoA, and preserve a reusable package evidence record.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Home Fire Safety Plan</title>
+    <id>https://bigbudman.com/guides/cannabis-home-fire-safety-plan/</id>
+    <link href="https://bigbudman.com/guides/cannabis-home-fire-safety-plan/"/>
+    <updated>2026-11-22T00:00:00Z</updated>
+    <published>2026-10-30T00:00:00Z</published>
+    <summary>Build a cannabis-aware home fire plan covering alarms, escape, flames, embers, lithium batteries, indoor-grow electrical loads, and incident records.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Dispensary Payment &amp; Receipt Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-dispensary-payment-receipt-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-dispensary-payment-receipt-guide/"/>
+    <updated>2026-11-22T00:00:00Z</updated>
+    <published>2026-11-20T00:00:00Z</published>
+    <summary>Compare dispensary payment methods, fees, receipt fields, statement descriptors, privacy, and error records without assuming one tender works everywhere.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Device Charger &amp; Cable Guide</title>
+    <id>https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/</id>
+    <link href="https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/"/>
+    <updated>2026-11-22T00:00:00Z</updated>
+    <published>2026-11-11T00:00:00Z</published>
+    <summary>Compare a charger or cable for a cannabis vape or vaporizer by exact-device instructions, input, connector, battery, damage, recalls, and cost.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis 101: Product, Label &amp; Safety Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-101/</id>
+    <link href="https://bigbudman.com/guides/cannabis-101/"/>
+    <updated>2026-11-22T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>A practical Cannabis 101 guide to THC, CBD, formats, labels, product identity, marketing claims, impairment, storage, and first-purchase questions.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis &amp; Pets: Exposure Action Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-and-pets-accidental-exposure/</id>
+    <link href="https://bigbudman.com/guides/cannabis-and-pets-accidental-exposure/"/>
+    <updated>2026-11-22T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Act on possible cannabis exposure in a dog, cat, or other pet: call promptly, preserve the package, report co-ingredients, track signs, and prevent recurrence.</summary>
+  </entry>
   <entry>
     <title>How to Talk to Your Doctor About Cannabis</title>
     <id>https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/</id>
@@ -104,14 +200,6 @@
     <summary>Compare cannabis accessory return terms, warranty coverage, recall identity, evidence, deadlines, support, and safe exit routes with a date checkpoint tool.</summary>
   </entry>
   <entry>
-    <title>Verify a Legal New York Dispensary and Product</title>
-    <id>https://bigbudman.com/legal/shop-legal/</id>
-    <link href="https://bigbudman.com/legal/shop-legal/"/>
-    <updated>2026-11-20T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Verify a New York cannabis dispensary, match the exact business and product lot, check the certificate and recall status, and preserve a useful receipt.</summary>
-  </entry>
-  <entry>
     <title>Secondhand Cannabis Smoke &amp; Indoor Air</title>
     <id>https://bigbudman.com/guides/secondhand-cannabis-smoke-indoor-air/</id>
     <link href="https://bigbudman.com/guides/secondhand-cannabis-smoke-indoor-air/"/>
@@ -158,93 +246,5 @@
     <updated>2026-11-20T00:00:00Z</updated>
     <published>2026-11-06T00:00:00Z</published>
     <summary>Compare an indoor air-quality monitor for cannabis smoke by pollutant, sensor evidence, placement, data access, alerts, lifespan, and total cost.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Smoke Air Cleaner &amp; CADR Planner</title>
-    <id>https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/</id>
-    <link href="https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/"/>
-    <updated>2026-11-20T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Size a cannabis-smoke air cleaner by room volume and smoke CADR, estimate air changes and ownership cost, and understand filtration limits.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Smoke &amp; Odor Shared-Air Plan</title>
-    <id>https://bigbudman.com/guides/cannabis-smoke-odor-neighbor-shared-air-plan/</id>
-    <link href="https://bigbudman.com/guides/cannabis-smoke-odor-neighbor-shared-air-plan/"/>
-    <updated>2026-11-20T00:00:00Z</updated>
-    <published>2026-11-20T00:00:00Z</published>
-    <summary>Document cannabis smoke or odor in shared air, map the pathway, use source control, communicate facts, and choose the correct property route.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Menu-to-Package Match Checklist</title>
-    <id>https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/</id>
-    <link href="https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/"/>
-    <updated>2026-11-20T00:00:00Z</updated>
-    <published>2026-10-07T00:00:00Z</published>
-    <summary>Compare a cannabis menu, cart, sealed package, lot evidence, and receipt before purchase without treating marketing copy as the product record.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Loyalty Rewards Value &amp; Privacy Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-dispensary-loyalty-rewards-value-privacy-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-dispensary-loyalty-rewards-value-privacy-guide/"/>
-    <updated>2026-11-20T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Compare a cannabis loyalty or rewards program by usable value, break-even spend, expiry, exclusions, data collection, consent, and current local rules.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Dispensary Payment &amp; Receipt Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-dispensary-payment-receipt-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-dispensary-payment-receipt-guide/"/>
-    <updated>2026-11-20T00:00:00Z</updated>
-    <published>2026-11-20T00:00:00Z</published>
-    <summary>Compare dispensary payment methods, fees, receipt fields, statement descriptors, privacy, and error records without assuming one tender works everywhere.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Certificate of Analysis (CoA) Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/"/>
-    <updated>2026-11-20T00:00:00Z</updated>
-    <published>2026-09-19T00:00:00Z</published>
-    <summary>Match a cannabis package to its certificate of analysis and read potency, units, reporting limits, contaminant panels, status, and report dates.</summary>
-  </entry>
-  <entry>
-    <title>CBD Flower &amp; Hemp Flower Guide</title>
-    <id>https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/</id>
-    <link href="https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/"/>
-    <updated>2026-11-20T00:00:00Z</updated>
-    <published>2026-09-26T00:00:00Z</published>
-    <summary>Identify CBD and hemp flower using the package, lot, cannabinoid report, total-THC basis, seller, state rules, smoke risks, and claim limits—not appearance.</summary>
-  </entry>
-  <entry>
-    <title>Used Cannabis Accessory Buying Guide</title>
-    <id>https://bigbudman.com/gear/used-cannabis-accessory-buying-safety-guide/</id>
-    <link href="https://bigbudman.com/gear/used-cannabis-accessory-buying-safety-guide/"/>
-    <updated>2026-11-19T00:00:00Z</updated>
-    <published>2026-10-23T00:00:00Z</published>
-    <summary>Screen a used cannabis accessory by exact identity, recall status, residue, wear, battery condition, missing parts, warranty, cleaning, and total cost.</summary>
-  </entry>
-  <entry>
-    <title>NBS CBD-1 Hemp Cultivar Field Note</title>
-    <id>https://bigbudman.com/strains/nbs-cbd-1-hemp/</id>
-    <link href="https://bigbudman.com/strains/nbs-cbd-1-hemp/"/>
-    <updated>2026-11-19T00:00:00Z</updated>
-    <published>2026-11-19T00:00:00Z</published>
-    <summary>Trace NBS CBD-1 through its USDA PVP certificate, selection history, germplasm accession, applicant-described traits, and exact-lot consumer checks.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Tool Cleaning Kit &amp; Cost Planner</title>
-    <id>https://bigbudman.com/gear/cannabis-tool-cleaning-kit/</id>
-    <link href="https://bigbudman.com/gear/cannabis-tool-cleaning-kit/"/>
-    <updated>2026-11-19T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Build a compatible cannabis-tool cleaning kit, compare cleaners and parts, and calculate first-year cost, recurring cost, and maintenance time.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Gear Replacement Parts Guide</title>
-    <id>https://bigbudman.com/gear/cannabis-replacement-parts-compatibility-guide/</id>
-    <link href="https://bigbudman.com/gear/cannabis-replacement-parts-compatibility-guide/"/>
-    <updated>2026-11-19T00:00:00Z</updated>
-    <published>2026-11-19T00:00:00Z</published>
-    <summary>Match replacement parts by exact model, revision, interface, material, safety scope, warranty, recalls, total cost, and a dry acceptance test.</summary>
   </entry>
 </feed>
