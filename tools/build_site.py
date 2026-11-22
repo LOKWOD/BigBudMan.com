@@ -79,7 +79,7 @@ from content_nov18 import EDITORIAL_POLICY_APPEND as NOV18_POLICY_APPEND, NEW_GE
 from content_nov19 import EDITORIAL_POLICY_APPEND as NOV19_POLICY_APPEND, NEW_GEAR as NOV19_GEAR, NEW_GUIDES as NOV19_GUIDES, NEW_STRAIN_PAGES as NOV19_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV19_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV19_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV19_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV19_REVIEWED_RELATED_PATHS
 from content_nov20 import EDITORIAL_POLICY_APPEND as NOV20_POLICY_APPEND, NEW_GUIDES as NOV20_GUIDES, NEW_STRAIN_PAGES as NOV20_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV20_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV20_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV20_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV20_REVIEWED_RELATED_PATHS
 from content_nov21 import EDITORIAL_POLICY_APPEND as NOV21_POLICY_APPEND, NEW_GEAR as NOV21_GEAR, NEW_GUIDES as NOV21_GUIDES, PUBLICATION_MANIFEST as NOV21_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV21_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV21_REVIEWED_RELATED_PATHS
-from content_nov22 import AFFILIATE_DISCLOSURE_APPEND as NOV22_AFFILIATE_APPEND, EDITORIAL_POLICY_APPEND as NOV22_POLICY_APPEND, NEW_GEAR as NOV22_GEAR, NEW_GUIDES as NOV22_GUIDES, PUBLICATION_MANIFEST as NOV22_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV22_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV22_REVIEWED_RELATED_PATHS
+from content_nov22 import AFFILIATE_DISCLOSURE_APPEND as NOV22_AFFILIATE_APPEND, EDITORIAL_POLICY_APPEND as NOV22_POLICY_APPEND, NEW_GEAR as NOV22_GEAR, NEW_GUIDES as NOV22_GUIDES, NEW_STRAIN_PAGES as NOV22_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV22_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV22_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV22_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV22_REVIEWED_RELATED_PATHS
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -246,6 +246,8 @@ GUIDE_PAGES = GUIDE_PAGES + NOV21_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV21_GEAR
 GUIDE_PAGES = GUIDE_PAGES + NOV22_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV22_GEAR
+STRAINS = STRAINS + NOV22_STRAIN_RECORDS
+STRAIN_PAGES = STRAIN_PAGES + NOV22_STRAIN_PAGES
 
 # November 6 connects both new resources from established, intent-matched
 # pages. These are editorial paths, not generic recent-post links, and the
@@ -2102,6 +2104,11 @@ def render_home() -> tuple[Page, str]:
 {newsletter('')}
 </main>'''
     main = main.replace(
+        '<a href="guides/cannabis-power-outage-evacuation-safety-plan/"><p class="kicker">OUTAGE + EVACUATION</p><h3>Keep life safety, storage, batteries, pets, and damaged products in one plan</h3>'+icon('arrow')+'</a>',
+        '<a href="guides/cannabis-power-outage-evacuation-safety-plan/"><p class="kicker">OUTAGE + EVACUATION</p><h3>Keep life safety, storage, batteries, pets, and damaged products in one plan</h3>'+icon('arrow')+'</a><a href="strains/the-wife-cbd-hemp/"><p class="kicker">CBD HEMP + FIELD EVIDENCE</p><h3>Keep the 2021 Utah trial separate from the current lot</h3>'+icon('arrow')+'</a>',
+        1,
+    )
+    main = main.replace(
         '<a href="strains/stem-cell-cbg/"><p class="kicker">CBG CULTIVAR + EVIDENCE</p><h3>Separate Stem Cell\'s breeder record from the current product and lot</h3>'+icon('arrow')+'</a>',
         '',
         1,
@@ -2417,7 +2424,7 @@ def render_guides_hub() -> tuple[Page,str]:
 
 
 def render_strains_hub() -> tuple[Page,str]:
-    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} THC, CBD, CBDV, CBG, hemp, grain/fiber, and mixed-ratio field notes with lineage, batch, and evidence caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the question—not end it.","",updated="November 20, 2026",kind="website")
+    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} THC, CBD, CBDV, CBG, hemp, grain/fiber, and mixed-ratio field notes with lineage, batch, and evidence caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the question—not end it.","",updated="November 22, 2026",kind="website")
     items=[]
     for strain in sorted(STRAINS, key=lambda item: item["name"].lower()):
       aliases = " ".join(strain.get("aliases", []))

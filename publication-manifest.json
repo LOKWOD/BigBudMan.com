@@ -1,6 +1,6 @@
 {
   "publication_date": "2026-11-22",
-  "page_count": 2,
+  "page_count": 3,
   "pages": [
     {
       "title": "First Cannabis Dispensary Visit Checklist",
@@ -15,6 +15,13 @@
       "department": "guides",
       "portfolio_label": "Authority-expansion",
       "search_intent": "build a cannabis-specific outage and evacuation plan covering life safety, inventory, locked storage, batteries, medical handoff, pets, transport, damage quarantine, and return home"
+    },
+    {
+      "title": "The Wife CBD Hemp Cultivar Field Note",
+      "url": "https://bigbudman.com/strains/the-wife-cbd-hemp/",
+      "department": "strains",
+      "portfolio_label": "Authority-expansion",
+      "search_intent": "understand what a named 2021 Utah field trial can and cannot establish about The Wife, then verify the identity, chemistry, product category, and current rule for a specific lot"
     }
   ],
   "monetization": {
@@ -24,14 +31,14 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "Both guides and the technical/trust changes use original text, tables, checklists, and existing interface assets. No product, store, patient, emergency, stock, affiliate, generated, or third-party image was added or changed; no exact-product or licensing mismatch was introduced."
+    "note": "Both guides, The Wife CBD-hemp profile, and the technical/trust changes use original text, tables, checklists, and existing interface assets. The cultivar profile explicitly withholds a photograph because no exact licensed image was verified. No product, store, patient, emergency, cultivar, stock, affiliate, generated, or third-party image was added or changed; no exact-product or licensing mismatch was introduced."
   },
   "search_console": {
     "report_date": "2026-11-18",
     "decision": "The October 19\u2013November 15 report is four days old and valid: 830 impressions, three clicks, 0.361% CTR, and average position 20.688. Its sitemap section still reports errors on the legacy query endpoint and the canonical sitemap from old 2023\u20132025 submissions, while both live payloads currently parse. That supported one Data-led improvement: the post-deploy audit now requests and compares the live legacy endpoint against the canonical sitemap. The 36-impression Blue Dream row and 10-impression Arkansas page were already materially reinforced November 17 and November 12. The two-impression 510/disposable and trimming-scissors rows, two-impression Delaware page, and single-impression HTTP chronic-pain row were deliberately ignored as too weak, already served, or stale-address noise."
   },
   "authority": {
-    "action": "Published a citation-ready power-outage and evacuation asset with a life-safety gate, offline household inventory, outage control matrix, evacuation go/no-go card, damage screen, return-home record, and Ready.gov, EPA, CPSC, and Poison Control sources. Reciprocal links strengthen home-fire, storage, relocation, charger/battery, and pet-safety paths. The editorial policy now records the emergency and live-sitemap boundaries. No outreach opportunity was logged and no outreach was sent; the on-site emergency asset and cluster were the higher-value authority action."
+    "action": "Published a citation-ready power-outage and evacuation asset with a life-safety gate, offline household inventory, outage control matrix, evacuation go/no-go card, damage screen, return-home record, and Ready.gov, EPA, CPSC, and Poison Control sources. Added an evidence-first The Wife CBD-hemp field note that keeps the 2021 Utah cultivar and irrigation results inside their design, year, region, harvest, and sample while supplying a reusable research-to-lot worksheet. Reciprocal links strengthen emergency, CBD-hemp, CoA, and cultivar-identity paths. The editorial policy records the emergency and live-sitemap boundaries. No outreach opportunity was logged and no outreach was sent; the on-site authority assets and clusters were the higher-value action."
   },
   "freshness_surfaces": {
     "https://bigbudman.com/": "2026-11-22",
@@ -47,6 +54,11 @@
     "https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/": "2026-11-22",
     "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/": "2026-11-22",
     "https://bigbudman.com/guides/cannabis-and-pets-accidental-exposure/": "2026-11-22",
+    "https://bigbudman.com/strains/": "2026-11-22",
+    "https://bigbudman.com/strains/the-wife-cbd-hemp/": "2026-11-22",
+    "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/": "2026-11-22",
+    "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/": "2026-11-22",
+    "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/": "2026-11-22",
     "https://bigbudman.com/affiliate-disclosure/": "2026-11-22",
     "https://bigbudman.com/editorial-policy/": "2026-11-22",
     "https://bigbudman.com/updates/": "2026-11-22",
@@ -55,6 +67,7 @@
   "surfaces": [
     "first-dispensary-visit verification, shopping brief, package handoff, receipt and walk-away asset",
     "power-outage and evacuation life-safety, inventory, battery, transport, damage and return-home asset",
+    "The Wife 2021 Utah trial map, two-experiment boundary, regional measurement table, research-to-lot identity chain, claim-rejection matrix, and official USU/USDA/FDA sources",
     "live canonical-to-legacy sitemap response parity gate",
     "current no-active-affiliate status and conditional disclosure standard",
     "reciprocal guide, legal, fire, storage, transport, device and pet-safety links",
