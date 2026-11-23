@@ -1,6 +1,15 @@
 (() => {
   'use strict';
 
+  // Hosting fallback: keep a legacy HTTP or www visit on the same path while
+  // moving the reader to the canonical secure host. Server-side HTTPS
+  // enforcement remains the preferred crawler-grade control.
+  const canonicalHost = 'bigbudman.com';
+  if (location.protocol !== 'https:' || location.hostname !== canonicalHost) {
+    location.replace('https://' + canonicalHost + location.pathname + location.search + location.hash);
+    return;
+  }
+
   const body = document.body;
   const prefix = body.dataset.prefix || '';
   const $ = (selector, root = document) => root.querySelector(selector);

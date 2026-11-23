@@ -128,7 +128,27 @@ def verify_once(base_url: str, timeout: int) -> str:
             raise RuntimeError(f"{url}: freshness date {expected_date} is not visible in the live HTML")
         checked += 1
 
-    return f"manifest, robots, content inventory, {len(live_records)} canonical sitemap URLs, live legacy sitemap parity, and {checked} freshness surfaces"
+    canonical_bundles = set()
+    for url in freshness_surfaces:
+        html = fetch(url, timeout)[0]
+        canonical_bundles.update(
+            urljoin(url, src)
+            for src in re.findall(r'<script[^>]+src="([^"]*assets/js/app(?:-[0-9]+)?\.js)"', html)
+        )
+    if not canonical_bundles:
+        raise RuntimeError("No live application bundle was discovered on freshness surfaces")
+    for bundle_url in sorted(canonical_bundles):
+        bundle = fetch(bundle_url, timeout)[0]
+        for marker in (
+            "const canonicalHost = 'bigbudman.com'",
+            "location.protocol !== 'https:'",
+            "location.hostname !== canonicalHost",
+            "location.pathname + location.search + location.hash",
+        ):
+            if marker not in bundle:
+                raise RuntimeError(f"{bundle_url}: canonical-host fallback marker {marker!r} is missing")
+
+    return f"manifest, robots, content inventory, {len(live_records)} canonical sitemap URLs, live legacy sitemap parity, canonical-host fallbacks, and {checked} freshness surfaces"
 
 
 def main() -> int:

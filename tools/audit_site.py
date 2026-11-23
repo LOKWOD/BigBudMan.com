@@ -843,6 +843,18 @@ def main() -> int:
         if 'data-value="concentrate"' not in home:
             failures.append("Homepage Clear-Lane Finder is missing the concentrate route")
         app = (ROOT / "assets/js/app.js").read_text(encoding="utf-8")
+        canonical_host_markers = (
+            "const canonicalHost = 'bigbudman.com'",
+            "location.protocol !== 'https:'",
+            "location.hostname !== canonicalHost",
+            "location.pathname + location.search + location.hash",
+            "location.replace('https://' + canonicalHost",
+        )
+        for bundle in sorted((ROOT / "assets/js").glob("app*.js")):
+            bundle_text = bundle.read_text(encoding="utf-8")
+            for marker in canonical_host_markers:
+                if marker not in bundle_text:
+                    failures.append(f"{bundle.relative_to(ROOT)}: missing canonical-host fallback marker {marker}")
         for marker in ("setGateIsolation", "node.inert = active", "trapAgeGateFocus", "event.key !== 'Tab'", "releaseAgeGate", "data-age-inert", "card.focus()"):
             if marker not in app: failures.append(f"Age-gate focus isolation is missing JavaScript marker: {marker}")
         for marker in ("ageDescription.id = 'age-description'", "ageCard.setAttribute('aria-describedby', ageDescription.id)"):
@@ -1136,23 +1148,29 @@ def main() -> int:
         discovery_checks["editorial-policy/index.html"] += (
             "Emergency-readiness and first-visit boundaries",
             "Live legacy-sitemap parity",
-            "Policy reviewed November 22, 2026",
+            "Water-activity and retail-form boundaries",
+            "Canonical-host fallback",
+            "Policy reviewed November 23, 2026",
         )
         discovery_checks["updates/index.html"] = (
+            "guides/cannabis-water-activity-moisture-mold-guide/",
+            "guides/cannabis-flower-buds-smalls-shake-trim-comparison/",
             "guides/first-cannabis-dispensary-visit-checklist/",
             "guides/cannabis-power-outage-evacuation-safety-plan/",
             "strains/the-wife-cbd-hemp/",
             "affiliate-disclosure/",
             "editorial-policy/",
-            "November 22, 2026",
+            "November 23, 2026",
         )
         discovery_checks["site-index/index.html"] = (
+            "guides/cannabis-water-activity-moisture-mold-guide/",
+            "guides/cannabis-flower-buds-smalls-shake-trim-comparison/",
             "guides/first-cannabis-dispensary-visit-checklist/",
             "guides/cannabis-power-outage-evacuation-safety-plan/",
             "strains/the-wife-cbd-hemp/",
             "affiliate-disclosure/",
             "editorial-policy/",
-            "November 22, 2026",
+            "November 23, 2026",
             "updates/",
             "data-site-index-filter",
             "data-site-index-item",
@@ -1375,7 +1393,7 @@ def main() -> int:
             failures.append("Editorial policy or Atom feed is missing the feed authorship standard")
         if "Age-gate focus isolation" not in policy:
             failures.append("Editorial policy is missing the age-gate focus-isolation standard")
-        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "Mobile-navigation state integrity" not in policy or "Site-search dialog naming integrity" not in policy or "Guide-finder progression integrity" not in policy or "Fresh static discovery path" not in policy or "Nested 404 route integrity" not in policy or "Collection-control outcome relationship" not in policy or "QR destination and product-evidence boundary" not in policy or "Plant-name and chemical-class boundary" not in policy or "Source-review chronology integrity" not in policy or "Named-product research boundary" not in policy or "External-source transport and relationship integrity" not in policy or "Behavior-change content boundary" not in policy or "Dated source-review freshness gate" not in policy or "Machine-readable coverage and link inventory" not in policy or "content-inventory.json" not in policy or "Emergency-readiness and first-visit boundaries" not in policy or "Live legacy-sitemap parity" not in policy or "November 22, 2026" not in policy:
+        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "Mobile-navigation state integrity" not in policy or "Site-search dialog naming integrity" not in policy or "Guide-finder progression integrity" not in policy or "Fresh static discovery path" not in policy or "Nested 404 route integrity" not in policy or "Collection-control outcome relationship" not in policy or "QR destination and product-evidence boundary" not in policy or "Plant-name and chemical-class boundary" not in policy or "Source-review chronology integrity" not in policy or "Named-product research boundary" not in policy or "External-source transport and relationship integrity" not in policy or "Behavior-change content boundary" not in policy or "Dated source-review freshness gate" not in policy or "Machine-readable coverage and link inventory" not in policy or "content-inventory.json" not in policy or "Emergency-readiness and first-visit boundaries" not in policy or "Live legacy-sitemap parity" not in policy or "Water-activity and retail-form boundaries" not in policy or "Canonical-host fallback" not in policy or "November 23, 2026" not in policy:
             failures.append("Editorial policy is missing the current link and collection-date integrity standards")
         verify_live_source = (REPOSITORY / "tools/verify_live.py").read_text(encoding="utf-8")
         for marker in ("index.php?xml_sitemap=params=", "live legacy sitemap endpoint", "live legacy sitemap parity"):

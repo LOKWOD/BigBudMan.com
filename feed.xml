@@ -4,9 +4,81 @@
   <id>https://bigbudman.com/</id>
   <link href="https://bigbudman.com/feed.xml" rel="self"/>
   <link href="https://bigbudman.com/"/>
-  <updated>2026-11-22T00:00:00Z</updated>
+  <updated>2026-11-23T00:00:00Z</updated>
   <author><name>Big Bud Man Editorial Team</name><uri>https://bigbudman.com/about/</uri></author>
   <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>
+  <entry>
+    <title>How to Store Cannabis Safely by Product Type</title>
+    <id>https://bigbudman.com/guides/storage/</id>
+    <link href="https://bigbudman.com/guides/storage/"/>
+    <updated>2026-11-23T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Store flower, edibles, drinks, oils, vapes, concentrates, and topicals using original packaging, locked access, condition checks, and a lot record.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Water Activity, Moisture &amp; Mold Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-water-activity-moisture-mold-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-water-activity-moisture-mold-guide/"/>
+    <updated>2026-11-23T00:00:00Z</updated>
+    <published>2026-11-23T00:00:00Z</published>
+    <summary>Understand cannabis water activity versus moisture, match a result to the tested lot, and respond to stale, damp, damaged, or suspect flower without guessing.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Label Field Guide &amp; Checklist</title>
+    <id>https://bigbudman.com/guides/read-a-label/</id>
+    <link href="https://bigbudman.com/guides/read-a-label/"/>
+    <updated>2026-11-23T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Decode a cannabis label by format, reconcile serving and package math, match the lot to the CoA, and preserve a reusable package evidence record.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Humidity Pack &amp; Hygrometer Cost Guide</title>
+    <id>https://bigbudman.com/gear/cannabis-humidity-pack-hygrometer-guide/</id>
+    <link href="https://bigbudman.com/gear/cannabis-humidity-pack-hygrometer-guide/"/>
+    <updated>2026-11-23T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Compare three humidity-pack and hygrometer systems by pack consumption, package purchases, first-year cost, ownership cost, specifications, and safety limits.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Grinder Buying Guide</title>
+    <id>https://bigbudman.com/gear/grinders/</id>
+    <link href="https://bigbudman.com/gear/grinders/"/>
+    <updated>2026-11-23T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Compare cannabis grinders by hand fit, workflow, contact surfaces, cleanability, parts, warranty, recalls, and ownership cost with an exact-model checkout card.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Flower Freshness Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-flower-freshness-package-date-buying-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-flower-freshness-package-date-buying-guide/"/>
+    <updated>2026-11-23T00:00:00Z</updated>
+    <published>2026-09-29T00:00:00Z</published>
+    <summary>Compare cannabis flower by package identity, dates, seal, lot report, moisture evidence, storage directions, condition, recalls, and return policy.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Flower Buying &amp; Quality Checklist</title>
+    <id>https://bigbudman.com/guides/flower/</id>
+    <link href="https://bigbudman.com/guides/flower/"/>
+    <updated>2026-11-23T00:00:00Z</updated>
+    <published>2026-08-17T00:00:00Z</published>
+    <summary>Compare cannabis flower by legal source, package and lot match, dates, lab evidence, condition, aroma, storage fit, smoke exposure, and total ownership needs.</summary>
+  </entry>
+  <entry>
+    <title>Cannabis Contaminant Test Results Guide</title>
+    <id>https://bigbudman.com/guides/cannabis-contaminant-test-results-guide/</id>
+    <link href="https://bigbudman.com/guides/cannabis-contaminant-test-results-guide/"/>
+    <updated>2026-11-23T00:00:00Z</updated>
+    <published>2026-10-02T00:00:00Z</published>
+    <summary>Read cannabis pesticide, microbial, mycotoxin, metal, solvent, moisture, water-activity, and foreign-material results without guessing.</summary>
+  </entry>
+  <entry>
+    <title>Buds vs Smalls vs Shake vs Trim</title>
+    <id>https://bigbudman.com/guides/cannabis-flower-buds-smalls-shake-trim-comparison/</id>
+    <link href="https://bigbudman.com/guides/cannabis-flower-buds-smalls-shake-trim-comparison/"/>
+    <updated>2026-11-23T00:00:00Z</updated>
+    <published>2026-11-23T00:00:00Z</published>
+    <summary>Compare buds, smalls, popcorn flower, shake, and trim by package identity, net weight, lot evidence, condition, intended job, and total value.</summary>
+  </entry>
   <entry>
     <title>Verify a Legal New York Dispensary and Product</title>
     <id>https://bigbudman.com/legal/shop-legal/</id>
@@ -22,14 +94,6 @@
     <updated>2026-11-22T00:00:00Z</updated>
     <published>2026-11-22T00:00:00Z</published>
     <summary>The Wife CBD hemp field note: Utah State University trial identity, 2021 regional evidence, harvest-timing limits, exact-lot checks, and legal cautions.</summary>
-  </entry>
-  <entry>
-    <title>How to Store Cannabis Safely by Product Type</title>
-    <id>https://bigbudman.com/guides/storage/</id>
-    <link href="https://bigbudman.com/guides/storage/"/>
-    <updated>2026-11-22T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Store flower, edibles, drinks, oils, vapes, concentrates, and topicals using original packaging, locked access, condition checks, and a lot record.</summary>
   </entry>
   <entry>
     <title>First Cannabis Dispensary Visit Checklist</title>
@@ -70,14 +134,6 @@
     <updated>2026-11-22T00:00:00Z</updated>
     <published>2026-10-07T00:00:00Z</published>
     <summary>Compare a cannabis menu, cart, sealed package, lot evidence, and receipt before purchase without treating marketing copy as the product record.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Label Field Guide &amp; Checklist</title>
-    <id>https://bigbudman.com/guides/read-a-label/</id>
-    <link href="https://bigbudman.com/guides/read-a-label/"/>
-    <updated>2026-11-22T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Decode a cannabis label by format, reconcile serving and package math, match the lot to the CoA, and preserve a reusable package evidence record.</summary>
   </entry>
   <entry>
     <title>Cannabis Home Fire Safety Plan</title>
@@ -190,61 +246,5 @@
     <updated>2026-11-21T00:00:00Z</updated>
     <published>2026-09-30T00:00:00Z</published>
     <summary>Route cannabis emergencies, evidence, licenses, recalls, product reports, fraud, work, travel, hemp, and legal questions to the official owner.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Health Evidence Library</title>
-    <id>https://bigbudman.com/guides/cannabis-health-evidence-library/</id>
-    <link href="https://bigbudman.com/guides/cannabis-health-evidence-library/"/>
-    <updated>2026-11-21T00:00:00Z</updated>
-    <published>2026-11-19T00:00:00Z</published>
-    <summary>Route a cannabis health question to the right evidence lane, official source, safety gate, product record, and clinician conversation.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Gear Comparison &amp; Cost Calculator</title>
-    <id>https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/</id>
-    <link href="https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/"/>
-    <updated>2026-11-21T00:00:00Z</updated>
-    <published>2026-09-20T00:00:00Z</published>
-    <summary>Compare three cannabis accessories by exact model, first-year cost, ownership cost, cost per use, fit, materials, care, support, warranty, and recalls.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Concentrates &amp; Dabs Guide</title>
-    <id>https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/</id>
-    <link href="https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/"/>
-    <updated>2026-11-21T00:00:00Z</updated>
-    <published>2026-09-15T00:00:00Z</published>
-    <summary>Understand cannabis concentrates, dabs, wax, shatter, rosin, resin, potency labels, licensed sourcing, equipment heat, storage, and safer decisions.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Claim Fact-Check Worksheet</title>
-    <id>https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/</id>
-    <link href="https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/"/>
-    <updated>2026-11-21T00:00:00Z</updated>
-    <published>2026-10-16T00:00:00Z</published>
-    <summary>Fact-check a cannabis claim by recording its exact wording, source, product, evidence, limits, conflicts, current rules, and unresolved gaps.</summary>
-  </entry>
-  <entry>
-    <title>Cannabis Accessory Return &amp; Warranty Guide</title>
-    <id>https://bigbudman.com/gear/cannabis-accessory-return-warranty-recall-guide/</id>
-    <link href="https://bigbudman.com/gear/cannabis-accessory-return-warranty-recall-guide/"/>
-    <updated>2026-11-21T00:00:00Z</updated>
-    <published>2026-10-13T00:00:00Z</published>
-    <summary>Compare cannabis accessory return terms, warranty coverage, recall identity, evidence, deadlines, support, and safe exit routes with a date checkpoint tool.</summary>
-  </entry>
-  <entry>
-    <title>Secondhand Cannabis Smoke &amp; Indoor Air</title>
-    <id>https://bigbudman.com/guides/secondhand-cannabis-smoke-indoor-air/</id>
-    <link href="https://bigbudman.com/guides/secondhand-cannabis-smoke-indoor-air/"/>
-    <updated>2026-11-20T00:00:00Z</updated>
-    <published>2026-08-17T00:00:00Z</published>
-    <summary>Reduce secondhand cannabis smoke exposure with clear indoor, vehicle, ventilation, filtration, child, guest, apartment, and emergency-response guidance.</summary>
-  </entry>
-  <entry>
-    <title>Santiam Hemp Cultivar Field Note</title>
-    <id>https://bigbudman.com/strains/santiam-hemp/</id>
-    <link href="https://bigbudman.com/strains/santiam-hemp/"/>
-    <updated>2026-11-20T00:00:00Z</updated>
-    <published>2026-11-20T00:00:00Z</published>
-    <summary>Trace Santiam hemp through USDA PVP and germplasm records while separating applicant-described traits from exact-lot chemistry, identity, and legal claims.</summary>
   </entry>
 </feed>
