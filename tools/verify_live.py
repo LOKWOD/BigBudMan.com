@@ -112,6 +112,7 @@ def verify_once(base_url: str, timeout: int) -> str:
         raise RuntimeError("robots.txt: canonical sitemap declaration is missing or duplicated")
 
     checked = 0
+    canonical_bundles: set[str] = set()
     for url, expected_date in expected_manifest["freshness_surfaces"].items():
         parsed = urlsplit(url)
         path_url = urljoin(base_url, parsed.path.lstrip("/"))
@@ -126,19 +127,19 @@ def verify_once(base_url: str, timeout: int) -> str:
             raise RuntimeError(f"{url}: canonical mismatch ({actual!r})")
         if expected_date not in html:
             raise RuntimeError(f"{url}: freshness date {expected_date} is not visible in the live HTML")
-        checked += 1
-
-    canonical_bundles = set()
-    for url in freshness_surfaces:
-        html = fetch(url, timeout)[0]
         canonical_bundles.update(
-            urljoin(url, src)
+            urljoin(path_url, src)
             for src in re.findall(r'<script[^>]+src="([^"]*assets/js/app(?:-[0-9]+)?\.js)"', html)
         )
+        checked += 1
+
     if not canonical_bundles:
         raise RuntimeError("No live application bundle was discovered on freshness surfaces")
     for bundle_url in sorted(canonical_bundles):
-        bundle = fetch(bundle_url, timeout)[0]
+        bundle_bytes, bundle_type = request(bundle_url, timeout)
+        if "javascript" not in bundle_type.lower():
+            raise RuntimeError(f"{bundle_url}: expected JavaScript content type, received {bundle_type!r}")
+        bundle = bundle_bytes.decode("utf-8")
         for marker in (
             "const canonicalHost = 'bigbudman.com'",
             "location.protocol !== 'https:'",
