@@ -750,7 +750,7 @@ def main() -> int:
 
     try:
         strain_hub = (ROOT / "strains/index.html").read_text(encoding="utf-8")
-        if strain_hub.count("data-strain-card") != 130: failures.append("Strain hub does not contain exactly 130 cards")
+        if strain_hub.count("data-strain-card") != 131: failures.append("Strain hub does not contain exactly 131 cards")
         for marker in ('data-cannabinoid-filter="cbd"', 'data-cannabinoid-filter="cbg"', 'data-cannabinoid-filter="ratio"', 'lance ridgeline lantz'):
             if marker not in strain_hub: failures.append(f"Strain hub is missing expected marker: {marker}")
     except Exception as exc:
@@ -821,6 +821,8 @@ def main() -> int:
             failures.append("Publication manifest must describe one to three genuinely new pages")
         if batch.get("publication_date") == "2026-11-22" and len(pages) != 3:
             failures.append("November 22 publication manifest must describe exactly three new pages")
+        if batch.get("publication_date") == "2026-11-23" and len(pages) != 3:
+            failures.append("November 23 publication manifest must describe exactly three new pages")
         if len(actual_urls) != len(set(actual_urls)):
             failures.append("Publication manifest contains duplicate URLs")
         if any(item.get("portfolio_label") not in {"Data-led", "Authority-expansion", "Exploration"} for item in pages):
@@ -940,7 +942,7 @@ def main() -> int:
             failures.append("Article script does not synchronize mobile section navigation")
         discovery_checks = {
             "index.html": ("guides/cannabis-next-day-impairment-evidence-guide/", "guides/cbn-products-label-evidence-guide/", "legal/cannabis-federal-property-rules-guide/", "legal/marijuana-rescheduling-status-november-2026/", "guides/cannabis-social-hosting-guest-safety-plan/", "guides/terpenes/", "gear/cannabis-loupe-pocket-microscope-guide/", "guides/cannabis-cbd-chronic-pain-evidence-guide/", "guides/storage/", "gear/cannabis-accessibility-tools-buying-guide/", "guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/", "strains/baox-hemp/", "gear/cannabis-product-photo-documentation-kit-buying-guide/"),
-            "strains/index.html": ("stem-cell-cbg/", "panakeia-beta-hurv19pan/", "cherry-blonde-cbd/", "abacus-cbd-hemp/", "hash-plant/", "henola-hemp/", "baox-hemp/", "arkryder-hemp/", "tjs-cbd-hemp/", "nbs-cbd-1-hemp/", "santiam-hemp/", "130 STRAIN FIELD NOTES", "NO VERIFIED CULTIVAR IMAGE", 'data-cannabinoid-filter="hemp"', 'data-cannabinoid-filter="industrial"'),
+            "strains/index.html": ("stem-cell-cbg/", "panakeia-beta-hurv19pan/", "cherry-blonde-cbd/", "abacus-cbd-hemp/", "hash-plant/", "henola-hemp/", "baox-hemp/", "arkryder-hemp/", "tjs-cbd-hemp/", "nbs-cbd-1-hemp/", "santiam-hemp/", "bialobrzeskie-hemp/", "131 STRAIN FIELD NOTES", "NO VERIFIED CULTIVAR IMAGE", 'data-cannabinoid-filter="hemp"', 'data-cannabinoid-filter="industrial"'),
             "guides/index.html": ("cannabis-lab-report-detection-quantitation-limits-guide/", "cannabis-memory-attention-cognition-evidence-guide/", "indica-sativa-hybrid-label-evidence-guide/", "cannabis-fertility-preconception-evidence-guide/", "cannabis-product-dates-condition-decision-guide/", "cannabis-shared-kitchen-edible-safety-plan/", "new-york-cannabis-seed-clone-buying-guide/", "cannabis-home-fire-safety-plan/", "cannabis-nicotine-tobacco-co-use-guide/", "cannabis-allergy-symptom-exposure-guide/", "cannabis-next-day-impairment-evidence-guide/", "cannabis-cbd-chronic-pain-evidence-guide/", "cannabis-cbd-cancer-claims-evidence-guide/", "cannabis-menu-package-receipt-match-checklist/", "cannabis-exercise-workout-heat-safety/", "new-york-home-cannabis-pest-mold-ipm-guide/", "new-york-home-cannabis-harvest-drying-curing-log/", "cannabis-cbd-epilepsy-seizure-care-guide/", "cannabis-glaucoma-eye-pressure-vision-guide/", "cbd-patches-transdermal-label-evidence-guide/", "cannabis-package-seal-tamper-evidence-checklist/", "cannabis-dry-mouth-dental-oral-health-guide/", "cannabis-edible-label-math-checker/", "cbg-products-label-evidence-guide/", "cannabis-contaminant-test-results-guide/", "cannabis-child-resistant-packaging-home-storage-guide/", "cannabis-official-source-directory/", "cannabis-gummies-drinks-oils-capsules-comparison/", "cannabis-claim-fact-check-worksheet/", "Store cannabis safely by product type", "Thirty useful paths", "Comparing packaged cannabis flower", 'data-guide-sort', 'data-updated="2026-11-05"', 'data-guide-filter="health"', 'data-guide-filter="workplace"'),
             "gear/index.html": ("cannabis-replacement-parts-compatibility-guide/", "home-grow-plant-support-trellis-buying-guide/", "cbd-oil-dropper-replacement-bottle-fit-guide/", "cannabis-product-photo-documentation-kit-buying-guide/", "cannabis-drying-rack-buying-guide/", "cannabis-liquid-measuring-tool-buying-guide/", "cannabis-label-magnifier-task-light-buying-guide/", "cannabis-harvest-trimming-scissors-buying-guide/", "home-grow-timer-controller-buying-guide/", "cannabis-rolling-machine-buying-guide/", "home-grow-ph-ec-meter-buying-guide/", "home-grow-temperature-humidity-monitor-buying-guide/", "cannabis-home-testing-kit-buying-guide/", "used-cannabis-accessory-buying-safety-guide/", "cannabis-accessibility-tools-buying-guide/", "smell-proof-storage/", "cannabis-rolling-tray-buying-guide/", "cannabis-rolling-paper-cone-guide/", "digital-scale-buying-calibration-guide/", "cannabis-tool-cleaning-kit/", "indoor-cannabis-grow-light-buying-cost-planner/", "cannabis-gear-comparison-worksheet/", "cannabis-accessory-return-warranty-recall-guide/", "dry-herb-vaporizer-dosing-capsule-guide/", "Choose a home testing system", "All 45", "2026-11-19"),
             "guides/read-a-label/index.html": ("Build a date chain", "Preserve a label-to-lot evidence card", "cannabis.ny.gov/part-128-guidance", "cannabis-certificate-of-analysis-coa-guide/", "cannabis-product-recall-batch-checker/"),
@@ -1109,7 +1111,7 @@ def main() -> int:
         discovery_checks["index.html"] += (
             "guides/first-cannabis-dispensary-visit-checklist/",
             "guides/cannabis-power-outage-evacuation-safety-plan/",
-            "strains/the-wife-cbd-hemp/",
+            "strains/bialobrzeskie-hemp/",
         )
         discovery_checks["guides/index.html"] += (
             "first-cannabis-dispensary-visit-checklist/",
@@ -1136,7 +1138,8 @@ def main() -> int:
         )
         discovery_checks["strains/index.html"] += (
             "the-wife-cbd-hemp/",
-            '"dateModified":"2026-11-22"',
+            "bialobrzeskie-hemp/",
+            '"dateModified":"2026-11-23"',
         )
         discovery_checks["strains/the-wife-cbd-hemp/index.html"] = (
             "Keep the two 2021 comparisons separate",
@@ -1145,16 +1148,25 @@ def main() -> int:
             "10.1002/agg2.70125",
             "No verified cultivar photograph",
         )
+        discovery_checks["strains/bialobrzeskie-hemp/index.html"] = (
+            "Read three trials as three bounded answers",
+            "Latitude changes the question before the seed is opened",
+            "hemp.ucdavis.edu/news/2025-multi-state-hemp-variety-trial",
+            "content.ces.ncsu.edu/fiber-hemp-variety-trial-results-2023-2024",
+            "No verified cultivar photograph",
+        )
         discovery_checks["editorial-policy/index.html"] += (
             "Emergency-readiness and first-visit boundaries",
             "Live legacy-sitemap parity",
             "Water-activity and retail-form boundaries",
+            "Cultivar and site-year research boundaries",
             "Canonical-host fallback",
             "Policy reviewed November 23, 2026",
         )
         discovery_checks["updates/index.html"] = (
             "guides/cannabis-water-activity-moisture-mold-guide/",
             "guides/cannabis-flower-buds-smalls-shake-trim-comparison/",
+            "strains/bialobrzeskie-hemp/",
             "guides/first-cannabis-dispensary-visit-checklist/",
             "guides/cannabis-power-outage-evacuation-safety-plan/",
             "strains/the-wife-cbd-hemp/",
@@ -1165,6 +1177,7 @@ def main() -> int:
         discovery_checks["site-index/index.html"] = (
             "guides/cannabis-water-activity-moisture-mold-guide/",
             "guides/cannabis-flower-buds-smalls-shake-trim-comparison/",
+            "strains/bialobrzeskie-hemp/",
             "guides/first-cannabis-dispensary-visit-checklist/",
             "guides/cannabis-power-outage-evacuation-safety-plan/",
             "strains/the-wife-cbd-hemp/",
@@ -1229,6 +1242,8 @@ def main() -> int:
             failures.append("Search index is missing the CBD/hemp flower guide or its legal-basis vocabulary")
         if '"url":"/strains/the-wife-cbd-hemp/"' not in search_raw or 'utah' not in search_raw.lower():
             failures.append("Search index is missing The Wife field note or its Utah trial vocabulary")
+        if '"url":"/strains/bialobrzeskie-hemp/"' not in search_raw or 'photoperiod' not in search_raw.lower():
+            failures.append("Search index is missing Białobrzeskie or its site-year trial vocabulary")
         if '"url":"/guides/cbd-drinks-powders-label-buying-guide/"' not in search_raw or 'drink mix' not in search_raw.lower():
             failures.append("Search index is missing the CBD drinks guide or its format vocabulary")
         if '"url":"/guides/delta-8-thc-label-safety-guide/"' not in search_raw or 'psychoactive' not in search_raw.lower():

@@ -1,6 +1,6 @@
 {
   "publication_date": "2026-11-23",
-  "page_count": 2,
+  "page_count": 3,
   "pages": [
     {
       "title": "Cannabis Water Activity, Moisture & Mold Guide",
@@ -15,29 +15,41 @@
       "department": "guides",
       "portfolio_label": "Exploration",
       "search_intent": "compare whole buds, smalls, popcorn flower, shake, trim, and mixed material by package identity, net weight, lot evidence, condition, intended job, checkout total, and usable value"
+    },
+    {
+      "title": "Bia\u0142obrzeskie Hemp Cultivar Field Note",
+      "url": "https://bigbudman.com/strains/bialobrzeskie-hemp/",
+      "department": "strains",
+      "portfolio_label": "Authority-expansion",
+      "search_intent": "understand how New York, North Carolina, and Northern California university trials answer different questions about a documented industrial-hemp cultivar without turning one site-year into a seed, yield, compliance, or finished-product promise"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured. The active conversion improvement is a product-neutral flower-form comparison for a purchase-ready reader: it reconciles the retail term, regulated category, package identity, net weight, lot evidence, condition, substitution, receipt, storage fit, and checkout total. It adds direct paths to flower freshness, label reading and grinder selection without naming a merchant, product, price, rating, discount, fabricated test, or affiliate conclusion."
+    "reason": "No approved affiliate program or tracking ID is configured. The active conversion improvement is a product-neutral flower-form comparison for a purchase-ready reader: it reconciles the retail term, regulated category, package identity, net weight, lot evidence, condition, substitution, receipt, storage fit, and checkout total. The Bia\u0142obrzeskie profile adds a seed-and-trial source check without a seller, shopping link, cultivar recommendation, price, rating, availability claim, or affiliate conclusion."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "Both new guides and the canonical-host change use original text, tables, checklists, and existing interface assets. No flower, mold, package, laboratory, product, affiliate, generated, stock, or third-party image was added or changed, so no ambiguous condition image, exact-product mismatch, or new licensing issue was introduced."
+    "note": "All three new pages and the canonical-host change use original text, tables, checklists, and existing interface assets. The Bia\u0142obrzeskie profile explicitly withholds a cultivar photograph because no exact licensed image was verified. No flower, mold, package, laboratory, seed, crop, product, affiliate, generated, stock, or third-party image was added or changed, so no ambiguous condition image, false cultivar identification, exact-product mismatch, or new licensing issue was introduced."
   },
   "search_console": {
     "report_date": "2026-11-18",
     "decision": "The October 19\u2013November 15 report is five days old and valid: 830 impressions, three clicks, 0.361% CTR, and average position 20.688. The report exposes one HTTP article URL and old sitemap errors; a direct live check on November 23 confirmed that the bare HTTP host still serves HTML instead of redirecting. That changed today's Data-led action from another topic page to a site-wide canonical-host bootstrap and audit contract. The 36-impression Blue Dream row and 10-impression Arkansas page were already materially reinforced November 17 and November 12. The two-impression 510/disposable and trimming-scissors queries, two-impression Delaware page, and one-impression chronic-pain row were deliberately ignored as too small to steer editorial topics."
   },
   "authority": {
-    "action": "Published a citation-ready water-activity and moisture asset with a four-measurement map, lot-to-report chain, jurisdiction example, home-reading boundary, condition stop screen, and FDA, Washington, Oregon, and PubMed sources. Reciprocal links strengthen the contaminant, flower-freshness, storage, humidity-tool, flower-form, label, and grinder clusters. The editorial policy records the scientific and terminology boundaries. No outreach opportunity was logged and no outreach was sent; the on-site asset and reciprocal cluster were the higher-value authority action."
+    "action": "Published two citation-ready assets: a water-activity and moisture guide with a four-measurement map, lot-to-report chain, jurisdiction example, home-reading boundary, condition stop screen, and primary sources; and a Bia\u0142obrzeskie research field note that compares Cornell, NC State, and UC Davis trial questions while preserving cultivar, seed-lot, site-year, sample, and finished-product boundaries. Reciprocal links strengthen the contaminant, flower-freshness, storage, humidity-tool, flower-form, label, grinder, cultivar-terminology, seed-record, and CBD/hemp clusters. The editorial policy records the scientific, terminology, and site-year boundaries. No outreach opportunity was logged and no outreach was sent; the on-site assets and reciprocal clusters were the higher-value authority action."
   },
   "freshness_surfaces": {
     "https://bigbudman.com/": "2026-11-23",
     "https://bigbudman.com/guides/": "2026-11-23",
     "https://bigbudman.com/guides/cannabis-water-activity-moisture-mold-guide/": "2026-11-23",
     "https://bigbudman.com/guides/cannabis-flower-buds-smalls-shake-trim-comparison/": "2026-11-23",
+    "https://bigbudman.com/strains/": "2026-11-23",
+    "https://bigbudman.com/strains/bialobrzeskie-hemp/": "2026-11-23",
+    "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/": "2026-11-23",
+    "https://bigbudman.com/guides/cannabis-seed-storage-record-guide/": "2026-11-23",
+    "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/": "2026-11-23",
     "https://bigbudman.com/guides/cannabis-contaminant-test-results-guide/": "2026-11-23",
     "https://bigbudman.com/guides/cannabis-flower-freshness-package-date-buying-guide/": "2026-11-23",
     "https://bigbudman.com/guides/storage/": "2026-11-23",
@@ -52,8 +64,9 @@
   "surfaces": [
     "water-activity, moisture, humidity, laboratory-lot and suspect-flower authority asset",
     "buds, smalls, popcorn, shake and trim shopping comparison and total-value path",
+    "Bia\u0142obrzeskie three-trial research map, photoperiod transfer screen, identity chain and seed-source checklist",
     "site-wide canonical HTTPS and bare-host user fallback with generated-page audit coverage",
     "reciprocal contaminant, freshness, storage, humidity-tool, flower, label and grinder links",
-    "guide hub, homepage, updates, site index, feed, search index, canonical and legacy sitemap, source archive and publication checks"
+    "guide and strain hubs, homepage, updates, site index, feed, search index, canonical and legacy sitemap, source archive and publication checks"
   ]
 }

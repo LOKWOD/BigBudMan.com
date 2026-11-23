@@ -1,7 +1,7 @@
 {
   "generated": "2026-11-23",
   "scope": "Every indexable canonical BigBudMan.com page. Links are unique internal destinations inside main content; global header and footer navigation are excluded.",
-  "page_count": 356,
+  "page_count": 357,
   "pages": [
     {
       "url": "https://bigbudman.com/",
@@ -83,12 +83,12 @@
         "https://bigbudman.com/start-here/",
         "https://bigbudman.com/strains/",
         "https://bigbudman.com/strains/baox-hemp/",
+        "https://bigbudman.com/strains/bialobrzeskie-hemp/",
         "https://bigbudman.com/strains/blue-dream/",
         "https://bigbudman.com/strains/nbs-cbd-1-hemp/",
         "https://bigbudman.com/strains/northern-lights/",
         "https://bigbudman.com/strains/sour-diesel/",
         "https://bigbudman.com/strains/stem-cell-cbg/",
-        "https://bigbudman.com/strains/the-wife-cbd-hemp/",
         "https://bigbudman.com/strains/tjs-cbd-hemp/"
       ]
     },
@@ -612,7 +612,6 @@
         "https://bigbudman.com/gear/digital-scale-buying-calibration-guide/",
         "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
         "https://bigbudman.com/guides/cannabis-product-recall-batch-checker/",
-        "https://bigbudman.com/guides/cannabis-seed-storage-record-guide/",
         "https://bigbudman.com/guides/new-york-home-cannabis-harvest-drying-curing-log/",
         "https://bigbudman.com/guides/storage/",
         "https://bigbudman.com/site-index/",
@@ -3316,21 +3315,22 @@
       "core_angle": "Store lawful cannabis seeds with a cool, dry, dark, stable plan; preserve identity, dates, access control, condition checks, and a planting decision record.",
       "department": "guides",
       "published": "2026-11-14",
-      "updated": "2026-11-16",
+      "updated": "2026-11-23",
       "contextual_inlinks": [
         "https://bigbudman.com/gear/cannabis-lockbox-buying-guide/",
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/new-york-cannabis-seed-clone-buying-guide/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/strains/baox-hemp/",
+        "https://bigbudman.com/strains/bialobrzeskie-hemp/",
         "https://bigbudman.com/strains/henola-hemp/",
         "https://bigbudman.com/updates/"
       ],
       "contextual_outlinks": [
-        "https://bigbudman.com/gear/cannabis-inventory-label-record-kit/",
         "https://bigbudman.com/guides/new-york-cannabis-seed-clone-buying-guide/",
         "https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/",
-        "https://bigbudman.com/strains/baox-hemp/"
+        "https://bigbudman.com/strains/baox-hemp/",
+        "https://bigbudman.com/strains/bialobrzeskie-hemp/"
       ]
     },
     {
@@ -3483,7 +3483,7 @@
       "core_angle": "Translate cannabis strain, cultivar, variety, accession, chemotype, chemovar, batch, lot, and product into the evidence each term can and cannot carry.",
       "department": "guides",
       "published": "2026-11-16",
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/",
@@ -3494,6 +3494,7 @@
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/strains/arkryder-hemp/",
         "https://bigbudman.com/strains/baox-hemp/",
+        "https://bigbudman.com/strains/bialobrzeskie-hemp/",
         "https://bigbudman.com/strains/blue-dream/",
         "https://bigbudman.com/strains/nbs-cbd-1-hemp/",
         "https://bigbudman.com/strains/the-wife-cbd-hemp/",
@@ -3502,10 +3503,10 @@
       ],
       "contextual_outlinks": [
         "https://bigbudman.com/strains/baox-hemp/",
+        "https://bigbudman.com/strains/bialobrzeskie-hemp/",
         "https://bigbudman.com/strains/nbs-cbd-1-hemp/",
         "https://bigbudman.com/strains/santiam-hemp/",
-        "https://bigbudman.com/strains/the-wife-cbd-hemp/",
-        "https://bigbudman.com/strains/tjs-cbd-hemp/"
+        "https://bigbudman.com/strains/the-wife-cbd-hemp/"
       ]
     },
     {
@@ -3703,7 +3704,7 @@
       "core_angle": "Identify CBD and hemp flower using the package, lot, cannabinoid report, total-THC basis, seller, state rules, smoke risks, and claim limits—not appearance.",
       "department": "guides",
       "published": "2026-09-26",
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/",
@@ -3726,10 +3727,10 @@
         "https://bigbudman.com/guides/cannabis-smoke-vape-lung-health-guide/",
         "https://bigbudman.com/legal/",
         "https://bigbudman.com/strains/",
+        "https://bigbudman.com/strains/bialobrzeskie-hemp/",
         "https://bigbudman.com/strains/nbs-cbd-1-hemp/",
         "https://bigbudman.com/strains/santiam-hemp/",
-        "https://bigbudman.com/strains/the-wife-cbd-hemp/",
-        "https://bigbudman.com/strains/tjs-cbd-hemp/"
+        "https://bigbudman.com/strains/the-wife-cbd-hemp/"
       ]
     },
     {
@@ -4793,6 +4794,7 @@
         "https://bigbudman.com/legal/wisconsin/",
         "https://bigbudman.com/legal/wyoming/",
         "https://bigbudman.com/site-index/",
+        "https://bigbudman.com/strains/bialobrzeskie-hemp/",
         "https://bigbudman.com/strains/sour-brulee/"
       ],
       "contextual_outlinks": [
@@ -6367,6 +6369,7 @@
         "https://bigbudman.com/strains/auto-cbg/",
         "https://bigbudman.com/strains/banana-kush/",
         "https://bigbudman.com/strains/baox-hemp/",
+        "https://bigbudman.com/strains/bialobrzeskie-hemp/",
         "https://bigbudman.com/strains/biscotti/",
         "https://bigbudman.com/strains/black-runtz/",
         "https://bigbudman.com/strains/blue-cheese/",
@@ -6515,12 +6518,12 @@
     {
       "url": "https://bigbudman.com/strains/",
       "slug": "strains",
-      "title": "130 Cannabis Strain Field Notes",
+      "title": "131 Cannabis Strain Field Notes",
       "topic": "Strain library",
-      "core_angle": "Search 130 THC, CBD, CBDV, CBG, hemp, grain/fiber, and mixed-ratio field notes with lineage, batch, and evidence caveats.",
+      "core_angle": "Search 131 THC, CBD, CBDV, CBG, hemp, grain/fiber, and mixed-ratio field notes with lineage, batch, and evidence caveats.",
       "department": "strains",
       "published": "2026-08-17",
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/",
@@ -6542,6 +6545,7 @@
         "https://bigbudman.com/strains/auto-cbg/",
         "https://bigbudman.com/strains/banana-kush/",
         "https://bigbudman.com/strains/baox-hemp/",
+        "https://bigbudman.com/strains/bialobrzeskie-hemp/",
         "https://bigbudman.com/strains/biscotti/",
         "https://bigbudman.com/strains/black-runtz/",
         "https://bigbudman.com/strains/blue-cheese/",
@@ -6947,6 +6951,31 @@
         "https://bigbudman.com/guides/cannabis-seed-storage-record-guide/",
         "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/",
         "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/",
+        "https://bigbudman.com/strains/henola-hemp/"
+      ]
+    },
+    {
+      "url": "https://bigbudman.com/strains/bialobrzeskie-hemp/",
+      "slug": "strains/bialobrzeskie-hemp",
+      "title": "Białobrzeskie Hemp Cultivar Field Note",
+      "topic": "Industrial hemp cultivar research field note",
+      "core_angle": "Białobrzeskie hemp field note: compare three university trials without turning one site-year into a seed, yield, compliance, or product promise.",
+      "department": "strains",
+      "published": "2026-11-23",
+      "updated": "2026-11-23",
+      "contextual_inlinks": [
+        "https://bigbudman.com/",
+        "https://bigbudman.com/guides/cannabis-seed-storage-record-guide/",
+        "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/",
+        "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/",
+        "https://bigbudman.com/site-index/",
+        "https://bigbudman.com/strains/",
+        "https://bigbudman.com/updates/"
+      ],
+      "contextual_outlinks": [
+        "https://bigbudman.com/guides/cannabis-seed-storage-record-guide/",
+        "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/",
+        "https://bigbudman.com/legal/",
         "https://bigbudman.com/strains/henola-hemp/"
       ]
     },
@@ -7864,6 +7893,7 @@
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/strains/",
         "https://bigbudman.com/strains/baox-hemp/",
+        "https://bigbudman.com/strains/bialobrzeskie-hemp/",
         "https://bigbudman.com/strains/panakeia-beta-hurv19pan/",
         "https://bigbudman.com/updates/"
       ],
@@ -9262,7 +9292,6 @@
       "published": "2026-11-22",
       "updated": "2026-11-22",
       "contextual_inlinks": [
-        "https://bigbudman.com/",
         "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
         "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/",
         "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/",
@@ -9289,8 +9318,6 @@
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
-        "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/",
-        "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/strains/",
         "https://bigbudman.com/updates/"
@@ -9668,6 +9695,7 @@
         "https://bigbudman.com/strains/arkryder-hemp/",
         "https://bigbudman.com/strains/auto-cbg/",
         "https://bigbudman.com/strains/baox-hemp/",
+        "https://bigbudman.com/strains/bialobrzeskie-hemp/",
         "https://bigbudman.com/strains/blue-dream/",
         "https://bigbudman.com/strains/cakeberry-brulee/",
         "https://bigbudman.com/strains/chemberry/",
