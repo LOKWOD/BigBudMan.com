@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-23",
+  "generated": "2026-11-24",
   "scope": "Every indexable canonical BigBudMan.com page. Links are unique internal destinations inside main content; global header and footer navigation are excluded.",
-  "page_count": 357,
+  "page_count": 360,
   "pages": [
     {
       "url": "https://bigbudman.com/",
@@ -11,7 +11,7 @@
       "core_angle": "Independent cannabis guides for adults 21+: strains, edibles, labels, gear, responsible use, and reviewed legal starting points for all 50 states.",
       "department": "home",
       "published": "2026-08-17",
-      "updated": "2026-11-23",
+      "updated": "2026-11-24",
       "contextual_inlinks": [
         "https://bigbudman.com/site-index/"
       ],
@@ -62,6 +62,7 @@
         "https://bigbudman.com/guides/cannabis-social-hosting-guest-safety-plan/",
         "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/",
         "https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/cbd-drinks-powders-label-buying-guide/",
         "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/",
         "https://bigbudman.com/guides/cbd-patches-transdermal-label-evidence-guide/",
@@ -151,7 +152,7 @@
       "core_angle": "How Big Bud Man researches, writes, reviews, updates, corrects, and monetizes independent legal-cannabis education.",
       "department": "editorial-policy",
       "published": "2026-08-17",
-      "updated": "2026-11-23",
+      "updated": "2026-11-24",
       "contextual_inlinks": [
         "https://bigbudman.com/about/",
         "https://bigbudman.com/site-index/"
@@ -165,10 +166,10 @@
       "slug": "gear",
       "title": "Cannabis Gear Guides",
       "topic": "Gear library",
-      "core_angle": "Search 46 independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.",
+      "core_angle": "Search 47 independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.",
       "department": "gear",
       "published": "2026-08-17",
-      "updated": "2026-11-21",
+      "updated": "2026-11-24",
       "contextual_inlinks": [
         "https://bigbudman.com/gear/used-cannabis-accessory-buying-safety-guide/",
         "https://bigbudman.com/site-index/"
@@ -213,6 +214,7 @@
         "https://bigbudman.com/gear/home-grow-dehumidifier-buying-guide/",
         "https://bigbudman.com/gear/home-grow-ph-ec-meter-buying-guide/",
         "https://bigbudman.com/gear/home-grow-plant-support-trellis-buying-guide/",
+        "https://bigbudman.com/gear/home-grow-soil-coco-hydro-media-comparison/",
         "https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/",
         "https://bigbudman.com/gear/home-grow-timer-controller-buying-guide/",
         "https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/",
@@ -470,10 +472,11 @@
         "https://bigbudman.com/gear/grinders/",
         "https://bigbudman.com/gear/home-grow-dehumidifier-buying-guide/",
         "https://bigbudman.com/gear/home-grow-plant-support-trellis-buying-guide/",
+        "https://bigbudman.com/gear/home-grow-soil-coco-hydro-media-comparison/",
         "https://bigbudman.com/gear/home-grow-timer-controller-buying-guide/",
-        "https://bigbudman.com/gear/home-grow-watering-tools-buying-guide/",
         "https://bigbudman.com/gear/indoor-cannabis-grow-light-buying-cost-planner/",
         "https://bigbudman.com/gear/used-cannabis-accessory-buying-safety-guide/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/flower/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
@@ -540,7 +543,6 @@
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/gear/",
-        "https://bigbudman.com/gear/home-grow-ph-ec-meter-buying-guide/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
       ],
@@ -966,6 +968,7 @@
         "https://bigbudman.com/gear/cannabis-lockbox-buying-guide/",
         "https://bigbudman.com/gear/cannabis-pre-roll-tube-case-buying-guide/",
         "https://bigbudman.com/gear/smell-proof-storage/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/storage/",
         "https://bigbudman.com/legal/mailing-cannabis-cbd-usps-rules/",
         "https://bigbudman.com/site-index/",
@@ -1199,10 +1202,11 @@
       "core_angle": "Compare pH and EC meters by measurement job, range, accuracy evidence, calibration, probe care, temperature, records, and first-year system cost.",
       "department": "gear",
       "published": "2026-10-30",
-      "updated": "2026-11-09",
+      "updated": "2026-11-24",
       "contextual_inlinks": [
         "https://bigbudman.com/gear/",
         "https://bigbudman.com/gear/cannabis-home-testing-kit-buying-guide/",
+        "https://bigbudman.com/gear/home-grow-soil-coco-hydro-media-comparison/",
         "https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/",
         "https://bigbudman.com/gear/home-grow-watering-tools-buying-guide/",
         "https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/",
@@ -1210,7 +1214,7 @@
         "https://bigbudman.com/updates/"
       ],
       "contextual_outlinks": [
-        "https://bigbudman.com/gear/cannabis-home-testing-kit-buying-guide/",
+        "https://bigbudman.com/gear/home-grow-soil-coco-hydro-media-comparison/",
         "https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/",
         "https://bigbudman.com/gear/home-grow-watering-tools-buying-guide/",
         "https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/"
@@ -1237,6 +1241,29 @@
       "contextual_outlinks": [
         "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/",
         "https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/",
+        "https://bigbudman.com/gear/home-grow-watering-tools-buying-guide/",
+        "https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/"
+      ]
+    },
+    {
+      "url": "https://bigbudman.com/gear/home-grow-soil-coco-hydro-media-comparison/",
+      "slug": "gear/home-grow-soil-coco-hydro-media-comparison",
+      "title": "Soil vs Coco vs Hydro: Home-Grow Media Guide",
+      "topic": "Lawful home-grow media and system buying comparison",
+      "core_angle": "Compare soil, potting mixes, coco coir, aggregate media, and water culture by root support, water, air, monitoring, sanitation, waste, and total cost.",
+      "department": "gear",
+      "published": "2026-11-24",
+      "updated": "2026-11-24",
+      "contextual_inlinks": [
+        "https://bigbudman.com/gear/",
+        "https://bigbudman.com/gear/home-grow-ph-ec-meter-buying-guide/",
+        "https://bigbudman.com/gear/home-grow-watering-tools-buying-guide/",
+        "https://bigbudman.com/site-index/",
+        "https://bigbudman.com/updates/"
+      ],
+      "contextual_outlinks": [
+        "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/",
+        "https://bigbudman.com/gear/home-grow-ph-ec-meter-buying-guide/",
         "https://bigbudman.com/gear/home-grow-watering-tools-buying-guide/",
         "https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/"
       ]
@@ -1329,19 +1356,20 @@
       "core_angle": "Compare lawful home-grow watering cans, wands, reservoirs, and pumps by the task, measured delivery, materials, spills, power, cleaning, parts, and cost.",
       "department": "gear",
       "published": "2026-11-09",
-      "updated": "2026-11-18",
+      "updated": "2026-11-24",
       "contextual_inlinks": [
         "https://bigbudman.com/gear/",
         "https://bigbudman.com/gear/home-grow-ph-ec-meter-buying-guide/",
         "https://bigbudman.com/gear/home-grow-plant-support-trellis-buying-guide/",
+        "https://bigbudman.com/gear/home-grow-soil-coco-hydro-media-comparison/",
         "https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
       ],
       "contextual_outlinks": [
-        "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/",
         "https://bigbudman.com/gear/home-grow-ph-ec-meter-buying-guide/",
         "https://bigbudman.com/gear/home-grow-plant-support-trellis-buying-guide/",
+        "https://bigbudman.com/gear/home-grow-soil-coco-hydro-media-comparison/",
         "https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/"
       ]
     },
@@ -1433,7 +1461,7 @@
       "core_angle": "Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.",
       "department": "guides",
       "published": "2026-08-17",
-      "updated": "2026-11-23",
+      "updated": "2026-11-24",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/site-index/"
@@ -1470,6 +1498,7 @@
         "https://bigbudman.com/guides/cannabis-edible-allergen-ingredient-label-guide/",
         "https://bigbudman.com/guides/cannabis-edible-label-math-checker/",
         "https://bigbudman.com/guides/cannabis-exercise-workout-heat-safety/",
+        "https://bigbudman.com/guides/cannabis-fast-acting-edibles-claims-guide/",
         "https://bigbudman.com/guides/cannabis-fertility-preconception-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-flower-buds-smalls-shake-trim-comparison/",
         "https://bigbudman.com/guides/cannabis-flower-freshness-package-date-buying-guide/",
@@ -1512,6 +1541,7 @@
         "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/",
         "https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/",
         "https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/cannabis-warning-symbol-package-icon-guide/",
         "https://bigbudman.com/guides/cannabis-water-activity-moisture-mold-guide/",
         "https://bigbudman.com/guides/cbd-capsules-softgels-label-buying-guide/",
@@ -1589,6 +1619,7 @@
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/delta-8-thc-label-safety-guide/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
@@ -1733,15 +1764,17 @@
       "core_angle": "Compare cannabis drinks by THC per serving and container, ingredients, timing claims, batch evidence, storage, and licensed source—not can size or hype.",
       "department": "guides",
       "published": "2026-09-16",
-      "updated": "2026-09-16",
+      "updated": "2026-11-24",
       "contextual_inlinks": [
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-edible-allergen-ingredient-label-guide/",
+        "https://bigbudman.com/guides/cannabis-fast-acting-edibles-claims-guide/",
         "https://bigbudman.com/guides/cbd-drinks-powders-label-buying-guide/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
       ],
       "contextual_outlinks": [
+        "https://bigbudman.com/guides/cannabis-fast-acting-edibles-claims-guide/",
         "https://bigbudman.com/guides/cannabis-gummies-drinks-oils-capsules-comparison/",
         "https://bigbudman.com/guides/cbd-drinks-powders-label-buying-guide/",
         "https://bigbudman.com/guides/edibles/",
@@ -1991,7 +2024,6 @@
         "https://bigbudman.com/guides/cannabis-101/",
         "https://bigbudman.com/guides/cannabis-cbd-liver-health-safety-guide/",
         "https://bigbudman.com/guides/cannabis-contaminant-test-results-guide/",
-        "https://bigbudman.com/guides/cannabis-edible-label-math-checker/",
         "https://bigbudman.com/guides/cannabis-lab-report-detection-quantitation-limits-guide/",
         "https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/",
         "https://bigbudman.com/guides/cannabis-package-seal-tamper-evidence-checklist/",
@@ -2062,7 +2094,6 @@
         "https://bigbudman.com/guides/cannabis-caregiving-sober-adult-handoff-plan/",
         "https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/",
         "https://bigbudman.com/guides/cannabis-package-seal-tamper-evidence-checklist/",
-        "https://bigbudman.com/guides/edibles/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
       ],
@@ -2081,23 +2112,25 @@
       "core_angle": "Fact-check a cannabis claim by recording its exact wording, source, product, evidence, limits, conflicts, current rules, and unresolved gaps.",
       "department": "guides",
       "published": "2026-10-16",
-      "updated": "2026-11-21",
+      "updated": "2026-11-24",
       "contextual_inlinks": [
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-cbd-cancer-claims-evidence-guide/",
+        "https://bigbudman.com/guides/cannabis-fast-acting-edibles-claims-guide/",
         "https://bigbudman.com/guides/cannabis-health-evidence-library/",
         "https://bigbudman.com/guides/cannabis-memory-attention-cognition-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-research-study-reading-checklist/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/read-a-label/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
       ],
       "contextual_outlinks": [
+        "https://bigbudman.com/guides/cannabis-fast-acting-edibles-claims-guide/",
         "https://bigbudman.com/guides/cannabis-health-evidence-library/",
-        "https://bigbudman.com/guides/cannabis-memory-attention-cognition-evidence-guide/",
-        "https://bigbudman.com/guides/cannabis-official-source-directory/",
         "https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/",
         "https://bigbudman.com/guides/cannabis-research-study-reading-checklist/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/legal/shop-legal/"
       ]
     },
@@ -2377,13 +2410,15 @@
       "core_angle": "Cross-check THC and CBD per serving, per piece, package totals, and a selected number of pieces without turning arithmetic into dosing advice.",
       "department": "guides",
       "published": "2026-10-02",
-      "updated": "2026-11-17",
+      "updated": "2026-11-24",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/gear/cannabis-liquid-measuring-tool-buying-guide/",
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-101/",
+        "https://bigbudman.com/guides/cannabis-fast-acting-edibles-claims-guide/",
         "https://bigbudman.com/guides/cannabis-potency-units-percent-mg-g-ml-serving-guide/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/cbn-products-label-evidence-guide/",
         "https://bigbudman.com/guides/edibles/",
         "https://bigbudman.com/guides/read-a-label/",
@@ -2392,8 +2427,8 @@
       ],
       "contextual_outlinks": [
         "https://bigbudman.com/gear/cannabis-liquid-measuring-tool-buying-guide/",
-        "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
         "https://bigbudman.com/guides/cannabis-potency-units-percent-mg-g-ml-serving-guide/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/read-a-label/"
       ]
     },
@@ -2420,6 +2455,30 @@
         "https://bigbudman.com/guides/cannabis-drug-testing-thc-results-guide/",
         "https://bigbudman.com/guides/cannabis-heart-rate-blood-pressure-safety/",
         "https://bigbudman.com/responsible-use/"
+      ]
+    },
+    {
+      "url": "https://bigbudman.com/guides/cannabis-fast-acting-edibles-claims-guide/",
+      "slug": "guides/cannabis-fast-acting-edibles-claims-guide",
+      "title": "Fast-Acting Cannabis Edibles: Claims Guide",
+      "topic": "Fast-acting cannabis edible claims, label and evidence guide",
+      "core_angle": "Evaluate fast-acting, rapid-onset, nano, and water-soluble cannabis edible claims using the exact label, lot, evidence, timing, and safety boundaries.",
+      "department": "guides",
+      "published": "2026-11-24",
+      "updated": "2026-11-24",
+      "contextual_inlinks": [
+        "https://bigbudman.com/guides/",
+        "https://bigbudman.com/guides/cannabis-beverages-label-timing-buying-guide/",
+        "https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/",
+        "https://bigbudman.com/guides/edibles/",
+        "https://bigbudman.com/site-index/",
+        "https://bigbudman.com/updates/"
+      ],
+      "contextual_outlinks": [
+        "https://bigbudman.com/guides/cannabis-beverages-label-timing-buying-guide/",
+        "https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/",
+        "https://bigbudman.com/guides/cannabis-edible-label-math-checker/",
+        "https://bigbudman.com/guides/edibles/"
       ]
     },
     {
@@ -2614,6 +2673,7 @@
         "https://bigbudman.com/gear/home-grow-timer-controller-buying-guide/",
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
       ],
@@ -2682,7 +2742,6 @@
       "updated": "2026-11-05",
       "contextual_inlinks": [
         "https://bigbudman.com/guides/",
-        "https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/",
         "https://bigbudman.com/guides/cannabis-next-day-impairment-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-older-adults-medication-fall-safety/",
         "https://bigbudman.com/site-index/",
@@ -2709,7 +2768,7 @@
         "https://bigbudman.com/guides/cannabis-dispensary-loyalty-rewards-value-privacy-guide/",
         "https://bigbudman.com/guides/cannabis-dispensary-payment-receipt-guide/",
         "https://bigbudman.com/guides/cannabis-product-complaint-adverse-event-reporting/",
-        "https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/first-cannabis-dispensary-visit-checklist/",
         "https://bigbudman.com/guides/new-york-cannabis-showcase-event-verification-guide/",
         "https://bigbudman.com/legal/shop-legal/",
@@ -2834,11 +2893,10 @@
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-cbd-cancer-claims-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-epilepsy-seizure-care-guide/",
-        "https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/",
         "https://bigbudman.com/guides/cannabis-health-evidence-library/",
         "https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/",
-        "https://bigbudman.com/guides/cannabis-product-recall-batch-checker/",
         "https://bigbudman.com/guides/cannabis-research-study-reading-checklist/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/cannabis-warning-symbol-package-icon-guide/",
         "https://bigbudman.com/legal/cannabis-federally-assisted-housing-guide/",
         "https://bigbudman.com/site-index/",
@@ -2926,6 +2984,7 @@
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/",
         "https://bigbudman.com/guides/cannabis-product-dates-condition-decision-guide/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/cannabis-warning-symbol-package-icon-guide/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
@@ -2953,6 +3012,7 @@
         "https://bigbudman.com/guides/cannabis-edible-label-math-checker/",
         "https://bigbudman.com/guides/cannabis-lab-report-detection-quantitation-limits-guide/",
         "https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/read-a-label/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/strains/arkryder-hemp/",
@@ -3139,7 +3199,7 @@
       "core_angle": "Compare three compatible cannabis packages by checkout total, unit count, net quantity, and labeled cannabinoid total without ranking potency as quality.",
       "department": "guides",
       "published": "2026-09-26",
-      "updated": "2026-11-17",
+      "updated": "2026-11-24",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/",
@@ -3151,6 +3211,7 @@
         "https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/",
         "https://bigbudman.com/guides/cannabis-potency-units-percent-mg-g-ml-serving-guide/",
         "https://bigbudman.com/guides/cannabis-product-dates-condition-decision-guide/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/disposable-vape-vs-510-cartridge-comparison/",
         "https://bigbudman.com/guides/edibles/",
         "https://bigbudman.com/site-index/",
@@ -3160,9 +3221,9 @@
       ],
       "contextual_outlinks": [
         "https://bigbudman.com/guides/cannabis-dispensary-loyalty-rewards-value-privacy-guide/",
-        "https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/",
         "https://bigbudman.com/guides/cannabis-potency-units-percent-mg-g-ml-serving-guide/",
         "https://bigbudman.com/guides/cannabis-product-dates-condition-decision-guide/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/read-a-label/",
         "https://bigbudman.com/guides/thca-vs-thc-cannabis-labels/",
         "https://bigbudman.com/legal/shop-legal/",
@@ -3177,7 +3238,7 @@
       "core_angle": "Check a cannabis product recall by matching the official notice to the producer, product, lot or batch, package size, dates, and jurisdiction.",
       "department": "guides",
       "published": "2026-09-17",
-      "updated": "2026-09-17",
+      "updated": "2026-11-24",
       "contextual_inlinks": [
         "https://bigbudman.com/gear/cannabis-inventory-label-record-kit/",
         "https://bigbudman.com/guides/",
@@ -3186,6 +3247,7 @@
         "https://bigbudman.com/guides/cannabis-product-complaint-adverse-event-reporting/",
         "https://bigbudman.com/guides/cannabis-product-dates-condition-decision-guide/",
         "https://bigbudman.com/guides/cannabis-product-disposal-decision-guide/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/cbd-products-for-pets-veterinarian-label-guide/",
         "https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/",
         "https://bigbudman.com/guides/read-a-label/",
@@ -3198,9 +3260,9 @@
       "contextual_outlinks": [
         "https://bigbudman.com/gear/cannabis-inventory-label-record-kit/",
         "https://bigbudman.com/guides/cannabis-contaminant-test-results-guide/",
-        "https://bigbudman.com/guides/cannabis-official-source-directory/",
         "https://bigbudman.com/guides/cannabis-product-dates-condition-decision-guide/",
         "https://bigbudman.com/guides/cannabis-product-disposal-decision-guide/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/legal/",
         "https://bigbudman.com/legal/shop-legal/"
       ]
@@ -3213,12 +3275,13 @@
       "core_angle": "Record a cannabis product, lot, route, timing, context, observed response, function, warning signs, and clinical or adverse-event handoff without dose advice.",
       "department": "guides",
       "published": "2026-11-21",
-      "updated": "2026-11-21",
+      "updated": "2026-11-24",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/",
         "https://bigbudman.com/guides/cannabis-product-complaint-adverse-event-reporting/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
@@ -3226,7 +3289,7 @@
       "contextual_outlinks": [
         "https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/",
         "https://bigbudman.com/guides/cannabis-product-complaint-adverse-event-reporting/",
-        "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/"
       ]
     },
@@ -3266,6 +3329,7 @@
         "https://bigbudman.com/gear/cannabis-product-photo-documentation-kit-buying-guide/",
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-lab-report-detection-quantitation-limits-guide/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/",
         "https://bigbudman.com/legal/shop-legal/",
         "https://bigbudman.com/site-index/",
@@ -3297,6 +3361,7 @@
         "https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/",
         "https://bigbudman.com/guides/cannabis-health-evidence-library/",
         "https://bigbudman.com/guides/cannabis-official-source-directory/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
       ],
@@ -3487,7 +3552,6 @@
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/",
-        "https://bigbudman.com/guides/cannabis-product-response-experience-log/",
         "https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/",
         "https://bigbudman.com/guides/cbg-dominant-cannabis-chemotype-guide/",
         "https://bigbudman.com/guides/indica-sativa-hybrid-label-evidence-guide/",
@@ -3522,6 +3586,7 @@
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-101/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/cannabis-warning-symbol-package-icon-guide/",
         "https://bigbudman.com/guides/cbn-products-label-evidence-guide/",
         "https://bigbudman.com/legal/marijuana-rescheduling-status-november-2026/",
@@ -3567,6 +3632,49 @@
         "https://bigbudman.com/guides/cannabis-nicotine-tobacco-co-use-guide/",
         "https://bigbudman.com/guides/cannabis-ptsd-evidence-safety-guide/",
         "https://bigbudman.com/guides/read-a-label/"
+      ]
+    },
+    {
+      "url": "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
+      "slug": "guides/cannabis-tools-calculators-checklists-hub",
+      "title": "Cannabis Calculators, Checklists & Tools",
+      "topic": "Cannabis calculators, checklists, records and decision-tools hub",
+      "core_angle": "Find Big Bud Man calculators, verification checklists, printable records, safety plans, and buying worksheets by the decision you need to make.",
+      "department": "guides",
+      "published": "2026-11-24",
+      "updated": "2026-11-24",
+      "contextual_inlinks": [
+        "https://bigbudman.com/",
+        "https://bigbudman.com/guides/",
+        "https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/",
+        "https://bigbudman.com/guides/cannabis-edible-label-math-checker/",
+        "https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/",
+        "https://bigbudman.com/guides/cannabis-product-recall-batch-checker/",
+        "https://bigbudman.com/guides/cannabis-product-response-experience-log/",
+        "https://bigbudman.com/site-index/",
+        "https://bigbudman.com/updates/"
+      ],
+      "contextual_outlinks": [
+        "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/",
+        "https://bigbudman.com/gear/cannabis-stash-jar-buying-guide/",
+        "https://bigbudman.com/guides/cannabis-101/",
+        "https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/",
+        "https://bigbudman.com/guides/cannabis-edible-label-math-checker/",
+        "https://bigbudman.com/guides/cannabis-home-fire-safety-plan/",
+        "https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/",
+        "https://bigbudman.com/guides/cannabis-official-source-directory/",
+        "https://bigbudman.com/guides/cannabis-package-seal-tamper-evidence-checklist/",
+        "https://bigbudman.com/guides/cannabis-potency-units-percent-mg-g-ml-serving-guide/",
+        "https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/",
+        "https://bigbudman.com/guides/cannabis-product-recall-batch-checker/",
+        "https://bigbudman.com/guides/cannabis-product-response-experience-log/",
+        "https://bigbudman.com/guides/cannabis-qr-code-coa-verification-safety-guide/",
+        "https://bigbudman.com/guides/cannabis-research-study-reading-checklist/",
+        "https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/",
+        "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/",
+        "https://bigbudman.com/guides/read-a-label/",
+        "https://bigbudman.com/guides/storage/",
+        "https://bigbudman.com/legal/"
       ]
     },
     {
@@ -4003,20 +4111,21 @@
       "core_angle": "Compare cannabis edibles by licensed source, serving and package math, ingredients, timing uncertainty, lot evidence, storage, and emergency planning.",
       "department": "guides",
       "published": "2026-08-17",
-      "updated": "2026-11-13",
+      "updated": "2026-11-24",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/gear/cannabis-infusion-appliance-buying-guide/",
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-beverages-label-timing-buying-guide/",
+        "https://bigbudman.com/guides/cannabis-fast-acting-edibles-claims-guide/",
         "https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
       ],
       "contextual_outlinks": [
-        "https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/",
         "https://bigbudman.com/guides/cannabis-edible-allergen-ingredient-label-guide/",
         "https://bigbudman.com/guides/cannabis-edible-label-math-checker/",
+        "https://bigbudman.com/guides/cannabis-fast-acting-edibles-claims-guide/",
         "https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/",
         "https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/",
         "https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/",
@@ -4161,6 +4270,7 @@
         "https://bigbudman.com/guides/cannabis-ptsd-evidence-safety-guide/",
         "https://bigbudman.com/guides/cannabis-research-study-reading-checklist/",
         "https://bigbudman.com/guides/cannabis-sleep-apnea-osa-evidence-safety-guide/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
       ],
@@ -4282,6 +4392,7 @@
         "https://bigbudman.com/gear/home-grow-dehumidifier-buying-guide/",
         "https://bigbudman.com/gear/home-grow-ph-ec-meter-buying-guide/",
         "https://bigbudman.com/gear/home-grow-plant-support-trellis-buying-guide/",
+        "https://bigbudman.com/gear/home-grow-soil-coco-hydro-media-comparison/",
         "https://bigbudman.com/gear/home-grow-timer-controller-buying-guide/",
         "https://bigbudman.com/gear/home-grow-watering-tools-buying-guide/",
         "https://bigbudman.com/gear/indoor-cannabis-grow-light-buying-cost-planner/",
@@ -4400,6 +4511,7 @@
         "https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/",
         "https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/",
         "https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/cannabis-warning-symbol-package-icon-guide/",
         "https://bigbudman.com/guides/cbd-gummies-label-buying-guide/",
         "https://bigbudman.com/guides/cbd-oil-tincture-label-buying-guide/",
@@ -4605,6 +4717,7 @@
         "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/",
         "https://bigbudman.com/guides/cannabis-pregnancy-breastfeeding-guidance/",
         "https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/cannabis-water-activity-moisture-mold-guide/",
         "https://bigbudman.com/guides/cbd-capsules-softgels-label-buying-guide/",
         "https://bigbudman.com/guides/cbd-gummies-label-buying-guide/",
@@ -4736,6 +4849,7 @@
         "https://bigbudman.com/guides/cannabis-product-recall-batch-checker/",
         "https://bigbudman.com/guides/cannabis-qr-code-coa-verification-safety-guide/",
         "https://bigbudman.com/guides/cannabis-social-hosting-guest-safety-plan/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/",
         "https://bigbudman.com/guides/cbg-dominant-cannabis-chemotype-guide/",
         "https://bigbudman.com/guides/first-cannabis-dispensary-visit-checklist/",
@@ -6128,7 +6242,7 @@
       "core_angle": "Browse every indexable Big Bud Man guide, strain field note, gear page, legal resource, and publication page with visible review dates.",
       "department": "site-index",
       "published": "2026-08-17",
-      "updated": "2026-11-23",
+      "updated": "2026-11-24",
       "contextual_inlinks": [
         "https://bigbudman.com/guides/cannabis-health-evidence-library/"
       ],
@@ -6178,6 +6292,7 @@
         "https://bigbudman.com/gear/home-grow-dehumidifier-buying-guide/",
         "https://bigbudman.com/gear/home-grow-ph-ec-meter-buying-guide/",
         "https://bigbudman.com/gear/home-grow-plant-support-trellis-buying-guide/",
+        "https://bigbudman.com/gear/home-grow-soil-coco-hydro-media-comparison/",
         "https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/",
         "https://bigbudman.com/gear/home-grow-timer-controller-buying-guide/",
         "https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/",
@@ -6217,6 +6332,7 @@
         "https://bigbudman.com/guides/cannabis-edible-allergen-ingredient-label-guide/",
         "https://bigbudman.com/guides/cannabis-edible-label-math-checker/",
         "https://bigbudman.com/guides/cannabis-exercise-workout-heat-safety/",
+        "https://bigbudman.com/guides/cannabis-fast-acting-edibles-claims-guide/",
         "https://bigbudman.com/guides/cannabis-fertility-preconception-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-flower-buds-smalls-shake-trim-comparison/",
         "https://bigbudman.com/guides/cannabis-flower-freshness-package-date-buying-guide/",
@@ -6259,6 +6375,7 @@
         "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/",
         "https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/",
         "https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/cannabis-warning-symbol-package-icon-guide/",
         "https://bigbudman.com/guides/cannabis-water-activity-moisture-mold-guide/",
         "https://bigbudman.com/guides/cbd-capsules-softgels-label-buying-guide/",
@@ -9522,7 +9639,7 @@
       "core_angle": "See newly published and materially reviewed Big Bud Man guides, gear resources, legal explainers, and collection updates in date order.",
       "department": "updates",
       "published": "2026-08-17",
-      "updated": "2026-11-23",
+      "updated": "2026-11-24",
       "contextual_inlinks": [
         "https://bigbudman.com/site-index/"
       ],
@@ -9566,6 +9683,7 @@
         "https://bigbudman.com/gear/home-grow-dehumidifier-buying-guide/",
         "https://bigbudman.com/gear/home-grow-ph-ec-meter-buying-guide/",
         "https://bigbudman.com/gear/home-grow-plant-support-trellis-buying-guide/",
+        "https://bigbudman.com/gear/home-grow-soil-coco-hydro-media-comparison/",
         "https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/",
         "https://bigbudman.com/gear/home-grow-timer-controller-buying-guide/",
         "https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/",
@@ -9604,6 +9722,7 @@
         "https://bigbudman.com/guides/cannabis-edible-allergen-ingredient-label-guide/",
         "https://bigbudman.com/guides/cannabis-edible-label-math-checker/",
         "https://bigbudman.com/guides/cannabis-exercise-workout-heat-safety/",
+        "https://bigbudman.com/guides/cannabis-fast-acting-edibles-claims-guide/",
         "https://bigbudman.com/guides/cannabis-fertility-preconception-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-flower-buds-smalls-shake-trim-comparison/",
         "https://bigbudman.com/guides/cannabis-flower-freshness-package-date-buying-guide/",
@@ -9646,6 +9765,7 @@
         "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/",
         "https://bigbudman.com/guides/cannabis-terms-label-lab-glossary/",
         "https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/",
+        "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/cannabis-warning-symbol-package-icon-guide/",
         "https://bigbudman.com/guides/cannabis-water-activity-moisture-mold-guide/",
         "https://bigbudman.com/guides/cbd-capsules-softgels-label-buying-guide/",
