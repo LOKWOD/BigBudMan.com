@@ -82,6 +82,7 @@ from content_nov21 import EDITORIAL_POLICY_APPEND as NOV21_POLICY_APPEND, NEW_GE
 from content_nov22 import AFFILIATE_DISCLOSURE_APPEND as NOV22_AFFILIATE_APPEND, EDITORIAL_POLICY_APPEND as NOV22_POLICY_APPEND, NEW_GEAR as NOV22_GEAR, NEW_GUIDES as NOV22_GUIDES, NEW_STRAIN_PAGES as NOV22_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV22_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV22_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV22_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV22_REVIEWED_RELATED_PATHS
 from content_nov23 import EDITORIAL_POLICY_APPEND as NOV23_POLICY_APPEND, NEW_GEAR as NOV23_GEAR, NEW_GUIDES as NOV23_GUIDES, NEW_STRAIN_PAGES as NOV23_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV23_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV23_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV23_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV23_REVIEWED_RELATED_PATHS
 from content_nov24 import EDITORIAL_POLICY_APPEND as NOV24_POLICY_APPEND, NEW_GEAR as NOV24_GEAR, NEW_GUIDES as NOV24_GUIDES, PUBLICATION_MANIFEST as NOV24_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV24_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV24_REVIEWED_RELATED_PATHS
+from content_nov25 import EDITORIAL_POLICY_APPEND as NOV25_POLICY_APPEND, NEW_GEAR as NOV25_GEAR, NEW_GUIDES as NOV25_GUIDES, PUBLICATION_MANIFEST as NOV25_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV25_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV25_REVIEWED_RELATED_PATHS
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -256,6 +257,8 @@ STRAINS = STRAINS + NOV23_STRAIN_RECORDS
 STRAIN_PAGES = STRAIN_PAGES + NOV23_STRAIN_PAGES
 GUIDE_PAGES = GUIDE_PAGES + NOV24_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV24_GEAR
+GUIDE_PAGES = GUIDE_PAGES + NOV25_GUIDES
+OTHER_ARTICLES = OTHER_ARTICLES + NOV25_GEAR
 
 # November 6 connects both new resources from established, intent-matched
 # pages. These are editorial paths, not generic recent-post links, and the
@@ -1110,6 +1113,15 @@ for _standard in STANDARD_PAGES:
         )
         _standard["body"] += NOV24_POLICY_APPEND
 
+for _standard in STANDARD_PAGES:
+    if _standard["path"] == "editorial-policy/index.html":
+        _standard["updated"] = "November 25, 2026"
+        _standard["body"] = _standard["body"].replace(
+            '<p class="update-line">Policy reviewed November 24, 2026</p>',
+            '<p class="update-line">Policy reviewed November 25, 2026</p>',
+        )
+        _standard["body"] += NOV25_POLICY_APPEND
+
 RECIPROCAL_RELATED = {
     "guides/full-spectrum-broad-spectrum-cbd-isolate/index.html": [
         ("guides/cbd-drinks-powders-label-buying-guide/", "CBD DRINKS", "Apply spectrum language to a beverage lot"),
@@ -1937,6 +1949,9 @@ for _source, _links in NOV23_RECIPROCAL_LINKS.items():
 for _source, _links in NOV24_RECIPROCAL_LINKS.items():
     for _link in reversed(_links):
         RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
+for _source, _links in NOV25_RECIPROCAL_LINKS.items():
+    for _link in reversed(_links):
+        RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
 for _source in (
     "guides/read-a-label/index.html",
     "guides/cannabis-terms-label-lab-glossary/index.html",
@@ -1974,6 +1989,9 @@ for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in NOV24_REVIEWED_RELATED_PATHS:
         _item["updated"] = "November 24, 2026"
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
+    if _item["path"] in NOV25_REVIEWED_RELATED_PATHS:
+        _item["updated"] = "November 25, 2026"
+for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in RECIPROCAL_RELATED:
         _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
         _seen_related: set[str] = set()
@@ -1989,7 +2007,7 @@ for _item in GUIDE_PAGES + OTHER_ARTICLES:
             if _item["path"] == "guides/new-york-home-cannabis-grow-planner/index.html":
                 _related_limit = 9
             elif _item["path"] == "guides/cannabis-cbd-medication-interactions/index.html":
-                _related_limit = 5
+                _related_limit = 6
             elif _item["path"] == "legal/shop-legal/index.html":
                 # Keep the established delivery-verification route after the
                 # payment/receipt authority link added in this release.
@@ -2103,7 +2121,7 @@ def render_home() -> tuple[Page, str]:
         path="index.html", title="Big Bud Man | Legal Cannabis, Without the Haze",
         description="Independent cannabis guides for adults 21+: strains, edibles, labels, gear, responsible use, and reviewed legal starting points for all 50 states.",
         category="Home", h1="Legal weed. Clear-headed guidance.",
-        dek="Independent cannabis education for adults 21+.", body="", updated="November 24, 2026", kind="website",
+        dek="Independent cannabis education for adults 21+.", body="", updated="November 25, 2026", kind="website",
     )
     main = f'''<main id="main-content">
 <section class="hero"><div class="hero-noise"></div><div class="container hero-grid">
@@ -2243,6 +2261,11 @@ def render_home() -> tuple[Page, str]:
         '<div class="story-stack"><a href="guides/cannabis-tools-calculators-checklists-hub/"><p class="kicker">CALCULATORS + CHECKLISTS</p><h3>Choose the smallest decision tool that fits the question</h3>' + icon('arrow') + '</a>',
         1,
     )
+    main = main.replace(
+        '<div class="story-stack">',
+        '<div class="story-stack"><a href="guides/cannabis-cbd-kidney-health-safety-guide/"><p class="kicker">KIDNEY HEALTH + EVIDENCE</p><h3>Keep CKD, symptoms, medicines, products, and clinical decisions in separate lanes</h3>' + icon('arrow') + '</a><a href="gear/cannabis-erig-enail-buying-safety-guide/"><p class="kicker">E-RIG + E-NAIL BUYING</p><h3>Compare the complete heated system before the temperature badge</h3>' + icon('arrow') + '</a><a href="guides/cannabis-rental-housing-lease-smoke-documentation-guide/"><p class="kicker">RENTAL HOUSING + RECORDS</p><h3>Audit the program, lease, smoke path, household controls, and documentation route</h3>' + icon('arrow') + '</a>',
+        1,
+    )
     return page, layout(page, main)
 
 
@@ -2289,9 +2312,11 @@ def add_collection_itemlist(html: str, page: Page, name: str, card_class: str) -
 
 
 def render_guides_hub() -> tuple[Page,str]:
-    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 24, 2026",kind="website")
+    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 25, 2026",kind="website")
     p="../"
     cards="".join([
+      card("guides/cannabis-cbd-kidney-health-safety-guide/","HEALTH + EVIDENCE","Cannabis, CBD, and kidney health","Separate kidney-function evidence, severe-CKD pharmacokinetics, vomiting and dehydration, transplant medicines, urgent signs, product records, and the kidney-team handoff.","heart",p),
+      card("guides/cannabis-rental-housing-lease-smoke-documentation-guide/","HOUSING + DOCUMENTATION","Cannabis in rental housing","Classify the housing program, audit the lease and smoke policy, map shared air, preserve a neutral record, and use current primary sources.","scale",p),
       card("guides/cannabis-fast-acting-edibles-claims-guide/","EDIBLES + CLAIMS","Fast-acting cannabis edibles claims","Separate fast, rapid-onset, nano, water-soluble, and bioavailability language from exact-product evidence, timing uncertainty, warnings, and redosing decisions.","clock",p),
       card("guides/cannabis-tools-calculators-checklists-hub/","TOOLS + DECISIONS","Cannabis calculators, checklists, and tools","Choose a package-math calculator, recall check, evidence worksheet, response log, buying plan, storage checklist, or official-source route without duplicating the underlying guide.","check",p),
       card("guides/cannabis-water-activity-moisture-mold-guide/","LAB REPORTS + FLOWER","Cannabis water activity and moisture","Separate water activity, moisture, room humidity, microbial evidence, lot identity, package condition, and jurisdiction-specific limits.","search",p),
@@ -2516,6 +2541,7 @@ def render_strains_hub() -> tuple[Page,str]:
 
 def render_gear_hub() -> tuple[Page,str]:
     items = [
+        ("cannabis-erig-enail-buying-safety-guide/","compare powered care","CONCENTRATES + HEATED HARDWARE","Choose an e-rig or e-nail system","Compare the exact heater, sensor, controller, power, battery, glass, temperature claims, care, recalls, returns, service, and ownership cost.","spark",None,None),
         ("home-grow-soil-coco-hydro-media-comparison/","compare preparation care","HOME GROW + ROOT ZONE","Compare soil, coco, and hydro systems","Choose the root-zone system by media identity, water, air, monitoring, drainage, sanitation, failure recovery, waste, and first-cycle cost.","leaf",None,None),
         ("cannabis-rosin-press-buying-safety-guide/","compare powered care","CONCENTRATES + MACHINERY","Choose a rosin press system","Compare the lawful job, drive system, force evidence, plate geometry, controls, guarding, utilities, service, recalls, return test, and ownership cost.","gear",None,None),
         ("cannabis-replacement-parts-compatibility-guide/","compare powered care","REPAIR + COMPATIBILITY","Match a replacement part","Verify the parent model, revision, part number, interfaces, materials, safety scope, warranty, recalls, ownership cost, acceptance test, and exit.","gear",None,None),
@@ -2564,7 +2590,7 @@ def render_gear_hub() -> tuple[Page,str]:
         ("cannabis-ashtray-ember-disposal-guide/","care","FIRE-SAFE DISPOSAL","Choose an ashtray","Compare stability, depth, materials, wind, placement, extinguishing, cleaning, waste, and smoke-exposure limits.","alert",None,None),
         ("cannabis-glass-pipe-water-pipe-buying-guide/","preparation care","GLASSWARE","Choose a pipe or water pipe","Check format, material claims, joint fit, stability, cleaning access, replacement parts, and smoke-exposure limits.","search",None,None),
     ]
-    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 24, 2026",kind="website")
+    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total cost—without affiliate pressure.","",updated="November 25, 2026",kind="website")
     cards=[]
     for href, categories, kicker, title, description, icon_name, image_src, image_alt in items:
         art = f'<div><img src="{image_src}" alt="{image_alt}"></div>' if image_src else f'<div class="gear-card__icon-art" aria-hidden="true">{icon(icon_name)}</div>'
@@ -2810,7 +2836,7 @@ def write_content_inventory(pages: list[Page]) -> None:
             "contextual_outlinks": outgoing[url],
         })
     payload = {
-        "generated": NOV24_PUBLICATION_MANIFEST["publication_date"],
+        "generated": NOV25_PUBLICATION_MANIFEST["publication_date"],
         "scope": "Every indexable canonical BigBudMan.com page. Links are unique internal destinations inside main content; global header and footer navigation are excluded.",
         "page_count": len(records),
         "pages": records,
@@ -2959,6 +2985,7 @@ def build() -> None:
     publication_manifest = NOV22_PUBLICATION_MANIFEST
     publication_manifest = NOV23_PUBLICATION_MANIFEST
     publication_manifest = NOV24_PUBLICATION_MANIFEST
+    publication_manifest = NOV25_PUBLICATION_MANIFEST
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]
     write_content_inventory(indexable)

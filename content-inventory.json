@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-24",
+  "generated": "2026-11-25",
   "scope": "Every indexable canonical BigBudMan.com page. Links are unique internal destinations inside main content; global header and footer navigation are excluded.",
-  "page_count": 360,
+  "page_count": 363,
   "pages": [
     {
       "url": "https://bigbudman.com/",
@@ -11,7 +11,7 @@
       "core_angle": "Independent cannabis guides for adults 21+: strains, edibles, labels, gear, responsible use, and reviewed legal starting points for all 50 states.",
       "department": "home",
       "published": "2026-08-17",
-      "updated": "2026-11-24",
+      "updated": "2026-11-25",
       "contextual_inlinks": [
         "https://bigbudman.com/site-index/"
       ],
@@ -19,6 +19,7 @@
         "https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/",
         "https://bigbudman.com/gear/cannabis-accessibility-tools-buying-guide/",
         "https://bigbudman.com/gear/cannabis-accessory-return-warranty-recall-guide/",
+        "https://bigbudman.com/gear/cannabis-erig-enail-buying-safety-guide/",
         "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/",
         "https://bigbudman.com/gear/cannabis-home-testing-kit-buying-guide/",
         "https://bigbudman.com/gear/cannabis-humidity-pack-hygrometer-guide/",
@@ -37,6 +38,7 @@
         "https://bigbudman.com/guides/cannabis-cbd-cancer-claims-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-chronic-pain-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-epilepsy-seizure-care-guide/",
+        "https://bigbudman.com/guides/cannabis-cbd-kidney-health-safety-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-liver-health-safety-guide/",
         "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
         "https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/",
@@ -56,6 +58,7 @@
         "https://bigbudman.com/guides/cannabis-product-complaint-adverse-event-reporting/",
         "https://bigbudman.com/guides/cannabis-product-price-label-comparison-calculator/",
         "https://bigbudman.com/guides/cannabis-product-response-experience-log/",
+        "https://bigbudman.com/guides/cannabis-rental-housing-lease-smoke-documentation-guide/",
         "https://bigbudman.com/guides/cannabis-research-study-reading-checklist/",
         "https://bigbudman.com/guides/cannabis-smoke-odor-neighbor-shared-air-plan/",
         "https://bigbudman.com/guides/cannabis-smoke-vape-lung-health-guide/",
@@ -152,7 +155,7 @@
       "core_angle": "How Big Bud Man researches, writes, reviews, updates, corrects, and monetizes independent legal-cannabis education.",
       "department": "editorial-policy",
       "published": "2026-08-17",
-      "updated": "2026-11-24",
+      "updated": "2026-11-25",
       "contextual_inlinks": [
         "https://bigbudman.com/about/",
         "https://bigbudman.com/site-index/"
@@ -166,10 +169,10 @@
       "slug": "gear",
       "title": "Cannabis Gear Guides",
       "topic": "Gear library",
-      "core_angle": "Search 47 independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.",
+      "core_angle": "Search 48 independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.",
       "department": "gear",
       "published": "2026-08-17",
-      "updated": "2026-11-24",
+      "updated": "2026-11-25",
       "contextual_inlinks": [
         "https://bigbudman.com/gear/used-cannabis-accessory-buying-safety-guide/",
         "https://bigbudman.com/site-index/"
@@ -183,6 +186,7 @@
         "https://bigbudman.com/gear/cannabis-concentrate-container-buying-guide/",
         "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/",
         "https://bigbudman.com/gear/cannabis-drying-rack-buying-guide/",
+        "https://bigbudman.com/gear/cannabis-erig-enail-buying-safety-guide/",
         "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/",
         "https://bigbudman.com/gear/cannabis-glass-pipe-water-pipe-buying-guide/",
         "https://bigbudman.com/gear/cannabis-harvest-trimming-scissors-buying-guide/",
@@ -322,6 +326,7 @@
         "https://bigbudman.com/",
         "https://bigbudman.com/gear/",
         "https://bigbudman.com/gear/510-thread-vape-battery-safety/",
+        "https://bigbudman.com/gear/cannabis-erig-enail-buying-safety-guide/",
         "https://bigbudman.com/gear/cannabis-replacement-parts-compatibility-guide/",
         "https://bigbudman.com/gear/cannabis-rosin-press-buying-safety-guide/",
         "https://bigbudman.com/gear/cannabis-vape-battery-cartridge-disposal-guide/",
@@ -397,10 +402,11 @@
       "core_angle": "Compare a charger or cable for a cannabis vape or vaporizer by exact-device instructions, input, connector, battery, damage, recalls, and cost.",
       "department": "gear",
       "published": "2026-11-11",
-      "updated": "2026-11-22",
+      "updated": "2026-11-25",
       "contextual_inlinks": [
         "https://bigbudman.com/gear/",
         "https://bigbudman.com/gear/510-thread-vape-battery-safety/",
+        "https://bigbudman.com/gear/cannabis-erig-enail-buying-safety-guide/",
         "https://bigbudman.com/gear/cannabis-replacement-parts-compatibility-guide/",
         "https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/",
         "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/",
@@ -409,9 +415,9 @@
       ],
       "contextual_outlinks": [
         "https://bigbudman.com/gear/510-thread-vape-battery-safety/",
+        "https://bigbudman.com/gear/cannabis-erig-enail-buying-safety-guide/",
         "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/",
         "https://bigbudman.com/gear/cannabis-replacement-parts-compatibility-guide/",
-        "https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/",
         "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/"
       ]
     },
@@ -436,6 +442,30 @@
         "https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/",
         "https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/",
         "https://bigbudman.com/guides/new-york-home-cannabis-harvest-drying-curing-log/"
+      ]
+    },
+    {
+      "url": "https://bigbudman.com/gear/cannabis-erig-enail-buying-safety-guide/",
+      "slug": "gear/cannabis-erig-enail-buying-safety-guide",
+      "title": "Cannabis E-Rig & E-Nail Buying Guide",
+      "topic": "Cannabis e-rig and e-nail buying and safety guide",
+      "core_angle": "Compare cannabis e-rigs and e-nails by exact system, heater, power, battery, controls, glass, cleaning, recalls, returns, and ownership cost.",
+      "department": "gear",
+      "published": "2026-11-25",
+      "updated": "2026-11-25",
+      "contextual_inlinks": [
+        "https://bigbudman.com/",
+        "https://bigbudman.com/gear/",
+        "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/",
+        "https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/",
+        "https://bigbudman.com/site-index/",
+        "https://bigbudman.com/updates/"
+      ],
+      "contextual_outlinks": [
+        "https://bigbudman.com/gear/cannabis-accessory-return-warranty-recall-guide/",
+        "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/",
+        "https://bigbudman.com/gear/cannabis-tool-cleaning-kit/",
+        "https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/"
       ]
     },
     {
@@ -999,6 +1029,7 @@
         "https://bigbudman.com/gear/510-thread-vape-battery-safety/",
         "https://bigbudman.com/gear/cannabis-ashtray-ember-disposal-guide/",
         "https://bigbudman.com/gear/cannabis-concentrate-container-buying-guide/",
+        "https://bigbudman.com/gear/cannabis-erig-enail-buying-safety-guide/",
         "https://bigbudman.com/gear/cannabis-glass-pipe-water-pipe-buying-guide/",
         "https://bigbudman.com/gear/cannabis-harvest-trimming-scissors-buying-guide/",
         "https://bigbudman.com/gear/cannabis-infusion-appliance-buying-guide/",
@@ -1109,7 +1140,6 @@
       "updated": "2026-11-15",
       "contextual_inlinks": [
         "https://bigbudman.com/gear/",
-        "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/",
         "https://bigbudman.com/gear/dry-herb-vaporizer-dosing-capsule-guide/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
@@ -1461,7 +1491,7 @@
       "core_angle": "Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.",
       "department": "guides",
       "published": "2026-08-17",
-      "updated": "2026-11-24",
+      "updated": "2026-11-25",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/site-index/"
@@ -1481,6 +1511,7 @@
         "https://bigbudman.com/guides/cannabis-cbd-cancer-claims-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-chronic-pain-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-epilepsy-seizure-care-guide/",
+        "https://bigbudman.com/guides/cannabis-cbd-kidney-health-safety-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-liver-health-safety-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-medication-interactions/",
         "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
@@ -1531,6 +1562,7 @@
         "https://bigbudman.com/guides/cannabis-product-response-experience-log/",
         "https://bigbudman.com/guides/cannabis-ptsd-evidence-safety-guide/",
         "https://bigbudman.com/guides/cannabis-qr-code-coa-verification-safety-guide/",
+        "https://bigbudman.com/guides/cannabis-rental-housing-lease-smoke-documentation-guide/",
         "https://bigbudman.com/guides/cannabis-research-study-reading-checklist/",
         "https://bigbudman.com/guides/cannabis-seed-storage-record-guide/",
         "https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/",
@@ -1593,6 +1625,7 @@
       "updated": "2026-11-10",
       "contextual_inlinks": [
         "https://bigbudman.com/guides/",
+        "https://bigbudman.com/guides/cannabis-cbd-kidney-health-safety-guide/",
         "https://bigbudman.com/guides/cannabis-diabetes-blood-sugar-dka-safety/",
         "https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/",
         "https://bigbudman.com/responsible-use/",
@@ -1930,6 +1963,31 @@
       ]
     },
     {
+      "url": "https://bigbudman.com/guides/cannabis-cbd-kidney-health-safety-guide/",
+      "slug": "guides/cannabis-cbd-kidney-health-safety-guide",
+      "title": "Cannabis, CBD & Kidney Health Safety Guide",
+      "topic": "Cannabis, CBD and kidney health evidence and safety guide",
+      "core_angle": "Separate cannabis and CBD kidney-health claims from limited evidence, CKD, dehydration, transplant medicines, product records, and clinician decisions.",
+      "department": "guides",
+      "published": "2026-11-25",
+      "updated": "2026-11-25",
+      "contextual_inlinks": [
+        "https://bigbudman.com/",
+        "https://bigbudman.com/guides/",
+        "https://bigbudman.com/guides/cannabis-cbd-medication-interactions/",
+        "https://bigbudman.com/guides/cannabis-health-evidence-library/",
+        "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/",
+        "https://bigbudman.com/site-index/",
+        "https://bigbudman.com/updates/"
+      ],
+      "contextual_outlinks": [
+        "https://bigbudman.com/guides/cannabinoid-hyperemesis-syndrome-warning-signs/",
+        "https://bigbudman.com/guides/cannabis-cbd-liver-health-safety-guide/",
+        "https://bigbudman.com/guides/cannabis-cbd-medication-interactions/",
+        "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/"
+      ]
+    },
+    {
       "url": "https://bigbudman.com/guides/cannabis-cbd-liver-health-safety-guide/",
       "slug": "guides/cannabis-cbd-liver-health-safety-guide",
       "title": "Cannabis, CBD & Liver Health Safety Guide",
@@ -1943,6 +2001,7 @@
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-cbd-and-sleep/",
         "https://bigbudman.com/guides/cannabis-cbd-epilepsy-seizure-care-guide/",
+        "https://bigbudman.com/guides/cannabis-cbd-kidney-health-safety-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-medication-interactions/",
         "https://bigbudman.com/guides/cbd-capsules-softgels-label-buying-guide/",
         "https://bigbudman.com/site-index/",
@@ -1963,7 +2022,7 @@
       "core_angle": "Build a pharmacist-ready cannabis and CBD interaction record with the exact product, medicine list, timing, symptoms, monitoring, and follow-up.",
       "department": "guides",
       "published": "2026-08-17",
-      "updated": "2026-11-10",
+      "updated": "2026-11-25",
       "contextual_inlinks": [
         "https://bigbudman.com/gear/cbd-oil-dropper-replacement-bottle-fit-guide/",
         "https://bigbudman.com/guides/",
@@ -1974,6 +2033,7 @@
         "https://bigbudman.com/guides/cannabis-cbd-cancer-claims-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-chronic-pain-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-epilepsy-seizure-care-guide/",
+        "https://bigbudman.com/guides/cannabis-cbd-kidney-health-safety-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-liver-health-safety-guide/",
         "https://bigbudman.com/guides/cannabis-diabetes-blood-sugar-dka-safety/",
         "https://bigbudman.com/guides/cannabis-driving-impairment-sober-timer/",
@@ -2001,6 +2061,7 @@
       "contextual_outlinks": [
         "https://bigbudman.com/guides/cannabis-cbd-cancer-claims-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-chronic-pain-evidence-guide/",
+        "https://bigbudman.com/guides/cannabis-cbd-kidney-health-safety-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-liver-health-safety-guide/",
         "https://bigbudman.com/guides/cannabis-diabetes-blood-sugar-dka-safety/",
         "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/"
@@ -2142,9 +2203,10 @@
       "core_angle": "Understand cannabis concentrates, dabs, wax, shatter, rosin, resin, potency labels, licensed sourcing, equipment heat, storage, and safer decisions.",
       "department": "guides",
       "published": "2026-09-15",
-      "updated": "2026-11-21",
+      "updated": "2026-11-25",
       "contextual_inlinks": [
         "https://bigbudman.com/gear/cannabis-concentrate-container-buying-guide/",
+        "https://bigbudman.com/gear/cannabis-erig-enail-buying-safety-guide/",
         "https://bigbudman.com/gear/cannabis-rosin-press-buying-safety-guide/",
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/vapes/",
@@ -2154,6 +2216,7 @@
       "contextual_outlinks": [
         "https://bigbudman.com/gear/510-thread-vape-battery-safety/",
         "https://bigbudman.com/gear/cannabis-concentrate-container-buying-guide/",
+        "https://bigbudman.com/gear/cannabis-erig-enail-buying-safety-guide/",
         "https://bigbudman.com/gear/cannabis-rosin-press-buying-safety-guide/",
         "https://bigbudman.com/gear/cannabis-tool-cleaning-kit/",
         "https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/",
@@ -2609,7 +2672,7 @@
       "core_angle": "Route a cannabis health question to the right evidence lane, official source, safety gate, product record, and clinician conversation.",
       "department": "guides",
       "published": "2026-11-19",
-      "updated": "2026-11-21",
+      "updated": "2026-11-25",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/",
@@ -2621,6 +2684,7 @@
         "https://bigbudman.com/updates/"
       ],
       "contextual_outlinks": [
+        "https://bigbudman.com/guides/cannabis-cbd-kidney-health-safety-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-medication-interactions/",
         "https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/",
         "https://bigbudman.com/guides/cannabis-official-source-directory/",
@@ -2822,6 +2886,7 @@
         "https://bigbudman.com/guides/cannabis-official-source-directory/",
         "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/",
         "https://bigbudman.com/guides/cannabis-product-disposal-decision-guide/",
+        "https://bigbudman.com/guides/cannabis-rental-housing-lease-smoke-documentation-guide/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
       ],
@@ -2898,7 +2963,6 @@
         "https://bigbudman.com/guides/cannabis-research-study-reading-checklist/",
         "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/guides/cannabis-warning-symbol-package-icon-guide/",
-        "https://bigbudman.com/legal/cannabis-federally-assisted-housing-guide/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
       ],
@@ -3347,6 +3411,30 @@
       ]
     },
     {
+      "url": "https://bigbudman.com/guides/cannabis-rental-housing-lease-smoke-documentation-guide/",
+      "slug": "guides/cannabis-rental-housing-lease-smoke-documentation-guide",
+      "title": "Cannabis Rental Housing: Lease & Smoke Guide",
+      "topic": "Cannabis rental housing lease, smoke and documentation guide",
+      "core_angle": "Audit cannabis rental-housing rules by lease, housing program, smoke and vapor policy, storage, guests, complaints, records, and current official sources.",
+      "department": "guides",
+      "published": "2026-11-25",
+      "updated": "2026-11-25",
+      "contextual_inlinks": [
+        "https://bigbudman.com/",
+        "https://bigbudman.com/guides/",
+        "https://bigbudman.com/guides/cannabis-smoke-odor-neighbor-shared-air-plan/",
+        "https://bigbudman.com/legal/cannabis-federally-assisted-housing-guide/",
+        "https://bigbudman.com/site-index/",
+        "https://bigbudman.com/updates/"
+      ],
+      "contextual_outlinks": [
+        "https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/",
+        "https://bigbudman.com/guides/cannabis-smoke-odor-neighbor-shared-air-plan/",
+        "https://bigbudman.com/guides/secondhand-cannabis-smoke-indoor-air/",
+        "https://bigbudman.com/legal/cannabis-federally-assisted-housing-guide/"
+      ]
+    },
+    {
       "url": "https://bigbudman.com/guides/cannabis-research-study-reading-checklist/",
       "slug": "guides/cannabis-research-study-reading-checklist",
       "title": "How to Read Cannabis Research: Study Checklist",
@@ -3437,7 +3525,6 @@
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-cbd-and-sleep/",
         "https://bigbudman.com/guides/cannabis-next-day-impairment-evidence-guide/",
-        "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
       ],
@@ -3456,12 +3543,13 @@
       "core_angle": "Document cannabis smoke or odor in shared air, map the pathway, use source control, communicate facts, and choose the correct property route.",
       "department": "guides",
       "published": "2026-11-20",
-      "updated": "2026-11-20",
+      "updated": "2026-11-25",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/",
         "https://bigbudman.com/gear/cannabis-smoke-air-quality-monitor-buying-guide/",
         "https://bigbudman.com/guides/",
+        "https://bigbudman.com/guides/cannabis-rental-housing-lease-smoke-documentation-guide/",
         "https://bigbudman.com/guides/cannabis-social-hosting-guest-safety-plan/",
         "https://bigbudman.com/guides/secondhand-cannabis-smoke-indoor-air/",
         "https://bigbudman.com/site-index/",
@@ -3470,7 +3558,7 @@
       "contextual_outlinks": [
         "https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/",
         "https://bigbudman.com/gear/cannabis-smoke-air-quality-monitor-buying-guide/",
-        "https://bigbudman.com/guides/cannabis-social-hosting-guest-safety-plan/",
+        "https://bigbudman.com/guides/cannabis-rental-housing-lease-smoke-documentation-guide/",
         "https://bigbudman.com/guides/secondhand-cannabis-smoke-indoor-air/"
       ]
     },
@@ -3524,7 +3612,6 @@
         "https://bigbudman.com/guides/cannabis-caregiving-sober-adult-handoff-plan/",
         "https://bigbudman.com/guides/cannabis-driving-impairment-sober-timer/",
         "https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/",
-        "https://bigbudman.com/guides/cannabis-smoke-odor-neighbor-shared-air-plan/",
         "https://bigbudman.com/guides/new-york-cannabis-showcase-event-verification-guide/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
@@ -4253,12 +4340,13 @@
       "core_angle": "Prepare a useful cannabis record for a doctor or pharmacist: exact product, route, timing, medicines, symptoms, questions, and follow-up plan.",
       "department": "guides",
       "published": "2026-10-27",
-      "updated": "2026-11-21",
+      "updated": "2026-11-25",
       "contextual_inlinks": [
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-allergy-symptom-exposure-guide/",
         "https://bigbudman.com/guides/cannabis-before-surgery-anesthesia/",
         "https://bigbudman.com/guides/cannabis-blood-donation-eligibility-guide/",
+        "https://bigbudman.com/guides/cannabis-cbd-kidney-health-safety-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-medication-interactions/",
         "https://bigbudman.com/guides/cannabis-cut-down-quit-support-plan/",
         "https://bigbudman.com/guides/cannabis-fertility-preconception-evidence-guide/",
@@ -4275,10 +4363,10 @@
         "https://bigbudman.com/updates/"
       ],
       "contextual_outlinks": [
+        "https://bigbudman.com/guides/cannabis-cbd-kidney-health-safety-guide/",
         "https://bigbudman.com/guides/cannabis-cut-down-quit-support-plan/",
         "https://bigbudman.com/guides/cannabis-health-evidence-library/",
-        "https://bigbudman.com/guides/cannabis-product-response-experience-log/",
-        "https://bigbudman.com/guides/cannabis-sleep-apnea-osa-evidence-safety-guide/"
+        "https://bigbudman.com/guides/cannabis-product-response-experience-log/"
       ]
     },
     {
@@ -4674,6 +4762,7 @@
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-and-pets-accidental-exposure/",
         "https://bigbudman.com/guides/cannabis-pregnancy-breastfeeding-guidance/",
+        "https://bigbudman.com/guides/cannabis-rental-housing-lease-smoke-documentation-guide/",
         "https://bigbudman.com/guides/cannabis-smoke-odor-neighbor-shared-air-plan/",
         "https://bigbudman.com/guides/cannabis-smoke-vape-lung-health-guide/",
         "https://bigbudman.com/site-index/",
@@ -5110,8 +5199,9 @@
       "core_angle": "Identify the housing program, applicant or tenant status, lease and smoke-free rules, federal marijuana limits, notice process, and qualified-help route.",
       "department": "legal",
       "published": "2026-10-24",
-      "updated": "2026-10-24",
+      "updated": "2026-11-25",
       "contextual_inlinks": [
+        "https://bigbudman.com/guides/cannabis-rental-housing-lease-smoke-documentation-guide/",
         "https://bigbudman.com/legal/",
         "https://bigbudman.com/legal/cannabis-federal-property-rules-guide/",
         "https://bigbudman.com/legal/marijuana-rescheduling-status-november-2026/",
@@ -5120,7 +5210,7 @@
         "https://bigbudman.com/updates/"
       ],
       "contextual_outlinks": [
-        "https://bigbudman.com/guides/cannabis-official-source-directory/",
+        "https://bigbudman.com/guides/cannabis-rental-housing-lease-smoke-documentation-guide/",
         "https://bigbudman.com/legal/cannabis-federal-property-rules-guide/",
         "https://bigbudman.com/legal/new-york/",
         "https://bigbudman.com/legal/shop-legal/"
@@ -6242,7 +6332,7 @@
       "core_angle": "Browse every indexable Big Bud Man guide, strain field note, gear page, legal resource, and publication page with visible review dates.",
       "department": "site-index",
       "published": "2026-08-17",
-      "updated": "2026-11-24",
+      "updated": "2026-11-25",
       "contextual_inlinks": [
         "https://bigbudman.com/guides/cannabis-health-evidence-library/"
       ],
@@ -6261,6 +6351,7 @@
         "https://bigbudman.com/gear/cannabis-concentrate-container-buying-guide/",
         "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/",
         "https://bigbudman.com/gear/cannabis-drying-rack-buying-guide/",
+        "https://bigbudman.com/gear/cannabis-erig-enail-buying-safety-guide/",
         "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/",
         "https://bigbudman.com/gear/cannabis-glass-pipe-water-pipe-buying-guide/",
         "https://bigbudman.com/gear/cannabis-harvest-trimming-scissors-buying-guide/",
@@ -6315,6 +6406,7 @@
         "https://bigbudman.com/guides/cannabis-cbd-cancer-claims-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-chronic-pain-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-epilepsy-seizure-care-guide/",
+        "https://bigbudman.com/guides/cannabis-cbd-kidney-health-safety-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-liver-health-safety-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-medication-interactions/",
         "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
@@ -6365,6 +6457,7 @@
         "https://bigbudman.com/guides/cannabis-product-response-experience-log/",
         "https://bigbudman.com/guides/cannabis-ptsd-evidence-safety-guide/",
         "https://bigbudman.com/guides/cannabis-qr-code-coa-verification-safety-guide/",
+        "https://bigbudman.com/guides/cannabis-rental-housing-lease-smoke-documentation-guide/",
         "https://bigbudman.com/guides/cannabis-research-study-reading-checklist/",
         "https://bigbudman.com/guides/cannabis-seed-storage-record-guide/",
         "https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/",
@@ -9639,7 +9732,7 @@
       "core_angle": "See newly published and materially reviewed Big Bud Man guides, gear resources, legal explainers, and collection updates in date order.",
       "department": "updates",
       "published": "2026-08-17",
-      "updated": "2026-11-24",
+      "updated": "2026-11-25",
       "contextual_inlinks": [
         "https://bigbudman.com/site-index/"
       ],
@@ -9652,6 +9745,7 @@
         "https://bigbudman.com/gear/cannabis-concentrate-container-buying-guide/",
         "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/",
         "https://bigbudman.com/gear/cannabis-drying-rack-buying-guide/",
+        "https://bigbudman.com/gear/cannabis-erig-enail-buying-safety-guide/",
         "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/",
         "https://bigbudman.com/gear/cannabis-glass-pipe-water-pipe-buying-guide/",
         "https://bigbudman.com/gear/cannabis-harvest-trimming-scissors-buying-guide/",
@@ -9705,6 +9799,7 @@
         "https://bigbudman.com/guides/cannabis-cbd-cancer-claims-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-chronic-pain-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-epilepsy-seizure-care-guide/",
+        "https://bigbudman.com/guides/cannabis-cbd-kidney-health-safety-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-liver-health-safety-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-medication-interactions/",
         "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
@@ -9755,6 +9850,7 @@
         "https://bigbudman.com/guides/cannabis-product-response-experience-log/",
         "https://bigbudman.com/guides/cannabis-ptsd-evidence-safety-guide/",
         "https://bigbudman.com/guides/cannabis-qr-code-coa-verification-safety-guide/",
+        "https://bigbudman.com/guides/cannabis-rental-housing-lease-smoke-documentation-guide/",
         "https://bigbudman.com/guides/cannabis-research-study-reading-checklist/",
         "https://bigbudman.com/guides/cannabis-seed-storage-record-guide/",
         "https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/",
