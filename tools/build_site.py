@@ -1,3039 +1,579 @@
-#!/usr/bin/env python3
-from __future__ import annotations
-
-from pathlib import Path
-from shutil import copy2, copytree, rmtree
-from html import escape
-from datetime import datetime, timedelta
-import json
-import re
-from urllib.parse import urljoin, urlsplit
-
-from site_core import (
-    Page, DOMAIN, CONTACT_EMAIL, OCM, OCM_VERIFY, article_main, breadcrumbs,
-    clean_text, footer, header, head, icon, layout, local, prefix_for, render_article,
-    render_standard, search_dialog, age_gate, optimize_images, write_svg_assets, write_text,
-)
-from content_guides import GUIDE_PAGES
-from content_strains import CANNABINOID_LABELS, STRAINS, STRAIN_PAGES, strain_page
-from content_other import OTHER_ARTICLES, STANDARD_PAGES
-from content_daily import DAILY_GEAR, DAILY_GUIDES
-from content_sep26 import DAILY_GEAR as SEP26_GEAR, DAILY_GUIDES as SEP26_GUIDES
-from content_sep27 import DAILY_GEAR as SEP27_GEAR, DAILY_GUIDES as SEP27_GUIDES
-from content_sep28 import DAILY_GEAR as SEP28_GEAR, DAILY_GUIDES as SEP28_GUIDES
-from content_sep29 import DAILY_GEAR as SEP29_GEAR, DAILY_GUIDES as SEP29_GUIDES
-from content_sep30 import DAILY_GEAR as SEP30_GEAR, DAILY_GUIDES as SEP30_GUIDES
-from content_oct1 import DAILY_GEAR as OCT1_GEAR, DAILY_GUIDES as OCT1_GUIDES
-from content_oct2 import DAILY_GEAR as OCT2_GEAR, DAILY_GUIDES as OCT2_GUIDES
-from content_oct3 import DAILY_GUIDES as OCT3_GUIDES, GEAR_OVERRIDES as OCT3_GEAR_OVERRIDES
-from content_oct4 import DAILY_GUIDES as OCT4_GUIDES, GEAR_OVERRIDES as OCT4_GEAR_OVERRIDES
-from content_oct5 import DAILY_GUIDES as OCT5_GUIDES, GEAR_OVERRIDES as OCT5_GEAR_OVERRIDES
-from content_oct6 import DAILY_GUIDES as OCT6_GUIDES, GEAR_OVERRIDES as OCT6_GEAR_OVERRIDES
-from content_oct7 import DAILY_GUIDES as OCT7_GUIDES, GEAR_OVERRIDES as OCT7_GEAR_OVERRIDES
-from content_oct8 import DAILY_GUIDES as OCT8_GUIDES, GEAR_OVERRIDES as OCT8_GEAR_OVERRIDES, STRAIN_OVERRIDES as OCT8_STRAIN_OVERRIDES
-from content_oct9 import DAILY_GUIDES as OCT9_GUIDES, GEAR_OVERRIDES as OCT9_GEAR_OVERRIDES
-from content_oct10 import DAILY_GUIDES as OCT10_GUIDES, GEAR_OVERRIDES as OCT10_GEAR_OVERRIDES
-from content_oct11 import DAILY_GUIDES as OCT11_GUIDES, GUIDE_OVERRIDES as OCT11_GUIDE_OVERRIDES, GEAR_OVERRIDES as OCT11_GEAR_OVERRIDES
-from content_oct12 import GUIDE_OVERRIDES as OCT12_GUIDE_OVERRIDES, GEAR_OVERRIDES as OCT12_GEAR_OVERRIDES
-from content_oct13 import GUIDE_OVERRIDES as OCT13_GUIDE_OVERRIDES, NEW_GEAR as OCT13_GEAR
-from content_oct14 import GUIDE_OVERRIDES as OCT14_GUIDE_OVERRIDES, GEAR_OVERRIDES as OCT14_GEAR_OVERRIDES
-from content_oct15 import GUIDE_OVERRIDES as OCT15_GUIDE_OVERRIDES, STRAIN_OVERRIDES as OCT15_STRAIN_OVERRIDES
-from content_oct15_new import NEW_GUIDES as OCT15_NEW_GUIDES, NEW_GEAR as OCT15_NEW_GEAR
-from content_oct16 import GUIDE_OVERRIDES as OCT16_GUIDE_OVERRIDES, NEW_GUIDES as OCT16_NEW_GUIDES
-from content_oct17 import GUIDE_OVERRIDES as OCT17_GUIDE_OVERRIDES, NEW_GEAR as OCT17_GEAR
-from content_oct18 import GUIDE_OVERRIDES as OCT18_GUIDE_OVERRIDES, GEAR_OVERRIDES as OCT18_GEAR_OVERRIDES
-from content_oct19 import GUIDE_OVERRIDES as OCT19_GUIDE_OVERRIDES, GEAR_OVERRIDES as OCT19_GEAR_OVERRIDES
-from content_oct20 import GUIDE_OVERRIDES as OCT20_GUIDE_OVERRIDES
-from content_oct21 import GUIDE_OVERRIDES as OCT21_GUIDE_OVERRIDES, GEAR_OVERRIDES as OCT21_GEAR_OVERRIDES
-from content_oct22 import GUIDE_OVERRIDES as OCT22_GUIDE_OVERRIDES, NEW_GUIDES as OCT22_NEW_GUIDES
-from content_oct23 import GUIDE_OVERRIDES as OCT23_GUIDE_OVERRIDES, GEAR_OVERRIDES as OCT23_GEAR_OVERRIDES, NEW_GEAR as OCT23_GEAR, NEW_GUIDES as OCT23_GUIDES
-from content_oct23_followup import NEW_GUIDES as OCT23_FOLLOWUP_GUIDES
-from content_oct24 import GUIDE_OVERRIDES as OCT24_GUIDE_OVERRIDES, GEAR_OVERRIDES as OCT24_GEAR_OVERRIDES, NEW_GEAR as OCT24_GEAR
-from content_oct24_followup import NEW_GUIDES as OCT24_FOLLOWUP_GUIDES, NEW_STRAINS as OCT24_FOLLOWUP_STRAINS, NEW_STRAIN_PAGES as OCT24_FOLLOWUP_STRAIN_PAGES
-from content_oct25 import GUIDE_OVERRIDES as OCT25_GUIDE_OVERRIDES
-from content_oct26 import GUIDE_OVERRIDES as OCT26_GUIDE_OVERRIDES, NEW_GUIDES as OCT26_NEW_GUIDES, OTHER_OVERRIDES as OCT26_OTHER_OVERRIDES
-from content_oct27 import NEW_GEAR as OCT27_GEAR, NEW_GUIDES as OCT27_GUIDES
-from content_oct28 import GEAR_OVERRIDES as OCT28_GEAR_OVERRIDES, NEW_GUIDES as OCT28_GUIDES
-from content_oct29 import GEAR_OVERRIDES as OCT29_GEAR_OVERRIDES, NEW_GUIDES as OCT29_GUIDES
-from content_oct30 import NEW_GEAR as OCT30_GEAR, NEW_GUIDES as OCT30_GUIDES
-from content_oct31 import GEAR_OVERRIDES as OCT31_GEAR_OVERRIDES, NEW_GUIDES as OCT31_GUIDES
-from content_nov1 import NEW_GEAR as NOV1_GEAR, NEW_GUIDES as NOV1_GUIDES
-from content_nov2 import GUIDE_OVERRIDES as NOV2_GUIDE_OVERRIDES, NEW_GUIDES as NOV2_GUIDES
-from content_nov3 import NEW_GEAR as NOV3_GEAR, NEW_GUIDES as NOV3_GUIDES
-from content_nov4 import NEW_GEAR as NOV4_GEAR, NEW_GUIDES as NOV4_GUIDES
-from content_nov5 import NEW_GEAR as NOV5_GEAR, NEW_GUIDES as NOV5_GUIDES
-from content_nov6 import NEW_GEAR as NOV6_GEAR, NEW_GUIDES as NOV6_GUIDES
-from content_nov7 import NEW_GEAR as NOV7_GEAR, NEW_GUIDES as NOV7_GUIDES
-from content_nov8 import NEW_GEAR as NOV8_GEAR, NEW_GUIDES as NOV8_GUIDES
-from content_nov9 import NEW_GEAR as NOV9_GEAR, NEW_GUIDES as NOV9_GUIDES, NEW_STRAINS as NOV9_STRAINS
-from content_nov10 import NEW_GEAR as NOV10_GEAR, NEW_GUIDES as NOV10_GUIDES
-from content_nov11 import NEW_GEAR as NOV11_GEAR, NEW_GUIDES as NOV11_GUIDES
-from content_nov12 import NEW_GEAR as NOV12_GEAR, NEW_GUIDES as NOV12_GUIDES, NEW_STRAINS as NOV12_STRAINS, STATE_OVERRIDES as NOV12_STATE_OVERRIDES
-from content_nov13 import EDITORIAL_POLICY_APPEND as NOV13_POLICY_APPEND, NEW_GEAR as NOV13_GEAR, NEW_GUIDES as NOV13_GUIDES, NEW_STRAINS as NOV13_STRAINS, PUBLICATION_MANIFEST as NOV13_PUBLICATION_MANIFEST
-from content_nov14 import EDITORIAL_POLICY_APPEND as NOV14_POLICY_APPEND, NEW_GUIDES as NOV14_GUIDES, PUBLICATION_MANIFEST as NOV14_PUBLICATION_MANIFEST
-from content_nov14_batch import NEW_GEAR as NOV14_BATCH_GEAR, NEW_GUIDES as NOV14_BATCH_GUIDES, NEW_STRAINS as NOV14_BATCH_STRAINS, PUBLICATION_MANIFEST as NOV14_BATCH_PUBLICATION_MANIFEST
-from content_nov15 import EDITORIAL_POLICY_APPEND as NOV15_POLICY_APPEND, GEAR_OVERRIDES as NOV15_GEAR_OVERRIDES, NEW_GUIDES as NOV15_GUIDES, NEW_STRAIN_PAGES as NOV15_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV15_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV15_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV15_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV15_REVIEWED_RELATED_PATHS
-from content_nov16 import EDITORIAL_POLICY_APPEND as NOV16_POLICY_APPEND, NEW_GEAR as NOV16_GEAR, NEW_GUIDES as NOV16_GUIDES, NEW_STRAIN_PAGES as NOV16_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV16_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV16_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV16_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV16_REVIEWED_RELATED_PATHS
-from content_nov17 import EDITORIAL_POLICY_APPEND as NOV17_POLICY_APPEND, NEW_GEAR as NOV17_GEAR, NEW_GUIDES as NOV17_GUIDES, NEW_STRAIN_PAGES as NOV17_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV17_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV17_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV17_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV17_REVIEWED_RELATED_PATHS, STRAIN_OVERRIDES as NOV17_STRAIN_OVERRIDES
-from content_nov18 import EDITORIAL_POLICY_APPEND as NOV18_POLICY_APPEND, NEW_GEAR as NOV18_GEAR, NEW_GUIDES as NOV18_GUIDES, NEW_STRAIN_PAGES as NOV18_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV18_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV18_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV18_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV18_REVIEWED_RELATED_PATHS
-from content_nov19 import EDITORIAL_POLICY_APPEND as NOV19_POLICY_APPEND, NEW_GEAR as NOV19_GEAR, NEW_GUIDES as NOV19_GUIDES, NEW_STRAIN_PAGES as NOV19_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV19_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV19_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV19_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV19_REVIEWED_RELATED_PATHS
-from content_nov20 import EDITORIAL_POLICY_APPEND as NOV20_POLICY_APPEND, NEW_GUIDES as NOV20_GUIDES, NEW_STRAIN_PAGES as NOV20_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV20_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV20_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV20_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV20_REVIEWED_RELATED_PATHS
-from content_nov21 import EDITORIAL_POLICY_APPEND as NOV21_POLICY_APPEND, NEW_GEAR as NOV21_GEAR, NEW_GUIDES as NOV21_GUIDES, PUBLICATION_MANIFEST as NOV21_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV21_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV21_REVIEWED_RELATED_PATHS
-from content_nov22 import AFFILIATE_DISCLOSURE_APPEND as NOV22_AFFILIATE_APPEND, EDITORIAL_POLICY_APPEND as NOV22_POLICY_APPEND, NEW_GEAR as NOV22_GEAR, NEW_GUIDES as NOV22_GUIDES, NEW_STRAIN_PAGES as NOV22_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV22_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV22_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV22_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV22_REVIEWED_RELATED_PATHS
-from content_nov23 import EDITORIAL_POLICY_APPEND as NOV23_POLICY_APPEND, NEW_GEAR as NOV23_GEAR, NEW_GUIDES as NOV23_GUIDES, NEW_STRAIN_PAGES as NOV23_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV23_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV23_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV23_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV23_REVIEWED_RELATED_PATHS
-from content_nov24 import EDITORIAL_POLICY_APPEND as NOV24_POLICY_APPEND, NEW_GEAR as NOV24_GEAR, NEW_GUIDES as NOV24_GUIDES, PUBLICATION_MANIFEST as NOV24_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV24_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV24_REVIEWED_RELATED_PATHS
-from content_nov25 import EDITORIAL_POLICY_APPEND as NOV25_POLICY_APPEND, NEW_GEAR as NOV25_GEAR, NEW_GUIDES as NOV25_GUIDES, PUBLICATION_MANIFEST as NOV25_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV25_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV25_REVIEWED_RELATED_PATHS
-from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
-
-SOURCE = Path(__file__).resolve().parents[1]
-OUT = SOURCE / "_site"
-
-# Daily additions live in a small source module so the evergreen catalog files
-# remain readable. They join the same build, search, sitemap, feed, and audit
-# paths as every established article.
-GUIDE_PAGES = GUIDE_PAGES + DAILY_GUIDES + SEP26_GUIDES + SEP27_GUIDES + SEP28_GUIDES + SEP29_GUIDES + SEP30_GUIDES + OCT1_GUIDES + OCT2_GUIDES + OCT3_GUIDES + OCT4_GUIDES + OCT5_GUIDES + OCT6_GUIDES + OCT7_GUIDES + OCT8_GUIDES + OCT9_GUIDES + OCT10_GUIDES + OCT11_GUIDES
-_oct11_guides = {item["path"]: item for item in OCT11_GUIDE_OVERRIDES}
-GUIDE_PAGES = [_oct11_guides.get(item["path"], item) for item in GUIDE_PAGES]
-_oct12_guides = {item["path"]: item for item in OCT12_GUIDE_OVERRIDES}
-GUIDE_PAGES = [_oct12_guides.get(item["path"], item) for item in GUIDE_PAGES]
-OTHER_ARTICLES = OTHER_ARTICLES + DAILY_GEAR + SEP26_GEAR + SEP27_GEAR + SEP28_GEAR + SEP29_GEAR + SEP30_GEAR + OCT1_GEAR + OCT2_GEAR
-_oct3_gear = {item["path"]: item for item in OCT3_GEAR_OVERRIDES}
-OTHER_ARTICLES = [_oct3_gear.get(item["path"], item) for item in OTHER_ARTICLES]
-_oct4_gear = {item["path"]: item for item in OCT4_GEAR_OVERRIDES}
-OTHER_ARTICLES = [_oct4_gear.get(item["path"], item) for item in OTHER_ARTICLES]
-_oct5_gear = {item["path"]: item for item in OCT5_GEAR_OVERRIDES}
-OTHER_ARTICLES = [_oct5_gear.get(item["path"], item) for item in OTHER_ARTICLES]
-_oct6_gear = {item["path"]: item for item in OCT6_GEAR_OVERRIDES}
-OTHER_ARTICLES = [_oct6_gear.get(item["path"], item) for item in OTHER_ARTICLES]
-_oct7_gear = {item["path"]: item for item in OCT7_GEAR_OVERRIDES}
-OTHER_ARTICLES = [_oct7_gear.get(item["path"], item) for item in OTHER_ARTICLES]
-_oct8_gear = {item["path"]: item for item in OCT8_GEAR_OVERRIDES}
-OTHER_ARTICLES = [_oct8_gear.get(item["path"], item) for item in OTHER_ARTICLES]
-_oct9_gear = {item["path"]: item for item in OCT9_GEAR_OVERRIDES}
-OTHER_ARTICLES = [_oct9_gear.get(item["path"], item) for item in OTHER_ARTICLES]
-_oct10_gear = {item["path"]: item for item in OCT10_GEAR_OVERRIDES}
-OTHER_ARTICLES = [_oct10_gear.get(item["path"], item) for item in OTHER_ARTICLES]
-_oct11_gear = {item["path"]: item for item in OCT11_GEAR_OVERRIDES}
-OTHER_ARTICLES = [_oct11_gear.get(item["path"], item) for item in OTHER_ARTICLES]
-_oct12_gear = {item["path"]: item for item in OCT12_GEAR_OVERRIDES}
-OTHER_ARTICLES = [_oct12_gear.get(item["path"], item) for item in OTHER_ARTICLES]
-_oct13_guides = {item["path"]: item for item in OCT13_GUIDE_OVERRIDES}
-GUIDE_PAGES = [_oct13_guides.get(item["path"], item) for item in GUIDE_PAGES]
-OTHER_ARTICLES = OTHER_ARTICLES + OCT13_GEAR
-_oct14_guides = {item["path"]: item for item in OCT14_GUIDE_OVERRIDES}
-GUIDE_PAGES = [_oct14_guides.get(item["path"], item) for item in GUIDE_PAGES]
-_oct14_gear = {item["path"]: item for item in OCT14_GEAR_OVERRIDES}
-OTHER_ARTICLES = [_oct14_gear.get(item["path"], item) for item in OTHER_ARTICLES]
-_oct8_strains = {item["path"]: item for item in OCT8_STRAIN_OVERRIDES}
-STRAIN_PAGES = [_oct8_strains.get(item["path"], item) for item in STRAIN_PAGES]
-_oct15_guides = {item["path"]: item for item in OCT15_GUIDE_OVERRIDES}
-GUIDE_PAGES = [_oct15_guides.get(item["path"], item) for item in GUIDE_PAGES]
-_oct15_strains = {item["path"]: item for item in OCT15_STRAIN_OVERRIDES}
-STRAIN_PAGES = [_oct15_strains.get(item["path"], item) for item in STRAIN_PAGES]
-GUIDE_PAGES = GUIDE_PAGES + OCT15_NEW_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + OCT15_NEW_GEAR
-_oct16_guides = {item["path"]: item for item in OCT16_GUIDE_OVERRIDES}
-GUIDE_PAGES = [_oct16_guides.get(item["path"], item) for item in GUIDE_PAGES]
-GUIDE_PAGES = GUIDE_PAGES + OCT16_NEW_GUIDES
-_oct17_guides = {item["path"]: item for item in OCT17_GUIDE_OVERRIDES}
-GUIDE_PAGES = [_oct17_guides.get(item["path"], item) for item in GUIDE_PAGES]
-OTHER_ARTICLES = OTHER_ARTICLES + OCT17_GEAR
-_oct18_guides = {item["path"]: item for item in OCT18_GUIDE_OVERRIDES}
-GUIDE_PAGES = [_oct18_guides.get(item["path"], item) for item in GUIDE_PAGES]
-_oct18_gear = {item["path"]: item for item in OCT18_GEAR_OVERRIDES}
-OTHER_ARTICLES = [_oct18_gear.get(item["path"], item) for item in OTHER_ARTICLES]
-_oct19_guides = {item["path"]: item for item in OCT19_GUIDE_OVERRIDES}
-GUIDE_PAGES = [_oct19_guides.get(item["path"], item) for item in GUIDE_PAGES]
-_oct19_gear = {item["path"]: item for item in OCT19_GEAR_OVERRIDES}
-OTHER_ARTICLES = [_oct19_gear.get(item["path"], item) for item in OTHER_ARTICLES]
-_oct20_guides = {item["path"]: item for item in OCT20_GUIDE_OVERRIDES}
-GUIDE_PAGES = [_oct20_guides.get(item["path"], item) for item in GUIDE_PAGES]
-_oct21_guides = {item["path"]: item for item in OCT21_GUIDE_OVERRIDES}
-GUIDE_PAGES = [_oct21_guides.get(item["path"], item) for item in GUIDE_PAGES]
-_oct21_gear = {item["path"]: item for item in OCT21_GEAR_OVERRIDES}
-OTHER_ARTICLES = [_oct21_gear.get(item["path"], item) for item in OTHER_ARTICLES]
-_oct22_guides = {item["path"]: item for item in OCT22_GUIDE_OVERRIDES}
-GUIDE_PAGES = [_oct22_guides.get(item["path"], item) for item in GUIDE_PAGES] + OCT22_NEW_GUIDES
-_oct23_guides = {item["path"]: item for item in OCT23_GUIDE_OVERRIDES}
-GUIDE_PAGES = [_oct23_guides.get(item["path"], item) for item in GUIDE_PAGES] + OCT23_GUIDES + OCT23_FOLLOWUP_GUIDES
-_oct23_gear = {item["path"]: item for item in OCT23_GEAR_OVERRIDES}
-OTHER_ARTICLES = [_oct23_gear.get(item["path"], item) for item in OTHER_ARTICLES] + OCT23_GEAR
-_oct24_guides = {item["path"]: item for item in OCT24_GUIDE_OVERRIDES}
-GUIDE_PAGES = [_oct24_guides.get(item["path"], item) for item in GUIDE_PAGES] + OCT24_FOLLOWUP_GUIDES
-_oct24_gear = {item["path"]: item for item in OCT24_GEAR_OVERRIDES}
-OTHER_ARTICLES = [_oct24_gear.get(item["path"], item) for item in OTHER_ARTICLES] + OCT24_GEAR
-CANNABINOID_LABELS["cbdv"] = "CBDV-focused hemp"
-STRAINS = STRAINS + OCT24_FOLLOWUP_STRAINS + NOV9_STRAINS + NOV12_STRAINS + NOV13_STRAINS
-STRAIN_PAGES = STRAIN_PAGES + [strain_page(item) for item in NOV9_STRAINS + NOV12_STRAINS + NOV13_STRAINS]
-STRAIN_PAGES = STRAIN_PAGES + OCT24_FOLLOWUP_STRAIN_PAGES
-_oct25_guides = {item["path"]: item for item in OCT25_GUIDE_OVERRIDES}
-GUIDE_PAGES = [_oct25_guides.get(item["path"], item) for item in GUIDE_PAGES]
-_oct26_guides = {item["path"]: item for item in OCT26_GUIDE_OVERRIDES}
-GUIDE_PAGES = [_oct26_guides.get(item["path"], item) for item in GUIDE_PAGES] + OCT26_NEW_GUIDES
-_oct26_other = {item["path"]: item for item in OCT26_OTHER_OVERRIDES}
-OTHER_ARTICLES = [_oct26_other.get(item["path"], item) for item in OTHER_ARTICLES]
-GUIDE_PAGES = GUIDE_PAGES + OCT27_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + OCT27_GEAR
-GUIDE_PAGES = GUIDE_PAGES + OCT28_GUIDES
-_oct28_gear = {item["path"]: item for item in OCT28_GEAR_OVERRIDES}
-OTHER_ARTICLES = [_oct28_gear.get(item["path"], item) for item in OTHER_ARTICLES]
-GUIDE_PAGES = GUIDE_PAGES + OCT29_GUIDES
-_oct29_gear = {item["path"]: item for item in OCT29_GEAR_OVERRIDES}
-OTHER_ARTICLES = [_oct29_gear.get(item["path"], item) for item in OTHER_ARTICLES]
-GUIDE_PAGES = GUIDE_PAGES + OCT30_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + OCT30_GEAR
-GUIDE_PAGES = GUIDE_PAGES + OCT31_GUIDES
-_oct31_gear = {item["path"]: item for item in OCT31_GEAR_OVERRIDES}
-OTHER_ARTICLES = [_oct31_gear.get(item["path"], item) for item in OTHER_ARTICLES]
-GUIDE_PAGES = GUIDE_PAGES + NOV1_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV1_GEAR
-_nov2_guides = {item["path"]: item for item in NOV2_GUIDE_OVERRIDES}
-GUIDE_PAGES = [_nov2_guides.get(item["path"], item) for item in GUIDE_PAGES] + NOV2_GUIDES
-GUIDE_PAGES = GUIDE_PAGES + NOV3_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV3_GEAR
-GUIDE_PAGES = GUIDE_PAGES + NOV4_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV4_GEAR
-GUIDE_PAGES = GUIDE_PAGES + NOV5_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV5_GEAR
-GUIDE_PAGES = GUIDE_PAGES + NOV6_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV6_GEAR
-GUIDE_PAGES = GUIDE_PAGES + NOV7_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV7_GEAR
-GUIDE_PAGES = GUIDE_PAGES + NOV8_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV8_GEAR
-GUIDE_PAGES = GUIDE_PAGES + NOV9_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV9_GEAR
-GUIDE_PAGES = GUIDE_PAGES + NOV10_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV10_GEAR
-GUIDE_PAGES = GUIDE_PAGES + NOV11_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV11_GEAR
-GUIDE_PAGES = GUIDE_PAGES + NOV12_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV12_GEAR
-STATE_LAWS = [({**item, **NOV12_STATE_OVERRIDES[item["code"]]} if item["code"] in NOV12_STATE_OVERRIDES else item) for item in STATE_LAWS]
-GUIDE_PAGES = GUIDE_PAGES + NOV13_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV13_GEAR
-GUIDE_PAGES = GUIDE_PAGES + NOV14_GUIDES
-GUIDE_PAGES = GUIDE_PAGES + NOV14_BATCH_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV14_BATCH_GEAR
-STRAINS = STRAINS + NOV14_BATCH_STRAINS
-STRAIN_PAGES = STRAIN_PAGES + [strain_page(item) for item in NOV14_BATCH_STRAINS]
-GUIDE_PAGES = GUIDE_PAGES + NOV15_GUIDES
-_nov15_gear = {item["path"]: item for item in NOV15_GEAR_OVERRIDES}
-OTHER_ARTICLES = [_nov15_gear.get(item["path"], item) for item in OTHER_ARTICLES]
-CANNABINOID_LABELS["industrial"] = "grain / fiber hemp"
-STRAINS = STRAINS + NOV15_STRAIN_RECORDS
-STRAIN_PAGES = STRAIN_PAGES + NOV15_STRAIN_PAGES
-GUIDE_PAGES = GUIDE_PAGES + NOV16_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV16_GEAR
-STRAINS = STRAINS + NOV16_STRAIN_RECORDS
-STRAIN_PAGES = STRAIN_PAGES + NOV16_STRAIN_PAGES
-GUIDE_PAGES = GUIDE_PAGES + NOV17_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV17_GEAR
-STRAINS = STRAINS + NOV17_STRAIN_RECORDS
-STRAIN_PAGES = STRAIN_PAGES + NOV17_STRAIN_PAGES
-_nov17_strains = {item["path"]: item for item in NOV17_STRAIN_OVERRIDES}
-STRAIN_PAGES = [_nov17_strains.get(item["path"], item) for item in STRAIN_PAGES]
-GUIDE_PAGES = GUIDE_PAGES + NOV18_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV18_GEAR
-STRAINS = STRAINS + NOV18_STRAIN_RECORDS
-STRAIN_PAGES = STRAIN_PAGES + NOV18_STRAIN_PAGES
-GUIDE_PAGES = GUIDE_PAGES + NOV19_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV19_GEAR
-STRAINS = STRAINS + NOV19_STRAIN_RECORDS
-STRAIN_PAGES = STRAIN_PAGES + NOV19_STRAIN_PAGES
-CANNABINOID_LABELS["hemp"] = "documented hemp cultivar"
-STRAINS = STRAINS + NOV20_STRAIN_RECORDS
-STRAIN_PAGES = STRAIN_PAGES + NOV20_STRAIN_PAGES
-GUIDE_PAGES = GUIDE_PAGES + NOV20_GUIDES
-GUIDE_PAGES = GUIDE_PAGES + NOV21_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV21_GEAR
-GUIDE_PAGES = GUIDE_PAGES + NOV22_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV22_GEAR
-STRAINS = STRAINS + NOV22_STRAIN_RECORDS
-STRAIN_PAGES = STRAIN_PAGES + NOV22_STRAIN_PAGES
-GUIDE_PAGES = GUIDE_PAGES + NOV23_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV23_GEAR
-STRAINS = STRAINS + NOV23_STRAIN_RECORDS
-STRAIN_PAGES = STRAIN_PAGES + NOV23_STRAIN_PAGES
-GUIDE_PAGES = GUIDE_PAGES + NOV24_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV24_GEAR
-GUIDE_PAGES = GUIDE_PAGES + NOV25_GUIDES
-OTHER_ARTICLES = OTHER_ARTICLES + NOV25_GEAR
-
-# November 6 connects both new resources from established, intent-matched
-# pages. These are editorial paths, not generic recent-post links, and the
-# reviewed date records the material navigation improvement.
-_nov6_guide_links = {
-    "guides/how-to-talk-to-doctor-about-cannabis/index.html": (
-        "guides/cannabis-blood-donation-eligibility-guide/",
-        "DONOR SCREENING",
-        "Prepare a precise cannabis and blood-donation eligibility question",
-    ),
-    "guides/cannabis-heart-rate-blood-pressure-safety/index.html": (
-        "guides/cannabis-blood-donation-eligibility-guide/",
-        "BLOOD DONATION",
-        "Keep cannabis use, current function, medication, and center rules separate",
-    ),
-    "guides/secondhand-cannabis-smoke-indoor-air/index.html": (
-        "gear/cannabis-smoke-air-quality-monitor-buying-guide/",
-        "AIR MONITORING",
-        "Choose sensors by pollutant, data need, placement, and safety boundary",
-    ),
-    "guides/cannabis-home-fire-safety-plan/index.html": (
-        "gear/cannabis-smoke-air-quality-monitor-buying-guide/",
-        "MONITOR BOUNDARY",
-        "Keep air monitors separate from required smoke and carbon-monoxide alarms",
-    ),
-}
-GUIDE_PAGES = [
-    ({**item, "updated": "November 6, 2026", "related": [*item["related"], _nov6_guide_links[item["path"]]]}
-     if item["path"] in _nov6_guide_links else item)
-    for item in GUIDE_PAGES
-]
-
-_nov6_gear_links = {
-    "gear/air-purifier-cannabis-smoke-odor-guide/index.html": (
-        "gear/cannabis-smoke-air-quality-monitor-buying-guide/",
-        "MEASURE FIRST",
-        "Compare monitor channels, data access, placement, and first-year cost",
-    ),
-    "gear/cannabis-gear-comparison-worksheet/index.html": (
-        "gear/cannabis-smoke-air-quality-monitor-buying-guide/",
-        "SENSOR WORKFLOW",
-        "Turn an indoor-air question into a three-monitor comparison",
-    ),
-}
-OTHER_ARTICLES = [
-    ({**item, "updated": "November 6, 2026", "related": [*item["related"], _nov6_gear_links[item["path"]]]}
-     if item["path"] in _nov6_gear_links else item)
-    for item in OTHER_ARTICLES
-]
-
-# The complete November 14 batch adds distinct cultivar, equipment, and
-# laboratory-literacy routes. These links come from established pages that
-# already own the adjacent decision; they are not generic recent-post links.
-_nov14_batch_guide_links = {
-    "guides/read-a-label/index.html": (
-        "strains/hash-plant/", "CULTIVAR NAME BOUNDARY", "Keep the attributed breeder story separate from product form, finished producer, lot, and report"
-    ),
-    "guides/cannabis-flower-freshness-package-date-buying-guide/index.html": (
-        "strains/hash-plant/", "NAMED FLOWER EXAMPLE", "Apply source, identity, date, condition, lot-report, and recall checks to Hash Plant"
-    ),
-    "guides/new-york-home-cannabis-harvest-drying-curing-log/index.html": (
-        "gear/cannabis-drying-rack-buying-guide/", "DRYING SUPPORT", "Compare usable area, spacing, room fit, air-path boundaries, cleaning, access, returns, and cost"
-    ),
-    "guides/cannabis-certificate-of-analysis-coa-guide/index.html": (
-        "guides/cannabis-lab-report-detection-quantitation-limits-guide/", "ND Â· LOD Â· LOQ", "Translate detection, quantitation, reporting, uncertainty, and decision boundaries without inventing zero"
-    ),
-    "guides/cannabis-contaminant-test-results-guide/index.html": (
-        "guides/cannabis-lab-report-detection-quantitation-limits-guide/", "REPORTING LIMITS", "Keep analyte, matrix, method, result, qualifier, unit, limits, and decision rule together"
-    ),
-}
-GUIDE_PAGES = [
-    ({**item, "updated": "November 14, 2026", "related": [*item["related"], _nov14_batch_guide_links[item["path"]]]}
-     if item["path"] in _nov14_batch_guide_links else item)
-    for item in GUIDE_PAGES
-]
-
-_nov14_batch_gear_links = {
-    "gear/home-grow-temperature-humidity-monitor-buying-guide/index.html": (
-        "gear/cannabis-drying-rack-buying-guide/", "RACK + ROOM", "Keep support area, sensor placement, circulation, moisture removal, inspection access, and failure response together"
-    ),
-}
-OTHER_ARTICLES = [
-    ({**item, "updated": "November 14, 2026", "related": [*item["related"], _nov14_batch_gear_links[item["path"]]]}
-     if item["path"] in _nov14_batch_gear_links else item)
-    for item in OTHER_ARTICLES
-]
-
-# November 10 connects the diabetes safety record and concentrate-container
-# decision system from established pages that already own adjacent clinical,
-# product-format, storage, and equipment decisions.
-_nov10_guide_links = {
-    "guides/cannabis-cbd-medication-interactions/index.html": (
-        "guides/cannabis-diabetes-blood-sugar-dka-safety/",
-        "DIABETES + MEDICINES",
-        "Keep glucose, ketone, insulin, medicine, cannabis, symptom, and emergency records together",
-    ),
-    "guides/cannabinoid-hyperemesis-syndrome-warning-signs/index.html": (
-        "guides/cannabis-diabetes-blood-sugar-dka-safety/",
-        "DIABETES + VOMITING",
-        "Do not let a CHS label hide DKA, dehydration, or another urgent cause",
-    ),
-    "guides/cannabis-concentrates-dabs-label-safety-guide/index.html": (
-        "gear/cannabis-concentrate-container-buying-guide/",
-        "CONTAINER SYSTEM",
-        "Preserve the retail package and compare contact, fit, closure, identity, care, and locked storage",
-    ),
-    "guides/storage/index.html": (
-        "gear/cannabis-concentrate-container-buying-guide/",
-        "CONCENTRATE CONTAINERS",
-        "Keep the original package, exact lot, secondary organizer, and household lock as separate layers",
-    ),
-}
-GUIDE_PAGES = [
-    ({**item, "updated": "November 10, 2026", "related": [*item["related"], _nov10_guide_links[item["path"]]]}
-     if item["path"] in _nov10_guide_links else item)
-    for item in GUIDE_PAGES
-]
-
-_nov10_gear_links = {
-    "gear/cannabis-stash-jar-buying-guide/index.html": (
-        "gear/cannabis-concentrate-container-buying-guide/",
-        "CONCENTRATE-SPECIFIC FIT",
-        "Add contact-path, lid-intrusion, liner, identity, and original-package boundaries",
-    ),
-    "gear/cannabis-gear-comparison-worksheet/index.html": (
-        "gear/cannabis-concentrate-container-buying-guide/",
-        "CONTAINER WORKFLOW",
-        "Run exact containers through contact, usable fit, claims, care, returns, and first-year cost",
-    ),
-}
-OTHER_ARTICLES = [
-    ({**item, "updated": "November 10, 2026", "related": [*item["related"], _nov10_gear_links[item["path"]]]}
-     if item["path"] in _nov10_gear_links else item)
-    for item in OTHER_ARTICLES
-]
-
-# November 7 connects both new resources from established, intent-matched
-# pages. The review date records a material navigation improvement.
-_nov7_guide_links = {
-    "guides/cannabis-cbd-chronic-pain-evidence-guide/index.html": (
-        "guides/cannabis-migraine-headache-evidence-guide/",
-        "MIGRAINE EVIDENCE",
-        "Keep one route-specific acute trial inside its real evidence boundaries",
-    ),
-    "guides/how-to-talk-to-doctor-about-cannabis/index.html": (
-        "guides/cannabis-migraine-headache-evidence-guide/",
-        "HEADACHE HANDOFF",
-        "Bring a bounded evidence question and a dated symptom record",
-    ),
-    "guides/cannabis-home-fire-safety-plan/index.html": (
-        "gear/home-grow-ventilation-fan-buying-guide/",
-        "FAN SAFETY",
-        "Check airflow purpose, controls, mounting, power, recalls, and failure states",
-    ),
-}
-GUIDE_PAGES = [
-    ({**item, "updated": "November 7, 2026", "related": [*item["related"], _nov7_guide_links[item["path"]]]}
-     if item["path"] in _nov7_guide_links else item)
-    for item in GUIDE_PAGES
-]
-
-_nov7_gear_links = {
-    "gear/home-grow-temperature-humidity-monitor-buying-guide/index.html": (
-        "gear/home-grow-ventilation-fan-buying-guide/",
-        "AIRFLOW SYSTEM",
-        "Match the monitoring question to the fan, air path, controls, and acceptance test",
-    ),
-    "gear/home-grow-timer-controller-buying-guide/index.html": (
-        "gear/home-grow-ventilation-fan-buying-guide/",
-        "FAN CONTROL",
-        "Require exact motor compatibility, safe minimum speed, restart behavior, and override",
-    ),
-}
-OTHER_ARTICLES = [
-    ({**item, "updated": "November 7, 2026", "related": [*item["related"], _nov7_gear_links[item["path"]]]}
-     if item["path"] in _nov7_gear_links else item)
-    for item in OTHER_ARTICLES
-]
-
-# November 8 links the caregiver plan and access-control buyer's guide from
-# established pages that already own the adjacent intent.
-_nov8_guide_links = {
-    "guides/cannabis-driving-impairment-sober-timer/index.html": (
-        "guides/cannabis-caregiving-sober-adult-handoff-plan/",
-        "CAREGIVING HANDOFF",
-        "Name the sober adult, care job, transport plan, storage, and response route",
-    ),
-    "guides/cannabis-child-resistant-packaging-home-storage-guide/index.html": (
-        "gear/cannabis-lockbox-buying-guide/",
-        "LOCKBOX CHECKLIST",
-        "Compare access, interior fit, relock behavior, recovery, claims, and cost",
-    ),
-    "guides/cannabis-older-adults-medication-fall-safety/index.html": (
-        "guides/cannabis-caregiving-sober-adult-handoff-plan/",
-        "CARE TRANSFER",
-        "Keep medicines, mobility, transport, access, and backup responsibility together",
-    ),
-    "guides/storage/index.html": (
-        "gear/cannabis-lockbox-buying-guide/",
-        "ACCESS CONTROL",
-        "Keep original packaging inside a measured, locked, failure-tested system",
-    ),
-}
-GUIDE_PAGES = [
-    ({**item, "updated": "November 8, 2026", "related": [*item["related"], _nov8_guide_links[item["path"]]]}
-     if item["path"] in _nov8_guide_links else item)
-    for item in GUIDE_PAGES
-]
-
-_nov8_gear_links = {
-    "gear/smell-proof-storage/index.html": (
-        "gear/cannabis-lockbox-buying-guide/",
-        "ACCESS-CONTROL SYSTEM",
-        "Compare users, original-package capacity, lock failure, evidence, and ownership cost",
-    ),
-    "gear/cannabis-gear-comparison-worksheet/index.html": (
-        "gear/cannabis-lockbox-buying-guide/",
-        "LOCKBOX WORKFLOW",
-        "Put three exact enclosures through the same access, fit, claim, recall, and cost screen",
-    ),
-}
-OTHER_ARTICLES = [
-    ({**item, "updated": "November 8, 2026", "related": [*item["related"], _nov8_gear_links[item["path"]]]}
-     if item["path"] in _nov8_gear_links else item)
-    for item in OTHER_ARTICLES
-]
-
-# November 9 connects the relocation checklist and watering-equipment screen
-# from established pages that already own adjacent law, disposal, grow, and
-# buying decisions.
-_nov9_guide_links = {
-    "guides/cannabis-official-source-directory/index.html": (
-        "guides/cannabis-moving-day-relocation-checklist/",
-        "MOVING-DAY ROUTE",
-        "Verify the origin, route, destination, property, carrier, product, and date before packing",
-    ),
-    "guides/cannabis-product-disposal-decision-guide/index.html": (
-        "guides/cannabis-moving-day-relocation-checklist/",
-        "RELOCATION EXIT",
-        "Choose a verified no-transport outcome before a state-line or international move",
-    ),
-    "guides/new-york-home-cannabis-grow-planner/index.html": (
-        "gear/home-grow-watering-tools-buying-guide/",
-        "WATER PATH",
-        "Map source, lift, delivery, runoff, wet safety, care, and cost before buying equipment",
-    ),
-}
-GUIDE_PAGES = [
-    ({**item, "updated": "November 9, 2026", "related": [*item["related"], _nov9_guide_links[item["path"]]]}
-     if item["path"] in _nov9_guide_links else item)
-    for item in GUIDE_PAGES
-]
-
-_nov9_gear_links = {
-    "gear/home-grow-ph-ec-meter-buying-guide/index.html": (
-        "gear/home-grow-watering-tools-buying-guide/",
-        "DELIVERY SYSTEM",
-        "Keep the measurement question separate from vessels, pumps, tubing, spills, power, and cleaning",
-    ),
-    "gear/cannabis-gear-comparison-worksheet/index.html": (
-        "gear/home-grow-watering-tools-buying-guide/",
-        "WATERING TOOL WORKFLOW",
-        "Compare exact models by task, wet path, measured delivery, safety, care, recalls, and first-year cost",
-    ),
-}
-OTHER_ARTICLES = [
-    ({**item, "updated": "November 9, 2026", "related": [*item["related"], _nov9_gear_links[item["path"]]]}
-     if item["path"] in _nov9_gear_links else item)
-    for item in OTHER_ARTICLES
-]
-
-# Preserve the newer review date where November 10 pages add contextual links
-# to articles that also participated in the November 9 cluster.
-_nov10_reviewed_paths = set(_nov10_guide_links) | set(_nov10_gear_links)
-GUIDE_PAGES = [
-    ({**item, "updated": "November 10, 2026"} if item["path"] in _nov10_reviewed_paths else item)
-    for item in GUIDE_PAGES
-]
-OTHER_ARTICLES = [
-    ({**item, "updated": "November 10, 2026"} if item["path"] in _nov10_reviewed_paths else item)
-    for item in OTHER_ARTICLES
-]
-
-# November 11 connects the PTSD evidence boundary and exact-device charging
-# system from established pages that already own adjacent clinical and hardware
-# decisions. The routes are deliberately narrow so they add context rather
-# than manufacturing generic cross-links.
-_nov11_guide_links = {
-    "guides/cannabis-anxiety-paranoia-psychosis-warning-signs/index.html": (
-        "guides/cannabis-ptsd-evidence-safety-guide/",
-        "PTSD EVIDENCE",
-        "Separate short-term relief reports from treatment evidence, function, and urgent warning signs",
-    ),
-    "guides/cannabis-tolerance-dependence-withdrawal/index.html": (
-        "guides/cannabis-ptsd-evidence-safety-guide/",
-        "PTSD + USE PATTERN",
-        "Track PTSD care, tolerance, withdrawal, function, and treatment participation in separate lanes",
-    ),
-    "guides/how-to-talk-to-doctor-about-cannabis/index.html": (
-        "guides/cannabis-ptsd-evidence-safety-guide/",
-        "PTSD CLINICIAN HANDOFF",
-        "Bring the exact product, pattern, treatment, function, and evidence questions to the visit",
-    ),
-}
-GUIDE_PAGES = [
-    ({**item, "updated": "November 11, 2026", "related": [*item["related"], _nov11_guide_links[item["path"]]]}
-     if item["path"] in _nov11_guide_links else item)
-    for item in GUIDE_PAGES
-]
-
-_nov11_gear_links = {
-    "gear/510-thread-vape-battery-safety/index.html": (
-        "gear/cannabis-device-charger-cable-buying-guide/",
-        "CHARGING SYSTEM",
-        "Match the exact device, battery, port, cable, power source, instructions, condition, and recall status",
-    ),
-    "gear/dry-herb-vaporizer-buying-safety-guide/index.html": (
-        "gear/cannabis-device-charger-cable-buying-guide/",
-        "CHARGER + CABLE",
-        "Verify maker-supported charging parts and a visible, attended charging setup",
-    ),
-    "gear/cannabis-gear-comparison-worksheet/index.html": (
-        "gear/cannabis-device-charger-cable-buying-guide/",
-        "CHARGING WORKFLOW",
-        "Compare replacement parts by documented compatibility, condition, recalls, returns, and total cost",
-    ),
-}
-OTHER_ARTICLES = [
-    ({**item, "updated": "November 11, 2026", "related": [*item["related"], _nov11_gear_links[item["path"]]]}
-     if item["path"] in _nov11_gear_links else item)
-    for item in OTHER_ARTICLES
-]
-
-# November 12 connects the sleep-apnea evidence boundary and the grow-room
-# moisture system from established pages that own adjacent decisions.
-_nov12_guide_links = {
-    "guides/cbd-hemp-flower-label-legal-guide/index.html": (
-        "strains/cherry-blonde-cbd/", "CBD CULTIVAR RECORD", "Separate breeder identity, university-trial context, the finished lot, and the current product rule"
-    ),
-    "guides/cannabis-certificate-of-analysis-coa-guide/index.html": (
-        "strains/cherry-blonde-cbd/", "LOT-MATCH EXAMPLE", "Apply the package, lot, dates, units, panels, and report-status chain to a named CBD cultivar"
-    ),
-    "guides/cannabis-cbd-and-sleep/index.html": (
-        "guides/cannabis-sleep-apnea-osa-evidence-safety-guide/", "SLEEP APNEA", "Separate sedation and perceived sleep from measured airway, oxygen, treatment, and next-day outcomes"
-    ),
-    "guides/cannabis-next-day-impairment-evidence-guide/index.html": (
-        "guides/cannabis-sleep-apnea-osa-evidence-safety-guide/", "OSA + NEXT DAY", "Keep sleepiness, residual impairment, treatment status, and task demands in separate lanes"
-    ),
-    "guides/how-to-talk-to-doctor-about-cannabis/index.html": (
-        "guides/cannabis-sleep-apnea-osa-evidence-safety-guide/", "SLEEP-CLINIC HANDOFF", "Bring OSA treatment, exact product, co-use, night observations, and next-day function to the visit"
-    ),
-}
-GUIDE_PAGES = [
-    ({**item, "updated": "November 12, 2026", "related": [*item["related"], _nov12_guide_links[item["path"]]]}
-     if item["path"] in _nov12_guide_links else item)
-    for item in GUIDE_PAGES
-]
-
-_nov12_gear_links = {
-    "gear/home-grow-ventilation-fan-buying-guide/index.html": (
-        "gear/home-grow-dehumidifier-buying-guide/", "MOISTURE LOAD", "Size moisture removal, drainage, heat, electrical fit, recalls, and cost beside the room air path"
-    ),
-    "gear/home-grow-temperature-humidity-monitor-buying-guide/index.html": (
-        "gear/home-grow-dehumidifier-buying-guide/", "CONTROL + VERIFICATION", "Use independent measurements to verify the room response and acceptance test"
-    ),
-    "gear/cannabis-gear-comparison-worksheet/index.html": (
-        "gear/home-grow-dehumidifier-buying-guide/", "DEHUMIDIFIER WORKFLOW", "Compare capacity conditions, drainage, efficiency, operating range, recalls, service, and first-year cost"
-    ),
-}
-OTHER_ARTICLES = [
-    ({**item, "updated": "November 12, 2026", "related": [*item["related"], _nov12_gear_links[item["path"]]]}
-     if item["path"] in _nov12_gear_links else item)
-    for item in OTHER_ARTICLES
-]
-
-# November 13 connects the symbol reference and infusion-appliance workflow
-# from established pages that already own the complete-label, kitchen-safety,
-# cleaning, and comparison decisions.
-_nov13_guide_links = {
-    "guides/read-a-label/index.html": (
-        "guides/cannabis-warning-symbol-package-icon-guide/", "WARNING SYMBOLS", "Interpret the jurisdiction-specific mark without substituting it for identity, quantity, lot, testing, or legal permission"
-    ),
-    "guides/cannabis-terms-label-lab-glossary/index.html": (
-        "guides/cannabis-warning-symbol-package-icon-guide/", "PACKAGE ICONS", "Keep a regulated symbol inside its jurisdiction, product category, rule version, and evidence boundary"
-    ),
-    "guides/cannabis-package-seal-tamper-evidence-checklist/index.html": (
-        "guides/cannabis-warning-symbol-package-icon-guide/", "SYMBOL + PACKAGE", "Separate a required mark from closure, seal, damage, lot, seller, and complaint evidence"
-    ),
-    "guides/cannabis-shared-kitchen-edible-safety-plan/index.html": (
-        "gear/cannabis-infusion-appliance-buying-guide/", "INFUSION APPLIANCE", "Compare the exact kitchen job, food-contact path, cross-contact, cleaning, household access, recalls, returns, and cost"
-    ),
-    "guides/edibles/index.html": (
-        "gear/cannabis-infusion-appliance-buying-guide/", "KITCHEN EQUIPMENT", "Keep appliance claims separate from potency, serving, delayed effects, storage, and impairment"
-    ),
-    "guides/cannabis-certificate-of-analysis-coa-guide/index.html": (
-        "strains/abacus-cbd-hemp/", "TRIAL VS LOT", "Keep university cultivar research separate from the finished package, lot, dates, units, panels, and report status"
-    ),
-    "guides/cbd-hemp-flower-label-legal-guide/index.html": (
-        "strains/abacus-cbd-hemp/", "ABACUS FIELD NOTE", "Separate agricultural trial identity, neighboring names, finished-lot evidence, and the current product rule"
-    ),
-}
-GUIDE_PAGES = [
-    ({**item, "updated": "November 13, 2026", "related": [*item["related"], _nov13_guide_links[item["path"]]]}
-     if item["path"] in _nov13_guide_links else item)
-    for item in GUIDE_PAGES
-]
-
-_nov13_gear_links = {
-    "gear/cannabis-tool-cleaning-kit/index.html": (
-        "gear/cannabis-infusion-appliance-buying-guide/", "INFUSION CLEANING", "Map every food-contact surface, allowed care method, inspection point, wear part, drying step, and retirement line"
-    ),
-    "gear/cannabis-gear-comparison-worksheet/index.html": (
-        "gear/cannabis-infusion-appliance-buying-guide/", "APPLIANCE WORKFLOW", "Compare three exact machines by intended use, capacity, food-contact path, cleaning, recalls, returns, service, and first-year cost"
-    ),
-}
-OTHER_ARTICLES = [
-    ({**item, "updated": "November 13, 2026", "related": [*item["related"], _nov13_gear_links[item["path"]]]}
-     if item["path"] in _nov13_gear_links else item)
-    for item in OTHER_ARTICLES
-]
-
-# November 14 connects the seed-storage record from the established lawful
-# starter-material, home-grow planning, inventory, and access-control paths.
-_nov14_guide_links = {
-    "guides/new-york-cannabis-seed-clone-buying-guide/index.html": (
-        "guides/cannabis-seed-storage-record-guide/", "SEED STORAGE HANDOFF", "Carry source, identity, date, count, condition, temperature, moisture, access, and opening history forward"
-    ),
-    "guides/new-york-home-cannabis-grow-planner/index.html": (
-        "guides/cannabis-seed-storage-record-guide/", "BEFORE PLANTING", "Recheck law and property rules, then preserve the seed identity, condition, count, storage, and opening record"
-    ),
-}
-GUIDE_PAGES = [
-    ({**item, "updated": "November 14, 2026", "related": [*item["related"], _nov14_guide_links[item["path"]]]}
-     if item["path"] in _nov14_guide_links else item)
-    for item in GUIDE_PAGES
-]
-
-_nov14_gear_links = {
-    "gear/cannabis-inventory-label-record-kit/index.html": (
-        "guides/cannabis-seed-storage-record-guide/", "SEED INVENTORY", "Preserve the original packet, source, private code, dates, count, storage envelope, openings, condition, and planting decision"
-    ),
-    "gear/cannabis-lockbox-buying-guide/index.html": (
-        "guides/cannabis-seed-storage-record-guide/", "SEED ACCESS CONTROL", "Fit the packet and outer container inside a measured enclosure with tested relock, recovery, placement, and household boundaries"
-    ),
-}
-OTHER_ARTICLES = [
-    ({**item, "updated": "November 14, 2026", "related": [*item["related"], _nov14_gear_links[item["path"]]]}
-     if item["path"] in _nov14_gear_links else item)
-    for item in OTHER_ARTICLES
-]
-
-# Later daily link passes may touch some established pages that also support
-# the complete November 14 batch. Preserve the newest material review date.
-_nov14_batch_reviewed_guides = set(_nov14_batch_guide_links)
-_nov14_batch_reviewed_gear = set(_nov14_batch_gear_links)
-GUIDE_PAGES = [
-    ({**item, "updated": "November 14, 2026", "related": [*item["related"], _nov14_batch_guide_links[item["path"]]]}
-     if item["path"] in _nov14_batch_reviewed_guides else item)
-    for item in GUIDE_PAGES
-]
-OTHER_ARTICLES = [
-    ({**item, "updated": "November 14, 2026", "related": [*item["related"], _nov14_batch_gear_links[item["path"]]]}
-     if item["path"] in _nov14_batch_reviewed_gear else item)
-    for item in OTHER_ARTICLES
-]
-
-# Publishing integrity is part of the public editorial standard: the source
-# archive is checksum-verified and tested before publication.
-for _policy in STANDARD_PAGES:
-    if _policy["path"] == "editorial-policy/index.html":
-        _policy["updated"] = "October 16, 2026"
-        _policy["body"] = _policy["body"].replace(
-            '<p class="update-line">Policy reviewed August 26, 2026</p>',
-            '<p class="update-line">Policy reviewed October 16, 2026</p>',
-        ) + '''<h2>Publishing integrity</h2><p>The page generator and source modules are stored in a versioned deployable archive. Automated publication checks verify that archive against its committed SHA-256 checksum, test that it can be read, and stop deployment before extraction when either check fails. The same build then checks unique titles and descriptions, canonical and social metadata, structured data, internal references, sitemap and search coverage, accessible table behavior, responsive safeguards, and the dated publication manifest. Passing automation does not prove a health, legal, laboratory, or product claim; it makes the published source and discovery surfaces reproducible and easier to audit.</p>'''
-        _policy["body"] += '''<h2>Link and section integrity</h2><p>Publication checks now validate the destination document and the named section for every local link that contains a URL fragment. This includes same-page jump navigation and links from one article to a specific section of another. A link can no longer pass merely because the file exists while its <code>#section</code> target is missing. The check decodes the fragment, reads the generated destination's IDs, and stops publication on a mismatch.</p>'''
-        _policy["body"] += '''<h2>Structured-data identity</h2><p>Every generated page publishes separate, stable identifiers for the organization, website, webpage, andâ€”when presentâ€”the article. The webpage identifies the article as its main entity, while the article points back to the webpage that contains it. Automated checks reject duplicate identifiers, missing identity nodes, an article that reuses the webpage identifier, or a broken main-entity relationship. Structured data describes the published page for machines; it does not add evidence, expertise, endorsement, ratings, or claims that readers cannot see.</p>'''
-        _policy["body"] += '''<h2>CSS delivery integrity</h2><p>The production build bundles the site's maintained style modules into one deployable stylesheet and removes the development chunks. This prevents the browser from discovering a chain of additional render-blocking <code>@import</code> requests after the first stylesheet arrives. The publication audit rejects a deployed stylesheet that still contains CSS imports or split <code>styles-*.css</code> files. Bundling changes delivery, not the visual rules or editorial content.</p>'''
-        _policy["body"] += '''<h2>Breadcrumb identity</h2><p>Every indexable page now includes a machine-readable breadcrumb trail that mirrors its visible collection path: home, the relevant guide, gear, strain, or legal library, and the current page. The trail uses canonical HTTPS URLs and names already visible on the site. Automated checks reject missing, malformed, or noncanonical breadcrumb nodes. Breadcrumb markup describes site organization; it does not add claims, ratings, authorship, or endorsements.</p>'''
-        _policy["body"] += '''<h2>Accessible form defenses</h2><p>Spam-trap fields remain outside the keyboard focus order and are also hidden from assistive technology. This prevents a field that is intentionally meaningless to people from being announced as an unexplained form control. Publication checks inspect every deployed honeypot field and stop the build unless both safeguards are present. This changes accessibility semantics without weakening form delivery or collecting additional information.</p>'''
-        _policy["updated"] = "October 17, 2026"
-        _policy["body"] = _policy["body"].replace(
-            '<p class="update-line">Policy reviewed October 16, 2026</p>',
-            '<p class="update-line">Policy reviewed October 17, 2026</p>',
-        )
-        _policy["body"] += '''<h2>Single-stop responsive tables</h2><p>Wide tables are placed inside keyboard-focusable, labeled regions so keyboard users can reach and horizontally scroll them on narrow screens. When an author has already provided that region, the generator does not add a second focus stop to the nested table. Publication checks reject redundant nested focus targets and require the wrapper to expose a named region. This keeps the full table and its semantic rows and columns intact while making the interaction less repetitive.</p>'''
-        _policy["updated"] = "October 18, 2026"
-        _policy["body"] = _policy["body"].replace(
-            '<p class="update-line">Policy reviewed October 17, 2026</p>',
-            '<p class="update-line">Policy reviewed October 18, 2026</p>',
-        )
-        _policy["body"] += '''<h2>Current-page and current-location navigation</h2><p>The breadcrumb identifies the exact page with <code>aria-current="page"</code>. On detail pages, the primary navigation identifies the containing library with <code>aria-current="location"</code> instead of incorrectly claiming that the library hub is the current page. The exact hub continues to use <code>aria-current="page"</code>. Publication checks reject a missing current breadcrumb or a detail page whose collection context is not exposed. This gives assistive technology two accurate levels of orientation without changing URLs or visible labels.</p>'''
-        _policy["updated"] = "October 19, 2026"
-        _policy["body"] = _policy["body"].replace(
-            '<p class="update-line">Policy reviewed October 18, 2026</p>',
-            '<p class="update-line">Policy reviewed October 19, 2026</p>',
-        )
-        _policy["body"] += '''<h2>Atom feed authorship</h2><p>The publication feed carries one explicit editorial author at feed level so every entry inherits a named, linked source identity under the Atom format. The feed remains a machine-readable discovery surface, not proof that an article is correct. Publication checks parse the XML, require the canonical feed and site links, require the editorial author name and About-page URI, and reject entries without the required title, identifier, link, update time, and summary fields.</p>'''
-        _policy["updated"] = "October 20, 2026"
-        _policy["body"] = _policy["body"].replace(
-            '<p class="update-line">Policy reviewed October 19, 2026</p>',
-            '<p class="update-line">Policy reviewed October 20, 2026</p>',
-        )
-        _policy["body"] += '''<h2>Accessible collection filters</h2><p>The guide, gear, strain, and 50-state libraries expose each filter group by name, identify every filter as a button, publish its initial pressed state, and point search, sort, and filter controls to the result collection they change. The live script keeps <code>aria-pressed</code> synchronized with the visible selection and the polite result count announces changes without moving focus. Publication checks reject missing result IDs, unlinked controls, absent initial state, or filter buttons that could submit a surrounding form. These semantics describe the existing interaction; they do not hide results from search engines or create a separate assistive-technology experience.</p>'''
-        _policy["updated"] = "October 21, 2026"
-        _policy["body"] = _policy["body"].replace(
-            '<p class="update-line">Policy reviewed October 20, 2026</p>',
-            '<p class="update-line">Policy reviewed October 21, 2026</p>',
-        )
-        _policy["body"] += '''<h2>Age-gate focus isolation</h2><p>When the adult confirmation is visible, the page outside its modal dialog is removed from the keyboard and assistive-technology interaction path with the browser's inert behavior. Tab and Shift+Tab remain inside the dialog, the question is programmatically described, the declined state receives focus, and admitting an adult restores the page and the prior focus target. Publication checks reject a deployment that loses the isolation, focus loop, described dialog, decline focus, or release path. The confirmation remains a browser-local access prompt; it does not establish identity, location, legal eligibility, or a purchase right.</p>'''
-        _policy["updated"] = "October 22, 2026"
-        _policy["body"] = _policy["body"].replace(
-            '<p class="update-line">Policy reviewed October 21, 2026</p>',
-            '<p class="update-line">Policy reviewed October 22, 2026</p>',
-        )
-        _policy["body"] += '''<h2>Contextual inbound-link floor</h2><p>Every guide and gear detail page must receive links from at least two distinct HTML pages: its complete collection hub and one or more contextual pages. The publication audit builds the generated link graph, ignores the mechanical site index and update log for this check, counts unique source documents rather than repeated links, and stops deployment when a detail page is reachable only through its hub. This protects crawl discovery and reader orientation without manufacturing unrelated links or treating link count as authority.</p>'''
-        _policy["updated"] = "October 23, 2026"
-        _policy["body"] = _policy["body"].replace(
-            '<p class="update-line">Policy reviewed October 22, 2026</p>',
-            '<p class="update-line">Policy reviewed October 23, 2026</p>',
-        )
-        _policy["body"] += '''<h2>Sitemap date integrity</h2><p>The canonical XML sitemap and the legacy Search Console compatibility endpoint must contain the same complete URL and last-modified records. Each date must be valid, must match the page's visible and structured review date, and cannot be later than the current publication batch. The robots directive must name the canonical HTTPS sitemap. Publication checks reject duplicate locations, missing or malformed dates, a legacy payload that drifts from the canonical file, or a page-to-sitemap date mismatch. A last-modified date records a material editorial or publication change; it is not an instruction to rank a page or proof that a search engine has recrawled it.</p>'''
-
-# October 24 trust work is maintained in source, not only in the rendered
-# snapshot. It documents who is accountable, the research workflow, testing
-# limits, commercial separation, corrections, and automation boundaries.
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "about/index.html":
-        _standard["description"] = "How Big Bud Man researches, sources, reviews, corrects, tests, updates, and separates independent cannabis education from commercial influence."
-        _standard["dek"] = "Who publishes this site, what the editorial team actually does, where the evidence comes from, and how readers can challenge a claim."
-        _standard["updated"] = "October 24, 2026"
-        _standard["body"] += '''<h2 id="ownership">Ownership and responsibility</h2><p>Big Bud Man is an independently operated cannabis-education publication based in Central New York. The Big Bud Man Editorial Team is the named publisher and is responsible for source selection, page scope, writing, review, corrections, and the final publication decision. The site is not a dispensary, laboratory, medical practice, law firm, testing authority, regulator, or product-certification service.</p><h2 id="method">How a page is made</h2><ol class="numbered-list"><li><b>Define one reader decision.</b><p>Each page begins with the question it can answer and the claims it must not make.</p></li><li><b>Inventory the site.</b><p>Titles, slugs, core intent, recent additions, and related pages are checked before a new URL is approved.</p></li><li><b>Use a source hierarchy.</b><p>Law begins with statutes, regulators, courts, and official guidance. Health and science begin with government health agencies, systematic reviews, clinical guidance, standards bodies, and original research. Brand and retailer material can document a product claim but cannot validate it.</p></li><li><b>Write the limits beside the fact.</b><p>Sample, method, population, jurisdiction, date, product, route, uncertainty, and evidence gaps stay attached to the conclusion.</p></li><li><b>Connect the page.</b><p>New work must have a useful collection path and contextual links in both directions; isolated pages and cosmetic keyword variants are rejected.</p></li><li><b>Run publication checks.</b><p>The build checks metadata, structured data, internal links and fragments, accessibility rules, sitemap and search coverage, page identity, source-archive integrity, and the dated publication manifest before deployment.</p></li></ol><h2 id="testing">Testing and firsthand-experience boundary</h2><p>Unless a page explicitly names a documented test, Big Bud Man has not purchased, handled, used, measured, laboratory-tested, clinically evaluated, or personally experienced the product or method discussed. We do not turn manufacturer specifications, consumer anecdotes, generated examples, or another publication's test into our own firsthand claim. Buying guides are evidence and decision frameworksâ€”not disguised reviews.</p><h2 id="commercial">Commercial separation</h2><p>The repository currently contains no approved affiliate tracking ID or active affiliate program. When commercial links are introduced, the relationship must be disclosed near the link, qualifying links must use sponsored and nofollow markup, and payment cannot determine coverage, ranking, conclusion, or correction. No cannabis sale, unverified discount, scarcity claim, or generic product insertion is allowed.</p><h2 id="updates">Updates, corrections, and dates</h2><p>A visible reviewed date means the page received a material source, accuracy, usability, or publication review on that date; it does not guarantee that every external rule or product remains unchanged. Significant factual corrections are made in the page and, when useful to readers, explained in the publication update surfaces. To challenge a statement, send the page URL, exact passage, reason, and strongest primary source through the <a href="../contact/">contact form</a>. A correction does not require agreement with the page's tone, but it does require evidence.</p><h2 id="automation">Automation and human accountability</h2><p>Automation assists with research organization, drafts, consistency, link checks, structured data, builds, and deployment monitoring. It does not supply missing firsthand experience, professional licensure, laboratory competence, personal interviews, or legal authority. Published claims remain the responsibility of the editorial team named on the page. The complete <a href="../editorial-policy/">editorial policy</a> documents the current rules and automated gates.</p>'''
-    elif _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "October 24, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed October 23, 2026</p>',
-            '<p class="update-line">Policy reviewed October 24, 2026</p>',
-        )
-        _standard["body"] += '''<h2>Collection identity</h2><p>The guide, gear, strain, and 50-state law hubs publish an <code>ItemList</code> whose names, canonical URLs, positions, and total count match the cards visible in that collection. The list describes editorial organization; it is not a ranking, recommendation order, rating, inventory claim, or statement that every item is equally current. Publication checks compare the machine-readable list with the rendered cards and reject missing, duplicated, noncanonical, out-of-order, or hidden members.</p>'''
-
-# October 25 makes release-date claims testable. The manifest names every
-# discovery surface materially changed by the batch, and the audit rejects a
-# visible/schema/sitemap date that drifts from that release.
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "October 25, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed October 24, 2026</p>',
-            '<p class="update-line">Policy reviewed October 25, 2026</p>',
-        )
-        _standard["body"] += '''<h2>Release freshness contract</h2><p>Each publication manifest names the homepage, collection hubs, trust pages, or articles materially changed by that release. The audit converts those canonical URLs to local files, requires each one to exist, and compares the manifest date with its primary structured-data <code>dateModified</code> value and canonical-sitemap <code>lastmod</code>. This prevents a changed discovery surface from quietly retaining an older machine-readable date. The manifest cannot make an unchanged page look fresh: a page is listed only when its content, organization, trust record, or publication behavior changed materially.</p>'''
-
-# October 26 makes the review date shown on every guide and gear collection
-# card part of the publication contract instead of unaudited interface copy.
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "October 26, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed October 25, 2026</p>',
-            '<p class="update-line">Policy reviewed October 26, 2026</p>',
-        )
-        _standard["body"] += '''<h2>Collection-card review-date parity</h2><p>Every guide and gear collection card exposes the destination article's review date in machine-readable form. The publication audit resolves each card URL, reads the destination article's primary structured-data <code>dateModified</code>, and rejects a missing destination, malformed card date, duplicate route, or mismatch. This prevents a library card from advertising a fresher or older review than the page itself. A matching date records editorial review parity; it does not prove every external rule or product remains current.</p>'''
-
-# October 27 makes every machine-readable Article citation an exact reflection
-# of the official-source links readers can inspect on that page.
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "October 27, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed October 26, 2026</p>',
-            '<p class="update-line">Policy reviewed October 27, 2026</p>',
-        )
-        _standard["body"] += '''<h2>Visible citation parity</h2><p>When an article has an official-sources panel, its Article structured data publishes those same URLs as citations in the same order. The generator derives the machine-readable list from the visible source links; editors cannot add a hidden citation only for crawlers. Publication checks reject a missing, extra, reordered, non-HTTPS, or invisible citation. Citation markup identifies the evidence trailâ€”it does not prove that a source supports every sentence, convert inference into fact, or replace careful reading of scope, date, population, jurisdiction, and uncertainty.</p>'''
-
-# October 28 makes heading hierarchy a deployment gate instead of a manual
-# spot check. The rule follows the rendered document, including navigation,
-# article content, related reading, footer, dialogs, and search interface.
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "October 28, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed October 27, 2026</p>',
-            '<p class="update-line">Policy reviewed October 28, 2026</p>',
-        )
-        _standard["body"] += '''<h2>Heading hierarchy integrity</h2><p>Every generated HTML document must begin its heading outline with the single page-level <code>h1</code> and may not jump over a level when a new subsection begins. The publication audit reads headings in rendered order and rejects an outline such as <code>h2</code> directly followed by <code>h4</code>. Lower levels may return to a higher level when a section closes. This safeguard protects keyboard and assistive-technology navigation without forcing visual size to determine document structure; typography remains a separate CSS decision.</p>'''
-
-# October 29 makes printable evidence self-identifying outside the browser.
-# Every article PDF carries its canonical URL and review date, and official
-# source destinations remain visible after link interactivity is lost.
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "October 29, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed October 28, 2026</p>',
-            '<p class="update-line">Policy reviewed October 29, 2026</p>',
-        )
-        _standard["body"] += '''<h2>Print and PDF citation integrity</h2><p>Every article's print output includes the canonical HTTPS URL and visible editorial review date so a worksheet or PDF remains identifiable after it leaves the browser. The printed official-source panel exposes each destination URL in text because an underlined label alone is not inspectable on paper. Publication checks require the provenance block, exact page URL, matching review date, and print-only source-URL rules on every article. Printing preserves the evidence trail; it does not freeze a source, establish that a claim remains current, or replace checking the live page for corrections.</p>'''
-
-# October 30 preserves usable controls and state indicators when a visitor's
-# operating system replaces the publication palette with a forced-color theme.
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "October 30, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed October 29, 2026</p>',
-            '<p class="update-line">Policy reviewed October 30, 2026</p>',
-        )
-        _standard["body"] += '''<h2>Forced-color interface integrity</h2><p>The production stylesheet honors operating-system forced-color and high-contrast themes with system colors for page surfaces, controls, links, selected filters, status badges, focus indicators, and progress elements. Decorative images and shadows may disappear, but a button, link, input, table boundary, active state, warning, and keyboard focus must remain distinguishable without relying on the publication's green, amber, red, or pink palette. Publication checks reject a stylesheet that loses the forced-color media query, system-color tokens, selected-state rule, or focus fallback. This support follows the visitor's chosen palette; it does not claim conformance for every browser, extension, or assistive configuration.</p>'''
-
-# October 31 makes the checked-in Python entry points independently readable
-# before the canonical source archive is allowed to restore or replace them.
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "October 31, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed October 30, 2026</p>',
-            '<p class="update-line">Policy reviewed October 31, 2026</p>',
-        )
-        _standard["body"] += '''<h2>Checked-in source entry-point integrity</h2><p>The repository's checked-in build and audit entry points must decode as UTF-8 Python and compile before the deployment workflow extracts the canonical source archive. This preflight prevents a valid archive from silently masking a binary-corrupted or syntactically invalid <code>tools/build_site.py</code> or <code>tools/audit_site.py</code> in the public source tree. The workflow still verifies the archive checksum, tests the archive, restores the complete generator, builds the publication, and runs the full site audit. Source readability does not prove editorial correctness; it makes the build path inspectable and stops a class of repository-integrity failure earlier.</p>'''
-
-# November 1 makes the public files in the repository a byte-for-byte witness
-# of the same generated tree that passed the deployment audit.
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 1, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed October 31, 2026</p>',
-            '<p class="update-line">Policy reviewed November 1, 2026</p>',
-        )
-        _standard["body"] += '''<h2>Checked-in publication parity</h2><p>After the generator builds <code>_site</code>, the publication audit compares every deployable file byte for byte with the corresponding checked-in public file at repository root. A missing or different HTML page, stylesheet, script, image, feed, manifest, robots file, sitemap, custom-domain file, or other deployed asset stops publication. This prevents the repository's browseable pages from drifting away from the exact artifact GitHub Pages receives. The parity check proves file identity, not factual correctness; health, legal, product, image, link, metadata, and accessibility checks remain separate gates.</p>'''
-
-# November 2 makes public inventory claims testable. The README summary must
-# match the generated indexable, guide, gear, strain, and state-guide counts.
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 2, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 1, 2026</p>',
-            '<p class="update-line">Policy reviewed November 2, 2026</p>',
-        )
-        _standard["body"] += '''<h2>Documented publication-inventory parity</h2><p>The repository README states the current indexable-page, strain-field-note, state-law-guide, practical-guide, and gear-guide counts. The publication audit derives those same numbers from the generated sitemap, page titles, and visible collection cards, then rejects a release when any documented count drifts. This turns a public size claim into a release gate and prevents yesterday's inventory from surviving after today's pages are published. Matching counts prove catalog parityâ€”not the accuracy, usefulness, or freshness of every page.</p>'''
-
-# November 3 extends the release gate through the deployed transport layer.
-# A successful upload is not enough when a cache, MIME type, or stale response
-# can still break the exact discovery surface a crawler receives.
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 3, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 2, 2026</p>',
-            '<p class="update-line">Policy reviewed November 3, 2026</p>',
-        )
-        _standard["body"] += '''<h2>Deployed discovery-response integrity</h2><p>After GitHub Pages reports a successful deployment, a separate live-response gate retries through expected cache convergence and compares the public publication manifest with the checked-in release, the canonical XML sitemap with the generated URL and last-modified set, and the robots sitemap declaration with the canonical HTTPS address. It also requests every dated freshness surface and checks its canonical URL. The canonical sitemap must return HTTP 200 with an XML content type. This gate can detect a stale artifact, transport error, wrong MIME type, missing route, or mismatched discovery payload; it does not prove that a search engine crawled, accepted, indexed, or ranked a URL. Search Console property submissionsâ€”including removal of a retired WordPress endpointâ€”remain a separate property-owner task.</p>'''
-
-# November 4 makes review context visible inside the site's global search and
-# proves that each result date matches the destination page and sitemap.
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 4, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 3, 2026</p>',
-            '<p class="update-line">Policy reviewed November 4, 2026</p>',
-        )
-        _standard["body"] += '''<h2>Search-result review-date parity</h2><p>Every result in the site's global search and saved-reading view now exposes the destination page's editorial review date. The generated search record carries both an ISO date and a readable label derived from the same page object used for structured data and the sitemap. Publication checks require every indexable URL exactly once, reject missing or malformed dates, and compare each search date with the destination's primary <code>dateModified</code> and canonical-sitemap <code>lastmod</code>. A matching date supplies useful review context; it does not promise that an external law, product, source, or search ranking has not changed.</p>'''
-
-# November 5 exposes the original publication date beside the review date on
-# every article and makes both visible dates auditable against metadata and
-# structured data. Readers can now distinguish new work from later review.
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 5, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 4, 2026</p>',
-            '<p class="update-line">Policy reviewed November 5, 2026</p>',
-        )
-        _standard["body"] += '''<h2>Visible publication-history parity</h2><p>Every article now displays both its first-published date and latest editorial review date in the reading header and print/PDF provenance block. Publication checks compare those visible dates with the page's <code>article:published_time</code>, <code>article:modified_time</code>, and primary Article structured data, reject a publication date after the review date, and require the same history to survive printing. This makes a new article distinguishable from an older article that was materially reviewed. Matching dates document publication history; they do not prove that every external source, rule, product, or claim remains unchanged.</p>'''
-
-# November 6 makes every table header's row or column relationship explicit.
-# The renderer supplies the semantics and the audit prevents regression.
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 6, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 5, 2026</p>',
-            '<p class="update-line">Policy reviewed November 6, 2026</p>',
-        )
-        _standard["body"] += '''<h2>Semantic table-header integrity</h2><p>Every generated data table now gives column headers <code>scope="col"</code> and row headers <code>scope="row"</code>. These explicit relationships help assistive technology announce the right label as a reader moves through a dense comparison, checklist, or evidence matrix. The publication audit inspects every table, rejects an unscoped header, and rejects a column or row header with the wrong scope. Header scope improves navigation; it does not make the table's evidence, measurements, or conclusions more certain.</p>'''
-
-# November 7 gives each repeated brand image an explicit fetch role. The
-# visible header and age gate can request the shared asset promptly, while the
-# below-the-fold footer does not compete for decode work.
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 7, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 6, 2026</p>',
-            '<p class="update-line">Policy reviewed November 7, 2026</p>',
-        )
-        _standard["body"] += '''<h2>Brand-image loading integrity</h2><p>The header and age-confirmation brand image are marked for eager, high-priority loading because either can be the first visible branded asset. The repeated footer image is explicitly lazy-loaded so it does not compete for decode work before a reader reaches the page end. All three keep intrinsic dimensions and asynchronous decoding to reduce layout movement and main-thread blocking. Publication checks inspect those three roles on every generated page and stop the build if priority, loading, dimensions, or decoding semantics regress. Loading hints improve delivery behavior; they do not change editorial claims or guarantee a specific performance score on every device or network.</p>'''
-
-# November 8 keeps the collapsed mobile navigation out of the accessibility
-# tree and keyboard order, and makes the toggle state and Escape behavior
-# match the visual state.
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 8, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 7, 2026</p>',
-            '<p class="update-line">Policy reviewed November 8, 2026</p>',
-        )
-        _standard["body"] += '''<h2>Mobile-navigation state integrity</h2><p>The collapsed mobile navigation uses the native <code>hidden</code> state, so its links are not presented to assistive technology or keyboard users before the menu opens. The toggle's <code>aria-expanded</code> value and accessible name change with the visible state. Escape closes an open menu and restores focus to the toggle; crossing the desktop breakpoint also closes it. Publication checks require the initial hidden state and each script behavior. These controls keep interface state consistent; they do not change page hierarchy, URLs, or editorial content.</p>'''
-
-# November 9 gives the native site-search dialog an explicit accessible name
-# and description instead of relying on visual heading proximity.
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 9, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 8, 2026</p>',
-            '<p class="update-line">Policy reviewed November 9, 2026</p>',
-        )
-        _standard["body"] += '''<h2>Site-search dialog naming integrity</h2><p>The native site-search dialog uses an explicit <code>aria-labelledby</code> relationship to its visible heading and an <code>aria-describedby</code> relationship to concise search instructions. This gives the modal a stable programmatic name and purpose when it opens, while the search field keeps its own label and dynamic results remain in a polite live region. Publication checks require unique dialog labels and their matching targets on every generated page. Accessible naming improves orientation; it does not change search ranking, index membership, or editorial conclusions.</p>'''
-
-# November 10 makes the homepage guide finder expose its question, progress,
-# and result changes to keyboard and assistive-technology users.
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 10, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 9, 2026</p>',
-            '<p class="update-line">Policy reviewed November 10, 2026</p>',
-        )
-        _standard["body"] += '''<h2>Guide-finder progression integrity</h2><p>The homepage's three-question guide finder exposes each question as a named group, identifies the current step through a polite progress status, removes inactive questions from the accessibility tree, and moves keyboard focus to the next question or resulting recommendation after an answer. Every answer is an explicit non-submit button; restarting restores the first question and its focus target. Publication checks reject missing group names, hidden-state controls, progress semantics, result focus, or reset behavior. The finder routes readers to existing editorial pages; it does not diagnose, personalize medical advice, save a profile, or rank a commercial product.</p>'''
-
-# Keep new reference pages inside established topic clusters. These reciprocal
-# links are editorial navigation, not an attempt to manufacture link signals.
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 11, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 10, 2026</p>',
-            '<p class="update-line">Policy reviewed November 11, 2026</p>',
-        )
-        _standard["body"] += '''<h2>Fresh static discovery path</h2><p>The complete site index publishes a dated, server-rendered list of every indexable page plus a separate fourteen-day recently updated section. Its optional browser filter changes only what a reader sees after the full HTML arrives; every crawl path remains present without JavaScript. Each entry includes a visible review date, and publication checks compare the index with the same source catalog that produces search, the Atom feed, and both canonical and legacy sitemap surfaces. This improves discovery and auditability; it does not control when an external search engine processes a submitted sitemap or indexes a URL.</p>'''
-
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 13, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 11, 2026</p>',
-            '<p class="update-line">Policy reviewed November 13, 2026</p>',
-        )
-        _standard["body"] += NOV13_POLICY_APPEND
-
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 14, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 13, 2026</p>',
-            '<p class="update-line">Policy reviewed November 14, 2026</p>',
-        )
-        _standard["body"] += NOV14_POLICY_APPEND
-
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 15, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 14, 2026</p>',
-            '<p class="update-line">Policy reviewed November 15, 2026</p>',
-        )
-        _standard["body"] += NOV15_POLICY_APPEND
-
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 16, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 15, 2026</p>',
-            '<p class="update-line">Policy reviewed November 16, 2026</p>',
-        )
-        _standard["body"] += NOV16_POLICY_APPEND
-        _standard["updated"] = "November 17, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 16, 2026</p>',
-            '<p class="update-line">Policy reviewed November 17, 2026</p>',
-        )
-        _standard["body"] += NOV17_POLICY_APPEND
-
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 18, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 17, 2026</p>',
-            '<p class="update-line">Policy reviewed November 18, 2026</p>',
-        )
-        _standard["body"] += NOV18_POLICY_APPEND
-
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 19, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 18, 2026</p>',
-            '<p class="update-line">Policy reviewed November 19, 2026</p>',
-        )
-        _standard["body"] += NOV19_POLICY_APPEND
-
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 20, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 19, 2026</p>',
-            '<p class="update-line">Policy reviewed November 20, 2026</p>',
-        )
-        _standard["body"] += NOV20_POLICY_APPEND
-
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 21, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 20, 2026</p>',
-            '<p class="update-line">Policy reviewed November 21, 2026</p>',
-        )
-        _standard["body"] += NOV21_POLICY_APPEND
-
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 22, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 21, 2026</p>',
-            '<p class="update-line">Policy reviewed November 22, 2026</p>',
-        )
-        _standard["body"] += NOV22_POLICY_APPEND
-    elif _standard["path"] == "affiliate-disclosure/index.html":
-        _standard["updated"] = "November 22, 2026"
-        _standard["dek"] = "Current status first: no live editorial link earns Big Bud Man a purchase commission. If that changes, the relationship will be disclosed before the link."
-        _standard["body"] = NOV22_AFFILIATE_APPEND + _standard["body"]
-
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 23, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 22, 2026</p>',
-            '<p class="update-line">Policy reviewed November 23, 2026</p>',
-        )
-        _standard["body"] += NOV23_POLICY_APPEND
-
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 24, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 23, 2026</p>',
-            '<p class="update-line">Policy reviewed November 24, 2026</p>',
-        )
-        _standard["body"] += NOV24_POLICY_APPEND
-
-for _standard in STANDARD_PAGES:
-    if _standard["path"] == "editorial-policy/index.html":
-        _standard["updated"] = "November 25, 2026"
-        _standard["body"] = _standard["body"].replace(
-            '<p class="update-line">Policy reviewed November 24, 2026</p>',
-            '<p class="update-line">Policy reviewed November 25, 2026</p>',
-        )
-        _standard["body"] += NOV25_POLICY_APPEND
-
-RECIPROCAL_RELATED = {
-    "guides/full-spectrum-broad-spectrum-cbd-isolate/index.html": [
-        ("guides/cbd-drinks-powders-label-buying-guide/", "CBD DRINKS", "Apply spectrum language to a beverage lot"),
-        ("guides/cbd-hemp-flower-label-legal-guide/", "HEMP FLOWER", "Verify the package, lot, total THC, and rule"),
-        ("guides/cannabis-drug-testing-thc-results-guide/", "TESTING", "Understand CBD and THC test risk"),
-    ],
-    "guides/cannabis-101/index.html": [
-        ("guides/delta-8-thc-label-safety-guide/", "DELTA-8 THC", "Separate intoxicating THC from hemp and CBD framing"),
-        ("guides/cannabis-terms-label-lab-glossary/", "GLOSSARY", "Decode 48 cannabis terms"),
-    ],
-    "guides/read-a-label/index.html": [
-        ("guides/cannabis-edible-label-math-checker/", "EDIBLE MATH", "Cross-check serving, unit, and package totals"),
-        ("guides/cannabis-edible-allergen-ingredient-label-guide/", "INGREDIENTS + ALLERGENS", "Run the food-safety check before the cannabinoid math"),
-        ("guides/cannabis-product-price-label-comparison-calculator/", "PRICE MATH", "Normalize three like-for-like packages"),
-        ("guides/cannabis-package-seal-tamper-evidence-checklist/", "PACKAGE CONDITION", "Check the seal, closure, label, lot, and complaint route before opening"),
-    ],
-    "guides/cbd-gummies-label-buying-guide/index.html": [("guides/cannabis-gummies-drinks-oils-capsules-comparison/", "COMPARE FORMATS", "Compare gummies with drinks, oils, capsules, lozenges, sprays, and powders"),("guides/cannabis-edible-allergen-ingredient-label-guide/", "ALLERGEN CHECK", "Read ingredients and cross-contact language")],
-    "guides/cannabis-product-complaint-adverse-event-reporting/index.html": [
-        ("guides/cannabis-official-source-directory/", "SOURCE DIRECTORY", "Choose the agency or service that owns each part of the problem"),
-        ("guides/delta-8-thc-label-safety-guide/", "DELTA-8 THC", "Preserve the exact cannabinoid, product, lot, and route"),
-        ("guides/cannabis-edible-allergen-ingredient-label-guide/", "ALLERGEN RECORD", "Keep the reaction, label, lot, and product problem separate"),
-    ],
-    "guides/cannabis-beverages-label-timing-buying-guide/index.html": [("guides/cannabis-gummies-drinks-oils-capsules-comparison/", "COMPARE FORMATS", "Keep route, timing, label units, ingredients, and value together"),("guides/cbd-drinks-powders-label-buying-guide/", "CBD FORMAT", "Audit CBD drinks and powders separately from THC beverages")],
-    "guides/cbd-oil-tincture-label-buying-guide/index.html": [("guides/cannabis-gummies-drinks-oils-capsules-comparison/", "COMPARE FORMATS", "Compare oil with solid units, drinks, lozenges, sprays, and powders"),("guides/cbd-drinks-powders-label-buying-guide/", "DRINK FORMAT", "Rebuild the serving math for a beverage or powder")],
-    "guides/cbd-capsules-softgels-label-buying-guide/index.html": [("guides/cannabis-gummies-drinks-oils-capsules-comparison/", "COMPARE FORMATS", "Compare fixed units with drinks, oils, lozenges, sprays, and powders")],
-    "guides/edibles/index.html": [("guides/cannabis-edible-label-math-checker/", "CHECK THE MATH", "Reconcile serving, piece, and package totals"),("guides/cannabis-gummies-drinks-oils-capsules-comparison/", "COMPARE FORMATS", "Compare gummies and other edibles with drinks, oils, capsules, lozenges, sprays, and powders")],
-    "guides/vapes/index.html": [
-        ("guides/disposable-vape-vs-510-cartridge-comparison/", "DEVICE CHOICE", "Compare an integrated pen with a 510 system"),
-        ("guides/cannabis-smoke-vape-lung-health-guide/", "LUNG HEALTH", "Compare smoke, aerosol, and warning signs"),
-        ("gear/510-thread-vape-battery-safety/", "BATTERY SAFETY", "Match the cartridge, battery, charger, controls, and recall record"),
-    ],
-    "guides/flower/index.html": [
-        ("guides/cannabis-flower-freshness-package-date-buying-guide/", "FRESHNESS", "Audit dates, seal, lot evidence, condition, and recall status"),
-        ("guides/cannabis-pre-roll-infused-label-buying-guide/", "PRE-ROLLS", "Compare plain and infused products"),
-    ],
-    "guides/cannabis-certificate-of-analysis-coa-guide/index.html": [
-        ("guides/cannabis-contaminant-test-results-guide/", "CONTAMINANTS", "Decode pesticide, microbial, metal, solvent, and physical-chemistry panels"),
-        ("guides/cannabis-edible-label-math-checker/", "PACKAGE MATH", "Keep label arithmetic separate from lot-level test results"),
-        ("guides/cbg-products-label-evidence-guide/", "CBG PRODUCTS", "Keep CBG and CBGA attached to the exact lot and basis"),
-    ],
-    "guides/cannabis-overconsumption-poisoning-response/index.html": [("guides/cannabis-child-resistant-packaging-home-storage-guide/", "PREVENTION", "Audit the original package, lock, placement, and handoff routine"), ("guides/cannabis-anxiety-paranoia-psychosis-warning-signs/", "MENTAL HEALTH", "Separate fear, paranoia, and psychosis warning signs")],
-    "guides/cannabis-smoke-vape-lung-health-guide/index.html": [("gear/air-purifier-cannabis-smoke-odor-guide/", "AIR CLEANER MATH", "Size particle filtration without treating it as source control"), ("guides/cannabis-dry-mouth-dental-oral-health-guide/", "ORAL HEALTH", "Connect route and exposure history to the dental record")],
-    "guides/cannabis-older-adults-medication-fall-safety/index.html": [("guides/cannabis-glaucoma-eye-pressure-vision-guide/", "VISION + GLAUCOMA", "Keep eye treatment, measurements, products, and falls in one record"), ("guides/cannabis-dry-mouth-dental-oral-health-guide/", "ORAL HEALTH", "Add medicines, dryness, and dental symptoms to the review")],
-    "guides/cannabis-before-surgery-anesthesia/index.html": [("guides/cannabis-dry-mouth-dental-oral-health-guide/", "DENTAL VISITS", "Prepare the exact product, route, and last-use record")],
-    "guides/storage/index.html": [("guides/cannabis-child-resistant-packaging-home-storage-guide/", "CHILD RESISTANCE", "Audit the package, lock, placement, and household routine"), ("gear/cannabis-stash-jar-buying-guide/", "SECONDARY JAR", "Measure capacity, headspace, costs, claims, identity, and locked fit"), ("guides/cannabis-and-pets-accidental-exposure/", "PET EXPOSURE", "Prepare the call record and close the access route")],
-    "guides/cannabis-edible-allergen-ingredient-label-guide/index.html": [("guides/cannabis-shared-kitchen-edible-safety-plan/", "KITCHEN HANDOFF", "Carry ingredient and allergen evidence through preparation, storage, service, cleanup, and leftovers")],
-    "guides/cannabis-home-fire-safety-plan/index.html": [("gear/home-grow-timer-controller-buying-guide/", "AUTOMATION FAILURE", "Map load, outage, restart, sensor, network, stuck-output, and manual recovery states")],
-    "guides/cannabis-and-pets-accidental-exposure/index.html": [("guides/cannabis-child-resistant-packaging-home-storage-guide/", "HOUSEHOLD ACCESS", "Add package and lock layers for children, visitors, and pets")],
-    "guides/cbd-products-for-pets-veterinarian-label-guide/index.html": [("guides/cannabis-and-pets-accidental-exposure/", "ACCIDENTAL EXPOSURE", "Call promptly and preserve the exact product, ingredient, and timing record")],
-    "gear/smell-proof-storage/index.html": [("gear/cannabis-stash-jar-buying-guide/", "JAR PLANNER", "Measure capacity, headspace, claims, and ownership cost"), ("guides/cannabis-child-resistant-packaging-home-storage-guide/", "PACKAGE + LOCK", "Keep child resistance and household access as separate layers"), ("guides/storage/", "STORAGE SYSTEM", "Match each format to temperature, light, air, moisture, and access controls")],
-    "guides/cannabis-tolerance-dependence-withdrawal/index.html": [("guides/cannabis-anxiety-paranoia-psychosis-warning-signs/", "MENTAL HEALTH", "Record recurrent symptoms and functional change")],
-    "guides/cannabis-product-recall-batch-checker/index.html": [
-        ("guides/cannabis-contaminant-test-results-guide/", "TEST RESULTS", "Read the panel, limit, unit, qualifier, and lot status"),
-        ("guides/cannabis-official-source-directory/", "SOURCE DIRECTORY", "Separate recall, regulator, health, accessory, and fraud routes"),
-        ("guides/cannabis-product-complaint-adverse-event-reporting/", "REPORT A PROBLEM", "Preserve the evidence and use the right route"),
-    ],
-    "legal/shop-legal/index.html": [
-        ("guides/new-york-cannabis-delivery-online-order-verification-guide/", "DELIVERY", "Verify the license, domain, order, handoff, and receipt"),
-        ("guides/cannabis-product-complaint-adverse-event-reporting/", "AFTER PURCHASE", "Report a product, seller, or adverse-event concern"),
-    ],
-    "gear/510-thread-vape-battery-safety/index.html": [("guides/disposable-vape-vs-510-cartridge-comparison/", "COMPARE SYSTEMS", "Choose between an integrated pen and a reusable battery")],
-    "guides/cannabis-cbd-medication-interactions/index.html": [("guides/cannabis-glaucoma-eye-pressure-vision-guide/", "EYE MEDICINES", "Bring drops, products, routes, and last use into the same review")],
-    "guides/cannabis-heart-rate-blood-pressure-safety/index.html": [("guides/cannabis-glaucoma-eye-pressure-vision-guide/", "EYE PRESSURE", "Separate blood pressure from intraocular pressure and optic-nerve care")],
-    "guides/cbd-topicals-label-buying-guide/index.html": [("guides/cbd-patches-transdermal-label-evidence-guide/", "PATCHES", "Separate the patch format, skin-contact system, lot evidence, and delivery claim")],
-    "guides/cannabis-child-resistant-packaging-home-storage-guide/index.html": [("guides/cannabis-package-seal-tamper-evidence-checklist/", "SEAL + TAMPER EVIDENCE", "Inspect the unopened package before the storage routine begins")],
-    "guides/secondhand-cannabis-smoke-indoor-air/index.html": [("gear/air-purifier-cannabis-smoke-odor-guide/", "SIZE FILTRATION", "Estimate room CADR, air changes, filters, and ownership cost"), ("guides/cannabis-smoke-vape-lung-health-guide/", "PERSONAL EXPOSURE", "Build a route and symptom record")],
-    "gear/cannabis-vape-battery-cartridge-disposal-guide/index.html": [("guides/disposable-vape-vs-510-cartridge-comparison/", "BEFORE PURCHASE", "Include the end-of-life route in the device decision")],
-    "strains/auto-cbg/index.html": [("guides/cbg-products-label-evidence-guide/", "CBG PRODUCTS", "Separate the label, lot, evidence, and claims from a cultivar name")],
-}
-
-# October 5 strengthens a distinct seizure-care cluster and the product-neutral
-# maintenance path without displacing established related reading.
-RECIPROCAL_RELATED["guides/cannabis-cbd-medication-interactions/index.html"] = [
-    ("guides/cannabis-cbd-epilepsy-seizure-care-guide/", "SEIZURE CARE", "Keep prescription cannabidiol, retail CBD, medicines, monitoring, and first aid separate"),
-    ("guides/cannabis-glaucoma-eye-pressure-vision-guide/", "EYE MEDICINES", "Bring drops, products, routes, and last use into the same review"),
-]
-RECIPROCAL_RELATED["guides/cbd-oil-tincture-label-buying-guide/index.html"] = [
-    ("guides/cannabis-cbd-epilepsy-seizure-care-guide/", "PRESCRIPTION BOUNDARY", "Do not treat a retail CBD oil as prescription cannabidiol"),
-    ("guides/cannabis-gummies-drinks-oils-capsules-comparison/", "COMPARE FORMATS", "Compare oil with solid units, drinks, lozenges, sprays, and powders"),
-]
-RECIPROCAL_RELATED["guides/cannabis-official-source-directory/index.html"] = [
-    ("guides/cannabis-cbd-epilepsy-seizure-care-guide/", "EPILEPSY + CBD", "Route seizure first aid, medicine labeling, evidence, and product questions correctly"),
-]
-RECIPROCAL_RELATED["gear/grinders/index.html"] = [
-    ("gear/cannabis-tool-cleaning-kit/", "CLEANING COST", "Price compatible brushes, cleaner, parts, and maintenance time"),
-]
-RECIPROCAL_RELATED["gear/cannabis-glass-pipe-water-pipe-buying-guide/index.html"] = [
-    ("gear/cannabis-tool-cleaning-kit/", "CARE ROUTINE", "Build a compatible cleaning kit before buying glassware"),
-]
-RECIPROCAL_RELATED["gear/cannabis-gear-comparison-worksheet/index.html"] = [
-    ("gear/cannabis-tool-cleaning-kit/", "MAINTENANCE COST", "Turn cleaning supplies, replacement parts, and time into ownership cost"),
-]
-# October 15 corrective publication: three genuinely new, non-overlapping
-# pages after the earlier maintenance-only batch. Reciprocal links attach each
-# page to an established cluster rather than leaving isolated URLs.
-RECIPROCAL_RELATED["strains/stem-cell-cbg/index.html"] = [
-    ("guides/cbg-dominant-cannabis-chemotype-guide/", "CBG CHEMOTYPE", "Separate plant chemistry, cultivar provenance, package identity, and lot evidence"),
-    ("strains/white-cbg/", "WHITE CBG", "Compare names without transferring identity or chemistry"),
-    ("guides/cbg-products-label-evidence-guide/", "CBG PRODUCTS", "Audit the exact label, lot, ingredients, evidence, and claims"),
-]
-RECIPROCAL_RELATED["guides/cbg-products-label-evidence-guide/index.html"] = [
-    ("guides/cbg-dominant-cannabis-chemotype-guide/", "PLANT CHEMISTRY", "Keep chemotype and cultivar evidence separate from the retail product"),
-    ("strains/stem-cell-cbg/", "NAMED CULTIVAR", "Apply the evidence chain to Stem Cell CBG"),
-    ("guides/cannabis-certificate-of-analysis-coa-guide/", "LOT REPORT", "Match the final product, lot, units, basis, and panel scope"),
-]
-RECIPROCAL_RELATED["gear/dry-herb-vaporizer-buying-safety-guide/index.html"] = [
-    ("gear/dry-herb-vaporizer-dosing-capsule-guide/", "DOSING CAPSULES", "Verify exact-model fit, adapter, care rule, storage, and ownership cost"),
-    ("gear/cannabis-tool-cleaning-kit/", "CLEANING", "Match cleaner, contact time, tools, and drying to every material"),
-    ("gear/cannabis-accessory-return-warranty-recall-guide/", "AFTER SALE", "Preserve return, warranty, support, and recall routes"),
-]
-RECIPROCAL_RELATED["guides/cannabis-driving-impairment-sober-timer/index.html"] = [
-    ("guides/cannabis-intoxication-impairment-detection/", "TERMS + EVIDENCE", "Keep intoxication, impairment, detection, poisoning, and legal conclusions separate"),
-    ("guides/cannabis-and-alcohol-mixing-risks/", "ALCOHOL + CANNABIS", "Keep both exposure clocks visible and remove driving"),
-    ("guides/cannabis-overconsumption-poisoning-response/", "URGENT RESPONSE", "Separate supportive care, Poison Control, and 911"),
-]
-RECIPROCAL_RELATED["guides/cannabis-drug-testing-thc-results-guide/index.html"] = [
-    ("guides/cannabis-intoxication-impairment-detection/", "DETECTION BOUNDARY", "Separate a measured analyte from function and the governing rule"),
-    ("guides/dot-cannabis-cbd-drug-testing-safety-sensitive-workers/", "DOT RULES", "Use the exact federal safety-sensitive program"),
-    ("guides/full-spectrum-broad-spectrum-cbd-isolate/", "CBD LABELS", "Do not turn spectrum language into a testing guarantee"),
-]
-RECIPROCAL_RELATED["guides/cannabis-cbd-and-sleep/index.html"] = [
-    ("guides/cbn-products-label-evidence-guide/", "CBN PRODUCTS", "Audit the label, lot, ingredients and actual human sleep evidence"),
-    ("guides/cannabis-cbd-medication-interactions/", "MEDICINES", "Build the complete pharmacist and clinician record"),
-    ("guides/cannabis-cbd-liver-health-safety-guide/", "LIVER SAFETY", "Keep products, medicines, alcohol, symptoms and labs together"),
-]
-RECIPROCAL_RELATED["guides/cannabis-driving-impairment-sober-timer/index.html"] = [
-    ("guides/cannabis-social-hosting-guest-safety-plan/", "SOCIAL HOSTING", "Build the sober ride, product control and emergency plan before guests arrive"),
-    ("guides/cannabis-overconsumption-poisoning-response/", "URGENT RESPONSE", "Separate supportive care, Poison Control and 911"),
-    ("guides/cannabis-exercise-workout-heat-safety/", "EXERCISE + HEAT", "Plan around function, environment and sober transport"),
-]
-RECIPROCAL_RELATED["legal/flying-with-cannabis-cbd-tsa-rules/index.html"] = [
-    ("legal/cannabis-federal-property-rules-guide/", "FEDERAL PROPERTY", "Identify the managing agency, boundary and current rule"),
-    ("legal/mailing-cannabis-cbd-usps-rules/", "MAILING", "Check product, documentation, carrier and destination"),
-    ("legal/", "STATE LIBRARY", "Check origin and destination rules separately"),
-]
-# October 6 connects the identification-first home-grow workflow to the
-# established planning cluster and the scale worksheet to inventory records.
-RECIPROCAL_RELATED["guides/new-york-home-cannabis-grow-planner/index.html"] = [
-    ("guides/new-york-home-cannabis-pest-mold-ipm-guide/", "PESTS + MOISTURE", "Build an identification-first scouting and IPM record"),
-    ("gear/indoor-cannabis-grow-light-buying-cost-planner/", "LIGHT + LOAD", "Document light coverage, electrical load, and operating cost"),
-]
-RECIPROCAL_RELATED["gear/indoor-cannabis-grow-light-buying-cost-planner/index.html"] = [
-    ("guides/new-york-home-cannabis-pest-mold-ipm-guide/", "GROW-SPACE IPM", "Connect observations to moisture, airflow, and lawful controls"),
-]
-RECIPROCAL_RELATED["guides/cannabis-contaminant-test-results-guide/index.html"] = [
-    ("guides/new-york-home-cannabis-pest-mold-ipm-guide/", "HOME-GROW RECORD", "Keep field observations separate from finished-product laboratory evidence"),
-]
-RECIPROCAL_RELATED["gear/cannabis-inventory-label-record-kit/index.html"] = [
-    ("gear/digital-scale-buying-calibration-guide/", "MEASUREMENT RECORD", "Screen repeatability and keep the scale, tare, unit, and date attached"),
-]
-# October 15 turns the thin flower overview into a complete purchase-decision
-# hub and reinforces the one supported Search Console strain signal.
-RECIPROCAL_RELATED["guides/cannabis-flower-freshness-package-date-buying-guide/index.html"] = [
-    ("guides/flower/", "FLOWER CHECKOUT", "Run the complete seller, package, lot, condition, storage, and exit screen"),
-    ("guides/cannabis-product-recall-batch-checker/", "RECALL CHECK", "Match the exact producer, product, and lot before acting"),
-    ("guides/cannabis-certificate-of-analysis-coa-guide/", "LOT REPORT", "Confirm identity, status, units, basis, qualifiers, and panel scope"),
-]
-RECIPROCAL_RELATED["gear/cannabis-gear-comparison-worksheet/index.html"] = [
-    ("guides/flower/", "FLOWER SYSTEM", "Define the storage, preparation, care, and exit job before comparing exact models"),
-    ("gear/cannabis-tool-cleaning-kit/", "MAINTENANCE COST", "Turn cleaning supplies, replacement parts, and time into ownership cost"),
-]
-RECIPROCAL_RELATED["strains/white-cbg/index.html"] = [
-    ("strains/stem-cell-cbg/", "STEM CELL CBG", "Compare the evidence chain without transferring identity or chemistry between names"),
-    ("guides/cbg-products-label-evidence-guide/", "CBG PRODUCTS", "Separate a cultivar name from the exact retail product and its evidence"),
-]
-RECIPROCAL_RELATED["strains/auto-cbg/index.html"] = [
-    ("strains/stem-cell-cbg/", "STEM CELL CBG", "Keep breeder, producer, package, lot report, and current rule as separate layers"),
-    ("guides/cbg-products-label-evidence-guide/", "CBG PRODUCTS", "Separate the label, lot, evidence, and claims from a cultivar name"),
-]
-# October 7 gives exercise decisions a responsible-use, cardiovascular, and
-# transport route, while the paper comparison stays inside the preparation
-# cluster instead of creating an isolated commercial page.
-RECIPROCAL_RELATED["responsible-use/index.html"] = [
-    ("guides/cannabis-exercise-workout-heat-safety/", "EXERCISE + HEAT", "Plan coordination, symptoms, weather, supervision, and a sober trip home"),
-]
-RECIPROCAL_RELATED["guides/cannabis-heart-rate-blood-pressure-safety/index.html"] = [
-    ("guides/cannabis-exercise-workout-heat-safety/", "EXERCISE", "Keep activity, heart symptoms, heat, products, and medicines in one record"),
-    ("guides/cannabis-glaucoma-eye-pressure-vision-guide/", "EYE PRESSURE", "Separate blood pressure from intraocular pressure and optic-nerve care"),
-]
-RECIPROCAL_RELATED["guides/cannabis-driving-impairment-sober-timer/index.html"] = [
-    ("guides/cannabis-exercise-workout-heat-safety/", "ACTIVITY + TRANSPORT", "Do not turn a workout, bike, or familiar route into a sobriety test"),
-]
-RECIPROCAL_RELATED["gear/cannabis-rolling-machine-buying-guide/index.html"] = [
-    ("gear/cannabis-rolling-paper-cone-guide/", "PAPER COST + FIT", "Compare dimensions, disclosure, delivered price, and usable count"),
-]
-RECIPROCAL_RELATED["gear/cannabis-pre-roll-tube-case-buying-guide/index.html"] = [
-    ("gear/cannabis-rolling-paper-cone-guide/", "PAPER + CONE", "Carry exact dimensions, condition, and product identity into storage"),
-]
-# October 8 connects the cancer-claim evidence boundary to medication and
-# procedure records, and turns the established storage page into a measurable
-# package-fit path without treating geometry as security certification.
-RECIPROCAL_RELATED["guides/cannabis-cbd-medication-interactions/index.html"] = [
-    ("guides/cannabis-cbd-cancer-claims-evidence-guide/", "CANCER CLAIMS", "Separate treatment, symptom support, interactions, and product evidence"),
-    ("guides/cannabis-cbd-epilepsy-seizure-care-guide/", "SEIZURE CARE", "Keep prescription cannabidiol, retail CBD, medicines, monitoring, and first aid separate"),
-]
-RECIPROCAL_RELATED["guides/cannabis-before-surgery-anesthesia/index.html"] = [
-    ("guides/cannabis-cbd-cancer-claims-evidence-guide/", "ONCOLOGY + PROCEDURES", "Bring the exact product, current regimen, last use, and care-team plan together"),
-    ("guides/cannabis-dry-mouth-dental-oral-health-guide/", "DENTAL VISITS", "Prepare the exact product, route, and last-use record"),
-]
-RECIPROCAL_RELATED["guides/cbg-products-label-evidence-guide/index.html"] = [
-    ("strains/stem-cell-cbg/", "STEM CELL CBG", "Apply the breeder-to-producer-to-package-to-lot evidence chain"),
-]
-RECIPROCAL_RELATED["guides/storage/index.html"] = [
-    ("gear/smell-proof-storage/", "LOCKBOX FIT", "Compare usable interior dimensions before judging locks and odor claims"),
-    ("guides/cannabis-child-resistant-packaging-home-storage-guide/", "CHILD RESISTANCE", "Audit the package, lock, placement, and household routine"),
-]
-RECIPROCAL_RELATED["legal/shop-legal/index.html"] = [
-    ("guides/cannabis-menu-package-receipt-match-checklist/", "MENU â†’ PACKAGE â†’ RECEIPT", "Preserve the complete transaction record before opening the package"),
-    ("guides/new-york-cannabis-delivery-online-order-verification-guide/", "DELIVERY + VERIFICATION", "Match the license, website, order, handoff, and receipt"),
-]
-RECIPROCAL_RELATED["guides/cannabis-product-price-label-comparison-calculator/index.html"] = [
-    ("guides/cannabis-menu-package-receipt-match-checklist/", "CHECKOUT RECORD", "Carry the menu claim and final price into the package-and-receipt check"),
-]
-RECIPROCAL_RELATED["guides/cannabis-product-complaint-adverse-event-reporting/index.html"] = [
-    ("guides/cannabis-menu-package-receipt-match-checklist/", "PRESERVE THE TRANSACTION", "Keep menu, cart, package, lot, price, and receipt evidence together"),
-    ("guides/delta-8-thc-label-safety-guide/", "DELTA-8 THC", "Separate psychoactive identity, lot evidence, legal context, and help routes"),
-    ("guides/cannabis-edible-allergen-ingredient-label-guide/", "ALLERGENS + INGREDIENTS", "Preserve the ingredient panel, cross-contact language, and lot"),
-]
-# October 9 keeps the chronic-pain evidence record connected to medicine,
-# function, topical-claim, and procedure decisions. The tray calculator stays
-# inside the existing preparation-and-storage cluster rather than becoming an
-# isolated commercial page.
-RECIPROCAL_RELATED["guides/cannabis-cbd-medication-interactions/index.html"] = [
-    ("guides/cannabis-cbd-chronic-pain-evidence-guide/", "CHRONIC PAIN", "Match the condition, exact product, function, harms, and review plan"),
-    ("guides/cannabis-cbd-cancer-claims-evidence-guide/", "CANCER CLAIMS", "Separate treatment, symptom support, interactions, and product evidence"),
-]
-RECIPROCAL_RELATED["guides/cannabis-older-adults-medication-fall-safety/index.html"] = [
-    ("guides/cannabis-cbd-chronic-pain-evidence-guide/", "PAIN + FUNCTION", "Track mobility, alertness, falls, medicines, benefit, and stop rules"),
-    ("guides/cannabis-glaucoma-eye-pressure-vision-guide/", "VISION + GLAUCOMA", "Keep eye treatment, measurements, products, and falls in one record"),
-]
-RECIPROCAL_RELATED["guides/cbd-topicals-label-buying-guide/index.html"] = [
-    ("guides/cannabis-cbd-chronic-pain-evidence-guide/", "PAIN CLAIMS", "Do not transfer oral or sublingual evidence to a topical product"),
-    ("guides/cbd-patches-transdermal-label-evidence-guide/", "PATCHES", "Separate the patch format, skin-contact system, lot evidence, and delivery claim"),
-]
-RECIPROCAL_RELATED["gear/cannabis-gear-comparison-worksheet/index.html"] = [
-    ("gear/cannabis-rolling-tray-buying-guide/", "TRAY FIT", "Compare task space, hand clearance, storage fit, area, and delivered cost"),
-    ("gear/cannabis-tool-cleaning-kit/", "MAINTENANCE COST", "Turn cleaning supplies, replacement parts, and time into ownership cost"),
-]
-RECIPROCAL_RELATED["gear/smell-proof-storage/index.html"] = [
-    ("gear/cannabis-rolling-tray-buying-guide/", "TRAY STORAGE", "Check the complete tray body against the locked interior"),
-]
-# October 10 makes the liver-health record part of the established medicine,
-# prescription-CBD, capsule, and complaint paths. The humidity calculator stays
-# inside the storage and model-comparison cluster.
-RECIPROCAL_RELATED["guides/cannabis-cbd-medication-interactions/index.html"] = [
-    ("guides/cannabis-cbd-liver-health-safety-guide/", "LIVER HEALTH", "Keep products, medicines, alcohol, symptoms, labs, and decisions together"),
-    ("guides/cannabis-cbd-cancer-claims-evidence-guide/", "CANCER CLAIMS", "Separate treatment, symptom support, interactions, and product evidence"),
-    ("guides/cannabis-cbd-chronic-pain-evidence-guide/", "CHRONIC PAIN", "Match the condition, exact product, function, harms, and review plan"),
-]
-RECIPROCAL_RELATED["guides/cannabis-cbd-epilepsy-seizure-care-guide/index.html"] = [
-    ("guides/cannabis-cbd-liver-health-safety-guide/", "LIVER MONITORING", "Separate prescription cannabidiol monitoring from retail-product uncertainty"),
-]
-RECIPROCAL_RELATED["guides/cbd-capsules-softgels-label-buying-guide/index.html"] = [
-    ("guides/cannabis-cbd-liver-health-safety-guide/", "CBD + LIVER", "Carry the exact product, medicines, symptoms, and laboratory context to the care team"),
-]
-RECIPROCAL_RELATED["guides/cannabis-product-complaint-adverse-event-reporting/index.html"] = [
-    ("guides/cannabis-menu-package-receipt-match-checklist/", "PRESERVE THE TRANSACTION", "Keep menu, cart, package, lot, price, and receipt evidence together"),
-    ("guides/delta-8-thc-label-safety-guide/", "DELTA-8 THC", "Separate psychoactive identity, lot evidence, legal context, and help routes"),
-    ("guides/cannabis-edible-allergen-ingredient-label-guide/", "ALLERGENS + INGREDIENTS", "Preserve the ingredient panel, cross-contact language, and lot"),
-]
-RECIPROCAL_RELATED["gear/cannabis-gear-comparison-worksheet/index.html"] = [
-    ("gear/cannabis-humidity-pack-hygrometer-guide/", "HUMIDITY SYSTEM", "Compare recurring packs, meters, service, and ownership cost"),
-    ("gear/cannabis-rolling-tray-buying-guide/", "TRAY FIT", "Compare task space, hand clearance, storage fit, area, and delivered cost"),
-]
-# October 11 connects the terpene evidence guide to established label and
-# certificate paths and the loupe planner to the neutral model worksheet.
-RECIPROCAL_RELATED["guides/cannabis-certificate-of-analysis-coa-guide/index.html"] = [
-    ("guides/terpenes/", "TERPENE PANELS", "Keep analyte scope, units, aroma, and effect claims separate"),
-    ("guides/cannabis-contaminant-test-results-guide/", "CONTAMINANTS", "Decode pesticide, microbial, metal, solvent, and physical-chemistry panels"),
-    ("guides/cannabis-edible-label-math-checker/", "PACKAGE MATH", "Keep label arithmetic separate from lot-level test results"),
-]
-RECIPROCAL_RELATED["guides/flower/index.html"] = [
-    ("guides/terpenes/", "AROMA + EVIDENCE", "Read the exact-batch panel without turning scent into an effect"),
-    ("guides/cannabis-flower-freshness-package-date-buying-guide/", "FRESHNESS", "Audit dates, seal, lot evidence, condition, and recall status"),
-    ("guides/cannabis-pre-roll-infused-label-buying-guide/", "PRE-ROLLS", "Compare plain and infused products"),
-]
-RECIPROCAL_RELATED["gear/cannabis-gear-comparison-worksheet/index.html"] = [
-    ("gear/cannabis-accessory-return-warranty-recall-guide/", "EXIT PLAN", "Capture return, warranty, support and recall evidence before checkout"),
-    ("gear/cannabis-loupe-pocket-microscope-guide/", "INSPECTION FIT", "Compare field of view, working distance, setup, and ownership cost"),
-    ("gear/cannabis-humidity-pack-hygrometer-guide/", "HUMIDITY SYSTEM", "Compare recurring packs, meters, service, and ownership cost"),
-]
-RECIPROCAL_RELATED["guides/vapes/index.html"] = [
-    ("guides/disposable-vape-vs-510-cartridge-comparison/", "COMPARE SYSTEMS", "Separate integrated disposables from reusable 510 hardware"),
-    ("gear/510-thread-vape-battery-safety/", "POWER SYSTEM", "Match cartridge, battery, settings, charger and recall identity"),
-    ("gear/cannabis-vape-battery-cartridge-disposal-guide/", "DISPOSAL", "Separate residue, electronics and battery waste"),
-]
-RECIPROCAL_RELATED["gear/510-thread-vape-battery-safety/index.html"] = [
-    ("guides/vapes/", "OIL + HARDWARE", "Audit the product, source, ingredients, lot, symptoms and stop-use signs"),
-    ("gear/cannabis-accessory-return-warranty-recall-guide/", "AFTER-SALE PLAN", "Preserve the model, terms, receipt, support and recall route"),
-    ("guides/disposable-vape-vs-510-cartridge-comparison/", "COMPARE SYSTEMS", "Choose between an integrated pen and reusable battery"),
-]
-RECIPROCAL_RELATED["gear/cannabis-vape-battery-cartridge-disposal-guide/index.html"] = [
-    ("guides/vapes/", "BEFORE USE", "Identify the oil, lot, hardware, condition and symptom plan"),
-    ("gear/cannabis-accessory-return-warranty-recall-guide/", "RETURN OR RECALL", "Keep a safety remedy separate from the waste route"),
-    ("guides/disposable-vape-vs-510-cartridge-comparison/", "BEFORE PURCHASE", "Include end-of-life in the device decision"),
-]
-RECIPROCAL_RELATED["guides/cannabis-product-complaint-adverse-event-reporting/index.html"] = [
-    ("gear/cannabis-accessory-return-warranty-recall-guide/", "ACCESSORY PROBLEM", "Separate seller return, warranty, recall and safety reporting"),
-    ("guides/cannabis-menu-package-receipt-match-checklist/", "PRESERVE THE TRANSACTION", "Keep menu, cart, package, lot, price, and receipt evidence together"),
-    ("guides/cannabis-edible-allergen-ingredient-label-guide/", "ALLERGENS + INGREDIENTS", "Preserve the ingredient panel, cross-contact language, and lot"),
-]
-# October 14 gives the rebuilt alcohol handoff record direct routes from the
-# established transport and hosting pages, and connects the three-model light
-# comparison to the lawful home-grow and neutral gear-comparison paths.
-RECIPROCAL_RELATED["guides/cannabis-driving-impairment-sober-timer/index.html"] = [
-    ("guides/cannabis-and-alcohol-mixing-risks/", "ALCOHOL + CANNABIS", "Keep both exposure clocks visible and remove driving before either substance"),
-    ("guides/cannabis-social-hosting-guest-safety-plan/", "SOCIAL HOSTING", "Build the sober ride, product control, and emergency plan before guests arrive"),
-    ("guides/cannabis-overconsumption-poisoning-response/", "URGENT RESPONSE", "Separate supportive care, Poison Control, and 911"),
-]
-RECIPROCAL_RELATED["guides/cannabis-social-hosting-guest-safety-plan/index.html"] = [
-    ("guides/cannabis-and-alcohol-mixing-risks/", "TWO-SUBSTANCE RECORD", "Prepare the exposure and emergency handoff record"),
-    ("guides/cannabis-driving-impairment-sober-timer/", "TRANSPORT", "Remove driving before the gathering begins"),
-    ("guides/cannabis-overconsumption-poisoning-response/", "RESPONSE", "Choose supportive care, Poison Control, or 911"),
-]
-RECIPROCAL_RELATED["guides/new-york-home-cannabis-grow-planner/index.html"] = [
-    ("gear/indoor-cannabis-grow-light-buying-cost-planner/", "LIGHT COMPARISON", "Compare three exact systems and their light-only ownership cost"),
-    ("guides/new-york-home-cannabis-pest-mold-ipm-guide/", "PESTS + MOISTURE", "Build an identification-first scouting and IPM record"),
-]
-RECIPROCAL_RELATED["gear/cannabis-gear-comparison-worksheet/index.html"] = [
-    ("gear/indoor-cannabis-grow-light-buying-cost-planner/", "GROW LIGHTS", "Compare load, energy, required setup, maintenance, and horizon cost"),
-    ("gear/cannabis-accessory-return-warranty-recall-guide/", "EXIT PLAN", "Capture return, warranty, support, and recall evidence before checkout"),
-    ("gear/cannabis-loupe-pocket-microscope-guide/", "INSPECTION FIT", "Compare field of view, working distance, setup, and ownership cost"),
-]
-# October 16 adds a claim-auditing authority asset and rebuilds the edible
-# purchase path. Reciprocal links connect them to established evidence,
-# complaint, label-math, allergen, and storage pages without creating a
-# separate duplicate topic cluster.
-RECIPROCAL_RELATED["guides/cannabis-official-source-directory/index.html"] = [
-    ("guides/cannabis-claim-fact-check-worksheet/", "FACT-CHECK A CLAIM", "Match the source, product, route, people, outcome, time, rule, and certainty"),
-    ("guides/cannabis-product-complaint-adverse-event-reporting/", "REPORTING", "Preserve the person, package, lot, problem, and correct route"),
-    ("guides/cannabis-product-recall-batch-checker/", "RECALLS", "Match the exact lot to the current official notice"),
-]
-RECIPROCAL_RELATED["guides/cannabis-cbd-cancer-claims-evidence-guide/index.html"] = [
-    ("guides/cannabis-claim-fact-check-worksheet/", "CLAIM AUDIT", "Test product, route, population, outcome, duration, harms, and certainty"),
-    ("guides/cannabis-cbd-medication-interactions/", "MEDICINES", "Bring the exact product and complete medicine list to the care team"),
-    ("guides/cannabis-official-source-directory/", "SOURCE ROUTER", "Use the authority that owns each question"),
-]
-RECIPROCAL_RELATED["guides/edibles/index.html"] = [
-    ("guides/cannabis-edible-label-math-checker/", "CHECK THE MATH", "Reconcile serving, piece, and package totals without dose advice"),
-    ("guides/cannabis-edible-allergen-ingredient-label-guide/", "INGREDIENTS", "Keep allergen and cross-contact evidence separate from cannabinoid testing"),
-    ("guides/cannabis-child-resistant-packaging-home-storage-guide/", "PACKAGE TO LOCK", "Audit the package, reclosure, enclosure, placement, and routine"),
-]
-# October 17 rebuilds the cross-format storage reference and adds an
-# accessibility-first equipment decision path. Reciprocal links keep original
-# packaging, locked access, label identity, and honest gear comparison joined.
-RECIPROCAL_RELATED["guides/cannabis-child-resistant-packaging-home-storage-guide/index.html"] = [
-    ("guides/storage/", "STORAGE BY FORMAT", "Carry identity, condition, environment, access, and routine across every product type"),
-    ("gear/cannabis-accessibility-tools-buying-guide/", "ACCESSIBLE ROUTINE", "Reduce opening, reading, reach, grip, and lock barriers without defeating package safety"),
-    ("guides/cannabis-package-seal-tamper-evidence-checklist/", "SEAL + CLOSURE", "Inspect the unopened package and preserve the evidence trail"),
-]
-RECIPROCAL_RELATED["gear/cannabis-gear-comparison-worksheet/index.html"] = [
-    ("gear/cannabis-accessibility-tools-buying-guide/", "ACCESSIBILITY FIT", "Test the exact task, package, full use cycle, reclosure, lock, care, and exit terms"),
-    ("gear/indoor-cannabis-grow-light-buying-cost-planner/", "GROW LIGHTS", "Compare load, energy, required setup, maintenance, and horizon cost"),
-    ("gear/cannabis-accessory-return-warranty-recall-guide/", "EXIT PLAN", "Capture return, warranty, support, and recall evidence before checkout"),
-]
-# October 18 attaches the rebuilt tolerance record to established safety and
-# medication pages, and returns the grinder checkout path from established
-# comparison and maintenance pages.
-RECIPROCAL_RELATED.setdefault("responsible-use/index.html", []).append(
-    ("guides/cannabis-tolerance-dependence-withdrawal/", "PATTERN RECORD", "Map exposure, function, change attempts, and support routes without self-diagnosis")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-cbd-medication-interactions/index.html", []).append(
-    ("guides/cannabis-tolerance-dependence-withdrawal/", "TOLERANCE + WITHDRAWAL", "Bring products, medicines, other substances, symptoms, and change attempts into one review")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
-    0, ("gear/grinders/", "GRINDER FIT", "Run exact models through dry fit, materials, cleaning, service, recall, and return gates")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-tool-cleaning-kit/index.html", []).append(
-    ("gear/grinders/", "GRINDER CARE", "Match brushes, cleaners, inspection, drying, and replacement rules to the exact model")
-)
-# October 19 connects the rebuilt label field guide back from the lot-report
-# and official-source authorities, and routes exact lighter comparisons from
-# the neutral gear worksheet and fire-safe disposal page.
-RECIPROCAL_RELATED.setdefault("guides/cannabis-certificate-of-analysis-coa-guide/index.html", []).insert(
-    0, ("guides/read-a-label/", "PACKAGE RECORD", "Reconcile identity, quantity basis, ingredients, warnings, lot, dates, and report route")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-official-source-directory/index.html", []).insert(
-    0, ("guides/read-a-label/", "LABEL FIELD GUIDE", "Build the package-to-lot evidence card before interpreting claims")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
-    0, ("gear/cannabis-lighter-flame-safety-guide/", "IGNITION TOOL", "Compare exact models by job, controls, hand fit, recall route, storage, and cost")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-ashtray-ember-disposal-guide/index.html", []).insert(
-    0, ("gear/cannabis-lighter-flame-safety-guide/", "IGNITION SOURCE", "Verify the exact model, intended job, controls, condition, and storage")
-)
-# October 21 makes the pet-exposure response and jar planner discoverable from
-# established veterinary, storage, package-access, and odor-control references.
-RECIPROCAL_RELATED["guides/storage/index.html"] = [
-    ("guides/cannabis-and-pets-accidental-exposure/", "PET EXPOSURE", "Prepare the call record and close the exact access route"),
-    ("gear/cannabis-stash-jar-buying-guide/", "SECONDARY JAR", "Measure capacity, headspace, costs, claims, identity, and locked fit"),
-    ("gear/smell-proof-storage/", "LOCKBOX FIT", "Keep odor language, access control, and usable interior fit separate"),
-]
-RECIPROCAL_RELATED["guides/cbd-products-for-pets-veterinarian-label-guide/index.html"] = [
-    ("guides/cannabis-and-pets-accidental-exposure/", "ACCIDENTAL EXPOSURE", "Call promptly and preserve the exact product, ingredient, and timing record"),
-]
-RECIPROCAL_RELATED["gear/smell-proof-storage/index.html"] = [
-    ("gear/cannabis-stash-jar-buying-guide/", "JAR PLANNER", "Measure capacity, headspace, claims, and ownership cost"),
-    ("guides/cannabis-child-resistant-packaging-home-storage-guide/", "PACKAGE + LOCK", "Keep child resistance and household access as separate layers"),
-    ("guides/storage/", "STORAGE SYSTEM", "Match each format to identity, environment, and access controls"),
-]
-# October 22 strengthens discovery with contextual links for two new guides and
-# repairs the four remaining guide routes that depended on their hub alone.
-RECIPROCAL_RELATED.setdefault("guides/cannabis-product-recall-batch-checker/index.html", []).insert(
-    0, ("guides/cannabis-product-disposal-decision-guide/", "DISPOSAL", "Preserve the remedy first, then separate product, battery, glass, and package routes")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-product-complaint-adverse-event-reporting/index.html", []).insert(
-    0, ("guides/cannabis-product-disposal-decision-guide/", "SAFE HANDOFF", "Keep evidence until the responsible service gives a safe disposal route")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-product-price-label-comparison-calculator/index.html", []).insert(
-    0, ("guides/cannabis-dispensary-loyalty-rewards-value-privacy-guide/", "REWARDS", "Subtract expiry, fees, price differences, and data tradeoffs from headline points")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-menu-package-receipt-match-checklist/index.html", []).insert(
-    0, ("guides/cannabis-dispensary-loyalty-rewards-value-privacy-guide/", "PROGRAM TERMS", "Keep the rewards account separate from the product and receipt record")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-overconsumption-poisoning-response/index.html", []).insert(
-    0, ("guides/cannabinoid-hyperemesis-syndrome-warning-signs/", "REPEATED VOMITING", "Recognize the recurrent pattern that needs clinical assessment")
-)
-RECIPROCAL_RELATED.setdefault("guides/vapes/index.html", []).insert(
-    0, ("guides/cannabis-concentrates-dabs-label-safety-guide/", "CONCENTRATES", "Separate extract identity, potency labels, heat, and equipment risk")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-before-surgery-anesthesia/index.html", []).insert(
-    0, ("guides/cannabis-pregnancy-breastfeeding-guidance/", "PREGNANCY", "Use current CDC and FDA guidance and disclose every product")
-)
-RECIPROCAL_RELATED.setdefault("guides/cbg-products-label-evidence-guide/index.html", []).insert(
-    0, ("guides/cbg-dominant-cannabis-chemotype-guide/", "CHEMOTYPE", "Separate a CBG-dominant batch record from a finished-product claim")
-)
-# October 23 connects the post-harvest batch log and secondhand equipment
-# screen from established, genuinely adjacent decision pages.
-RECIPROCAL_RELATED.setdefault("guides/new-york-home-cannabis-grow-planner/index.html", []).insert(
-    0, ("guides/new-york-home-cannabis-harvest-drying-curing-log/", "POST-HARVEST", "Carry plant identity, room safety, moisture, condition, and possession into one batch log")
-)
-RECIPROCAL_RELATED.setdefault("guides/new-york-home-cannabis-pest-mold-ipm-guide/index.html", []).insert(
-    0, ("guides/new-york-home-cannabis-harvest-drying-curing-log/", "HARVEST RECORD", "Keep moisture, contamination, condition, and disposition attached after cutting")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
-    0, ("gear/used-cannabis-accessory-buying-safety-guide/", "SECONDHAND", "Keep recall, residue, battery, missing-part, warranty, and adjusted-cost unknowns visible")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-accessory-return-warranty-recall-guide/index.html", []).insert(
-    0, ("gear/used-cannabis-accessory-buying-safety-guide/", "USED GEAR", "Screen exact identity, condition, transferability, and the return path before handoff")
-)
-# October 24 completes one CBG-variety, one consumer-testing, and one federal-
-# housing cluster without sending unrelated links across the publication.
-RECIPROCAL_RELATED.setdefault("guides/cbg-products-label-evidence-guide/index.html", []).insert(
-    0, ("strains/panakeia-beta-hurv19pan/", "HURV19PAN", "Apply the variety-to-seed-to-crop-to-package evidence chain")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
-    0, ("gear/cannabis-home-testing-kit-buying-guide/", "HOME TESTING", "Compare the complete sample-to-result system and its limits")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-certificate-of-analysis-coa-guide/index.html", []).insert(
-    0, ("gear/cannabis-home-testing-kit-buying-guide/", "HOME TESTING LIMIT", "Know when a household result cannot replace a regulated report")
-)
-RECIPROCAL_RELATED.setdefault("legal/cannabis-federal-property-rules-guide/index.html", []).insert(
-    0, ("legal/cannabis-federally-assisted-housing-guide/", "FEDERAL HOUSING", "Identify the program, lease, conduct, notice, and deadline")
-)
-RECIPROCAL_RELATED.setdefault("legal/new-york/index.html", []).insert(
-    0, ("legal/cannabis-federally-assisted-housing-guide/", "HOUSING LAYER", "Separate state cannabis law from federal assistance and lease rules")
-)
-# October 25 connects the first-purchase planner and source handoff from
-# established checkout, label, comparison, and evidence pages.
-RECIPROCAL_RELATED.setdefault("guides/read-a-label/index.html", []).insert(
-    0, ("start-here/", "FIRST PURCHASE", "Write the brief, verify the seller, and run the ten checkout gates")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-product-price-label-comparison-calculator/index.html", []).insert(
-    0, ("start-here/", "DECISION PLAN", "Compare cost only after source, route, formula, lot, and control pass")
-)
-RECIPROCAL_RELATED.setdefault("legal/shop-legal/index.html", []).insert(
-    0, ("start-here/", "START HERE", "Carry seller verification into a complete first-purchase plan")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-claim-fact-check-worksheet/index.html", []).insert(
-    0, ("guides/cannabis-official-source-directory/", "SOURCE HANDOFF", "Identify the owner, status, exact object, limits, and next route")
-)
-# October 26 connects the new temporary-event verification tool to permanent
-# seller verification and private-gathering boundaries without implying that
-# a showcase permit authorizes consumption.
-RECIPROCAL_RELATED.setdefault("legal/shop-legal/index.html", []).insert(
-    0, ("guides/new-york-cannabis-showcase-event-verification-guide/", "TEMPORARY EVENT", "Verify the event permit, seller, participant, package, price, receipt, and use boundary")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-social-hosting-guest-safety-plan/index.html", []).insert(
-    0, ("guides/new-york-cannabis-showcase-event-verification-guide/", "PUBLIC EVENT", "Keep a regulated temporary sale separate from private hosting and consumption")
-)
-# October 27 joins the appointment-preparation asset to clinical decision pages
-# and the monitor guide to the established lawful-home-grow cluster.
-RECIPROCAL_RELATED.setdefault("guides/cannabis-cbd-medication-interactions/index.html", []).insert(
-    0, ("guides/how-to-talk-to-doctor-about-cannabis/", "APPOINTMENT RECORD", "Bring the exact product, whole medicine list, timeline, questions, and follow-up owner")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-before-surgery-anesthesia/index.html", []).insert(
-    0, ("guides/how-to-talk-to-doctor-about-cannabis/", "CARE HANDOFF", "Build a concise cannabis, medicine, symptom, and instruction record")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-older-adults-medication-fall-safety/index.html", []).insert(
-    0, ("guides/how-to-talk-to-doctor-about-cannabis/", "CLINICIAN QUESTIONS", "Turn product identity, medicines, falls, function, and timing into one visit record")
-)
-RECIPROCAL_RELATED.setdefault("guides/new-york-home-cannabis-grow-planner/index.html", []).insert(
-    0, ("gear/home-grow-temperature-humidity-monitor-buying-guide/", "ENVIRONMENT RECORD", "Compare sensor claims, placement, logging, alarms, verification, and failure behavior")
-)
-RECIPROCAL_RELATED.setdefault("guides/new-york-home-cannabis-pest-mold-ipm-guide/index.html", []).insert(
-    0, ("gear/home-grow-temperature-humidity-monitor-buying-guide/", "MEASURE THE ROOM", "Preserve temperature, humidity, placement, time, and uncertainty with the scouting record")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
-    0, ("gear/home-grow-temperature-humidity-monitor-buying-guide/", "ENVIRONMENT MONITORS", "Compare three exact systems by evidence, failure path, total cost, and return test")
-)
-# October 28 connects the cannabis-allergy exposure record to established
-# ingredient, lung-health, clinician-handoff, and reporting pages. These are
-# contextual reader routes; they do not imply a diagnosis or product finding.
-RECIPROCAL_RELATED.setdefault("guides/cannabis-edible-allergen-ingredient-label-guide/index.html", []).insert(
-    0, ("guides/cannabis-allergy-symptom-exposure-guide/", "PLANT + PRODUCT EXPOSURE", "Separate plant, smoke, dust, ingredients, environment, symptoms, and emergency signs")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-smoke-vape-lung-health-guide/index.html", []).insert(
-    0, ("guides/cannabis-allergy-symptom-exposure-guide/", "ALLERGY OR IRRITANT QUESTION", "Build a route, task, environment, symptom, and clinician handoff record")
-)
-RECIPROCAL_RELATED.setdefault("guides/how-to-talk-to-doctor-about-cannabis/index.html", []).insert(
-    0, ("guides/cannabis-allergy-symptom-exposure-guide/", "ALLERGY HANDOFF", "Preserve the exact exposure, clock-based symptoms, urgent plan, and questions")
-)
-# October 29 connects the nicotine/tobacco co-use record to the established
-# lung, clinician, and withdrawal paths without treating co-use as a route tip.
-RECIPROCAL_RELATED.setdefault("guides/cannabis-smoke-vape-lung-health-guide/index.html", []).insert(
-    0, ("guides/cannabis-nicotine-tobacco-co-use-guide/", "CANNABIS + NICOTINE", "Separate cannabis, tobacco, nicotine, route, timing, symptoms, and support")
-)
-RECIPROCAL_RELATED.setdefault("guides/how-to-talk-to-doctor-about-cannabis/index.html", []).insert(
-    0, ("guides/cannabis-nicotine-tobacco-co-use-guide/", "TWO-PRODUCT HANDOFF", "Bring both product lines, both clocks, symptoms, medicines, and one decision goal")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-tolerance-dependence-withdrawal/index.html", []).insert(
-    0, ("guides/cannabis-nicotine-tobacco-co-use-guide/", "NICOTINE + CANNABIS", "Keep co-use, cues, withdrawal concerns, and quit support on separate lines")
-)
-# October 30 connects the whole-home fire plan to the established ignition,
-# battery, cultivation, and measurement paths. The links consolidate distinct
-# hazards without turning the safety plan into a consumption or grow tutorial.
-RECIPROCAL_RELATED.setdefault("gear/cannabis-lighter-flame-safety-guide/index.html", []).insert(
-    0, ("guides/cannabis-home-fire-safety-plan/", "WHOLE-HOME PLAN", "Put alarms, escape, flame, embers, batteries, grow loads, and household roles on one page")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-ashtray-ember-disposal-guide/index.html", []).insert(
-    0, ("guides/cannabis-home-fire-safety-plan/", "ALARMS + ESCAPE", "Keep ember disposal inside a complete alarm, exit, battery, and electrical plan")
-)
-RECIPROCAL_RELATED.setdefault("gear/510-thread-vape-battery-safety/index.html", []).insert(
-    0, ("guides/cannabis-home-fire-safety-plan/", "BATTERY FIRE PLAN", "Connect exact-device charging controls to alarms, escape, and household response")
-)
-RECIPROCAL_RELATED.setdefault("guides/new-york-home-cannabis-grow-planner/index.html", []).insert(
-    0, ("gear/home-grow-ph-ec-meter-buying-guide/", "WATER MEASUREMENT", "Separate pH, EC, alkalinity, sampling, standards, records, and the laboratory exit")
-)
-RECIPROCAL_RELATED.setdefault("gear/home-grow-temperature-humidity-monitor-buying-guide/index.html", []).insert(
-    0, ("gear/home-grow-ph-ec-meter-buying-guide/", "PH + EC METERS", "Compare measurement jobs, standards, probe care, acceptance checks, and total system cost")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-home-testing-kit-buying-guide/index.html", []).insert(
-    0, ("gear/home-grow-ph-ec-meter-buying-guide/", "WATER MEASUREMENT", "Apply the sample, method, control, result, and qualified-lab framework to pH and EC")
-)
-# October 31 connects the starter-source guide to the lawful home-grow, IPM,
-# seller-verification, and complaint paths. It also gives the expanded manual
-# roller comparison a route from established paper and accessibility guides.
-RECIPROCAL_RELATED.setdefault("guides/new-york-home-cannabis-grow-planner/index.html", []).insert(
-    0, ("guides/new-york-cannabis-seed-clone-buying-guide/", "SEEDS + CLONES", "Verify the seller, starter type, source identity, label, plant-health record, count, and rejection path")
-)
-RECIPROCAL_RELATED.setdefault("guides/new-york-home-cannabis-pest-mold-ipm-guide/index.html", []).insert(
-    0, ("guides/new-york-cannabis-seed-clone-buying-guide/", "NEW PLANT INTAKE", "Keep source, disclosures, delivered condition, separation, observation, and escalation together")
-)
-RECIPROCAL_RELATED.setdefault("legal/shop-legal/index.html", []).insert(
-    0, ("guides/new-york-cannabis-seed-clone-buying-guide/", "SEEDS + PLANTS", "Carry seller verification into the exact home-cultivation starter record")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-rolling-paper-cone-guide/index.html", []).insert(
-    0, ("gear/cannabis-rolling-machine-buying-guide/", "MANUAL ROLLER", "Match measured paper and tip dimensions to the usable bed and service system")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-accessibility-tools-buying-guide/index.html", []).insert(
-    0, ("gear/cannabis-rolling-machine-buying-guide/", "PAPER HANDLING", "Test whether a measured manual roller actually resolves the blocked task")
-)
-# November 1 connects the shared-kitchen authority asset to established edible,
-# allergen, hosting, and storage references, and the controller comparison to
-# the existing grow-planning, lighting, and fire-safety system.
-RECIPROCAL_RELATED.setdefault("guides/edibles/index.html", []).insert(
-    0, ("guides/cannabis-shared-kitchen-edible-safety-plan/", "SHARED KITCHEN", "Keep identity, allergens, access, handoffs, leftovers, cleanup, and response in one chain")
-)
-RECIPROCAL_RELATED.setdefault("guides/storage/index.html", []).insert(
-    0, ("guides/cannabis-shared-kitchen-edible-safety-plan/", "SHARED KITCHEN", "Keep infused food outside the ordinary meal, snack, refrigerator, and cleanup path")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-social-hosting-guest-safety-plan/index.html", []).insert(
-    0, ("guides/cannabis-shared-kitchen-edible-safety-plan/", "FOOD CONTROL", "Assign the edible, ingredient, access, leftover, cleanup, and emergency handoff")
-)
-RECIPROCAL_RELATED.setdefault("guides/new-york-home-cannabis-grow-planner/index.html", []).insert(
-    0, ("gear/home-grow-timer-controller-buying-guide/", "CONTROL SYSTEM", "Match exact loads, ratings, environment, failure states, alarms, and support before automation")
-)
-RECIPROCAL_RELATED.setdefault("gear/indoor-cannabis-grow-light-buying-cost-planner/index.html", []).insert(
-    0, ("gear/home-grow-timer-controller-buying-guide/", "TIMER + CONTROLLER", "Carry the exact input, permitted control method, restart behavior, and whole-system cost into automation")
-)
-# November 2 connects the cross-format date-and-condition asset to established
-# storage, seal, recall, disposal, and price-comparison decisions.
-RECIPROCAL_RELATED.setdefault("guides/storage/index.html", []).insert(
-    0, ("guides/cannabis-product-dates-condition-decision-guide/", "DATES + CONDITION", "Keep expiration wording, opening state, storage history, condition, lot, and exit route together")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-package-seal-tamper-evidence-checklist/index.html", []).insert(
-    0, ("guides/cannabis-product-dates-condition-decision-guide/", "DATE DECISION", "Do not let a future date override a damaged seal, recall, or storage failure")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-product-recall-batch-checker/index.html", []).insert(
-    0, ("guides/cannabis-product-dates-condition-decision-guide/", "DATE + LOT", "Route expiration, use-by, opening, condition, and current notice as one record")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-product-disposal-decision-guide/index.html", []).insert(
-    0, ("guides/cannabis-product-dates-condition-decision-guide/", "DATE EXIT", "Preserve the product record before choosing return, complaint, recall, or disposal")
-)
-# November 3 connects the fertility evidence map and trimming-tool decision
-# guide from established clinical-preparation, harvest, care, and comparison
-# pages. The links solve adjacent reader tasks rather than repeating intent.
-RECIPROCAL_RELATED.setdefault("guides/cannabis-pregnancy-breastfeeding-guidance/index.html", []).insert(
-    0, ("guides/cannabis-fertility-preconception-evidence-guide/", "PRECONCEPTION", "Separate fertility endpoints, evidence limits, partner exposures, and the clinical handoff")
-)
-RECIPROCAL_RELATED.setdefault("guides/how-to-talk-to-doctor-about-cannabis/index.html", []).insert(
-    0, ("guides/cannabis-fertility-preconception-evidence-guide/", "FERTILITY VISIT", "Bring the exact exposure, medicines, reproductive timeline, endpoint, and questions")
-)
-RECIPROCAL_RELATED.setdefault("guides/new-york-home-cannabis-harvest-drying-curing-log/index.html", []).insert(
-    0, ("gear/cannabis-harvest-trimming-scissors-buying-guide/", "CUTTING TOOL", "Match the batch task, hand fit, blade, care, inspection, and protected storage")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-tool-cleaning-kit/index.html", []).insert(
-    0, ("gear/cannabis-harvest-trimming-scissors-buying-guide/", "SCISSOR CARE", "Carry exact tool and cleaner compatibility into the purchase decision")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
-    0, ("gear/cannabis-harvest-trimming-scissors-buying-guide/", "TRIMMING TOOLS", "Compare three exact tools by job, hand fit, care, return test, and ownership cost")
-)
-# November 4 connects the label-evidence guide to established terpene, flower,
-# and product-identity paths while the reading-aid guide joins the accessibility,
-# label, inspection, and report-matching cluster.
-RECIPROCAL_RELATED.setdefault("guides/terpenes/index.html", []).insert(
-    0, ("guides/indica-sativa-hybrid-label-evidence-guide/", "RETAIL SHORTHAND", "Keep indica, sativa, hybrid, measured chemistry, and effect claims in separate evidence lanes")
-)
-RECIPROCAL_RELATED.setdefault("guides/flower/index.html", []).insert(
-    0, ("guides/indica-sativa-hybrid-label-evidence-guide/", "INDICA VS SATIVA", "Compare the exact package and lot instead of treating a category as a composition or effect guarantee")
-)
-RECIPROCAL_RELATED.setdefault("guides/read-a-label/index.html", []).insert(
-    0, ("gear/cannabis-label-magnifier-task-light-buying-guide/", "READING ACCESS", "Choose magnification and light by field, working distance, glare, package fit, privacy, and return testing")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-accessibility-tools-buying-guide/index.html", []).insert(
-    0, ("gear/cannabis-label-magnifier-task-light-buying-guide/", "LABEL VISIBILITY", "Match the reading task without hiding identity, defeating reclosure, or losing the locked-storage routine")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-loupe-pocket-microscope-guide/index.html", []).insert(
-    0, ("gear/cannabis-label-magnifier-task-light-buying-guide/", "READING TOOL", "Separate full-label reading from close condition inspection before buying optics")
-)
-# November 5 connects cognition evidence from established residual-function,
-# clinical-preparation, and research-literacy pages. The measuring guide is
-# routed from the exact oil-label, label-math, and accessibility decisions.
-RECIPROCAL_RELATED.setdefault("guides/cannabis-next-day-impairment-evidence-guide/index.html", []).insert(
-    0, ("guides/cannabis-memory-attention-cognition-evidence-guide/", "MEMORY + ATTENTION", "Separate cognitive domains, acute and residual windows, confounders, and task records")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-older-adults-medication-fall-safety/index.html", []).insert(
-    0, ("guides/cannabis-memory-attention-cognition-evidence-guide/", "COGNITION RECORD", "Bring product, timing, medicines, baseline, function, and safety into one review")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-claim-fact-check-worksheet/index.html", []).insert(
-    0, ("guides/cannabis-memory-attention-cognition-evidence-guide/", "COGNITION EVIDENCE", "Read population, exposure window, cognitive domain, task, comparator, result, and limitations together")
-)
-RECIPROCAL_RELATED.setdefault("guides/cbd-oil-tincture-label-buying-guide/index.html", []).insert(
-    0, ("gear/cannabis-liquid-measuring-tool-buying-guide/", "MEASURING TOOL", "Match the exact mL instruction, graduations, capacity, package fit, control, care, and exit")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-edible-label-math-checker/index.html", []).insert(
-    0, ("gear/cannabis-liquid-measuring-tool-buying-guide/", "LIQUID VOLUME", "Keep milliliters, milligrams, concentration, serving, and device markings in separate fields")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-accessibility-tools-buying-guide/index.html", []).insert(
-    0, ("gear/cannabis-liquid-measuring-tool-buying-guide/", "LIQUID MEASUREMENT", "Solve visibility and hand-control barriers without changing the instructed unit or package routine")
-)
-# November 6 routes the donor and indoor-air resources from established pages
-# before the four-card related-reading cap is applied.
-RECIPROCAL_RELATED.setdefault("guides/how-to-talk-to-doctor-about-cannabis/index.html", []).insert(
-    0, ("guides/cannabis-blood-donation-eligibility-guide/", "DONOR SCREENING", "Prepare a precise cannabis and blood-donation eligibility question")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-heart-rate-blood-pressure-safety/index.html", []).insert(
-    0, ("guides/cannabis-blood-donation-eligibility-guide/", "BLOOD DONATION", "Keep cannabis use, current function, medicines, vital signs, and center rules separate")
-)
-RECIPROCAL_RELATED.setdefault("guides/secondhand-cannabis-smoke-indoor-air/index.html", []).insert(
-    0, ("gear/cannabis-smoke-air-quality-monitor-buying-guide/", "AIR MONITORING", "Choose sensors by pollutant, data need, placement, and safety boundary")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-home-fire-safety-plan/index.html", []).insert(
-    0, ("gear/cannabis-smoke-air-quality-monitor-buying-guide/", "MONITOR BOUNDARY", "Keep air monitors separate from required smoke and carbon-monoxide alarms")
-)
-RECIPROCAL_RELATED.setdefault("gear/air-purifier-cannabis-smoke-odor-guide/index.html", []).insert(
-    0, ("gear/cannabis-smoke-air-quality-monitor-buying-guide/", "MEASURE FIRST", "Compare monitor channels, data access, placement, and first-year cost")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
-    0, ("gear/cannabis-smoke-air-quality-monitor-buying-guide/", "SENSOR WORKFLOW", "Turn an indoor-air question into a three-monitor comparison")
-)
-# November 7 routes the migraine and ventilation resources from established
-# pages before the related-reading cap is applied.
-RECIPROCAL_RELATED.setdefault("guides/cannabis-cbd-chronic-pain-evidence-guide/index.html", []).insert(
-    0, ("guides/cannabis-migraine-headache-evidence-guide/", "MIGRAINE EVIDENCE", "Keep one route-specific acute trial inside its real evidence boundaries")
-)
-RECIPROCAL_RELATED.setdefault("guides/how-to-talk-to-doctor-about-cannabis/index.html", []).insert(
-    0, ("guides/cannabis-migraine-headache-evidence-guide/", "HEADACHE HANDOFF", "Bring a bounded evidence question and a dated symptom record")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-home-fire-safety-plan/index.html", []).insert(
-    0, ("gear/home-grow-ventilation-fan-buying-guide/", "FAN SAFETY", "Check airflow purpose, controls, mounting, power, recalls, and failure states")
-)
-RECIPROCAL_RELATED.setdefault("gear/home-grow-temperature-humidity-monitor-buying-guide/index.html", []).insert(
-    0, ("gear/home-grow-ventilation-fan-buying-guide/", "AIRFLOW SYSTEM", "Match the monitoring question to the fan, air path, controls, and acceptance test")
-)
-RECIPROCAL_RELATED.setdefault("gear/home-grow-timer-controller-buying-guide/index.html", []).insert(
-    0, ("gear/home-grow-ventilation-fan-buying-guide/", "FAN CONTROL", "Require exact motor compatibility, safe minimum speed, restart behavior, and override")
-)
-# November 8 connects the caregiving authority asset and the lockbox decision
-# system from established, non-duplicative pages in their topic clusters.
-RECIPROCAL_RELATED.setdefault("guides/cannabis-driving-impairment-sober-timer/index.html", []).insert(
-    0, ("guides/cannabis-caregiving-sober-adult-handoff-plan/", "CAREGIVING HANDOFF", "Name the sober adult, care job, transport plan, storage, and response route")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-older-adults-medication-fall-safety/index.html", []).insert(
-    0, ("guides/cannabis-caregiving-sober-adult-handoff-plan/", "CARE TRANSFER", "Keep medicines, mobility, transport, access, and backup responsibility together")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-child-resistant-packaging-home-storage-guide/index.html", []).insert(
-    0, ("gear/cannabis-lockbox-buying-guide/", "LOCKBOX CHECKLIST", "Compare access, interior fit, relock behavior, recovery, claims, and cost")
-)
-RECIPROCAL_RELATED.setdefault("guides/storage/index.html", []).insert(
-    0, ("gear/cannabis-lockbox-buying-guide/", "ACCESS CONTROL", "Keep original packaging inside a measured, locked, failure-tested system")
-)
-RECIPROCAL_RELATED.setdefault("gear/smell-proof-storage/index.html", []).insert(
-    0, ("gear/cannabis-lockbox-buying-guide/", "ACCESS-CONTROL SYSTEM", "Compare users, original-package capacity, lock failure, evidence, and ownership cost")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
-    0, ("gear/cannabis-lockbox-buying-guide/", "LOCKBOX WORKFLOW", "Put three exact enclosures through the same access, fit, claim, recall, and cost screen")
-)
-# November 9 routes the relocation and watering-tool resources from established
-# pages before the four-card related-reading cap is applied.
-RECIPROCAL_RELATED.setdefault("guides/cannabis-official-source-directory/index.html", []).insert(
-    0, ("guides/cannabis-moving-day-relocation-checklist/", "MOVING-DAY ROUTE", "Verify origin, route, destination, property, carrier, product, and date before packing")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-product-disposal-decision-guide/index.html", []).insert(
-    0, ("guides/cannabis-moving-day-relocation-checklist/", "RELOCATION EXIT", "Choose a verified no-transport outcome before a state-line or international move")
-)
-RECIPROCAL_RELATED.setdefault("guides/new-york-home-cannabis-grow-planner/index.html", []).insert(
-    0, ("gear/home-grow-watering-tools-buying-guide/", "WATER PATH", "Map source, lift, delivery, runoff, wet safety, care, and cost before buying equipment")
-)
-RECIPROCAL_RELATED.setdefault("gear/home-grow-ph-ec-meter-buying-guide/index.html", []).insert(
-    0, ("gear/home-grow-watering-tools-buying-guide/", "DELIVERY SYSTEM", "Keep measurement separate from vessels, pumps, tubing, spills, power, and cleaning")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
-    0, ("gear/home-grow-watering-tools-buying-guide/", "WATERING TOOL WORKFLOW", "Compare exact models by task, wet path, delivery, safety, care, recalls, and cost")
-)
-# November 10 returns the diabetes and concentrate-container resources from
-# established clinical, format, storage, and neutral comparison pages.
-RECIPROCAL_RELATED.setdefault("guides/cannabis-cbd-medication-interactions/index.html", []).insert(
-    0, ("guides/cannabis-diabetes-blood-sugar-dka-safety/", "DIABETES + MEDICINES", "Keep glucose, ketone, insulin, medicine, cannabis, symptom, and emergency records together")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabinoid-hyperemesis-syndrome-warning-signs/index.html", []).insert(
-    0, ("guides/cannabis-diabetes-blood-sugar-dka-safety/", "DIABETES + VOMITING", "Do not let a CHS label hide DKA, dehydration, or another urgent cause")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-concentrates-dabs-label-safety-guide/index.html", []).insert(
-    0, ("gear/cannabis-concentrate-container-buying-guide/", "CONTAINER SYSTEM", "Preserve the retail package and compare contact, fit, closure, identity, care, and locked storage")
-)
-RECIPROCAL_RELATED.setdefault("guides/storage/index.html", []).insert(
-    0, ("gear/cannabis-concentrate-container-buying-guide/", "CONCENTRATE CONTAINERS", "Keep the original package, exact lot, secondary organizer, and household lock as separate layers")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-stash-jar-buying-guide/index.html", []).insert(
-    0, ("gear/cannabis-concentrate-container-buying-guide/", "CONCENTRATE-SPECIFIC FIT", "Add contact-path, lid-intrusion, liner, identity, and original-package boundaries")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
-    0, ("gear/cannabis-concentrate-container-buying-guide/", "CONTAINER WORKFLOW", "Run exact containers through contact, usable fit, claims, care, returns, and first-year cost")
-)
-# November 11 returns both new resources from established, intent-matched
-# clinical and hardware pages after the historical reciprocal-link merge.
-RECIPROCAL_RELATED.setdefault("guides/cannabis-anxiety-paranoia-psychosis-warning-signs/index.html", []).insert(
-    0, ("guides/cannabis-ptsd-evidence-safety-guide/", "PTSD EVIDENCE", "Separate short-term relief reports from treatment evidence, function, and urgent warning signs")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-tolerance-dependence-withdrawal/index.html", []).insert(
-    0, ("guides/cannabis-ptsd-evidence-safety-guide/", "PTSD + USE PATTERN", "Track PTSD care, tolerance, withdrawal, function, and treatment participation in separate lanes")
-)
-RECIPROCAL_RELATED.setdefault("guides/how-to-talk-to-doctor-about-cannabis/index.html", []).insert(
-    0, ("guides/cannabis-ptsd-evidence-safety-guide/", "PTSD CLINICIAN HANDOFF", "Bring the exact product, pattern, treatment, function, and evidence questions to the visit")
-)
-RECIPROCAL_RELATED.setdefault("gear/510-thread-vape-battery-safety/index.html", []).insert(
-    0, ("gear/cannabis-device-charger-cable-buying-guide/", "CHARGING SYSTEM", "Match the exact device, battery, port, cable, power source, instructions, condition, and recall status")
-)
-RECIPROCAL_RELATED.setdefault("gear/dry-herb-vaporizer-buying-safety-guide/index.html", []).insert(
-    0, ("gear/cannabis-device-charger-cable-buying-guide/", "CHARGER + CABLE", "Verify maker-supported charging parts and a visible, attended charging setup")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
-    0, ("gear/cannabis-device-charger-cable-buying-guide/", "CHARGING WORKFLOW", "Compare replacement parts by documented compatibility, condition, recalls, returns, and total cost")
-)
-# November 12 preserves the new reciprocal cluster links after the historical
-# merge and related-card limit are applied.
-RECIPROCAL_RELATED.setdefault("guides/cannabis-cbd-and-sleep/index.html", []).insert(
-    0, ("guides/cannabis-sleep-apnea-osa-evidence-safety-guide/", "SLEEP APNEA", "Separate sedation and perceived sleep from measured airway, oxygen, treatment, and next-day outcomes")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-next-day-impairment-evidence-guide/index.html", []).insert(
-    0, ("guides/cannabis-sleep-apnea-osa-evidence-safety-guide/", "OSA + NEXT DAY", "Keep sleepiness, residual impairment, treatment status, and task demands in separate lanes")
-)
-RECIPROCAL_RELATED.setdefault("guides/how-to-talk-to-doctor-about-cannabis/index.html", []).insert(
-    0, ("guides/cannabis-sleep-apnea-osa-evidence-safety-guide/", "SLEEP-CLINIC HANDOFF", "Bring OSA treatment, exact product, co-use, night observations, and next-day function to the visit")
-)
-RECIPROCAL_RELATED.setdefault("gear/home-grow-ventilation-fan-buying-guide/index.html", []).insert(
-    0, ("gear/home-grow-dehumidifier-buying-guide/", "MOISTURE LOAD", "Size moisture removal, drainage, heat, electrical fit, recalls, and cost beside the room air path")
-)
-RECIPROCAL_RELATED.setdefault("gear/home-grow-temperature-humidity-monitor-buying-guide/index.html", []).insert(
-    0, ("gear/home-grow-dehumidifier-buying-guide/", "CONTROL + VERIFICATION", "Use independent measurements to verify the room response and acceptance test")
-)
-RECIPROCAL_RELATED.setdefault("gear/cannabis-gear-comparison-worksheet/index.html", []).insert(
-    0, ("gear/home-grow-dehumidifier-buying-guide/", "DEHUMIDIFIER WORKFLOW", "Compare capacity conditions, drainage, efficiency, operating range, recalls, service, and first-year cost")
-)
-RECIPROCAL_RELATED.setdefault("guides/cbd-hemp-flower-label-legal-guide/index.html", []).insert(
-    0, ("strains/cherry-blonde-cbd/", "CBD CULTIVAR RECORD", "Separate breeder identity, university-trial context, the finished lot, and the current product rule")
-)
-RECIPROCAL_RELATED.setdefault("guides/cannabis-certificate-of-analysis-coa-guide/index.html", []).insert(
-    0, ("strains/cherry-blonde-cbd/", "LOT-MATCH EXAMPLE", "Apply the package, lot, dates, units, panels, and report-status chain to a named CBD cultivar")
-)
-# November 14 keeps the complete batch inside established decision paths after
-# the historical reciprocal merge and per-page related-card cap are applied.
-for _source, _link in _nov14_batch_guide_links.items():
-    RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
-for _source, _link in _nov14_batch_gear_links.items():
-    RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
-for _source, _links in NOV15_RECIPROCAL_LINKS.items():
-    for _link in reversed(_links):
-        RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
-for _source, _links in NOV16_RECIPROCAL_LINKS.items():
-    for _link in reversed(_links):
-        RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
-for _source, _links in NOV17_RECIPROCAL_LINKS.items():
-    for _link in reversed(_links):
-        RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
-for _source, _links in NOV18_RECIPROCAL_LINKS.items():
-    for _link in reversed(_links):
-        RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
-for _source, _links in NOV19_RECIPROCAL_LINKS.items():
-    for _link in reversed(_links):
-        RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
-for _source, _links in NOV20_RECIPROCAL_LINKS.items():
-    for _link in reversed(_links):
-        RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
-for _source, _links in NOV21_RECIPROCAL_LINKS.items():
-    for _link in reversed(_links):
-        RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
-for _source, _links in NOV22_RECIPROCAL_LINKS.items():
-    for _link in reversed(_links):
-        RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
-for _source, _links in NOV23_RECIPROCAL_LINKS.items():
-    for _link in reversed(_links):
-        RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
-for _source, _links in NOV24_RECIPROCAL_LINKS.items():
-    for _link in reversed(_links):
-        RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
-for _source, _links in NOV25_RECIPROCAL_LINKS.items():
-    for _link in reversed(_links):
-        RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
-for _source in (
-    "guides/read-a-label/index.html",
-    "guides/cannabis-terms-label-lab-glossary/index.html",
-    "guides/cannabis-package-seal-tamper-evidence-checklist/index.html",
-):
-    RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _nov13_guide_links[_source])
-for _item in GUIDE_PAGES + OTHER_ARTICLES:
-    if _item["path"] in NOV15_REVIEWED_RELATED_PATHS:
-        _item["updated"] = "November 15, 2026"
-for _item in GUIDE_PAGES + OTHER_ARTICLES:
-    if _item["path"] in NOV16_REVIEWED_RELATED_PATHS:
-        _item["updated"] = "November 16, 2026"
-for _item in GUIDE_PAGES + OTHER_ARTICLES:
-    if _item["path"] in NOV17_REVIEWED_RELATED_PATHS:
-        _item["updated"] = "November 17, 2026"
-for _item in GUIDE_PAGES + OTHER_ARTICLES:
-    if _item["path"] in NOV18_REVIEWED_RELATED_PATHS:
-        _item["updated"] = "November 18, 2026"
-for _item in GUIDE_PAGES + OTHER_ARTICLES:
-    if _item["path"] in NOV19_REVIEWED_RELATED_PATHS:
-        _item["updated"] = "November 19, 2026"
-for _item in GUIDE_PAGES + OTHER_ARTICLES:
-    if _item["path"] in NOV20_REVIEWED_RELATED_PATHS:
-        _item["updated"] = "November 20, 2026"
-for _item in GUIDE_PAGES + OTHER_ARTICLES:
-    if _item["path"] in NOV21_REVIEWED_RELATED_PATHS:
-        _item["updated"] = "November 21, 2026"
-for _item in GUIDE_PAGES + OTHER_ARTICLES:
-    if _item["path"] in NOV22_REVIEWED_RELATED_PATHS:
-        _item["updated"] = "November 22, 2026"
-for _item in GUIDE_PAGES + OTHER_ARTICLES:
-    if _item["path"] in NOV23_REVIEWED_RELATED_PATHS:
-        _item["updated"] = "November 23, 2026"
-for _item in GUIDE_PAGES + OTHER_ARTICLES:
-    if _item["path"] in NOV24_REVIEWED_RELATED_PATHS:
-        _item["updated"] = "November 24, 2026"
-for _item in GUIDE_PAGES + OTHER_ARTICLES:
-    if _item["path"] in NOV25_REVIEWED_RELATED_PATHS:
-        _item["updated"] = "November 25, 2026"
-for _item in GUIDE_PAGES + OTHER_ARTICLES:
-    if _item["path"] in RECIPROCAL_RELATED:
-        _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
-        _seen_related: set[str] = set()
-        _item["related"] = []
-        for _related in _candidates:
-            if _related[0] in _seen_related:
-                continue
-            _seen_related.add(_related[0])
-            _item["related"].append(_related)
-            # The home-grow planner is the shared parent for law, environment,
-            # water measurement, lighting, controls, post-harvest, and IPM;
-            # preserve the whole established safety path.
-            if _item["path"] == "guides/new-york-home-cannabis-grow-planner/index.html":
-                _related_limit = 9
-            elif _item["path"] == "guides/cannabis-cbd-medication-interactions/index.html":
-                _related_limit = 6
-            elif _item["path"] == "legal/shop-legal/index.html":
-                # Keep the established delivery-verification route after the
-                # payment/receipt authority link added in this release.
-                _related_limit = 8
-            elif _item["path"] == "guides/storage/index.html":
-                # Preserve the established smell-proof-storage route after the
-                # water-activity evidence card added in this release.
-                _related_limit = 9
-            elif _item["path"] == "guides/cannabis-product-complaint-adverse-event-reporting/index.html":
-                # Preserve the established ingredient/allergen path after the
-                # response-log evidence route added in this release.
-                _related_limit = 6
-            else:
-                _related_limit = 4
-            if len(_item["related"]) == _related_limit:
-                break
-
-for _strain_page in STRAIN_PAGES:
-    if _strain_page["path"] == "strains/panakeia-beta-hurv19pan/index.html":
-        _strain_page["updated"] = "November 15, 2026"
-        _strain_page["related"] = [
-            ("strains/henola-hemp/", "GRAIN-HEMP COMPARISON", "Compare official variety identity, intended crop, trial evidence, and the finished-lot boundary"),
-            *_strain_page["related"][:2],
-        ]
-    if _strain_page["path"] in {"strains/stem-cell-cbg/index.html", "strains/white-cbg/index.html"}:
-        _strain_page["related"] = [
-            ("strains/panakeia-beta-hurv19pan/", "DOCUMENTED VARIETY", "Compare HURV19PAN identity without transferring chemistry"),
-            *_strain_page["related"][:2],
-        ]
-    if _strain_page["path"] in {
-        "strains/pine-walker-seedless/index.html",
-        "strains/royal-cbdv-automatic/index.html",
-    }:
-        _strain_page["updated"] = "November 9, 2026"
-        _strain_page["related"] = [
-            ("strains/vitality-seedless-cbdv/", "CBDV FIELD NOTE", "Compare breeder identity, trial evidence, triploid claims, and the finished lot"),
-            *_strain_page["related"][:2],
-        ]
-    if _strain_page["path"] == "strains/vitality-seedless-cbdv/index.html":
-        _strain_page["related"] = [
-            ("strains/pine-walker-seedless/", "CBDV FIELD NOTE", "Keep two named CBDV lines, sources, and finished batches separate"),
-            ("guides/cannabis-certificate-of-analysis-coa-guide/", "LOT EVIDENCE", "Match the package, lot, dates, units, panels, and report status"),
-            ("guides/cbd-hemp-flower-label-legal-guide/", "CBD + HEMP", "Separate production hemp, the finished product, and the rule at each checkpoint"),
-        ]
-    if _strain_page["path"] == "strains/cherry-wine/index.html":
-        _strain_page["updated"] = "November 12, 2026"
-        _strain_page["related"] = [
-            ("strains/cherry-blonde-cbd/", "DISTINCT CBD FIELD NOTE", "Compare the breeder record and finished-lot evidence without transferring Cherry Wine folklore"),
-            *_strain_page["related"][:2],
-        ]
-    if _strain_page["path"] == "strains/cherry-blonde-cbd/index.html":
-        _strain_page["updated"] = "November 13, 2026"
-        _strain_page["related"] = [
-            ("strains/abacus-cbd-hemp/", "UNIVERSITY TRIAL RECORD", "Compare named agricultural evidence without transferring results or identity"),
-            ("strains/cherry-wine/", "SEPARATE NAME", "Keep the listed parent, shared words, retail identity, and finished batch in separate lanes"),
-            ("guides/cannabis-certificate-of-analysis-coa-guide/", "LOT EVIDENCE", "Match the package, lot, dates, units, panels, and report status"),
-            ("guides/cbd-hemp-flower-label-legal-guide/", "CBD + HEMP", "Separate production hemp, the finished product, and the current rule at every checkpoint"),
-        ]
-    if _strain_page["path"] == "strains/cakeberry-brulee/index.html":
-        _strain_page["updated"] = "November 13, 2026"
-        _strain_page["related"] = [
-            ("strains/abacus-cbd-hemp/", "TRIAL EVIDENCE", "Compare two UVM trial entries without transferring chemistry, source, or finished-lot identity"),
-            *_strain_page["related"][:2],
-        ]
-    if _strain_page["path"] == "strains/abacus-cbd-hemp/index.html":
-        _strain_page["related"] = [
-            ("strains/cherry-blonde-cbd/", "DISTINCT CBD FIELD NOTE", "Keep breeder attribution, university trial identity, and the finished lot in separate lanes"),
-            ("strains/cakeberry-brulee/", "SEPARATE TRIAL ENTRY", "Compare a neighboring UVM entry without borrowing its source or results"),
-            ("guides/cannabis-certificate-of-analysis-coa-guide/", "LOT EVIDENCE", "Match the package, lot, dates, units, panels, and report status"),
-            ("guides/cbd-hemp-flower-label-legal-guide/", "CBD + HEMP", "Separate production hemp, the finished product, and the current rule at every checkpoint"),
-        ]
-
-
-def make_page(data: dict, kind: str = "article") -> Page:
-    keys = {"path","title","description","category","h1","dek","updated","read_time","published"}
-    values = {key:value for key,value in data.items() if key in keys}
-    values.setdefault("updated", "August 17, 2026")
-    values.setdefault("read_time", "8 min read")
-    values["body"] = ""
-    values["kind"] = kind
-    return Page(**values)
-
-
-def crumb_for(path: str, title: str) -> list[tuple[str, str | None]]:
-    if path.startswith("guides/"):
-        return [("Guides", "guides/"), (title, None)]
-    if path.startswith("strains/"):
-        return [("Strains", "strains/"), (title, None)]
-    if path.startswith("gear/"):
-        return [("Gear", "gear/"), (title, None)]
-    if path.startswith("legal/"):
-        return [("Legal", "legal/"), (title, None)]
-    return [(title, None)]
-
-
-def render_policy_pulse(item: dict) -> str:
-    story=item["policy_pulse"]
-    tone=story["direction"].lower()
-    return f'''<div class="policy-pulse policy-pulse--{tone}"><div class="policy-pulse__top"><span class="direction-badge">{escape(story['direction'])}</span><span>{escape(story['date'])} Â· {escape(story['status'])}</span></div><h3><a href="{story['url']}" rel="noopener">{escape(story['title'])} â†—</a></h3><p>{escape(story['summary'])}</p><small>Source: {escape(story['source'])}</small></div><p class="micro">Window reviewed: March 1â€“September 1, 2026. A proposal, ballot campaign, veto, or stalled bill is not current law; the operative rules remain in the sections above.</p>'''
-
-
-def render_purchase_access(item: dict) -> str:
-    adult=item["adult_access"]
-    medical=item["patient_access"]
-    note=f'<p class="access-note">{escape(medical["note"])}</p>' if medical["note"] else ""
-    return f'''<div class="purchase-access"><article><span>ADULT-USE / RECREATIONAL</span><h3>{escape(adult['label'])}</h3><p>{escape(adult['detail'])}</p></article><article><span>MEDICAL PROGRAM</span><h3>{escape(medical['label'])}</h3><p><b>How to qualify:</b> {escape(medical['how'])}</p>{note}<p><b>At the dispensary:</b> {escape(medical['bring'])}</p><a href="{medical['url']}" rel="noopener">Open the official patient instructions â†—</a></article></div><div class="callout callout--warning"><div>{icon('alert')}</div><div><h3>Do not buy a generic â€œmedical cardâ€ online</h3><p>Only the credential, certification, recommendation, or registry process recognized by this state can authorize medical purchasing. Private evaluation services do not replace state approval where approval is required.</p></div></div>'''
-
-
-def render_home() -> tuple[Page, str]:
-    page = Page(
-        path="index.html", title="Big Bud Man | Legal Cannabis, Without the Haze",
-        description="Independent cannabis guides for adults 21+: strains, edibles, labels, gear, responsible use, and reviewed legal starting points for all 50 states.",
-        category="Home", h1="Legal weed. Clear-headed guidance.",
-        dek="Independent cannabis education for adults 21+.", body="", updated="November 25, 2026", kind="website",
-    )
-    main = f'''<main id="main-content">
-<section class="hero"><div class="hero-noise"></div><div class="container hero-grid">
-  <div class="hero-copy"><p class="eyebrow"><span class="live-dot"></span> INDEPENDENT Â· ADULTS 21+ Â· NO CANNABIS SOLD</p>
-    <h1>LEGAL WEED.<br><em>CLEAR-HEADED GUIDANCE.</em></h1>
-    <p class="hero-dek">The legal market got bigger. The useful information did not. We decode labels, formats, famous strain names, gear, safety, and the legal edges in all 50 states.</p>
-    <div class="hero-actions"><a class="button button--primary" href="start-here/">Start here {icon('arrow')}</a><a class="button button--outline" href="guides/">Browse every guide</a></div>
-    <div class="trust-row"><span>{icon('shield')} Legal-market focus</span><span>{icon('book')} Sources before stories</span><span>{icon('heart')} Responsible-use built in</span></div>
-  </div>
-  <div class="hero-art"><img src="assets/images/hero-bud-v2.webp" alt="Macro photograph of a cannabis flower under controlled studio lighting"><div class="hero-stamp"><em>FOR</em><b>21+</b><em>ADULTS</em></div><div class="hero-caption"><span>01</span><p><b>THE BIG BUD RULE</b><br>The batch in your hand matters more than the legend on the menu.</p></div></div>
-</div></section>
-<div class="manifesto-strip"><div class="marquee">READ THE LABEL <i>âœ¦</i> KNOW THE SOURCE <i>âœ¦</i> WAIT FOR THE FORMAT <i>âœ¦</i> LOCK IT UP <i>âœ¦</i> NEVER DRIVE HIGH</div></div>
-<section class="container lane-section"><div class="section-head section-head--split"><div><p class="eyebrow">PICK A LANE</p><h2>Three better ways in</h2></div><p>Skip the endless menu. Start with the decision you actually need to make.</p></div>
-<div class="lane-grid">
-<a class="lane-card lane-card--lime" href="start-here/"><span>01</span><div>{icon('book')}<h3>Planning a first purchase?</h3><p>Write the brief, verify the seller, compare the full cost, run ten checkout gates, and keep the option to buy nothing.</p><b>Open the purchase planner {icon('arrow')}</b></div></a>
-<a class="lane-card lane-card--amber" href="guides/read-a-label/"><span>02</span><div>{icon('tag')}<h3>Holding a package?</h3><p>Separate the serving from the package total, then find the batch, date, ingredients, and test link.</p><b>Decode the label {icon('arrow')}</b></div></a>
-<a class="lane-card lane-card--cream" href="legal/"><span>03</span><div>{icon('scale')}<h3>Checking your state?</h3><p>Search all 50 states for adult-use, medical, limited-CBD, possession, home-grow, and official-source basics.</p><b>Open the law library {icon('arrow')}</b></div></a>
-</div></section>
-<section class="quiz-section"><div class="container quiz-grid"><div class="quiz-intro"><p class="eyebrow">CLEAR-LANE FINDER</p><h2>Tell us the decision.<br>Weâ€™ll point to the guide.</h2><p>Three clicks. No account, no saved cannabis profile, no fake recommendation engine.</p><div class="quiz-counter" role="status" aria-live="polite" aria-atomic="true"><span class="sr-only">Question </span><b data-quiz-count>01</b><span> / 03</span></div></div>
-<div class="quiz-card" data-quiz>
-<div class="quiz-step is-active" data-step="1" role="group" aria-labelledby="quiz-question-1"><p class="quiz-label">QUESTION ONE</p><h3 id="quiz-question-1" tabindex="-1">How familiar are you?</h3><div class="choice-grid"><button type="button" data-answer="experience" data-value="new">Brand new</button><button type="button" data-answer="experience" data-value="returning">Returning after years</button><button type="button" data-answer="experience" data-value="current">Current consumer</button><button type="button" data-answer="experience" data-value="research">Just researching</button></div></div>
-<div class="quiz-step" data-step="2" role="group" aria-labelledby="quiz-question-2" hidden><p class="quiz-label">QUESTION TWO</p><h3 id="quiz-question-2" tabindex="-1">Which format is in front of you?</h3><div class="choice-grid"><button type="button" data-answer="format" data-value="edible">Edible or gummy</button><button type="button" data-answer="format" data-value="beverage">Cannabis beverage</button><button type="button" data-answer="format" data-value="flower">Flower or pre-roll</button><button type="button" data-answer="format" data-value="vape">Vape</button><button type="button" data-answer="format" data-value="concentrate">Concentrate or dab</button><button type="button" data-answer="format" data-value="basics">Not sure yet</button></div></div>
-<div class="quiz-step" data-step="3" role="group" aria-labelledby="quiz-question-3" hidden><p class="quiz-label">QUESTION THREE</p><h3 id="quiz-question-3" tabindex="-1">What matters right now?</h3><div class="choice-grid"><button type="button" data-answer="priority" data-value="urgent">Too much or accidental exposure</button><button type="button" data-answer="priority" data-value="mental">Anxiety, paranoia, or losing touch</button><button type="button" data-answer="priority" data-value="compare">Compare package price and labels</button><button type="button" data-answer="priority" data-value="recall">Check a recall</button><button type="button" data-answer="priority" data-value="lab">Read the lab report</button><button type="button" data-answer="priority" data-value="label">Read the label</button><button type="button" data-answer="priority" data-value="legal">Know the law</button><button type="button" data-answer="priority" data-value="gear">Compare gear</button><button type="button" data-answer="priority" data-value="basics">Build the basics</button></div></div>
-<div class="quiz-result" data-quiz-result aria-live="polite" hidden><div data-quiz-result-content></div><button class="text-button" type="button" data-quiz-reset>Start over</button></div>
-</div></div></section>
-<section class="container featured-section"><div class="section-head section-head--split"><div><p class="eyebrow">FAMOUS NAMES, HONEST CAVEATS</p><h2>Strain field notes</h2></div><a class="text-link" href="strains/">Explore all {len(STRAINS)} {icon('arrow')}</a></div>
-<div class="strain-feature-grid">
-<a class="strain-feature strain-feature--blue" href="strains/blue-dream/"><div class="strain-orbit"><img src="assets/images/strain-blue-dream.webp" alt="Representative macro cannabis flower photograph for the Blue Dream field note"><span>BALANCED SHORTHAND</span></div><div><h3>Blue Dream</h3><p>Berry-haze folklore meets years of producer and batch variation.</p><div class="meter"><span>NAME RELIABILITY</span><i><b style="width:38%"></b></i></div></div></a>
-<a class="strain-feature strain-feature--yellow" href="strains/sour-diesel/"><div class="strain-orbit"><img src="assets/images/strain-sour-diesel.webp" alt="Representative macro cannabis flower photograph for the Sour Diesel field note"><span>BRIGHT SHORTHAND</span></div><div><h3>Sour Diesel</h3><p>Fuel-forward reputation, high-potency caution, no guarantee of energy.</p><div class="meter"><span>AROMA FAME</span><i><b style="width:86%"></b></i></div></div></a>
-<a class="strain-feature strain-feature--violet" href="strains/northern-lights/"><div class="strain-orbit"><img src="assets/images/strain-northern-lights.webp" alt="Representative macro cannabis flower photograph for the Northern Lights field note"><span>HEAVY SHORTHAND</span></div><div><h3>Northern Lights</h3><p>Old-school name, modern batch: nostalgia is not a potency reading.</p><div class="meter"><span>HISTORY DEPTH</span><i><b style="width:78%"></b></i></div></div></a>
-</div></section>
-<section class="ny-section"><div class="container ny-grid"><div class="ny-map"><img src="assets/images/new-york-v2.svg" alt="Editorial map graphic of New York State with Central New York highlighted"><span class="map-pin"><b>SYRACUSE</b><br>CENTRAL NY VIEW</span></div><div class="ny-copy"><p class="eyebrow">NEW YORK LEGAL BASICS</p><h2>Know the edges.</h2><p>Adults 21+ may possess up to three ounces of cannabis and 24 grams of concentrate under New York law. That does not legalize unlicensed sales, vehicle use, impaired driving, state-line travel, or federal-property possession.</p><div class="number-grid"><div><b>21+</b><span>adult use</span></div><div><b>3 oz</b><span>cannabis</span></div><div><b>24 g</b><span>concentrate</span></div></div><a class="button button--dark" href="legal/new-york/">Open the New York guide</a><p class="micro">Reviewed August 26, 2026. Always confirm current rules with OCM.</p></div></div></section>
-<section class="container library-preview"><div class="section-head section-head--split"><div><p class="eyebrow">THE LIBRARY</p><h2>Useful before exhaustive</h2></div><a class="text-link" href="guides/">Browse all guides {icon('arrow')}</a></div><div class="library-preview-grid">
-<a class="big-story" href="guides/edibles/"><div><p class="kicker">FORMAT GUIDE</p><h3>Edibles without the classic mistake</h3><p>The mistake is not mysterious: taking more because the first serving has not announced itself yet.</p><b>Read the timing guide {icon('arrow')}</b></div><img src="assets/images/edible-timing.webp" alt="Studio still life of a single gummy beside an analog timer"></a>
-<div class="story-stack"><a href="guides/first-cannabis-dispensary-visit-checklist/"><p class="kicker">FIRST VISIT + CHECKOUT</p><h3>Verify the store, package, receipt, trip home, and locked storage</h3>{icon('arrow')}</a><a href="guides/cannabis-power-outage-evacuation-safety-plan/"><p class="kicker">OUTAGE + EVACUATION</p><h3>Keep life safety, storage, batteries, pets, and damaged products in one plan</h3>{icon('arrow')}</a><a href="guides/delta-8-thc-label-safety-guide/"><p class="kicker">DELTA-8 THC + SAFETY</p><h3>Separate intoxicating THC from hemp and CBD framing</h3>{icon('arrow')}</a><a href="guides/cannabis-edible-allergen-ingredient-label-guide/"><p class="kicker">EDIBLES + ALLERGENS</p><h3>Read ingredients and cross-contact language before checkout</h3>{icon('arrow')}</a><a href="strains/stem-cell-cbg/"><p class="kicker">CBG CULTIVAR + EVIDENCE</p><h3>Separate Stem Cell's breeder record from the current product and lot</h3>{icon('arrow')}</a><a href="guides/cbd-drinks-powders-label-buying-guide/"><p class="kicker">CBD DRINKS + POWDERS</p><h3>Reconcile format, serving math, ingredients, lot evidence, and claims</h3>{icon('arrow')}</a><a href="guides/cannabis-product-complaint-adverse-event-reporting/"><p class="kicker">PRODUCT PROBLEM + REPORTING</p><h3>Preserve the person, package, lot, evidence, and correct complaint route</h3>{icon('arrow')}</a><a href="guides/disposable-vape-vs-510-cartridge-comparison/"><p class="kicker">VAPE SYSTEM + BUYING</p><h3>Compare integrated pens and 510 systems beyond the oil</h3>{icon('arrow')}</a><a href="guides/cbd-hemp-flower-label-legal-guide/"><p class="kicker">CBD + HEMP FLOWER</p><h3>Verify identity, total THC, lot evidence, and the rule that applies</h3>{icon('arrow')}</a><a href="guides/cannabis-anxiety-paranoia-psychosis-warning-signs/"><p class="kicker">MENTAL HEALTH + RESPONSE</p><h3>Separate fear, paranoia, disorientation, and psychosis warning signs</h3>{icon('arrow')}</a><a href="guides/cannabis-product-price-label-comparison-calculator/"><p class="kicker">PRICE + LABEL WORKSHEET</p><h3>Normalize three packages without turning potency into quality</h3>{icon('arrow')}</a><a href="guides/cannabis-smoke-vape-lung-health-guide/"><p class="kicker">LUNG HEALTH + ROUTES</p><h3>Separate smoke, aerosol, symptoms, and evidence limits</h3>{icon('arrow')}</a><a href="guides/cannabis-pre-roll-infused-label-buying-guide/"><p class="kicker">PRE-ROLL + CHECKOUT</p><h3>Compare plain and infused packs on identity, lot, and honest math</h3>{icon('arrow')}</a><a href="guides/cannabis-terms-label-lab-glossary/"><p class="kicker">48-TERM GLOSSARY</p><h3>Decode labels, laboratory notation, formats, and plant language</h3>{icon('arrow')}</a><a href="guides/cannabis-certificate-of-analysis-coa-guide/"><p class="kicker">LAB REPORT + BUYING</p><h3>Match the lot before trusting the pass badge</h3>{icon('arrow')}</a><a href="legal/shop-legal/"><p class="kicker">CHECKOUT VERIFICATION</p><h3>Verify the seller, product, certificate, and receipt</h3>{icon('arrow')}</a></div>
-</div></section>
-<section class="rules-section"><div class="container"><div class="section-head"><p class="eyebrow">THE SIX NON-NEGOTIABLES</p><h2>A responsible-use baseline</h2></div><ol class="rules-grid"><li><span>01</span><p><b>Adults only.</b><br>No access, use, or youth-targeted packaging.</p></li><li><span>02</span><p><b>No impaired driving.</b><br>Cars, boats, machinery, and ladders can wait.</p></li><li><span>03</span><p><b>Wait for the format.</b><br>Delayed products do not care that you are impatient.</p></li><li><span>04</span><p><b>Keep the package.</b><br>Identity and emergency information matter.</p></li><li><span>05</span><p><b>Lock every product.</b><br>Out of sight is not secure.</p></li><li><span>06</span><p><b>Notice the pattern.</b><br>Use should not quietly shrink the rest of life.</p></li></ol></div></section>
-{newsletter('')}
-</main>'''
-    main = main.replace(
-        '<a href="guides/cannabis-power-outage-evacuation-safety-plan/"><p class="kicker">OUTAGE + EVACUATION</p><h3>Keep life safety, storage, batteries, pets, and damaged products in one plan</h3>'+icon('arrow')+'</a>',
-        '<a href="guides/cannabis-power-outage-evacuation-safety-plan/"><p class="kicker">OUTAGE + EVACUATION</p><h3>Keep life safety, storage, batteries, pets, and damaged products in one plan</h3>'+icon('arrow')+'</a><a href="strains/bialobrzeskie-hemp/"><p class="kicker">INDUSTRIAL HEMP + FIELD RESEARCH</p><h3>Compare one named cultivar across three university trial questions</h3>'+icon('arrow')+'</a>',
-        1,
-    )
-    main = main.replace(
-        '<a href="strains/stem-cell-cbg/"><p class="kicker">CBG CULTIVAR + EVIDENCE</p><h3>Separate Stem Cell\'s breeder record from the current product and lot</h3>'+icon('arrow')+'</a>',
-        '',
-        1,
-    )
-    main = main.replace(
-        '<div class="story-stack">',
-        '<div class="story-stack"><a href="guides/cannabis-dispensary-payment-receipt-guide/"><p class="kicker">PAYMENT + RECEIPT</p><h3>Name the tender, total fees, statement record, and error route</h3>'+icon('arrow')+'</a><a href="guides/cannabis-smoke-odor-neighbor-shared-air-plan/"><p class="kicker">SHARED AIR + SOURCE CONTROL</p><h3>Document the pathway and ask for the change that stops the source</h3>'+icon('arrow')+'</a>',
-        1,
-    )
-    main = main.replace(
-        '<div class="story-stack">',
-        '<div class="story-stack"><a href="guides/cannabis-101/"><p class="kicker">CANNABIS 101 + FIRST DECISIONS</p><h3>Build the product, label, safety, storage, and response record</h3>'+icon('arrow')+'</a><a href="gear/cannabis-gear-comparison-worksheet/"><p class="kicker">GEAR OWNERSHIP + COST</p><h3>Compare three exact models beyond the sticker price</h3>'+icon('arrow')+'</a>',
-        1,
-    )
-    main = main.replace(
-        '<div class="story-stack">',
-        '<div class="story-stack"><a href="guides/cbn-products-label-evidence-guide/"><p class="kicker">CBN PRODUCTS + EVIDENCE</p><h3>Audit the label, lot, ingredients and actual sleep research</h3>'+icon('arrow')+'</a><a href="legal/cannabis-federal-property-rules-guide/"><p class="kicker">FEDERAL PROPERTY + 2026 LAW</p><h3>Identify the managing agency before crossing the boundary</h3>'+icon('arrow')+'</a><a href="guides/cannabis-social-hosting-guest-safety-plan/"><p class="kicker">SOCIAL HOSTING + SAFETY</p><h3>Plan consent, product control, sober rides and emergency response</h3>'+icon('arrow')+'</a>',
-        1,
-    )
-    main = main.replace(
-        '<div class="story-stack">',
-        '<div class="story-stack"><a href="guides/terpenes/"><p class="kicker">TERPENE PANELS + CLAIMS</p><h3>Read the lot, units, aroma, human evidence, and limits</h3>'+icon('arrow')+'</a><a href="gear/cannabis-loupe-pocket-microscope-guide/"><p class="kicker">OPTICS FIT + OWNERSHIP COST</p><h3>Compare field of view, working distance, setup, and service</h3>'+icon('arrow')+'</a>',
-        1,
-    )
-    main = main.replace(
-        '<div class="story-stack">',
-        '<div class="story-stack"><a href="guides/cannabis-cbd-liver-health-safety-guide/"><p class="kicker">CBD + LIVER HEALTH</p><h3>Separate the product, medicines, alcohol, symptoms, labs, and evidence</h3>'+icon('arrow')+'</a><a href="gear/cannabis-humidity-pack-hygrometer-guide/"><p class="kicker">HUMIDITY SYSTEM + COST</p><h3>Compare recurring packs, instruments, service, and ownership cost</h3>'+icon('arrow')+'</a>',
-        1,
-    )
-    main = main.replace(
-        '<div class="story-stack">',
-        '<div class="story-stack"><a href="guides/cannabis-cbd-chronic-pain-evidence-guide/"><p class="kicker">CHRONIC PAIN + EVIDENCE</p><h3>Match the condition, exact product, function, harms, and review plan</h3>'+icon('arrow')+'</a><a href="gear/cannabis-rolling-tray-buying-guide/"><p class="kicker">ROLLING TRAY FIT + COST</p><h3>Compare task clearance, locked-storage fit, usable area, and delivered cost</h3>'+icon('arrow')+'</a><a href="guides/cannabis-cbd-cancer-claims-evidence-guide/"><p class="kicker">CANCER CLAIMS + EVIDENCE</p><h3>Separate treatment claims, symptom support, interactions, and the exact product</h3>'+icon('arrow')+'</a><a href="gear/smell-proof-storage/"><p class="kicker">LOCKBOX FIT + STORAGE</p><h3>Compare three usable interiors before judging the lock and odor claims</h3>'+icon('arrow')+'</a><a href="strains/stem-cell-cbg/"><p class="kicker">STEM CELL CBG + LOT EVIDENCE</p><h3>Trace the breeder, producer, package, report, and current rule</h3>'+icon('arrow')+'</a><a href="guides/cannabis-exercise-workout-heat-safety/"><p class="kicker">EXERCISE + HEAT SAFETY</p><h3>Plan the activity, symptoms, weather, supervision, and sober trip home</h3>'+icon('arrow')+'</a>',
-        1,
-    )
-    main = main.replace(
-        '<div class="story-stack">',
-        '<div class="story-stack"><a href="guides/cannabis-cbd-epilepsy-seizure-care-guide/"><p class="kicker">CBD + EPILEPSY</p><h3>Separate prescription cannabidiol, retail CBD, seizure first aid, and the care record</h3>'+icon('arrow')+'</a><a href="gear/cannabis-tool-cleaning-kit/"><p class="kicker">CLEANING KIT + COST</p><h3>Match compatible supplies and calculate the real maintenance burden</h3>'+icon('arrow')+'</a><a href="guides/cannabis-glaucoma-eye-pressure-vision-guide/"><p class="kicker">EYE HEALTH + GLAUCOMA</p><h3>Separate a temporary pressure effect from proven optic-nerve care</h3>'+icon('arrow')+'</a><a href="guides/cbd-patches-transdermal-label-evidence-guide/"><p class="kicker">CBD PATCHES + EVIDENCE</p><h3>Separate the patch, skin-contact system, lot, and delivery claim</h3>'+icon('arrow')+'</a><a href="guides/cannabis-package-seal-tamper-evidence-checklist/"><p class="kicker">PACKAGE SEAL + TAMPER EVIDENCE</p><h3>Inspect the unopened package and preserve the evidence</h3>'+icon('arrow')+'</a><a href="gear/air-purifier-cannabis-smoke-odor-guide/"><p class="kicker">AIR CLEANER SIZING + COST</p><h3>Calculate room CADR, air changes, filters, electricity, and ownership cost</h3>'+icon('arrow')+'</a>',
-        1,
-    )
-    main = main.replace(
-        '<div class="story-stack">',
-        '<div class="story-stack"><a href="guides/cannabis-edible-label-math-checker/"><p class="kicker">EDIBLE LABEL MATH</p><h3>Cross-check serving, piece, and package totals without inventing a dose</h3>'+icon('arrow')+'</a><a href="guides/cannabis-child-resistant-packaging-home-storage-guide/"><p class="kicker">PACKAGING + HOME SAFETY</p><h3>Audit child resistance, reclosure, locked storage, and the household routine</h3>'+icon('arrow')+'</a>',
-        1,
-    )
-    main = main.replace(
-        '<div class="story-stack">',
-        '<div class="story-stack"><a href="guides/cannabis-official-source-directory/"><p class="kicker">OFFICIAL SOURCE DIRECTORY</p><h3>Use the agency or service that can actually answer the question</h3>' + icon('arrow') + '</a><a href="guides/cannabis-gummies-drinks-oils-capsules-comparison/"><p class="kicker">ORAL FORMAT COMPARISON</p><h3>Compare route, units, ingredients, handling, and value</h3>' + icon('arrow') + '</a><a href="guides/new-york-cannabis-delivery-online-order-verification-guide/"><p class="kicker">NEW YORK DELIVERY + VERIFICATION</p><h3>Match the license, website, order, handoff, and receipt</h3>' + icon('arrow') + '</a><a href="guides/cannabis-flower-freshness-package-date-buying-guide/"><p class="kicker">FLOWER FRESHNESS + DATES</p><h3>Audit the package and lot before trusting â€œfreshâ€</h3>' + icon('arrow') + '</a>',
-        1,
-    )
-    main = main.replace(
-        '<div class="story-stack">',
-        '<div class="story-stack"><a href="guides/vapes/"><p class="kicker">VAPE OIL + HARDWARE</p><h3>Audit the source, label, lot, device, symptoms, and disposal route</h3>'+icon('arrow')+'</a><a href="gear/cannabis-accessory-return-warranty-recall-guide/"><p class="kicker">RETURNS + WARRANTIES + RECALLS</p><h3>Capture the exact terms and calculate early review checkpoints</h3>'+icon('arrow')+'</a>',
-        1,
-    )
-    main = main.replace(
-        '<div class="story-stack">',
-        '<div class="story-stack"><a href="guides/cannabis-and-alcohol-mixing-risks/"><p class="kicker">ALCOHOL + CANNABIS SAFETY</p><h3>Keep both exposure clocks visible and prepare an emergency handoff record</h3>'+icon('arrow')+'</a><a href="gear/indoor-cannabis-grow-light-buying-cost-planner/"><p class="kicker">GROW-LIGHT COST + EVIDENCE</p><h3>Compare three exact systems across load, setup, support, and ownership cost</h3>'+icon('arrow')+'</a>',
-        1,
-    )
-    main = main.replace(
-        '<div class="story-stack">',
-        '<div class="story-stack"><a href="guides/cannabis-next-day-impairment-evidence-guide/"><p class="kicker">NEXT-DAY FUNCTION + EVIDENCE</p><h3>Separate residual symptoms, task demands, testing, and what the research cannot certify</h3>'+icon('arrow')+'</a><a href="guides/storage/"><p class="kicker">STORAGE BY PRODUCT TYPE</p><h3>Keep identity, condition, environment, access, and routine in one chain</h3>'+icon('arrow')+'</a><a href="gear/cannabis-accessibility-tools-buying-guide/"><p class="kicker">ACCESSIBILITY + GEAR FIT</p><h3>Reduce grip, vision, tremor, reach, and one-handed barriers without defeating package safety</h3>'+icon('arrow')+'</a>',
-        1,
-    )
-    main = main.replace(
-        '<div class="story-stack">',
-        '<div class="story-stack"><a href="gear/cannabis-home-testing-kit-buying-guide/"><p class="kicker">HOME TESTING + EVIDENCE</p><h3>Choose the question, sample, controls, limits, and licensed-lab exit before the device</h3>'+icon('arrow')+'</a>',
-        1,
-    )
-    main = main.replace(
-        '<div class="story-stack">',
-        '<div class="story-stack"><a href="legal/marijuana-rescheduling-status-november-2026/"><p class="kicker">FEDERAL STATUS Â· NOV. 2026</p><h3>Separate the narrow Schedule III rule from the broader unfinished proceeding</h3>'+icon('arrow')+'</a>',
-        1,
-    )
-    main = main.replace(
-        '<div class="story-stack">',
-        '<div class="story-stack"><a href="strains/tjs-cbd-hemp/"><p class="kicker">CBD HEMP + RESEARCH MAP</p><h3>Follow TJâ€™s CBD across five different scientific questions without turning a study into a retail promise</h3>'+icon('arrow')+'</a><a href="guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/"><p class="kicker">IDENTITY + TERMINOLOGY</p><h3>Separate strain, cultivar, accession, chemotype, chemovar, batch, and lot</h3>'+icon('arrow')+'</a><a href="strains/baox-hemp/"><p class="kicker">CBD HEMP FIELD NOTE</p><h3>Follow BaOx from spelling history to USDA accession and finished-lot boundaries</h3>'+icon('arrow')+'</a><a href="gear/cannabis-product-photo-documentation-kit-buying-guide/"><p class="kicker">PACKAGE PHOTOS + GEAR</p><h3>Build a clear, private, original-file record before buying a documentation kit</h3>'+icon('arrow')+'</a>',
-        1,
-    )
-    main = main.replace(
-        '<div class="story-stack">',
-        '<div class="story-stack"><a href="strains/nbs-cbd-1-hemp/"><p class="kicker">CBD HEMP + OFFICIAL RECORD</p><h3>Trace NBS CBD-1 from variety certificate to exact-lot boundaries</h3>'+icon('arrow')+'</a><a href="guides/cannabis-health-evidence-library/"><p class="kicker">HEALTH EVIDENCE + DECISIONS</p><h3>Route the question, separate research from the product, and prepare the clinical handoff</h3>'+icon('arrow')+'</a><a href="gear/cannabis-replacement-parts-compatibility-guide/"><p class="kicker">REPAIR + COMPATIBILITY</p><h3>Match the exact model, part, interface, safety scope, cost, and exit path</h3>'+icon('arrow')+'</a>',
-        1,
-    )
-    main = main.replace(
-        '<div class="story-stack">',
-        '<div class="story-stack"><a href="guides/cannabis-research-study-reading-checklist/"><p class="kicker">RESEARCH LITERACY + AUTHORITY</p><h3>Read a cannabis study without losing its population, product, outcome, harms, or limits</h3>' + icon('arrow') + '</a><a href="gear/cannabis-rosin-press-buying-safety-guide/"><p class="kicker">ROSIN PRESS + MACHINERY SAFETY</p><h3>Compare the whole pressâ€”not a tonnage headline</h3>' + icon('arrow') + '</a><a href="guides/cannabis-product-response-experience-log/"><p class="kicker">PRODUCT RESPONSE + HANDOFF</p><h3>Preserve the exact lot, clock, observations, function, and help route</h3>' + icon('arrow') + '</a>',
-        1,
-    )
-    main = main.replace(
-        '<div class="story-stack">',
-        '<div class="story-stack"><a href="guides/cannabis-tools-calculators-checklists-hub/"><p class="kicker">CALCULATORS + CHECKLISTS</p><h3>Choose the smallest decision tool that fits the question</h3>' + icon('arrow') + '</a>',
-        1,
-    )
-    main = main.replace(
-        '<div class="story-stack">',
-        '<div class="story-stack"><a href="guides/cannabis-cbd-kidney-health-safety-guide/"><p class="kicker">KIDNEY HEALTH + EVIDENCE</p><h3>Keep CKD, symptoms, medicines, products, and clinical decisions in separate lanes</h3>' + icon('arrow') + '</a><a href="gear/cannabis-erig-enail-buying-safety-guide/"><p class="kicker">E-RIG + E-NAIL BUYING</p><h3>Compare the complete heated system before the temperature badge</h3>' + icon('arrow') + '</a><a href="guides/cannabis-rental-housing-lease-smoke-documentation-guide/"><p class="kicker">RENTAL HOUSING + RECORDS</p><h3>Audit the program, lease, smoke path, household controls, and documentation route</h3>' + icon('arrow') + '</a>',
-        1,
-    )
-    return page, layout(page, main)
-
-
-def newsletter(prefix: str) -> str:
-    return f'''<section class="newsletter"><div><p class="eyebrow">THE CLEAR-HEADED DROP</p><h2>One useful email.<br>No dispensary confetti.</h2><p>New guides, law-review reminders, and practical gear notes.</p></div><form class="newsletter-form" action="https://formsubmit.co/{CONTACT_EMAIL}" method="post"><label class="sr-only" for="newsletter-email">Email address</label><input id="newsletter-email" type="email" name="email" placeholder="you@example.com" required><input type="hidden" name="_subject" value="Big Bud Man newsletter signup"><input type="hidden" name="_next" value="{DOMAIN}/thank-you/"><input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true"><button class="button button--primary" type="submit">Join the list</button><p>Form delivery requires one-time inbox activation after launch. Unsubscribe requests are honored.</p></form></section>'''
-
-
-def card(route: str, category: str, title: str, desc: str, icon_name: str = "book", prefix: str = "") -> str:
-    search_text = f"{title} {desc} {category}".lower()
-    path = route.rstrip("/") + "/index.html"
-    source = next((item for item in GUIDE_PAGES + OTHER_ARTICLES if item["path"] == path), None)
-    reviewed = source.get("updated", "August 17, 2026") if source else "August 17, 2026"
-    reviewed_iso = datetime.strptime(reviewed, "%B %d, %Y").strftime("%Y-%m-%d")
-    return f'''<a class="library-card" data-guide-card data-category="{escape(category.lower())}" data-search="{escape(search_text)}" data-title="{escape(title.lower())}" data-updated="{reviewed_iso}" href="{local(prefix, route)}"><div class="library-card__icon">{icon(icon_name)}</div><span>{escape(category)}</span><small class="library-card__reviewed">Reviewed <time datetime="{reviewed_iso}">{escape(reviewed)}</time></small><h2>{escape(title)}</h2><p>{escape(desc)}</p><b>Read guide {icon('arrow')}</b></a>'''
-
-
-def add_collection_itemlist(html: str, page: Page, name: str, card_class: str) -> str:
-    """Publish the visible hub membership as non-ranking ItemList data."""
-    pattern = re.compile(
-        rf'<a class="[^"]*\b{re.escape(card_class)}\b[^"]*"[^>]*href="([^"]+)"[^>]*>.*?<h2>(.*?)</h2>',
-        re.DOTALL,
-    )
-    base = canonical(page.path)
-    members = [
-        {
-            "@type": "ListItem",
-            "position": position,
-            "name": clean_text(title),
-            "url": urljoin(base, href),
-        }
-        for position, (href, title) in enumerate(pattern.findall(html), start=1)
-    ]
-    data = {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "@id": f"{base}#collection",
-        "name": name,
-        "numberOfItems": len(members),
-        "itemListOrder": "https://schema.org/ItemListOrderAscending",
-        "itemListElement": members,
-    }
-    script = f'<script type="application/ld+json">{json.dumps(data, separators=(",", ":"))}</script>\n'
-    return html.replace("</head>", script + "</head>", 1)
-
-
-def render_guides_hub() -> tuple[Page,str]:
-    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 25, 2026",kind="website")
-    p="../"
-    cards="".join([
-      card("guides/cannabis-cbd-kidney-health-safety-guide/","HEALTH + EVIDENCE","Cannabis, CBD, and kidney health","Separate kidney-function evidence, severe-CKD pharmacokinetics, vomiting and dehydration, transplant medicines, urgent signs, product records, and the kidney-team handoff.","heart",p),
-      card("guides/cannabis-rental-housing-lease-smoke-documentation-guide/","HOUSING + DOCUMENTATION","Cannabis in rental housing","Classify the housing program, audit the lease and smoke policy, map shared air, preserve a neutral record, and use current primary sources.","scale",p),
-      card("guides/cannabis-fast-acting-edibles-claims-guide/","EDIBLES + CLAIMS","Fast-acting cannabis edibles claims","Separate fast, rapid-onset, nano, water-soluble, and bioavailability language from exact-product evidence, timing uncertainty, warnings, and redosing decisions.","clock",p),
-      card("guides/cannabis-tools-calculators-checklists-hub/","TOOLS + DECISIONS","Cannabis calculators, checklists, and tools","Choose a package-math calculator, recall check, evidence worksheet, response log, buying plan, storage checklist, or official-source route without duplicating the underlying guide.","check",p),
-      card("guides/cannabis-water-activity-moisture-mold-guide/","LAB REPORTS + FLOWER","Cannabis water activity and moisture","Separate water activity, moisture, room humidity, microbial evidence, lot identity, package condition, and jurisdiction-specific limits.","search",p),
-      card("guides/cannabis-flower-buds-smalls-shake-trim-comparison/","FLOWER + BUYING","Buds vs smalls vs shake vs trim","Compare the verified material, package identity, lot evidence, condition, intended job, checkout total, and usable value.","leaf",p),
-      card("guides/first-cannabis-dispensary-visit-checklist/","BUYING + FIRST VISIT","First cannabis dispensary visit","Verify the store, prepare a short shopping brief, inspect the package, reconcile the receipt, and plan lawful transport and locked storage.","search",p),
-      card("guides/cannabis-power-outage-evacuation-safety-plan/","EMERGENCY + HOUSEHOLD","Cannabis power-outage and evacuation plan","Pre-decide life safety, storage, battery, medical, pet, transport, damage-quarantine, and return-home gates.","alert",p),
-      card("guides/cannabis-research-study-reading-checklist/","RESEARCH LITERACY + EVIDENCE","How to read cannabis research","Identify design, population, product, route, outcome, result, harms, conflicts, uncertainty, and transfer limits.","book",p),
-      card("guides/cannabis-product-response-experience-log/","RESPONSIBLE USE + RECORDS","Cannabis product response log","Record exact product and lot identity, route, clock, context, observations, function, urgent help, and the clinical handoff.","shield",p),
-      card("guides/cannabis-dispensary-payment-receipt-guide/","SHOPPING + PAYMENT","Dispensary payment and receipt guide","Identify the transaction, total fees, receipt fields, statement descriptor, privacy trail, error record, and stop-payment red flags.","tag",p),
-      card("guides/cannabis-smoke-odor-neighbor-shared-air-plan/","RESPONSIBLE USE + SHARED AIR","Cannabis smoke and odor shared-air plan","Triage danger, document the episode and pathway, request source control, limit cleaner claims, and use the correct property route.","shield",p),
-      card("guides/cannabis-health-evidence-library/","HEALTH + EVIDENCE","Cannabis health evidence library","Route urgent, medicine, population, condition, product, and claim questions through the right evidence lane, source, record, and clinical handoff.","heart",p),
-      card("guides/cannabis-cut-down-quit-support-plan/","RESPONSIBLE USE + SUPPORT","Cannabis cut-down or quit support plan","Turn a change goal into an exact baseline, support map, withdrawal handoff, safety gates, review process, and verified treatment routes.","shield",p),
-      card("guides/cannabis-lab-report-detection-quantitation-limits-guide/","LAB REPORTS + MEASUREMENT","Cannabis lab report limits: ND, LOD and LOQ","Translate detection, quantitation, reporting limits, qualifiers, units, uncertainty, pass/fail rules, and exact-sample boundaries without inventing zero.","search",p),
-      card("guides/cannabis-seed-storage-record-guide/","HOME GROW + STORAGE","Cannabis seed storage and inventory","Build a lawful cool, dry, dark, stable system with source identity, access control, opening history, condition checks, and a planting decision record.","leaf",p),
-      card("guides/cannabis-warning-symbol-package-icon-guide/","LABELS + OFFICIAL SOURCES","Cannabis warning symbols and package icons","Compare New York, California, Colorado, and Minnesota official systems, then keep every mark inside its jurisdiction, product category, rule version, and evidence boundary.","tag",p),
-      card("guides/cannabis-sleep-apnea-osa-evidence-safety-guide/","HEALTH + SLEEP","Cannabis and sleep apnea","Separate sedation and subjective sleep from measured airway events, oxygen burden, treatment use, next-day function, and the sleep-clinic handoff.","heart",p),
-      card("guides/cannabis-ptsd-evidence-safety-guide/","HEALTH + EVIDENCE","Cannabis and PTSD evidence","Separate reported short-term relief from treatment evidence, long-term function, use-pattern concerns, concurrent care, urgent warning signs, and the clinician handoff.","heart",p),
-      card("guides/cannabis-diabetes-blood-sugar-dka-safety/","HEALTH + DIABETES","Cannabis and diabetes safety","Separate low-glucose look-alikes, DKA and vomiting red flags, medicines, product claims, monitoring, emergency response, and the clinician handoff.","heart",p),
-      card("guides/cannabis-moving-day-relocation-checklist/","LAW + HOUSEHOLD PLANNING","Cannabis moving day checklist","Classify the move, verify origin, route, destination, property and carrier rules, then control disposition, packing, transport, access, and arrival.","scale",p),
-      card("guides/cannabis-caregiving-sober-adult-handoff-plan/","RESPONSIBLE USE + CARE","Cannabis and caregiving handoff plan","Name the care job, sober adult, transport, medicines, locked storage, infant-feeding boundary, exposure response, and failure plan.","shield",p),
-      card("guides/cannabis-migraine-headache-evidence-guide/","HEALTH + EVIDENCE","Cannabis and migraine evidence","Keep one acute vaporized-cannabis trial inside its population, route, formulation, comparator, time window, emergency, and clinical boundaries.","heart",p),
-      card("guides/cannabis-memory-attention-cognition-evidence-guide/","HEALTH + COGNITION","Cannabis, memory, and attention evidence","Separate cognitive domains, acute and residual windows, confounders, task records, claim limits, and the clinical or safety handoff.","heart",p),
-      card("guides/indica-sativa-hybrid-label-evidence-guide/","FLOWER + EVIDENCE","Indica, sativa, and hybrid labels","Use the new 2026 systematic review, product identity, exact-lot chemistry, route, and context without turning shorthand into an effect guarantee.","leaf",p),
-      card("guides/cannabis-fertility-preconception-evidence-guide/","HEALTH + PRECONCEPTION","Cannabis and fertility evidence","Separate sperm, ovulation, conception, pregnancy, and treatment endpoints; build an exact exposure record for the clinical visit.","heart",p),
-      card("guides/cannabis-product-dates-condition-decision-guide/","PACKAGING + DECISIONS","Product dates and condition guide","Interpret package, expiration, use-by, best-by, and opened dates with the exact format, lot, storage, condition, recall, and exit route.","clock",p),
-      card("guides/cannabis-shared-kitchen-edible-safety-plan/","HOME + EDIBLES","Shared-kitchen edible safety plan","Keep cannabis identity, ingredients, allergens, access, handoffs, service, leftovers, cleanup, waste, and emergency response in one chain.","lock",p),
-      card("guides/new-york-cannabis-seed-clone-buying-guide/","BUYING + NEW YORK","New York cannabis seeds and clones","Verify the seller, starter type, source identity, plant-health evidence, label, care record, plant count, delivered condition, and rejection path.","leaf",p),
-      card("guides/cannabis-home-fire-safety-plan/","HOME + FIRE SAFETY","Cannabis home fire safety plan","Put alarms, escape, flames, embers, lithium batteries, indoor-grow electrical loads, medical oxygen, and household roles on one page.","alert",p),
-      card("guides/cannabis-nicotine-tobacco-co-use-guide/","HEALTH + CO-USE","Cannabis and nicotine co-use","Separate cannabis, cigarettes, tobacco wraps, nicotine vapes, timing, symptoms, withdrawal concerns, and quit support in one record.","heart",p),
-      card("guides/cannabis-allergy-symptom-exposure-guide/","HEALTH + EXPOSURE","Cannabis allergy and exposure record","Separate emergency signs, plant contact, smoke or dust, ingredients, workplace conditions, symptom timing, testing limits, and the clinician handoff.","heart",p),
-      card("guides/how-to-talk-to-doctor-about-cannabis/","HEALTH + PREPARATION","Talk to a doctor about cannabis","Build the exact product, whole medicine list, timeline, questions, urgent lane, and follow-up record.","heart",p),
-      card("guides/new-york-cannabis-showcase-event-verification-guide/","BUYING + NEW YORK","New York cannabis showcase events","Verify the event permit, seller, participants, product, total price, receipt, transport plan, and boundary between inspection and consumption.","search",p),
-      card("guides/cannabis-next-day-impairment-evidence-guide/","SCIENCE + RESPONSIBLE USE","Cannabis next-day impairment evidence","Separate residual symptoms, driving and work demands, testing, sleep and co-use, evidence limits, and a conservative morning decision gate.","shield",p),
-      card("guides/new-york-home-cannabis-harvest-drying-curing-log/","SAFETY + HOME GROW","New York harvest, drying, and curing log","Keep one batch identity, room and condition record, narrow mass-change trend, container transition, stop gate, and final storage trail.","leaf",p),
-      card("guides/cannabis-product-disposal-decision-guide/","SAFETY + WASTE","Cannabis product disposal decision guide","Separate recall evidence, product, battery electronics, glass or sharps, packaging, and chemical residue into locally verified routes.","alert",p),
-      card("guides/cannabis-dispensary-loyalty-rewards-value-privacy-guide/","BUYING + PRIVACY","Loyalty rewards value and privacy","Calculate usable rewards and break-even spend, then audit expiry, exclusions, current rules, data collection, consent, and exit.","search",p),
-      card("guides/storage/","HOME + STORAGE","Store cannabis safely by product type","Keep the original package, lot, condition, exact handling instructions, environment, locked access, household routine, and exit route together.","lock",p),
-      card("guides/cannabis-claim-fact-check-worksheet/","EVIDENCE + SOURCES","Cannabis claim fact-check worksheet","Match the exact claim, product, source, study, limits, conflicting evidence, current rule, and unresolved gaps before acting.","search",p),
-      card("guides/cbg-dominant-cannabis-chemotype-guide/","CBD + CANNABINOIDS","CBG-dominant cannabis","Separate chemotype, cultivar provenance, package identity, exact-lot CBG and CBGA results, claims, and legal category.","search",p),
-      card("guides/cannabis-intoxication-impairment-detection/","SCIENCE + RESPONSIBLE USE","Intoxication, impairment, and detection","Keep acute effects, task function, toxicology findings, poisoning response, and legal conclusions in separate evidence lanes.","shield",p),
-      card("guides/cbn-products-label-evidence-guide/","CBD + CANNABINOIDS","CBN products: labels and evidence","Reconcile CBN, THC, CBD and other ingredients; match the lot; audit sleep claims against the actual human study.","search",p),
-      card("guides/cannabis-social-hosting-guest-safety-plan/","RESPONSIBLE USE + HOME","Cannabis social hosting","Plan adult-only access, consent, product control, locked storage, sober rides, urgent response and cleanup.","shield",p),
-      card("guides/cannabis-cbd-liver-health-safety-guide/","HEALTH + CBD","Cannabis, CBD, and liver health","Separate the new CBD liver-enzyme evidence, prescription monitoring, retail uncertainty, medicines, alcohol, symptoms, labs, and clinician decisions.","heart",p),
-      card("guides/cannabis-cbd-chronic-pain-evidence-guide/","HEALTH + EVIDENCE","Cannabis, CBD, and chronic pain","Match the condition, exact product, route, evidence, function, harms, medicine plan, and review date without inventing a treatment recommendation.","heart",p),
-      card("guides/cannabis-cbd-cancer-claims-evidence-guide/","HEALTH + EVIDENCE","Cannabis, CBD, and cancer claims","Separate cancer-treatment claims, symptom-support questions, approved-medicine boundaries, interactions, exact-product evidence, and oncology decisions.","heart",p),
-      card("guides/cannabis-menu-package-receipt-match-checklist/","BUYING + VERIFICATION","Menu-to-package match checklist","Match the seller, menu, cart, substitution, sealed package, lot evidence, final price, and receipt before opening.","tag",p),
-      card("guides/cannabis-exercise-workout-heat-safety/","HEALTH + RESPONSIBLE USE","Cannabis, exercise, and heat safety","Plan around coordination, heart symptoms, heat, hydration, equipment, medicines, transport, and competition rules without performance claims.","heart",p),
-      card("guides/new-york-home-cannabis-pest-mold-ipm-guide/","SAFETY + HOME GROW","New York home-grow pests, mold, and IPM","Build a dated scouting record, separate look-alikes, correct moisture and prevention failures, and stop at the exact pesticide label.","leaf",p),
-      card("guides/cannabis-cbd-epilepsy-seizure-care-guide/","HEALTH + CBD","Cannabis, CBD, epilepsy, and seizure care","Use seizure first aid, separate prescription cannabidiol from retail CBD, and prepare one medicine, product, event, and monitoring record.","heart",p),
-      card("guides/cannabis-glaucoma-eye-pressure-vision-guide/","HEALTH + EYE CARE","Cannabis, glaucoma, and eye symptoms","Separate a temporary pressure effect from proven treatment; record symptoms, products, medicines, measurements, and urgent signs.","heart",p),
-      card("guides/cbd-patches-transdermal-label-evidence-guide/","CBD + BUYING","CBD patches and transdermal products","Compare classification, per-patch math, ingredients, skin instructions, lot evidence, delivery claims, and pharmacist questions.","search",p),
-      card("guides/cannabis-package-seal-tamper-evidence-checklist/","PACKAGING + BUYING","Package seal and tamper evidence","Inspect the unopened seal, closure, label, lot, condition, report, recall, and complaint route without destroying the trail.","shield",p),
-      card("guides/cbda-on-cannabis-hemp-labels/","CBD + LAB REPORTS","CBDA on cannabis and hemp labels","Separate CBDA from CBD, read compatible units and total-CBD calculations, and keep a cannabinoid row from becoming a medical claim.","search",p),
-      card("guides/cannabis-dry-mouth-dental-oral-health-guide/","HEALTH + ORAL CARE","Cannabis, dry mouth, and dental visits","Build a symptom, route, product, medicine, and last-use record; know urgent signs and prepare for the dental visit.","heart",p),
-      card("guides/cannabis-edible-label-math-checker/","BUYING + LABELS","Edible label math checker","Cross-check THC and CBD per serving, per piece, package totals, and a selected number of pieces without turning math into dose advice.","search",p),
-      card("guides/cbg-products-label-evidence-guide/","CBD + CANNABINOIDS","CBG products: label and evidence","Identify the form, reconcile CBG and CBGA with the exact lot, and separate early human research from retail promises.","search",p),
-      card("guides/cannabis-contaminant-test-results-guide/","LAB REPORTS + SAFETY","Cannabis contaminant test results","Read microbial, mycotoxin, pesticide, metal, solvent, physical-chemistry, and foreign-material panels without inventing zero or safe.","shield",p),
-      card("guides/cannabis-child-resistant-packaging-home-storage-guide/","PACKAGING + HOME SAFETY","Child-resistant packaging and storage","Audit the retail package, reclosure, locked enclosure, placement, visitor routine, and accidental-exposure plan.","lock",p),
-      card("guides/cannabis-official-source-directory/","SAFETY + SOURCES","Cannabis official source directory","Route emergencies, health evidence, product problems, recalls, fraud, driving, workplace testing, travel, hemp, and state rules to the source that owns the question.","shield",p),
-      card("guides/cannabis-gummies-drinks-oils-capsules-comparison/","FORMAT + BUYING","Gummies, drinks, oils, and capsules","Compare intended route, label unit, timing uncertainty, ingredients, measuring steps, storage, exact-lot evidence, and total cost.","search",p),
-      card("guides/new-york-cannabis-delivery-online-order-verification-guide/","BUYING + NEW YORK","New York delivery and online orders","Verify the license, website, payment, service area, ID check, handoff, receipt, package, and complaint route.","search",p),
-      card("guides/cannabis-flower-freshness-package-date-buying-guide/","FLOWER + BUYING","Flower freshness and package dates","Compare dates, seal, exact-lot report, moisture evidence, condition, storage, recalls, and return policy.","leaf",p),
-      card("guides/delta-8-thc-label-safety-guide/","SAFETY + LABELS","Delta-8 THC labels and safety","Separate psychoactive THC from hemp and CBD framing; check identity, exact-lot evidence, claims, household safety, and help routes.","alert",p),
-      card("guides/cannabis-edible-allergen-ingredient-label-guide/","BUYING + ALLERGENS","Edible allergens and ingredients","Check gummies, chocolates, baked goods, drinks, and capsules for ingredients, major allergens, cross-contact language, and label gaps.","tag",p),
-      card("guides/cbd-drinks-powders-label-buying-guide/","CBD + BUYING","CBD drinks and powders","Compare ready-to-drink products, concentrates, and powders by serving math, ingredients, lot evidence, claims, and storage.","search",p),
-      card("guides/cannabis-product-complaint-adverse-event-reporting/","SAFETY + REPORTING","Product complaint and adverse-event reporting","Protect the person, preserve the package and lot, classify the problem, and use the official route that can act on it.","alert",p),
-      card("guides/disposable-vape-vs-510-cartridge-comparison/","FORMAT + BUYING","Disposable vape versus 510 cartridge","Compare product identity, battery, compatibility, serviceability, ownership cost, storage, and end-of-life routes.","search",p),
-      card("guides/cbd-hemp-flower-label-legal-guide/","CBD + HEMP","CBD flower and hemp flower","Verify the package, lot, total-THC basis, report, state rule, smoke risk, claims, and drug-testing uncertainty.","leaf",p),
-      card("guides/cannabis-anxiety-paranoia-psychosis-warning-signs/","HEALTH + SAFETY","Anxiety, paranoia, and psychosis warning signs","Use the crisis gate, separate symptoms without diagnosing, preserve the product record, and prepare a useful clinical handoff.","heart",p),
-      card("guides/cannabis-product-price-label-comparison-calculator/","BUYING + LABELS","Product price and label calculator","Compare compatible checkout totals by unit count, net quantity, and labeled cannabinoid total, then keep package fit and no-purchase visible.","search",p),
-      card("guides/cannabis-smoke-vape-lung-health-guide/","HEALTH + SAFETY","Smoke, vaping, and lung health","Compare smoke, aerosol, dabs, and non-inhaled routes; use the symptom gate and build a clinician-ready exposure record.","heart",p),
-      card("guides/cannabis-pre-roll-infused-label-buying-guide/","FORMAT + BUYING","Pre-roll and infused pre-rolls","Separate flower from added concentrate, match the lot, normalize package math, and reject fake quality signals.","search",p),
-      card("guides/cannabis-terms-label-lab-glossary/","TERMS + LAB REPORTS","Cannabis terms and label glossary","Search 48 plain-language definitions across cannabinoids, labels, lab notation, formats, plant terms, and safety.","book",p),
-      card("guides/cannabis-overconsumption-poisoning-response/","SAFETY + URGENT RESPONSE","Too much or accidental exposure","Use the emergency gate, contact Poison Control, preserve the product record, skip fake antidotes, and repair the prevention failure.","alert",p),
-      card("guides/new-york-home-cannabis-grow-planner/","SAFETY + HOME GROW","New York home-grow planner","Check plant limits, residence and access rules, electrical load, moisture, starter sources, records, and harvest storage before starting.","leaf",p),
-      card("guides/cannabis-older-adults-medication-fall-safety/","HEALTH + SAFETY","Cannabis and older adults","Connect the exact product to medicines, standing dizziness, falls, driving, daily function, caregiver boundaries, and clinician review.","heart",p),
-      card("guides/cannabis-101/","CANNABIS BASICS","Cannabis 101","THC, CBD, formats, potency, categories, quality, and the questions worth asking.","book",p),
-      card("guides/read-a-label/","BUYING + LABELS","Rebuild the product from the label","Use the identity, serving and package math, potency basis, dates, ingredients, warnings, batch code, and exact-lot report as one evidence record.","tag",p),
-      card("guides/cannabis-certificate-of-analysis-coa-guide/","BUYING + LAB REPORTS","Read a certificate of analysis","Match the exact lot, then interpret units, reporting limits, panels, status, and report dates.","search",p),
-      card("guides/cannabis-product-recall-batch-checker/","SAFETY + BUYING","Recall and batch checker","Match producer, product, lot, package, dates, and jurisdiction to the current official notice.","alert",p),
-      card("guides/cannabis-drug-testing-thc-results-guide/","WORKPLACE + TESTING","Cannabis drug-test results","Understand specimens, screens, confirmation, THC metabolites, CBD risk, result records, and why no universal countdown exists.","search",p),
-      card("guides/dot-cannabis-cbd-drug-testing-safety-sensitive-workers/","WORKPLACE + TESTING","DOT cannabis and CBD testing","Separate safety-sensitive scope, CBD label risk, laboratory review, removal, and the return-to-duty process.","shield",p),
-      card("guides/terpenes/","AROMA","Terpenes without astrology","Use aroma chemistry without turning it into a guaranteed personality forecast.","spark",p),
-      card("guides/edibles/","FORMAT + BUYING","Edible labels, timing, and buying","Audit serving and package math, ingredients, timing uncertainty, exact-lot evidence, the licensed seller, storage, and an exit plan.","clock",p),
-      card("guides/cannabis-beverages-label-timing-buying-guide/","FORMAT + BUYING","Cannabis beverages","Read THC per serving and container, ingredients, timing claims, batch evidence, storage, and the no-alcohol rule.","clock",p),
-      card("guides/cbd-gummies-label-buying-guide/","CBD + BUYING","CBD gummies","Compare per-piece and package math, ingredients, lot evidence, THC risk, claims, and locked storage.","search",p),
-      card("guides/cbd-capsules-softgels-label-buying-guide/","CBD + BUYING","CBD capsules and softgels","Compare per-unit math, shell and carrier ingredients, lot evidence, THC risk, claims, and storage.","search",p),
-      card("guides/flower/","FORMAT + BUYING","Cannabis flower buying checklist","Verify the seller, package, lot report, dates, condition, storage fit, route, exit plan, and complete ownership needs.","leaf",p),
-      card("guides/vapes/","FORMAT","Vape red flags","Oil, potency, licensing, hardware, heat, batteries, and lung symptoms.","alert",p),
-      card("guides/cannabis-concentrates-dabs-label-safety-guide/","FORMAT + BUYING","Concentrates and dabs","Decode wax, shatter, rosin, resin, potency, batch evidence, equipment heat, and storage.","alert",p),
-      card("responsible-use/","SAFETY","Responsible use","The checklist for driving, pacing, storage, emergencies, and honest patterns.","shield",p),
-      card("guides/cannabis-cbd-medication-interactions/","SAFETY","Cannabis and medications","A better pharmacist conversation about CBD, THC, labels, sedation, and interaction risk.","heart",p),
-      card("guides/cannabis-tolerance-dependence-withdrawal/","RESPONSIBLE USE","Tolerance, dependence, and withdrawal","Separate the terms, audit the real-life pattern, and know when professional help is efficient.","shield",p),
-      card("guides/cannabis-cbd-and-sleep/","SCIENCE","Cannabis, CBD, and sleep","Separate sleepiness from sleep quality, morning function, durable benefit, and treatment claims.","clock",p),
-      card("guides/cannabis-before-surgery-anesthesia/","HEALTH + SAFETY","Cannabis before surgery","Build the exact product record, disclose recent use, and get the stop-and-resume plan from the surgical team.","heart",p),
-      card("guides/secondhand-cannabis-smoke-indoor-air/","RESPONSIBLE USE","Secondhand smoke and indoor air","Build a no-indoor-smoke rule and understand what ventilation and filtration cannot promise.","shield",p),
-      card("guides/full-spectrum-broad-spectrum-cbd-isolate/","CBD + HEMP","Full-spectrum, broad-spectrum, or isolate","Use the ingredients and batch report to test the spectrum badge, THC claim, and drug-test risk.","search",p),
-      card("guides/thca-vs-thc-cannabis-labels/","SCIENCE + LABELS","THCA versus THC","Separate the analytes, total-THC formula, dry-weight basis, uncertainty, and legal rule.","tag",p),
-      card("guides/cannabis-and-pets-accidental-exposure/","PET SAFETY","Cannabis and pets","Call promptly, preserve the package evidence, recognize urgent signs, and prevent the next exposure.","shield",p),
-      card("guides/cbd-products-for-pets-veterinarian-label-guide/","CBD + PET SAFETY","CBD products for pets","Start with the veterinarian, then audit product identity, lot evidence, ingredients, claims, monitoring, and storage.","heart",p),
-      card("guides/cbd-topicals-label-buying-guide/","CBD + HEMP","CBD topical labels","Audit intended use, ingredients, batch evidence, spectrum language, skin tolerance, and treatment claims.","search",p),
-      card("guides/cannabis-and-alcohol-mixing-risks/","RESPONSIBLE USE","Cannabis and alcohol","Understand combined impairment, mismatched timing, transportation, distress response, and myth-free stop rules.","alert",p),
-      card("guides/cbd-oil-tincture-label-buying-guide/","CBD + HEMP","CBD oil and tincture labels","Compare concentration, serving math, ingredients, lot evidence, THC risk, claims, and storage.","search",p),
-      card("guides/hemp-seed-oil-vs-cbd-oil/","CBD + HEMP","Hemp seed oil versus CBD oil","Use ingredients, cannabinoid amounts, lot evidence, and intended use to separate two products that share the word hemp.","tag",p),
-      card("guides/cannabis-driving-impairment-sober-timer/","RESPONSIBLE USE","Cannabis and driving","Why no timer, blood number, or feeling can certify driving readinessâ€”and how to plan the ride.","alert",p),
-      card("guides/cannabis-pregnancy-breastfeeding-guidance/","PUBLIC HEALTH","Cannabis, pregnancy, and breastfeeding","Current CDC and FDA guidance on routes, evidence limits, CBD, disclosure, household safety, and professional support.","heart",p),
-      card("guides/cannabis-heart-rate-blood-pressure-safety/","HEART + SAFETY","Cannabis, heart rate, and blood pressure","Separate immediate cardiovascular effects, evidence limits, emergency signs, home measurements, and clinician questions.","heart",p),
-      card("guides/cannabinoid-hyperemesis-syndrome-warning-signs/","HEALTH + SAFETY","Cannabinoid hyperemesis syndrome","Recognize recurrent-vomiting warning signs, emergency red flags, evidence limits, hot-water risks, and the role of cessation.","alert",p),
-    ])
-    cards = card(
-        "guides/cannabis-blood-donation-eligibility-guide/",
-        "HEALTH + DONOR ELIGIBILITY",
-        "Cannabis and blood donation",
-        "Separate cannabis use, current function, health screening, medicines, synthetic cannabinoids, donation type, and the blood center's final decision.",
-        "heart",
-        p,
-    ) + cards
-    cards = card(
-        "guides/cannabis-qr-code-coa-verification-safety-guide/",
-        "BUYING + DIGITAL SAFETY",
-        "Cannabis QR code and CoA verification",
-        "Preview the destination, match the package to the exact-lot report, reject suspicious requests, and preserve an accessible recovery route.",
-        "search",
-        p,
-    ) + cards
-    cards = card(
-        "guides/cannabis-potency-units-percent-mg-g-ml-serving-guide/",
-        "BUYING + LABEL MATH",
-        "Cannabis potency units: %, mg/g, and mg/mL",
-        "Translate compatible concentration, serving, and package units without mixing analytes, mass and volume bases, routes, or dose advice.",
-        "search",
-        p,
-    ) + cards
-    cards = card(
-        "guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/",
-        "TERMS + EVIDENCE",
-        "Strain, cultivar, chemotype, and lot",
-        "Translate ten identity layers into the evidence each term can and cannot carry.",
-        "book",
-        p,
-    ) + cards
-    guide_count = cards.count('data-guide-card')
-    decision_router=f'''<section class="container guide-paths"><div class="section-head"><p class="eyebrow">START WITH THE DECISION</p><h2>Seven high-stakes paths. One useful next page.</h2><p>These paths move a reader from the hub to the taskâ€”not to a product ranking. Search Console is one guardrail; the library keeps broader reader needs visible when samples are weak.</p></div><div class="comparison-grid"><div><span>FIRST PURCHASE</span><h3>Plan before the menu</h3><p>Set purpose, hard limits, format, budget, seller verification, storage, transport, and a no-buy exit.</p><a href="../start-here/">Open the first-purchase planner â†’</a></div><div><span>PACKAGE IN HAND</span><h3>Rebuild the label</h3><p>Match identity, route, serving and package math, ingredients, dates, lot, report, warnings, and storage.</p><a href="read-a-label/">Open the label guide â†’</a></div><div><span>SCAN + VERIFY</span><h3>Preview the route, then match the lot</h3><p>Check the destination owner, exact report, suspicious requests, accessible alternative, and recovery route.</p><a href="cannabis-qr-code-coa-verification-safety-guide/">Open the QR verification guide â†’</a></div><div><span>PRODUCT PROBLEM</span><h3>Protect the person first</h3><p>Use the urgency gate, preserve product and lot evidence, then choose the official reporting owner.</p><a href="cannabis-product-complaint-adverse-event-reporting/">Open the reporting guide â†’</a></div><div><span>PUBLIC EVENT</span><h3>Verify the temporary sale</h3><p>Check the event permit, seller, participant roles, package, total price, receipt, and use boundary.</p><a href="new-york-cannabis-showcase-event-verification-guide/">Open the event checklist â†’</a></div><div><span>WORK + TESTING</span><h3>Identify the policy and specimen</h3><p>Keep employer policy, test stage, laboratory result, CBD risk, review, and legal advice in separate lanes.</p><a href="cannabis-drug-testing-thc-results-guide/">Open the drug-test guide â†’</a></div><div><span>USE + TRANSPORT</span><h3>Build the sober exit</h3><p>Plan around driving, other substances, obligations, locked storage, urgent help, and patterns worth discussing.</p><a href="../responsible-use/">Open responsible use â†’</a></div></div><p class="micro">No paid placement, product, merchant, ticket, price, coupon, rating, or affiliate link appears in this router. The repository contains no approved affiliate program or tracking ID.</p></section>'''
-    main=f'''<main id="main-content"><section class="hub-hero"><div class="container"><p class="eyebrow">PRACTICAL CANNABIS EDUCATION</p><h1>THE GUIDE<br><em>LIBRARY.</em></h1><p>No endless blog roll. Every page answers a decision an adult can actually have in front of them.</p></div></section><section class="container hub-feature"><a href="../start-here/"><div><p class="kicker">THE BEST FIRST PAGE</p><h2>Start here. Skip the folklore.</h2><p>Six decisions for new and returning adults: purpose, format, batch, context, storage, and exit plan.</p><b>Open the orientation {icon('arrow')}</b></div><img src="../assets/images/guide-field-notes.webp" alt="Unbranded cannabis package, sample jar, notebook, and magnifying glass arranged for close inspection"></a></section>{decision_router}<section class="container guide-library" data-guide-library><div class="guide-tools"><label><span>FIND A GUIDE</span><input type="search" data-guide-search placeholder="Try: delivery, package date, lab reportâ€¦" autocomplete="off"></label><div class="guide-filters" aria-label="Filter guide library"><button class="is-active" type="button" data-guide-filter="all">All guides</button><button type="button" data-guide-filter="format">Formats</button><button type="button" data-guide-filter="buying">Buying &amp; labels</button><button type="button" data-guide-filter="safety">Safety</button><button type="button" data-guide-filter="cbd">CBD &amp; hemp</button></div><label class="guide-sort"><span>SORT</span><select data-guide-sort><option value="editorial">Editorial order</option><option value="recent">Recently reviewed</option><option value="title">Title Aâ€“Z</option></select></label><p aria-live="polite"><span data-guide-count>{guide_count}</span> guides shown</p></div><p class="guide-empty" data-guide-empty hidden>No guide matched that search and filter. Clear the search or choose all guides.</p><div class="library-grid">{cards}</div></section><section class="container guide-paths"><div class="section-head"><p class="eyebrow">READ IN ORDER</p><h2>Thirty useful paths</h2></div><div class="path-list"><a href="../start-here/"><span>New or returning after years</span><b>START HERE â†’ CANNABIS 101 â†’ LABEL</b></a><a href="flower/"><span>Comparing packaged cannabis flower</span><b>SELLER â†’ PACKAGE â†’ LOT REPORT â†’ CONDITION â†’ STORAGE â†’ EXIT</b></a><a href="new-york-home-cannabis-grow-planner/"><span>Planning a New York home grow</span><b>LAW â†’ SPACE â†’ LOAD â†’ STARTER SOURCE â†’ RECORDS â†’ STORAGE</b></a><a href="new-york-home-cannabis-harvest-drying-curing-log/"><span>Carrying a lawful New York home grow through harvest</span><b>BATCH ID â†’ ROOM â†’ CONDITION LOG â†’ CONTAINER â†’ STORAGE</b></a><a href="cannabis-certificate-of-analysis-coa-guide/"><span>Holding a certificate of analysis or QR-linked lab report</span><b>PACKAGE â†’ LOT MATCH â†’ UNITS â†’ PANELS â†’ STATUS</b></a><a href="cbd-capsules-softgels-label-buying-guide/"><span>Comparing CBD capsules or softgels</span><b>UNIT MATH â†’ FORMULA â†’ LOT â†’ CLAIMS â†’ STORAGE</b></a><a href="cannabinoid-hyperemesis-syndrome-warning-signs/"><span>Repeated nausea or vomiting with frequent cannabis use</span><b>STOP USE â†’ URGENCY CHECK â†’ DISCLOSE â†’ CLINICAL FOLLOW-UP</b></a><a href="cannabis-drug-testing-thc-results-guide/"><span>Facing a workplace, home, or program drug test</span><b>POLICY â†’ SPECIMEN â†’ SCREEN â†’ CONFIRM â†’ REVIEW</b></a><a href="cannabis-product-recall-batch-checker/"><span>Checking a recall, quarantine, or safety notice</span><b>PRESERVE PACKAGE â†’ MATCH LOT â†’ FOLLOW OFFICIAL ACTION</b></a><a href="edibles/"><span>Holding a gummy or chocolate</span><b>EDIBLES â†’ LABEL â†’ STORAGE</b></a><a href="cannabis-beverages-label-timing-buying-guide/"><span>Comparing a cannabis seltzer, tonic, or drink</span><b>BEVERAGES â†’ LABEL â†’ LICENSE â†’ STORAGE</b></a><a href="vapes/"><span>Holding a cart or disposable</span><b>VAPES â†’ SHOP LEGAL â†’ RESPONSIBLE USE</b></a><a href="cannabis-concentrates-dabs-label-safety-guide/"><span>Comparing wax, shatter, rosin, resin, or dabs</span><b>CONCENTRATES â†’ LABEL â†’ LICENSE â†’ STORAGE</b></a></div></section>{newsletter('../')}</main>'''
-    main = main.replace("Twenty-nine useful paths", "Useful paths through the library")
-    main = main.replace('<div class="path-list">', '<div class="path-list"><a href="cannabis-fertility-preconception-evidence-guide/"><span>Planning conception or a fertility visit</span><b>ENDPOINT â†’ EXPOSURE â†’ CO-EXPOSURES â†’ EVIDENCE â†’ CLINICAL PLAN</b></a>', 1)
-    main = main.replace('<div class="path-list">', '<div class="path-list"><a href="cannabis-product-dates-condition-decision-guide/"><span>Deciding what a cannabis product date means</span><b>IDENTITY â†’ DATE WORDING â†’ CONDITION â†’ STORAGE â†’ LOT â†’ EXIT</b></a>', 1)
-    main = main.replace('<div class="path-list">', '<div class="path-list"><a href="cannabis-cbd-epilepsy-seizure-care-guide/"><span>Sorting prescription cannabidiol from retail CBD in seizure care</span><b>FIRST AID â†’ MEDICINE â†’ PRODUCT â†’ INTERACTIONS â†’ PLAN</b></a>', 1)
-    main = main.replace('<div class="path-list">', '<div class="path-list"><a href="cannabis-claim-fact-check-worksheet/"><span>Checking a cannabis health, safety, product, legal, or comparative claim</span><b>CLAIM â†’ SPEAKER â†’ PRODUCT â†’ SOURCE â†’ MATCH â†’ LIMITS â†’ RULE</b></a>', 1)
-    main = main.replace('<div class="path-list">', '<div class="path-list"><a href="cannabis-cbd-liver-health-safety-guide/"><span>Checking a cannabis, CBD, or liver-health claim</span><b>SYMPTOMS â†’ EXACT PRODUCT â†’ MEDICINES â†’ LAB CONTEXT â†’ CLINICIAN</b></a><a href="cannabis-cbd-chronic-pain-evidence-guide/"><span>Checking a cannabis or CBD chronic-pain claim</span><b>URGENCY â†’ CONDITION â†’ EVIDENCE â†’ FUNCTION â†’ HARMS â†’ REVIEW</b></a>', 1)
-    main = main.replace('<div class="path-list">', '<div class="path-list"><a href="cannabis-cbd-cancer-claims-evidence-guide/"><span>Checking a cannabis, CBD, or cannabinoid cancer claim</span><b>URGENT PLAN â†’ EXACT CLAIM â†’ EVIDENCE RUNG â†’ PRODUCT â†’ ONCOLOGY TEAM</b></a>', 1)
-    main = main.replace('<div class="path-list">', '<div class="path-list"><a href="cannabis-exercise-workout-heat-safety/"><span>Planning exercise, outdoor activity, or a workout around cannabis</span><b>FUNCTION â†’ SETTING â†’ SYMPTOMS â†’ HEAT â†’ TRANSPORT â†’ RULES</b></a>', 1)
-    main = main.replace('<div class="path-list">', '<div class="path-list"><a href="new-york-home-cannabis-pest-mold-ipm-guide/"><span>Investigating pests, moisture, or mold in a New York home grow</span><b>LAW â†’ OBSERVE â†’ IDENTIFY â†’ PREVENT â†’ LABEL GATE â†’ VERIFY</b></a>', 1)
-    main = main.replace('<div class="path-list">', '<div class="path-list"><a href="cbd-patches-transdermal-label-evidence-guide/"><span>Comparing a CBD patch or transdermal claim</span><b>CLASSIFY â†’ LABEL MATH â†’ INGREDIENTS â†’ LOT â†’ CLAIMS â†’ PHARMACIST</b></a><a href="cannabis-package-seal-tamper-evidence-checklist/"><span>Inspecting a seal or damaged cannabis package</span><b>STOP GATE â†’ SEAL â†’ CLOSURE â†’ LOT â†’ REPORT â†’ EXIT ROUTE</b></a><a href="cannabis-glaucoma-eye-pressure-vision-guide/"><span>Checking a cannabis-and-glaucoma claim or preparing for an eye visit</span><b>URGENCY â†’ SYMPTOM â†’ PRODUCT â†’ MEDICINES â†’ MEASUREMENT â†’ EYE CARE</b></a><a href="cannabis-dry-mouth-dental-oral-health-guide/"><span>Preparing for a dental visit or persistent dry mouth</span><b>URGENCY â†’ SYMPTOM â†’ ROUTE â†’ PRODUCT â†’ MEDICINES â†’ DENTIST</b></a><a href="cannabis-edible-label-math-checker/"><span>Checking an edible label that lists servings and pieces</span><b>SERVING â†’ UNIT â†’ PACKAGE â†’ LOT â†’ SOURCE</b></a><a href="cbg-products-label-evidence-guide/"><span>Checking a CBG oil, gummy, capsule, flower, or other product</span><b>FORM â†’ LABEL â†’ LOT â†’ EVIDENCE â†’ CLAIMS</b></a><a href="cannabis-contaminant-test-results-guide/"><span>Reading a pesticide, microbial, metal, solvent, or other contaminant panel</span><b>PRODUCT â†’ LOT â†’ PANEL â†’ LIMIT â†’ STATUS â†’ LIVE CHECK</b></a><a href="cannabis-child-resistant-packaging-home-storage-guide/"><span>Auditing cannabis packaging and household access</span><b>PACKAGE â†’ RECLOSE â†’ LOCK â†’ PLACE â†’ ROUTINE â†’ RESPONSE</b></a><a href="cannabis-official-source-directory/"><span>Looking for the agency or service that owns a cannabis question</span><b>QUESTION â†’ SOURCE OWNER â†’ JURISDICTION â†’ STATUS â†’ EXIT ROUTE</b></a><a href="cannabis-gummies-drinks-oils-capsules-comparison/"><span>Comparing gummies, drinks, oils, capsules, lozenges, sprays, or powders</span><b>ROUTE â†’ UNIT â†’ INGREDIENTS â†’ LOT â†’ CONTROL â†’ VALUE</b></a>', 1)
-    main = main.replace('<b>START HERE â†’ CANNABIS 101 â†’ LABEL</b></a><a href="new-york-home-cannabis-grow-planner/">', '<b>START HERE â†’ CANNABIS 101 â†’ LABEL</b></a><a href="new-york-cannabis-delivery-online-order-verification-guide/"><span>Ordering cannabis delivery in New York</span><b>LICENSE â†’ DOMAIN â†’ CART â†’ PAYMENT â†’ HANDOFF â†’ RECEIPT</b></a><a href="cannabis-flower-freshness-package-date-buying-guide/"><span>Comparing flower freshness and package dates</span><b>IDENTITY â†’ DATES â†’ SEAL â†’ LOT â†’ CONDITION â†’ RETURN</b></a><a href="new-york-home-cannabis-grow-planner/">')
-    main = main.replace(
-        '<button class="is-active" type="button" data-guide-filter="all">All guides</button><button type="button" data-guide-filter="format">Formats</button><button type="button" data-guide-filter="buying">Buying &amp; labels</button><button type="button" data-guide-filter="safety">Safety</button><button type="button" data-guide-filter="cbd">CBD &amp; hemp</button>',
-        '<button class="is-active" type="button" data-guide-filter="all" aria-pressed="true">All guides</button><button type="button" data-guide-filter="health" aria-pressed="false">Health</button><button type="button" data-guide-filter="format" aria-pressed="false">Formats</button><button type="button" data-guide-filter="buying" aria-pressed="false">Buying &amp; labels</button><button type="button" data-guide-filter="safety" aria-pressed="false">Safety</button><button type="button" data-guide-filter="responsible" aria-pressed="false">Responsible use</button><button type="button" data-guide-filter="workplace" aria-pressed="false">Workplace</button><button type="button" data-guide-filter="cbd" aria-pressed="false">CBD &amp; hemp</button>',
-    )
-    main = main.replace(
-        '<b>START HERE â†’ CANNABIS 101 â†’ LABEL</b></a><a href="new-york-home-cannabis-grow-planner/">',
-        '<b>START HERE â†’ CANNABIS 101 â†’ LABEL</b></a><a href="cannabis-anxiety-paranoia-psychosis-warning-signs/"><span>Responding to anxiety, paranoia, disorientation, or losing touch with reality</span><b>SAFETY GATE â†’ EXACT SYMPTOM â†’ PRODUCT RECORD â†’ HELP â†’ FOLLOW-UP</b></a><a href="cannabis-product-price-label-comparison-calculator/"><span>Comparing prices across like-for-like cannabis packages</span><b>FORMAT â†’ LABEL BASIS â†’ PRICE MATH â†’ LOT EVIDENCE â†’ CHECKOUT</b></a><a href="cannabis-smoke-vape-lung-health-guide/"><span>Comparing cannabis smoke, vaping, or another route</span><b>SYMPTOMS â†’ ROUTE â†’ PRODUCT â†’ EVIDENCE â†’ CLINICIAN</b></a><a href="cannabis-pre-roll-infused-label-buying-guide/"><span>Comparing plain and infused pre-rolls</span><b>IDENTITY â†’ INGREDIENTS â†’ WEIGHT â†’ LOT â†’ CHECKOUT</b></a><a href="cannabis-terms-label-lab-glossary/"><span>Decoding an unfamiliar label or laboratory term</span><b>TERM â†’ OBJECT â†’ UNIT â†’ CAVEAT â†’ PRIMARY SOURCE</b></a><a href="cannabis-older-adults-medication-fall-safety/"><span>Reviewing cannabis for an older adult</span><b>PRODUCT â†’ MEDICINES â†’ FALLS â†’ FUNCTION â†’ FOLLOW-UP</b></a><a href="cbd-products-for-pets-veterinarian-label-guide/"><span>Considering a CBD product for a dog, cat, or other pet</span><b>VETERINARIAN â†’ ANIMAL â†’ PRODUCT â†’ LOT â†’ MONITORING</b></a><a href="dot-cannabis-cbd-drug-testing-safety-sensitive-workers/"><span>Working in a DOT safety-sensitive role</span><b>SCOPE â†’ POLICY â†’ CBD RISK â†’ REVIEW â†’ RETURN TO DUTY</b></a><a href="new-york-home-cannabis-grow-planner/">',
-    )
-    main = main.replace(
-        '<b>START HERE â†’ CANNABIS 101 â†’ LABEL</b></a><a href="cannabis-anxiety-paranoia-psychosis-warning-signs/">',
-        '<b>START HERE â†’ CANNABIS 101 â†’ LABEL</b></a><a href="delta-8-thc-label-safety-guide/"><span>Checking a delta-8 THC product</span><b>IDENTITY â†’ INTOXICATION â†’ LOT â†’ PANELS â†’ RULE â†’ HELP</b></a><a href="cannabis-edible-allergen-ingredient-label-guide/"><span>Checking an edible for allergens and ingredients</span><b>EMERGENCY PLAN â†’ INGREDIENTS â†’ ALLERGENS â†’ LOT â†’ CHECKOUT</b></a><a href="cbd-drinks-powders-label-buying-guide/"><span>Comparing a CBD drink, liquid concentrate, or powder</span><b>FORMAT â†’ SERVING MATH â†’ INGREDIENTS â†’ LOT â†’ STORAGE</b></a><a href="cannabis-product-complaint-adverse-event-reporting/"><span>Reporting a product problem, label mismatch, seller concern, or adverse event</span><b>SAFETY GATE â†’ PERSON â†’ PACKAGE â†’ LOT â†’ ROUTE â†’ CASE</b></a><a href="disposable-vape-vs-510-cartridge-comparison/"><span>Choosing between an integrated vape pen and a 510 cartridge system</span><b>SOURCE â†’ IDENTITY â†’ COMPATIBILITY â†’ SUPPORT â†’ EXIT</b></a><a href="cbd-hemp-flower-label-legal-guide/"><span>Comparing CBD flower or hemp flower</span><b>PACKAGE â†’ LOT â†’ TOTAL THC â†’ RULE â†’ SMOKE + TEST RISK</b></a><a href="cannabis-anxiety-paranoia-psychosis-warning-signs/">',
-    )
-    main = main.replace('data-guide-search placeholder=', 'data-guide-search aria-controls="guide-results" placeholder=')
-    main = main.replace('<div class="guide-filters" aria-label="Filter guide library">', '<div class="guide-filters" role="group" aria-label="Filter guide library" aria-describedby="guide-result-status">')
-    main = main.replace('aria-pressed="true">All guides', 'aria-pressed="true" aria-controls="guide-results">All guides')
-    main = main.replace('aria-pressed="false">', 'aria-pressed="false" aria-controls="guide-results">')
-    main = main.replace('<select data-guide-sort>', '<select data-guide-sort aria-controls="guide-results" aria-describedby="guide-result-status">')
-    main = main.replace('<p aria-live="polite"><span data-guide-count>', '<p id="guide-result-status" aria-live="polite"><span data-guide-count>')
-    main = main.replace('<div class="library-grid">', '<div class="library-grid" id="guide-results">', 1)
-    path_block = main.split('<div class="path-list">', 1)[1].split('</div>', 1)[0]
-    main = main.replace('Twenty-nine useful paths', f'{path_block.count("<a href=")} useful paths')
-    html = layout(page, main, [("Guides",None)])
-    return page, add_collection_itemlist(html, page, "Big Bud Man cannabis guide library", "library-card")
-
-
-def render_strains_hub() -> tuple[Page,str]:
-    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} THC, CBD, CBDV, CBG, hemp, grain/fiber, and mixed-ratio field notes with lineage, batch, and evidence caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the questionâ€”not end it.","",updated="November 23, 2026",kind="website")
-    items=[]
-    for strain in sorted(STRAINS, key=lambda item: item["name"].lower()):
-      aliases = " ".join(strain.get("aliases", []))
-      cannabinoid_label = CANNABINOID_LABELS[strain["cannabinoid"]]
-      search_text = f"{strain['name']} {aliases} {strain['shorthand']} {strain['lineage']} {strain['era']} {cannabinoid_label}".lower()
-      if strain["cannabinoid"] == "cbd":
-          photo_alt = f"Representative CBD-rich hemp flower photograph for the {strain['name']} field note; not a verified cultivar or batch image"
-      elif strain["cannabinoid"] == "cbg":
-          photo_alt = f"Representative hemp flower photograph for the {strain['name']} field note; not a verified cultivar or batch image"
-      elif strain["cannabinoid"] == "ratio":
-          photo_alt = f"Representative mixed THC and CBD cannabis flower photograph for the {strain['name']} field note; not a verified cultivar or batch image"
-      elif strain["cannabinoid"] in {"industrial", "hemp"}:
-          photo_alt = f"No verified cultivar photograph is published for the {strain['name']} field note"
-      else:
-          photo_alt = f"Representative cannabis flower photograph for the {strain['name']} field note; not a verified cultivar or batch image"
-      if strain["image"]:
-          card_art=f'''<div class="strain-card__art"><img src="../assets/images/{strain['image']}" alt="{photo_alt}" loading="lazy" decoding="async"><span>{cannabinoid_label.upper()}</span><small>REPRESENTATIVE PHOTO</small></div>'''
-      else:
-          card_art=f'''<div class="strain-card__art strain-card__art--no-image"><span>{cannabinoid_label.upper()}</span><b>NO VERIFIED CULTIVAR IMAGE</b><small>EVIDENCE-FIRST PROFILE</small></div>'''
-      hub_label = strain.get("hub_label", f"{strain['lean'].upper()} RETAIL SHORTHAND")
-      items.append(f'''<a class="strain-card strain-card--{strain['color']}" data-strain-card data-lean="{strain['lean']}" data-cannabinoid="{strain['cannabinoid']}" data-search="{escape(search_text)}" href="{strain['slug']}/">{card_art}<div><p class="kicker">FIELD NOTE</p><h2>{strain['name']}</h2><b>{hub_label} Â· {strain['shorthand']}</b><p>{strain['reality']}</p><em>Read the honest note {icon('arrow')}</em></div></a>''')
-    main=f'''<main id="main-content"><section class="hub-hero strain-hub-hero"><div class="container"><p class="eyebrow">{len(STRAINS)} STRAIN FIELD NOTES</p><h1>FAMOUS NAMES.<br><em>HONEST CAVEATS.</em></h1><p>History, aroma language, reputation, cannabinoid context, batch questions, and the warning every strain page should carry.</p><div class="strain-disclaimer">{icon('alert')}<span>No strain name guarantees an effect, potency, cannabinoid ratio, lineage, or medical outcome. Products vary by producer, batch, format, storage, and person.</span></div></div></section><section class="container strain-library"><div class="cbd-library-note"><div><span>HEMP IS IN THE LIBRARY</span><h2>CBD-rich, CBDV-focused, CBG-dominant, and mixed-ratio flower belongs in the same honest conversation.</h2></div><p>Use the cannabinoid filter to find CBD-forward, CBDV-focused, CBG-dominant, and THC:CBD ratio names. Then verify the current certificate of analysis: the cultivar name cannot prove cannabinoid content, legality, or a medical outcome.</p></div><div class="strain-tools" data-strain-filter><label class="strain-search"><span>SEARCH THE LIBRARY</span><input type="search" data-strain-search placeholder="Try Lantz, CBDV, citrus, Kushâ€¦" autocomplete="off"></label><div class="filter-bar"><div class="strain-filter-groups"><div class="filter-group"><span>RETAIL SHORTHAND</span><button class="is-active" data-filter="all">All effects</button><button data-filter="balanced">Balanced</button><button data-filter="bright">Bright</button><button data-filter="heavy">Heavy</button></div><div class="filter-group"><span>CANNABINOID PROFILE</span><button class="is-active" data-cannabinoid-filter="all">All profiles</button><button data-cannabinoid-filter="thc">THC-dominant</button><button data-cannabinoid-filter="cbd">CBD-rich</button><button data-cannabinoid-filter="cbdv">CBDV-focused</button><button data-cannabinoid-filter="cbg">CBG-dominant</button><button data-cannabinoid-filter="ratio">THC:CBD ratio</button></div></div><p aria-live="polite"><span data-strain-count>{len(STRAINS)}</span> field notes</p></div></div><p class="strain-empty" data-strain-empty hidden>No field note matched that combination. Clear a filter or try a family, aroma word, or alternate spelling.</p><div class="strain-grid">{''.join(items)}</div></section><section class="container strain-method"><div class="section-head"><p class="eyebrow">THE METHOD</p><h2>How to use a strain page</h2></div><div class="method-grid"><div><span>01</span><h3>Read the story</h3><p>Learn why the name matters culturally.</p></div><div><span>02</span><h3>Check the caveat</h3><p>See where standardization ends.</p></div><div><span>03</span><h3>Inspect the batch</h3><p>Producer, format, potency, date, aroma.</p></div><div><span>04</span><h3>Write your note</h3><p>Record what actually happened in context.</p></div></div></section>{newsletter('../')}</main>'''
-    main = main.replace(
-        '<button data-cannabinoid-filter="ratio">THC:CBD ratio</button>',
-        '<button data-cannabinoid-filter="ratio">THC:CBD ratio</button><button data-cannabinoid-filter="hemp">Documented hemp</button><button data-cannabinoid-filter="industrial">Grain / fiber hemp</button>',
-        1,
-    )
-    main = main.replace('data-strain-search placeholder=', 'data-strain-search aria-controls="strain-results" placeholder=')
-    main = main.replace('<div class="filter-group"><span>RETAIL SHORTHAND</span>', '<div class="filter-group" role="group" aria-label="Filter by retail shorthand" aria-describedby="strain-result-status"><span>RETAIL SHORTHAND</span>')
-    main = main.replace('<div class="filter-group"><span>CANNABINOID PROFILE</span>', '<div class="filter-group" role="group" aria-label="Filter by cannabinoid profile" aria-describedby="strain-result-status"><span>CANNABINOID PROFILE</span>')
-    main = main.replace('<button class="is-active" data-filter="all">', '<button class="is-active" type="button" data-filter="all" aria-pressed="true" aria-controls="strain-results">')
-    main = main.replace('<button data-filter="', '<button type="button" aria-pressed="false" aria-controls="strain-results" data-filter="')
-    main = main.replace('<button class="is-active" data-cannabinoid-filter="all">', '<button class="is-active" type="button" data-cannabinoid-filter="all" aria-pressed="true" aria-controls="strain-results">')
-    main = main.replace('<button data-cannabinoid-filter="', '<button type="button" aria-pressed="false" aria-controls="strain-results" data-cannabinoid-filter="')
-    main = main.replace('<p aria-live="polite"><span data-strain-count>', '<p id="strain-result-status" aria-live="polite"><span data-strain-count>')
-    main = main.replace('<div class="strain-grid">', '<div class="strain-grid" id="strain-results">')
-    html = layout(page, main, [("Strains",None)])
-    return page, add_collection_itemlist(html, page, "Big Bud Man cannabis strain field-note library", "strain-card")
-
-
-def render_gear_hub() -> tuple[Page,str]:
-    items = [
-        ("cannabis-erig-enail-buying-safety-guide/","compare powered care","CONCENTRATES + HEATED HARDWARE","Choose an e-rig or e-nail system","Compare the exact heater, sensor, controller, power, battery, glass, temperature claims, care, recalls, returns, service, and ownership cost.","spark",None,None),
-        ("home-grow-soil-coco-hydro-media-comparison/","compare preparation care","HOME GROW + ROOT ZONE","Compare soil, coco, and hydro systems","Choose the root-zone system by media identity, water, air, monitoring, drainage, sanitation, failure recovery, waste, and first-cycle cost.","leaf",None,None),
-        ("cannabis-rosin-press-buying-safety-guide/","compare powered care","CONCENTRATES + MACHINERY","Choose a rosin press system","Compare the lawful job, drive system, force evidence, plate geometry, controls, guarding, utilities, service, recalls, return test, and ownership cost.","gear",None,None),
-        ("cannabis-replacement-parts-compatibility-guide/","compare powered care","REPAIR + COMPATIBILITY","Match a replacement part","Verify the parent model, revision, part number, interfaces, materials, safety scope, warranty, recalls, ownership cost, acceptance test, and exit.","gear",None,None),
-        ("home-grow-plant-support-trellis-buying-guide/","compare preparation care","HOME GROW + PLANT SUPPORT","Choose a plant-support system","Compare stakes, ties, cages, mesh, frames, and clips by room access, load path, materials, cleaning, safe release, harvest exit, returns, and first-cycle cost.","leaf",None,None),
-        ("cbd-oil-dropper-replacement-bottle-fit-guide/","compare preparation care","CBD OIL + REPLACEMENT HARDWARE","Replace a CBD oil dropper","Match the bottle neck finish, closure function, pipette geometry, materials, markings, access control, care, prescription boundary, and return path.","scale",None,None),
-        ("cannabis-product-photo-documentation-kit-buying-guide/","compare preparation care","PACKAGE PHOTOS + RECORDS","Choose a product-photo documentation kit","Compare the no-buy setup, phone and stand geometry, lighting, glare, backdrop, scale reference, file privacy, return test, and delivered cost.","search",None,None),
-        ("cannabis-drying-rack-buying-guide/","compare preparation care","HOME GROW + DRYING SUPPORT","Choose a drying rack system","Compare support format, usable area, room fit, spacing, air-path boundaries, materials, cleaning, access, return testing, and first-year cost.","leaf",None,None),
-        ("cannabis-infusion-appliance-buying-guide/","compare preparation powered care","KITCHEN + INFUSION APPLIANCE","Choose an infusion appliance","Compare the exact kitchen job, capacity, food-contact path, heat, cleaning, cross-contact, recalls, returns, service, and first-year cost.","gear",None,None),
-        ("home-grow-dehumidifier-buying-guide/","compare powered care","HOME GROW + MOISTURE","Choose a dehumidifier system","Compare measured moisture load, capacity conditions, efficiency, drainage, heat, electrical fit, recalls, return testing, and first-year cost.","clock",None,None),
-        ("cannabis-device-charger-cable-buying-guide/","compare powered care","POWER + COMPATIBILITY","Choose a charger and cable system","Match the exact device, battery, input, port, cable, power source, condition, recall status, attended setup, disposal route, returns, and total cost.","spark",None,None),
-        ("cannabis-concentrate-container-buying-guide/","compare storage care","CONCENTRATES + STORAGE","Choose a concentrate container","Preserve the original package, then compare contact materials, usable fit, closure claims, label identity, cleaning, locked storage, returns, and cost.","lock",None,None),
-        ("home-grow-watering-tools-buying-guide/","compare powered care","HOME GROW + WATER PATH","Choose a watering tool system","Compare source-to-plant fit, filled handling, measured delivery, vessels, pumps, tubing, runoff, wet safety, cleaning, recalls, and first-year cost.","scale",None,None),
-        ("cannabis-lockbox-buying-guide/","compare storage care","STORAGE + ACCESS CONTROL","Choose a cannabis lockbox","Compare users, original-package capacity, lock and relock behavior, recovery, mounting, evidence, recalls, return terms, and first-year cost.","lock",None,None),
-        ("home-grow-ventilation-fan-buying-guide/","compare powered care","HOME GROW + AIRFLOW","Choose a ventilation fan system","Compare the air job, installed resistance, fan-curve evidence, authorized controls, environment, electrical safety, recalls, acceptance test, and cost.","spark",None,None),
-        ("cannabis-smoke-air-quality-monitor-buying-guide/","compare powered care","INDOOR AIR + MEASUREMENT","Choose an indoor-air monitor","Match PM, VOC, CO2, CO, temperature, or humidity to the question; compare evidence, placement, data, privacy, upkeep, and cost.","spark",None,None),
-        ("cannabis-liquid-measuring-tool-buying-guide/","compare preparation care","MEASUREMENT + LABELS","Choose a liquid measuring tool","Compare the instructed mL task, device type, graduations, capacity, package fit, accessibility, care, return test, and first-year cost.","scale",None,None),
-        ("cannabis-label-magnifier-task-light-buying-guide/","compare preparation care","ACCESSIBILITY + LABELS","Choose a label magnifier and task light","Compare the reading task, field, working distance, glare, package stability, privacy, power, return test, and first-year burden.","search",None,None),
-        ("cannabis-harvest-trimming-scissors-buying-guide/","compare preparation care","HARVEST + HAND TOOLS","Choose harvest and trimming scissors","Match the cutting job, hand fit, blade, spring, lock, cleaning, return test, inspection, and ownership cost.","leaf",None,None),
-        ("home-grow-timer-controller-buying-guide/","compare powered care","HOME GROW + CONTROL","Choose a timer or controller system","Match exact loads, ratings, control methods, environment, outage and fault states, recalls, support, return test, and ownership cost.","clock",None,None),
-        ("home-grow-ph-ec-meter-buying-guide/","compare powered care","HOME GROW + WATER MEASUREMENT","Choose a pH and EC meter system","Separate pH, conductivity, alkalinity, temperature, standards, probe care, acceptance checks, records, and first-year cost.","search",None,None),
-        ("home-grow-temperature-humidity-monitor-buying-guide/","compare powered care","HOME GROW + MEASUREMENT","Choose a temperature and humidity monitor","Compare accuracy claims, logging, alarms, placement, verification, power loss, export, and first-year cost.","clock",None,None),
-        ("cannabis-home-testing-kit-buying-guide/","compare care","HOME TESTING + EVIDENCE","Choose a home testing system","Match the question, matrix, sample, method, controls, limits, records, cost, support, and licensed-laboratory exit.","search",None,None),
-        ("used-cannabis-accessory-buying-safety-guide/","compare powered care","SECONDHAND + RECALLS","Screen used gear before handoff","Verify exact identity, recall status, residue, wear, battery condition, missing parts, warranty transfer, adjusted cost, and exit route.","check",None,None),
-        ("cannabis-accessibility-tools-buying-guide/","compare storage preparation care","ACCESSIBILITY + FIT","Choose an accessibility aid without defeating package safety","Compare the exact task, package fit, full use cycle, reclosure, locked storage, cleaning, support, returns, and delivered cost.","check",None,None),
-        ("dry-herb-vaporizer-dosing-capsule-guide/","compare preparation powered care","COMPATIBILITY + COST","Choose a dosing capsule system","Verify exact-device fit, adapter, loading, single-use or reuse instructions, cleaning, storage, recalls, and total cost.","check",None,None),
-        ("cannabis-accessory-return-warranty-recall-guide/","compare care","RETURNS + WARRANTY + RECALLS","Plan the after-sale exit","Capture exact-model return terms, warranty coverage, recall identity, evidence, support, and early date checkpoints.","check",None,None),
-        ("cannabis-gear-comparison-worksheet/","compare","COMPARISON + CHECKOUT","Compare gear honestly","Put three exact models through the same fit, materials, safety, care, support, recall, and first-year-cost screen.","check",None,None),
-        ("indoor-cannabis-grow-light-buying-cost-planner/","compare powered","HOME GROW + ENERGY","Compare a grow light and its cost","Audit actual watts, maps, controls, mounting, environment, support, total load, and estimated light-only energy cost.","spark",None,None),
-        ("cannabis-inventory-label-record-kit/","storage care","INVENTORY + LABELS","Build an inventory and record kit","Preserve original packaging, lot identity, dates, reports, receipts, photos, and a private locked-location code.","tag",None,None),
-        ("smell-proof-storage/","storage compare","LOCKBOX FIT + STORAGE","Compare lockbox fit and storage","Compare three usable interiors, upright package clearance, delivered cost, lock design, odor claims, child-resistance scope, and placement.","lock","../assets/images/lockbox-v2.webp","Matte black lockbox photographed in a dark studio"),
-        ("cannabis-stash-jar-buying-guide/","storage","SECONDARY STORAGE","Choose a stash jar","Compare usable volume, opening, materials, closure claims, light control, cleaning, labeling, and child safety.","lock",None,None),
-        ("cannabis-pre-roll-tube-case-buying-guide/","storage","PORTABLE STORAGE","Choose a pre-roll tube or case","Check interior fit, crush protection, closure claims, materials, cleaning, labeling, locked storage, and travel limits.","lock",None,None),
-        ("cannabis-humidity-pack-hygrometer-guide/","compare storage care","HUMIDITY SYSTEM + COST","Compare a hygrometer and humidity-pack system","Compare three exact systems by pack use, package rounding, instruments, service, ownership cost, specifications, and safety limits.","clock",None,None),
-        ("grinders/","compare preparation care","PREPARATION + OWNERSHIP","Choose a grinder","Compare grip, chambers, contact surfaces, teeth, threads, screens, cleaning, warranty, recalls, total cost, and maintenance time.","gear","../assets/images/grinder-v2.webp","Open four-piece metal grinder photographed in a dark studio"),
-        ("cannabis-rolling-tray-buying-guide/","compare preparation storage","PREPARATION FIT + COST","Compare rolling tray fit","Compare three trays by task clearance, locked-storage fit, usable area, delivered cost, materials, cleaning, and safety limits.","gear",None,None),
-        ("cannabis-rolling-paper-cone-guide/","compare preparation","CONSUMABLE + COST","Compare rolling papers and cones","Compare dimensions, material and gum disclosure, delivered price, usable count, storage, smoke limits, and the fire-safety gate.","leaf",None,None),
-        ("cannabis-rolling-machine-buying-guide/","preparation","PREPARATION FIT","Choose a rolling machine","Match bed length, paper dimensions, roller diameter, apron tension, cleaning, replacement parts, and storage.","gear",None,None),
-        ("cannabis-loupe-pocket-microscope-guide/","compare preparation care","INSPECTION FIT + COST","Compare a loupe or pocket microscope","Compare three exact models by field of view, working distance, setup, annual service, ownership cost, and evidence limits.","search",None,None),
-        ("digital-scale-buying-calibration-guide/","preparation care","MEASUREMENT + COST","Check repeatability and ownership cost","Compare capacity and five readings, then calculate mean, spread, maximum deviation, tolerance fit, and ownership cost.","scale",None,None),
-        ("cannabis-tool-cleaning-kit/","compare care","MAINTENANCE + COST","Plan a cleaning kit and its cost","Match supplies to the exact tool, compare evidence, and calculate first-year cost, recurring cost, and maintenance time.","gear",None,None),
-        ("air-purifier-cannabis-smoke-odor-guide/","powered care","INDOOR AIR","Choose an air purifier","Compare smoke CADR, room volume, HEPA, activated carbon, ozone, noise, filter cost, placement, and hard limits.","spark",None,None),
-        ("510-thread-vape-battery-safety/","powered","BATTERY SAFETY","Choose a 510-thread battery","Verify compatibility, documented protections, charging, damage signs, locked storage, and responsible recycling.","alert",None,None),
-        ("cannabis-vape-battery-cartridge-disposal-guide/","powered care","VAPE END OF LIFE","Dispose of a vape responsibly","Separate the battery, device, cartridge, residue, packaging, damage status, recall, and local acceptance route.","alert",None,None),
-        ("dry-herb-vaporizer-buying-safety-guide/","powered","HEATED HARDWARE","Choose a dry-herb vaporizer","Compare operating format, materials, controls, temperature claims, batteries, cleaning, parts, and legal limits.","alert",None,None),
-        ("cannabis-lighter-flame-safety-guide/","powered","IGNITION + FIRE SAFETY","Choose and store a lighter","Check intended use, child resistance, fuel or battery design, condition, clear zones, storage, and disposal.","alert",None,None),
-        ("cannabis-ashtray-ember-disposal-guide/","care","FIRE-SAFE DISPOSAL","Choose an ashtray","Compare stability, depth, materials, wind, placement, extinguishing, cleaning, waste, and smoke-exposure limits.","alert",None,None),
-        ("cannabis-glass-pipe-water-pipe-buying-guide/","preparation care","GLASSWARE","Choose a pipe or water pipe","Check format, material claims, joint fit, stability, cleaning access, replacement parts, and smoke-exposure limits.","search",None,None),
-    ]
-    page=Page("gear/index.html","Cannabis Gear Guides | Big Bud Man",f"Search {len(items)} independent cannabis accessory guides by job: measurement, home testing, comparison, storage, accessibility, powered hardware, returns, and care.","Gear library","Gear that solves<br> a real problem.","Start with the job, then compare fit, accessibility, materials, measurement evidence, safety, maintenance, disposal, support, returns, warranty, recalls, and total costâ€”without affiliate pressure.","",updated="November 25, 2026",kind="website")
-    cards=[]
-    for href, categories, kicker, title, description, icon_name, image_src, image_alt in items:
-        art = f'<div><img src="{image_src}" alt="{image_alt}"></div>' if image_src else f'<div class="gear-card__icon-art" aria-hidden="true">{icon(icon_name)}</div>'
-        search = escape(f"{kicker} {title} {description} {categories}".lower(), quote=True)
-        cards.append(f'''<a class="gear-card" data-gear-card data-category="{categories}" data-search="{search}" href="{href}">{art}<span class="kicker">{kicker}</span><h2>{title}</h2><p>{description}</p><b>Open guide {icon('arrow')}</b></a>''')
-    job_paths='''<section class="container guide-paths gear-job-map"><div class="section-head"><p class="eyebrow">JOB-FIRST SHOPPING MAP</p><h2>Start with the problem. Keep â€œbuy nothingâ€ on the table.</h2><p>Choose the lane that describes the job in front of you. Each path ends in measured fit, evidence, total cost, and a safe exitâ€”not a sponsored ranking.</p></div><div class="comparison-grid"><div><span>COMPARE OPTIONS</span><h3>Three exact models</h3><p>Use one record for fit, materials, safety scope, recalls, support, and first-year cost.</p><a href="cannabis-gear-comparison-worksheet/">Open the comparison worksheet â†’</a></div><div><span>CONTROL ACCESS</span><h3>Lock and organize</h3><p>Preserve the original package, measure usable interior space, and separate odor claims from security.</p><a href="smell-proof-storage/">Compare locked storage â†’</a></div><div><span>USE THE PACKAGE</span><h3>Improve hand access</h3><p>Name the exact opening, measuring, gripping, seeing, or organizing task without defeating reclosure.</p><a href="cannabis-accessibility-tools-buying-guide/">Match an accessibility aid â†’</a></div><div><span>MAINTAIN WHAT EXISTS</span><h3>Clean before replacing</h3><p>Check the maker's compatible method, hidden surfaces, drying, wear parts, and retirement line.</p><a href="cannabis-tool-cleaning-kit/">Build a maintenance plan â†’</a></div><div><span>POWER + HEAT</span><h3>Verify the whole system</h3><p>Match battery, charger, device, controls, damage signs, instructions, storage, and recalls.</p><a href="510-thread-vape-battery-safety/">Audit battery compatibility â†’</a></div><div><span>END OF LIFE</span><h3>Dispose without hiding the hazard</h3><p>Separate battery, device, residue, packaging, recall status, and the local collection route.</p><a href="cannabis-vape-battery-cartridge-disposal-guide/">Plan responsible disposal â†’</a></div></div><p class="micro">No affiliate links, sponsored placements, merchant rankings, prices, coupons, or stock claims appear in this map because the repository has no approved affiliate program or tracking ID.</p></section>'''
-    checkout_path='''<section class="container guide-paths"><div class="section-head"><p class="eyebrow">CHECKOUT PATH</p><h2>Four gates between a shortlist and a purchase.</h2><p>A relevant accessory earns a checkout only after the exact model survives the same evidence, exit, and ownership questions. The sequence is independent of brand, retailer, commission, and list price.</p></div><div class="comparison-grid"><div><span>01 Â· FIT</span><h3>Measure the real job</h3><p>Record the object, hands, space, clearances, power, environment, cleaning route, and locked-storage constraint.</p><a href="cannabis-gear-comparison-worksheet/">Compare three exact models â†’</a></div><div><span>02 Â· IDENTITY</span><h3>Match model and revision</h3><p>Require the same identity on the listing, maker page, manual, label, recall search, parts, and support route.</p><a href="cannabis-accessory-return-warranty-recall-guide/">Capture returns, warranty, and recalls â†’</a></div><div><span>03 Â· OWNERSHIP</span><h3>Price the whole horizon</h3><p>Add required accessories, filters, batteries, cleaning, parts, electricity, service, shipping, time, and disposal.</p><a href="cannabis-tool-cleaning-kit/">Map care and recurring cost â†’</a></div><div><span>04 Â· EXIT</span><h3>Protect the no-purchase option</h3><p>Reject an unknown specification, unsupported claim, poor return path, unavailable wear part, unsafe fit, or cannabis-themed markup.</p><a href="used-cannabis-accessory-buying-safety-guide/">Screen an alternative or used option â†’</a></div></div><p class="micro">Active affiliate links: none. A safe existing tool, repair, rental, professional service, verified used option, or buying nothing can be the strongest conversion outcome.</p></section>'''
-    main=f'''<main id="main-content"><section class="hub-hero gear-hero"><div class="container"><p class="eyebrow">{len(items)} INDEPENDENT ACCESSORY GUIDES</p><h1>GEAR THAT SOLVES<br><em>A REAL PROBLEM.</em></h1><p>Search by task. Compare the exact model. Keep affiliate math out of the conclusion.</p></div></section><section class="container gear-principles"><div><span>01</span><h2>Name the job</h2><p>Storage, records, preparation, measurement, cleaning, access control, or powered hardwareâ€”not â€œcannabis lifestyle.â€</p></div><div><span>02</span><h2>Match the evidence</h2><p>Dimensions, materials, instructions, safety scope, warranty, recalls, and replacement parts must belong to the exact model.</p></div><div><span>03</span><h2>Price ownership</h2><p>Include required accessories, filters, batteries, cleaning, consumables, parts, and realistic service life.</p></div></section>{job_paths}{checkout_path}<section class="container guide-paths"><div class="section-head"><p class="eyebrow">SECONDHAND DECISION</p><h2>A used price does not erase a used history.</h2><p>Before a marketplace handoff, match the exact model and serial, search recalls, keep residue and battery unknowns visible, price missing parts and care, and preserve a real return and disposal path.</p></div><p><a class="inline-cta" href="used-cannabis-accessory-buying-safety-guide/">Open the used-accessory identity, safety, and adjusted-cost screen <span>â†’</span></a></p></section><section class="container gear-library" data-gear-library><div class="guide-tools"><label><span>FIND GEAR BY JOB OR FEATURE</span><input type="search" data-gear-search aria-controls="gear-results" placeholder="Try: label, lock, battery, cleaningâ€¦" autocomplete="off"></label><div class="guide-filters" role="group" aria-label="Filter cannabis gear guides"><button class="is-active" type="button" data-gear-filter="all" aria-pressed="true" aria-controls="gear-results">All {len(items)}</button><button type="button" data-gear-filter="compare" aria-pressed="false" aria-controls="gear-results">Compare</button><button type="button" data-gear-filter="storage" aria-pressed="false" aria-controls="gear-results">Storage</button><button type="button" data-gear-filter="preparation" aria-pressed="false" aria-controls="gear-results">Preparation</button><button type="button" data-gear-filter="powered" aria-pressed="false" aria-controls="gear-results">Powered</button><button type="button" data-gear-filter="care" aria-pressed="false" aria-controls="gear-results">Care</button></div><p id="gear-result-status" aria-live="polite"><span data-gear-count>{len(items)}</span> guides shown</p></div><p class="guide-empty" data-gear-empty hidden>No gear guide matched that job or feature. Clear the search or choose all guides.</p><div class="gear-grid" id="gear-results">{''.join(cards)}</div></section><section class="container review-code"><div><p class="eyebrow">REVIEW CODE</p><h2>What earns a recommendation</h2></div><ol><li><b>Clear purpose</b><span>Solves a real problem better than a simpler option.</span></li><li><b>Safe materials</b><span>Construction and finish are appropriate for intended contact and care.</span></li><li><b>Scoped claims</b><span>Security, filtration, heat, calibration, and durability claims say exactly what they cover.</span></li><li><b>Serviceable</b><span>The owner can inspect, clean, maintain, and replace realistic wear parts.</span></li><li><b>Fair total cost</b><span>Value includes ownership cost, not a cannabis-themed markup or invented discount.</span></li></ol></section>{newsletter('../')}</main>'''
-    main = main.replace(
-        'role="group" aria-label="Filter cannabis gear guides"',
-        'role="group" aria-label="Filter cannabis gear guides" aria-describedby="gear-result-status"',
-    )
-    html = layout(page, main, [("Gear",None)])
-    return page, add_collection_itemlist(html, page, "Big Bud Man cannabis gear guide library", "gear-card")
-
-
-def render_legal_hub() -> tuple[Page,str]:
-    page=Page("legal/index.html","Cannabis Laws in All 50 States (2026) | Big Bud Man","Search reviewed cannabis laws for all 50 states plus current federal rescheduling, federal property, housing, mailing, and flying rules.","50-state legal library","Know your state.<br>Then verify it.","A practical 50-state starting point for possession, home grow, medical access, retail status, federal scheduling and property rules, housing, mailing, air travel, and official sources.","",updated="November 15, 2026",kind="website")
-    cards=[]
-    for item in STATE_LAWS:
-        search_text=(item['name']+' '+item['code']+' '+STATUS_LABELS[item['status']]+' '+item['summary']+' '+item['policy_pulse']['direction']).lower()
-        cards.append(f'''<a class="state-card state-card--{item['status']}" data-state-card data-status="{item['status']}" data-search="{escape(search_text)}" href="{item['slug']}/"><div class="state-card__top"><b>{item['code']}</b><span>{STATUS_LABELS[item['status']]}</span></div><span class="state-card__signal">Six-month signal Â· {escape(item['policy_pulse']['direction'])}</span><h2>{item['name']}</h2><p>{escape(item['summary'])}</p><em>Open state guide {icon('arrow')}</em></a>''')
-    counts={key:sum(item["status"]==key for item in STATE_LAWS) for key in STATUS_LABELS}
-    main=f'''<main id="main-content"><section class="hub-hero legal-hero"><div class="container"><p class="eyebrow">ALL 50 STATES Â· OFFICIAL LINKS Â· PURCHASE CREDENTIALS</p><h1>KNOW YOUR STATE.<br><em>THEN VERIFY IT.</em></h1><p>Every state page now separates recreational ID rules from medical cards, certifications, registry enrollment, official application steps, and states where patient retail is not actually available.</p><span class="legal-date">50 STATE PAGES REVIEWED <b>{REVIEW_DATE.upper()}</b></span></div></section>
-<section class="container legal-overview"><div class="legal-summary"><div><b>{counts['adult']}</b><span>adult-use states</span></div><div><b>{counts['medical']}</b><span>medical-only states</span></div><div><b>{counts['limited']}</b><span>limited CBD / defense</span></div><div><b>{counts['restricted']}</b><span>no public program</span></div></div><div class="federal-banner">{icon('alert')}<p><b>Federal law changed narrowly on April 28, 2026.</b> FDA-approved marijuana drug products and marijuana within the final rule's qualifying state medical-license scope moved to Schedule III; the broader proposal remains a separate proceeding. <a href="marijuana-rescheduling-status-november-2026/">Read the dated November 2026 status guide</a> and verify the current <a href="{DEA_SOURCE}" rel="noopener">DEA record</a>.</p></div></section>
-<section class="container state-library" data-state-library><div class="state-tools"><label><span>FIND A STATE</span><input type="search" data-state-search placeholder="Type a state or abbreviationâ€¦" autocomplete="off"></label><div class="state-filters" aria-label="Filter states by cannabis law status"><button class="is-active" data-state-filter="all">All 50</button><button data-state-filter="adult">Adult use</button><button data-state-filter="medical">Medical only</button><button data-state-filter="limited">Limited CBD</button><button data-state-filter="restricted">No public program</button></div><p aria-live="polite"><span data-state-count>50</span> state guides</p></div><p class="state-empty" data-state-empty hidden>No state matched that search and filter.</p><div class="state-grid">{''.join(cards)}</div></section>
-<section class="container legal-method"><div><p class="eyebrow">HOW TO READ THE MAP</p><h2>Legal is not one switch.</h2></div><div class="legal-method__grid">{''.join(f'<article><span>{STATUS_LABELS[key]}</span><p>{STATUS_DESCRIPTIONS[key]}</p></article>' for key in STATUS_LABELS)}</div></section>
-<section class="container legal-sources"><div><p class="eyebrow">RESEARCH BASELINE</p><h2>Current law first. Direction second.</h2><p>Program categories were cross-checked against NCSL and every page points to a state regulator, health department, commission, statute, or legislature. The six-month signal covers March 1â€“September 1, 2026 and labels proposals, vetoes, failed bills, and implementation separately from current law.</p></div><a class="button button--dark" href="{NCSL_SOURCE}" rel="noopener">Open the NCSL 50-state report {icon('arrow')}</a></section>
-<section class="container legal-grid legal-grid--secondary"><a class="legal-card legal-card--feature" href="new-york/"><div><img src="../assets/images/new-york-v2.svg" alt="Editorial map graphic of New York State with Central New York highlighted"></div><span>DEEP DIVE Â· NEW YORK</span><h2>Adult-use basics</h2><p>Age, possession, sales, public use, vehicles, travel, growing, work, and housing.</p><b>Open New York guide {icon('arrow')}</b></a><a class="legal-card" href="shop-legal/"><div class="legal-card__icon">{icon('check')}</div><span>NEW YORK LICENSED MARKET</span><h2>Verify a shop</h2><p>Match the exact name and address on OCMâ€™s live list, then verify the product.</p><b>Open verification guide {icon('arrow')}</b></a><a class="legal-card" href="cannabis-federal-property-rules-guide/"><div class="legal-card__icon">{icon('alert')}</div><span>FEDERAL PROPERTY Â· 2026</span><h2>Crossing a federal boundary?</h2><p>Identify the managing agency, exact product, current schedule and property-specific rule.</p><b>Open federal-property guide {icon('arrow')}</b></a><a class="legal-card" href="cannabis-federally-assisted-housing-guide/"><div class="legal-card__icon">{icon('alert')}</div><span>FEDERALLY ASSISTED HOUSING Â· 2026</span><h2>Which housing rule controls?</h2><p>Separate program, admission or tenancy, lease, smoke-free policy, conduct, notice, and review route.</p><b>Open federal-housing guide {icon('arrow')}</b></a><a class="legal-card" href="mailing-cannabis-cbd-usps-rules/"><div class="legal-card__icon">{icon('alert')}</div><span>FEDERAL MAIL RULES</span><h2>Can you mail cannabis or CBD?</h2><p>Separate controlled substances from qualifying domestic hemp, then check records and the international ban.</p><b>Open mailing explainer {icon('arrow')}</b></a><a class="legal-card" href="flying-with-cannabis-cbd-tsa-rules/"><div class="legal-card__icon">{icon('alert')}</div><span>FEDERAL AIR TRAVEL</span><h2>Flying with cannabis or CBD</h2><p>Separate TSA screening from federal status, airport jurisdiction, destination law, airline policy, and battery safety.</p><b>Open flying explainer {icon('arrow')}</b></a></section>
-<section class="container legal-warning"><div>{icon('alert')}</div><div><h2>Education, not legal advice</h2><p>Laws, regulations, court decisions, local rules, tribal law, property policies, employer policies, and federal consequences can change the answer. These pages identify the issue and official source; they do not replace a lawyer.</p></div></section>{newsletter('../')}</main>'''
-    main = main.replace(
-        '<a class="legal-card" href="cannabis-federal-property-rules-guide/">',
-        '<a class="legal-card" href="marijuana-rescheduling-status-november-2026/"><div class="legal-card__icon">'+icon('scale')+'</div><span>FEDERAL STATUS Â· NOV. 2026</span><h2>What changedâ€”and what did not?</h2><p>Separate the narrow April rule, qualifying medical-license scope, and broader unfinished proceeding.</p><b>Open dated rescheduling guide '+icon('arrow')+'</b></a><a class="legal-card" href="cannabis-federal-property-rules-guide/">',
-        1,
-    )
-    main = main.replace('data-state-search placeholder=', 'data-state-search aria-controls="state-results" placeholder=')
-    main = main.replace('<div class="state-filters" aria-label="Filter states by cannabis law status">', '<div class="state-filters" role="group" aria-label="Filter states by cannabis law status" aria-describedby="state-result-status">')
-    main = main.replace('<button class="is-active" data-state-filter="all">', '<button class="is-active" type="button" data-state-filter="all" aria-pressed="true" aria-controls="state-results">')
-    main = main.replace('<button data-state-filter="', '<button type="button" aria-pressed="false" aria-controls="state-results" data-state-filter="')
-    main = main.replace('<p aria-live="polite"><span data-state-count>', '<p id="state-result-status" aria-live="polite"><span data-state-count>')
-    main = main.replace('<div class="state-grid">', '<div class="state-grid" id="state-results">')
-    html = layout(page, main, [("Legal",None)])
-    return page, add_collection_itemlist(html, page, "Big Bud Man 50-state cannabis law library", "state-card")
-
-
-def render_state_page(item: dict) -> tuple[Page,str]:
-    label=STATUS_LABELS[item["status"]]
-    review_date=item.get("updated", REVIEW_DATE)
-    page=Page(
-        f"legal/{item['slug']}/index.html",
-        f"{item['name']} Cannabis Laws (2026) | Big Bud Man",
-        f"{item['name']} cannabis laws for 2026: {label.lower()}, purchase and medical-card rules, possession, home grow, retail access, and official state sources.",
-        f"{item['name']} cannabis law",
-        f"{item['name']}<br>cannabis laws.",
-        item["summary"],
-        "",
-        updated=review_date,
-        read_time=item.get("read_time", "7 min read"),
-    )
-    status_box=f'''<div class="state-status state-status--{item['status']}"><div><span>STATE</span><b>{item['code']}</b></div><div><span>STATUS</span><b>{label}</b></div><div><span>ADULT POSSESSION</span><b>{'Legal within limits' if item['status']=='adult' else 'Not generally legal'}</b></div><div><span>HOME GROW</span><b>{escape(item['home_grow_label'])}</b></div></div>'''
-    sections=[
-        ("status", "The status, in one screen", f'''{status_box}<p>{escape(item['summary'])}</p><div class="callout"><div>{icon('scale')}</div><div><h3>What this label doesâ€”and does notâ€”mean</h3><p>{escape(STATUS_DESCRIPTIONS[item['status']])} It does not answer public use, driving, employment, housing, federal property, tribal jurisdiction, or a city's business rules.</p></div></div>'''),
-        ("possession", "Possession and use", f'''<p>{escape(item['possession'])}</p><ul class="checklist"><li>Public consumption can remain prohibited even when possession is legal.</li><li>Never drive, bike in traffic, boat, or operate machinery while impaired.</li><li>Keep products in their original package and outside the passenger area when transporting within the state.</li><li>Local ordinances and property policies can add restrictions without changing statewide status.</li></ul>'''),
-        ("home-grow", "Home cultivation", f'''<p>{escape(item['home_grow'])}</p><p>Plant counts are only the first layer. Lease terms, owner permission, visibility, locked-area rules, nuisance law, processing limits, and possession of harvested cannabis can each change the practical answer.</p>'''),
-        ("medical", "Medical access", f'''<p>{escape(item['medical'])}</p><p>A recommendation, registry card, out-of-state card, or diagnosis does not create identical rights everywhere. Confirm patient eligibility, reciprocity, purchase limits, approved forms, renewal rules, and caregiver rights with the official program.</p>'''),
-        ("market", "Buying and retail status", f'''<p>{escape(item['market'])}</p><p>Use the state regulator's live license lookup where available. A website, delivery claim, hemp label, social-media account, or storefront sign is not proof of a marijuana license.</p>'''),
-        ("purchase-access", "What you need to buy legally", render_purchase_access(item)),
-        ("travel", "Travel, work, housing, and federal edges", f'''<ul class="red-list"><li><b>STATE LINES</b><span>Do not take cannabis across a state borderâ€”even between two adult-use states.</span></li><li><b>FEDERAL PROPERTY</b><span>State permission does not control federal buildings, lands, installations, or federal transportation rules.</span></li><li><b>WORK</b><span>Legal possession does not guarantee workplace use or protection from a lawful drug policy.</span></li><li><b>HOUSING</b><span>Smoking, cultivation, and possession can be restricted by leases, federal housing rules, or property policy.</span></li><li><b>TRIBAL LAND</b><span>Tribal law and jurisdiction can differ from the surrounding state; verify with the relevant tribal authority.</span></li></ul>'''),
-        ("direction", "Six-month legal direction", render_policy_pulse(item)),
-    ]
-    sections.extend(item.get("extra_sections", []))
-    sections.append(("sources", "Official sources", f'''<div class="official-links"><a href="{item['source_url']}" rel="noopener"><b>{escape(item['source_label'])}</b><span>Primary state source for current program rules and updates â†—</span></a><a href="{NCSL_SOURCE}" rel="noopener"><b>National Conference of State Legislatures</b><span>50-state program classification and statutory overview â†—</span></a><a href="{DEA_SOURCE}" rel="noopener"><b>U.S. Drug Enforcement Administration</b><span>Current federal marijuana scheduling actions and records â†—</span></a></div><p class="micro">Research review: {review_date}. Check the linked agency again before acting; laws and implementation can change after review.</p>'''))
-    peers=[peer for peer in STATE_LAWS if peer["status"] == item["status"]]
-    peer_position=next(index for index, peer in enumerate(peers) if peer["code"] == item["code"])
-    previous=peers[(peer_position - 1) % len(peers)]
-    following=peers[(peer_position + 1) % len(peers)]
-    related=[
-        (f"legal/{previous['slug']}/", "SAME STATUS", f"{previous['name']} cannabis laws"),
-        (f"legal/{following['slug']}/", "SAME STATUS", f"{following['name']} cannabis laws"),
-        ("legal/", "ALL 50 STATES", "Return to the law library"),
-    ]
-    notice=f'''<span class="live-dot"></span> Reviewed {review_date}. Educational overview, not legal advice. Verify current rules with <a href="{item['source_url']}" rel="noopener">{escape(item['source_label'])}</a>.'''
-    html=render_article(page,[item["summary"],item["possession"],item["home_grow"]],sections,related,[("Legal","legal/"),(item["name"],None)],notice)
-    return page,html
-
-
-def render_contact() -> tuple[Page,str]:
-    page=Page("contact/index.html","Contact Big Bud Man","Contact Big Bud Man with a correction, legal update, guide suggestion, gear question, partnership inquiry, or general message.","Contact","Say the useful thing.","Corrections, guide ideas, gear questions, partnerships, and legal updates are welcome. Cannabis sales requests are not.","",updated="October 16, 2026",kind="website")
-    p="../"
-    main=f'''<main id="main-content"><section class="contact-hero"><div class="container contact-grid"><div><p class="eyebrow">CONTACT BIG BUD MAN</p><h1>SAY THE<br>USEFUL THING.</h1><p>Include the page URL, the exact statement, and the best source you have when submitting a correction.</p><div class="contact-direct"><span>DIRECT EMAIL</span><a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a><p>Do not send medical records, ID, payment details, confidential legal information, or requests to buy cannabis.</p></div></div><form class="contact-form" action="https://formsubmit.co/{CONTACT_EMAIL}" method="post"><input type="hidden" name="_subject" value="Big Bud Man contact form"><input type="hidden" name="_next" value="{DOMAIN}/thank-you/"><input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true"><label>Name<input name="name" autocomplete="name" required></label><label>Email<input type="email" name="email" autocomplete="email" required></label><label>Topic<select name="topic" required><option value="">Choose one</option><option>Correction</option><option>Legal update</option><option>Guide idea</option><option>Gear question</option><option>Partnership</option><option>General message</option></select></label><label>Message<textarea name="message" rows="7" required></textarea></label><label class="consent-check"><input type="checkbox" required><span>I understand this form is not for buying or selling cannabis and does not create a medical, legal, or professional relationship.</span></label><button class="button button--primary" type="submit">Send message</button><p class="micro">FormSubmit requires a one-time activation email before messages deliver.</p></form></div></section></main>'''
-    return page, layout(page, main, [("Contact",None)])
-
-
-def render_site_index(pages: list[Page]) -> tuple[Page, str]:
-    latest_date = max(datetime.strptime(item.updated, "%B %d, %Y") for item in pages if item.kind == "article")
-    latest_label = latest_date.strftime("%B %d, %Y").replace(" 0", " ")
-    page = Page(
-        "site-index/index.html",
-        "Complete Site Index | Big Bud Man",
-        "Browse every indexable Big Bud Man guide, strain field note, gear page, legal resource, and publication page with visible review dates.",
-        "Site index",
-        "Every useful page.<br>One clean index.",
-        "A dated, human-readable crawl path for the complete publication, with a fourteen-day update view and an optional local filter.",
-        "",
-        updated=latest_label,
-        kind="website",
-    )
-    visible = [item for item in pages if item.path not in {"404.html", "thank-you/index.html"}]
-    if not any(item.path == page.path for item in visible):
-        visible.append(page)
-    groups = [
-        ("Guides and responsible use", lambda item: item.path.startswith("guides/") or item.path in {"start-here/index.html", "responsible-use/index.html"}),
-        ("Gear", lambda item: item.path.startswith("gear/")),
-        ("Law and licensed access", lambda item: item.path.startswith("legal/")),
-        ("Strain field notes", lambda item: item.path.startswith("strains/")),
-        ("About, policies, and contact", lambda item: not any((item.path.startswith("guides/"), item.path.startswith("gear/"), item.path.startswith("legal/"), item.path.startswith("strains/"))) and item.path not in {"start-here/index.html", "responsible-use/index.html"}),
-    ]
-
-    def route_for(item: Page) -> str:
-        if item.path == "index.html":
-            return "../"
-        return f"../{item.path[:-10]}" if item.path.endswith("/index.html") else f"../{item.path}"
-
-    recent_cutoff = latest_date - timedelta(days=13)
-    recent = sorted(
-        (
-            item for item in visible
-            if item.kind == "article" and datetime.strptime(item.updated, "%B %d, %Y") >= recent_cutoff
-        ),
-        key=lambda item: (datetime.strptime(item.updated, "%B %d, %Y"), clean_text(item.title).lower()),
-        reverse=True,
-    )
-    recent_links = "".join(
-        f'<li><a href="{route_for(item)}"><span>{escape(clean_text(item.title).removesuffix(" | Big Bud Man"))}</span>'
-        f'<time datetime="{datetime.strptime(item.updated, "%B %d, %Y").strftime("%Y-%m-%d")}">Reviewed {escape(item.updated)}</time></a></li>'
-        for item in recent
-    )
-
-    sections = []
-    for heading, predicate in groups:
-        members = sorted((item for item in visible if predicate(item)), key=lambda item: clean_text(item.title).lower())
-        links = "".join(
-            f'<li data-site-index-item data-search="{escape((clean_text(item.title) + " " + clean_text(item.category)).lower(), quote=True)}">'
-            f'<a href="{route_for(item)}"><span>{escape(clean_text(item.title).removesuffix(" | Big Bud Man"))}</span>'
-            f'<time datetime="{datetime.strptime(item.updated, "%B %d, %Y").strftime("%Y-%m-%d")}">Reviewed {escape(item.updated)}</time></a></li>'
-            for item in members
-        )
-        sections.append(
-            f'<section data-site-index-group><h2>{heading} '
-            f'<small>(<span data-site-index-group-count>{len(members)}</span>)</small></h2>'
-            f'<ul class="site-index-list">{links}</ul></section>'
-        )
-    body = f'''<p class="update-line">Generated from the publication source Â· {latest_label}</p><p>This page is built from the same source catalog as site search, the Atom feed, the content inventory, and the XML sitemap. Every route below is present in the initial HTML; the filter is an optional reading aid and never creates or hides a crawl path from the source.</p><section class="site-index-recent" data-site-index-recent><h2>Reviewed in the last 14 days <small>({len(recent)})</small></h2><p>New and materially reviewed articles from {recent_cutoff.strftime("%B %d, %Y").replace(" 0", " ")} through {latest_label}.</p><ul class="site-index-list">{recent_links}</ul></section><div class="site-index-tools" data-site-index-filter><label for="site-index-search"><span>FILTER THE COMPLETE INDEX</span><input id="site-index-search" type="search" placeholder="Try PTSD, charger, storage, or New York" autocomplete="off" data-site-index-search aria-controls="site-index-results"></label><button type="button" data-site-index-clear>Clear</button><p data-site-index-status role="status" aria-live="polite"><b>{len(visible)}</b> pages shown</p></div><p class="site-index-empty" data-site-index-empty hidden>No matching pages. Clear the filter or try a broader term.</p><div id="site-index-results" data-site-index-results>{"".join(sections)}</div><section><h2>Machine-readable discovery</h2><p><a class="inline-cta" href="../content-inventory.json">Open the canonical coverage and link inventory <span>â†’</span></a></p><p><a class="inline-cta" href="../sitemap.xml">Open the XML sitemap <span>â†’</span></a></p><p><a class="inline-cta" href="../feed.xml">Open the Atom update feed <span>â†’</span></a></p></section>'''
-    main = f'''<main id="main-content"><header class="standard-hero"><div class="container"><p class="eyebrow">SITE INDEX</p><h1>{page.h1}</h1><p>{page.dek}</p></div></header><div class="container standard-shell"><article class="prose prose--standard">{body}</article></div></main>'''
-    return page, layout(page, main, [("Site index", None)])
-
-
-def render_updates(pages: list[Page]) -> tuple[Page, str]:
-    latest_date = max(datetime.strptime(item.updated, "%B %d, %Y") for item in pages if item.kind == "article")
-    latest_label = latest_date.strftime("%B %d, %Y").replace(" 0", " ")
-    page = Page(
-        "updates/index.html",
-        "Publication Updates | Big Bud Man",
-        "See newly published and materially reviewed Big Bud Man guides, gear resources, legal explainers, and collection updates in date order.",
-        "Publication updates",
-        "What changed.<br>And when.",
-        "A dated, crawlable record of new and materially reviewed pagesâ€”without requiring an account, social feed, or JavaScript.",
-        "",
-        updated=latest_label,
-        kind="website",
-    )
-    recent = sorted(
-        (item for item in pages if item.kind == "article" and datetime.strptime(item.updated, "%B %d, %Y") >= datetime(2026, 9, 4)),
-        key=lambda item: (datetime.strptime(item.updated, "%B %d, %Y"), clean_text(item.title)),
-        reverse=True,
-    )
-    grouped: dict[str, list[Page]] = {}
-    for item in recent:
-        grouped.setdefault(item.updated, []).append(item)
-
-    sections = []
-    for date_label, items in grouped.items():
-        entries = "".join(
-            f'<li><a href="../{item.path[:-10]}"><b>{escape(clean_text(item.title).removesuffix(" | Big Bud Man"))}</b><span>{escape(item.description)}</span></a></li>'
-            for item in sorted(items, key=lambda item: clean_text(item.title).lower())
-        )
-        sections.append(f'<section><h2>{escape(date_label)}</h2><ul class="update-list">{entries}</ul></section>')
-    body = f'''<p class="update-line">Source-generated Â· Last refreshed {latest_label}</p><p>This record uses each page's editorial review date. Small formatting-only changes are excluded; new pages and material content reviews are included.</p><p><a class="inline-cta" href="../feed.xml">Subscribe with the Atom feed <span>â†’</span></a></p>{"".join(sections)}'''
-    main = f'''<main id="main-content"><header class="standard-hero"><div class="container"><p class="eyebrow">PUBLICATION UPDATES</p><h1>{page.h1}</h1><p>{page.dek}</p></div></header><div class="container standard-shell"><article class="prose prose--standard">{body}</article></div></main>'''
-    return page, layout(page, main, [("Updates", None)])
-
-
-def render_thanks() -> tuple[Page,str]:
-    page=Page("thank-you/index.html","Message Received | Big Bud Man","Your Big Bud Man contact or newsletter form has been submitted. Return to the guide library or continue reading practical cannabis education.","Thank you","Message received.","Your submission left this site through the configured form service.","",kind="website")
-    p="../"
-    main=f'''<main id="main-content" class="thanks-page"><div class="container"><div class="thanks-mark">{icon('check')}</div><p class="eyebrow">FORM SUBMITTED</p><h1>MESSAGE RECEIVED.</h1><p>If this is the first submission after launch, the recipient inbox may need to approve FormSubmitâ€™s activation email before delivery begins.</p><div class="hero-actions"><a class="button button--primary" href="{p}guides/">Browse guides</a><a class="button button--outline" href="{p}">Return home</a></div></div></main>'''
-    return page, layout(page, main)
-
-
-def render_404() -> tuple[Page,str]:
-    page=Page("404.html","Page Not Found | Big Bud Man","The requested Big Bud Man page could not be found. Search the cannabis guide library or return to the home page.","Not found","That page wandered off.","Use search or head back to a page that exists.","",updated="November 13, 2026",kind="website")
-    main=f'''<main id="main-content" class="not-found"><div class="container"><p class="eyebrow">ERROR 404</p><div class="error-code">4<img src="/assets/images/logo-mark.svg" alt="">4</div><h1>THAT PAGE WANDERED OFF.</h1><p>The URL may be old, mistyped, or too high to find its way home.</p><div class="hero-actions"><a class="button button--primary" href="/">Return home</a><button class="button button--outline" type="button" data-search-open>Search the library</button></div></div></main>'''
-    return page, layout(page, main)
-
-
-def write_page(page: Page, html: str) -> None:
-    write_text(OUT, page.path, optimize_images(OUT, page.path, html))
-
-
-def write_content_inventory(pages: list[Page]) -> None:
-    """Publish canonical coverage, dates, angles, and main-content link paths."""
-    canonical_pages = {canonical(page.path): page for page in pages}
-    outgoing: dict[str, list[str]] = {}
-    incoming: dict[str, set[str]] = {url: set() for url in canonical_pages}
-    for source_url, page in canonical_pages.items():
-        markup = (OUT / page.path).read_text(encoding="utf-8")
-        main_match = re.search(r"<main\b[^>]*>(.*?)</main>", markup, re.I | re.S)
-        main_markup = main_match.group(1) if main_match else ""
-        targets: set[str] = set()
-        for href in re.findall(r'<a\b[^>]*\bhref="([^"]+)"', main_markup, re.I):
-            resolved = urlsplit(urljoin(source_url, href))
-            if resolved.scheme not in {"http", "https"} or resolved.netloc != "bigbudman.com":
-                continue
-            target = f"https://bigbudman.com{resolved.path or '/'}"
-            if target in canonical_pages and target != source_url:
-                targets.add(target)
-                incoming[target].add(source_url)
-        outgoing[source_url] = sorted(targets)
-    records = []
-    for url, page in sorted(canonical_pages.items()):
-        route = urlsplit(url).path.strip("/")
-        department = route.split("/", 1)[0] if route else "home"
-        records.append({
-            "url": url,
-            "slug": route or "/",
-            "title": clean_text(page.title).removesuffix(" | Big Bud Man"),
-            "topic": clean_text(page.category),
-            "core_angle": clean_text(page.description),
-            "department": department,
-            "published": datetime.strptime(page.published, "%B %d, %Y").strftime("%Y-%m-%d"),
-            "updated": datetime.strptime(page.updated, "%B %d, %Y").strftime("%Y-%m-%d"),
-            "contextual_inlinks": sorted(incoming[url]),
-            "contextual_outlinks": outgoing[url],
-        })
-    payload = {
-        "generated": NOV25_PUBLICATION_MANIFEST["publication_date"],
-        "scope": "Every indexable canonical BigBudMan.com page. Links are unique internal destinations inside main content; global header and footer navigation are excluded.",
-        "page_count": len(records),
-        "pages": records,
-    }
-    write_text(OUT, "content-inventory.json", json.dumps(payload, indent=2, ensure_ascii=False) + "\n")
-
-
-def bundle_stylesheets(output_root: Path) -> None:
-    """Ship one CSS request and remain safe to rerun on an existing bundle."""
-    css_dir = output_root / "assets" / "css"
-    entry = css_dir / "styles.css"
-    chunks = sorted(
-        css_dir.glob("styles-*.css"),
-        key=lambda path: int(path.stem.rsplit("-", 1)[-1]),
-    )
-    if not chunks:
-        if entry.exists() and "@import" in entry.read_text(encoding="utf-8"):
-            raise RuntimeError("styles.css imports chunks that are not available to bundle")
-        return
-    bundle = ["/* Production bundle generated from the maintained styles-*.css modules. */\n"]
-    for chunk in chunks:
-        bundle.append(f"\n/* {chunk.name} */\n")
-        bundle.append(chunk.read_text(encoding="utf-8").rstrip() + "\n")
-    entry.write_text("".join(bundle), encoding="utf-8")
-    for chunk in chunks:
-        chunk.unlink()
-
-
-def build() -> None:
-    if OUT.exists():
-        rmtree(OUT)
-    OUT.mkdir(parents=True)
-    source_assets=SOURCE/"assets"
-    if source_assets.exists():
-        copytree(source_assets, OUT/"assets", dirs_exist_ok=True)
-        # The stash-jar planner ships with the October 21 interaction and
-        # age-gate accessibility work. Give that page a versioned bundle so a
-        # previously cached app.js cannot leave the new controls inert during
-        # the normal GitHub Pages/CDN cache window.
-        copy2(source_assets/"js/app.js", OUT/"assets/js/app-20261021.js")
-        copy2(source_assets/"js/app.js", OUT/"assets/js/app-20261022.js")
-        copy2(source_assets/"js/app.js", OUT/"assets/js/app-20261102.js")
-        copy2(source_assets/"js/app.js", OUT/"assets/js/app-20261110.js")
-        copy2(source_assets/"js/app.js", OUT/"assets/js/app-20261111.js")
-    write_svg_assets(OUT)
-    bundle_stylesheets(OUT)
-
-    pages: list[Page] = []
-    page, html = render_home()
-    html = html.replace("assets/js/app.js", "assets/js/app-20261110.js")
-    write_page(page,html); pages.append(page)
-
-    for data in GUIDE_PAGES + STRAIN_PAGES + OTHER_ARTICLES:
-        page=make_page(data)
-        label=page.h1.replace("<br>"," ").replace(".","").strip()
-        sections=data["sections"]
-        if page.path == "legal/new-york/index.html":
-            ny=next(item for item in STATE_LAWS if item["code"] == "NY")
-            sections=list(sections)
-            sections.insert(-1, ("purchase-access", "What you need to buy legally", render_purchase_access(ny)))
-            sections.insert(-1, ("direction", "Six-month legal direction", render_policy_pulse(ny)))
-        html=render_article(page,data["takeaways"],sections,data["related"],crumb_for(page.path,label),data.get("notice",""))
-        if page.path == "gear/cannabis-stash-jar-buying-guide/index.html":
-            html = html.replace("assets/js/app.js", "assets/js/app-20261021.js")
-        if page.path == "guides/cannabis-dispensary-loyalty-rewards-value-privacy-guide/index.html":
-            html = html.replace("assets/js/app.js", "assets/js/app-20261022.js")
-        if page.path == "guides/cannabis-product-price-label-comparison-calculator/index.html":
-            html = html.replace("assets/js/app.js", "assets/js/app-20261102.js")
-        write_page(page,html); pages.append(page)
-
-    for data in STANDARD_PAGES:
-        page=make_page(data,kind="website")
-        label=page.h1.replace("<br>"," ").replace(".","").strip()
-        html=render_standard(page,data["body"],crumb_for(page.path,label))
-        write_page(page,html); pages.append(page)
-
-    # New York keeps its deeper editorial page; the other 49 state summaries
-    # complete the national library without creating a duplicate route.
-    for item in STATE_LAWS:
-        if item["code"] == "NY":
-            continue
-        page,html=render_state_page(item); write_page(page,html); pages.append(page)
-
-    for renderer in (render_guides_hub,render_strains_hub,render_gear_hub,render_legal_hub,render_contact,render_thanks,render_404):
-        page,html=renderer(); write_page(page,html); pages.append(page)
-
-    page, html = render_updates(pages)
-    write_page(page, html)
-    pages.append(page)
-
-    page, html = render_site_index(pages)
-    html = html.replace("assets/js/app.js", "assets/js/app-20261111.js")
-    write_page(page, html)
-    pages.append(page)
-
-    write_text(OUT,"CNAME","bigbudman.com\n")
-    write_text(OUT,".nojekyll","\n")
-    write_text(OUT,"robots.txt",f"User-agent: *\nAllow: /\n\nSitemap: {DOMAIN}/sitemap.xml\n# Human-readable index: {DOMAIN}/site-index/\n# Machine-readable coverage: {DOMAIN}/content-inventory.json\n# Publication updates: {DOMAIN}/updates/\n")
-    manifest={"name":"Big Bud Man","short_name":"Big Bud Man","start_url":"/","display":"standalone","background_color":"#101712","theme_color":"#101712","icons":[{"src":"/assets/images/favicon.svg","sizes":"any","type":"image/svg+xml"}]}
-    write_text(OUT,"site.webmanifest",json.dumps(manifest,indent=2)+"\n")
-    publication_manifest={
-        "publication_date":"2026-11-12",
-        "page_count":3,
-        "pages":[
-            {"title":"Cherry Blonde CBD Hemp Field Note","url":"https://bigbudman.com/strains/cherry-blonde-cbd/","department":"strains","portfolio_label":"Authority-expansion","search_intent":"verify a named CBD-hemp cultivar through breeder attribution, independent trial identity, name-collision checks, finished-lot evidence, and current legal boundaries"},
-            {"title":"Cannabis and Sleep Apnea Evidence and Safety Guide","url":"https://bigbudman.com/guides/cannabis-sleep-apnea-osa-evidence-safety-guide/","department":"guides","portfolio_label":"Authority-expansion","search_intent":"separate perceived sleep and sedation from measured airway, oxygen, treatment, next-day function, and clinician decisions"},
-            {"title":"Home-Grow Dehumidifier Buying Guide","url":"https://bigbudman.com/gear/home-grow-dehumidifier-buying-guide/","department":"gear","portfolio_label":"Exploration","search_intent":"compare exact dehumidifiers by measured moisture load, rated conditions, efficiency, drainage, heat, electrical fit, recalls, return testing, and first-year cost"},
-        ],
-        "monetization":{"affiliate_links_added":0,"reason":"No approved affiliate program or tracking ID is configured in the repository. The conversion improvement is a product-neutral dehumidifier decision and acceptance-test system covering measured moisture load, capacity conditions, efficiency, drainage, operating range, electrical fit, recalls, returns, and first-year cost. No merchant, model, live price, discount, ranking, availability claim, fabricated test, product image, paid placement, or generic product link was added; correcting the moisture source, using supported existing equipment, or buying nothing remains a valid outcome."},
-        "image_qa":{"editorial_placements":0,"affiliate_or_product_images":0,"note":"The three new pages and Arkansas supporting expansion use original text, evidence tables, checklists, and existing brand interface assets. The Cherry Blonde page explicitly withholds a cultivar photo because no exact licensed image was verified. No patient, cannabis product, PAP device, dehumidifier, merchant, affiliate, stock image, product photo, or generated image was added or changed, so there is no exact-product mismatch or new licensing issue."},
-        "search_console":{"report_date":"2026-11-11","decision":"The October 12â€“November 8 report is one day old and valid: 815 impressions, three clicks, 0.368% CTR, and average position 24.093. The Arkansas legal page had six impressions, one click, 16.7% CTR, and average position 9.667â€”the only page-level signal with more than a token sample in the target 4â€“20 bandâ€”so the analytics-led action preserves that established URL and adds current patient, renewal, caregiver, visiting-patient, dispensary, and primary-source workflows rather than creating a cannibalizing page. â€˜510 vs disposableâ€™ had two impressions at position 12 but already maps to an existing page; Delaware had two impressions and one click; Blue Dream had 33 impressions near position 48; single-impression legal and health rows were too weak. Those signals were deliberately ignored as duplicative, tiny, or out of range. None of the three new pages is presented as primarily Data-led."},
-        "authority":{"action":"Published two citation-worthy evidence assets: a sleep-apnea outcome translator with a study-transfer screen and clinician handoff, and a Cherry Blonde CBD field note that separates a commercial breeder record from an independent University of Vermont trial and the finished-lot evidence chain. Reciprocal links strengthen the sleep, next-day impairment, CBD-hemp, CoA, product-complaint, and named-cultivar clusters. The Arkansas page also adds a primary-source role map. No speculative outreach target was logged and no outreach was sent."},
-        "freshness_surfaces":{
-            "https://bigbudman.com/legal/":"2026-11-12",
-            "https://bigbudman.com/legal/arkansas/":"2026-11-12",
-            "https://bigbudman.com/strains/":"2026-11-12",
-            "https://bigbudman.com/strains/cherry-blonde-cbd/":"2026-11-12",
-            "https://bigbudman.com/strains/cherry-wine/":"2026-11-12",
-            "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/":"2026-11-12",
-            "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/":"2026-11-12",
-            "https://bigbudman.com/guides/":"2026-11-12",
-            "https://bigbudman.com/guides/cannabis-sleep-apnea-osa-evidence-safety-guide/":"2026-11-12",
-            "https://bigbudman.com/guides/cannabis-cbd-and-sleep/":"2026-11-12",
-            "https://bigbudman.com/guides/cannabis-next-day-impairment-evidence-guide/":"2026-11-12",
-            "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/":"2026-11-12",
-            "https://bigbudman.com/gear/":"2026-11-12",
-            "https://bigbudman.com/gear/home-grow-dehumidifier-buying-guide/":"2026-11-12",
-            "https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/":"2026-11-12",
-            "https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/":"2026-11-12",
-            "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/":"2026-11-12",
-            "https://bigbudman.com/updates/":"2026-11-12",
-            "https://bigbudman.com/site-index/":"2026-11-12"
-        },
-        "surfaces":["Cherry Blonde breeder-versus-trial evidence map, name-collision table, finished-lot chain, and source boundaries","Cherry Wine, CBD-hemp, CoA, and product-complaint reciprocal links","Arkansas patient, renewal, caregiver, visiting-patient, dispensary, and primary-source workflow","sleep-apnea outcome matrix, study-transfer screen, clinician handoff, conservative next-day gate, and official clinical sources","sleep, next-day impairment, and clinician-conversation reciprocal links","dehumidifier moisture-job map, exact-model comparison, drainage plan, cost scenario, return-window acceptance test, and official efficiency and recall sources","ventilation, temperature-humidity monitoring, and gear-comparison reciprocal links","strain, legal, guide, and gear hubs","publication updates","complete site index","Atom feed","search index","canonical and legacy XML sitemap surfaces","robots sitemap declaration","checksum-verified source archive and publication gates"],
-    }
-    publication_manifest = NOV13_PUBLICATION_MANIFEST
-    publication_manifest = NOV14_PUBLICATION_MANIFEST
-    publication_manifest = NOV14_BATCH_PUBLICATION_MANIFEST
-    publication_manifest = NOV15_PUBLICATION_MANIFEST
-    publication_manifest = NOV16_PUBLICATION_MANIFEST
-    publication_manifest = NOV17_PUBLICATION_MANIFEST
-    publication_manifest = NOV18_PUBLICATION_MANIFEST
-    publication_manifest = NOV19_PUBLICATION_MANIFEST
-    publication_manifest = NOV20_PUBLICATION_MANIFEST
-    publication_manifest = NOV21_PUBLICATION_MANIFEST
-    publication_manifest = NOV22_PUBLICATION_MANIFEST
-    publication_manifest = NOV23_PUBLICATION_MANIFEST
-    publication_manifest = NOV24_PUBLICATION_MANIFEST
-    publication_manifest = NOV25_PUBLICATION_MANIFEST
-    write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
-    indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]
-    write_content_inventory(indexable)
-    strain_aliases = {
-        f"strains/{strain['slug']}/index.html": " ".join(strain.get("aliases", []))
-        for strain in STRAINS
-    }
-    editorial_keywords = {
-        data["path"]: data.get("keywords", "")
-        for data in GUIDE_PAGES + STRAIN_PAGES + OTHER_ARTICLES + STANDARD_PAGES
-    }
-    search_entries = [{
-        "title": clean_text(page.title).removesuffix(" | Big Bud Man"),
-        "description": clean_text(page.description),
-        "category": clean_text(page.category),
-        "keywords": " ".join(filter(None, (strain_aliases.get(page.path, ""), editorial_keywords.get(page.path, "")))),
-        "url": "/" if page.path == "index.html" else f"/{page.path[:-10]}" if page.path.endswith("/index.html") else f"/{page.path}",
-        "updated": datetime.strptime(page.updated, "%B %d, %Y").strftime("%Y-%m-%d"),
-        "updatedLabel": page.updated,
-    } for page in indexable]
-    write_text(OUT,"assets/js/search-index.js",f"window.BBM_SEARCH_INDEX = {json.dumps(search_entries, ensure_ascii=False, separators=(',', ':'))};\n")
-    sitemap='''<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'''+"".join(f"  <url><loc>{canonical(p.path)}</loc><lastmod>{datetime.strptime(p.updated, '%B %d, %Y').strftime('%Y-%m-%d')}</lastmod></url>\n" for p in sorted(indexable,key=lambda x:x.path))+"</urlset>\n"
-    write_text(OUT,"sitemap.xml",sitemap)
-    # Search Console still lists the site's former WordPress sitemap endpoint.
-    # GitHub Pages serves this static XML payload at that exact path (the query
-    # string does not change the file lookup), so a future recrawl can recover
-    # without weakening the canonical sitemap or robots.txt discovery path.
-    write_text(OUT,"index.php",sitemap)
-    feed_items = sorted(
-        (p for p in pages if p.kind == "article"),
-        key=lambda p: (datetime.strptime(p.updated, "%B %d, %Y"), clean_text(p.title)),
-        reverse=True,
-    )[:30]
-    feed_entries = "".join(
-        f'''  <entry>\n    <title>{escape(clean_text(p.title).removesuffix(" | Big Bud Man"))}</title>\n    <id>{canonical(p.path)}</id>\n    <link href="{canonical(p.path)}"/>\n    <updated>{datetime.strptime(p.updated, "%B %d, %Y").strftime("%Y-%m-%dT00:00:00Z")}</updated>\n    <published>{datetime.strptime(p.published, "%B %d, %Y").strftime("%Y-%m-%dT00:00:00Z")}</published>\n    <summary>{escape(p.description)}</summary>\n  </entry>\n'''
-        for p in feed_items
-    )
-    feed_updated = max(datetime.strptime(p.updated, "%B %d, %Y") for p in feed_items).strftime("%Y-%m-%dT00:00:00Z")
-    atom = f'''<?xml version="1.0" encoding="UTF-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom">\n  <title>Big Bud Man updates</title>\n  <id>{DOMAIN}/</id>\n  <link href="{DOMAIN}/feed.xml" rel="self"/>\n  <link href="{DOMAIN}/"/>\n  <updated>{feed_updated}</updated>\n  <author><name>Big Bud Man Editorial Team</name><uri>{DOMAIN}/about/</uri></author>\n  <subtitle>New and materially reviewed cannabis guides, gear resources, and legal explainers.</subtitle>\n{feed_entries}</feed>\n'''
-    write_text(OUT,"feed.xml",atom)
-    print(f"Built {len(pages)} HTML pages in {OUT}")
-
-
-def canonical(path: str) -> str:
-    if path=="index.html": return f"{DOMAIN}/"
-    if path.endswith("/index.html"): return f"{DOMAIN}/{path[:-10]}"
-    return f"{DOMAIN}/{path}"
-
-
-if __name__ == "__main__":
-    build()
+YªçŠx-®éÜj×¢ëiºÚ+Š§j[h‘éÜ¢éí×OvëÔèµ©hºÚn¶X§zÍHÈKÝ\Ü‹Øš[‹Ù[ˆ]ÛŒÂ™œ›ÛH×Ù]\™W×È[\Ü[››Ý][ÛœÂ‚™œ›ÛH]Xˆ[\Ü]™œ›ÛHÚ][[\ÜÛÜL‹ÛÜ]™YK›]™YB™œ›ÛH[[\Ü\ØØ\B™œ›ÛH]][YH[\Ü]][YK[YY[Bš[\ÜœÛÛ‚š[\Ü™B™œ›ÛH\›X‹œ\œÙH[\Ü\››Ú[‹\›Ü]‚™œ›ÛHÚ]WØÛÜ™H[\Ü
+ˆYÙKÓPRS‹ÓÓ•PÕÑSPRSÐÓKÐÓWÕ‘T’Q–K\XÛWÛXZ[‹œ™XYÜ[XœËˆÛX[—Ý^›ÛÝ\‹XY\‹XYXÛÛ‹^[Ý]ØØ[™Yš^Ù›Ü‹™[™\—Ø\XÛKˆ™[™\—ÜÝ[™\™ÙX\˜ÚÙX[ÙËYÙWÙØ]KÜ[Z^™WÚ[XYÙ\ËÜš]WÜÝ™×Ø\ÜÙ]ËÜš]WÝ^ŠB™œ›ÛHÛÛ[ÙÝZY\È[\ÜÕRQWÔQÑTÂ™œ›ÛHÛÛ[ÜÝ˜Z[œÈ[\ÜÐS“P’S“ÒQÓP‘SËÕRS”ËÕRS—ÔQÑTËÝ˜Z[—ÜYÙB™œ›ÛHÛÛ[ÛÝ\ˆ[\ÜÕT—ÐT•PÓTËÕS‘T‘ÔQÑTÂ™œ›ÛHÛÛ[ÙZ[H[\ÜRSWÑÑPT‹RSWÑÕRQTÂ™œ›ÛHÛÛ[ÜÙ\ˆ[\ÜRSWÑÑPTˆ\ÈÑT—ÑÑPT‹RSWÑÕRQTÈ\ÈÑT—ÑÕRQTÂ™œ›ÛHÛÛ[ÜÙ\È[\ÜRSWÑÑPTˆ\ÈÑT×ÑÑPT‹RSWÑÕRQTÈ\ÈÑT×ÑÕRQTÂ™œ›ÛHÛÛ[ÜÙ\Ž[\ÜRSWÑÑPTˆ\ÈÑTŽÑÑPT‹RSWÑÕRQTÈ\ÈÑTŽÑÕRQTÂ™œ›ÛHÛÛ[ÜÙ\ŽH[\ÜRSWÑÑPTˆ\ÈÑTŽWÑÑPT‹RSWÑÕRQTÈ\ÈÑTŽWÑÕRQTÂ™œ›ÛHÛÛ[ÜÙ\Ì[\ÜRSWÑÑPTˆ\ÈÑTÌÑÑPT‹RSWÑÕRQTÈ\ÈÑTÌÑÕRQTÂ™œ›ÛHÛÛ[ÛØÝH[\ÜRSWÑÑPTˆ\ÈÐÕWÑÑPT‹RSWÑÕRQTÈ\ÈÐÕWÑÕRQTÂ™œ›ÛHÛÛ[ÛØÝˆ[\ÜRSWÑÑPTˆ\ÈÐÕ—ÑÑPT‹RSWÑÕRQTÈ\ÈÐÕ—ÑÕRQTÂ™œ›ÛHÛÛ[ÛØÝÈ[\ÜRSWÑÕRQTÈ\ÈÐÕ×ÑÕRQTËÑPT—ÓÕ‘T”’QTÈ\ÈÐÕ×ÑÑPT—ÓÕ‘T”’QTÂ™œ›ÛHÛÛ[ÛØÝ[\ÜRSWÑÕRQTÈ\ÈÐÕÑÕRQTËÑPT—ÓÕ‘T”’QTÈ\ÈÐÕÑÑPT—ÓÕ‘T”’QTÂ™œ›ÛHÛÛ[ÛØÝH[\ÜRSWÑÕRQTÈ\ÈÐÕWÑÕRQTËÑPT—ÓÕ‘T”’QTÈ\ÈÐÕWÑÑPT—ÓÕ‘T”’QTÂ™œ›ÛHÛÛ[ÛØÝˆ[\ÜRSWÑÕRQTÈ\ÈÐÕ—ÑÕRQTËÑPT—ÓÕ‘T”’QTÈ\ÈÐÕ—ÑÑPT—ÓÕ‘T”’QTÂ™œ›ÛHÛÛ[ÛØÝÈ[\ÜRSWÑÕRQTÈ\ÈÐÕ×ÑÕRQTËÑPT—ÓÕ‘T”’QTÈ\ÈÐÕ×ÑÑPT—ÓÕ‘T”’QTÂ™œ›ÛHÛÛ[ÛØÝ[\ÜRSWÑÕRQTÈ\ÈÐÕÑÕRQTËÑPT—ÓÕ‘T”’QTÈ\ÈÐÕÑÑPT—ÓÕ‘T”’QTËÕRS—ÓÕ‘T”’QTÈ\ÈÐÕÔÕRS—ÓÕ‘T”’QTÂ™œ›ÛHÛÛ[ÛØÝH[\ÜRSWÑÕRQTÈ\ÈÐÕWÑÕRQTËÑPT—ÓÕ‘T”’QTÈ\ÈÐÕWÑÑPT—ÓÕ‘T”’QTÂ™œ›ÛHÛÛ[ÛØÝL[\ÜRSWÑÕRQTÈ\ÈÐÕLÑÕRQTËÑPT—ÓÕ‘T”’QTÈ\ÈÐÕLÑÑPT—ÓÕ‘T”’QTÂ™œ›ÛHÛÛ[ÛØÝLH[\ÜRSWÑÕRQTÈ\ÈÐÕLWÑÕRQTËÕRQWÓÕ‘T”’QTÈ\ÈÐÕLWÑÕRQWÓÕ‘T”’QTËÑPT—ÓÕ‘T”’QTÈ\ÈÐÕLWÑÑPT—ÓÕ‘T”’QTÂ™œ›ÛHÛÛ[ÛØÝLˆ[\ÜÕRQWÓÕ‘T”’QTÈ\ÈÐÕL—ÑÕRQWÓÕ‘T”’QTËÑPT—ÓÕ‘T”’QTÈ\ÈÐÕL—ÑÑPT—ÓÕ‘T”’QTÂ™œ›ÛHÛÛ[ÛØÝLÈ[\ÜÕRQWÓÕ‘T”’QTÈ\ÈÐÕL×ÑÕRQWÓÕ‘T”’QTË‘U×ÑÑPTˆ\ÈÐÕL×ÑÑPT‚™œ›ÛHÛÛ[ÛØÝM[\ÜÕRQWÓÕ‘T”’QTÈ\ÈÐÕMÑÕRQWÓÕ‘T”’QTËÑPT—ÓÕ‘T”’QTÈ\ÈÐÕMÑÑPT—ÓÕ‘T”’QTÂ™œ›ÛHÛÛ[ÛØÝMH[\ÜÕRQWÓÕ‘T”’QTÈ\ÈÐÕMWÑÕRQWÓÕ‘T”’QTËÕRS—ÓÕ‘T”’QTÈ\ÈÐÕMWÔÕRS—ÓÕ‘T”’QTÂ™œ›ÛHÛÛ[ÛØÝMWÛ™]È[\Ü‘U×ÑÕRQTÈ\ÈÐÕMWÓ‘U×ÑÕRQTË‘U×ÑÑPTˆ\ÈÐÕMWÓ‘U×ÑÑPT‚™œ›ÛHÛÛ[ÛØÝMˆ[\ÜÕRQWÓÕ‘T”’QTÈ\ÈÐÕM—ÑÕRQWÓÕ‘T”’QTË‘U×ÑÕRQTÈ\ÈÐÕM—Ó‘U×ÑÕRQTÂ™œ›ÛHÛÛ[ÛØÝMÈ[\ÜÕRQWÓÕ‘T”’QTÈ\ÈÐÕM×ÑÕRQWÓÕ‘T”’QTË‘U×ÑÑPTˆ\ÈÐÕM×ÑÑPT‚™œ›ÛHÛÛ[ÛØÝN[\ÜÕRQWÓÕ‘T”’QTÈ\ÈÐÕNÑÕRQWÓÕ‘T”’QTËÑPT—ÓÕ‘T”’QTÈ\ÈÐÕNÑÑPT—ÓÕ‘T”’QTÂ™œ›ÛHÛÛ[ÛØÝNH[\ÜÕRQWÓÕ‘T”’QTÈ\ÈÐÕNWÑÕRQWÓÕ‘T”’QTËÑPT—ÓÕ‘T”’QTÈ\ÈÐÕNWÑÑPT—ÓÕ‘T”’QTÂ™œ›ÛHÛÛ[ÛØÝŒ[\ÜÕRQWÓÕ‘T”’QTÈ\ÈÐÕŒÑÕRQWÓÕ‘T”’QTÂ™œ›ÛHÛÛ[ÛØÝŒH[\ÜÕRQWÓÕ‘T”’QTÈ\ÈÐÕŒWÑÕRQWÓÕ‘T”’QTËÑPT—ÓÕ‘T”’QTÈ\ÈÐÕŒWÑÑPT—ÓÕ‘T”’QTÂ™œ›ÛHÛÛ[ÛØÝŒˆ[\ÜÕRQWÓÕ‘T”’QTÈ\ÈÐÕŒ—ÑÕRQWÓÕ‘T”’QTË‘U×ÑÕRQTÈ\ÈÐÕŒ—Ó‘U×ÑÕRQTÂ™œ›ÛHÛÛ[ÛØÝŒÈ[\ÜÕRQWÓÕ‘T”’QTÈ\ÈÐÕŒ×ÑÕRQWÓÕ‘T”’QTËÑPT—ÓÕ‘T”’QTÈ\ÈÐÕŒ×ÑÑPT—ÓÕ‘T”’QTË‘U×ÑÑPTˆ\ÈÐÕŒ×ÑÑPT‹‘U×ÑÕRQTÈ\ÈÐÕŒ×ÑÕRQTÂ™œ›ÛHÛÛ[ÛØÝŒ×Ù›ÛÝÝ\[\Ü‘U×ÑÕRQTÈ\ÈÐÕŒ×Ñ“ÓÕÕTÑÕRQTÂ™œ›ÛHÛÛ[ÛØÝ[\ÜÕRQWÓÕ‘T”’QTÈ\ÈÐÕÑÕRQWÓÕ‘T”’QTËÑPT—ÓÕ‘T”’QTÈ\ÈÐÕÑÑPT—ÓÕ‘T”’QTË‘U×ÑÑPTˆ\ÈÐÕÑÑPT‚™œ›ÛHÛÛ[ÛØÝÙ›ÛÝÝ\[\Ü‘U×ÑÕRQTÈ\ÈÐÕÑ“ÓÕÕTÑÕRQTË‘U×ÔÕRS”È\ÈÐÕÑ“ÓÕÕTÔÕRS”Ë‘U×ÔÕRS—ÔQÑTÈ\ÈÐÕÑ“ÓÕÕTÔÕRS—ÔQÑTÂ™œ›ÛHÛÛ[ÛØÝH[\ÜÕRQWÓÕ‘T”’QTÈ\ÈÐÕWÑÕRQWÓÕ‘T”’QTÂ™œ›ÛHÛÛ[ÛØÝˆ[\ÜÕRQWÓÕ‘T”’QTÈ\ÈÐÕ—ÑÕRQWÓÕ‘T”’QTË‘U×ÑÕRQTÈ\ÈÐÕ—Ó‘U×ÑÕRQTËÕT—ÓÕ‘T”’QTÈ\ÈÐÕ—ÓÕT—ÓÕ‘T”’QTÂ™œ›ÛHÛÛ[ÛØÝÈ[\Ü‘U×ÑÑPTˆ\ÈÐÕ×ÑÑPT‹‘U×ÑÕRQTÈ\ÈÐÕ×ÑÕRQTÂ™œ›ÛHÛÛ[ÛØÝŽ[\ÜÑPT—ÓÕ‘T”’QTÈ\ÈÐÕŽÑÑPT—ÓÕ‘T”’QTË‘U×ÑÕRQTÈ\ÈÐÕŽÑÕRQTÂ™œ›ÛHÛÛ[ÛØÝŽH[\ÜÑPT—ÓÕ‘T”’QTÈ\ÈÐÕŽWÑÑPT—ÓÕ‘T”’QTË‘U×ÑÕRQTÈ\ÈÐÕŽWÑÕRQTÂ™œ›ÛHÛÛ[ÛØÝÌ[\Ü‘U×ÑÑPTˆ\ÈÐÕÌÑÑPT‹‘U×ÑÕRQTÈ\ÈÐÕÌÑÕRQTÂ™œ›ÛHÛÛ[ÛØÝÌH[\ÜÑPT—ÓÕ‘T”’QTÈ\ÈÐÕÌWÑÑPT—ÓÕ‘T”’QTË‘U×ÑÕRQTÈ\ÈÐÕÌWÑÕRQTÂ™œ›ÛHÛÛ[Û›ÝŒH[\Ü‘U×ÑÑPTˆ\È“ÕŒWÑÑPT‹‘U×ÑÕRQTÈ\È“ÕŒWÑÕRQTÂ™œ›ÛHÛÛ[Û›ÝŒˆ[\ÜÕRQWÓÕ‘T”’QTÈ\È“ÕŒ—ÑÕRQWÓÕ‘T”’QTË‘U×ÑÕRQTÈ\È“ÕŒ—ÑÕRQTÂ™œ›ÛHÛÛ[Û›ÝŒÈ[\Ü‘U×ÑÑPTˆ\È“ÕŒ×ÑÑPT‹‘U×ÑÕRQTÈ\È“ÕŒ×ÑÕRQTÂ™œ›ÛHÛÛ[Û›Ý[\Ü‘U×ÑÑPTˆ\È“ÕÑÑPT‹‘U×ÑÕRQTÈ\È“ÕÑÕRQTÂ™œ›ÛHÛÛ[Û›ÝH[\Ü‘U×ÑÑPTˆ\È“ÕWÑÑPT‹‘U×ÑÕRQTÈ\È“ÕWÑÕRQTÂ™œ›ÛHÛÛ[Û›Ýˆ[\Ü‘U×ÑÑPTˆ\È“Õ—ÑÑPT‹‘U×ÑÕRQTÈ\È“Õ—ÑÕRQTÂ™œ›ÛHÛÛ[Û›ÝÈ[\Ü‘U×ÑÑPTˆ\È“Õ×ÑÑPT‹‘U×ÑÕRQTÈ\È“Õ×ÑÕRQTÂ™œ›ÛHÛÛ[Û›ÝŽ[\Ü‘U×ÑÑPTˆ\È“ÕŽÑÑPT‹‘U×ÑÕRQTÈ\È“ÕŽÑÕRQTÂ™œ›ÛHÛÛ[Û›ÝŽH[\Ü‘U×ÑÑPTˆ\È“ÕŽWÑÑPT‹‘U×ÑÕRQTÈ\È“ÕŽWÑÕRQTË‘U×ÔÕRS”È\È“ÕŽWÔÕRS”Â™œ›ÛHÛÛ[Û›ÝŒL[\Ü‘U×ÑÑPTˆ\È“ÕŒLÑÑPT‹‘U×ÑÕRQTÈ\È“ÕŒLÑÕRQTÂ™œ›ÛHÛÛ[Û›ÝŒLH[\Ü‘U×ÑÑPTˆ\È“ÕŒLWÑÑPT‹‘U×ÑÕRQTÈ\È“ÕŒLWÑÕRQTÂ™œ›ÛHÛÛ[Û›ÝŒLˆ[\Ü‘U×ÑÑPTˆ\È“ÕŒL—ÑÑPT‹‘U×ÑÕRQTÈ\È“ÕŒL—ÑÕRQTË‘U×ÔÕRS”È\È“ÕŒL—ÔÕRS”ËÕUWÓÕ‘T”’QTÈ\È“ÕŒL—ÔÕUWÓÕ‘T”’QTÂ™œ›ÛHÛÛ[Û›ÝŒLÈ[\ÜQUÔ’PSÔÓPÖWÐTS‘\È“ÕŒL×ÔÓPÖWÐTS‘‘U×ÑÑPTˆ\È“ÕŒL×ÑÑPT‹‘U×ÑÕRQTÈ\È“ÕŒL×ÑÕRQTË‘U×ÔÕRS”È\È“ÕŒL×ÔÕRS”ËP“PÐUSÓ—ÓPS’Q‘TÕ\È“ÕŒL×ÔP“PÐUSÓ—ÓPS’Q‘TÕ™œ›ÛHÛÛ[Û›ÝŒM[\ÜQUÔ’PSÔÓPÖWÐTS‘\È“ÕŒMÔÓPÖWÐTS‘‘U×ÑÕRQTÈ\È“ÕŒMÑÕRQTËP“PÐUSÓ—ÓPS’Q‘TÕ\È“ÕŒMÔP“PÐUSÓ—ÓPS’Q‘TÕ™œ›ÛHÛÛ[Û›ÝŒMØ˜]Ú[\Ü‘U×ÑÑPTˆ\È“ÕŒMÐUÒÑÑPT‹‘U×ÑÕRQTÈ\È“ÕŒMÐUÒÑÕRQTË‘U×ÔÕRS”È\È“ÕŒMÐUÒÔÕRS”ËP“PÐUSÓ—ÓPS’Q‘TÕ\È“ÕŒMÐUÒÔP“PÐUSÓ—ÓPS’Q‘TÕ™œ›ÛHÛÛ[Û›ÝŒMH[\ÜQUÔ’PSÔÓPÖWÐTS‘\È“ÕŒMWÔÓPÖWÐTS‘ÑPT—ÓÕ‘T”’QTÈ\È“ÕŒMWÑÑPT—ÓÕ‘T”’QTË‘U×ÑÕRQTÈ\È“ÕŒMWÑÕRQTË‘U×ÔÕRS—ÔQÑTÈ\È“ÕŒMWÔÕRS—ÔQÑTË‘U×ÔÕRS—Ô‘PÓÔ‘È\È“ÕŒMWÔÕRS—Ô‘PÓÔ‘ËP“PÐUSÓ—ÓPS’Q‘TÕ\È“ÕŒMWÔP“PÐUSÓ—ÓPS’Q‘TÕ‘PÒT“ÐÐSÓS’ÔÈ\È“ÕŒMWÔ‘PÒT“ÐÐSÓS’ÔË‘U’QUÑQÔ‘SUQÔUÈ\È“ÕŒMWÔ‘U’QUÑQÔ‘SUQÔUÂ™œ›ÛHÛÛ[Û›ÝŒMˆ[\ÜQUÔ’PSÔÓPÖWÐTS‘\È“ÕŒM—ÔÓPÖWÐTS‘‘U×ÑÑPTˆ\È“ÕŒM—ÑÑPT‹‘U×ÑÕRQTÈ\È“ÕŒM—ÑÕRQTË‘U×ÔÕRS—ÔQÑTÈ\È“ÕŒM—ÔÕRS—ÔQÑTË‘U×ÔÕRS—Ô‘PÓÔ‘È\È“ÕŒM—ÔÕRS—Ô‘PÓÔ‘ËP“PÐUSÓ—ÓPS’Q‘TÕ\È“ÕŒM—ÔP“PÐUSÓ—ÓPS’Q‘TÕ‘PÒT“ÐÐSÓS’ÔÈ\È“ÕŒM—Ô‘PÒT“ÐÐSÓS’ÔË‘U’QUÑQÔ‘SUQÔUÈ\È“ÕŒM—Ô‘U’QUÑQÔ‘SUQÔUÂ™œ›ÛHÛÛ[Û›ÝŒMÈ[\ÜQUÔ’PSÔÓPÖWÐTS‘\È“ÕŒM×ÔÓPÖWÐTS‘‘U×ÑÑPTˆ\È“ÕŒM×ÑÑPT‹‘U×ÑÕRQTÈ\È“ÕŒM×ÑÕRQTË‘U×ÔÕRS—ÔQÑTÈ\È“ÕŒM×ÔÕRS—ÔQÑTË‘U×ÔÕRS—Ô‘PÓÔ‘È\È“ÕŒM×ÔÕRS—Ô‘PÓÔ‘ËP“PÐUSÓ—ÓPS’Q‘TÕ\È“ÕŒM×ÔP“PÐUSÓ—ÓPS’Q‘TÕ‘PÒT“ÐÐSÓS’ÔÈ\È“ÕŒM×Ô‘PÒT“ÐÐSÓS’ÔË‘U’QUÑQÔ‘SUQÔUÈ\È“ÕŒM×Ô‘U’QUÑQÔ‘SUQÔUËÕRS—ÓÕ‘T”’QTÈ\È“ÕŒM×ÔÕRS—ÓÕ‘T”’QTÂ™œ›ÛHÛÛ[Û›ÝŒN[\ÜQUÔ’PSÔÓPÖWÐTS‘\È“ÕŒNÔÓPÖWÐTS‘‘U×ÑÑPTˆ\È“ÕŒNÑÑPT‹‘U×ÑÕRQTÈ\È“ÕŒNÑÕRQTË‘U×ÔÕRS—ÔQÑTÈ\È“ÕŒNÔÕRS—ÔQÑTË‘U×ÔÕRS—Ô‘PÓÔ‘È\È“ÕŒNÔÕRS—Ô‘PÓÔ‘ËP“PÐUSÓ—ÓPS’Q‘TÕ\È“ÕŒNÔP“PÐUSÓ—ÓPS’Q‘TÕ‘PÒT“ÐÐSÓS’ÔÈ\È“ÕŒNÔ‘PÒT“ÐÐSÓS’ÔË‘U’QUÑQÔ‘SUQÔUÈ\È“ÕŒNÔ‘U’QUÑQÔ‘SUQÔUÂ™œ›ÛHÛÛ[Û›ÝŒNH[\ÜQUÔ’PSÔÓPÖWÐTS‘\È“ÕŒNWÔÓPÖWÐTS‘‘U×ÑÑPTˆ\È“ÕŒNWÑÑPT‹‘U×ÑÕRQTÈ\È“ÕŒNWÑÕRQTË‘U×ÔÕRS—ÔQÑTÈ\È“ÕŒNWÔÕRS—ÔQÑTË‘U×ÔÕRS—Ô‘PÓÔ‘È\È“ÕŒNWÔÕRS—Ô‘PÓÔ‘ËP“PÐUSÓ—ÓPS’Q‘TÕ\È“ÕŒNWÔP“PÐUSÓ—ÓPS’Q‘TÕ‘PÒT“ÐÐSÓS’ÔÈ\È“ÕŒNWÔ‘PÒT“ÐÐSÓS’ÔË‘U’QUÑQÔ‘SUQÔUÈ\È“ÕŒNWÔ‘U’QUÑQÔ‘SUQÔUÂ™œ›ÛHÛÛ[Û›ÝŒŒ[\ÜQUÔ’PSÔÓPÖWÐTS‘\È“ÕŒŒÔÓPÖWÐTS‘‘U×ÑÕRQTÈ\È“ÕŒŒÑÕRQTË‘U×ÔÕRS—ÔQÑTÈ\È“ÕŒŒÔÕRS—ÔQÑTË‘U×ÔÕRS—Ô‘PÓÔ‘È\È“ÕŒŒÔÕRS—Ô‘PÓÔ‘ËP“PÐUSÓ—ÓPS’Q‘TÕ\È“ÕŒŒÔP“PÐUSÓ—ÓPS’Q‘TÕ‘PÒT“ÐÐSÓS’ÔÈ\È“ÕŒŒÔ‘PÒT“ÐÐSÓS’ÔË‘U’QUÑQÔ‘SUQÔUÈ\È“ÕŒŒÔ‘U’QUÑQÔ‘SUQÔUÂ™œ›ÛHÛÛ[Û›ÝŒŒH[\ÜQUÔ’PSÔÓPÖWÐTS‘\È“ÕŒŒWÔÓPÖWÐTS‘‘U×ÑÑPTˆ\È“ÕŒŒWÑÑPT‹‘U×ÑÕRQTÈ\È“ÕŒŒWÑÕRQTËP“PÐUSÓ—ÓPS’Q‘TÕ\È“ÕŒŒWÔP“PÐUSÓ—ÓPS’Q‘TÕ‘PÒT“ÐÐSÓS’ÔÈ\È“ÕŒŒWÔ‘PÒT“ÐÐSÓS’ÔË‘U’QUÑQÔ‘SUQÔUÈ\È“ÕŒŒWÔ‘U’QUÑQÔ‘SUQÔUÂ™œ›ÛHÛÛ[Û›ÝŒŒˆ[\ÜQ‘’SPUWÑTÐÓÔÕT‘WÐTS‘\È“ÕŒŒ—ÐQ‘’SPUWÐTS‘QUÔ’PSÔÓPÖWÐTS‘\È“ÕŒŒ—ÔÓPÖWÐTS‘‘U×ÑÑPTˆ\È“ÕŒŒ—ÑÑPT‹‘U×ÑÕRQTÈ\È“ÕŒŒ—ÑÕRQTË‘U×ÔÕRS—ÔQÑTÈ\È“ÕŒŒ—ÔÕRS—ÔQÑTË‘U×ÔÕRS—Ô‘PÓÔ‘È\È“ÕŒŒ—ÔÕRS—Ô‘PÓÔ‘ËP“PÐUSÓ—ÓPS’Q‘TÕ\È“ÕŒŒ—ÔP“PÐUSÓ—ÓPS’Q‘TÕ‘PÒT“ÐÐSÓS’ÔÈ\È“ÕŒŒ—Ô‘PÒT“ÐÐSÓS’ÔË‘U’QUÑQÔ‘SUQÔUÈ\È“ÕŒŒ—Ô‘U’QUÑQÔ‘SUQÔUÂ™œ›ÛHÛÛ[Û›ÝŒŒÈ[\ÜQUÔ’PSÔÓPÖWÐTS‘\È“ÕŒŒ×ÔÓPÖWÐTS‘‘U×ÑÑPTˆ\È“ÕŒŒ×ÑÑPT‹‘U×ÑÕRQTÈ\È“ÕŒŒ×ÑÕRQTË‘U×ÔÕRS—ÔQÑTÈ\È“ÕŒŒ×ÔÕRS—ÔQÑTË‘U×ÔÕRS—Ô‘PÓÔ‘È\È“ÕŒŒ×ÔÕRS—Ô‘PÓÔ‘ËP“PÐUSÓ—ÓPS’Q‘TÕ\È“ÕŒŒ×ÔP“PÐUSÓ—ÓPS’Q‘TÕ‘PÒT“ÐÐSÓS’ÔÈ\È“ÕŒŒ×Ô‘PÒT“ÐÐSÓS’ÔË‘U’QUÑQÔ‘SUQÔUÈ\È“ÕŒŒ×Ô‘U’QUÑQÔ‘SUQÔUÂ™œ›ÛHÛÛ[Û›ÝŒ[\ÜQUÔ’PSÔÓPÖWÐTS‘\È“ÕŒÔÓPÖWÐTS‘‘U×ÑÑPTˆ\È“ÕŒÑÑPT‹‘U×ÑÕRQTÈ\È“ÕŒÑÕRQTËP“PÐUSÓ—ÓPS’Q‘TÕ\È“ÕŒÔP“PÐUSÓ—ÓPS’Q‘TÕ‘PÒT“ÐÐSÓS’ÔÈ\È“ÕŒÔ‘PÒT“ÐÐSÓS’ÔË‘U’QUÑQÔ‘SUQÔUÈ\È“ÕŒÔ‘U’QUÑQÔ‘SUQÔUÂ™œ›ÛHÛÛ[Û›ÝŒH[\ÜQUÔ’PSÔÓPÖWÐTS‘\È“ÕŒWÔÓPÖWÐTS‘‘U×ÑÑPTˆ\È“ÕŒWÑÑPT‹‘U×ÑÕRQTÈ\È“ÕŒWÑÕRQTËP“PÐUSÓ—ÓPS’Q‘TÕ\È“ÕŒWÔP“PÐUSÓ—ÓPS’Q‘TÕ‘PÒT“ÐÐSÓS’ÔÈ\È“ÕŒWÔ‘PÒT“ÐÐSÓS’ÔË‘U’QUÑQÔ‘SUQÔUÈ\È“ÕŒWÔ‘U’QUÑQÔ‘SUQÔUÂ™œ›ÛHÛÛ[Û›ÝŒˆ[\ÜQUÔ’PSÔÓPÖWÐTS‘\È“ÕŒ—ÔÓPÖWÐTS‘ÑPT—ÓÕ‘T”’QTÈ\È“ÕŒ—ÑÑPT—ÓÕ‘T”’QTË‘U×ÑÕRQTÈ\È“ÕŒ—ÑÕRQTËP“PÐUSÓ—ÓPS’Q‘TÕ\È“ÕŒ—ÔP“PÐUSÓ—ÓPS’Q‘TÕ‘PÒT“ÐÐSÓS’ÔÈ\È“ÕŒ—Ô‘PÒT“ÐÐSÓS’ÔË‘U’QUÑQÔ‘SUQÔUÈ\È“ÕŒ—Ô‘U’QUÑQÔ‘SUQÔUÂ™œ›ÛHÛÛ[ÜÝ]WÛ]ÜÈ[\ÜPWÔÓÕTÑKÔÓÔÓÕTÑK‘U’QU×ÑUKÕUWÓUÔËÕUT×ÑTÐÔ’TSÓ”ËÕUT×ÓP‘SÂ‚”ÓÕTÑHH]
+×Ùš[W×ÊKœ™\ÛÛ™J
+Kœ\™[ÖÌWB“ÕUHÓÕTÑHÈ—ÜÚ]H‚‚ˆÈZ[HY][ÛœÈ]™H[ˆHÛX[ÛÝ\˜ÙH[Ù[HÛÈH]™\™Ü™Y[ˆØ][ÙÈš[\ÂˆÈ™[XZ[ˆ™XYX›Kˆ^H›Ú[ˆHØ[YHZ[ÙX\˜ÚÚ][X\™YY[™]Y]ˆÈ]È\È]™\žH\ÝX›\ÚY\XÛK‚‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+ÈRSWÑÕRQTÈ
+ÈÑT—ÑÕRQTÈ
+ÈÑT×ÑÕRQTÈ
+ÈÑTŽÑÕRQTÈ
+ÈÑTŽWÑÕRQTÈ
+ÈÑTÌÑÕRQTÈ
+ÈÐÕWÑÕRQTÈ
+ÈÐÕ—ÑÕRQTÈ
+ÈÐÕ×ÑÕRQTÈ
+ÈÐÕÑÕRQTÈ
+ÈÐÕWÑÕRQTÈ
+ÈÐÕ—ÑÕRQTÈ
+ÈÐÕ×ÑÕRQTÈ
+ÈÐÕÑÕRQTÈ
+ÈÐÕWÑÕRQTÈ
+ÈÐÕLÑÕRQTÈ
+ÈÐÕLWÑÕRQTÂ—ÛØÝLWÙÝZY\ÈHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕLWÑÕRQWÓÕ‘T”’QTßB‘ÕRQWÔQÑTÈH×ÛØÝLWÙÝZY\Ë™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕRQWÔQÑT×B—ÛØÝL—ÙÝZY\ÈHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕL—ÑÕRQWÓÕ‘T”’QTßB‘ÕRQWÔQÑTÈH×ÛØÝL—ÙÝZY\Ë™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕRQWÔQÑT×B“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+ÈRSWÑÑPTˆ
+ÈÑT—ÑÑPTˆ
+ÈÑT×ÑÑPTˆ
+ÈÑTŽÑÑPTˆ
+ÈÑTŽWÑÑPTˆ
+ÈÑTÌÑÑPTˆ
+ÈÐÕWÑÑPTˆ
+ÈÐÕ—ÑÑPT‚—ÛØÝ×ÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕ×ÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×ÛØÝ×ÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×B—ÛØÝÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×ÛØÝÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×B—ÛØÝWÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕWÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×ÛØÝWÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×B—ÛØÝ—ÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕ—ÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×ÛØÝ—ÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×B—ÛØÝ×ÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕ×ÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×ÛØÝ×ÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×B—ÛØÝÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×ÛØÝÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×B—ÛØÝWÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕWÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×ÛØÝWÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×B—ÛØÝLÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕLÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×ÛØÝLÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×B—ÛØÝLWÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕLWÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×ÛØÝLWÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×B—ÛØÝL—ÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕL—ÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×ÛØÝL—ÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×B—ÛØÝL×ÙÝZY\ÈHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕL×ÑÕRQWÓÕ‘T”’QTßB‘ÕRQWÔQÑTÈH×ÛØÝL×ÙÝZY\Ë™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕRQWÔQÑT×B“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+ÈÐÕL×ÑÑPT‚—ÛØÝMÙÝZY\ÈHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕMÑÕRQWÓÕ‘T”’QTßB‘ÕRQWÔQÑTÈH×ÛØÝMÙÝZY\Ë™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕRQWÔQÑT×B—ÛØÝMÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕMÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×ÛØÝMÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×B—ÛØÝÜÝ˜Z[œÈHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕÔÕRS—ÓÕ‘T”’QTßB”ÕRS—ÔQÑTÈH×ÛØÝÜÝ˜Z[œË™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕRS—ÔQÑT×B—ÛØÝMWÙÝZY\ÈHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕMWÑÕRQWÓÕ‘T”’QTßB‘ÕRQWÔQÑTÈH×ÛØÝMWÙÝZY\Ë™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕRQWÔQÑT×B—ÛØÝMWÜÝ˜Z[œÈHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕMWÔÕRS—ÓÕ‘T”’QTßB”ÕRS—ÔQÑTÈH×ÛØÝMWÜÝ˜Z[œË™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕRS—ÔQÑT×B‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+ÈÐÕMWÓ‘U×ÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+ÈÐÕMWÓ‘U×ÑÑPT‚—ÛØÝM—ÙÝZY\ÈHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕM—ÑÕRQWÓÕ‘T”’QTßB‘ÕRQWÔQÑTÈH×ÛØÝM—ÙÝZY\Ë™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕRQWÔQÑT×B‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+ÈÐÕM—Ó‘U×ÑÕRQTÂ—ÛØÝM×ÙÝZY\ÈHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕM×ÑÕRQWÓÕ‘T”’QTßB‘ÕRQWÔQÑTÈH×ÛØÝM×ÙÝZY\Ë™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕRQWÔQÑT×B“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+ÈÐÕM×ÑÑPT‚—ÛØÝNÙÝZY\ÈHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕNÑÕRQWÓÕ‘T”’QTßB‘ÕRQWÔQÑTÈH×ÛØÝNÙÝZY\Ë™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕRQWÔQÑT×B—ÛØÝNÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕNÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×ÛØÝNÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×B—ÛØÝNWÙÝZY\ÈHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕNWÑÕRQWÓÕ‘T”’QTßB‘ÕRQWÔQÑTÈH×ÛØÝNWÙÝZY\Ë™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕRQWÔQÑT×B—ÛØÝNWÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕNWÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×ÛØÝNWÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×B—ÛØÝŒÙÝZY\ÈHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕŒÑÕRQWÓÕ‘T”’QTßB‘ÕRQWÔQÑTÈH×ÛØÝŒÙÝZY\Ë™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕRQWÔQÑT×B—ÛØÝŒWÙÝZY\ÈHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕŒWÑÕRQWÓÕ‘T”’QTßB‘ÕRQWÔQÑTÈH×ÛØÝŒWÙÝZY\Ë™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕRQWÔQÑT×B—ÛØÝŒWÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕŒWÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×ÛØÝŒWÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×B—ÛØÝŒ—ÙÝZY\ÈHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕŒ—ÑÕRQWÓÕ‘T”’QTßB‘ÕRQWÔQÑTÈH×ÛØÝŒ—ÙÝZY\Ë™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕRQWÔQÑT×H
+ÈÐÕŒ—Ó‘U×ÑÕRQTÂ—ÛØÝŒ×ÙÝZY\ÈHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕŒ×ÑÕRQWÓÕ‘T”’QTßB‘ÕRQWÔQÑTÈH×ÛØÝŒ×ÙÝZY\Ë™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕRQWÔQÑT×H
+ÈÐÕŒ×ÑÕRQTÈ
+ÈÐÕŒ×Ñ“ÓÕÕTÑÕRQTÂ—ÛØÝŒ×ÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕŒ×ÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×ÛØÝŒ×ÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×H
+ÈÐÕŒ×ÑÑPT‚—ÛØÝÙÝZY\ÈHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕÑÕRQWÓÕ‘T”’QTßB‘ÕRQWÔQÑTÈH×ÛØÝÙÝZY\Ë™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕRQWÔQÑT×H
+ÈÐÕÑ“ÓÕÕTÑÕRQTÂ—ÛØÝÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×ÛØÝÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×H
+ÈÐÕÑÑPT‚ÐS“P’S“ÒQÓP‘SÖÈ˜Ø™ˆ—HHÐ‘‹Y›ØÝ\ÙY[\‚”ÕRS”ÈHÕRS”È
+ÈÐÕÑ“ÓÕÕTÔÕRS”È
+È“ÕŽWÔÕRS”È
+È“ÕŒL—ÔÕRS”È
+È“ÕŒL×ÔÕRS”Â”ÕRS—ÔQÑTÈHÕRS—ÔQÑTÈ
+ÈÜÝ˜Z[—ÜYÙJ][JH›Üˆ][H[ˆ“ÕŽWÔÕRS”È
+È“ÕŒL—ÔÕRS”È
+È“ÕŒL×ÔÕRS”×B”ÕRS—ÔQÑTÈHÕRS—ÔQÑTÈ
+ÈÐÕÑ“ÓÕÕTÔÕRS—ÔQÑTÂ—ÛØÝWÙÝZY\ÈHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕWÑÕRQWÓÕ‘T”’QTßB‘ÕRQWÔQÑTÈH×ÛØÝWÙÝZY\Ë™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕRQWÔQÑT×B—ÛØÝ—ÙÝZY\ÈHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕ—ÑÕRQWÓÕ‘T”’QTßB‘ÕRQWÔQÑTÈH×ÛØÝ—ÙÝZY\Ë™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕRQWÔQÑT×H
+ÈÐÕ—Ó‘U×ÑÕRQTÂ—ÛØÝ—ÛÝ\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕ—ÓÕT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×ÛØÝ—ÛÝ\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×B‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+ÈÐÕ×ÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+ÈÐÕ×ÑÑPT‚‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+ÈÐÕŽÑÕRQTÂ—ÛØÝŽÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕŽÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×ÛØÝŽÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×B‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+ÈÐÕŽWÑÕRQTÂ—ÛØÝŽWÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕŽWÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×ÛØÝŽWÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×B‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+ÈÐÕÌÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+ÈÐÕÌÑÑPT‚‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+ÈÐÕÌWÑÕRQTÂ—ÛØÝÌWÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆÐÕÌWÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×ÛØÝÌWÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×B‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŒWÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“ÕŒWÑÑPT‚—Û›ÝŒ—ÙÝZY\ÈHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆ“ÕŒ—ÑÕRQWÓÕ‘T”’QTßB‘ÕRQWÔQÑTÈH×Û›ÝŒ—ÙÝZY\Ë™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕRQWÔQÑT×H
+È“ÕŒ—ÑÕRQTÂ‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŒ×ÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“ÕŒ×ÑÑPT‚‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“ÕÑÑPT‚‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕWÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“ÕWÑÑPT‚‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“Õ—ÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“Õ—ÑÑPT‚‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“Õ×ÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“Õ×ÑÑPT‚‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŽÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“ÕŽÑÑPT‚‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŽWÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“ÕŽWÑÑPT‚‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŒLÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“ÕŒLÑÑPT‚‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŒLWÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“ÕŒLWÑÑPT‚‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŒL—ÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“ÕŒL—ÑÑPT‚”ÕUWÓUÔÈHÊÊŠš][K
+Š““ÕŒL—ÔÕUWÓÕ‘T”’QTÖÚ][VÈ˜ÛÙH—W_HYˆ][VÈ˜ÛÙH—H[ˆ“ÕŒL—ÔÕUWÓÕ‘T”’QTÈ[ÙH][JH›Üˆ][H[ˆÕUWÓUÔ×B‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŒL×ÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“ÕŒL×ÑÑPT‚‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŒMÑÕRQTÂ‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŒMÐUÒÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“ÕŒMÐUÒÑÑPT‚”ÕRS”ÈHÕRS”È
+È“ÕŒMÐUÒÔÕRS”Â”ÕRS—ÔQÑTÈHÕRS—ÔQÑTÈ
+ÈÜÝ˜Z[—ÜYÙJ][JH›Üˆ][H[ˆ“ÕŒMÐUÒÔÕRS”×B‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŒMWÑÕRQTÂ—Û›ÝŒMWÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆ“ÕŒMWÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×Û›ÝŒMWÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×BÐS“P’S“ÒQÓP‘SÖÈš[™\ÝšX[—HH™Ü˜Z[ˆÈšX™\ˆ[\‚”ÕRS”ÈHÕRS”È
+È“ÕŒMWÔÕRS—Ô‘PÓÔ‘Â”ÕRS—ÔQÑTÈHÕRS—ÔQÑTÈ
+È“ÕŒMWÔÕRS—ÔQÑTÂ‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŒM—ÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“ÕŒM—ÑÑPT‚”ÕRS”ÈHÕRS”È
+È“ÕŒM—ÔÕRS—Ô‘PÓÔ‘Â”ÕRS—ÔQÑTÈHÕRS—ÔQÑTÈ
+È“ÕŒM—ÔÕRS—ÔQÑTÂ‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŒM×ÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“ÕŒM×ÑÑPT‚”ÕRS”ÈHÕRS”È
+È“ÕŒM×ÔÕRS—Ô‘PÓÔ‘Â”ÕRS—ÔQÑTÈHÕRS—ÔQÑTÈ
+È“ÕŒM×ÔÕRS—ÔQÑTÂ—Û›ÝŒM×ÜÝ˜Z[œÈHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆ“ÕŒM×ÔÕRS—ÓÕ‘T”’QTßB”ÕRS—ÔQÑTÈH×Û›ÝŒM×ÜÝ˜Z[œË™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕRS—ÔQÑT×B‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŒNÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“ÕŒNÑÑPT‚”ÕRS”ÈHÕRS”È
+È“ÕŒNÔÕRS—Ô‘PÓÔ‘Â”ÕRS—ÔQÑTÈHÕRS—ÔQÑTÈ
+È“ÕŒNÔÕRS—ÔQÑTÂ‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŒNWÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“ÕŒNWÑÑPT‚”ÕRS”ÈHÕRS”È
+È“ÕŒNWÔÕRS—Ô‘PÓÔ‘Â”ÕRS—ÔQÑTÈHÕRS—ÔQÑTÈ
+È“ÕŒNWÔÕRS—ÔQÑTÂÐS“P’S“ÒQÓP‘SÖÈš[\—HH™ØÝ[Y[Y[\Ý[]˜\ˆ‚”ÕRS”ÈHÕRS”È
+È“ÕŒŒÔÕRS—Ô‘PÓÔ‘Â”ÕRS—ÔQÑTÈHÕRS—ÔQÑTÈ
+È“ÕŒŒÔÕRS—ÔQÑTÂ‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŒŒÑÕRQTÂ‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŒŒWÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“ÕŒŒWÑÑPT‚‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŒŒ—ÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“ÕŒŒ—ÑÑPT‚”ÕRS”ÈHÕRS”È
+È“ÕŒŒ—ÔÕRS—Ô‘PÓÔ‘Â”ÕRS—ÔQÑTÈHÕRS—ÔQÑTÈ
+È“ÕŒŒ—ÔÕRS—ÔQÑTÂ‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŒŒ×ÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“ÕŒŒ×ÑÑPT‚”ÕRS”ÈHÕRS”È
+È“ÕŒŒ×ÔÕRS—Ô‘PÓÔ‘Â”ÕRS—ÔQÑTÈHÕRS—ÔQÑTÈ
+È“ÕŒŒ×ÔÕRS—ÔQÑTÂ‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŒÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“ÕŒÑÑPT‚‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŒWÑÕRQTÂ“ÕT—ÐT•PÓTÈHÕT—ÐT•PÓTÈ
+È“ÕŒWÑÑPT‚‘ÕRQWÔQÑTÈHÕRQWÔQÑTÈ
+È“ÕŒ—ÑÕRQTÂ—Û›ÝŒ—ÙÙX\ˆHÚ][VÈœ]—Nˆ][H›Üˆ][H[ˆ“ÕŒ—ÑÑPT—ÓÕ‘T”’QTßB“ÕT—ÐT•PÓTÈH×Û›ÝŒ—ÙÙX\‹™Ù]
+][VÈœ]—K][JH›Üˆ][H[ˆÕT—ÐT•PÓT×B‚ˆÈ›Ý™[X™\ˆˆÛÛ›™XÝÈ›Ý™]È™\ÛÝ\˜Ù\Èœ›ÛH\ÝX›\ÚY[[[X]ÚYˆÈYÙ\Ëˆ\ÙH\™HY]ÜšX[]Ë›ÝÙ[™\šXÈ™XÙ[\ÜÝ[šÜË[™BˆÈ™]šY]ÙY]H™XÛÜ™ÈHX]\šX[˜]šYØ][Ûˆ[\›Ý™[Y[‚—Û›Ý—ÙÝZYWÛ[šÜÈHÂˆ™ÝZY\ËÚÝË]Ë][Ë]ËYØÝÜ‹XX›Ý]XØ[›˜Xš\ËÚ[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\ËX›ÛÙYÛ˜][Û‹Y[YÚXš[]KYÝZYKÈ‹ˆ‘Ó“ÔˆÐÔ‘QS’S‘È‹ˆ”™\\™HH™XÚ\ÙHØ[›˜Xš\È[™›ÛÙYÛ˜][Ûˆ[YÚXš[]H]Y\Ý[Ûˆ‹ˆ
+Kˆ™ÝZY\ËØØ[›˜Xš\ËZX\\˜]KX›ÛÙ\™\ÜÝ\™K\ØY™]KÚ[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\ËX›ÛÙYÛ˜][Û‹Y[YÚXš[]KYÝZYKÈ‹ˆ“ÓÑÓUSÓˆ‹ˆ’ÙY\Ø[›˜Xš\È\ÙKÝ\œ™[[˜Ý[Û‹YYXØ][Û‹[™Ù[\ˆ[\ÈÙ\\˜]H‹ˆ
+Kˆ™ÝZY\ËÜÙXÛÛ™[™XØ[›˜Xš\Ë\Û[ÚÙKZ[™ÛÜ‹XZ\‹Ú[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\Ë\Û[ÚÙKXZ\‹\]X[]K[[Ûš]Ü‹X^Z[™ËYÝZYKÈ‹ˆRTˆSÓ’UÔ’S‘È‹ˆÚÛÜÙHÙ[œÛÜœÈžHÛ][]H™YYXÙ[Y[[™ØY™]H›Ý[™\žH‹ˆ
+Kˆ™ÝZY\ËØØ[›˜Xš\ËZÛYKYš\™K\ØY™]K\[‹Ú[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\Ë\Û[ÚÙKXZ\‹\]X[]K[[Ûš]Ü‹X^Z[™ËYÝZYKÈ‹ˆ“SÓ’UÔˆ“ÕS‘T–H‹ˆ’ÙY\Z\ˆ[Ûš]ÜœÈÙ\\˜]Hœ›ÛH™\]Z\™YÛ[ÚÙH[™Ø\˜›Û‹[[Û›ÞYH[\›\È‹ˆ
+KŸB‘ÕRQWÔQÑTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆ‹Œˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›Ý—ÙÝZYWÛ[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›Ý—ÙÝZYWÛ[šÜÈ[ÙH][JBˆ›Üˆ][H[ˆÕRQWÔQÑTÂ—B‚—Û›Ý—ÙÙX\—Û[šÜÈHÂˆ™ÙX\‹ØZ\‹\\šYšY\‹XØ[›˜Xš\Ë\Û[ÚÙK[ÙÜ‹YÝZYKÚ[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\Ë\Û[ÚÙKXZ\‹\]X[]K[[Ûš]Ü‹X^Z[™ËYÝZYKÈ‹ˆ“QPTÕT‘H’T”Õ‹ˆÛÛ\\™H[Ûš]ÜˆÚ[›™[Ë]HXØÙ\ÜËXÙ[Y[[™š\œÝ^YX\ˆÛÜÝ‹ˆ
+Kˆ™ÙX\‹ØØ[›˜Xš\ËYÙX\‹XÛÛ\\š\ÛÛ‹]ÛÜšÜÚY]Ú[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\Ë\Û[ÚÙKXZ\‹\]X[]K[[Ûš]Ü‹X^Z[™ËYÝZYKÈ‹ˆ”ÑS”ÓÔˆÓÔ’Ñ“ÕÈ‹ˆ•\›ˆ[ˆ[™ÛÜ‹XZ\ˆ]Y\Ý[Ûˆ[ÈH™YK[[Ûš]ÜˆÛÛ\\š\ÛÛˆ‹ˆ
+KŸB“ÕT—ÐT•PÓTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆ‹Œˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›Ý—ÙÙX\—Û[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›Ý—ÙÙX\—Û[šÜÈ[ÙH][JBˆ›Üˆ][H[ˆÕT—ÐT•PÓTÂ—B‚ˆÈHÛÛ\]H›Ý™[X™\ˆM˜]ÚYÈ\Ý[˜ÝÝ[]˜\‹\]Z\Y[[™ˆÈX›Ü˜]ÜžK[]\˜XÞH›Ý]\Ëˆ\ÙH[šÜÈÛÛYHœ›ÛH\ÝX›\ÚYYÙ\È]ˆÈ[™XYHÝÛˆHY˜XÙ[XÚ\Ú[ÛŽÈ^H\™H›ÝÙ[™\šXÈ™XÙ[\ÜÝ[šÜË‚—Û›ÝŒMØ˜]ÚÙÝZYWÛ[šÜÈHÂˆ™ÝZY\ËÜ™XYXK[X™[Ú[™^š[Žˆ
+ˆœÝ˜Z[œËÚ\Ú\[È‹ÕSUTˆSQH“ÕS‘T–H‹’ÙY\H]šX]Yœ™YY\ˆÝÜžHÙ\\˜]Hœ›ÛH›ÙXÝ›Ü›Kš[š\ÚY›ÙXÙ\‹Ý[™™\Ü‚ˆ
+Kˆ™ÝZY\ËØØ[›˜Xš\ËY›ÝÙ\‹Yœ™\Ú™\ÜË\XÚØYÙKY]KX^Z[™ËYÝZYKÚ[™^š[Žˆ
+ˆœÝ˜Z[œËÚ\Ú\[È‹“SQQ“ÕÑTˆVSTH‹\HÛÝ\˜ÙKY[]K]KÛÛ™][Û‹Ý\™\Ü[™™XØ[ÚXÚÜÈÈ\Ú[‚ˆ
+Kˆ™ÝZY\ËÛ™]Ë^[ÜšËZÛYKXØ[›˜Xš\ËZ\™\ÝYžZ[™ËXÝ\š[™Ë[ÙËÚ[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\ËYžZ[™Ë\˜XÚËX^Z[™ËYÝZYKÈ‹‘–RS‘ÈÕTÔ•‹ÛÛ\\™H\ØX›H\™XKÜXÚ[™Ë›ÛÛHš]Z\‹\]›Ý[™\šY\ËÛX[š[™ËXØÙ\ÜË™]\›œË[™ÛÜÝ‚ˆ
+Kˆ™ÝZY\ËØØ[›˜Xš\ËXÙ\YšXØ]K[Ù‹X[˜[\Ú\ËXÛØKYÝZYKÚ[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\Ë[X‹\™\ÜY]XÝ[Û‹\]X[]][Û‹[[Z]ËYÝZYKÈ‹“‘0­ÈÑ0­ÈÔH‹•˜[œÛ]H]XÝ[Û‹]X[]][Û‹™\Ü[™Ë[˜Ù\Z[K[™XÚ\Ú[Ûˆ›Ý[™\šY\ÈÚ]Ý][™[[™È™\›È‚ˆ
+Kˆ™ÝZY\ËØØ[›˜Xš\ËXÛÛ[Z[˜[]\Ý\™\Ý[ËYÝZYKÚ[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\Ë[X‹\™\ÜY]XÝ[Û‹\]X[]][Û‹[[Z]ËYÝZYKÈ‹”‘TÔ•S‘ÈSRUÈ‹’ÙY\[˜[]KX]š^Y]Ù™\Ý[]X[YšY\‹[š][Z]Ë[™XÚ\Ú[Ûˆ[HÙÙ]\ˆ‚ˆ
+KŸB‘ÕRQWÔQÑTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆMŒˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›ÝŒMØ˜]ÚÙÝZYWÛ[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›ÝŒMØ˜]ÚÙÝZYWÛ[šÜÈ[ÙH][JBˆ›Üˆ][H[ˆÕRQWÔQÑTÂ—B‚—Û›ÝŒMØ˜]ÚÙÙX\—Û[šÜÈHÂˆ™ÙX\‹ÚÛYKYÜ›ÝË][\\˜]\™KZ[ZY]K[[Ûš]Ü‹X^Z[™ËYÝZYKÚ[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\ËYžZ[™Ë\˜XÚËX^Z[™ËYÝZYKÈ‹”PÒÈ
+È“ÓÓH‹’ÙY\Ý\Ü\™XKÙ[œÛÜˆXÙ[Y[Ú\˜Ý[][Û‹[Ú\Ý\™H™[[Ý˜[[œÜXÝ[ÛˆXØÙ\ÜË[™˜Z[\™H™\ÜÛœÙHÙÙ]\ˆ‚ˆ
+KŸB“ÕT—ÐT•PÓTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆMŒˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›ÝŒMØ˜]ÚÙÙX\—Û[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›ÝŒMØ˜]ÚÙÙX\—Û[šÜÈ[ÙH][JBˆ›Üˆ][H[ˆÕT—ÐT•PÓTÂ—B‚ˆÈ›Ý™[X™\ˆLÛÛ›™XÝÈHXX™]\ÈØY™]H™XÛÜ™[™ÛÛ˜Ù[˜]KXÛÛZ[™\‚ˆÈXÚ\Ú[ÛˆÞ\Ý[Hœ›ÛH\ÝX›\ÚYYÙ\È][™XYHÝÛˆY˜XÙ[Û[šXØ[ˆÈ›ÙXÝY›Ü›X]ÝÜ˜YÙK[™\]Z\Y[XÚ\Ú[ÛœË‚—Û›ÝŒLÙÝZYWÛ[šÜÈHÂˆ™ÝZY\ËØØ[›˜Xš\ËXØ™[YYXØ][Û‹Z[\˜XÝ[ÛœËÚ[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\ËYXX™]\ËX›ÛÙ\ÝYØ\‹YØK\ØY™]KÈ‹ˆ‘PP‘UTÈ
+ÈQQPÒS‘TÈ‹ˆ’ÙY\ÛXÛÜÙKÙ]Û™K[œÝ[[‹YYXÚ[™KØ[›˜Xš\ËÞ[\ÛK[™[Y\™Ù[˜ÞH™XÛÜ™ÈÙÙ]\ˆ‹ˆ
+Kˆ™ÝZY\ËØØ[›˜Xš[›ÚYZ\\™[Y\Ú\Ë\Þ[™›ÛYK]Ø\›š[™Ë\ÚYÛœËÚ[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\ËYXX™]\ËX›ÛÙ\ÝYØ\‹YØK\ØY™]KÈ‹ˆ‘PP‘UTÈ
+È“ÓRUS‘È‹ˆ‘È›Ý]HÒÈX™[YHÐKZY˜][Û‹Üˆ[›Ý\ˆ\™Ù[Ø]\ÙH‹ˆ
+Kˆ™ÝZY\ËØØ[›˜Xš\ËXÛÛ˜Ù[˜]\ËYXœË[X™[\ØY™]KYÝZYKÚ[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\ËXÛÛ˜Ù[˜]KXÛÛZ[™\‹X^Z[™ËYÝZYKÈ‹ˆÓÓ•RS‘TˆÖTÕSH‹ˆ”™\Ù\™HH™]Z[XÚØYÙH[™ÛÛ\\™HÛÛXÝš]ÛÜÝ\™KY[]KØ\™K[™ØÚÙYÝÜ˜YÙH‹ˆ
+Kˆ™ÝZY\ËÜÝÜ˜YÙKÚ[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\ËXÛÛ˜Ù[˜]KXÛÛZ[™\‹X^Z[™ËYÝZYKÈ‹ˆÓÓÑS•UHÓÓ•RS‘T”È‹ˆ’ÙY\HÜšYÚ[˜[XÚØYÙK^XÝÝÙXÛÛ™\žHÜ™Ø[š^™\‹[™Ý\ÙZÛØÚÈ\ÈÙ\\˜]H^Y\œÈ‹ˆ
+KŸB‘ÕRQWÔQÑTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆLŒˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›ÝŒLÙÝZYWÛ[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›ÝŒLÙÝZYWÛ[šÜÈ[ÙH][JBˆ›Üˆ][H[ˆÕRQWÔQÑTÂ—B‚—Û›ÝŒLÙÙX\—Û[šÜÈHÂˆ™ÙX\‹ØØ[›˜Xš\Ë\Ý\ÚZ˜\‹X^Z[™ËYÝZYKÚ[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\ËXÛÛ˜Ù[˜]KXÛÛZ[™\‹X^Z[™ËYÝZYKÈ‹ˆÓÓÑS•UKTÔPÒQ’PÈ’U‹ˆYÛÛXÝ\]YZ[\Ú[Û‹[™\‹Y[]K[™ÜšYÚ[˜[\XÚØYÙH›Ý[™\šY\È‹ˆ
+Kˆ™ÙX\‹ØØ[›˜Xš\ËYÙX\‹XÛÛ\\š\ÛÛ‹]ÛÜšÜÚY]Ú[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\ËXÛÛ˜Ù[˜]KXÛÛZ[™\‹X^Z[™ËYÝZYKÈ‹ˆÓÓ•RS‘TˆÓÔ’Ñ“ÕÈ‹ˆ”[ˆ^XÝÛÛZ[™\œÈ›ÝYÚÛÛXÝ\ØX›Hš]ÛZ[\ËØ\™K™]\›œË[™š\œÝ^YX\ˆÛÜÝ‹ˆ
+KŸB“ÕT—ÐT•PÓTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆLŒˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›ÝŒLÙÙX\—Û[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›ÝŒLÙÙX\—Û[šÜÈ[ÙH][JBˆ›Üˆ][H[ˆÕT—ÐT•PÓTÂ—B‚ˆÈ›Ý™[X™\ˆÈÛÛ›™XÝÈ›Ý™]È™\ÛÝ\˜Ù\Èœ›ÛH\ÝX›\ÚY[[[X]ÚYˆÈYÙ\ËˆH™]šY]È]H™XÛÜ™ÈHX]\šX[˜]šYØ][Ûˆ[\›Ý™[Y[‚—Û›Ý×ÙÝZYWÛ[šÜÈHÂˆ™ÝZY\ËØØ[›˜Xš\ËXØ™XÚ›ÛšXË\Z[‹Y]šY[˜ÙKYÝZYKÚ[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\Ë[ZYÜ˜Z[™KZXYXÚKY]šY[˜ÙKYÝZYKÈ‹ˆ“RQÔRS‘HU’QSÑH‹ˆ’ÙY\Û™H›Ý]K\ÜXÚYšXÈXÝ]HšX[[œÚYH]È™X[]šY[˜ÙH›Ý[™\šY\È‹ˆ
+Kˆ™ÝZY\ËÚÝË]Ë][Ë]ËYØÝÜ‹XX›Ý]XØ[›˜Xš\ËÚ[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\Ë[ZYÜ˜Z[™KZXYXÚKY]šY[˜ÙKYÝZYKÈ‹ˆ’PQPÒHS‘Ñ‘ˆ‹ˆœš[™ÈH›Ý[™Y]šY[˜ÙH]Y\Ý[Ûˆ[™H]YÞ[\ÛH™XÛÜ™‹ˆ
+Kˆ™ÝZY\ËØØ[›˜Xš\ËZÛYKYš\™K\ØY™]K\[‹Ú[™^š[Žˆ
+ˆ™ÙX\‹ÚÛYKYÜ›ÝË]™[[][Û‹Y˜[‹X^Z[™ËYÝZYKÈ‹ˆ‘SˆÐQ‘UH‹ˆÚXÚÈZ\™›ÝÈ\œÜÙKÛÛ›ÛË[Ý[[™ËÝÙ\‹™XØ[Ë[™˜Z[\™HÝ]\È‹ˆ
+KŸB‘ÕRQWÔQÑTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆËŒˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›Ý×ÙÝZYWÛ[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›Ý×ÙÝZYWÛ[šÜÈ[ÙH][JBˆ›Üˆ][H[ˆÕRQWÔQÑTÂ—B‚—Û›Ý×ÙÙX\—Û[šÜÈHÂˆ™ÙX\‹ÚÛYKYÜ›ÝË][\\˜]\™KZ[ZY]K[[Ûš]Ü‹X^Z[™ËYÝZYKÚ[™^š[Žˆ
+ˆ™ÙX\‹ÚÛYKYÜ›ÝË]™[[][Û‹Y˜[‹X^Z[™ËYÝZYKÈ‹ˆRT‘“ÕÈÖTÕSH‹ˆ“X]ÚH[Ûš]Üš[™È]Y\Ý[ÛˆÈH˜[‹Z\ˆ]ÛÛ›ÛË[™XØÙ\[˜ÙH\Ý‹ˆ
+Kˆ™ÙX\‹ÚÛYKYÜ›ÝË][Y\‹XÛÛ›Û\‹X^Z[™ËYÝZYKÚ[™^š[Žˆ
+ˆ™ÙX\‹ÚÛYKYÜ›ÝË]™[[][Û‹Y˜[‹X^Z[™ËYÝZYKÈ‹ˆ‘SˆÓÓ•“Ó‹ˆ”™\]Z\™H^XÝ[ÝÜˆÛÛ\]Xš[]KØY™HZ[š[][HÜYY™\Ý\™Z]š[Ü‹[™Ý™\œšYH‹ˆ
+KŸB“ÕT—ÐT•PÓTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆËŒˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›Ý×ÙÙX\—Û[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›Ý×ÙÙX\—Û[šÜÈ[ÙH][JBˆ›Üˆ][H[ˆÕT—ÐT•PÓTÂ—B‚ˆÈ›Ý™[X™\ˆ[šÜÈHØ\™YÚ]™\ˆ[ˆ[™XØÙ\ÜËXÛÛ›Û^Y\‰ÜÈÝZYHœ›ÛBˆÈ\ÝX›\ÚYYÙ\È][™XYHÝÛˆHY˜XÙ[[[‚—Û›ÝŽÙÝZYWÛ[šÜÈHÂˆ™ÝZY\ËØØ[›˜Xš\ËYš]š[™ËZ[\Z\›Y[\ÛØ™\‹][Y\‹Ú[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\ËXØ\™YÚ]š[™Ë\ÛØ™\‹XY[Z[™Ù™‹\[‹È‹ˆÐT‘QÒU’S‘ÈS‘Ñ‘ˆ‹ˆ“˜[YHHÛØ™\ˆY[Ø\™H›Ø‹˜[œÜÜ[‹ÝÜ˜YÙK[™™\ÜÛœÙH›Ý]H‹ˆ
+Kˆ™ÝZY\ËØØ[›˜Xš\ËXÚ[\™\Ú\Ý[\XÚØYÚ[™ËZÛYK\ÝÜ˜YÙKYÝZYKÚ[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\Ë[ØÚØ›ÞX^Z[™ËYÝZYKÈ‹ˆ“ÐÒÐ“ÖÒPÒÓTÕ‹ˆÛÛ\\™HXØÙ\ÜË[\š[Üˆš]™[ØÚÈ™Z]š[Ü‹™XÛÝ™\žKÛZ[\Ë[™ÛÜÝ‹ˆ
+Kˆ™ÝZY\ËØØ[›˜Xš\Ë[Û\‹XY[Ë[YYXØ][Û‹Y˜[\ØY™]KÚ[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\ËXØ\™YÚ]š[™Ë\ÛØ™\‹XY[Z[™Ù™‹\[‹È‹ˆÐT‘HS”Ñ‘Tˆ‹ˆ’ÙY\YYXÚ[™\Ë[Øš[]K˜[œÜÜXØÙ\ÜË[™˜XÚÝ\™\ÜÛœÚXš[]HÙÙ]\ˆ‹ˆ
+Kˆ™ÝZY\ËÜÝÜ˜YÙKÚ[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\Ë[ØÚØ›ÞX^Z[™ËYÝZYKÈ‹ˆPÐÑTÔÈÓÓ•“Ó‹ˆ’ÙY\ÜšYÚ[˜[XÚØYÚ[™È[œÚYHHYX\Ý\™YØÚÙY˜Z[\™K]\ÝYÞ\Ý[H‹ˆ
+KŸB‘ÕRQWÔQÑTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆŒˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›ÝŽÙÝZYWÛ[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›ÝŽÙÝZYWÛ[šÜÈ[ÙH][JBˆ›Üˆ][H[ˆÕRQWÔQÑTÂ—B‚—Û›ÝŽÙÙX\—Û[šÜÈHÂˆ™ÙX\‹ÜÛY[\›ÛÙ‹\ÝÜ˜YÙKÚ[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\Ë[ØÚØ›ÞX^Z[™ËYÝZYKÈ‹ˆPÐÑTÔËPÓÓ•“ÓÖTÕSH‹ˆÛÛ\\™H\Ù\œËÜšYÚ[˜[\XÚØYÙHØ\XÚ]KØÚÈ˜Z[\™K]šY[˜ÙK[™ÝÛ™\œÚ\ÛÜÝ‹ˆ
+Kˆ™ÙX\‹ØØ[›˜Xš\ËYÙX\‹XÛÛ\\š\ÛÛ‹]ÛÜšÜÚY]Ú[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\Ë[ØÚØ›ÞX^Z[™ËYÝZYKÈ‹ˆ“ÐÒÐ“ÖÓÔ’Ñ“ÕÈ‹ˆ”]™YH^XÝ[˜ÛÜÝ\™\È›ÝYÚHØ[YHXØÙ\ÜËš]ÛZ[K™XØ[[™ÛÜÝØÜ™Y[ˆ‹ˆ
+KŸB“ÕT—ÐT•PÓTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆŒˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›ÝŽÙÙX\—Û[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›ÝŽÙÙX\—Û[šÜÈ[ÙH][JBˆ›Üˆ][H[ˆÕT—ÐT•PÓTÂ—B‚ˆÈ›Ý™[X™\ˆHÛÛ›™XÝÈH™[ØØ][ÛˆÚXÚÛ\Ý[™Ø]\š[™ËY\]Z\Y[ØÜ™Y[‚ˆÈœ›ÛH\ÝX›\ÚYYÙ\È][™XYHÝÛˆY˜XÙ[]Ë\ÜÜØ[Ü›ÝË[™ˆÈ^Z[™ÈXÚ\Ú[ÛœË‚—Û›ÝŽWÙÝZYWÛ[šÜÈHÂˆ™ÝZY\ËØØ[›˜Xš\Ë[Ù™šXÚX[\ÛÝ\˜ÙKY\™XÝÜžKÚ[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\Ë[[Ýš[™ËY^K\™[ØØ][Û‹XÚXÚÛ\ÝÈ‹ˆ“SÕ’S‘ËQVH“ÕUH‹ˆ•™\šYžHHÜšYÚ[‹›Ý]K\Ý[˜][Û‹›Ü\KØ\œšY\‹›ÙXÝ[™]H™Y›Ü™HXÚÚ[™È‹ˆ
+Kˆ™ÝZY\ËØØ[›˜Xš\Ë\›ÙXÝY\ÜÜØ[YXÚ\Ú[Û‹YÝZYKÚ[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\Ë[[Ýš[™ËY^K\™[ØØ][Û‹XÚXÚÛ\ÝÈ‹ˆ”‘SÐÐUSÓˆVU‹ˆÚÛÜÙHH™\šYšYY›Ë]˜[œÜÜÝ]ÛÛYH™Y›Ü™HHÝ]K[[™HÜˆ[\›˜][Û˜[[Ý™H‹ˆ
+Kˆ™ÝZY\ËÛ™]Ë^[ÜšËZÛYKXØ[›˜Xš\ËYÜ›ÝË\[›™\‹Ú[™^š[Žˆ
+ˆ™ÙX\‹ÚÛYKYÜ›ÝË]Ø]\š[™Ë]ÛÛËX^Z[™ËYÝZYKÈ‹ˆ•ÐUTˆU‹ˆ“X\ÛÝ\˜ÙKY[]™\žK[›Ù™‹Ù]ØY™]KØ\™K[™ÛÜÝ™Y›Ü™H^Z[™È\]Z\Y[‹ˆ
+KŸB‘ÕRQWÔQÑTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆKŒˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›ÝŽWÙÝZYWÛ[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›ÝŽWÙÝZYWÛ[šÜÈ[ÙH][JBˆ›Üˆ][H[ˆÕRQWÔQÑTÂ—B‚—Û›ÝŽWÙÙX\—Û[šÜÈHÂˆ™ÙX\‹ÚÛYKYÜ›ÝË\YXË[Y]\‹X^Z[™ËYÝZYKÚ[™^š[Žˆ
+ˆ™ÙX\‹ÚÛYKYÜ›ÝË]Ø]\š[™Ë]ÛÛËX^Z[™ËYÝZYKÈ‹ˆ‘SU‘T–HÖTÕSH‹ˆ’ÙY\HYX\Ý\™[Y[]Y\Ý[ÛˆÙ\\˜]Hœ›ÛH™\ÜÙ[Ë[\ËXš[™ËÜ[ËÝÙ\‹[™ÛX[š[™È‹ˆ
+Kˆ™ÙX\‹ØØ[›˜Xš\ËYÙX\‹XÛÛ\\š\ÛÛ‹]ÛÜšÜÚY]Ú[™^š[Žˆ
+ˆ™ÙX\‹ÚÛYKYÜ›ÝË]Ø]\š[™Ë]ÛÛËX^Z[™ËYÝZYKÈ‹ˆ•ÐUT’S‘ÈÓÓÓÔ’Ñ“ÕÈ‹ˆÛÛ\\™H^XÝ[Ù[ÈžH\ÚËÙ]]YX\Ý\™Y[]™\žKØY™]KØ\™K™XØ[Ë[™š\œÝ^YX\ˆÛÜÝ‹ˆ
+KŸB“ÕT—ÐT•PÓTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆKŒˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›ÝŽWÙÙX\—Û[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›ÝŽWÙÙX\—Û[šÜÈ[ÙH][JBˆ›Üˆ][H[ˆÕT—ÐT•PÓTÂ—B‚ˆÈ™\Ù\™HH™]Ù\ˆ™]šY]È]HÚ\™H›Ý™[X™\ˆLYÙ\ÈYÛÛ^X[[šÜÂˆÈÈ\XÛ\È][ÛÈ\XÚ\]Y[ˆH›Ý™[X™\ˆHÛ\Ý\‹‚—Û›ÝŒLÜ™]šY]ÙYÜ]ÈHÙ]
+Û›ÝŒLÙÝZYWÛ[šÜÊHÙ]
+Û›ÝŒLÙÙX\—Û[šÜÊB‘ÕRQWÔQÑTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆLŒˆŸHYˆ][VÈœ]—H[ˆÛ›ÝŒLÜ™]šY]ÙYÜ]È[ÙH][JBˆ›Üˆ][H[ˆÕRQWÔQÑTÂ—B“ÕT—ÐT•PÓTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆLŒˆŸHYˆ][VÈœ]—H[ˆÛ›ÝŒLÜ™]šY]ÙYÜ]È[ÙH][JBˆ›Üˆ][H[ˆÕT—ÐT•PÓTÂ—B‚ˆÈ›Ý™[X™\ˆLHÛÛ›™XÝÈHÑ]šY[˜ÙH›Ý[™\žH[™^XÝY]šXÙHÚ\™Ú[™ÂˆÈÞ\Ý[Hœ›ÛH\ÝX›\ÚYYÙ\È][™XYHÝÛˆY˜XÙ[Û[šXØ[[™\™Ø\™BˆÈXÚ\Ú[ÛœËˆH›Ý]\È\™H[X™\˜][H˜\œ›ÝÈÛÈ^HYÛÛ^˜]\‚ˆÈ[ˆX[Y˜XÝ\š[™ÈÙ[™\šXÈÜ›ÜÜË[[šÜË‚—Û›ÝŒLWÙÝZYWÛ[šÜÈHÂˆ™ÝZY\ËØØ[›˜Xš\ËX[žY]K\\˜[›ÚXK\ÞXÚÜÚ\Ë]Ø\›š[™Ë\ÚYÛœËÚ[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\Ë\ÙY]šY[˜ÙK\ØY™]KYÝZYKÈ‹ˆ”ÑU’QSÑH‹ˆ”Ù\\˜]HÚÜ]\›H™[YYˆ™\ÜÈœ›ÛH™X]Y[]šY[˜ÙK[˜Ý[Û‹[™\™Ù[Ø\›š[™ÈÚYÛœÈ‹ˆ
+Kˆ™ÝZY\ËØØ[›˜Xš\Ë]Û\˜[˜ÙKY\[™[˜ÙK]Ú]˜]Ø[Ú[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\Ë\ÙY]šY[˜ÙK\ØY™]KYÝZYKÈ‹ˆ”Ñ
+ÈTÑHUT“ˆ‹ˆ•˜XÚÈÑØ\™KÛ\˜[˜ÙKÚ]˜]Ø[[˜Ý[Û‹[™™X]Y[\XÚ\][Ûˆ[ˆÙ\\˜]H[™\È‹ˆ
+Kˆ™ÝZY\ËÚÝË]Ë][Ë]ËYØÝÜ‹XX›Ý]XØ[›˜Xš\ËÚ[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\Ë\ÙY]šY[˜ÙK\ØY™]KYÝZYKÈ‹ˆ”ÑÓS’PÒPSˆS‘Ñ‘ˆ‹ˆœš[™ÈH^XÝ›ÙXÝ]\›‹™X]Y[[˜Ý[Û‹[™]šY[˜ÙH]Y\Ý[ÛœÈÈHš\Ú]‹ˆ
+KŸB‘ÕRQWÔQÑTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆLKŒˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›ÝŒLWÙÝZYWÛ[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›ÝŒLWÙÝZYWÛ[šÜÈ[ÙH][JBˆ›Üˆ][H[ˆÕRQWÔQÑTÂ—B‚—Û›ÝŒLWÙÙX\—Û[šÜÈHÂˆ™ÙX\‹ÍLL]™XY]˜\KX˜]\žK\ØY™]KÚ[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\ËY]šXÙKXÚ\™Ù\‹XØX›KX^Z[™ËYÝZYKÈ‹ˆÒT‘ÒS‘ÈÖTÕSH‹ˆ“X]ÚH^XÝ]šXÙK˜]\žKÜØX›KÝÙ\ˆÛÝ\˜ÙK[œÝXÝ[ÛœËÛÛ™][Û‹[™™XØ[Ý]\È‹ˆ
+Kˆ™ÙX\‹ÙžKZ\˜‹]˜\Üš^™\‹X^Z[™Ë\ØY™]KYÝZYKÚ[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\ËY]šXÙKXÚ\™Ù\‹XØX›KX^Z[™ËYÝZYKÈ‹ˆÒT‘ÑTˆ
+ÈÐP“H‹ˆ•™\šYžHXZÙ\‹\Ý\ÜYÚ\™Ú[™È\È[™Hš\ÚX›K][™YÚ\™Ú[™ÈÙ]\‹ˆ
+Kˆ™ÙX\‹ØØ[›˜Xš\ËYÙX\‹XÛÛ\\š\ÛÛ‹]ÛÜšÜÚY]Ú[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\ËY]šXÙKXÚ\™Ù\‹XØX›KX^Z[™ËYÝZYKÈ‹ˆÒT‘ÒS‘ÈÓÔ’Ñ“ÕÈ‹ˆÛÛ\\™H™\XÙ[Y[\ÈžHØÝ[Y[YÛÛ\]Xš[]KÛÛ™][Û‹™XØ[Ë™]\›œË[™Ý[ÛÜÝ‹ˆ
+KŸB“ÕT—ÐT•PÓTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆLKŒˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›ÝŒLWÙÙX\—Û[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›ÝŒLWÙÙX\—Û[šÜÈ[ÙH][JBˆ›Üˆ][H[ˆÕT—ÐT•PÓTÂ—B‚ˆÈ›Ý™[X™\ˆLˆÛÛ›™XÝÈHÛY\X\™XH]šY[˜ÙH›Ý[™\žH[™HÜ›ÝË\›ÛÛBˆÈ[Ú\Ý\™HÞ\Ý[Hœ›ÛH\ÝX›\ÚYYÙ\È]ÝÛˆY˜XÙ[XÚ\Ú[ÛœË‚—Û›ÝŒL—ÙÝZYWÛ[šÜÈHÂˆ™ÝZY\ËØØ™Z[\Y›ÝÙ\‹[X™[[YØ[YÝZYKÚ[™^š[Žˆ
+ˆœÝ˜Z[œËØÚ\œžKX›Û™KXØ™È‹Ð‘ÕSUTˆ‘PÓÔ‘‹”Ù\\˜]Hœ™YY\ˆY[]K[š]™\œÚ]K]šX[ÛÛ^Hš[š\ÚYÝ[™HÝ\œ™[›ÙXÝ[H‚ˆ
+Kˆ™ÝZY\ËØØ[›˜Xš\ËXÙ\YšXØ]K[Ù‹X[˜[\Ú\ËXÛØKYÝZYKÚ[™^š[Žˆ
+ˆœÝ˜Z[œËØÚ\œžKX›Û™KXØ™È‹“ÕSPUÒVSTH‹\HHXÚØYÙKÝ]\Ë[š]Ë[™[Ë[™™\Ü\Ý]\ÈÚZ[ˆÈH˜[YYÐ‘Ý[]˜\ˆ‚ˆ
+Kˆ™ÝZY\ËØØ[›˜Xš\ËXØ™X[™\ÛY\Ú[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\Ë\ÛY\X\™XK[ÜØKY]šY[˜ÙK\ØY™]KYÝZYKÈ‹”ÓQTT‘PH‹”Ù\\˜]HÙY][Ûˆ[™\˜ÙZ]™YÛY\œ›ÛHYX\Ý\™YZ\Ø^KÞYÙ[‹™X]Y[[™™^Y^HÝ]ÛÛY\È‚ˆ
+Kˆ™ÝZY\ËØØ[›˜Xš\Ë[™^Y^KZ[\Z\›Y[Y]šY[˜ÙKYÝZYKÚ[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\Ë\ÛY\X\™XK[ÜØKY]šY[˜ÙK\ØY™]KYÝZYKÈ‹“ÔÐH
+È‘VVH‹’ÙY\ÛY\[™\ÜË™\ÚYX[[\Z\›Y[™X]Y[Ý]\Ë[™\ÚÈ[X[™È[ˆÙ\\˜]H[™\È‚ˆ
+Kˆ™ÝZY\ËÚÝË]Ë][Ë]ËYØÝÜ‹XX›Ý]XØ[›˜Xš\ËÚ[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\Ë\ÛY\X\™XK[ÜØKY]šY[˜ÙK\ØY™]KYÝZYKÈ‹”ÓQTPÓS’PÈS‘Ñ‘ˆ‹œš[™ÈÔÐH™X]Y[^XÝ›ÙXÝÛË]\ÙKšYÚØœÙ\˜][ÛœË[™™^Y^H[˜Ý[ÛˆÈHš\Ú]‚ˆ
+KŸB‘ÕRQWÔQÑTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆL‹Œˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›ÝŒL—ÙÝZYWÛ[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›ÝŒL—ÙÝZYWÛ[šÜÈ[ÙH][JBˆ›Üˆ][H[ˆÕRQWÔQÑTÂ—B‚—Û›ÝŒL—ÙÙX\—Û[šÜÈHÂˆ™ÙX\‹ÚÛYKYÜ›ÝË]™[[][Û‹Y˜[‹X^Z[™ËYÝZYKÚ[™^š[Žˆ
+ˆ™ÙX\‹ÚÛYKYÜ›ÝËYZ[ZYYšY\‹X^Z[™ËYÝZYKÈ‹“SÒTÕT‘HÐQ‹”Ú^™H[Ú\Ý\™H™[[Ý˜[˜Z[˜YÙKX][XÝšXØ[š]™XØ[Ë[™ÛÜÝ™\ÚYHH›ÛÛHZ\ˆ]‚ˆ
+Kˆ™ÙX\‹ÚÛYKYÜ›ÝË][\\˜]\™KZ[ZY]K[[Ûš]Ü‹X^Z[™ËYÝZYKÚ[™^š[Žˆ
+ˆ™ÙX\‹ÚÛYKYÜ›ÝËYZ[ZYYšY\‹X^Z[™ËYÝZYKÈ‹ÓÓ•“Ó
+È‘T’Q’PÐUSÓˆ‹•\ÙH[™\[™[YX\Ý\™[Y[ÈÈ™\šYžHH›ÛÛH™\ÜÛœÙH[™XØÙ\[˜ÙH\Ý‚ˆ
+Kˆ™ÙX\‹ØØ[›˜Xš\ËYÙX\‹XÛÛ\\š\ÛÛ‹]ÛÜšÜÚY]Ú[™^š[Žˆ
+ˆ™ÙX\‹ÚÛYKYÜ›ÝËYZ[ZYYšY\‹X^Z[™ËYÝZYKÈ‹‘RSRQQ’QTˆÓÔ’Ñ“ÕÈ‹ÛÛ\\™HØ\XÚ]HÛÛ™][ÛœË˜Z[˜YÙKY™šXÚY[˜ÞKÜ\˜][™È˜[™ÙK™XØ[ËÙ\šXÙK[™š\œÝ^YX\ˆÛÜÝ‚ˆ
+KŸB“ÕT—ÐT•PÓTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆL‹Œˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›ÝŒL—ÙÙX\—Û[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›ÝŒL—ÙÙX\—Û[šÜÈ[ÙH][JBˆ›Üˆ][H[ˆÕT—ÐT•PÓTÂ—B‚ˆÈ›Ý™[X™\ˆLÈÛÛ›™XÝÈHÞ[X›Û™Y™\™[˜ÙH[™[™\Ú[Û‹X\X[˜ÙHÛÜšÙ›ÝÂˆÈœ›ÛH\ÝX›\ÚYYÙ\È][™XYHÝÛˆHÛÛ\]K[X™[Ú]Ú[‹\ØY™]KˆÈÛX[š[™Ë[™ÛÛ\\š\ÛÛˆXÚ\Ú[ÛœË‚—Û›ÝŒL×ÙÝZYWÛ[šÜÈHÂˆ™ÝZY\ËÜ™XYXK[X™[Ú[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\Ë]Ø\›š[™Ë\Þ[X›Û\XÚØYÙKZXÛÛ‹YÝZYKÈ‹•ÐT“’S‘ÈÖSP“ÓÈ‹’[\œ™]H\š\ÙXÝ[Û‹\ÜXÚYšXÈX\šÈÚ]Ý]ÝXœÝ]][™È]›ÜˆY[]K]X[]KÝ\Ý[™ËÜˆYØ[\›Z\ÜÚ[Ûˆ‚ˆ
+Kˆ™ÝZY\ËØØ[›˜Xš\Ë]\›\Ë[X™[[X‹YÛÜÜØ\žKÚ[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\Ë]Ø\›š[™Ë\Þ[X›Û\XÚØYÙKZXÛÛ‹YÝZYKÈ‹”PÒÐQÑHPÓÓ”È‹’ÙY\H™YÝ[]YÞ[X›Û[œÚYH]È\š\ÙXÝ[Û‹›ÙXÝØ]YÛÜžK[H™\œÚ[Û‹[™]šY[˜ÙH›Ý[™\žH‚ˆ
+Kˆ™ÝZY\ËØØ[›˜Xš\Ë\XÚØYÙK\ÙX[][\\‹Y]šY[˜ÙKXÚXÚÛ\ÝÚ[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\Ë]Ø\›š[™Ë\Þ[X›Û\XÚØYÙKZXÛÛ‹YÝZYKÈ‹”ÖSP“Ó
+ÈPÒÐQÑH‹”Ù\\˜]HH™\]Z\™YX\šÈœ›ÛHÛÜÝ\™KÙX[[XYÙKÝÙ[\‹[™ÛÛ\Z[]šY[˜ÙH‚ˆ
+Kˆ™ÝZY\ËØØ[›˜Xš\Ë\Ú\™YZÚ]Ú[‹YYX›K\ØY™]K\[‹Ú[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\ËZ[™\Ú[Û‹X\X[˜ÙKX^Z[™ËYÝZYKÈ‹’S‘•TÒSÓˆTPSÑH‹ÛÛ\\™HH^XÝÚ]Ú[ˆ›Ø‹›ÛÙXÛÛXÝ]Ü›ÜÜËXÛÛXÝÛX[š[™ËÝ\ÙZÛXØÙ\ÜË™XØ[Ë™]\›œË[™ÛÜÝ‚ˆ
+Kˆ™ÝZY\ËÙYX›\ËÚ[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\ËZ[™\Ú[Û‹X\X[˜ÙKX^Z[™ËYÝZYKÈ‹’ÒUÒSˆTURTQS•‹’ÙY\\X[˜ÙHÛZ[\ÈÙ\\˜]Hœ›ÛHÝ[˜ÞKÙ\š[™Ë[^YYY™™XÝËÝÜ˜YÙK[™[\Z\›Y[‚ˆ
+Kˆ™ÝZY\ËØØ[›˜Xš\ËXÙ\YšXØ]K[Ù‹X[˜[\Ú\ËXÛØKYÝZYKÚ[™^š[Žˆ
+ˆœÝ˜Z[œËØX˜XÝ\ËXØ™Z[\È‹•’PS”ÈÕ‹’ÙY\[š]™\œÚ]HÝ[]˜\ˆ™\ÙX\˜ÚÙ\\˜]Hœ›ÛHHš[š\ÚYXÚØYÙKÝ]\Ë[š]Ë[™[Ë[™™\ÜÝ]\È‚ˆ
+Kˆ™ÝZY\ËØØ™Z[\Y›ÝÙ\‹[X™[[YØ[YÝZYKÚ[™^š[Žˆ
+ˆœÝ˜Z[œËØX˜XÝ\ËXØ™Z[\È‹PPÕTÈ’QS“ÕH‹”Ù\\˜]HYÜšXÝ[\˜[šX[Y[]K™ZYÚ›Üš[™È˜[Y\Ëš[š\ÚY[Ý]šY[˜ÙK[™HÝ\œ™[›ÙXÝ[H‚ˆ
+KŸB‘ÕRQWÔQÑTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆLËŒˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›ÝŒL×ÙÝZYWÛ[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›ÝŒL×ÙÝZYWÛ[šÜÈ[ÙH][JBˆ›Üˆ][H[ˆÕRQWÔQÑTÂ—B‚—Û›ÝŒL×ÙÙX\—Û[šÜÈHÂˆ™ÙX\‹ØØ[›˜Xš\Ë]ÛÛXÛX[š[™ËZÚ]Ú[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\ËZ[™\Ú[Û‹X\X[˜ÙKX^Z[™ËYÝZYKÈ‹’S‘•TÒSÓˆÓPS’S‘È‹“X\]™\žH›ÛÙXÛÛXÝÝ\™˜XÙK[ÝÙYØ\™HY]Ù[œÜXÝ[ÛˆÚ[ÙX\ˆ\žZ[™ÈÝ\[™™]\™[Y[[™H‚ˆ
+Kˆ™ÙX\‹ØØ[›˜Xš\ËYÙX\‹XÛÛ\\š\ÛÛ‹]ÛÜšÜÚY]Ú[™^š[Žˆ
+ˆ™ÙX\‹ØØ[›˜Xš\ËZ[™\Ú[Û‹X\X[˜ÙKX^Z[™ËYÝZYKÈ‹TPSÑHÓÔ’Ñ“ÕÈ‹ÛÛ\\™H™YH^XÝXXÚ[™\ÈžH[[™Y\ÙKØ\XÚ]K›ÛÙXÛÛXÝ]ÛX[š[™Ë™XØ[Ë™]\›œËÙ\šXÙK[™š\œÝ^YX\ˆÛÜÝ‚ˆ
+KŸB“ÕT—ÐT•PÓTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆLËŒˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›ÝŒL×ÙÙX\—Û[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›ÝŒL×ÙÙX\—Û[šÜÈ[ÙH][JBˆ›Üˆ][H[ˆÕT—ÐT•PÓTÂ—B‚ˆÈ›Ý™[X™\ˆMÛÛ›™XÝÈHÙYY\ÝÜ˜YÙH™XÛÜ™œ›ÛHH\ÝX›\ÚY]Ù[ˆÈÝ\\‹[X]\šX[ÛYKYÜ›ÝÈ[›š[™Ë[™[ÜžK[™XØÙ\ÜËXÛÛ›Û]Ë‚—Û›ÝŒMÙÝZYWÛ[šÜÈHÂˆ™ÝZY\ËÛ™]Ë^[ÜšËXØ[›˜Xš\Ë\ÙYYXÛÛ™KX^Z[™ËYÝZYKÚ[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\Ë\ÙYY\ÝÜ˜YÙK\™XÛÜ™YÝZYKÈ‹”ÑQQÕÔQÑHS‘Ñ‘ˆ‹Ø\œžHÛÝ\˜ÙKY[]K]KÛÝ[ÛÛ™][Û‹[\\˜]\™K[Ú\Ý\™KXØÙ\ÜË[™Ü[š[™È\ÝÜžH›ÜØ\™‚ˆ
+Kˆ™ÝZY\ËÛ™]Ë^[ÜšËZÛYKXØ[›˜Xš\ËYÜ›ÝË\[›™\‹Ú[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\Ë\ÙYY\ÝÜ˜YÙK\™XÛÜ™YÝZYKÈ‹‘Q“Ô‘HS•S‘È‹”™XÚXÚÈ]È[™›Ü\H[\Ë[ˆ™\Ù\™HHÙYYY[]KÛÛ™][Û‹ÛÝ[ÝÜ˜YÙK[™Ü[š[™È™XÛÜ™‚ˆ
+KŸB‘ÕRQWÔQÑTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆMŒˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›ÝŒMÙÝZYWÛ[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›ÝŒMÙÝZYWÛ[šÜÈ[ÙH][JBˆ›Üˆ][H[ˆÕRQWÔQÑTÂ—B‚—Û›ÝŒMÙÙX\—Û[šÜÈHÂˆ™ÙX\‹ØØ[›˜Xš\ËZ[™[ÜžK[X™[\™XÛÜ™ZÚ]Ú[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\Ë\ÙYY\ÝÜ˜YÙK\™XÛÜ™YÝZYKÈ‹”ÑQQS•‘S•Ô–H‹”™\Ù\™HHÜšYÚ[˜[XÚÙ]ÛÝ\˜ÙKš]˜]HÛÙK]\ËÛÝ[ÝÜ˜YÙH[™[ÜKÜ[š[™ÜËÛÛ™][Û‹[™[[™ÈXÚ\Ú[Ûˆ‚ˆ
+Kˆ™ÙX\‹ØØ[›˜Xš\Ë[ØÚØ›ÞX^Z[™ËYÝZYKÚ[™^š[Žˆ
+ˆ™ÝZY\ËØØ[›˜Xš\Ë\ÙYY\ÝÜ˜YÙK\™XÛÜ™YÝZYKÈ‹”ÑQQPÐÑTÔÈÓÓ•“Ó‹‘š]HXÚÙ][™Ý]\ˆÛÛZ[™\ˆ[œÚYHHYX\Ý\™Y[˜ÛÜÝ\™HÚ]\ÝY™[ØÚË™XÛÝ™\žKXÙ[Y[[™Ý\ÙZÛ›Ý[™\šY\È‚ˆ
+KŸB“ÕT—ÐT•PÓTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆMŒˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›ÝŒMÙÙX\—Û[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›ÝŒMÙÙX\—Û[šÜÈ[ÙH][JBˆ›Üˆ][H[ˆÕT—ÐT•PÓTÂ—B‚ˆÈ]\ˆZ[H[šÈ\ÜÙ\ÈX^HÝXÚÛÛYH\ÝX›\ÚYYÙ\È][ÛÈÝ\ÜˆÈHÛÛ\]H›Ý™[X™\ˆM˜]Úˆ™\Ù\™HH™]Ù\ÝX]\šX[™]šY]È]K‚—Û›ÝŒMØ˜]ÚÜ™]šY]ÙYÙÝZY\ÈHÙ]
+Û›ÝŒMØ˜]ÚÙÝZYWÛ[šÜÊB—Û›ÝŒMØ˜]ÚÜ™]šY]ÙYÙÙX\ˆHÙ]
+Û›ÝŒMØ˜]ÚÙÙX\—Û[šÜÊB‘ÕRQWÔQÑTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆMŒˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›ÝŒMØ˜]ÚÙÝZYWÛ[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›ÝŒMØ˜]ÚÜ™]šY]ÙYÙÝZY\È[ÙH][JBˆ›Üˆ][H[ˆÕRQWÔQÑTÂ—B“ÕT—ÐT•PÓTÈHÂˆ
+ÊŠš][K\]YŽˆ“›Ý™[X™\ˆMŒˆ‹œ™[]YŽˆÊš][VÈœ™[]Y—KÛ›ÝŒMØ˜]ÚÙÙX\—Û[šÜÖÚ][VÈœ]—WW_BˆYˆ][VÈœ]—H[ˆÛ›ÝŒMØ˜]ÚÜ™]šY]ÙYÙÙX\ˆ[ÙH][JBˆ›Üˆ][H[ˆÕT—ÐT•PÓTÂ—B‚ˆÈX›\Ú[™È[YÜš]H\È\ÙˆHX›XÈY]ÜšX[Ý[™\™ˆHÛÝ\˜ÙBˆÈ\˜Ú]™H\ÈÚXÚÜÝ[K]™\šYšYY[™\ÝY™Y›Ü™HX›XØ][Û‹‚™›ÜˆÜÛXÞH[ˆÕS‘T‘ÔQÑTÎ‚ˆYˆÜÛXÞVÈœ]—HOH™Y]ÜšX[\ÛXÞKÚ[™^š[Ž‚ˆÜÛXÞVÈ\]Y—HH“ØÝØ™\ˆM‹Œˆ‚ˆÜÛXÞVÈ˜›ÙH—HHÜÛXÞVÈ˜›ÙH—Kœ™\XÙJˆ	ÏÛ\ÜÏH\]K[[™H”ÛXÞH™]šY]ÙY]YÝ\Ý‹ŒÜ‰Ëˆ;÷n½¶‰žËkºwµç[OO‘˜Z\ˆÝ[ÛÜÝØÜ[•˜[YH[˜ÛY\ÈÝÛ™\œÚ\ÛÜÝ›ÝHØ[›˜Xš\Ë][YYX\šÝ\Üˆ[™[Y\ØÛÝ[ÜÜ[ÛOÛÛÜÙXÝ[ÛžÛ™]ÜÛ]\Š	Ë‹‹ÉÊ_OÛXZ[‰ÉÉÂˆXZ[ˆHXZ[‹œ™\XÙJˆ	Ü›ÛOH™Ü›Ý\ˆ\šXK[X™[H‘š[\ˆØ[›˜Xš\ÈÙX\ˆÝZY\È‰Ëˆ	Ü›ÛOH™Ü›Ý\ˆ\šXK[X™[H‘š[\ˆØ[›˜Xš\ÈÙX\ˆÝZY\Èˆ\šXKY\ØÜšX™YžOH™ÙX\‹\™\Ý[\Ý]\È‰Ëˆ
+Bˆ[H^[Ý]
+YÙKXZ[‹Ê‘ÙX\ˆ‹›Û™JWJBˆ™]\›ˆYÙKYØÛÛXÝ[Û—Ú][[\Ý
+[YÙKšYÈYX[ˆØ[›˜Xš\ÈÙX\ˆÝZYHXœ˜\žH‹™ÙX\‹XØ\™ŠB‚‚™Yˆ™[™\—ÛYØ[ÚXŠ
+HOˆ\VÔYÙKÝ—N‚ˆYÙOTYÙJ›YØ[Ú[™^š[‹Ø[›˜Xš\È]ÜÈ[ˆ[LÝ]\È
+ŒŠHšYÈYX[ˆ‹”ÙX\˜Ú™]šY]ÙYØ[›˜Xš\È]ÜÈ›Üˆ[LÝ]\È\ÈÝ\œ™[™Y\˜[™\ØÚY[[™Ë™Y\˜[›Ü\KÝ\Ú[™ËXZ[[™Ë[™›Z[™È[\Ëˆ‹L\Ý]HYØ[Xœ˜\žH‹’Û›ÝÈ[Ý\ˆÝ]Kœ•[ˆ™\šYžH]ˆ‹H˜XÝXØ[L\Ý]HÝ\[™ÈÚ[›ÜˆÜÜÙ\ÜÚ[Û‹ÛYHÜ›ÝËYYXØ[XØÙ\ÜË™]Z[Ý]\Ë™Y\˜[ØÚY[[™È[™›Ü\H[\ËÝ\Ú[™ËXZ[[™ËZ\ˆ˜]™[[™Ù™šXÚX[ÛÝ\˜Ù\Ëˆ‹ˆ‹\]YH“›Ý™[X™\ˆMKŒˆ‹Ú[™HÙXœÚ]HŠBˆØ\™ÏV×Bˆ›Üˆ][H[ˆÕUWÓUÔÎ‚ˆÙX\˜ÚÝ^J][VÉÛ˜[YI×JÉÈ	ÊÚ][VÉØÛÙI×JÉÈ	ÊÔÕUT×ÓP‘SÖÚ][VÉÜÝ]\É×WJÉÈ	ÊÚ][VÉÜÝ[[X\žI×JÉÈ	ÊÚ][VÉÜÛXÞWÜ[ÙI×VÉÙ\™XÝ[Û‰×JK›ÝÙ\Š
+BˆØ\™Ë˜\[™
+‰ÉÉÏHÛ\ÜÏHœÝ]KXØ\™Ý]KXØ\™K^Ú][VÉÜÝ]\É×_Hˆ]K\Ý]KXØ\™]K\Ý]\ÏHžÚ][VÉÜÝ]\É×_Hˆ]K\ÙX\˜ÚHžÙ\ØØ\JÙX\˜ÚÝ^
+_Hˆ™YHžÚ][VÉÜÛYÉ×_KÈ]ˆÛ\ÜÏHœÝ]KXØ\™×ÝÜžÚ][VÉØÛÙI×_OØÜ[žÔÕUT×ÓP‘SÖÚ][VÉÜÝ]\É×W_OÜÜ[Ù]Ü[ˆÛ\ÜÏHœÝ]KXØ\™×ÜÚYÛ˜[”Ú^[[ÛÚYÛ˜[0­ÈÙ\ØØ\J][VÉÜÛXÞWÜ[ÙI×VÉÙ\™XÝ[Û‰×J_OÜÜ[žÚ][VÉÛ˜[YI×_OÚžÙ\ØØ\J][VÉÜÝ[[X\žI×J_OÜ[O“Ü[ˆÝ]HÝZYHÚXÛÛŠ	Ø\œ›ÝÉÊ_OÙ[OØO‰ÉÉÊBˆÛÝ[Ï^ÚÙ^NœÝ[J][VÈœÝ]\È—OOZÙ^H›Üˆ][H[ˆÕUWÓUÔÊH›ÜˆÙ^H[ˆÕUT×ÓP‘SßBˆXZ[Y‰ÉÉÏXZ[ˆYH›XZ[‹XÛÛ[ÙXÝ[ÛˆÛ\ÜÏHšX‹Z\›ÈYØ[Z\›È]ˆÛ\ÜÏH˜ÛÛZ[™\ˆÛ\ÜÏH™^YXœ›ÝÈSLÕUTÈ0­ÈÑ‘’PÒPSS’ÔÈ0­ÈTÒTÑHÔ‘QS•PSÏÜO’Ó“ÕÈSÕTˆÕUKœ[O•Sˆ‘T’Q–HUÙ[OÚO‘]™\žHÝ]HYÙH›ÝÈÙ\\˜]\È™XÜ™X][Û˜[Q[\Èœ›ÛHYYXØ[Ø\™ËÙ\YšXØ][ÛœË™YÚ\ÝžH[œ›ÛY[Ù™šXÚX[\XØ][ÛˆÝ\Ë[™Ý]\ÈÚ\™H]Y[™]Z[\È›ÝXÝX[H]˜Z[X›KÜÜ[ˆÛ\ÜÏH›YØ[Y]HLÕUHQÑTÈ‘U’QUÑQžÔ‘U’QU×ÑUK\\Š
+_OØÜÜ[Ù]ÜÙXÝ[Û‚ÙXÝ[ÛˆÛ\ÜÏH˜ÛÛZ[™\ˆYØ[[Ý™\šY]È]ˆÛ\ÜÏH›YØ[\Ý[[X\žH]žØÛÝ[ÖÉØY[	×_OØÜ[˜Y[]\ÙHÝ]\ÏÜÜ[Ù]]žØÛÝ[ÖÉÛYYXØ[	×_OØÜ[›YYXØ[[Û›HÝ]\ÏÜÜ[Ù]]žØÛÝ[ÖÉÛ[Z]Y	×_OØÜ[›[Z]YÐ‘ÈY™[œÙOÜÜ[Ù]]žØÛÝ[ÖÉÜ™\ÝšXÝY	×_OØÜ[››ÈX›XÈ›ÙÜ˜[OÜÜ[Ù]Ù]]ˆÛ\ÜÏH™™Y\˜[X˜[›™\ˆžÚXÛÛŠ	Ø[\	Ê_O‘™Y\˜[]ÈÚ[™ÙY˜\œ›ÝÛHÛˆ\š[ŽŒ‹Øˆ‘KX\›Ý™YX\šZX[˜HYÈ›ÙXÝÈ[™X\šZX[˜HÚ][ˆHš[˜[[IÜÈ]X[YžZ[™ÈÝ]HYYXØ[[XÙ[œÙHØÛÜH[Ý™YÈØÚY[HRRNÈHœ›ØY\ˆ›ÜÜØ[™[XZ[œÈHÙ\\˜]H›ØÙYY[™ËˆH™YH›X\šZX[˜K\™\ØÚY[[™Ë\Ý]\Ë[›Ý™[X™\‹LŒ‹È”™XYH]Y›Ý™[X™\ˆŒˆÝ]\ÈÝZYOØOˆ[™™\šYžHHÝ\œ™[H™YHžÑPWÔÓÕTÑ_Hˆ™[H››ÛÜ[™\ˆ‘PH™XÛÜ™ØO‹ÜÙ]ÜÙXÝ[Û‚ÙXÝ[ÛˆÛ\ÜÏH˜ÛÛZ[™\ˆÝ]K[Xœ˜\žHˆ]K\Ý]K[Xœ˜\žO]ˆÛ\ÜÏHœÝ]K]ÛÛÈX™[Ü[‘’S‘HÕUOÜÜ[[œ]\OHœÙX\˜Úˆ]K\Ý]K\ÙX\˜ÚXÙZÛ\H•\HHÝ]HÜˆX˜œ™]šX][Û¸ )ˆˆ]]ØÛÛ\]OH›Ù™ˆÛX™[]ˆÛ\ÜÏHœÝ]KYš[\œÈˆ\šXK[X™[H‘š[\ˆÝ]\ÈžHØ[›˜Xš\È]ÈÝ]\È]ÛˆÛ\ÜÏHš\ËXXÝ]™Hˆ]K\Ý]KYš[\H˜[[LØ]Û]Ûˆ]K\Ý]KYš[\H˜Y[Y[\ÙOØ]Û]Ûˆ]K\Ý]KYš[\H›YYXØ[“YYXØ[Û›OØ]Û]Ûˆ]K\Ý]KYš[\H›[Z]Y“[Z]YÐ‘Ø]Û]Ûˆ]K\Ý]KYš[\Hœ™\ÝšXÝY“›ÈX›XÈ›ÙÜ˜[OØ]ÛÙ]\šXK[]™OHœÛ]HÜ[ˆ]K\Ý]KXÛÝ[LÜÜ[ˆÝ]HÝZY\ÏÜÙ]Û\ÜÏHœÝ]KY[\Hˆ]K\Ý]KY[\HY[“›ÈÝ]HX]ÚY]ÙX\˜Ú[™š[\‹Ü]ˆÛ\ÜÏHœÝ]KYÜšYžÉÉËš›Ú[ŠØ\™Ê_OÙ]ÜÙXÝ[Û‚ÙXÝ[ÛˆÛ\ÜÏH˜ÛÛZ[™\ˆYØ[[Y]Ù]Û\ÜÏH™^YXœ›ÝÈ’ÕÈÈ‘PQHPTÜ“YØ[\È›ÝÛ™HÝÚ]ÚÚÙ]]ˆÛ\ÜÏH›YØ[[Y]Ù×ÙÜšYžÉÉËš›Ú[Š‰Ï\XÛOÜ[žÔÕUT×ÓP‘SÖÚÙ^W_OÜÜ[žÔÕUT×ÑTÐÔ’TSÓ”ÖÚÙ^W_OÜØ\XÛO‰È›ÜˆÙ^H[ˆÕUT×ÓP‘SÊ_OÙ]ÜÙXÝ[Û‚ÙXÝ[ÛˆÛ\ÜÏH˜ÛÛZ[™\ˆYØ[\ÛÝ\˜Ù\È]Û\ÜÏH™^YXœ›ÝÈ”‘TÑPTÒTÑSS‘OÜÝ\œ™[]Èš\œÝˆ\™XÝ[ÛˆÙXÛÛ™Ú”›ÙÜ˜[HØ]YÛÜšY\ÈÙ\™HÜ›ÜÜËXÚXÚÙYYØZ[œÝÔÓ[™]™\žHYÙHÚ[ÈÈHÝ]H™YÝ[]Ü‹X[\\Y[ÛÛ[Z\ÜÚ[Û‹Ý]]KÜˆYÚ\Û]\™KˆHÚ^[[ÛÚYÛ˜[ÛÝ™\œÈX\˜Úx $ÔÙ\[X™\ˆKŒˆ[™X™[È›ÜÜØ[Ë™]Ù\Ë˜Z[Yš[Ë[™[\[Y[][ÛˆÙ\\˜][Hœ›ÛHÝ\œ™[]ËÜÙ]HÛ\ÜÏH˜]Ûˆ]Û‹KY\šÈˆ™YHžÓÔÓÔÓÕTÑ_Hˆ™[H››ÛÜ[™\ˆ“Ü[ˆHÔÓL\Ý]H™\ÜÚXÛÛŠ	Ø\œ›ÝÉÊ_OØOÜÙXÝ[Û‚ÙXÝ[ÛˆÛ\ÜÏH˜ÛÛZ[™\ˆYØ[YÜšYYØ[YÜšYK\ÙXÛÛ™\žHHÛ\ÜÏH›YØ[XØ\™YØ[XØ\™KY™X]\™Hˆ™YH›™]Ë^[ÜšËÈ][YÈÜ˜ÏH‹‹‹Ø\ÜÙ]ËÚ[XYÙ\ËÛ™]Ë^[ÜšË]Œ‹œÝ™Èˆ[H‘Y]ÜšX[X\Ü˜\XÈÙˆ™]È[ÜšÈÝ]HÚ]Ù[˜[™]È[ÜšÈYÚYÚYÙ]Ü[‘QTU‘H0­È‘UÈSÔ’ÏÜÜ[Y[]\ÙH˜\ÚXÜÏÚYÙKÜÜÙ\ÜÚ[Û‹Ø[\ËX›XÈ\ÙK™ZXÛ\Ë˜]™[Ü›ÝÚ[™ËÛÜšË[™Ý\Ú[™ËÜ“Ü[ˆ™]È[ÜšÈÝZYHÚXÛÛŠ	Ø\œ›ÝÉÊ_OØØOHÛ\ÜÏH›YØ[XØ\™ˆ™YHœÚÜ[YØ[È]ˆÛ\ÜÏH›YØ[XØ\™×ÚXÛÛˆžÚXÛÛŠ	ØÚXÚÉÊ_OÙ]Ü[“‘UÈSÔ’ÈPÑS”ÑQPT’ÑUÜÜ[•™\šYžHHÚÜÚ“X]ÚH^XÝ˜[YH[™Y™\ÜÈÛˆÐÓx &\È]™H\Ý[ˆ™\šYžHH›ÙXÝÜ“Ü[ˆ™\šYšXØ][ÛˆÝZYHÚXÛÛŠ	Ø\œ›ÝÉÊ_OØØOHÛ\ÜÏH›YØ[XØ\™ˆ™YH˜Ø[›˜Xš\ËY™Y\˜[\›Ü\K\[\ËYÝZYKÈ]ˆÛ\ÜÏH›YØ[XØ\™×ÚXÛÛˆžÚXÛÛŠ	Ø[\	Ê_OÙ]Ü[‘‘QTS“ÔT•H0­ÈŒÜÜ[Ü›ÜÜÚ[™ÈH™Y\˜[›Ý[™\žOÏÚ’Y[YžHHX[˜YÚ[™ÈYÙ[˜ÞK^XÝ›ÙXÝÝ\œ™[ØÚY[H[™›Ü\K\ÜXÚYšXÈ[KÜ“Ü[ˆ™Y\˜[\›Ü\HÝZYHÚXÛÛŠ	Ø\œ›ÝÉÊ_OØØOHÛ\ÜÏH›YØ[XØ\™ˆ™YH˜Ø[›˜Xš\ËY™Y\˜[KX\ÜÚ\ÝYZÝ\Ú[™ËYÝZYKÈ]ˆÛ\ÜÏH›YØ[XØ\™×ÚXÛÛˆžÚXÛÛŠ	Ø[\	Ê_OÙ]Ü[‘‘QTSHTÔÒTÕQÕTÒS‘È0­ÈŒÜÜ[•ÚXÚÝ\Ú[™È[HÛÛ›ÛÏÏÚ”Ù\\˜]H›ÙÜ˜[KYZ\ÜÚ[ÛˆÜˆ[˜[˜ÞKX\ÙKÛ[ÚÙKYœ™YHÛXÞKÛÛ™XÝ›ÝXÙK[™™]šY]È›Ý]KÜ“Ü[ˆ™Y\˜[ZÝ\Ú[™ÈÝZYHÚXÛÛŠ	Ø\œ›ÝÉÊ_OØØOHÛ\ÜÏH›YØ[XØ\™ˆ™YH›XZ[[™ËXØ[›˜Xš\ËXØ™]\ÜË\[\ËÈ]ˆÛ\ÜÏH›YØ[XØ\™×ÚXÛÛˆžÚXÛÛŠ	Ø[\	Ê_OÙ]Ü[‘‘QTSPRS•STÏÜÜ[Ø[ˆ[ÝHXZ[Ø[›˜Xš\ÈÜˆÐ‘ÏÚ”Ù\\˜]HÛÛ›ÛYÝXœÝ[˜Ù\Èœ›ÛH]X[YžZ[™ÈÛY\ÝXÈ[\[ˆÚXÚÈ™XÛÜ™È[™H[\›˜][Û˜[˜[‹Ü“Ü[ˆXZ[[™È^Z[™\ˆÚXÛÛŠ	Ø\œ›ÝÉÊ_OØØOHÛ\ÜÏH›YØ[XØ\™ˆ™YH™›Z[™Ë]Ú]XØ[›˜Xš\ËXØ™]ØK\[\ËÈ]ˆÛ\ÜÏH›YØ[XØ\™×ÚXÛÛˆžÚXÛÛŠ	Ø[\	Ê_OÙ]Ü[‘‘QTSRTˆU‘SÜÜ[‘›Z[™ÈÚ]Ø[›˜Xš\ÈÜˆÐ‘Ú”Ù\\˜]HÐHØÜ™Y[š[™Èœ›ÛH™Y\˜[Ý]\ËZ\œÜ\š\ÙXÝ[Û‹\Ý[˜][Ûˆ]ËZ\›[™HÛXÞK[™˜]\žHØY™]KÜ“Ü[ˆ›Z[™È^Z[™\ˆÚXÛÛŠ	Ø\œ›ÝÉÊ_OØØOÜÙXÝ[Û‚ÙXÝ[ÛˆÛ\ÜÏH˜ÛÛZ[™\ˆYØ[]Ø\›š[™È]žÚXÛÛŠ	Ø[\	Ê_OÙ]]‘YXØ][Û‹›ÝYØ[YšXÙOÚ“]ÜË™YÝ[][ÛœËÛÝ\XÚ\Ú[ÛœËØØ[[\ËšX˜[]Ë›Ü\HÛXÚY\Ë[\ÞY\ˆÛXÚY\Ë[™™Y\˜[ÛÛœÙ\]Y[˜Ù\ÈØ[ˆÚ[™ÙHH[œÝÙ\‹ˆ\ÙHYÙ\ÈY[YžHH\ÜÝYH[™Ù™šXÚX[ÛÝ\˜ÙNÈ^HÈ›Ý™\XÙHH]ÞY\‹ÜÙ]ÜÙXÝ[ÛžÛ™]ÜÛ]\Š	Ë‹‹ÉÊ_OÛXZ[‰ÉÉÂˆXZ[ˆHXZ[‹œ™\XÙJˆ	ÏHÛ\ÜÏH›YØ[XØ\™ˆ™YH˜Ø[›˜Xš\ËY™Y\˜[\›Ü\K\[\ËYÝZYKÈ‰Ëˆ	ÏHÛ\ÜÏH›YØ[XØ\™ˆ™YH›X\šZX[˜K\™\ØÚY[[™Ë\Ý]\Ë[›Ý™[X™\‹LŒ‹È]ˆÛ\ÜÏH›YØ[XØ\™×ÚXÛÛˆ‰ÊÚXÛÛŠ	ÜØØ[IÊJÉÏÙ]Ü[‘‘QTSÕUTÈ0­È“Õ‹ˆŒÜÜ[•Ú]Ú[™ÙY8 %[™Ú]Y›ÝÏÚ”Ù\\˜]HH˜\œ›ÝÈ\š[[K]X[YžZ[™ÈYYXØ[[XÙ[œÙHØÛÜK[™œ›ØY\ˆ[™š[š\ÚY›ØÙYY[™ËÜ“Ü[ˆ]Y™\ØÚY[[™ÈÝZYH	ÊÚXÛÛŠ	Ø\œ›ÝÉÊJÉÏØØOHÛ\ÜÏH›YØ[XØ\™ˆ™YH˜Ø[›˜Xš\ËY™Y\˜[\›Ü\K\[\ËYÝZYKÈ‰ËˆKˆ
+BˆXZ[ˆHXZ[‹œ™\XÙJ	Ù]K\Ý]K\ÙX\˜ÚXÙZÛ\IË	Ù]K\Ý]K\ÙX\˜Ú\šXKXÛÛ›ÛÏHœÝ]K\™\Ý[ÈˆXÙZÛ\IÊBˆXZ[ˆHXZ[‹œ™\XÙJ	Ï]ˆÛ\ÜÏHœÝ]KYš[\œÈˆ\šXK[X™[H‘š[\ˆÝ]\ÈžHØ[›˜Xš\È]ÈÝ]\È‰Ë	Ï]ˆÛ\ÜÏHœÝ]KYš[\œÈˆ›ÛOH™Ü›Ý\ˆ\šXK[X™[H‘š[\ˆÝ]\ÈžHØ[›˜Xš\È]ÈÝ]\Èˆ\šXKY\ØÜšX™YžOHœÝ]K\™\Ý[\Ý]\È‰ÊBˆXZ[ˆHXZ[‹œ™\XÙJ	Ï]ÛˆÛ\ÜÏHš\ËXXÝ]™Hˆ]K\Ý]KYš[\H˜[‰Ë	Ï]ÛˆÛ\ÜÏHš\ËXXÝ]™Hˆ\OH˜]Ûˆˆ]K\Ý]KYš[\H˜[ˆ\šXK\™\ÜÙYHYHˆ\šXKXÛÛ›ÛÏHœÝ]K\™\Ý[È‰ÊBˆXZ[ˆHXZ[‹œ™\XÙJ	Ï]Ûˆ]K\Ý]KYš[\H‰Ë	Ï]Ûˆ\OH˜]Ûˆˆ\šXK\™\ÜÙYH™˜[ÙHˆ\šXKXÛÛ›ÛÏHœÝ]K\™\Ý[Èˆ]K\Ý]KYš[\H‰ÊBˆXZ[ˆHXZ[‹œ™\XÙJ	Ï\šXK[]™OHœÛ]HÜ[ˆ]K\Ý]KXÛÝ[‰Ë	ÏYHœÝ]K\™\Ý[\Ý]\Èˆ\šXK[]™OHœÛ]HÜ[ˆ]K\Ý]KXÛÝ[‰ÊBˆXZ[ˆHXZ[‹œ™\XÙJ	Ï]ˆÛ\ÜÏHœÝ]KYÜšY‰Ë	Ï]ˆÛ\ÜÏHœÝ]KYÜšYˆYHœÝ]K\™\Ý[È‰ÊBˆ[H^[Ý]
+YÙKXZ[‹Ê“YØ[‹›Û™JWJBˆ™]\›ˆYÙKYØÛÛXÝ[Û—Ú][[\Ý
+[YÙKšYÈYX[ˆL\Ý]HØ[›˜Xš\È]ÈXœ˜\žH‹œÝ]KXØ\™ŠB‚‚™Yˆ™[™\—ÜÝ]WÜYÙJ][NˆXÝ
+HOˆ\VÔYÙKÝ—N‚ˆX™[TÕUT×ÓP‘SÖÚ][VÈœÝ]\È—WBˆ™]šY]×Ù]OZ][K™Ù]
+\]Y‹‘U’QU×ÑUJBˆYÙOTYÙJˆˆ›YØ[ÞÚ][VÉÜÛYÉ×_KÚ[™^š[‹ˆˆžÚ][VÉÛ˜[YI×_HØ[›˜Xš\È]ÜÈ
+ŒŠHšYÈYX[ˆ‹ˆˆžÚ][VÉÛ˜[YI×_HØ[›˜Xš\È]ÜÈ›ÜˆŒŽˆÛX™[›ÝÙ\Š
+_K\˜Ú\ÙH[™YYXØ[XØ\™[\ËÜÜÙ\ÜÚ[Û‹ÛYHÜ›ÝË™]Z[XØÙ\ÜË[™Ù™šXÚX[Ý]HÛÝ\˜Ù\Ëˆ‹ˆˆžÚ][VÉÛ˜[YI×_HØ[›˜Xš\È]È‹ˆˆžÚ][VÉÛ˜[YI×_Oœ˜Ø[›˜Xš\È]ÜËˆ‹ˆ][VÈœÝ[[X\žH—Kˆˆ‹ˆ\]Y\™]šY]×Ù]Kˆ™XYÝ[YOZ][K™Ù]
+œ™XYÝ[YH‹ÈZ[ˆ™XYŠKˆ
+BˆÝ]\×Ø›ÞY‰ÉÉÏ]ˆÛ\ÜÏHœÝ]K\Ý]\ÈÝ]K\Ý]\ËK^Ú][VÉÜÝ]\É×_H]Ü[”ÕUOÜÜ[žÚ][VÉØÛÙI×_OØÙ]]Ü[”ÕUTÏÜÜ[žÛX™[OØÙ]]Ü[QSÔÔÑTÔÒSÓÜÜ[žÉÓYØ[Ú][ˆ[Z]ÉÈYˆ][VÉÜÝ]\É×OOIØY[	È[ÙH	Ó›ÝÙ[™\˜[HYØ[	ßOØÙ]]Ü[’ÓQHÔ“ÕÏÜÜ[žÙ\ØØ\J][VÉÚÛYWÙÜ›Ý×ÛX™[	×J_OØÙ]Ù]‰ÉÉÂˆÙXÝ[ÛœÏVÂˆ
+œÝ]\È‹•HÝ]\Ë[ˆÛ™HØÜ™Y[ˆ‹‰ÉÉÞÜÝ]\×Ø›ÞOžÙ\ØØ\J][VÉÜÝ[[X\žI×J_OÜ]ˆÛ\ÜÏH˜Ø[Ý]]žÚXÛÛŠ	ÜØØ[IÊ_OÙ]]Ï•Ú]\ÈX™[Ù\ø %[™Ù\È›Ý8 %YX[ÚÏžÙ\ØØ\JÕUT×ÑTÐÔ’TSÓ”ÖÚ][VÉÜÝ]\É×WJ_H]Ù\È›Ý[œÝÙ\ˆX›XÈ\ÙKš]š[™Ë[\Þ[Y[Ý\Ú[™Ë™Y\˜[›Ü\KšX˜[\š\ÙXÝ[Û‹ÜˆHÚ]IÜÈ\Ú[™\ÜÈ[\ËÜÙ]Ù]‰ÉÉÊKˆ
+œÜÜÙ\ÜÚ[Ûˆ‹”ÜÜÙ\ÜÚ[Ûˆ[™\ÙH‹‰ÉÉÏžÙ\ØØ\J][VÉÜÜÜÙ\ÜÚ[Û‰×J_OÜ[Û\ÜÏH˜ÚXÚÛ\ÝO”X›XÈÛÛœÝ[\[ÛˆØ[ˆ™[XZ[ˆ›ÚXš]Y]™[ˆÚ[ˆÜÜÙ\ÜÚ[Ûˆ\ÈYØ[ÛOO“™]™\ˆš]™KšZÙH[ˆ˜Y™šXË›Ø]ÜˆÜ\˜]HXXÚ[™\žHÚ[H[\Z\™YÛOO’ÙY\›ÙXÝÈ[ˆZ\ˆÜšYÚ[˜[XÚØYÙH[™Ý]ÚYHH\ÜÙ[™Ù\ˆ\™XHÚ[ˆ˜[œÜÜ[™ÈÚ][ˆHÝ]KÛOO“ØØ[Ü™[˜[˜Ù\È[™›Ü\HÛXÚY\ÈØ[ˆY™\ÝšXÝ[ÛœÈÚ]Ý]Ú[™Ú[™ÈÝ]]ÚYHÝ]\ËÛOÝ[‰ÉÉÊKˆ
+šÛYKYÜ›ÝÈ‹’ÛYHÝ[]˜][Ûˆ‹‰ÉÉÏžÙ\ØØ\J][VÉÚÛYWÙÜ›ÝÉ×J_OÜ”[ÛÝ[È\™HÛ›HHš\œÝ^Y\‹ˆX\ÙH\›\ËÝÛ™\ˆ\›Z\ÜÚ[Û‹š\ÚXš[]KØÚÙYX\™XH[\ËZ\Ø[˜ÙH]Ë›ØÙ\ÜÚ[™È[Z]Ë[™ÜÜÙ\ÜÚ[ÛˆÙˆ\™\ÝYØ[›˜Xš\ÈØ[ˆXXÚÚ[™ÙHH˜XÝXØ[[œÝÙ\‹Ü‰ÉÉÊKˆ
+›YYXØ[‹“YYXØ[XØÙ\ÜÈ‹‰ÉÉÏžÙ\ØØ\J][VÉÛYYXØ[	×J_OÜH™XÛÛ[Y[™][Û‹™YÚ\ÝžHØ\™Ý][Ù‹\Ý]HØ\™ÜˆXYÛ›ÜÚ\ÈÙ\È›ÝÜ™X]HY[XØ[šYÚÈ]™\ž]Ú\™KˆÛÛ™š\›H]Y[[YÚXš[]K™XÚ\›ØÚ]K\˜Ú\ÙH[Z]Ë\›Ý™Y›Ü›\Ë™[™]Ø[[\Ë[™Ø\™YÚ]™\ˆšYÚÈÚ]HÙ™šXÚX[›ÙÜ˜[KÜ‰ÉÉÊKˆ
+›X\šÙ]‹^Z[™È[™™]Z[Ý]\È‹‰ÉÉÏžÙ\ØØ\J][VÉÛX\šÙ]	×J_OÜ•\ÙHHÝ]H™YÝ[]Ü‰ÜÈ]™HXÙ[œÙHÛÚÝ\Ú\™H]˜Z[X›KˆHÙXœÚ]K[]™\žHÛZ[K[\X™[ÛØÚX[[YYXHXØÛÝ[ÜˆÝÜ™Yœ›ÛÚYÛˆ\È›Ý›ÛÙˆÙˆHX\šZX[˜HXÙ[œÙKÜ‰ÉÉÊKˆ
+œ\˜Ú\ÙKXXØÙ\ÜÈ‹•Ú][ÝH™YYÈ^HYØ[H‹™[™\—Ü\˜Ú\ÙWØXØÙ\ÜÊ][JJKˆ
+˜]™[‹•˜]™[ÛÜšËÝ\Ú[™Ë[™™Y\˜[YÙ\È‹‰ÉÉÏ[Û\ÜÏHœ™Y[\ÝO”ÕUHS‘TÏØÜ[‘È›ÝZÙHØ[›˜Xš\ÈXÜ›ÜÜÈHÝ]H›Ü™\¸ %]™[ˆ™]ÙY[ˆÛÈY[]\ÙHÝ]\ËÜÜ[ÛOO‘‘QTS“ÔT•OØÜ[”Ý]H\›Z\ÜÚ[ÛˆÙ\È›ÝÛÛ›Û™Y\˜[Z[[™ÜË[™Ë[œÝ[][ÛœËÜˆ™Y\˜[˜[œÜÜ][Ûˆ[\ËÜÜ[ÛOO•ÓÔ’ÏØÜ[“YØ[ÜÜÙ\ÜÚ[ÛˆÙ\È›ÝÝX\˜[YHÛÜšÜXÙH\ÙHÜˆ›ÝXÝ[Ûˆœ›ÛHH]Ù[YÈÛXÞKÜÜ[ÛOO’ÕTÒS‘ÏØÜ[”Û[ÚÚ[™ËÝ[]˜][Û‹[™ÜÜÙ\ÜÚ[ÛˆØ[ˆ™H™\ÝšXÝYžHX\Ù\Ë™Y\˜[Ý\Ú[™È[\ËÜˆ›Ü\HÛXÞKÜÜ[ÛOO•’PSS‘ØÜ[•šX˜[]È[™\š\ÙXÝ[ÛˆØ[ˆY™™\ˆœ›ÛHHÝ\œ›Ý[™[™ÈÝ]NÈ™\šYžHÚ]H™[]˜[šX˜[]]Üš]KÜÜ[ÛOÝ[‰ÉÉÊKˆ
+™\™XÝ[Ûˆ‹”Ú^[[ÛYØ[\™XÝ[Ûˆ‹™[™\—ÜÛXÞWÜ[ÙJ][JJKˆBˆÙXÝ[ÛœË™^[™
+][K™Ù]
+™^˜WÜÙXÝ[ÛœÈ‹×JJBˆÙXÝ[ÛœË˜\[™
+
+œÛÝ\˜Ù\È‹“Ù™šXÚX[ÛÝ\˜Ù\È‹‰ÉÉÏ]ˆÛ\ÜÏH›Ù™šXÚX[[[šÜÈH™YHžÚ][VÉÜÛÝ\˜ÙWÝ\›	×_Hˆ™[H››ÛÜ[™\ˆžÙ\ØØ\J][VÉÜÛÝ\˜ÙWÛX™[	×J_OØÜ[”š[X\žHÝ]HÛÝ\˜ÙH›ÜˆÝ\œ™[›ÙÜ˜[H[\È[™\]\È8¡¥ÏÜÜ[ØOH™YHžÓÔÓÔÓÕTÑ_Hˆ™[H››ÛÜ[™\ˆ“˜][Û˜[ÛÛ™™\™[˜ÙHÙˆÝ]HYÚ\Û]\™\ÏØÜ[L\Ý]H›ÙÜ˜[HÛ\ÜÚYšXØ][Ûˆ[™Ý]]ÜžHÝ™\šY]È8¡¥ÏÜÜ[ØOH™YHžÑPWÔÓÕTÑ_Hˆ™[H››ÛÜ[™\ˆ•K”ËˆYÈ[™›Ü˜Ù[Y[YZ[š\Ý˜][ÛØÜ[Ý\œ™[™Y\˜[X\šZX[˜HØÚY[[™ÈXÝ[ÛœÈ[™™XÛÜ™È8¡¥ÏÜÜ[ØOÙ]Û\ÜÏH›ZXÜ›È”™\ÙX\˜Ú™]šY]ÎˆÜ™]šY]×Ù]_KˆÚXÚÈH[šÙYYÙ[˜ÞHYØZ[ˆ™Y›Ü™HXÝ[™ÎÈ]ÜÈ[™[\[Y[][ÛˆØ[ˆÚ[™ÙHY\ˆ™]šY]ËÜ‰ÉÉÊJBˆY\œÏVÜY\ˆ›ÜˆY\ˆ[ˆÕUWÓUÔÈYˆY\–ÈœÝ]\È—HOH][VÈœÝ]\È—WBˆY\—ÜÜÚ][Û[™^
+[™^›Üˆ[™^Y\ˆ[ˆ[[Y\˜]JY\œÊHYˆY\–È˜ÛÙH—HOH][VÈ˜ÛÙH—JBˆ™]š[Ý\Ï\Y\œÖÊY\—ÜÜÚ][ÛˆHJH	H[ŠY\œÊWBˆ›ÛÝÚ[™Ï\Y\œÖÊY\—ÜÜÚ][Ûˆ
+ÈJH	H[ŠY\œÊWBˆ™[]YVÂˆ
+ˆ›YØ[ÞÜ™]š[Ý\ÖÉÜÛYÉ×_KÈ‹”ÐSQHÕUTÈ‹ˆžÜ™]š[Ý\ÖÉÛ˜[YI×_HØ[›˜Xš\È]ÜÈŠKˆ
+ˆ›YØ[ÞÙ›ÛÝÚ[™ÖÉÜÛYÉ×_KÈ‹”ÐSQHÕUTÈ‹ˆžÙ›ÛÝÚ[™ÖÉÛ˜[YI×_HØ[›˜Xš\È]ÜÈŠKˆ
+›YØ[È‹SLÕUTÈ‹”™]\›ˆÈH]ÈXœ˜\žHŠKˆBˆ›ÝXÙOY‰ÉÉÏÜ[ˆÛ\ÜÏH›]™KYÝÜÜ[ˆ™]šY]ÙYÜ™]šY]×Ù]_KˆYXØ][Û˜[Ý™\šY]Ë›ÝYØ[YšXÙKˆ™\šYžHÝ\œ™[[\ÈÚ]H™YHžÚ][VÉÜÛÝ\˜ÙWÝ\›	×_Hˆ™[H››ÛÜ[™\ˆžÙ\ØØ\J][VÉÜÛÝ\˜ÙWÛX™[	×J_OØO‹‰ÉÉÂˆ[\™[™\—Ø\XÛJYÙKÚ][VÈœÝ[[X\žH—K][VÈœÜÜÙ\ÜÚ[Ûˆ—K][VÈšÛYWÙÜ›ÝÈ—WKÙXÝ[ÛœË™[]YÊ“YØ[‹›YØ[ÈŠK
+][VÈ›˜[YH—K›Û™JWK›ÝXÙJBˆ™]\›ˆYÙK[‚‚™Yˆ™[™\—ØÛÛXÝ
+
+HOˆ\VÔYÙKÝ—N‚ˆYÙOTYÙJ˜ÛÛXÝÚ[™^š[‹ÛÛXÝšYÈYX[ˆ‹ÛÛXÝšYÈYX[ˆÚ]HÛÜœ™XÝ[Û‹YØ[\]KÝZYHÝYÙÙ\Ý[Û‹ÙX\ˆ]Y\Ý[Û‹\™\œÚ\[œ]Z\žKÜˆÙ[™\˜[Y\ÜØYÙKˆ‹ÛÛXÝ‹”Ø^HH\ÙY[[™Ëˆ‹ÛÜœ™XÝ[ÛœËÝZYHYX\ËÙX\ˆ]Y\Ý[ÛœË\™\œÚ\Ë[™YØ[\]\È\™HÙ[ÛÛYKˆØ[›˜Xš\ÈØ[\È™\]Y\ÝÈ\™H›Ýˆ‹ˆ‹\]YH“ØÝØ™\ˆM‹Œˆ‹Ú[™HÙXœÚ]HŠBˆH‹‹‹È‚ˆXZ[Y‰ÉÉÏXZ[ˆYH›XZ[‹XÛÛ[ÙXÝ[ÛˆÛ\ÜÏH˜ÛÛXÝZ\›È]ˆÛ\ÜÏH˜ÛÛZ[™\ˆÛÛXÝYÜšY]Û\ÜÏH™^YXœ›ÝÈÓÓ•PÕ’QÈ•QPSÜO”ÐVHOœ•TÑQ•SS‘ËÚO’[˜ÛYHHYÙHT“H^XÝÝ][Y[[™H™\ÝÛÝ\˜ÙH[ÝH]™HÚ[ˆÝX›Z][™ÈHÛÜœ™XÝ[Û‹Ü]ˆÛ\ÜÏH˜ÛÛXÝY\™XÝÜ[‘T‘PÕSPRSÜÜ[H™YH›XZ[ÎžÐÓÓ•PÕÑSPRSHžÐÓÓ•PÕÑSPRSOØO‘È›ÝÙ[™YYXØ[™XÛÜ™ËQ^[Y[]Z[ËÛÛ™šY[X[YØ[[™›Ü›X][Û‹Üˆ™\]Y\ÝÈÈ^HØ[›˜Xš\ËÜÙ]Ù]›Ü›HÛ\ÜÏH˜ÛÛXÝY›Ü›HˆXÝ[ÛHšÎ‹ËÙ›Ü›\ÝX›Z]˜ÛËÞÐÓÓ•PÕÑSPRSHˆY]ÙHœÜÝ[œ]\OHšY[ˆˆ˜[YOH—ÜÝXš™XÝˆ˜[YOHšYÈYX[ˆÛÛXÝ›Ü›H[œ]\OHšY[ˆˆ˜[YOH—Û™^ˆ˜[YOHžÑÓPRSŸKÝ[šË^[ÝKÈ[œ]\OH^ˆ˜[YOH—ÚÛ™^HˆÛ\ÜÏHšÛ™^\ÝˆXš[™^H‹LHˆ]]ØÛÛ\]OH›Ù™ˆˆ\šXKZY[HYHX™[“˜[YO[œ]˜[YOH›˜[YHˆ]]ØÛÛ\]OH›˜[YHˆ™\]Z\™YÛX™[X™[‘[XZ[[œ]\OH™[XZ[ˆ˜[YOH™[XZ[ˆ]]ØÛÛ\]OH™[XZ[ˆ™\]Z\™YÛX™[X™[•ÜXÏÙ[XÝ˜[YOHÜXÈˆ™\]Z\™YÜ[Ûˆ˜[YOHˆÚÛÜÙHÛ™OÛÜ[ÛÜ[ÛÛÜœ™XÝ[ÛÛÜ[ÛÜ[Û“YØ[\]OÛÜ[ÛÜ[Û‘ÝZYHYXOÛÜ[ÛÜ[Û‘ÙX\ˆ]Y\Ý[ÛÛÜ[ÛÜ[Û”\™\œÚ\ÛÜ[ÛÜ[Û‘Ù[™\˜[Y\ÜØYÙOÛÜ[ÛÜÙ[XÝÛX™[X™[“Y\ÜØYÙO^\™XH˜[YOH›Y\ÜØYÙHˆ›ÝÜÏHÈˆ™\]Z\™YÝ^\™XOÛX™[X™[Û\ÜÏH˜ÛÛœÙ[XÚXÚÈ[œ]\OH˜ÚXÚØ›Þˆ™\]Z\™YÜ[’H[™\œÝ[™\È›Ü›H\È›Ý›Üˆ^Z[™ÈÜˆÙ[[™ÈØ[›˜Xš\È[™Ù\È›ÝÜ™X]HHYYXØ[YØ[Üˆ›Ù™\ÜÚ[Û˜[™[][ÛœÚ\ÜÜ[ÛX™[]ÛˆÛ\ÜÏH˜]Ûˆ]Û‹K\š[X\žHˆ\OHœÝX›Z]”Ù[™Y\ÜØYÙOØ]ÛÛ\ÜÏH›ZXÜ›È‘›Ü›TÝX›Z]™\]Z\™\ÈHÛ™K][YHXÝ]˜][Ûˆ[XZ[™Y›Ü™HY\ÜØYÙ\È[]™\‹ÜÙ›Ü›OÙ]ÜÙXÝ[ÛÛXZ[‰ÉÉÂˆ™]\›ˆYÙK^[Ý]
+YÙKXZ[‹ÊÛÛXÝ‹›Û™JWJB‚‚™Yˆ™[™\—ÜÚ]WÚ[™^
+YÙ\Îˆ\ÝÔYÙWJHOˆ\VÔYÙKÝ—N‚ˆ]\ÝÙ]HHX^
+]][YKœÝœ[YJ][K\]Y‰Pˆ	Y	VHŠH›Üˆ][H[ˆYÙ\ÈYˆ][KšÚ[™OH˜\XÛHŠBˆ]\ÝÛX™[H]\ÝÙ]KœÝ™[YJ‰Pˆ	Y	VHŠKœ™\XÙJˆ‹ˆŠBˆYÙHHYÙJˆœÚ]KZ[™^Ú[™^š[‹ˆÛÛ\]HÚ]H[™^šYÈYX[ˆ‹ˆœ›ÝÜÙH]™\žH[™^X›HšYÈYX[ˆÝZYKÝ˜Z[ˆšY[›ÝKÙX\ˆYÙKYØ[™\ÛÝ\˜ÙK[™X›XØ][ÛˆYÙHÚ]š\ÚX›H™]šY]È]\Ëˆ‹ˆ”Ú]H[™^‹ˆ‘]™\žH\ÙY[YÙKœ“Û™HÛX[ˆ[™^ˆ‹ˆH]Y[X[‹\™XYX›HÜ˜]Û]›ÜˆHÛÛ\]HX›XØ][Û‹Ú]H›Ý\Y[‹Y^H\]HšY]È[™[ˆÜ[Û˜[ØØ[š[\‹ˆ‹ˆˆ‹ˆ\]Y[]\ÝÛX™[ˆÚ[™HÙXœÚ]H‹ˆ
+Bˆš\ÚX›HHÚ][H›Üˆ][H[ˆYÙ\ÈYˆ][Kœ]›Ý[ˆÈš[‹[šË^[ÝKÚ[™^š[ŸWBˆYˆ›Ý[žJ][Kœ]OHYÙKœ]›Üˆ][H[ˆš\ÚX›JN‚ˆš\ÚX›K˜\[™
+YÙJBˆÜ›Ý\ÈHÂˆ
+‘ÝZY\È[™™\ÜÛœÚX›H\ÙH‹[X™H][Nˆ][Kœ]œÝ\ÝÚ]
+™ÝZY\ËÈŠHÜˆ][Kœ][ˆÈœÝ\Z\™KÚ[™^š[‹œ™\ÜÛœÚX›K]\ÙKÚ[™^š[ŸJKˆ
+‘ÙX\ˆ‹[X™H][Nˆ][Kœ]œÝ\ÝÚ]
+™ÙX\‹ÈŠJKˆ
+“]È[™XÙ[œÙYXØÙ\ÜÈ‹[X™H][Nˆ][Kœ]œÝ\ÝÚ]
+›YØ[ÈŠJKˆ
+”Ý˜Z[ˆšY[›Ý\È‹[X™H][Nˆ][Kœ]œÝ\ÝÚ]
+œÝ˜Z[œËÈŠJKˆ
+X›Ý]ÛXÚY\Ë[™ÛÛXÝ‹[X™H][Nˆ›Ý[žJ
+][Kœ]œÝ\ÝÚ]
+™ÝZY\ËÈŠK][Kœ]œÝ\ÝÚ]
+™ÙX\‹ÈŠK][Kœ]œÝ\ÝÚ]
+›YØ[ÈŠK][Kœ]œÝ\ÝÚ]
+œÝ˜Z[œËÈŠJJH[™][Kœ]›Ý[ˆÈœÝ\Z\™KÚ[™^š[‹œ™\ÜÛœÚX›K]\ÙKÚ[™^š[ŸJKˆB‚ˆYˆ›Ý]WÙ›ÜŠ][NˆYÙJHOˆÝŽ‚ˆYˆ][Kœ]OHš[™^š[Ž‚ˆ™]\›ˆ‹‹‹È‚ˆ™]\›ˆˆ‹‹‹ÞÚ][Kœ]Î‹LL_HˆYˆ][Kœ]™[™ÝÚ]
+‹Ú[™^š[ŠH[ÙHˆ‹‹‹ÞÚ][Kœ]H‚‚ˆ™XÙ[ØÝ]Ù™ˆH]\ÝÙ]HH[YY[J^\ÏLLÊBˆ™XÙ[HÛÜY
+ˆ
+ˆ][H›Üˆ][H[ˆš\ÚX›BˆYˆ][KšÚ[™OH˜\XÛHˆ[™]][YKœÝœ[YJ][K\]Y‰Pˆ	Y	VHŠHH™XÙ[ØÝ]Ù™‚ˆ
+KˆÙ^O[[X™H][Nˆ
+]][YKœÝœ[YJ][K\]Y‰Pˆ	Y	VHŠKÛX[—Ý^
+][K]JK›ÝÙ\Š
+JKˆ™]™\œÙOUYKˆ
+Bˆ™XÙ[Û[šÜÈHˆ‹š›Ú[Šˆ‰ÏOH™YHžÜ›Ý]WÙ›ÜŠ][J_HÜ[žÙ\ØØ\JÛX[—Ý^
+][K]JKœ™[[Ý™\ÝY™š^
+ˆšYÈYX[ˆŠJ_OÜÜ[‰Âˆ‰Ï[YH]][YOHžÙ]][YKœÝœ[YJ][K\]Y‰Pˆ	Y	VHŠKœÝ™[YJ‰VKI[KIYŠ_H”™]šY]ÙYÙ\ØØ\J][K\]Y
+_OÝ[YOØOÛO‰Âˆ›Üˆ][H[ˆ™XÙ[ˆ
+B‚ˆÙXÝ[ÛœÈH×Bˆ›ÜˆXY[™Ë™YXØ]H[ˆÜ›Ý\Î‚ˆY[X™\œÈHÛÜY
+
+][H›Üˆ][H[ˆš\ÚX›HYˆ™YXØ]J][JJKÙ^O[[X™H][NˆÛX[—Ý^
+][K]JK›ÝÙ\Š
+JBˆ[šÜÈHˆ‹š›Ú[Šˆ‰ÏH]K\Ú]KZ[™^Z][H]K\ÙX\˜ÚHžÙ\ØØ\J
+ÛX[—Ý^
+][K]JH
+Èˆˆ
+ÈÛX[—Ý^
+][K˜Ø]YÛÜžJJK›ÝÙ\Š
+K][ÝOUYJ_H‰Âˆ‰ÏH™YHžÜ›Ý]WÙ›ÜŠ][J_HÜ[žÙ\ØØ\JÛX[—Ý^
+][K]JKœ™[[Ý™\ÝY™š^
+ˆšYÈYX[ˆŠJ_OÜÜ[‰Âˆ‰Ï[YH]][YOHžÙ]][YKœÝœ[YJ][K\]Y‰Pˆ	Y	VHŠKœÝ™[YJ‰VKI[KIYŠ_H”™]šY]ÙYÙ\ØØ\J][K\]Y
+_OÝ[YOØOÛO‰Âˆ›Üˆ][H[ˆY[X™\œÂˆ
+BˆÙXÝ[ÛœË˜\[™
+ˆ‰ÏÙXÝ[Ûˆ]K\Ú]KZ[™^YÜ›Ý\žÚXY[™ßH	Âˆ‰ÏÛX[ŠÜ[ˆ]K\Ú]KZ[™^YÜ›Ý\XÛÝ[žÛ[ŠY[X™\œÊ_OÜÜ[ŠOÜÛX[Ú‰Âˆ‰Ï[Û\ÜÏHœÚ]KZ[™^[\ÝžÛ[šÜßOÝ[ÜÙXÝ[Û‰Âˆ
+Bˆ›ÙHH‰ÉÉÏÛ\ÜÏH\]K[[™H‘Ù[™\˜]Yœ›ÛHHX›XØ][ÛˆÛÝ\˜ÙH0­ÈÛ]\ÝÛX™[OÜ•\ÈYÙH\ÈZ[œ›ÛHHØ[YHÛÝ\˜ÙHØ][ÙÈ\ÈÚ]HÙX\˜ÚH]ÛH™YYHÛÛ[[™[ÜžK[™HSÚ][X\ˆ]™\žH›Ý]H™[ÝÈ\È™\Ù[[ˆH[š]X[SÈHš[\ˆ\È[ˆÜ[Û˜[™XY[™ÈZY[™™]™\ˆÜ™X]\ÈÜˆY\ÈHÜ˜]Û]œ›ÛHHÛÝ\˜ÙKÜÙXÝ[ÛˆÛ\ÜÏHœÚ]KZ[™^\™XÙ[ˆ]K\Ú]KZ[™^\™XÙ[”™]šY]ÙY[ˆH\ÝM^\ÈÛX[ŠÛ[Š™XÙ[
+_JOÜÛX[Ú“™]È[™X]\šX[H™]šY]ÙY\XÛ\Èœ›ÛHÜ™XÙ[ØÝ]Ù™‹œÝ™[YJ‰Pˆ	Y	VHŠKœ™\XÙJˆ‹ˆŠ_H›ÝYÚÛ]\ÝÛX™[KÜ[Û\ÜÏHœÚ]KZ[™^[\ÝžÜ™XÙ[Û[šÜßOÝ[ÜÙXÝ[Û]ˆÛ\ÜÏHœÚ]KZ[™^]ÛÛÈˆ]K\Ú]KZ[™^Yš[\X™[›ÜHœÚ]KZ[™^\ÙX\˜ÚÜ[‘’STˆHÓÓTUHS‘VÜÜ[[œ]YHœÚ]KZ[™^\ÙX\˜Úˆ\OHœÙX\˜ÚˆXÙZÛ\H•žHÑÚ\™Ù\‹ÝÜ˜YÙKÜˆ™]È[ÜšÈˆ]]ØÛÛ\]OH›Ù™ˆˆ]K\Ú]KZ[™^\ÙX\˜Ú\šXKXÛÛ›ÛÏHœÚ]KZ[™^\™\Ý[ÈÛX™[]Ûˆ\OH˜]Ûˆˆ]K\Ú]KZ[™^XÛX\ÛX\Ø]Û]K\Ú]KZ[™^\Ý]\È›ÛOHœÝ]\Èˆ\šXK[]™OHœÛ]HžÛ[Šš\ÚX›J_OØˆYÙ\ÈÚÝÛÜÙ]Û\ÜÏHœÚ]KZ[™^Y[\Hˆ]K\Ú]KZ[™^Y[\HY[“›ÈX]Ú[™ÈYÙ\ËˆÛX\ˆHš[\ˆÜˆžHHœ›ØY\ˆ\›KÜ]ˆYHœÚ]KZ[™^\™\Ý[Èˆ]K\Ú]KZ[™^\™\Ý[ÏžÈˆ‹š›Ú[ŠÙXÝ[ÛœÊ_OÙ]ÙXÝ[Û“XXÚ[™K\™XYX›H\ØÛÝ™\žOÚHÛ\ÜÏHš[›[™KXÝHˆ™YH‹‹‹ØÛÛ[Z[™[ÜžKšœÛÛˆ“Ü[ˆHØ[›ÛšXØ[ÛÝ™\˜YÙH[™[šÈ[™[ÜžHÜ[¸¡¤ÜÜ[ØOÜHÛ\ÜÏHš[›[™KXÝHˆ™YH‹‹‹ÜÚ][X\ž[“Ü[ˆHSÚ][X\Ü[¸¡¤ÜÜ[ØOÜHÛ\ÜÏHš[›[™KXÝHˆ™YH‹‹‹Ù™YYž[“Ü[ˆH]ÛH\]H™YYÜ[¸¡¤ÜÜ[ØOÜÜÙXÝ[Û‰ÉÉÂˆXZ[ˆH‰ÉÉÏXZ[ˆYH›XZ[‹XÛÛ[XY\ˆÛ\ÜÏHœÝ[™\™Z\›È]ˆÛ\ÜÏH˜ÛÛZ[™\ˆÛ\ÜÏH™^YXœ›ÝÈ”ÒUHS‘VÜOžÜYÙKš_OÚOžÜYÙK™ZßOÜÙ]ÚXY\]ˆÛ\ÜÏH˜ÛÛZ[™\ˆÝ[™\™\Ú[\XÛHÛ\ÜÏHœ›ÜÙH›ÜÙKK\Ý[™\™žØ›Ù_OØ\XÛOÙ]ÛXZ[‰ÉÉÂˆ™]\›ˆYÙK^[Ý]
+YÙKXZ[‹Ê”Ú]H[™^‹›Û™JWJB‚‚™Yˆ™[™\—Ý\]\ÊYÙ\Îˆ\ÝÔYÙWJHOˆ\VÔYÙKÝ—N‚ˆ]\ÝÙ]HHX^
+]][YKœÝœ[YJ][K\]Y‰Pˆ	Y	VHŠH›Üˆ][H[ˆYÙ\ÈYˆ][KšÚ[™OH˜\XÛHŠBˆ]\ÝÛX™[H]\ÝÙ]KœÝ™[YJ‰Pˆ	Y	VHŠKœ™\XÙJˆ‹ˆŠBˆYÙHHYÙJˆ\]\ËÚ[™^š[‹ˆ”X›XØ][Ûˆ\]\ÈšYÈYX[ˆ‹ˆ”ÙYH™]ÛHX›\ÚY[™X]\šX[H™]šY]ÙYšYÈYX[ˆÝZY\ËÙX\ˆ™\ÛÝ\˜Ù\ËYØ[^Z[™\œË[™ÛÛXÝ[Ûˆ\]\È[ˆ]HÜ™\‹ˆ‹ˆ”X›XØ][Ûˆ\]\È‹ˆ•Ú]Ú[™ÙYœ[™Ú[‹ˆ‹ˆH]YÜ˜]ÛX›H™XÛÜ™Ùˆ™]È[™X]\šX[H™]šY]ÙYYÙ\ø %Ú]Ý]™\]Z\š[™È[ˆXØÛÝ[ÛØÚX[™YYÜˆ˜]˜TØÜš\ˆ‹ˆˆ‹ˆ\]Y[]\ÝÛX™[ˆÚ[™HÙXœÚ]H‹ˆ
+Bˆ™XÙ[HÛÜY
+ˆ
+][H›Üˆ][H[ˆYÙ\ÈYˆ][KšÚ[™OH˜\XÛHˆ[™]][YKœÝœ[YJ][K\]Y‰Pˆ	Y	VHŠHH]][YJŒ‹K
+JKˆÙ^O[[X™H][Nˆ
+]][YKœÝœ[YJ][K\]Y‰Pˆ	Y	VHŠKÛX[—Ý^
+][K]JJKˆ™]™\œÙOUYKˆ
+BˆÜ›Ý\YˆXÝÜÝ‹\ÝÔYÙWWHHßBˆ›Üˆ][H[ˆ™XÙ[‚ˆÜ›Ý\YœÙ]Y˜][
+][K\]Y×JK˜\[™
+][JB‚ˆÙXÝ[ÛœÈH×Bˆ›Üˆ]WÛX™[][\È[ˆÜ›Ý\Yš][\Ê
+N‚ˆ[šY\ÈHˆ‹š›Ú[Šˆ‰ÏOH™YH‹‹‹ÞÚ][Kœ]Î‹LL_HžÙ\ØØ\JÛX[—Ý^
+][K]JKœ™[[Ý™\ÝY™š^
+ˆšYÈYX[ˆŠJ_OØÜ[žÙ\ØØ\J][K™\ØÜš\[ÛŠ_OÜÜ[ØOÛO‰Âˆ›Üˆ][H[ˆÛÜY
+][\ËÙ^O[[X™H][NˆÛX[—Ý^
+][K]JK›ÝÙ\Š
+JBˆ
+BˆÙXÝ[ÛœË˜\[™
+‰ÏÙXÝ[ÛžÙ\ØØ\J]WÛX™[
+_OÚ[Û\ÜÏH\]K[\ÝžÙ[šY\ßOÝ[ÜÙXÝ[Û‰ÊBˆ›ÙHH‰ÉÉÏÛ\ÜÏH\]K[[™H”ÛÝ\˜ÙKYÙ[™\˜]Y0­È\Ý™Yœ™\ÚYÛ]\ÝÛX™[OÜ•\È™XÛÜ™\Ù\ÈXXÚYÙIÜÈY]ÜšX[™]šY]È]KˆÛX[›Ü›X][™Ë[Û›HÚ[™Ù\È\™H^ÛYYÈ™]ÈYÙ\È[™X]\šX[ÛÛ[™]šY]ÜÈ\™H[˜ÛYYÜHÛ\ÜÏHš[›[™KXÝHˆ™YH‹‹‹Ù™YYž[”ÝXœØÜšX™HÚ]H]ÛH™YYÜ[¸¡¤ÜÜ[ØOÜžÈˆ‹š›Ú[ŠÙXÝ[ÛœÊ_IÉÉÂˆXZ[ˆH‰ÉÉÏXZ[ˆYH›XZ[‹XÛÛ[XY\ˆÛ\ÜÏHœÝ[™\™Z\›È]ˆÛ\ÜÏH˜ÛÛZ[™\ˆÛ\ÜÏH™^YXœ›ÝÈ”P“PÐUSÓˆTUTÏÜOžÜYÙKš_OÚOžÜYÙK™ZßOÜÙ]ÚXY\]ˆÛ\ÜÏH˜ÛÛZ[™\ˆÝ[™\™\Ú[\XÛHÛ\ÜÏHœ›ÜÙH›ÜÙKK\Ý[™\™žØ›Ù_OØ\XÛOÙ]ÛXZ[‰ÉÉÂˆ™]\›ˆYÙK^[Ý]
+YÙKXZ[‹Ê•\]\È‹›Û™JWJB‚‚™Yˆ™[™\—Ý[šÜÊ
+HOˆ\VÔYÙKÝ—N‚ˆYÙOTYÙJ[šË^[ÝKÚ[™^š[‹“Y\ÜØYÙH™XÙZ]™YšYÈYX[ˆ‹–[Ý\ˆšYÈYX[ˆÛÛXÝÜˆ™]ÜÛ]\ˆ›Ü›H\È™Y[ˆÝX›Z]Yˆ™]\›ˆÈHÝZYHXœ˜\žHÜˆÛÛ[YH™XY[™È˜XÝXØ[Ø[›˜Xš\ÈYXØ][Û‹ˆ‹•[šÈ[ÝH‹“Y\ÜØYÙH™XÙZ]™Yˆ‹–[Ý\ˆÝX›Z\ÜÚ[ÛˆY\ÈÚ]H›ÝYÚHÛÛ™šYÝ\™Y›Ü›HÙ\šXÙKˆ‹ˆ‹Ú[™HÙXœÚ]HŠBˆH‹‹‹È‚ˆXZ[Y‰ÉÉÏXZ[ˆYH›XZ[‹XÛÛ[ˆÛ\ÜÏH[šÜË\YÙH]ˆÛ\ÜÏH˜ÛÛZ[™\ˆ]ˆÛ\ÜÏH[šÜË[X\šÈžÚXÛÛŠ	ØÚXÚÉÊ_OÙ]Û\ÜÏH™^YXœ›ÝÈ‘“Ô“HÕP“RUQÜO“QTÔÐQÑH‘PÑRU‘QÚO’Yˆ\È\ÈHš\œÝÝX›Z\ÜÚ[ÛˆY\ˆ][˜ÚH™XÚ\Y[[˜›ÞX^H™YYÈ\›Ý™H›Ü›TÝX›Z]8 &\ÈXÝ]˜][Ûˆ[XZ[™Y›Ü™H[]™\žH™YÚ[œËÜ]ˆÛ\ÜÏHš\›ËXXÝ[ÛœÈHÛ\ÜÏH˜]Ûˆ]Û‹K\š[X\žHˆ™YHžÜYÝZY\ËÈœ›ÝÜÙHÝZY\ÏØOHÛ\ÜÏH˜]Ûˆ]Û‹K[Ý][™Hˆ™YHžÜH”™]\›ˆÛYOØOÙ]Ù]ÛXZ[‰ÉÉÂˆ™]\›ˆYÙK^[Ý]
+YÙKXZ[ŠB‚‚™Yˆ™[™\—Í
+
+HOˆ\VÔYÙKÝ—N‚ˆYÙOTYÙJš[‹”YÙH›Ý›Ý[™šYÈYX[ˆ‹•H™\]Y\ÝYšYÈYX[ˆYÙHÛÝ[›Ý™H›Ý[™ˆÙX\˜ÚHØ[›˜Xš\ÈÝZYHXœ˜\žHÜˆ™]\›ˆÈHÛYHYÙKˆ‹“›Ý›Ý[™‹•]YÙHØ[™\™YÙ™‹ˆ‹•\ÙHÙX\˜ÚÜˆXY˜XÚÈÈHYÙH]^\ÝËˆ‹ˆ‹\]YH“›Ý™[X™\ˆLËŒˆ‹Ú[™HÙXœÚ]HŠBˆXZ[Y‰ÉÉÏXZ[ˆYH›XZ[‹XÛÛ[ˆÛ\ÜÏH››ÝY›Ý[™]ˆÛ\ÜÏH˜ÛÛZ[™\ˆÛ\ÜÏH™^YXœ›ÝÈ‘T”“ÔˆÜ]ˆÛ\ÜÏH™\œ›Ü‹XÛÙH[YÈÜ˜ÏH‹Ø\ÜÙ]ËÚ[XYÙ\ËÛÙÛË[X\šËœÝ™Èˆ[HˆÙ]O•UQÑHÐS‘T‘QÑ‘‹ÚO•HT“X^H™HÛZ\Ý\YÜˆÛÈYÚÈš[™]ÈØ^HÛYKÜ]ˆÛ\ÜÏHš\›ËXXÝ[ÛœÈHÛ\ÜÏH˜]Ûˆ]Û‹K\š[X\žHˆ™YH‹È”™]\›ˆÛYOØO]ÛˆÛ\ÜÏH˜]Ûˆ]Û‹K[Ý][™Hˆ\OH˜]Ûˆˆ]K\ÙX\˜Ú[Ü[”ÙX\˜ÚHXœ˜\žOØ]ÛÙ]Ù]ÛXZ[‰ÉÉÂˆ™]\›ˆYÙK^[Ý]
+YÙKXZ[ŠB‚‚™YˆÜš]WÜYÙJYÙNˆYÙK[ˆÝŠHOˆ›Û™N‚ˆÜš]WÝ^
+ÕUYÙKœ]Ü[Z^™WÚ[XYÙ\ÊÕUYÙKœ][
+JB‚‚™YˆÜš]WØÛÛ[Ú[™[ÜžJYÙ\Îˆ\ÝÔYÙWJHOˆ›Û™N‚ˆˆˆ”X›\ÚØ[›ÛšXØ[ÛÝ™\˜YÙK]\Ë[™Û\Ë[™XZ[‹XÛÛ[[šÈ]Ëˆˆˆ‚ˆØ[›ÛšXØ[ÜYÙ\ÈHØØ[›ÛšXØ[
+YÙKœ]
+NˆYÙH›ÜˆYÙH[ˆYÙ\ßBˆÝ]ÛÚ[™ÎˆXÝÜÝ‹\ÝÜÝ—WHHßBˆ[˜ÛÛZ[™ÎˆXÝÜÝ‹Ù]ÜÝ—WHHÝ\›ˆÙ]
+
+H›Üˆ\›[ˆØ[›ÛšXØ[ÜYÙ\ßBˆ›ÜˆÛÝ\˜ÙWÝ\›YÙH[ˆØ[›ÛšXØ[ÜYÙ\Ëš][\Ê
+N‚ˆX\šÝ\H
+ÕUÈYÙKœ]
+Kœ™XYÝ^
+[˜ÛÙ[™ÏH]‹NŠBˆXZ[—ÛX]ÚH™KœÙX\˜Ú
+ˆXZ[—–×—JŠŠÊOÛXZ[ˆ‹X\šÝ\™K’H™K”ÊBˆXZ[—ÛX\šÝ\HXZ[—ÛX]Ú™Ü›Ý\
+JHYˆXZ[—ÛX]Ú[ÙHˆ‚ˆ\™Ù]ÎˆÙ]ÜÝ—HHÙ]
+
+Bˆ›Üˆ™Yˆ[ˆ™K™š[™[
+‰ÏW–×—J—š™YHŠ×ˆ—JÊH‰ËXZ[—ÛX\šÝ\™K’JN‚ˆ™\ÛÛ™YH\›Ü]
+\››Ú[ŠÛÝ\˜ÙWÝ\›™YŠJBˆYˆ™\ÛÛ™YœØÚ[YH›Ý[ˆÈš‹šÈŸHÜˆ™\ÛÛ™Y›™]ØÈOH˜šYØYX[‹˜ÛÛHŽ‚ˆÛÛ[YBˆ\™Ù]HˆšÎ‹ËØšYØYX[‹˜ÛÛ^Ü™\ÛÛ™Yœ]Üˆ	ËÉßH‚ˆYˆ\™Ù][ˆØ[›ÛšXØ[ÜYÙ\È[™\™Ù]OHÛÝ\˜ÙWÝ\›‚ˆ\™Ù]Ë˜Y
+\™Ù]
+Bˆ[˜ÛÛZ[™ÖÝ\™Ù]K˜Y
+ÛÝ\˜ÙWÝ\›
+BˆÝ]ÛÚ[™ÖÜÛÝ\˜ÙWÝ\›HHÛÜY
+\™Ù]ÊBˆ™XÛÜ™ÈH×Bˆ›Üˆ\›YÙH[ˆÛÜY
+Ø[›ÛšXØ[ÜYÙ\Ëš][\Ê
+JN‚ˆ›Ý]HH\›Ü]
+\›
+Kœ]œÝš\
+‹ÈŠBˆ\\Y[H›Ý]KœÜ]
+‹È‹JVÌHYˆ›Ý]H[ÙHšÛYH‚ˆ™XÛÜ™Ë˜\[™
+Âˆ\›Žˆ\›ˆœÛYÈŽˆ›Ý]HÜˆ‹È‹ˆ]HŽˆÛX[—Ý^
+YÙK]JKœ™[[Ý™\ÝY™š^
+ˆšYÈYX[ˆŠKˆÜXÈŽˆÛX[—Ý^
+YÙK˜Ø]YÛÜžJKˆ˜ÛÜ™WØ[™ÛHŽˆÛX[—Ý^
+YÙK™\ØÜš\[ÛŠKˆ™\\Y[Žˆ\\Y[ˆœX›\ÚYŽˆ]][YKœÝœ[YJYÙKœX›\ÚY‰Pˆ	Y	VHŠKœÝ™[YJ‰VKI[KIYŠKˆ\]YŽˆ]][YKœÝœ[YJYÙK\]Y‰Pˆ	Y	VHŠKœÝ™[YJ‰VKI[KIYŠKˆ˜ÛÛ^X[Ú[›[šÜÈŽˆÛÜY
+[˜ÛÛZ[™ÖÝ\›JKˆ˜ÛÛ^X[ÛÝ][šÜÈŽˆÝ]ÛÚ[™ÖÝ\›KˆJBˆ^[ØYHÂˆ™Ù[™\˜]YŽˆ“ÕŒ—ÔP“PÐUSÓ—ÓPS’Q‘TÕÈœX›XØ][Û—Ù]H—KˆœØÛÜHŽˆ‘]™\žH[™^X›HØ[›ÛšXØ[šYÐYX[‹˜ÛÛHYÙKˆ[šÜÈ\™H[š\]YH[\›˜[\Ý[˜][ÛœÈ[œÚYHXZ[ˆÛÛ[ÈÛØ˜[XY\ˆ[™›ÛÝ\ˆ˜]šYØ][Ûˆ\™H^ÛYYˆ‹ˆœYÙWØÛÝ[Žˆ[Š™XÛÜ™ÊKˆœYÙ\ÈŽˆ™XÛÜ™ËˆBˆÜš]WÝ^
+ÕU˜ÛÛ[Z[™[ÜžKšœÛÛˆ‹œÛÛ‹™[\Ê^[ØY[™[L‹[œÝ\™WØ\ØÚZOQ˜[ÙJH
+È—ˆŠB‚‚™Yˆ[™WÜÝ[\ÚY]ÊÝ]]Ü›ÛÝˆ]
+HOˆ›Û™N‚ˆˆˆ”Ú\Û™HÔÔÈ™\]Y\Ý[™™[XZ[ˆØY™HÈ™\[ˆÛˆ[ˆ^\Ý[™È[™Kˆˆˆ‚ˆÜÜ×Ù\ˆHÝ]]Ü›ÛÝÈ˜\ÜÙ]ÈˆÈ˜ÜÜÈ‚ˆ[žHHÜÜ×Ù\ˆÈœÝ[\Ë˜ÜÜÈ‚ˆÚ[šÜÈHÛÜY
+ˆÜÜ×Ù\‹™ÛØŠœÝ[\ËJ‹˜ÜÜÈŠKˆÙ^O[[X™H]ˆ[
+]œÝ[KœœÜ]
+‹H‹JVËLWJKˆ
+BˆYˆ›ÝÚ[šÜÎ‚ˆYˆ[žK™^\ÝÊ
+H[™[\Üˆ[ˆ[žKœ™XYÝ^
+[˜ÛÙ[™ÏH]‹NŠN‚ˆ˜Z\ÙH[[YQ\œ›ÜŠœÝ[\Ë˜ÜÜÈ[\ÜÈÚ[šÜÈ]\™H›Ý]˜Z[X›HÈ[™HŠBˆ™]\›‚ˆ[™HHÈ‹Êˆ›ÙXÝ[Ûˆ[™HÙ[™\˜]Yœ›ÛHHXZ[Z[™YÝ[\ËJ‹˜ÜÜÈ[Ù[\Ëˆ
+‹×ˆ—Bˆ›ÜˆÚ[šÈ[ˆÚ[šÜÎ‚ˆ[™K˜\[™
+ˆ—‹ÊˆØÚ[šË›˜[Y_H
+‹×ˆŠBˆ[™K˜\[™
+Ú[šËœ™XYÝ^
+[˜ÛÙ[™ÏH]‹NŠKœœÝš\
+
+H
+È—ˆŠBˆ[žKÜš]WÝ^
+ˆ‹š›Ú[Š[™JK[˜ÛÙ[™ÏH]‹NŠBˆ›ÜˆÚ[šÈ[ˆÚ[šÜÎ‚ˆÚ[šË[›[šÊ
+B‚‚™YˆZ[
+
+HOˆ›Û™N‚ˆYˆÕU™^\ÝÊ
+N‚ˆ›]™YJÕU
+BˆÕU›ZÙ\Š\™[ÏUYJBˆÛÝ\˜ÙWØ\ÜÙ]ÏTÓÕTÑKÈ˜\ÜÙ]È‚ˆYˆÛÝ\˜ÙWØ\ÜÙ]Ë™^\ÝÊ
+N‚ˆÛÜ]™YJÛÝ\˜ÙWØ\ÜÙ]ËÕUÈ˜\ÜÙ]È‹\œ×Ù^\ÝÛÚÏUYJBˆÈHÝ\ÚZ˜\ˆ[›™\ˆÚ\ÈÚ]HØÝØ™\ˆŒH[\˜XÝ[Ûˆ[™ˆÈYÙKYØ]HXØÙ\ÜÚXš[]HÛÜšËˆÚ]™H]YÙHH™\œÚ[Û™Y[™HÛÈBˆÈ™]š[Ý\ÛHØXÚY\šœÈØ[››ÝX]™HH™]ÈÛÛ›ÛÈ[™\\š[™ÂˆÈH›Ü›X[Ú]XˆYÙ\ËÐÑˆØXÚHÚ[™ÝË‚ˆÛÜLŠÛÝ\˜ÙWØ\ÜÙ]ËÈšœËØ\šœÈ‹ÕUÈ˜\ÜÙ]ËÚœËØ\LŒŒLŒKšœÈŠBˆÛÜLŠÛÝ\˜ÙWØ\ÜÙ]ËÈšœËØ\šœÈ‹ÕUÈ˜\ÜÙ]ËÚœËØ\LŒŒLŒ‹šœÈŠBˆÛÜLŠÛÝ\˜ÙWØ\ÜÙ]ËÈšœËØ\šœÈ‹ÕUÈ˜\ÜÙ]ËÚœËØ\LŒŒLL‹šœÈŠBˆÛÜLŠÛÝ\˜ÙWØ\ÜÙ]ËÈšœËØ\šœÈ‹ÕUÈ˜\ÜÙ]ËÚœËØ\LŒŒLLLšœÈŠBˆÛÜLŠÛÝ\˜ÙWØ\ÜÙ]ËÈšœËØ\šœÈ‹ÕUÈ˜\ÜÙ]ËÚœËØ\LŒŒLLLKšœÈŠBˆÜš]WÜÝ™×Ø\ÜÙ]ÊÕU
+Bˆ[™WÜÝ[\ÚY]ÊÕU
+B‚ˆYÙ\Îˆ\ÝÔYÙWHH×BˆYÙK[H™[™\—ÚÛYJ
+Bˆ[H[œ™\XÙJ˜\ÜÙ]ËÚœËØ\šœÈ‹˜\ÜÙ]ËÚœËØ\LŒŒLLLšœÈŠBˆÜš]WÜYÙJYÙK[
+NÈYÙ\Ë˜\[™
+YÙJB‚ˆ›Üˆ]H[ˆÕRQWÔQÑTÈ
+ÈÕRS—ÔQÑTÈ
+ÈÕT—ÐT•PÓTÎ‚ˆYÙO[XZÙWÜYÙJ]JBˆX™[\YÙKšKœ™\XÙJœˆ‹ˆŠKœ™\XÙJ‹ˆ‹ˆŠKœÝš\
+
+BˆÙXÝ[ÛœÏY]VÈœÙXÝ[ÛœÈ—BˆYˆYÙKœ]OH›YØ[Û™]Ë^[ÜšËÚ[™^š[Ž‚ˆžO[™^
+][H›Üˆ][H[ˆÕUWÓUÔÈYˆ][VÈ˜ÛÙH—HOH“–HŠBˆÙXÝ[ÛœÏ[\Ý
+ÙXÝ[ÛœÊBˆÙXÝ[ÛœËš[œÙ\
+LK
+œ\˜Ú\ÙKXXØÙ\ÜÈ‹•Ú][ÝH™YYÈ^HYØ[H‹™[™\—Ü\˜Ú\ÙWØXØÙ\ÜÊžJJJBˆÙXÝ[ÛœËš[œÙ\
+LK
+™\™XÝ[Ûˆ‹”Ú^[[ÛYØ[\™XÝ[Ûˆ‹™[™\—ÜÛXÞWÜ[ÙJžJJJBˆ[\™[™\—Ø\XÛJYÙK]VÈZÙX]Ø^\È—KÙXÝ[ÛœË]VÈœ™[]Y—KÜ[X—Ù›ÜŠYÙKœ]X™[
+K]K™Ù]
+››ÝXÙH‹ˆŠJBˆYˆYÙKœ]OH™ÙX\‹ØØ[›˜Xš\Ë\Ý\ÚZ˜\‹X^Z[™ËYÝZYKÚ[™^š[Ž‚ˆ[H[œ™\XÙJ˜\ÜÙ]ËÚœËØ\šœÈ‹˜\ÜÙ]ËÚœËØ\LŒŒLŒKšœÈŠBˆYˆYÙKœ]OH™ÝZY\ËØØ[›˜Xš\ËY\Ü[œØ\žK[ÞX[K\™]Ø\™Ë]˜[YK\š]˜XÞKYÝZYKÚ[™^š[Ž‚ˆ[H[œ™\XÙJ˜\ÜÙ]ËÚœËØ\šœÈ‹˜\ÜÙ]ËÚœËØ\LŒŒLŒ‹šœÈŠBˆYˆYÙKœ]OH™ÝZY\ËØØ[›˜Xš\Ë\›ÙXÝ\šXÙK[X™[XÛÛ\\š\ÛÛ‹XØ[Ý[]Ü‹Ú[™^š[Ž‚ˆ[H[œ™\XÙJ˜\ÜÙ]ËÚœËØ\šœÈ‹˜\ÜÙ]ËÚœËØ\LŒŒLL‹šœÈŠBˆÜš]WÜYÙJYÙK[
+NÈYÙ\Ë˜\[™
+YÙJB‚ˆ›Üˆ]H[ˆÕS‘T‘ÔQÑTÎ‚ˆYÙO[XZÙWÜYÙJ]KÚ[™HÙXœÚ]HŠBˆX™[\YÙKšKœ™\XÙJœˆ‹ˆŠKœ™\XÙJ‹ˆ‹ˆŠKœÝš\
+
+Bˆ[\™[™\—ÜÝ[™\™
+YÙK]VÈ˜›ÙH—KÜ[X—Ù›ÜŠYÙKœ]X™[
+JBˆÜš]WÜYÙJYÙK[
+NÈYÙ\Ë˜\[™
+YÙJB‚ˆÈ™]È[ÜšÈÙY\È]ÈY\\ˆY]ÜšX[YÙNÈHÝ\ˆHÝ]HÝ[[X\šY\ÂˆÈÛÛ\]HH˜][Û˜[Xœ˜\žHÚ]Ý]Ü™X][™ÈH\XØ]H›Ý]K‚ˆ›Üˆ][H[ˆÕUWÓUÔÎ‚ˆYˆ][VÈ˜ÛÙH—HOH“–HŽ‚ˆÛÛ[YBˆYÙK[\™[™\—ÜÝ]WÜYÙJ][JNÈÜš]WÜYÙJYÙK[
+NÈYÙ\Ë˜\[™
+YÙJB‚ˆ›Üˆ™[™\™\ˆ[ˆ
+™[™\—ÙÝZY\×ÚX‹™[™\—ÜÝ˜Z[œ×ÚX‹™[™\—ÙÙX\—ÚX‹™[™\—ÛYØ[ÚX‹™[™\—ØÛÛXÝ™[™\—Ý[šÜË™[™\—Í
+N‚ˆYÙK[\™[™\™\Š
+NÈÜš]WÜYÙJYÙK[
+NÈYÙ\Ë˜\[™
+YÙJB‚ˆYÙK[H™[™\—Ý\]\ÊYÙ\ÊBˆÜš]WÜYÙJYÙK[
+BˆYÙ\Ë˜\[™
+YÙJB‚ˆYÙK[H™[™\—ÜÚ]WÚ[™^
+YÙ\ÊBˆ[H[œ™\XÙJ˜\ÜÙ]ËÚœËØ\šœÈ‹˜\ÜÙ]ËÚœËØ\LŒŒLLLKšœÈŠBˆÜš]WÜYÙJYÙK[
+BˆYÙ\Ë˜\[™
+YÙJB‚ˆÜš]WÝ^
+ÕUÓSQH‹˜šYØYX[‹˜ÛÛWˆŠBˆÜš]WÝ^
+ÕU‹››Ú™ZÞ[‹—ˆŠBˆÜš]WÝ^
+ÕUœ›Ø›ÝË‹ˆ•\Ù\‹XYÙ[ˆ
+—[ÝÎˆ×—”Ú][X\ˆÑÓPRSŸKÜÚ][X\ž[ˆÈ[X[‹\™XYX›H[™^ˆÑÓPRSŸKÜÚ]KZ[™^×ˆÈXXÚ[™K\™XYX›HÛÝ™\˜YÙNˆÑÓPRSŸKØÛÛ[Z[™[ÜžKšœÛÛ—ˆÈX›XØ][Ûˆ\]\ÎˆÑÓPRSŸKÝ\]\Ë×ˆŠBˆX[šY™\Ý^È›˜[YHŽˆšYÈYX[ˆ‹œÚÜÛ˜[YHŽˆšYÈYX[ˆ‹œÝ\Ý\›Žˆ‹È‹™\Ü^HŽˆœÝ[™[Û™H‹˜˜XÚÙÜ›Ý[™ØÛÛÜˆŽˆˆÌLMÌLˆ‹[YWØÛÛÜˆŽˆˆÌLMÌLˆ‹šXÛÛœÈŽ–ÞÈœÜ˜ÈŽˆ‹Ø\ÜÙ]ËÚ[XYÙ\ËÙ˜]šXÛÛ‹œÝ™È‹œÚ^™\ÈŽˆ˜[žH‹\HŽˆš[XYÙKÜÝ™ÊÞ[ŸW_BˆÜš]WÝ^
+ÕUœÚ]KÙX›X[šY™\Ý‹œÛÛ‹™[\ÊX[šY™\Ý[™[LŠJÈ—ˆŠBˆX›XØ][Û—ÛX[šY™\Ý^ÂˆœX›XØ][Û—Ù]HŽˆŒŒ‹LLKLLˆ‹ˆœYÙWØÛÝ[ŽŒËˆœYÙ\ÈŽ–ÂˆÈ]HŽˆÚ\œžH›Û™HÐ‘[\šY[›ÝH‹\›ŽˆšÎ‹ËØšYØYX[‹˜ÛÛKÜÝ˜Z[œËØÚ\œžKX›Û™KXØ™È‹™\\Y[ŽˆœÝ˜Z[œÈ‹œÜ›Û[×ÛX™[Žˆ]]Üš]KY^[œÚ[Ûˆ‹œÙX\˜ÚÚ[[Žˆ™\šYžHH˜[YYÐ‘Z[\Ý[]˜\ˆ›ÝYÚœ™YY\ˆ]šX][Û‹[™\[™[šX[Y[]K˜[YKXÛÛ\Ú[ÛˆÚXÚÜËš[š\ÚY[Ý]šY[˜ÙK[™Ý\œ™[YØ[›Ý[™\šY\ÈŸKˆÈ]HŽˆØ[›˜Xš\È[™ÛY\\™XH]šY[˜ÙH[™ØY™]HÝZYH‹\›ŽˆšÎ‹ËØšYØYX[‹˜ÛÛKÙÝZY\ËØØ[›˜Xš\Ë\ÛY\X\™XK[ÜØKY]šY[˜ÙK\ØY™]KYÝZYKÈ‹™\\Y[Žˆ™ÝZY\È‹œÜ›Û[×ÛX™[Žˆ]]Üš]KY^[œÚ[Ûˆ‹œÙX\˜ÚÚ[[ŽˆœÙ\\˜]H\˜ÙZ]™YÛY\[™ÙY][Ûˆœ›ÛHYX\Ý\™YZ\Ø^KÞYÙ[‹™X]Y[™^Y^H[˜Ý[Û‹[™Û[šXÚX[ˆXÚ\Ú[ÛœÈŸKˆÈ]HŽˆ’ÛYKQÜ›ÝÈZ[ZYYšY\ˆ^Z[™ÈÝZYH‹\›ŽˆšÎ‹ËØšYØYX[‹˜ÛÛKÙÙX\‹ÚÛYKYÜ›ÝËYZ[ZYYšY\‹X^Z[™ËYÝZYKÈ‹™\\Y[Žˆ™ÙX\ˆ‹œÜ›Û[×ÛX™[Žˆ‘^Ü˜][Ûˆ‹œÙX\˜ÚÚ[[Žˆ˜ÛÛ\\™H^XÝZ[ZYYšY\œÈžHYX\Ý\™Y[Ú\Ý\™HØY˜]YÛÛ™][ÛœËY™šXÚY[˜ÞK˜Z[˜YÙKX][XÝšXØ[š]™XØ[Ë™]\›ˆ\Ý[™Ë[™š\œÝ^YX\ˆÛÜÝŸKˆKˆ›[Û™]^˜][ÛˆŽžÈ˜Y™š[X]WÛ[šÜ×ØYYŽŒœ™X\ÛÛˆŽˆ“›È\›Ý™YY™š[X]H›ÙÜ˜[HÜˆ˜XÚÚ[™ÈQ\ÈÛÛ™šYÝ\™Y[ˆH™\ÜÚ]ÜžKˆHÛÛ™\œÚ[Ûˆ[\›Ý™[Y[\ÈH›ÙXÝ[™]]˜[Z[ZYYšY\ˆXÚ\Ú[Ûˆ[™XØÙ\[˜ÙK]\ÝÞ\Ý[HÛÝ™\š[™ÈYX\Ý\™Y[Ú\Ý\™HØYØ\XÚ]HÛÛ™][ÛœËY™šXÚY[˜ÞK˜Z[˜YÙKÜ\˜][™È˜[™ÙK[XÝšXØ[š]™XØ[Ë™]\›œË[™š\œÝ^YX\ˆÛÜÝˆ›ÈY\˜Ú[[Ù[]™HšXÙK\ØÛÝ[˜[šÚ[™Ë]˜Z[Xš[]HÛZ[K˜XœšXØ]Y\Ý›ÙXÝ[XYÙKZYXÙ[Y[ÜˆÙ[™\šXÈ›ÙXÝ[šÈØ\ÈYYÈÛÜœ™XÝ[™ÈH[Ú\Ý\™HÛÝ\˜ÙK\Ú[™ÈÝ\ÜY^\Ý[™È\]Z\Y[Üˆ^Z[™È›Ý[™È™[XZ[œÈH˜[YÝ]ÛÛYKˆŸKˆš[XYÙWÜXHŽžÈ™Y]ÜšX[ÜXÙ[Y[ÈŽŒ˜Y™š[X]WÛÜ—Ü›ÙXÝÚ[XYÙ\ÈŽŒ››ÝHŽˆ•H™YH™]ÈYÙ\È[™\šØ[œØ\ÈÝ\Ü[™È^[œÚ[Ûˆ\ÙHÜšYÚ[˜[^]šY[˜ÙHX›\ËÚXÚÛ\ÝË[™^\Ý[™Èœ˜[™[\™˜XÙH\ÜÙ]ËˆHÚ\œžH›Û™HYÙH^XÚ]HÚ]ÛÈHÝ[]˜\ˆÝÈ™XØ]\ÙH›È^XÝXÙ[œÙY[XYÙHØ\È™\šYšYYˆ›È]Y[Ø[›˜Xš\È›ÙXÝT]šXÙKZ[ZYYšY\‹Y\˜Ú[Y™š[X]KÝØÚÈ[XYÙK›ÙXÝÝËÜˆÙ[™\˜]Y[XYÙHØ\ÈYYÜˆÚ[™ÙYÛÈ\™H\È›È^XÝ\›ÙXÝZ\ÛX]ÚÜˆ™]ÈXÙ[œÚ[™È\ÜÝYKˆŸKˆœÙX\˜ÚØÛÛœÛÛHŽžÈœ™\ÜÙ]HŽˆŒŒ‹LLKLLH‹™XÚ\Ú[ÛˆŽˆ•HØÝØ™\ˆL¸ $Ó›Ý™[X™\ˆ™\Ü\ÈÛ™H^HÛ[™˜[YˆMH[\™\ÜÚ[ÛœË™YHÛXÚÜËŒÍŽ	HÕ‹[™]™\˜YÙHÜÚ][ÛˆŒLËˆH\šØ[œØ\ÈYØ[YÙHYÚ^[\™\ÜÚ[ÛœËÛ™HÛXÚËM‹ÉHÕ‹[™]™\˜YÙHÜÚ][ÛˆKø %HÛ›HYÙK[]™[ÚYÛ˜[Ú][Ü™H[ˆHÚÙ[ˆØ[\H[ˆH\™Ù]8 $ÌŒ˜[™8 %ÛÈH[˜[]XÜË[YXÝ[Ûˆ™\Ù\™\È]\ÝX›\ÚYT“[™YÈÝ\œ™[]Y[™[™]Ø[Ø\™YÚ]™\‹š\Ú][™Ë\]Y[\Ü[œØ\žK[™š[X\žK\ÛÝ\˜ÙHÛÜšÙ›ÝÜÈ˜]\ˆ[ˆÜ™X][™ÈHØ[›šX˜[^š[™ÈYÙKˆ8 &LLœÈ\ÜÜØX›x &HYÛÈ[\™\ÜÚ[ÛœÈ]ÜÚ][ÛˆLˆ][™XYHX\ÈÈ[ˆ^\Ý[™ÈYÙNÈ[]Ø\™HYÛÈ[\™\ÜÚ[ÛœÈ[™Û™HÛXÚÎÈ›YH™X[HYÌÈ[\™\ÜÚ[ÛœÈ™X\ˆÜÚ][ÛˆÈÚ[™ÛKZ[\™\ÜÚ[ÛˆYØ[[™X[›ÝÜÈÙ\™HÛÈÙXZËˆÜÙHÚYÛ˜[ÈÙ\™H[X™\˜][HYÛ›Ü™Y\È\XØ]]™K[žKÜˆÝ]Ùˆ˜[™ÙKˆ›Û™HÙˆH™YH™]ÈYÙ\È\È™\Ù[Y\Èš[X\š[H]K[YˆŸKˆ˜]]Üš]HŽžÈ˜XÝ[ÛˆŽˆ”X›\ÚYÛÈÚ]][Û‹]ÛÜH]šY[˜ÙH\ÜÙ]ÎˆHÛY\X\™XHÝ]ÛÛYH˜[œÛ]ÜˆÚ]HÝYK]˜[œÙ™\ˆØÜ™Y[ˆ[™Û[šXÚX[ˆ[™Ù™‹[™HÚ\œžH›Û™HÐ‘šY[›ÝH]Ù\\˜]\ÈHÛÛ[Y\˜ÚX[œ™YY\ˆ™XÛÜ™œ›ÛH[ˆ[™\[™[[š]™\œÚ]HÙˆ™\›[ÛšX[[™Hš[š\ÚY[Ý]šY[˜ÙHÚZ[‹ˆ™XÚ\›ØØ[[šÜÈÝ™[™Ý[ˆHÛY\™^Y^H[\Z\›Y[Ð‘Z[\ÛÐK›ÙXÝXÛÛ\Z[[™˜[YYXÝ[]˜\ˆÛ\Ý\œËˆH\šØ[œØ\ÈYÙH[ÛÈYÈHš[X\žK\ÛÝ\˜ÙH›ÛHX\ˆ›ÈÜXÝ[]]™HÝ]™XXÚ\™Ù]Ø\ÈÙÙÙY[™›ÈÝ]™XXÚØ\ÈÙ[ˆŸKˆ™œ™\Ú™\Ü×ÜÝ\™˜XÙ\ÈŽžÂˆšÎ‹ËØšYØYX[‹˜ÛÛKÛYØ[ÈŽˆŒŒ‹LLKLLˆ‹ˆšÎ‹ËØšYØYX[‹˜ÛÛKÛYØ[Ø\šØ[œØ\ËÈŽˆŒŒ‹LLKLLˆ‹ˆšÎ‹ËØšYØYX[‹˜ÛÛKÜÝ˜Z[œËÈŽˆŒŒ‹LLKLLˆ‹ˆšÎ‹ËØšYØYX[‹˜ÛÛKÜÝ˜Z[œËØÚ\œžKX›Û™KXØ™ÈŽˆŒŒ‹LLKLLˆ‹ˆšÎ‹ËØšYØYX[‹˜ÛÛKÜÝ˜Z[œËØÚ\œžK]Ú[™KÈŽˆŒŒ‹LLKLLˆ‹ˆšÎ‹ËØšYØYX[‹˜ÛÛKÙÝZY\ËØØ™Z[\Y›ÝÙ\‹[X™[[YØ[YÝZYKÈŽˆŒŒ‹LLKLLˆ‹ˆšÎ‹ËØšYØYX[‹˜ÛÛKÙÝZY\ËØØ[›˜Xš\ËXÙ\YšXØ]K[Ù‹X[˜[\Ú\ËXÛØKYÝZYKÈŽˆŒŒ‹LLKLLˆ‹ˆšÎ‹ËØšYØYX[‹˜ÛÛKÙÝZY\ËÈŽˆŒŒ‹LLKLLˆ‹ˆšÎ‹ËØšYØYX[‹˜ÛÛKÙÝZY\ËØØ[›˜Xš\Ë\ÛY\X\™XK[ÜØKY]šY[˜ÙK\ØY™]KYÝZYKÈŽˆŒŒ‹LLKLLˆ‹ˆšÎ‹ËØšYØYX[‹˜ÛÛKÙÝZY\ËØØ[›˜Xš\ËXØ™X[™\ÛY\ÈŽˆŒŒ‹LLKLLˆ‹ˆšÎ‹ËØšYØYX[‹˜ÛÛKÙÝZY\ËØØ[›˜Xš\Ë[™^Y^KZ[\Z\›Y[Y]šY[˜ÙKYÝZYKÈŽˆŒŒ‹LLKLLˆ‹ˆšÎ‹ËØšYØYX[‹˜ÛÛKÙÝZY\ËÚÝË]Ë][Ë]ËYØÝÜ‹XX›Ý]XØ[›˜Xš\ËÈŽˆŒŒ‹LLKLLˆ‹ˆšÎ‹ËØšYØYX[‹˜ÛÛKÙÙX\‹ÈŽˆŒŒ‹LLKLLˆ‹ˆšÎ‹ËØšYØYX[‹˜ÛÛKÙÙX\‹ÚÛYKYÜ›ÝËYZ[ZYYšY\‹X^Z[™ËYÝZYKÈŽˆŒŒ‹LLKLLˆ‹ˆšÎ‹ËØšYØYX[‹˜ÛÛKÙÙX\‹ÚÛYKYÜ›ÝË]™[[][Û‹Y˜[‹X^Z[™ËYÝZYKÈŽˆŒŒ‹LLKLLˆ‹ˆšÎ‹ËØšYØYX[‹˜ÛÛKÙÙX\‹ÚÛYKYÜ›ÝË][\\˜]\™KZ[ZY]K[[Ûš]Ü‹X^Z[™ËYÝZYKÈŽˆŒŒ‹LLKLLˆ‹ˆšÎ‹ËØšYØYX[‹˜ÛÛKÙÙX\‹ØØ[›˜Xš\ËYÙX\‹XÛÛ\\š\ÛÛ‹]ÛÜšÜÚY]ÈŽˆŒŒ‹LLKLLˆ‹ˆšÎ‹ËØšYØYX[‹˜ÛÛKÝ\]\ËÈŽˆŒŒ‹LLKLLˆ‹ˆšÎ‹ËØšYØYX[‹˜ÛÛKÜÚ]KZ[™^ÈŽˆŒŒ‹LLKLLˆ‚ˆKˆœÝ\™˜XÙ\ÈŽ–ÈÚ\œžH›Û™Hœ™YY\‹]™\œÝ\Ë]šX[]šY[˜ÙHX\˜[YKXÛÛ\Ú[ÛˆX›Kš[š\ÚY[ÝÚZ[‹[™ÛÝ\˜ÙH›Ý[™\šY\È‹Ú\œžHÚ[™KÐ‘Z[\ÛÐK[™›ÙXÝXÛÛ\Z[™XÚ\›ØØ[[šÜÈ‹\šØ[œØ\È]Y[™[™]Ø[Ø\™YÚ]™\‹š\Ú][™Ë\]Y[\Ü[œØ\žK[™š[X\žK\ÛÝ\˜ÙHÛÜšÙ›ÝÈ‹œÛY\X\™XHÝ]ÛÛYHX]š^ÝYK]˜[œÙ™\ˆØÜ™Y[‹Û[šXÚX[ˆ[™Ù™‹ÛÛœÙ\˜]]™H™^Y^HØ]K[™Ù™šXÚX[Û[šXØ[ÛÝ\˜Ù\È‹œÛY\™^Y^H[\Z\›Y[[™Û[šXÚX[‹XÛÛ™\œØ][Ûˆ™XÚ\›ØØ[[šÜÈ‹™Z[ZYYšY\ˆ[Ú\Ý\™KZ›ØˆX\^XÝ[[Ù[ÛÛ\\š\ÛÛ‹˜Z[˜YÙH[‹ÛÜÝØÙ[˜\š[Ë™]\›‹]Ú[™ÝÈXØÙ\[˜ÙH\Ý[™Ù™šXÚX[Y™šXÚY[˜ÞH[™™XØ[ÛÝ\˜Ù\È‹™[[][Û‹[\\˜]\™KZ[ZY]H[Ûš]Üš[™Ë[™ÙX\‹XÛÛ\\š\ÛÛˆ™XÚ\›ØØ[[šÜÈ‹œÝ˜Z[‹YØ[ÝZYK[™ÙX\ˆXœÈ‹œX›XØ][Ûˆ\]\È‹˜ÛÛ\]HÚ]H[™^‹]ÛH™YY‹œÙX\˜Ú[™^‹˜Ø[›ÛšXØ[[™YØXÞHSÚ][X\Ý\™˜XÙ\È‹œ›Ø›ÝÈÚ][X\XÛ\˜][Ûˆ‹˜ÚXÚÜÝ[K]™\šYšYYÛÝ\˜ÙH\˜Ú]™H[™X›XØ][ÛˆØ]\È—KˆBˆX›XØ][Û—ÛX[šY™\ÝH“ÕŒL×ÔP“PÐUSÓ—ÓPS’Q‘TÕˆX›XØ][Û—ÛX[šY™\ÝH“ÕŒMÔP“PÐUSÓ—ÓPS’Q‘TÕˆX›XØ][Û—ÛX[šY™\ÝH“ÕŒMÐUÒÔP“PÐUSÓ—ÓPS’Q‘TÕˆX›XØ][Û—ÛX[šY™\ÝH“ÕŒMWÔP“PÐUSÓ—ÓPS’Q‘TÕˆX›XØ][Û—ÛX[šY™\ÝH“ÕŒM—ÔP“PÐUSÓ—ÓPS’Q‘TÕˆX›XØ][Û—ÛX[šY™\ÝH“ÕŒM×ÔP“PÐUSÓ—ÓPS’Q‘TÕˆX›XØ][Û—ÛX[šY™\ÝH“ÕŒNÔP“PÐUSÓ—ÓPS’Q‘TÕˆX›XØ][Û—ÛX[šY™\ÝH“ÕŒNWÔP“PÐUSÓ—ÓPS’Q‘TÕˆX›XØ][Û—ÛX[šY™\ÝH“ÕŒŒÔP“PÐUSÓ—ÓPS’Q‘TÕˆX›XØ][Û—ÛX[šY™\ÝH“ÕŒŒWÔP“PÐUSÓ—ÓPS’Q‘TÕˆX›XØ][Û—ÛX[šY™\ÝH“ÕŒŒ—ÔP“PÐUSÓ—ÓPS’Q‘TÕˆX›XØ][Û—ÛX[šY™\ÝH“ÕŒŒ×ÔP“PÐUSÓ—ÓPS’Q‘TÕˆX›XØ][Û—ÛX[šY™\ÝH“ÕŒÔP“PÐUSÓ—ÓPS’Q‘TÕˆX›XØ][Û—ÛX[šY™\ÝH“ÕŒWÔP“PÐUSÓ—ÓPS’Q‘TÕˆX›XØ][Û—ÛX[šY™\ÝH“ÕŒ—ÔP“PÐUSÓ—ÓPS’Q‘TÕˆÜš]WÝ^
+ÕUœX›XØ][Û‹[X[šY™\ÝšœÛÛˆ‹œÛÛ‹™[\ÊX›XØ][Û—ÛX[šY™\Ý[™[LŠJÈ—ˆŠBˆ[™^X›OVÜ›Üˆ[ˆYÙ\ÈYˆœ]›Ý[ˆÈš[‹[šË^[ÝKÚ[™^š[ŸWBˆÜš]WØÛÛ[Ú[™[ÜžJ[™^X›JBˆÝ˜Z[—Ø[X\Ù\ÈHÂˆˆœÝ˜Z[œËÞÜÝ˜Z[–ÉÜÛYÉ×_KÚ[™^š[Žˆˆ‹š›Ú[ŠÝ˜Z[‹™Ù]
+˜[X\Ù\È‹×JJBˆ›ÜˆÝ˜Z[ˆ[ˆÕRS”ÂˆBˆY]ÜšX[ÚÙ^]ÛÜ™ÈHÂˆ]VÈœ]—Nˆ]K™Ù]
+šÙ^]ÛÜ™È‹ˆŠBˆ›Üˆ]H[ˆÕRQWÔQÑTÈ
+ÈÕRS—ÔQÑTÈ
+ÈÕT—ÐT•PÓTÈ
+ÈÕS‘T‘ÔQÑTÂˆBˆÙX\˜ÚÙ[šY\ÈHÞÂˆ]HŽˆÛX[—Ý^
+YÙK]JKœ™[[Ý™\ÝY™š^
+ˆšYÈYX[ˆŠKˆ™\ØÜš\[ÛˆŽˆÛX[—Ý^
+YÙK™\ØÜš\[ÛŠKˆ˜Ø]YÛÜžHŽˆÛX[—Ý^
+YÙK˜Ø]YÛÜžJKˆšÙ^]ÛÜ™ÈŽˆˆ‹š›Ú[Šš[\Š›Û™K
+Ý˜Z[—Ø[X\Ù\Ë™Ù]
+YÙKœ]ˆŠKY]ÜšX[ÚÙ^]ÛÜ™Ë™Ù]
+YÙKœ]ˆŠJJJKˆ\›Žˆ‹ÈˆYˆYÙKœ]OHš[™^š[ˆ[ÙHˆ‹ÞÜYÙKœ]Î‹LL_HˆYˆYÙKœ]™[™ÝÚ]
+‹Ú[™^š[ŠH[ÙHˆ‹ÞÜYÙKœ]H‹ˆ\]YŽˆ]][YKœÝœ[YJYÙK\]Y‰Pˆ	Y	VHŠKœÝ™[YJ‰VKI[KIYŠKˆ\]YX™[ŽˆYÙK\]YˆH›ÜˆYÙH[ˆ[™^X›WBˆÜš]WÝ^
+ÕU˜\ÜÙ]ËÚœËÜÙX\˜ÚZ[™^šœÈ‹ˆÚ[™ÝË“WÔÑPTÒÒS‘VHÚœÛÛ‹™[\ÊÙX\˜ÚÙ[šY\Ë[œÝ\™WØ\ØÚZOQ˜[ÙKÙ\\˜]ÜœÏJ	Ë	Ë	Î‰ÊJ_N×ˆŠBˆÚ][X\IÉÉÏÞ[™\œÚ[ÛHŒKŒˆ[˜ÛÙ[™ÏH•U‹NÏ—\›Ù][œÏHš‹ËÝÝÝËœÚ][X\Ë›Ü™ËÜØÚ[X\ËÜÚ][X\ÌŽH—‰ÉÉÊÈˆ‹š›Ú[Šˆˆ\›ØÏžØØ[›ÛšXØ[
+œ]
+_OÛØÏ\Ý[ÙžÙ]][YKœÝœ[YJ\]Y	ÉPˆ	Y	VIÊKœÝ™[YJ	ÉVKI[KIY	Ê_OÛ\Ý[ÙÝ\›—ˆˆ›Üˆ[ˆÛÜY
+[™^X›KÙ^O[[X™Hžœ]
+JJÈÝ\›Ù]—ˆ‚ˆÜš]WÝ^
+ÕUœÚ][X\ž[‹Ú][X\
+BˆÈÙX\˜ÚÛÛœÛÛHÝ[\ÝÈHÚ]IÜÈ›Ü›Y\ˆÛÜ™™\ÜÈÚ][X\[™Ú[‚ˆÈÚ]XˆYÙ\ÈÙ\™\È\ÈÝ]XÈS^[ØY]]^XÝ]
+H]Y\žBˆÈÝš[™ÈÙ\È›ÝÚ[™ÙHHš[HÛÚÝ\
+KÛÈH]\™H™XÜ˜]ÛØ[ˆ™XÛÝ™\‚ˆÈÚ]Ý]ÙXZÙ[š[™ÈHØ[›ÛšXØ[Ú][X\Üˆ›Ø›ÝË\ØÛÝ™\žH]‚ˆÜš]WÝ^
+ÕUš[™^œ‹Ú][X\
+Bˆ™YYÚ][\ÈHÛÜY
+ˆ
+›Üˆ[ˆYÙ\ÈYˆšÚ[™OH˜\XÛHŠKˆÙ^O[[X™Hˆ
+]][YKœÝœ[YJ\]Y‰Pˆ	Y	VHŠKÛX[—Ý^
+]JJKˆ™]™\œÙOUYKˆ
+VÎŒÌBˆ™YYÙ[šY\ÈHˆ‹š›Ú[Šˆ‰ÉÉÈ[žO—ˆ]OžÙ\ØØ\JÛX[—Ý^
+]JKœ™[[Ý™\ÝY™š^
+ˆšYÈYX[ˆŠJ_OÝ]O—ˆYžØØ[›ÛšXØ[
+œ]
+_OÚY—ˆ[šÈ™YHžØØ[›ÛšXØ[
+œ]
+_H‹Ï—ˆ\]YžÙ]][YKœÝœ[YJ\]Y‰Pˆ	Y	VHŠKœÝ™[YJ‰VKI[KIYŒŒˆŠ_OÝ\]Y—ˆX›\ÚYžÙ]][YKœÝœ[YJœX›\ÚY‰Pˆ	Y	VHŠKœÝ™[YJ‰VKI[KIYŒŒˆŠ_OÜX›\ÚY—ˆÝ[[X\žOžÙ\ØØ\J™\ØÜš\[ÛŠ_OÜÝ[[X\žO—ˆÙ[žO—‰ÉÉÂˆ›Üˆ[ˆ™YYÚ][\Âˆ
+Bˆ™YYÝ\]YHX^
+]][YKœÝœ[YJ\]Y‰Pˆ	Y	VHŠH›Üˆ[ˆ™YYÚ][\ÊKœÝ™[YJ‰VKI[KIYŒŒˆŠBˆ]ÛHH‰ÉÉÏÞ[™\œÚ[ÛHŒKŒˆ[˜ÛÙ[™ÏH•U‹NÏ—™YY[œÏHš‹ËÝÝÝËÌË›Ü™ËÌŒKÐ]ÛH—ˆ]OšYÈYX[ˆ\]\ÏÝ]O—ˆYžÑÓPRSŸKÏÚY—ˆ[šÈ™YHžÑÓPRSŸKÙ™YYž[ˆ™[HœÙ[ˆ‹Ï—ˆ[šÈ™YHžÑÓPRSŸKÈ‹Ï—ˆ\]YžÙ™YYÝ\]YOÝ\]Y—ˆ]]Ü˜[YOšYÈYX[ˆY]ÜšX[X[OÛ˜[YO\šOžÑÓPRSŸKØX›Ý]ÏÝ\šOØ]]Ü—ˆÝX]O“™]È[™X]\šX[H™]šY]ÙYØ[›˜Xš\ÈÝZY\ËÙX\ˆ™\ÛÝ\˜Ù\Ë[™YØ[^Z[™\œËÜÝX]O—žÙ™YYÙ[šY\ßOÙ™YY—‰ÉÉÂˆÜš]WÝ^
+ÕU™™YYž[‹]ÛJBˆš[
+ˆZ[Û[ŠYÙ\Ê_HSYÙ\È[ˆÓÕUHŠB‚‚™YˆØ[›ÛšXØ[
+]ˆÝŠHOˆÝŽ‚ˆYˆ]OHš[™^š[Žˆ™]\›ˆˆžÑÓPRSŸKÈ‚ˆYˆ]™[™ÝÚ]
+‹Ú[™^š[ŠNˆ™]\›ˆˆžÑÓPRSŸKÞÜ]Î‹LL_H‚ˆ™]\›ˆˆžÑÓPRSŸKÞÜ]H‚‚‚šYˆ×Û˜[YW×ÈOH—×ÛXZ[—×ÈŽ‚ˆZ[
+
+B
