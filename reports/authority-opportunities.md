@@ -1,6 +1,21 @@
 # Big Bud Man authority opportunities
 
-Last reviewed: November 18, 2026
+Last reviewed: November 27, 2026
+
+## November 27, 2026 authority action
+
+- **Authority action:** Published a citation-ready cannabis, depression, and bipolar evidence guide that keeps randomized treatment evidence, longitudinal association, diagnosed mood-disorder prognosis, acute response, withdrawal, medicines, sleep, function, and crisis routing in separate lanes. The asset maps two 2026 systematic reviews, a 2024 mood-disorder review, a 2025 longitudinal meta-analysis, CDC risk context, NIMH bipolar terminology, SAMHSA crisis routes, and FDA interaction boundaries without turning a population signal or testimonial into diagnosis, causation, or a retail-product recommendation.
+- **Cluster strengthened:** Health evidence library ↔ anxiety, paranoia, and psychosis warning signs ↔ medication interactions ↔ tolerance, dependence, and withdrawal ↔ clinician conversation. Each established page now links contextually to the mood guide, and the new guide returns readers to the correct evidence, urgent-response, medicine, withdrawal, and clinical-handoff paths.
+- **Trust action:** The mood guide puts 988, 911, emergency, psychosis, agitation, sleep-loss, and medicine-change routes before evidence interpretation; distinguishes depression, mania or hypomania, mixed symptoms, intoxication, and withdrawal; names study-design and transfer limits; and contains no diagnosis, personal risk estimate, product recommendation, dose, or medicine-change instruction. The editorial policy now records these mood-health and crisis boundaries.
+- **Conversion action:** Published a product-neutral home-grow tent and room-fit screen that compares the complete enclosure system: service envelope, frame and hanging loads, air and moisture, water, power, access, cleaning, support, returns, first-year cost, and a product-free dry acceptance test. No approved affiliate program or tracking ID is configured, so no merchant, model, live price, stock, rating, discount, product image, fabricated test, or commission-weighted conclusion was added.
+
+### Qualified opportunity logged
+
+| Exact target | Contact route | Exact asset match | Honest pitch angle |
+|---|---|---|---|
+| NAMI New York State | Ordinary information route: <https://naminys.org/contact/> — not a crisis or 988 route | [Cannabis, Depression & Bipolar Evidence Guide](https://bigbudman.com/guides/cannabis-depression-bipolar-mood-evidence-safety-guide/) | A consumer-facing evidence and visit-preparation resource that separates treatment evidence from association, depression from mania or withdrawal, retail products from studied cannabinoids, and crisis response from nonurgent interpretation. Invite factual correction or resource consideration; do not imply NAMI clinical review, individual guidance, endorsement, or a substitute for 988, emergency care, or established treatment. |
+
+No outreach was sent.
 
 ## November 18, 2026 authority action
 

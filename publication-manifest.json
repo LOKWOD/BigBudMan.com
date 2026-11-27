@@ -1,66 +1,70 @@
 {
-  "publication_date": "2026-11-26",
+  "publication_date": "2026-11-27",
   "page_count": 3,
   "pages": [
     {
-      "title": "Vape Battery & Cartridge Disposal Guide",
-      "url": "https://bigbudman.com/gear/cannabis-vape-battery-cartridge-disposal-guide/",
-      "department": "gear",
+      "title": "Canonical Sitemap Submission Repair",
+      "url": "https://bigbudman.com/sitemap.xml",
+      "department": "technical",
       "portfolio_label": "Data-led",
-      "search_intent": "route an exact cannabis vape battery, device, cartridge, residue, package, damage state, and recall through a locally verified end-of-life path, then use disposal proof at the next checkout"
+      "search_intent": "replace stale Search Console discovery state with the current canonical sitemap while preserving the verified legacy mirror and exact URL parity"
     },
     {
-      "title": "Cannabis & Menopause Evidence Guide",
-      "url": "https://bigbudman.com/guides/cannabis-menopause-symptoms-evidence-safety-guide/",
+      "title": "Cannabis, Depression & Bipolar Evidence Guide",
+      "url": "https://bigbudman.com/guides/cannabis-depression-bipolar-mood-evidence-safety-guide/",
       "department": "guides",
       "portfolio_label": "Authority-expansion",
-      "search_intent": "understand cannabis and menopause symptom evidence, study limits, established-care comparisons, product and medicine safety, urgent signs, and a clinician-ready record"
+      "search_intent": "separate cannabis mood-treatment claims from depression, bipolar disorder, mania, withdrawal, medicines, function, crisis signs, and a clinician-ready timeline"
     },
     {
-      "title": "Editorial Policy",
-      "url": "https://bigbudman.com/editorial-policy/",
-      "department": "trust",
+      "title": "Home-Grow Tent Buying & Room-Fit Guide",
+      "url": "https://bigbudman.com/gear/home-grow-tent-room-fit-buying-guide/",
+      "department": "gear",
       "portfolio_label": "Exploration",
-      "search_intent": "document daily discovery integration, evidence boundaries, commercial separation, and the machine-readable publication checks that keep new and expanded work connected"
+      "search_intent": "compare a lawful home-grow tent by service-envelope fit, loads, air, moisture, power, access, cleaning, support, returns, and full-system cost"
     }
   ],
   "monetization": {
     "affiliate_links_added": 0,
-    "reason": "No approved affiliate program or tracking ID is configured. The active conversion improvement is the product-neutral vape end-of-life checkout screen: exact identity, power system, service life, return and recall route, verified disposal path, and total burden must all survive before purchase. No brand, merchant, product, live price, stock, discount, rating, fabricated test, or product image was added; repair, a supported reusable system, a non-inhaled lawful option, or no purchase remains valid."
+    "reason": "No approved affiliate program or tracking ID is configured. The active conversion improvement is the product-neutral grow-tent room-fit, load, air, moisture, power, access, service, return, and first-year-system screen. No brand, merchant, model, live price, stock, discount, rating, fabricated test, product image, or commission-weighted conclusion was added; improving the room, using a dedicated room without a tent, reducing scope, delaying, or buying nothing remains valid."
   },
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The new menopause asset and expanded vape-disposal asset use original text, evidence tables, checklists, records, and existing interface assets. No patient, cannabis product, vape, battery, cartridge, affiliate, stock, generated, or third-party image was added or changed, so no exact-product mismatch or new licensing ambiguity was introduced."
+    "note": "The mood evidence asset and grow-tent comparison use original text, evidence tables, records, checklists, and existing interface assets. No patient, cannabis product, grow tent, light, fan, merchant, affiliate, stock, generated, or third-party image was added or changed, so no exact-product mismatch or new licensing ambiguity was introduced."
   },
   "search_console": {
     "report_date": "2026-11-25",
-    "decision": "The October 26\u2013November 22 report is one day old and valid: 796 impressions, four clicks, 0.503% CTR, and average position 18.966. The established vape-disposal URL had 19 impressions, one click, 5.26% CTR, and average position 8.895, so the Data-led action materially expands that exact page instead of creating a cannibalizing disposal URL. Blue Dream signals were already reinforced on November 17 and sit around positions 49\u201355; Arkansas and Delaware legal rows belong to already-served or weekly legal-review work; home-page, chronic-pain HTTP, and one- or two-impression queries were too weak, stale, navigational, or duplicative. Those signals were deliberately ignored."
+    "decision": "The October 26\u2013November 22 report is two days old and valid: 796 impressions, four clicks, 0.503% CTR, and average position 18.966. Yesterday already used the 19-impression vape-disposal page at position 8.895, so the signal was not reused. The canonical sitemap remained pending with one error from a May 2023 submission and the legacy WordPress endpoint retained two errors from an October 2023 submission, making canonical sitemap resubmission and status cleanup the only Data-led action. The two-impression \u2018510 vs disposable\u2019 query, single-impression health rows, Blue Dream positions around 49\u201355, home/about/contact navigational rows, and Arkansas/Delaware state pages were ignored as too weak, already reinforced, navigational, out of range, or reserved for the weekly legal review."
   },
   "authority": {
-    "action": "Published a citation-ready menopause evidence asset that maps systematic-review, clinical-guideline, survey, society, NIH, and FDA evidence to explicit transfer limits; added reciprocal paths from the health-evidence, medicine-interaction, sleep, and clinician-conversation cluster. The vape expansion adds a format-specific disposal matrix, locally verifiable handoff receipt, and evidence-based end-of-life purchase screen. No speculative outreach target was logged and no outreach was sent; improving the asset and its crawl paths was the higher-value authority action."
+    "action": "Published a citation-ready cannabis, depression, and bipolar evidence asset that maps two 2026 treatment reviews, a 2024 mood-disorder review, a 2025 longitudinal depression meta-analysis, CDC risk context, NIMH bipolar terminology, SAMHSA crisis routes, and FDA interaction boundaries to explicit transfer limits. Reciprocal links strengthen the health-evidence, anxiety/psychosis, medicine-interaction, withdrawal, and clinician-conversation cluster. Logged NAMI New York State as one qualified correction/resource opportunity for this exact asset; no outreach was sent."
   },
   "freshness_surfaces": {
-    "https://bigbudman.com/": "2026-11-26",
-    "https://bigbudman.com/guides/": "2026-11-26",
-    "https://bigbudman.com/gear/": "2026-11-26",
-    "https://bigbudman.com/guides/cannabis-menopause-symptoms-evidence-safety-guide/": "2026-11-26",
-    "https://bigbudman.com/gear/cannabis-vape-battery-cartridge-disposal-guide/": "2026-11-26",
-    "https://bigbudman.com/guides/cannabis-health-evidence-library/": "2026-11-26",
-    "https://bigbudman.com/guides/cannabis-cbd-medication-interactions/": "2026-11-26",
-    "https://bigbudman.com/guides/cannabis-cbd-and-sleep/": "2026-11-26",
-    "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/": "2026-11-26",
-    "https://bigbudman.com/guides/vapes/": "2026-11-26",
-    "https://bigbudman.com/guides/disposable-vape-vs-510-cartridge-comparison/": "2026-11-26",
-    "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/": "2026-11-26",
-    "https://bigbudman.com/editorial-policy/": "2026-11-26",
-    "https://bigbudman.com/updates/": "2026-11-26",
-    "https://bigbudman.com/site-index/": "2026-11-26"
+    "https://bigbudman.com/": "2026-11-27",
+    "https://bigbudman.com/guides/": "2026-11-27",
+    "https://bigbudman.com/gear/": "2026-11-27",
+    "https://bigbudman.com/guides/cannabis-depression-bipolar-mood-evidence-safety-guide/": "2026-11-27",
+    "https://bigbudman.com/gear/home-grow-tent-room-fit-buying-guide/": "2026-11-27",
+    "https://bigbudman.com/guides/cannabis-health-evidence-library/": "2026-11-27",
+    "https://bigbudman.com/guides/cannabis-anxiety-paranoia-psychosis-warning-signs/": "2026-11-27",
+    "https://bigbudman.com/guides/cannabis-cbd-medication-interactions/": "2026-11-27",
+    "https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/": "2026-11-27",
+    "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/": "2026-11-27",
+    "https://bigbudman.com/guides/new-york-home-cannabis-grow-planner/": "2026-11-27",
+    "https://bigbudman.com/gear/indoor-cannabis-grow-light-buying-cost-planner/": "2026-11-27",
+    "https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/": "2026-11-27",
+    "https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/": "2026-11-27",
+    "https://bigbudman.com/gear/home-grow-dehumidifier-buying-guide/": "2026-11-27",
+    "https://bigbudman.com/editorial-policy/": "2026-11-27",
+    "https://bigbudman.com/updates/": "2026-11-27",
+    "https://bigbudman.com/site-index/": "2026-11-27"
   },
   "surfaces": [
-    "menopause question map, evidence ladder, current-source synthesis, eight-part transfer screen, product-and-medicine handoff, risk lanes, urgent routes, claim screen, and medical sources",
-    "vape format-specific disposal matrix, damaged and recalled exception route, destination call script, local disposal receipt, end-of-life checkout screen, and official sources",
-    "reciprocal health, medicine, sleep, clinician, vape, battery, and comparison links",
+    "canonical XML sitemap resubmission target, verified legacy mirror, robots declaration, and exact inventory parity",
+    "mood question map, 2024\u20132026 evidence synthesis, symptom lanes, crisis routes, product-and-medicine timeline, treatment boundary, claim screen, and medical sources",
+    "grow-tent system choice, service-envelope worksheet, frame-load map, air and moisture plan, electrical boundary, comparison table, full-system cost, and dry acceptance test",
+    "reciprocal health, medicine, withdrawal, clinician, grow-planning, light, ventilation, monitoring, and dehumidification links",
     "homepage, guide and gear hubs, editorial policy, updates, complete site index, Atom feed, search index, canonical and legacy XML sitemaps, robots declaration, content inventory, source archive, and publication gates"
   ]
 }

@@ -823,6 +823,8 @@ def main() -> int:
             failures.append("November 22 publication manifest must describe exactly three new pages")
         if batch.get("publication_date") == "2026-11-23" and len(pages) != 3:
             failures.append("November 23 publication manifest must describe exactly three new pages")
+        if batch.get("publication_date") == "2026-11-27" and len(pages) != 3:
+            failures.append("November 27 publication manifest must describe exactly three improvements")
         if len(actual_urls) != len(set(actual_urls)):
             failures.append("Publication manifest contains duplicate URLs")
         if any(item.get("portfolio_label") not in {"Data-led", "Authority-expansion", "Exploration"} for item in pages):
@@ -944,7 +946,7 @@ def main() -> int:
             "index.html": ("guides/cannabis-next-day-impairment-evidence-guide/", "guides/cbn-products-label-evidence-guide/", "legal/cannabis-federal-property-rules-guide/", "legal/marijuana-rescheduling-status-november-2026/", "guides/cannabis-social-hosting-guest-safety-plan/", "guides/terpenes/", "gear/cannabis-loupe-pocket-microscope-guide/", "guides/cannabis-cbd-chronic-pain-evidence-guide/", "guides/storage/", "gear/cannabis-accessibility-tools-buying-guide/", "guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/", "strains/baox-hemp/", "gear/cannabis-product-photo-documentation-kit-buying-guide/", "guides/cannabis-tools-calculators-checklists-hub/"),
             "strains/index.html": ("stem-cell-cbg/", "panakeia-beta-hurv19pan/", "cherry-blonde-cbd/", "abacus-cbd-hemp/", "hash-plant/", "henola-hemp/", "baox-hemp/", "arkryder-hemp/", "tjs-cbd-hemp/", "nbs-cbd-1-hemp/", "santiam-hemp/", "bialobrzeskie-hemp/", "131 STRAIN FIELD NOTES", "NO VERIFIED CULTIVAR IMAGE", 'data-cannabinoid-filter="hemp"', 'data-cannabinoid-filter="industrial"'),
             "guides/index.html": ("cannabis-lab-report-detection-quantitation-limits-guide/", "cannabis-memory-attention-cognition-evidence-guide/", "indica-sativa-hybrid-label-evidence-guide/", "cannabis-fertility-preconception-evidence-guide/", "cannabis-product-dates-condition-decision-guide/", "cannabis-shared-kitchen-edible-safety-plan/", "new-york-cannabis-seed-clone-buying-guide/", "cannabis-home-fire-safety-plan/", "cannabis-nicotine-tobacco-co-use-guide/", "cannabis-allergy-symptom-exposure-guide/", "cannabis-next-day-impairment-evidence-guide/", "cannabis-cbd-chronic-pain-evidence-guide/", "cannabis-cbd-cancer-claims-evidence-guide/", "cannabis-menu-package-receipt-match-checklist/", "cannabis-exercise-workout-heat-safety/", "new-york-home-cannabis-pest-mold-ipm-guide/", "new-york-home-cannabis-harvest-drying-curing-log/", "cannabis-cbd-epilepsy-seizure-care-guide/", "cannabis-glaucoma-eye-pressure-vision-guide/", "cbd-patches-transdermal-label-evidence-guide/", "cannabis-package-seal-tamper-evidence-checklist/", "cannabis-dry-mouth-dental-oral-health-guide/", "cannabis-edible-label-math-checker/", "cbg-products-label-evidence-guide/", "cannabis-contaminant-test-results-guide/", "cannabis-child-resistant-packaging-home-storage-guide/", "cannabis-official-source-directory/", "cannabis-gummies-drinks-oils-capsules-comparison/", "cannabis-claim-fact-check-worksheet/", "Store cannabis safely by product type", "Thirty useful paths", "Comparing packaged cannabis flower", 'data-guide-sort', 'data-updated="2026-11-05"', 'data-guide-filter="health"', 'data-guide-filter="workplace"'),
-            "gear/index.html": ("cannabis-replacement-parts-compatibility-guide/", "home-grow-plant-support-trellis-buying-guide/", "cbd-oil-dropper-replacement-bottle-fit-guide/", "cannabis-product-photo-documentation-kit-buying-guide/", "cannabis-drying-rack-buying-guide/", "cannabis-liquid-measuring-tool-buying-guide/", "cannabis-label-magnifier-task-light-buying-guide/", "cannabis-harvest-trimming-scissors-buying-guide/", "home-grow-timer-controller-buying-guide/", "cannabis-rolling-machine-buying-guide/", "home-grow-ph-ec-meter-buying-guide/", "home-grow-temperature-humidity-monitor-buying-guide/", "cannabis-home-testing-kit-buying-guide/", "used-cannabis-accessory-buying-safety-guide/", "cannabis-accessibility-tools-buying-guide/", "smell-proof-storage/", "cannabis-rolling-tray-buying-guide/", "cannabis-rolling-paper-cone-guide/", "digital-scale-buying-calibration-guide/", "cannabis-tool-cleaning-kit/", "indoor-cannabis-grow-light-buying-cost-planner/", "cannabis-gear-comparison-worksheet/", "cannabis-accessory-return-warranty-recall-guide/", "dry-herb-vaporizer-dosing-capsule-guide/", "home-grow-soil-coco-hydro-media-comparison/", "Choose a home testing system", "All 48", "2026-11-26"),
+            "gear/index.html": ("home-grow-tent-room-fit-buying-guide/", "cannabis-replacement-parts-compatibility-guide/", "home-grow-plant-support-trellis-buying-guide/", "cbd-oil-dropper-replacement-bottle-fit-guide/", "cannabis-product-photo-documentation-kit-buying-guide/", "cannabis-drying-rack-buying-guide/", "cannabis-liquid-measuring-tool-buying-guide/", "cannabis-label-magnifier-task-light-buying-guide/", "cannabis-harvest-trimming-scissors-buying-guide/", "home-grow-timer-controller-buying-guide/", "cannabis-rolling-machine-buying-guide/", "home-grow-ph-ec-meter-buying-guide/", "home-grow-temperature-humidity-monitor-buying-guide/", "cannabis-home-testing-kit-buying-guide/", "used-cannabis-accessory-buying-safety-guide/", "cannabis-accessibility-tools-buying-guide/", "smell-proof-storage/", "cannabis-rolling-tray-buying-guide/", "cannabis-rolling-paper-cone-guide/", "digital-scale-buying-calibration-guide/", "cannabis-tool-cleaning-kit/", "indoor-cannabis-grow-light-buying-cost-planner/", "cannabis-gear-comparison-worksheet/", "cannabis-accessory-return-warranty-recall-guide/", "dry-herb-vaporizer-dosing-capsule-guide/", "home-grow-soil-coco-hydro-media-comparison/", "Choose a home testing system", "All 49", "2026-11-27"),
             "guides/read-a-label/index.html": ("Build a date chain", "Preserve a label-to-lot evidence card", "cannabis.ny.gov/part-128-guidance", "cannabis-certificate-of-analysis-coa-guide/", "cannabis-product-recall-batch-checker/"),
             "responsible-use/index.html": ("guides/cannabis-exercise-workout-heat-safety/",),
             "guides/cannabis-exercise-workout-heat-safety/index.html": ("cdc.gov/cannabis/health-effects/brain-health", "cdc.gov/heat-health/risk-factors/heat-and-athletes", "nhtsa.gov/risky-driving/drug-impaired-driving", "2026list_en_final_clean"),
@@ -1167,7 +1169,7 @@ def main() -> int:
             "Kidney-health evidence boundaries",
             "Heated concentrate hardware boundaries",
             "Rental-housing documentation boundaries",
-            "Policy reviewed November 26, 2026",
+            "Policy reviewed November 27, 2026",
         )
         discovery_checks["updates/index.html"] = (
             "guides/cannabis-cbd-kidney-health-safety-guide/",
@@ -1220,7 +1222,7 @@ def main() -> int:
             "Menopause evidence boundaries",
             "Vape end-of-life and conversion boundaries",
             "Daily discovery integration integrity",
-            "Policy reviewed November 26, 2026",
+            "Policy reviewed November 27, 2026",
         )
         discovery_checks["updates/index.html"] = (
             "guides/cannabis-menopause-symptoms-evidence-safety-guide/",
@@ -1249,7 +1251,7 @@ def main() -> int:
         discovery_checks["gear/index.html"] += (
             "cannabis-vape-battery-cartridge-disposal-guide/",
             "Route every vape component",
-            "2026-11-26",
+            "2026-11-27",
         )
         discovery_checks["guides/cannabis-menopause-symptoms-evidence-safety-guide/index.html"] = (
             "Run the eight-part evidence-transfer screen",
@@ -1264,6 +1266,54 @@ def main() -> int:
             "Put end-of-life proof on the checkout screen",
             "Active affiliate links: none",
             "Sources reviewed November 26, 2026",
+        )
+        discovery_checks["editorial-policy/index.html"] += (
+            "Mood-disorder evidence and crisis boundaries",
+            "Home-grow enclosure and commercial boundaries",
+            "Policy reviewed November 27, 2026",
+        )
+        discovery_checks["updates/index.html"] = (
+            "guides/cannabis-depression-bipolar-mood-evidence-safety-guide/",
+            "gear/home-grow-tent-room-fit-buying-guide/",
+            "editorial-policy/",
+            "November 27, 2026",
+        )
+        discovery_checks["site-index/index.html"] = (
+            "guides/cannabis-depression-bipolar-mood-evidence-safety-guide/",
+            "gear/home-grow-tent-room-fit-buying-guide/",
+            "editorial-policy/",
+            "November 27, 2026",
+            "updates/",
+            "data-site-index-filter",
+            "data-site-index-item",
+            "app-20261111.js",
+        )
+        discovery_checks["index.html"] += (
+            "guides/cannabis-depression-bipolar-mood-evidence-safety-guide/",
+            "gear/home-grow-tent-room-fit-buying-guide/",
+        )
+        discovery_checks["guides/index.html"] += (
+            "cannabis-depression-bipolar-mood-evidence-safety-guide/",
+            'data-updated="2026-11-27"',
+        )
+        discovery_checks["gear/index.html"] += (
+            "home-grow-tent-room-fit-buying-guide/",
+            "Choose a home-grow tent system",
+            "2026-11-27",
+        )
+        discovery_checks["guides/cannabis-depression-bipolar-mood-evidence-safety-guide/index.html"] = (
+            "Read the current evidence at its actual strength",
+            "Put the safety route before the evidence debate",
+            "pubmed.ncbi.nlm.nih.gov/41856154",
+            "NIMH: Bipolar Disorder",
+            "No cannabis product, CBD brand, clinic, supplement, mental-health app, seller, coupon, rating, or affiliate link appears",
+        )
+        discovery_checks["gear/home-grow-tent-room-fit-buying-guide/index.html"] = (
+            "Measure the service envelope—not the catalog footprint",
+            "Build the frame and hanging-load map",
+            "Run a product-free dry acceptance test",
+            "No merchant, model, live price, stock, discount, rating, product image, or affiliate link appears",
+            "Sources reviewed November 27, 2026",
         )
         for discovery_page, markers in discovery_checks.items():
             discovery_text = (ROOT / discovery_page).read_text(encoding="utf-8")
@@ -1484,7 +1534,7 @@ def main() -> int:
             failures.append("Editorial policy or Atom feed is missing the feed authorship standard")
         if "Age-gate focus isolation" not in policy:
             failures.append("Editorial policy is missing the age-gate focus-isolation standard")
-        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "Mobile-navigation state integrity" not in policy or "Site-search dialog naming integrity" not in policy or "Guide-finder progression integrity" not in policy or "Fresh static discovery path" not in policy or "Nested 404 route integrity" not in policy or "Collection-control outcome relationship" not in policy or "QR destination and product-evidence boundary" not in policy or "Plant-name and chemical-class boundary" not in policy or "Source-review chronology integrity" not in policy or "Named-product research boundary" not in policy or "External-source transport and relationship integrity" not in policy or "Behavior-change content boundary" not in policy or "Dated source-review freshness gate" not in policy or "Machine-readable coverage and link inventory" not in policy or "content-inventory.json" not in policy or "Emergency-readiness and first-visit boundaries" not in policy or "Live legacy-sitemap parity" not in policy or "Water-activity and retail-form boundaries" not in policy or "Canonical-host fallback" not in policy or "Fast-acting edible claim boundaries" not in policy or "Home-grow system comparison boundaries" not in policy or "Tool and calculator boundaries" not in policy or "Kidney-health evidence boundaries" not in policy or "Heated concentrate hardware boundaries" not in policy or "Rental-housing documentation boundaries" not in policy or "Menopause evidence boundaries" not in policy or "Vape end-of-life and conversion boundaries" not in policy or "Daily discovery integration integrity" not in policy or "November 26, 2026" not in policy:
+        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "Mobile-navigation state integrity" not in policy or "Site-search dialog naming integrity" not in policy or "Guide-finder progression integrity" not in policy or "Fresh static discovery path" not in policy or "Nested 404 route integrity" not in policy or "Collection-control outcome relationship" not in policy or "QR destination and product-evidence boundary" not in policy or "Plant-name and chemical-class boundary" not in policy or "Source-review chronology integrity" not in policy or "Named-product research boundary" not in policy or "External-source transport and relationship integrity" not in policy or "Behavior-change content boundary" not in policy or "Dated source-review freshness gate" not in policy or "Machine-readable coverage and link inventory" not in policy or "content-inventory.json" not in policy or "Emergency-readiness and first-visit boundaries" not in policy or "Live legacy-sitemap parity" not in policy or "Water-activity and retail-form boundaries" not in policy or "Canonical-host fallback" not in policy or "Fast-acting edible claim boundaries" not in policy or "Home-grow system comparison boundaries" not in policy or "Tool and calculator boundaries" not in policy or "Kidney-health evidence boundaries" not in policy or "Heated concentrate hardware boundaries" not in policy or "Rental-housing documentation boundaries" not in policy or "Menopause evidence boundaries" not in policy or "Vape end-of-life and conversion boundaries" not in policy or "Daily discovery integration integrity" not in policy or "Mood-disorder evidence and crisis boundaries" not in policy or "Home-grow enclosure and commercial boundaries" not in policy or "November 27, 2026" not in policy:
             failures.append("Editorial policy is missing the current link and collection-date integrity standards")
         verify_live_source = (REPOSITORY / "tools/verify_live.py").read_text(encoding="utf-8")
         for marker in ("index.php?xml_sitemap=params=", "live legacy sitemap endpoint", "live legacy sitemap parity"):
