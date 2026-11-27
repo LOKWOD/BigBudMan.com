@@ -84,7 +84,7 @@ from content_nov23 import EDITORIAL_POLICY_APPEND as NOV23_POLICY_APPEND, NEW_GE
 from content_nov24 import EDITORIAL_POLICY_APPEND as NOV24_POLICY_APPEND, NEW_GEAR as NOV24_GEAR, NEW_GUIDES as NOV24_GUIDES, PUBLICATION_MANIFEST as NOV24_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV24_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV24_REVIEWED_RELATED_PATHS
 from content_nov25 import EDITORIAL_POLICY_APPEND as NOV25_POLICY_APPEND, NEW_GEAR as NOV25_GEAR, NEW_GUIDES as NOV25_GUIDES, PUBLICATION_MANIFEST as NOV25_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV25_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV25_REVIEWED_RELATED_PATHS
 from content_nov26 import EDITORIAL_POLICY_APPEND as NOV26_POLICY_APPEND, GEAR_OVERRIDES as NOV26_GEAR_OVERRIDES, NEW_GUIDES as NOV26_GUIDES, PUBLICATION_MANIFEST as NOV26_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV26_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV26_REVIEWED_RELATED_PATHS
-from content_nov27 import EDITORIAL_POLICY_APPEND as NOV27_POLICY_APPEND, NEW_GEAR as NOV27_GEAR, NEW_GUIDES as NOV27_GUIDES, PUBLICATION_MANIFEST as NOV27_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV27_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV27_REVIEWED_RELATED_PATHS
+from content_nov27 import EDITORIAL_POLICY_APPEND as NOV27_POLICY_APPEND, NEW_GEAR as NOV27_GEAR, NEW_GUIDES as NOV27_GUIDES, NEW_STRAIN_PAGES as NOV27_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV27_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV27_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV27_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV27_REVIEWED_RELATED_PATHS
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -266,6 +266,8 @@ _nov26_gear = {item["path"]: item for item in NOV26_GEAR_OVERRIDES}
 OTHER_ARTICLES = [_nov26_gear.get(item["path"], item) for item in OTHER_ARTICLES]
 GUIDE_PAGES = GUIDE_PAGES + NOV27_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV27_GEAR
+STRAINS = STRAINS + NOV27_STRAIN_RECORDS
+STRAIN_PAGES = STRAIN_PAGES + NOV27_STRAIN_PAGES
 
 # November 6 connects both new resources from established, intent-matched
 # pages. These are editorial paths, not generic recent-post links, and the
@@ -2025,7 +2027,7 @@ for _item in GUIDE_PAGES + OTHER_ARTICLES:
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in NOV26_REVIEWED_RELATED_PATHS:
         _item["updated"] = "November 26, 2026"
-for _item in GUIDE_PAGES + OTHER_ARTICLES:
+for _item in GUIDE_PAGES + OTHER_ARTICLES + STRAIN_PAGES:
     if _item["path"] in NOV27_REVIEWED_RELATED_PATHS:
         _item["updated"] = "November 27, 2026"
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
@@ -2542,7 +2544,7 @@ def render_guides_hub() -> tuple[Page,str]:
 
 
 def render_strains_hub() -> tuple[Page,str]:
-    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} THC, CBD, CBDV, CBG, hemp, grain/fiber, and mixed-ratio field notes with lineage, batch, and evidence caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the question—not end it.","",updated="November 23, 2026",kind="website")
+    page=Page("strains/index.html",f"{len(STRAINS)} Cannabis Strain Field Notes | Big Bud Man",f"Search {len(STRAINS)} THC, CBD, CBDV, CBG, hemp, grain/fiber, and mixed-ratio field notes with lineage, batch, and evidence caveats.","Strain library","Famous names.<br>Honest caveats.","Strain culture is useful history and terrible quality control. Use the name to begin the question—not end it.","",updated="November 27, 2026",kind="website")
     items=[]
     for strain in sorted(STRAINS, key=lambda item: item["name"].lower()):
       aliases = " ".join(strain.get("aliases", []))

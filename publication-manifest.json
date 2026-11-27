@@ -3,11 +3,11 @@
   "page_count": 3,
   "pages": [
     {
-      "title": "Canonical Sitemap Submission Repair",
-      "url": "https://bigbudman.com/sitemap.xml",
-      "department": "technical",
-      "portfolio_label": "Data-led",
-      "search_intent": "replace stale Search Console discovery state with the current canonical sitemap while preserving the verified legacy mirror and exact URL parity"
+      "title": "Finola Industrial Hemp Cultivar Field Note",
+      "url": "https://bigbudman.com/strains/finola-industrial-hemp/",
+      "department": "strains",
+      "portfolio_label": "Exploration",
+      "search_intent": "verify Finola through official variety identity, seed-lot evidence, licensed production, lot testing, oilseed use, site-year transfer limits, and finished-product records"
     },
     {
       "title": "Cannabis, Depression & Bipolar Evidence Guide",
@@ -31,11 +31,11 @@
   "image_qa": {
     "editorial_placements": 0,
     "affiliate_or_product_images": 0,
-    "note": "The mood evidence asset and grow-tent comparison use original text, evidence tables, records, checklists, and existing interface assets. No patient, cannabis product, grow tent, light, fan, merchant, affiliate, stock, generated, or third-party image was added or changed, so no exact-product mismatch or new licensing ambiguity was introduced."
+    "note": "The Finola field note intentionally withholds a cultivar image because no exact licensed photograph was verified. The mood evidence asset and grow-tent comparison use original text, evidence tables, records, checklists, and existing interface assets. No cultivar, patient, cannabis product, grow tent, light, fan, merchant, affiliate, stock, generated, or third-party image was added or changed, so no exact-product mismatch or new licensing ambiguity was introduced."
   },
   "search_console": {
     "report_date": "2026-11-25",
-    "decision": "The October 26\u2013November 22 report is two days old and valid: 796 impressions, four clicks, 0.503% CTR, and average position 18.966. Yesterday already used the 19-impression vape-disposal page at position 8.895, so the signal was not reused. The canonical sitemap remained pending with one error from a May 2023 submission and the legacy WordPress endpoint retained two errors from an October 2023 submission, making canonical sitemap resubmission and status cleanup the only Data-led action. The two-impression \u2018510 vs disposable\u2019 query, single-impression health rows, Blue Dream positions around 49\u201355, home/about/contact navigational rows, and Arkansas/Delaware state pages were ignored as too weak, already reinforced, navigational, out of range, or reserved for the weekly legal review."
+    "decision": "The October 26\u2013November 22 report is two days old and valid: 796 impressions, four clicks, 0.503% CTR, and average position 18.966. Yesterday already used the 19-impression vape-disposal page at position 8.895, so the signal was not reused. The canonical sitemap remained pending with one error from a May 2023 submission and the legacy WordPress endpoint retained two errors from an October 2023 submission, making canonical sitemap resubmission and status cleanup the only Data-led action; it is a technical authority action, not one of the three editorial pages. The two-impression \u2018510 vs disposable\u2019 query, single-impression health rows, Blue Dream positions around 49\u201355, home/about/contact navigational rows, and Arkansas/Delaware state pages were ignored as too weak, already reinforced, navigational, out of range, or reserved for the weekly legal review."
   },
   "authority": {
     "action": "Published a citation-ready cannabis, depression, and bipolar evidence asset that maps two 2026 treatment reviews, a 2024 mood-disorder review, a 2025 longitudinal depression meta-analysis, CDC risk context, NIMH bipolar terminology, SAMHSA crisis routes, and FDA interaction boundaries to explicit transfer limits. Reciprocal links strengthen the health-evidence, anxiety/psychosis, medicine-interaction, withdrawal, and clinician-conversation cluster. Logged NAMI New York State as one qualified correction/resource opportunity for this exact asset; no outreach was sent."
@@ -44,6 +44,8 @@
     "https://bigbudman.com/": "2026-11-27",
     "https://bigbudman.com/guides/": "2026-11-27",
     "https://bigbudman.com/gear/": "2026-11-27",
+    "https://bigbudman.com/strains/": "2026-11-27",
+    "https://bigbudman.com/strains/finola-industrial-hemp/": "2026-11-27",
     "https://bigbudman.com/guides/cannabis-depression-bipolar-mood-evidence-safety-guide/": "2026-11-27",
     "https://bigbudman.com/gear/home-grow-tent-room-fit-buying-guide/": "2026-11-27",
     "https://bigbudman.com/guides/cannabis-health-evidence-library/": "2026-11-27",
@@ -56,15 +58,20 @@
     "https://bigbudman.com/gear/home-grow-ventilation-fan-buying-guide/": "2026-11-27",
     "https://bigbudman.com/gear/home-grow-temperature-humidity-monitor-buying-guide/": "2026-11-27",
     "https://bigbudman.com/gear/home-grow-dehumidifier-buying-guide/": "2026-11-27",
+    "https://bigbudman.com/guides/hemp-seed-oil-vs-cbd-oil/": "2026-11-27",
+    "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/": "2026-11-27",
+    "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/": "2026-11-27",
+    "https://bigbudman.com/strains/henola-hemp/": "2026-11-27",
     "https://bigbudman.com/editorial-policy/": "2026-11-27",
     "https://bigbudman.com/updates/": "2026-11-27",
     "https://bigbudman.com/site-index/": "2026-11-27"
   },
   "surfaces": [
     "canonical XML sitemap resubmission target, verified legacy mirror, robots declaration, and exact inventory parity",
+    "Finola official-record map, cultivar-to-seed-to-crop-to-sample-to-product chain, Canada and U.S. rule routes, oilseed-versus-CBD boundary, trial-transfer screen, and verification card",
     "mood question map, 2024\u20132026 evidence synthesis, symptom lanes, crisis routes, product-and-medicine timeline, treatment boundary, claim screen, and medical sources",
     "grow-tent system choice, service-envelope worksheet, frame-load map, air and moisture plan, electrical boundary, comparison table, full-system cost, and dry acceptance test",
-    "reciprocal health, medicine, withdrawal, clinician, grow-planning, light, ventilation, monitoring, and dehumidification links",
-    "homepage, guide and gear hubs, editorial policy, updates, complete site index, Atom feed, search index, canonical and legacy XML sitemaps, robots declaration, content inventory, source archive, and publication gates"
+    "reciprocal hemp identity, seed-oil, CoA, health, medicine, withdrawal, clinician, grow-planning, light, ventilation, monitoring, and dehumidification links",
+    "homepage, strain, guide and gear hubs, editorial policy, updates, complete site index, Atom feed, search index, canonical and legacy XML sitemaps, robots declaration, content inventory, source archive, and publication gates"
   ]
 }

@@ -1,7 +1,7 @@
 {
   "generated": "2026-11-27",
   "scope": "Every indexable canonical BigBudMan.com page. Links are unique internal destinations inside main content; global header and footer navigation are excluded.",
-  "page_count": 366,
+  "page_count": 367,
   "pages": [
     {
       "url": "https://bigbudman.com/",
@@ -2117,7 +2117,7 @@
       "core_angle": "Match a cannabis package to its certificate of analysis and read potency, units, reporting limits, contaminant panels, status, and report dates.",
       "department": "guides",
       "published": "2026-09-19",
-      "updated": "2026-11-22",
+      "updated": "2026-11-27",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/gear/cannabis-home-testing-kit-buying-guide/",
@@ -2156,6 +2156,7 @@
         "https://bigbudman.com/strains/baox-hemp/",
         "https://bigbudman.com/strains/blue-dream/",
         "https://bigbudman.com/strains/cherry-blonde-cbd/",
+        "https://bigbudman.com/strains/finola-industrial-hemp/",
         "https://bigbudman.com/strains/hash-plant/",
         "https://bigbudman.com/strains/nbs-cbd-1-hemp/",
         "https://bigbudman.com/strains/santiam-hemp/",
@@ -2172,10 +2173,10 @@
         "https://bigbudman.com/guides/read-a-label/",
         "https://bigbudman.com/guides/thca-vs-thc-cannabis-labels/",
         "https://bigbudman.com/legal/shop-legal/",
+        "https://bigbudman.com/strains/finola-industrial-hemp/",
         "https://bigbudman.com/strains/nbs-cbd-1-hemp/",
         "https://bigbudman.com/strains/santiam-hemp/",
-        "https://bigbudman.com/strains/the-wife-cbd-hemp/",
-        "https://bigbudman.com/strains/tjs-cbd-hemp/"
+        "https://bigbudman.com/strains/the-wife-cbd-hemp/"
       ]
     },
     {
@@ -3730,7 +3731,7 @@
       "core_angle": "Translate cannabis strain, cultivar, variety, accession, chemotype, chemovar, batch, lot, and product into the evidence each term can and cannot carry.",
       "department": "guides",
       "published": "2026-11-16",
-      "updated": "2026-11-23",
+      "updated": "2026-11-27",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/",
@@ -3742,6 +3743,7 @@
         "https://bigbudman.com/strains/baox-hemp/",
         "https://bigbudman.com/strains/bialobrzeskie-hemp/",
         "https://bigbudman.com/strains/blue-dream/",
+        "https://bigbudman.com/strains/finola-industrial-hemp/",
         "https://bigbudman.com/strains/nbs-cbd-1-hemp/",
         "https://bigbudman.com/strains/the-wife-cbd-hemp/",
         "https://bigbudman.com/strains/tjs-cbd-hemp/",
@@ -3750,7 +3752,7 @@
       "contextual_outlinks": [
         "https://bigbudman.com/strains/baox-hemp/",
         "https://bigbudman.com/strains/bialobrzeskie-hemp/",
-        "https://bigbudman.com/strains/nbs-cbd-1-hemp/",
+        "https://bigbudman.com/strains/finola-industrial-hemp/",
         "https://bigbudman.com/strains/santiam-hemp/",
         "https://bigbudman.com/strains/the-wife-cbd-hemp/"
       ]
@@ -4413,11 +4415,12 @@
       "core_angle": "Tell hemp seed oil from CBD oil by the ingredient list, cannabinoid amount, plant part, lot evidence, claims, intended use, and legal context.",
       "department": "guides",
       "published": "2026-09-18",
-      "updated": "2026-09-18",
+      "updated": "2026-11-27",
       "contextual_inlinks": [
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cbd-capsules-softgels-label-buying-guide/",
         "https://bigbudman.com/site-index/",
+        "https://bigbudman.com/strains/finola-industrial-hemp/",
         "https://bigbudman.com/updates/"
       ],
       "contextual_outlinks": [
@@ -4425,7 +4428,8 @@
         "https://bigbudman.com/guides/cbd-oil-tincture-label-buying-guide/",
         "https://bigbudman.com/guides/full-spectrum-broad-spectrum-cbd-isolate/",
         "https://bigbudman.com/guides/read-a-label/",
-        "https://bigbudman.com/guides/storage/"
+        "https://bigbudman.com/guides/storage/",
+        "https://bigbudman.com/strains/finola-industrial-hemp/"
       ]
     },
     {
@@ -6706,6 +6710,7 @@
         "https://bigbudman.com/strains/do-si-dos/",
         "https://bigbudman.com/strains/durban-poison/",
         "https://bigbudman.com/strains/elektra/",
+        "https://bigbudman.com/strains/finola-industrial-hemp/",
         "https://bigbudman.com/strains/fire-og/",
         "https://bigbudman.com/strains/forbidden-fruit/",
         "https://bigbudman.com/strains/forbidden-v-seedless/",
@@ -6829,12 +6834,12 @@
     {
       "url": "https://bigbudman.com/strains/",
       "slug": "strains",
-      "title": "131 Cannabis Strain Field Notes",
+      "title": "132 Cannabis Strain Field Notes",
       "topic": "Strain library",
-      "core_angle": "Search 131 THC, CBD, CBDV, CBG, hemp, grain/fiber, and mixed-ratio field notes with lineage, batch, and evidence caveats.",
+      "core_angle": "Search 132 THC, CBD, CBDV, CBG, hemp, grain/fiber, and mixed-ratio field notes with lineage, batch, and evidence caveats.",
       "department": "strains",
       "published": "2026-08-17",
-      "updated": "2026-11-23",
+      "updated": "2026-11-27",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/",
@@ -6882,6 +6887,7 @@
         "https://bigbudman.com/strains/do-si-dos/",
         "https://bigbudman.com/strains/durban-poison/",
         "https://bigbudman.com/strains/elektra/",
+        "https://bigbudman.com/strains/finola-industrial-hemp/",
         "https://bigbudman.com/strains/fire-og/",
         "https://bigbudman.com/strains/forbidden-fruit/",
         "https://bigbudman.com/strains/forbidden-v-seedless/",
@@ -7831,6 +7837,30 @@
       ]
     },
     {
+      "url": "https://bigbudman.com/strains/finola-industrial-hemp/",
+      "slug": "strains/finola-industrial-hemp",
+      "title": "Finola Industrial Hemp Cultivar Field Note",
+      "topic": "Industrial oilseed hemp cultivar field note",
+      "core_angle": "Finola hemp field note: verify official variety identity, seed lot, licensed production, total-THC testing, oilseed use, and product claims.",
+      "department": "strains",
+      "published": "2026-11-27",
+      "updated": "2026-11-27",
+      "contextual_inlinks": [
+        "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
+        "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/",
+        "https://bigbudman.com/guides/hemp-seed-oil-vs-cbd-oil/",
+        "https://bigbudman.com/site-index/",
+        "https://bigbudman.com/strains/",
+        "https://bigbudman.com/updates/"
+      ],
+      "contextual_outlinks": [
+        "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
+        "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/",
+        "https://bigbudman.com/guides/hemp-seed-oil-vs-cbd-oil/",
+        "https://bigbudman.com/strains/henola-hemp/"
+      ]
+    },
+    {
       "url": "https://bigbudman.com/strains/fire-og/",
       "slug": "strains/fire-og",
       "title": "Fire OG Strain Guide",
@@ -8199,12 +8229,13 @@
       "core_angle": "Henola hemp field note: USDA cultivar identity, grain and oilseed purpose, trial evidence, seed provenance, testing, and legal boundaries.",
       "department": "strains",
       "published": "2026-11-15",
-      "updated": "2026-11-15",
+      "updated": "2026-11-27",
       "contextual_inlinks": [
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/strains/",
         "https://bigbudman.com/strains/baox-hemp/",
         "https://bigbudman.com/strains/bialobrzeskie-hemp/",
+        "https://bigbudman.com/strains/finola-industrial-hemp/",
         "https://bigbudman.com/strains/panakeia-beta-hurv19pan/",
         "https://bigbudman.com/updates/"
       ],
@@ -8584,7 +8615,6 @@
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
-        "https://bigbudman.com/guides/cannabis-strain-cultivar-chemotype-chemovar-lot-guide/",
         "https://bigbudman.com/guides/cbd-hemp-flower-label-legal-guide/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/strains/",
@@ -9628,7 +9658,6 @@
       "updated": "2026-11-18",
       "contextual_inlinks": [
         "https://bigbudman.com/",
-        "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/strains/",
         "https://bigbudman.com/updates/"
@@ -10021,6 +10050,7 @@
         "https://bigbudman.com/strains/chemberry/",
         "https://bigbudman.com/strains/cherry-blonde-cbd/",
         "https://bigbudman.com/strains/cherry-wine/",
+        "https://bigbudman.com/strains/finola-industrial-hemp/",
         "https://bigbudman.com/strains/forbidden-v-seedless/",
         "https://bigbudman.com/strains/hash-plant/",
         "https://bigbudman.com/strains/henola-hemp/",
