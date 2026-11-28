@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-27",
+  "generated": "2026-11-28",
   "scope": "Every indexable canonical BigBudMan.com page. Links are unique internal destinations inside main content; global header and footer navigation are excluded.",
-  "page_count": 367,
+  "page_count": 369,
   "pages": [
     {
       "url": "https://bigbudman.com/",
@@ -11,7 +11,7 @@
       "core_angle": "Independent cannabis guides for adults 21+: strains, edibles, labels, gear, responsible use, and reviewed legal starting points for all 50 states.",
       "department": "home",
       "published": "2026-08-17",
-      "updated": "2026-11-27",
+      "updated": "2026-11-28",
       "contextual_inlinks": [
         "https://bigbudman.com/site-index/"
       ],
@@ -159,7 +159,7 @@
       "core_angle": "How Big Bud Man researches, writes, reviews, updates, corrects, and monetizes independent legal-cannabis education.",
       "department": "editorial-policy",
       "published": "2026-08-17",
-      "updated": "2026-11-27",
+      "updated": "2026-11-28",
       "contextual_inlinks": [
         "https://bigbudman.com/about/",
         "https://bigbudman.com/site-index/"
@@ -241,12 +241,13 @@
       "core_angle": "Check 510 vape battery compatibility, voltage, charging, lockouts, damage, recalls, storage, and recycling with a printable hardware record.",
       "department": "gear",
       "published": "2026-08-17",
-      "updated": "2026-11-11",
+      "updated": "2026-11-28",
       "contextual_inlinks": [
         "https://bigbudman.com/gear/",
         "https://bigbudman.com/gear/cannabis-lighter-flame-safety-guide/",
         "https://bigbudman.com/gear/cannabis-vape-battery-cartridge-disposal-guide/",
         "https://bigbudman.com/gear/used-cannabis-accessory-buying-safety-guide/",
+        "https://bigbudman.com/guides/cannabis-cold-weather-storage-transport-checklist/",
         "https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/",
         "https://bigbudman.com/guides/disposable-vape-vs-510-cartridge-comparison/",
         "https://bigbudman.com/guides/vapes/",
@@ -255,9 +256,9 @@
         "https://bigbudman.com/updates/"
       ],
       "contextual_outlinks": [
-        "https://bigbudman.com/gear/cannabis-accessory-return-warranty-recall-guide/",
         "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/",
         "https://bigbudman.com/gear/cannabis-tool-cleaning-kit/",
+        "https://bigbudman.com/guides/cannabis-cold-weather-storage-transport-checklist/",
         "https://bigbudman.com/guides/cannabis-home-fire-safety-plan/",
         "https://bigbudman.com/guides/storage/",
         "https://bigbudman.com/guides/vapes/"
@@ -329,7 +330,6 @@
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/gear/",
-        "https://bigbudman.com/gear/510-thread-vape-battery-safety/",
         "https://bigbudman.com/gear/cannabis-erig-enail-buying-safety-guide/",
         "https://bigbudman.com/gear/cannabis-replacement-parts-compatibility-guide/",
         "https://bigbudman.com/gear/cannabis-rosin-press-buying-safety-guide/",
@@ -493,7 +493,6 @@
         "https://bigbudman.com/gear/cannabis-humidity-pack-hygrometer-guide/",
         "https://bigbudman.com/gear/cannabis-infusion-appliance-buying-guide/",
         "https://bigbudman.com/gear/cannabis-lighter-flame-safety-guide/",
-        "https://bigbudman.com/gear/cannabis-lockbox-buying-guide/",
         "https://bigbudman.com/gear/cannabis-loupe-pocket-microscope-guide/",
         "https://bigbudman.com/gear/cannabis-pre-roll-tube-case-buying-guide/",
         "https://bigbudman.com/gear/cannabis-product-photo-documentation-kit-buying-guide/",
@@ -744,20 +743,20 @@
       "core_angle": "Compare a cannabis lockbox by users, contents, lock behavior, access, portability, mounting, evidence, recalls, return terms, and first-year cost.",
       "department": "gear",
       "published": "2026-11-08",
-      "updated": "2026-11-14",
+      "updated": "2026-11-28",
       "contextual_inlinks": [
         "https://bigbudman.com/gear/",
         "https://bigbudman.com/gear/smell-proof-storage/",
         "https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/",
+        "https://bigbudman.com/guides/cannabis-cold-weather-storage-transport-checklist/",
         "https://bigbudman.com/guides/storage/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
       ],
       "contextual_outlinks": [
-        "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/",
         "https://bigbudman.com/gear/cannabis-stash-jar-buying-guide/",
         "https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/",
-        "https://bigbudman.com/guides/cannabis-seed-storage-record-guide/",
+        "https://bigbudman.com/guides/cannabis-cold-weather-storage-transport-checklist/",
         "https://bigbudman.com/guides/storage/"
       ]
     },
@@ -1066,12 +1065,13 @@
       "core_angle": "Use a format-specific cannabis vape disposal matrix for batteries, devices, cartridges, residue, damage, recalls, local acceptance, and the next purchase.",
       "department": "gear",
       "published": "2026-09-22",
-      "updated": "2026-11-26",
+      "updated": "2026-11-28",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/gear/",
         "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/",
         "https://bigbudman.com/gear/cannabis-replacement-parts-compatibility-guide/",
+        "https://bigbudman.com/guides/cannabis-cold-weather-storage-transport-checklist/",
         "https://bigbudman.com/guides/cannabis-product-disposal-decision-guide/",
         "https://bigbudman.com/guides/cannabis-smoke-vape-lung-health-guide/",
         "https://bigbudman.com/guides/disposable-vape-vs-510-cartridge-comparison/",
@@ -1084,6 +1084,7 @@
         "https://bigbudman.com/gear/cannabis-accessory-return-warranty-recall-guide/",
         "https://bigbudman.com/gear/cannabis-device-charger-cable-buying-guide/",
         "https://bigbudman.com/gear/cannabis-gear-comparison-worksheet/",
+        "https://bigbudman.com/guides/cannabis-cold-weather-storage-transport-checklist/",
         "https://bigbudman.com/guides/disposable-vape-vs-510-cartridge-comparison/",
         "https://bigbudman.com/guides/vapes/"
       ]
@@ -1527,7 +1528,7 @@
       "core_angle": "Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.",
       "department": "guides",
       "published": "2026-08-17",
-      "updated": "2026-11-27",
+      "updated": "2026-11-28",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/site-index/"
@@ -1553,6 +1554,7 @@
         "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
         "https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/",
         "https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/",
+        "https://bigbudman.com/guides/cannabis-cold-weather-storage-transport-checklist/",
         "https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/",
         "https://bigbudman.com/guides/cannabis-contaminant-test-results-guide/",
         "https://bigbudman.com/guides/cannabis-cut-down-quit-support-plan/",
@@ -1582,6 +1584,7 @@
         "https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/",
         "https://bigbudman.com/guides/cannabis-migraine-headache-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/",
+        "https://bigbudman.com/guides/cannabis-nausea-appetite-digestive-symptoms-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-next-day-impairment-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-nicotine-tobacco-co-use-guide/",
         "https://bigbudman.com/guides/cannabis-official-source-directory/",
@@ -1660,19 +1663,20 @@
       "core_angle": "Cannabinoid hyperemesis syndrome warning signs, emergency red flags, evidence limits, hot-water risks, clinical evaluation, cessation, and follow-up.",
       "department": "guides",
       "published": "2026-09-19",
-      "updated": "2026-11-10",
+      "updated": "2026-11-28",
       "contextual_inlinks": [
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-cbd-kidney-health-safety-guide/",
         "https://bigbudman.com/guides/cannabis-diabetes-blood-sugar-dka-safety/",
+        "https://bigbudman.com/guides/cannabis-nausea-appetite-digestive-symptoms-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/",
         "https://bigbudman.com/responsible-use/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
       ],
       "contextual_outlinks": [
-        "https://bigbudman.com/guides/cannabis-cbd-medication-interactions/",
         "https://bigbudman.com/guides/cannabis-diabetes-blood-sugar-dka-safety/",
+        "https://bigbudman.com/guides/cannabis-nausea-appetite-digestive-symptoms-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-tolerance-dependence-withdrawal/",
         "https://bigbudman.com/guides/read-a-label/",
         "https://bigbudman.com/responsible-use/"
@@ -2060,11 +2064,10 @@
       "core_angle": "Build a pharmacist-ready cannabis and CBD interaction record with the exact product, medicine list, timing, symptoms, monitoring, and follow-up.",
       "department": "guides",
       "published": "2026-08-17",
-      "updated": "2026-11-27",
+      "updated": "2026-11-28",
       "contextual_inlinks": [
         "https://bigbudman.com/gear/cbd-oil-dropper-replacement-bottle-fit-guide/",
         "https://bigbudman.com/guides/",
-        "https://bigbudman.com/guides/cannabinoid-hyperemesis-syndrome-warning-signs/",
         "https://bigbudman.com/guides/cannabis-and-alcohol-mixing-risks/",
         "https://bigbudman.com/guides/cannabis-blood-donation-eligibility-guide/",
         "https://bigbudman.com/guides/cannabis-cbd-and-sleep/",
@@ -2083,6 +2086,7 @@
         "https://bigbudman.com/guides/cannabis-heart-rate-blood-pressure-safety/",
         "https://bigbudman.com/guides/cannabis-menopause-symptoms-evidence-safety-guide/",
         "https://bigbudman.com/guides/cannabis-migraine-headache-evidence-guide/",
+        "https://bigbudman.com/guides/cannabis-nausea-appetite-digestive-symptoms-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-older-adults-medication-fall-safety/",
         "https://bigbudman.com/guides/cannabis-pregnancy-breastfeeding-guidance/",
         "https://bigbudman.com/guides/cannabis-ptsd-evidence-safety-guide/",
@@ -2106,6 +2110,7 @@
         "https://bigbudman.com/guides/cannabis-depression-bipolar-mood-evidence-safety-guide/",
         "https://bigbudman.com/guides/cannabis-diabetes-blood-sugar-dka-safety/",
         "https://bigbudman.com/guides/cannabis-menopause-symptoms-evidence-safety-guide/",
+        "https://bigbudman.com/guides/cannabis-nausea-appetite-digestive-symptoms-evidence-guide/",
         "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/"
       ]
     },
@@ -2236,6 +2241,32 @@
         "https://bigbudman.com/guides/cannabis-research-study-reading-checklist/",
         "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/legal/shop-legal/"
+      ]
+    },
+    {
+      "url": "https://bigbudman.com/guides/cannabis-cold-weather-storage-transport-checklist/",
+      "slug": "guides/cannabis-cold-weather-storage-transport-checklist",
+      "title": "Cold-Weather Cannabis Storage Checklist",
+      "topic": "Cold-weather cannabis storage and transport checklist",
+      "core_angle": "Plan lawful cold-weather cannabis transport with original packaging, locked storage, a condensation check, battery warm-up, and damage screening.",
+      "department": "guides",
+      "published": "2026-11-28",
+      "updated": "2026-11-28",
+      "contextual_inlinks": [
+        "https://bigbudman.com/gear/510-thread-vape-battery-safety/",
+        "https://bigbudman.com/gear/cannabis-lockbox-buying-guide/",
+        "https://bigbudman.com/gear/cannabis-vape-battery-cartridge-disposal-guide/",
+        "https://bigbudman.com/guides/",
+        "https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/",
+        "https://bigbudman.com/guides/storage/",
+        "https://bigbudman.com/site-index/",
+        "https://bigbudman.com/updates/"
+      ],
+      "contextual_outlinks": [
+        "https://bigbudman.com/gear/510-thread-vape-battery-safety/",
+        "https://bigbudman.com/gear/cannabis-lockbox-buying-guide/",
+        "https://bigbudman.com/gear/cannabis-vape-battery-cartridge-disposal-guide/",
+        "https://bigbudman.com/guides/storage/"
       ]
     },
     {
@@ -2741,13 +2772,14 @@
       "core_angle": "Route a cannabis health question to the right evidence lane, official source, safety gate, product record, and clinician conversation.",
       "department": "guides",
       "published": "2026-11-19",
-      "updated": "2026-11-27",
+      "updated": "2026-11-28",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/",
         "https://bigbudman.com/guides/cannabis-depression-bipolar-mood-evidence-safety-guide/",
         "https://bigbudman.com/guides/cannabis-menopause-symptoms-evidence-safety-guide/",
+        "https://bigbudman.com/guides/cannabis-nausea-appetite-digestive-symptoms-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-official-source-directory/",
         "https://bigbudman.com/guides/cannabis-research-study-reading-checklist/",
         "https://bigbudman.com/site-index/",
@@ -2759,7 +2791,7 @@
         "https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/",
         "https://bigbudman.com/guides/cannabis-depression-bipolar-mood-evidence-safety-guide/",
         "https://bigbudman.com/guides/cannabis-menopause-symptoms-evidence-safety-guide/",
-        "https://bigbudman.com/guides/cannabis-research-study-reading-checklist/",
+        "https://bigbudman.com/guides/cannabis-nausea-appetite-digestive-symptoms-evidence-guide/",
         "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/",
         "https://bigbudman.com/site-index/"
       ]
@@ -2977,7 +3009,7 @@
       "core_angle": "Plan a cannabis move without hiding jurisdiction changes, state-line travel, movers, vehicles, batteries, storage, disposal, or the arrival handoff.",
       "department": "guides",
       "published": "2026-11-09",
-      "updated": "2026-11-22",
+      "updated": "2026-11-28",
       "contextual_inlinks": [
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-official-source-directory/",
@@ -2988,10 +3020,35 @@
         "https://bigbudman.com/updates/"
       ],
       "contextual_outlinks": [
+        "https://bigbudman.com/guides/cannabis-cold-weather-storage-transport-checklist/",
         "https://bigbudman.com/guides/cannabis-official-source-directory/",
         "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/",
-        "https://bigbudman.com/guides/cannabis-product-disposal-decision-guide/",
-        "https://bigbudman.com/guides/storage/"
+        "https://bigbudman.com/guides/cannabis-product-disposal-decision-guide/"
+      ]
+    },
+    {
+      "url": "https://bigbudman.com/guides/cannabis-nausea-appetite-digestive-symptoms-evidence-guide/",
+      "slug": "guides/cannabis-nausea-appetite-digestive-symptoms-evidence-guide",
+      "title": "Digestive Symptoms & Cannabis Evidence Guide",
+      "topic": "Cannabis, nausea, appetite and digestive-symptom evidence guide",
+      "core_angle": "Separate prescription cannabinoids from retail cannabis, map nausea and appetite symptoms, spot CHS and dehydration, and prepare a clinician timeline.",
+      "department": "guides",
+      "published": "2026-11-28",
+      "updated": "2026-11-28",
+      "contextual_inlinks": [
+        "https://bigbudman.com/guides/",
+        "https://bigbudman.com/guides/cannabinoid-hyperemesis-syndrome-warning-signs/",
+        "https://bigbudman.com/guides/cannabis-cbd-medication-interactions/",
+        "https://bigbudman.com/guides/cannabis-health-evidence-library/",
+        "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/",
+        "https://bigbudman.com/site-index/",
+        "https://bigbudman.com/updates/"
+      ],
+      "contextual_outlinks": [
+        "https://bigbudman.com/guides/cannabinoid-hyperemesis-syndrome-warning-signs/",
+        "https://bigbudman.com/guides/cannabis-cbd-medication-interactions/",
+        "https://bigbudman.com/guides/cannabis-health-evidence-library/",
+        "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/"
       ]
     },
     {
@@ -3442,7 +3499,6 @@
         "https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/",
         "https://bigbudman.com/guides/cannabis-product-complaint-adverse-event-reporting/",
         "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
-        "https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/",
         "https://bigbudman.com/site-index/",
         "https://bigbudman.com/updates/"
       ],
@@ -3543,7 +3599,6 @@
         "https://bigbudman.com/",
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/",
-        "https://bigbudman.com/guides/cannabis-health-evidence-library/",
         "https://bigbudman.com/guides/cannabis-official-source-directory/",
         "https://bigbudman.com/guides/cannabis-tools-calculators-checklists-hub/",
         "https://bigbudman.com/site-index/",
@@ -3566,7 +3621,6 @@
       "published": "2026-11-14",
       "updated": "2026-11-23",
       "contextual_inlinks": [
-        "https://bigbudman.com/gear/cannabis-lockbox-buying-guide/",
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/new-york-cannabis-seed-clone-buying-guide/",
         "https://bigbudman.com/site-index/",
@@ -4440,7 +4494,7 @@
       "core_angle": "Prepare a useful cannabis record for a doctor or pharmacist: exact product, route, timing, medicines, symptoms, questions, and follow-up plan.",
       "department": "guides",
       "published": "2026-10-27",
-      "updated": "2026-11-27",
+      "updated": "2026-11-28",
       "contextual_inlinks": [
         "https://bigbudman.com/guides/",
         "https://bigbudman.com/guides/cannabis-allergy-symptom-exposure-guide/",
@@ -4453,6 +4507,7 @@
         "https://bigbudman.com/guides/cannabis-health-evidence-library/",
         "https://bigbudman.com/guides/cannabis-menopause-symptoms-evidence-safety-guide/",
         "https://bigbudman.com/guides/cannabis-migraine-headache-evidence-guide/",
+        "https://bigbudman.com/guides/cannabis-nausea-appetite-digestive-symptoms-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-nicotine-tobacco-co-use-guide/",
         "https://bigbudman.com/guides/cannabis-older-adults-medication-fall-safety/",
         "https://bigbudman.com/guides/cannabis-product-response-experience-log/",
@@ -4467,7 +4522,7 @@
         "https://bigbudman.com/guides/cannabis-cbd-kidney-health-safety-guide/",
         "https://bigbudman.com/guides/cannabis-depression-bipolar-mood-evidence-safety-guide/",
         "https://bigbudman.com/guides/cannabis-menopause-symptoms-evidence-safety-guide/",
-        "https://bigbudman.com/guides/cannabis-product-response-experience-log/"
+        "https://bigbudman.com/guides/cannabis-nausea-appetite-digestive-symptoms-evidence-guide/"
       ]
     },
     {
@@ -4887,7 +4942,7 @@
       "core_angle": "Store flower, edibles, drinks, oils, vapes, concentrates, and topicals using original packaging, locked access, condition checks, and a lot record.",
       "department": "guides",
       "published": "2026-08-17",
-      "updated": "2026-11-23",
+      "updated": "2026-11-28",
       "contextual_inlinks": [
         "https://bigbudman.com/",
         "https://bigbudman.com/gear/510-thread-vape-battery-safety/",
@@ -4903,8 +4958,8 @@
         "https://bigbudman.com/guides/cannabis-and-pets-accidental-exposure/",
         "https://bigbudman.com/guides/cannabis-beverages-label-timing-buying-guide/",
         "https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/",
+        "https://bigbudman.com/guides/cannabis-cold-weather-storage-transport-checklist/",
         "https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/",
-        "https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/",
         "https://bigbudman.com/guides/cannabis-overconsumption-poisoning-response/",
         "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/",
         "https://bigbudman.com/guides/cannabis-pregnancy-breastfeeding-guidance/",
@@ -4929,6 +4984,7 @@
         "https://bigbudman.com/gear/cannabis-stash-jar-buying-guide/",
         "https://bigbudman.com/gear/smell-proof-storage/",
         "https://bigbudman.com/guides/cannabis-and-pets-accidental-exposure/",
+        "https://bigbudman.com/guides/cannabis-cold-weather-storage-transport-checklist/",
         "https://bigbudman.com/guides/cannabis-power-outage-evacuation-safety-plan/",
         "https://bigbudman.com/guides/cannabis-product-dates-condition-decision-guide/",
         "https://bigbudman.com/guides/cannabis-shared-kitchen-edible-safety-plan/",
@@ -6434,7 +6490,7 @@
       "core_angle": "Browse every indexable Big Bud Man guide, strain field note, gear page, legal resource, and publication page with visible review dates.",
       "department": "site-index",
       "published": "2026-08-17",
-      "updated": "2026-11-27",
+      "updated": "2026-11-28",
       "contextual_inlinks": [
         "https://bigbudman.com/guides/cannabis-health-evidence-library/"
       ],
@@ -6515,6 +6571,7 @@
         "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
         "https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/",
         "https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/",
+        "https://bigbudman.com/guides/cannabis-cold-weather-storage-transport-checklist/",
         "https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/",
         "https://bigbudman.com/guides/cannabis-contaminant-test-results-guide/",
         "https://bigbudman.com/guides/cannabis-cut-down-quit-support-plan/",
@@ -6544,6 +6601,7 @@
         "https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/",
         "https://bigbudman.com/guides/cannabis-migraine-headache-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/",
+        "https://bigbudman.com/guides/cannabis-nausea-appetite-digestive-symptoms-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-next-day-impairment-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-nicotine-tobacco-co-use-guide/",
         "https://bigbudman.com/guides/cannabis-official-source-directory/",
@@ -9862,7 +9920,7 @@
       "core_angle": "See newly published and materially reviewed Big Bud Man guides, gear resources, legal explainers, and collection updates in date order.",
       "department": "updates",
       "published": "2026-08-17",
-      "updated": "2026-11-27",
+      "updated": "2026-11-28",
       "contextual_inlinks": [
         "https://bigbudman.com/site-index/"
       ],
@@ -9936,6 +9994,7 @@
         "https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/",
         "https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/",
         "https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/",
+        "https://bigbudman.com/guides/cannabis-cold-weather-storage-transport-checklist/",
         "https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/",
         "https://bigbudman.com/guides/cannabis-contaminant-test-results-guide/",
         "https://bigbudman.com/guides/cannabis-cut-down-quit-support-plan/",
@@ -9965,6 +10024,7 @@
         "https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/",
         "https://bigbudman.com/guides/cannabis-migraine-headache-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/",
+        "https://bigbudman.com/guides/cannabis-nausea-appetite-digestive-symptoms-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-next-day-impairment-evidence-guide/",
         "https://bigbudman.com/guides/cannabis-nicotine-tobacco-co-use-guide/",
         "https://bigbudman.com/guides/cannabis-official-source-directory/",

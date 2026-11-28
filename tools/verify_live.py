@@ -125,6 +125,8 @@ def verify_once(base_url: str, timeout: int) -> str:
         if not canonical_match or canonical_match.group(1) != expected_canonical:
             actual = canonical_match.group(1) if canonical_match else "missing"
             raise RuntimeError(f"{url}: canonical mismatch ({actual!r})")
+        if '<script data-https-upgrade>if(location.protocol==="http:")' not in html:
+            raise RuntimeError(f"{url}: same-host HTTP-to-HTTPS browser fallback is missing")
         if expected_date not in html:
             raise RuntimeError(f"{url}: freshness date {expected_date} is not visible in the live HTML")
         canonical_bundles.update(

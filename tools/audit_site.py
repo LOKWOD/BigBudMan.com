@@ -216,6 +216,8 @@ def main() -> int:
                     f"{href} article dateModified {destination_modified or 'missing'}"
                 )
         if '<html lang="en-US">' not in text: failures.append(f"{rel}: missing en-US language")
+        if '<script data-https-upgrade>if(location.protocol==="http:")' not in text:
+            failures.append(f"{rel}: missing same-host HTTP-to-HTTPS browser fallback")
         if parser.h1 != 1: failures.append(f"{rel}: expected one h1, found {parser.h1}")
         if parser.headings and parser.headings[0] != 1:
             failures.append(f"{rel}: heading outline starts with h{parser.headings[0]} instead of h1")
@@ -1169,7 +1171,7 @@ def main() -> int:
             "Kidney-health evidence boundaries",
             "Heated concentrate hardware boundaries",
             "Rental-housing documentation boundaries",
-            "Policy reviewed November 27, 2026",
+            "Policy reviewed November 28, 2026",
         )
         discovery_checks["updates/index.html"] = (
             "guides/cannabis-cbd-kidney-health-safety-guide/",
@@ -1222,7 +1224,7 @@ def main() -> int:
             "Menopause evidence boundaries",
             "Vape end-of-life and conversion boundaries",
             "Daily discovery integration integrity",
-            "Policy reviewed November 27, 2026",
+            "Policy reviewed November 28, 2026",
         )
         discovery_checks["updates/index.html"] = (
             "guides/cannabis-menopause-symptoms-evidence-safety-guide/",
@@ -1270,7 +1272,7 @@ def main() -> int:
         discovery_checks["editorial-policy/index.html"] += (
             "Mood-disorder evidence and crisis boundaries",
             "Home-grow enclosure and commercial boundaries",
-            "Policy reviewed November 27, 2026",
+            "Policy reviewed November 28, 2026",
         )
         discovery_checks["updates/index.html"] = (
             "guides/cannabis-depression-bipolar-mood-evidence-safety-guide/",
@@ -1534,7 +1536,7 @@ def main() -> int:
             failures.append("Editorial policy or Atom feed is missing the feed authorship standard")
         if "Age-gate focus isolation" not in policy:
             failures.append("Editorial policy is missing the age-gate focus-isolation standard")
-        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "Mobile-navigation state integrity" not in policy or "Site-search dialog naming integrity" not in policy or "Guide-finder progression integrity" not in policy or "Fresh static discovery path" not in policy or "Nested 404 route integrity" not in policy or "Collection-control outcome relationship" not in policy or "QR destination and product-evidence boundary" not in policy or "Plant-name and chemical-class boundary" not in policy or "Source-review chronology integrity" not in policy or "Named-product research boundary" not in policy or "External-source transport and relationship integrity" not in policy or "Behavior-change content boundary" not in policy or "Dated source-review freshness gate" not in policy or "Machine-readable coverage and link inventory" not in policy or "content-inventory.json" not in policy or "Emergency-readiness and first-visit boundaries" not in policy or "Live legacy-sitemap parity" not in policy or "Water-activity and retail-form boundaries" not in policy or "Canonical-host fallback" not in policy or "Fast-acting edible claim boundaries" not in policy or "Home-grow system comparison boundaries" not in policy or "Tool and calculator boundaries" not in policy or "Kidney-health evidence boundaries" not in policy or "Heated concentrate hardware boundaries" not in policy or "Rental-housing documentation boundaries" not in policy or "Menopause evidence boundaries" not in policy or "Vape end-of-life and conversion boundaries" not in policy or "Daily discovery integration integrity" not in policy or "Mood-disorder evidence and crisis boundaries" not in policy or "Home-grow enclosure and commercial boundaries" not in policy or "November 27, 2026" not in policy:
+        if "Contextual inbound-link floor" not in policy or "Visible citation parity" not in policy or "Heading hierarchy integrity" not in policy or "Print and PDF citation integrity" not in policy or "Forced-color interface integrity" not in policy or "Checked-in source entry-point integrity" not in policy or "Checked-in publication parity" not in policy or "Documented publication-inventory parity" not in policy or "Deployed discovery-response integrity" not in policy or "Search-result review-date parity" not in policy or "Visible publication-history parity" not in policy or "Semantic table-header integrity" not in policy or "Brand-image loading integrity" not in policy or "Mobile-navigation state integrity" not in policy or "Site-search dialog naming integrity" not in policy or "Guide-finder progression integrity" not in policy or "Fresh static discovery path" not in policy or "Nested 404 route integrity" not in policy or "Collection-control outcome relationship" not in policy or "QR destination and product-evidence boundary" not in policy or "Plant-name and chemical-class boundary" not in policy or "Source-review chronology integrity" not in policy or "Named-product research boundary" not in policy or "External-source transport and relationship integrity" not in policy or "Behavior-change content boundary" not in policy or "Dated source-review freshness gate" not in policy or "Machine-readable coverage and link inventory" not in policy or "content-inventory.json" not in policy or "Emergency-readiness and first-visit boundaries" not in policy or "Live legacy-sitemap parity" not in policy or "Water-activity and retail-form boundaries" not in policy or "Canonical-host fallback" not in policy or "Fast-acting edible claim boundaries" not in policy or "Home-grow system comparison boundaries" not in policy or "Tool and calculator boundaries" not in policy or "Kidney-health evidence boundaries" not in policy or "Heated concentrate hardware boundaries" not in policy or "Rental-housing documentation boundaries" not in policy or "Menopause evidence boundaries" not in policy or "Vape end-of-life and conversion boundaries" not in policy or "Daily discovery integration integrity" not in policy or "Mood-disorder evidence and crisis boundaries" not in policy or "Home-grow enclosure and commercial boundaries" not in policy or "Digestive-symptom and prescription-product boundaries" not in policy or "Cold-weather storage and device boundaries" not in policy or "HTTPS transport fallback" not in policy or "November 28, 2026" not in policy:
             failures.append("Editorial policy is missing the current link and collection-date integrity standards")
         verify_live_source = (REPOSITORY / "tools/verify_live.py").read_text(encoding="utf-8")
         for marker in ("index.php?xml_sitemap=params=", "live legacy sitemap endpoint", "live legacy sitemap parity"):

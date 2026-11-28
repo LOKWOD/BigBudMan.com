@@ -3,8 +3,8 @@
   <url><loc>https://bigbudman.com/about/</loc><lastmod>2026-10-24</lastmod></url>
   <url><loc>https://bigbudman.com/affiliate-disclosure/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://bigbudman.com/contact/</loc><lastmod>2026-10-16</lastmod></url>
-  <url><loc>https://bigbudman.com/editorial-policy/</loc><lastmod>2026-11-27</lastmod></url>
-  <url><loc>https://bigbudman.com/gear/510-thread-vape-battery-safety/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://bigbudman.com/editorial-policy/</loc><lastmod>2026-11-28</lastmod></url>
+  <url><loc>https://bigbudman.com/gear/510-thread-vape-battery-safety/</loc><lastmod>2026-11-28</lastmod></url>
   <url><loc>https://bigbudman.com/gear/air-purifier-cannabis-smoke-odor-guide/</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://bigbudman.com/gear/cannabis-accessibility-tools-buying-guide/</loc><lastmod>2026-10-17</lastmod></url>
   <url><loc>https://bigbudman.com/gear/cannabis-accessory-return-warranty-recall-guide/</loc><lastmod>2026-11-21</lastmod></url>
@@ -23,7 +23,7 @@
   <url><loc>https://bigbudman.com/gear/cannabis-label-magnifier-task-light-buying-guide/</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://bigbudman.com/gear/cannabis-lighter-flame-safety-guide/</loc><lastmod>2026-10-19</lastmod></url>
   <url><loc>https://bigbudman.com/gear/cannabis-liquid-measuring-tool-buying-guide/</loc><lastmod>2026-11-17</lastmod></url>
-  <url><loc>https://bigbudman.com/gear/cannabis-lockbox-buying-guide/</loc><lastmod>2026-11-14</lastmod></url>
+  <url><loc>https://bigbudman.com/gear/cannabis-lockbox-buying-guide/</loc><lastmod>2026-11-28</lastmod></url>
   <url><loc>https://bigbudman.com/gear/cannabis-loupe-pocket-microscope-guide/</loc><lastmod>2026-10-11</lastmod></url>
   <url><loc>https://bigbudman.com/gear/cannabis-pre-roll-tube-case-buying-guide/</loc><lastmod>2026-10-29</lastmod></url>
   <url><loc>https://bigbudman.com/gear/cannabis-product-photo-documentation-kit-buying-guide/</loc><lastmod>2026-11-16</lastmod></url>
@@ -35,7 +35,7 @@
   <url><loc>https://bigbudman.com/gear/cannabis-smoke-air-quality-monitor-buying-guide/</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://bigbudman.com/gear/cannabis-stash-jar-buying-guide/</loc><lastmod>2026-11-10</lastmod></url>
   <url><loc>https://bigbudman.com/gear/cannabis-tool-cleaning-kit/</loc><lastmod>2026-11-19</lastmod></url>
-  <url><loc>https://bigbudman.com/gear/cannabis-vape-battery-cartridge-disposal-guide/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://bigbudman.com/gear/cannabis-vape-battery-cartridge-disposal-guide/</loc><lastmod>2026-11-28</lastmod></url>
   <url><loc>https://bigbudman.com/gear/cbd-oil-dropper-replacement-bottle-fit-guide/</loc><lastmod>2026-11-17</lastmod></url>
   <url><loc>https://bigbudman.com/gear/digital-scale-buying-calibration-guide/</loc><lastmod>2026-10-06</lastmod></url>
   <url><loc>https://bigbudman.com/gear/dry-herb-vaporizer-buying-safety-guide/</loc><lastmod>2026-11-15</lastmod></url>
@@ -54,7 +54,7 @@
   <url><loc>https://bigbudman.com/gear/indoor-cannabis-grow-light-buying-cost-planner/</loc><lastmod>2026-11-27</lastmod></url>
   <url><loc>https://bigbudman.com/gear/smell-proof-storage/</loc><lastmod>2026-11-08</lastmod></url>
   <url><loc>https://bigbudman.com/gear/used-cannabis-accessory-buying-safety-guide/</loc><lastmod>2026-11-19</lastmod></url>
-  <url><loc>https://bigbudman.com/guides/cannabinoid-hyperemesis-syndrome-warning-signs/</loc><lastmod>2026-11-10</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/cannabinoid-hyperemesis-syndrome-warning-signs/</loc><lastmod>2026-11-28</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-101/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-allergy-symptom-exposure-guide/</loc><lastmod>2026-10-28</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-and-alcohol-mixing-risks/</loc><lastmod>2026-10-14</lastmod></url>
@@ -70,10 +70,11 @@
   <url><loc>https://bigbudman.com/guides/cannabis-cbd-epilepsy-seizure-care-guide/</loc><lastmod>2026-10-05</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-cbd-kidney-health-safety-guide/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-cbd-liver-health-safety-guide/</loc><lastmod>2026-10-10</lastmod></url>
-  <url><loc>https://bigbudman.com/guides/cannabis-cbd-medication-interactions/</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/cannabis-cbd-medication-interactions/</loc><lastmod>2026-11-28</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-certificate-of-analysis-coa-guide/</loc><lastmod>2026-11-27</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-child-resistant-packaging-home-storage-guide/</loc><lastmod>2026-11-08</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-claim-fact-check-worksheet/</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/cannabis-cold-weather-storage-transport-checklist/</loc><lastmod>2026-11-28</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-concentrates-dabs-label-safety-guide/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-contaminant-test-results-guide/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-cut-down-quit-support-plan/</loc><lastmod>2026-11-18</lastmod></url>
@@ -93,7 +94,7 @@
   <url><loc>https://bigbudman.com/guides/cannabis-flower-freshness-package-date-buying-guide/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-glaucoma-eye-pressure-vision-guide/</loc><lastmod>2026-10-04</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-gummies-drinks-oils-capsules-comparison/</loc><lastmod>2026-09-30</lastmod></url>
-  <url><loc>https://bigbudman.com/guides/cannabis-health-evidence-library/</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/cannabis-health-evidence-library/</loc><lastmod>2026-11-28</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-heart-rate-blood-pressure-safety/</loc><lastmod>2026-11-06</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-home-fire-safety-plan/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-intoxication-impairment-detection/</loc><lastmod>2026-10-15</lastmod></url>
@@ -102,7 +103,8 @@
   <url><loc>https://bigbudman.com/guides/cannabis-menopause-symptoms-evidence-safety-guide/</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-menu-package-receipt-match-checklist/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-migraine-headache-evidence-guide/</loc><lastmod>2026-11-07</lastmod></url>
-  <url><loc>https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/</loc><lastmod>2026-11-22</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/cannabis-moving-day-relocation-checklist/</loc><lastmod>2026-11-28</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/cannabis-nausea-appetite-digestive-symptoms-evidence-guide/</loc><lastmod>2026-11-28</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-next-day-impairment-evidence-guide/</loc><lastmod>2026-11-12</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-nicotine-tobacco-co-use-guide/</loc><lastmod>2026-10-29</lastmod></url>
   <url><loc>https://bigbudman.com/guides/cannabis-official-source-directory/</loc><lastmod>2026-11-21</lastmod></url>
@@ -155,8 +157,8 @@
   <url><loc>https://bigbudman.com/guides/flower/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://bigbudman.com/guides/full-spectrum-broad-spectrum-cbd-isolate/</loc><lastmod>2026-09-08</lastmod></url>
   <url><loc>https://bigbudman.com/guides/hemp-seed-oil-vs-cbd-oil/</loc><lastmod>2026-11-27</lastmod></url>
-  <url><loc>https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/</loc><lastmod>2026-11-27</lastmod></url>
-  <url><loc>https://bigbudman.com/guides/</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/how-to-talk-to-doctor-about-cannabis/</loc><lastmod>2026-11-28</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/</loc><lastmod>2026-11-28</lastmod></url>
   <url><loc>https://bigbudman.com/guides/indica-sativa-hybrid-label-evidence-guide/</loc><lastmod>2026-11-17</lastmod></url>
   <url><loc>https://bigbudman.com/guides/new-york-cannabis-delivery-online-order-verification-guide/</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://bigbudman.com/guides/new-york-cannabis-seed-clone-buying-guide/</loc><lastmod>2026-11-14</lastmod></url>
@@ -166,11 +168,11 @@
   <url><loc>https://bigbudman.com/guides/new-york-home-cannabis-pest-mold-ipm-guide/</loc><lastmod>2026-10-06</lastmod></url>
   <url><loc>https://bigbudman.com/guides/read-a-label/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://bigbudman.com/guides/secondhand-cannabis-smoke-indoor-air/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://bigbudman.com/guides/storage/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://bigbudman.com/guides/storage/</loc><lastmod>2026-11-28</lastmod></url>
   <url><loc>https://bigbudman.com/guides/terpenes/</loc><lastmod>2026-10-11</lastmod></url>
   <url><loc>https://bigbudman.com/guides/thca-vs-thc-cannabis-labels/</loc><lastmod>2026-09-08</lastmod></url>
   <url><loc>https://bigbudman.com/guides/vapes/</loc><lastmod>2026-11-26</lastmod></url>
-  <url><loc>https://bigbudman.com/</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://bigbudman.com/</loc><lastmod>2026-11-28</lastmod></url>
   <url><loc>https://bigbudman.com/legal/alabama/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/alaska/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/legal/arizona/</loc><lastmod>2026-09-01</lastmod></url>
@@ -230,7 +232,7 @@
   <url><loc>https://bigbudman.com/legal/wyoming/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://bigbudman.com/privacy/</loc><lastmod>2026-08-17</lastmod></url>
   <url><loc>https://bigbudman.com/responsible-use/</loc><lastmod>2026-08-17</lastmod></url>
-  <url><loc>https://bigbudman.com/site-index/</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://bigbudman.com/site-index/</loc><lastmod>2026-11-28</lastmod></url>
   <url><loc>https://bigbudman.com/start-here/</loc><lastmod>2026-10-25</lastmod></url>
   <url><loc>https://bigbudman.com/strains/abacus-cbd-hemp/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://bigbudman.com/strains/acapulco-gold/</loc><lastmod>2026-08-26</lastmod></url>
@@ -366,5 +368,5 @@
   <url><loc>https://bigbudman.com/strains/zkittlez/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/strains/zoap/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://bigbudman.com/terms/</loc><lastmod>2026-08-17</lastmod></url>
-  <url><loc>https://bigbudman.com/updates/</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://bigbudman.com/updates/</loc><lastmod>2026-11-28</lastmod></url>
 </urlset>

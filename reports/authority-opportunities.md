@@ -1,6 +1,21 @@
 # Big Bud Man authority opportunities
 
-Last reviewed: November 27, 2026
+Last reviewed: November 28, 2026
+
+## November 28, 2026 authority action
+
+- **Authority action:** Published a citation-ready cannabis, nausea, appetite, and digestive-symptom evidence guide that keeps FDA-approved prescription cannabinoids, retail cannabis, CBD, nausea, vomiting, appetite, weight, bowel symptoms, dehydration, medicines, underlying illness, and cannabinoid hyperemesis syndrome in separate lanes. It maps NCCIH, NCI, AGA, NIDDK, and Poison Control sources to an urgent gate, symptom matrix, CHS boundary, product-and-medicine timeline, and claim screen without diagnosing or recommending a product or dose.
+- **Cluster strengthened:** Health evidence library ↔ cannabinoid hyperemesis warning signs ↔ CBD and medication interactions ↔ clinician conversation. Each established page now links contextually to the new guide, which returns readers to the correct urgent-response, evidence, medicine, and clinical-handoff paths.
+- **Trust action:** Added sitewide HTTPS canonicals plus a same-host browser upgrade fallback, a release gate that rejects pages missing it, and a public policy disclosure that this is defense in depth rather than a substitute for a server-level permanent redirect. The digestive guide separately keeps prescription evidence attached to the prescription product and puts dehydration, severe pain, blood or black stool, and exposure routes before interpretation.
+- **Conversion action:** Published a cold-weather storage and transport checklist that routes readers only when relevant to the established lockbox, 510 battery, and battery/cartridge disposal guides. Its comparison table begins with reuse and no-buy checks. No approved affiliate program or tracking ID is configured, so no merchant, model, live price, stock, rating, discount, product image, fabricated test, or commission-weighted conclusion was added.
+
+### Qualified opportunity logged
+
+| Exact target | Contact route | Exact asset match | Honest pitch angle |
+|---|---|---|---|
+| International Foundation for Gastrointestinal Disorders (IFFGD) | Ordinary education/contact route: <https://iffgd.org/contact-us/> — not an emergency or personal medical-advice route | [Cannabis, Nausea, Appetite & Digestive Symptoms Guide](https://bigbudman.com/guides/cannabis-nausea-appetite-digestive-symptoms-evidence-guide/) | A consumer-facing question map that separates prescription cannabinoid evidence from retail products and places recurrent vomiting, CHS, dehydration, bowel red flags, medicine interactions, and a clinician-ready timeline in distinct lanes. Invite factual correction or educational-resource consideration; do not imply IFFGD review, diagnosis, treatment, product endorsement, or a substitute for urgent care. |
+
+No outreach was sent.
 
 ## November 27, 2026 authority action
 

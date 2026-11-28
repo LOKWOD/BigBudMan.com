@@ -85,6 +85,7 @@ from content_nov24 import EDITORIAL_POLICY_APPEND as NOV24_POLICY_APPEND, NEW_GE
 from content_nov25 import EDITORIAL_POLICY_APPEND as NOV25_POLICY_APPEND, NEW_GEAR as NOV25_GEAR, NEW_GUIDES as NOV25_GUIDES, PUBLICATION_MANIFEST as NOV25_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV25_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV25_REVIEWED_RELATED_PATHS
 from content_nov26 import EDITORIAL_POLICY_APPEND as NOV26_POLICY_APPEND, GEAR_OVERRIDES as NOV26_GEAR_OVERRIDES, NEW_GUIDES as NOV26_GUIDES, PUBLICATION_MANIFEST as NOV26_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV26_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV26_REVIEWED_RELATED_PATHS
 from content_nov27 import EDITORIAL_POLICY_APPEND as NOV27_POLICY_APPEND, NEW_GEAR as NOV27_GEAR, NEW_GUIDES as NOV27_GUIDES, NEW_STRAIN_PAGES as NOV27_STRAIN_PAGES, NEW_STRAIN_RECORDS as NOV27_STRAIN_RECORDS, PUBLICATION_MANIFEST as NOV27_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV27_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV27_REVIEWED_RELATED_PATHS
+from content_nov28 import EDITORIAL_POLICY_APPEND as NOV28_POLICY_APPEND, NEW_GEAR as NOV28_GEAR, NEW_GUIDES as NOV28_GUIDES, PUBLICATION_MANIFEST as NOV28_PUBLICATION_MANIFEST, RECIPROCAL_LINKS as NOV28_RECIPROCAL_LINKS, REVIEWED_RELATED_PATHS as NOV28_REVIEWED_RELATED_PATHS
 from content_state_laws import DEA_SOURCE, NCSL_SOURCE, REVIEW_DATE, STATE_LAWS, STATUS_DESCRIPTIONS, STATUS_LABELS
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -268,6 +269,8 @@ GUIDE_PAGES = GUIDE_PAGES + NOV27_GUIDES
 OTHER_ARTICLES = OTHER_ARTICLES + NOV27_GEAR
 STRAINS = STRAINS + NOV27_STRAIN_RECORDS
 STRAIN_PAGES = STRAIN_PAGES + NOV27_STRAIN_PAGES
+GUIDE_PAGES = GUIDE_PAGES + NOV28_GUIDES
+OTHER_ARTICLES = OTHER_ARTICLES + NOV28_GEAR
 
 # November 6 connects both new resources from established, intent-matched
 # pages. These are editorial paths, not generic recent-post links, and the
@@ -1149,6 +1152,15 @@ for _standard in STANDARD_PAGES:
         )
         _standard["body"] += NOV27_POLICY_APPEND
 
+for _standard in STANDARD_PAGES:
+    if _standard["path"] == "editorial-policy/index.html":
+        _standard["updated"] = "November 28, 2026"
+        _standard["body"] = _standard["body"].replace(
+            '<p class="update-line">Policy reviewed November 27, 2026</p>',
+            '<p class="update-line">Policy reviewed November 28, 2026</p>',
+        )
+        _standard["body"] += NOV28_POLICY_APPEND
+
 RECIPROCAL_RELATED = {
     "guides/full-spectrum-broad-spectrum-cbd-isolate/index.html": [
         ("guides/cbd-drinks-powders-label-buying-guide/", "CBD DRINKS", "Apply spectrum language to a beverage lot"),
@@ -1985,6 +1997,9 @@ for _source, _links in NOV26_RECIPROCAL_LINKS.items():
 for _source, _links in NOV27_RECIPROCAL_LINKS.items():
     for _link in reversed(_links):
         RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
+for _source, _links in NOV28_RECIPROCAL_LINKS.items():
+    for _link in reversed(_links):
+        RECIPROCAL_RELATED.setdefault(_source, []).insert(0, _link)
 for _source in (
     "guides/read-a-label/index.html",
     "guides/cannabis-terms-label-lab-glossary/index.html",
@@ -2031,6 +2046,9 @@ for _item in GUIDE_PAGES + OTHER_ARTICLES + STRAIN_PAGES:
     if _item["path"] in NOV27_REVIEWED_RELATED_PATHS:
         _item["updated"] = "November 27, 2026"
 for _item in GUIDE_PAGES + OTHER_ARTICLES:
+    if _item["path"] in NOV28_REVIEWED_RELATED_PATHS:
+        _item["updated"] = "November 28, 2026"
+for _item in GUIDE_PAGES + OTHER_ARTICLES:
     if _item["path"] in RECIPROCAL_RELATED:
         _candidates = RECIPROCAL_RELATED[_item["path"]] + list(_item["related"])
         _seen_related: set[str] = set()
@@ -2046,7 +2064,7 @@ for _item in GUIDE_PAGES + OTHER_ARTICLES:
             if _item["path"] == "guides/new-york-home-cannabis-grow-planner/index.html":
                 _related_limit = 10
             elif _item["path"] == "guides/cannabis-cbd-medication-interactions/index.html":
-                _related_limit = 8
+                _related_limit = 9
             elif _item["path"] == "legal/shop-legal/index.html":
                 # Keep the established delivery-verification route after the
                 # payment/receipt authority link added in this release.
@@ -2054,7 +2072,7 @@ for _item in GUIDE_PAGES + OTHER_ARTICLES:
             elif _item["path"] == "guides/storage/index.html":
                 # Preserve the established smell-proof-storage route after the
                 # water-activity evidence card added in this release.
-                _related_limit = 9
+                _related_limit = 10
             elif _item["path"] == "guides/cannabis-product-complaint-adverse-event-reporting/index.html":
                 # Preserve the established ingredient/allergen path after the
                 # response-log evidence route added in this release.
@@ -2160,7 +2178,7 @@ def render_home() -> tuple[Page, str]:
         path="index.html", title="Big Bud Man | Legal Cannabis, Without the Haze",
         description="Independent cannabis guides for adults 21+: strains, edibles, labels, gear, responsible use, and reviewed legal starting points for all 50 states.",
         category="Home", h1="Legal weed. Clear-headed guidance.",
-        dek="Independent cannabis education for adults 21+.", body="", updated="November 27, 2026", kind="website",
+        dek="Independent cannabis education for adults 21+.", body="", updated="November 28, 2026", kind="website",
     )
     main = f'''<main id="main-content">
 <section class="hero"><div class="hero-noise"></div><div class="container hero-grid">
@@ -2356,7 +2374,7 @@ def add_collection_itemlist(html: str, page: Page, name: str, card_class: str) -
 
 
 def render_guides_hub() -> tuple[Page,str]:
-    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 27, 2026",kind="website")
+    page=Page("guides/index.html","Practical Cannabis Guides | Big Bud Man","Search practical cannabis guides for official sources, product formats, labels, safety, testing, storage, and responsible use.","Guide library","The guide library.","Search by the decision in front of you, then sort by editorial order, recent review date, or title.","",updated="November 28, 2026",kind="website")
     p="../"
     cards="".join([
       card("guides/cannabis-depression-bipolar-mood-evidence-safety-guide/","HEALTH + EVIDENCE","Cannabis, depression, and bipolar disorder","Separate treatment evidence, association, depression, mania, withdrawal, medicines, function, crisis signs, and the clinical handoff.","heart",p),
@@ -2502,6 +2520,22 @@ def render_guides_hub() -> tuple[Page,str]:
         "Strain, cultivar, chemotype, and lot",
         "Translate ten identity layers into the evidence each term can and cannot carry.",
         "book",
+        p,
+    ) + cards
+    cards = card(
+        "guides/cannabis-cold-weather-storage-transport-checklist/",
+        "STORAGE + TRANSPORT",
+        "Cold-weather storage and transport",
+        "Plan the lawful trip, closed-package transition, condensation check, battery inspection, locked handoff, and damage exit.",
+        "shield",
+        p,
+    ) + cards
+    cards = card(
+        "guides/cannabis-nausea-appetite-digestive-symptoms-evidence-guide/",
+        "HEALTH + EVIDENCE",
+        "Cannabis, nausea, appetite, and digestive symptoms",
+        "Separate prescription cannabinoid evidence, retail products, digestive outcomes, CHS, dehydration, and the clinician handoff.",
+        "heart",
         p,
     ) + cards
     guide_count = cards.count('data-guide-card')
@@ -2883,7 +2917,7 @@ def write_content_inventory(pages: list[Page]) -> None:
             "contextual_outlinks": outgoing[url],
         })
     payload = {
-        "generated": NOV27_PUBLICATION_MANIFEST["publication_date"],
+        "generated": NOV28_PUBLICATION_MANIFEST["publication_date"],
         "scope": "Every indexable canonical BigBudMan.com page. Links are unique internal destinations inside main content; global header and footer navigation are excluded.",
         "page_count": len(records),
         "pages": records,
@@ -3035,6 +3069,7 @@ def build() -> None:
     publication_manifest = NOV25_PUBLICATION_MANIFEST
     publication_manifest = NOV26_PUBLICATION_MANIFEST
     publication_manifest = NOV27_PUBLICATION_MANIFEST
+    publication_manifest = NOV28_PUBLICATION_MANIFEST
     write_text(OUT,"publication-manifest.json",json.dumps(publication_manifest,indent=2)+"\n")
     indexable=[p for p in pages if p.path not in {"404.html","thank-you/index.html"}]
     write_content_inventory(indexable)
